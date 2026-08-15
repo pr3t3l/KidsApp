@@ -16,6 +16,16 @@ Validar que el sistema sea útil, seguro y sostenible en una tarde real, no solo
 - Confirmar que un objetivo principal sea suficiente.
 - Mantener un diario corto de decisiones editoriales y cambios de versión.
 
+### Secuencia inicial de calibración
+
+Antes de ampliar la biblioteca, calibrar el esquema con las tres actividades del [Pilot Pack v0.1](pilot-pack-v0.1.md):
+
+1. `ACT-0001` Puente de papel: primer dry run adulto sin participación infantil; después de alcanzar `ready_for_pilot`, primer ensayo controlado con la hija de la fundadora y medición de tiempos.
+2. `ACT-0002` Clasificación con semillas: ejecutar solo después de revisión de piezas pequeñas, alergias y toxicología; probar por separado con uno, dos y tres niños.
+3. `ACT-0003` Probador de conductividad: no ejecutar con niños hasta completar el gate eléctrico reforzado y las pruebas físicas adultas.
+
+Una revisión con decisión `rejected` devuelve la actividad al estado editorial apropiado y también produce aprendizaje; `rejected` no es un estado de ActivityVersion. Una versión nueva no sustituye silenciosamente a la que referencia una sesión.
+
 ## Piloto pequeño
 
 Propuesta confirmada: complementar el piloto de la fundadora y su hija con familias amigas que tienen dos o tres niños cada una, durante parte o la totalidad de las ocho semanas, sujeto a privacidad, consentimiento y revisión apropiados. La cantidad exacta de familias participantes todavía no está fijada.
@@ -33,7 +43,7 @@ Diversidad buscada:
 2. ¿Los roles permiten trabajar juntos o generan espera/conflicto?
 3. ¿El adulto entiende el objetivo principal?
 4. ¿Puede cerrar en menos de 20 segundos?
-5. ¿La señal obtenida mejora la siguiente recomendación?
+5. En la fase funcional con `VS-05`, ¿la señal obtenida mejora la siguiente recomendación?
 6. ¿Las explicaciones e imágenes bastan cuando algo falla?
 7. ¿Qué datos considera cómodo compartir el adulto?
 8. ¿El producto reduce o aumenta carga mental?
@@ -63,7 +73,7 @@ No solicitar fotos de niños ni grabación continua. Medios de troubleshooting s
 - Menos del 15% termina “demasiado fácil” o “no pudo” por mala asignación, tras calibración.
 - Ningún incidente crítico de seguridad o privacidad.
 - Mayoría de adultos afirma que la preparación fue igual o menor a lo esperado.
-- Las correcciones de inferencias disminuyen sin dejar de estar disponibles.
+- En la fase funcional con `VS-04`, las correcciones de inferencias disminuyen sin dejar de estar disponibles. Este criterio no se evalúa durante los primeros dry runs ni con `VS-01–03` solamente.
 - La fundadora puede sostener el uso durante ocho semanas sin que preparación y documentación se vuelvan una carga desproporcionada.
 - Las familias amigas aportan sesiones reales con dos o tres niños, además de diferencias de edad, experiencia y estilo de acompañamiento.
 

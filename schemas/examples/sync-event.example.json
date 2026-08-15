@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "0.1",
+  "eventId": "EVT-DEMO-STEP-001",
+  "idempotencyKey": "DEVICE-DEMO-1:SES-DEMO-001:0001",
+  "deviceId": "DEVICE-DEMO-1",
+  "familyId": "FAMILY-DEMO",
+  "sessionId": "SES-DEMO-001",
+  "eventType": "step_progressed",
+  "occurredAt": "2026-08-17T20:08:00Z",
+  "queuedAt": "2026-08-17T20:08:01Z",
+  "baseServerRevision": 2,
+  "clientSequence": 1,
+  "payload": {
+    "kind": "step_progressed",
+    "stepId": "STEP-01",
+    "status": "completed"
+  },
+  "syncStatus": "accepted",
+  "serverRevision": 3,
+  "conflict": null
+}

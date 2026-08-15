@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-learning.local/schemas/v0.1/session.schema.json",
+  "title": "ActivitySession",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sessionId", "familyId", "activityRef", "deliveryMode", "locale", "status", "serverRevision", "assignments", "assignmentEvents", "stepProgress", "appliedAdaptations"],
+  "properties": {
+    "schemaVersion": { "const": "0.1" },
+    "sessionId": { "type": "string", "pattern": "^SES-[A-Z0-9-]+$" },
+    "familyId": { "type": "string", "minLength": 1 },
+    "activityRef": { "$ref": "#/$defs/activityRef" },
+    "deliveryMode": { "enum": ["family_recommendation", "pilot", "editorial_preview"] },
+    "locale": { "enum": ["en-US", "es-US"] },
+    "status": { "enum": ["planned", "ready", "in_progress", "paused", "completed", "abandoned"] },
+    "serverRevision": { "type": "integer", "minimum": 0 },
+    "scheduledAt": { "type": ["string", "null"], "format": "date-time" },
+    "startedAt": { "type": ["string", "null"], "format": "date-time" },
+    "completedAt": { "type": ["string", "null"], "format": "date-time" },
+    "assignments": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "$ref": "#/$defs/assignment" } },
+    "assignmentEvents": { "type": "array", "items": { "$ref": "#/$defs/assignmentEvent" } },
+    "stepProgress": { "type": "array", "items": { "$ref": "#/$defs/stepProgress" } },
+    "appliedAdaptations": { "type": "array", "items": { "$ref": "#/$defs/appliedAdaptation" } },
+    "closeOut": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/closeOut" }] },
+    "offlineState": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/offlineState" }] }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "activityRef": {
+      "type": "object", "additionalProperties": false, "required": ["activityId", "version", "schemaVersion", "contentHash"],
+      "properties": {
+        "activityId": { "type": "string", "pattern": "^ACT-[0-9]{4}$" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "schemaVersion": { "const": "0.1" },
+        "contentHash": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "assignment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["assignmentId", "learnerId", "participationStatus", "plannedRoleTemplateId", "actualRoleTemplateIds", "primaryObjectiveSkillId", "plannedExposureSkillIds", "plannedExposureConceptIds", "actualExposureSkillIds", "actualExposureConceptIds", "assignmentSource", "participatedStepIds"],
+      "properties": {
+        "assignmentId": { "type": "string", "pattern": "^ASN-[A-Z0-9-]+$" },
+        "learnerId": { "type": "string", "minLength": 1 },
+        "participationStatus": { "enum": ["planned", "participated", "partial", "did_not_participate"] },
+        "plannedRoleTemplateId": { "type": "string", "pattern": "^ROLE-[A-Z0-9-]+$" },
+        "actualRoleTemplateIds": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^ROLE-[A-Z0-9-]+$" } },
+        "primaryObjectiveSkillId": { "type": "string", "minLength": 1 },
+        "plannedExposureSkillIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "plannedExposureConceptIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "actualExposureSkillIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "actualExposureConceptIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "participatedStepIds": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^STEP-[0-9]{2}$" } },
+        "assignmentSource": { "enum": ["recommendation", "adult_override"] },
+        "changeReason": { "type": ["string", "null"] }
+      }
+    },
+    "assignmentEvent": {
+      "type": "object", "additionalProperties": false,
+      "required": ["eventId", "assignmentId", "learnerId", "eventType", "fromValue", "toValue", "occurredAt", "recordedAt", "source"],
+      "properties": {
+        "eventId": { "type": "string", "pattern": "^ASEVT-[A-Z0-9-]+$" },
+        "assignmentId": { "type": "string", "pattern": "^ASN-[A-Z0-9-]+$" },
+        "learnerId": { "type": "string", "minLength": 1 },
+        "eventType": { "enum": ["role_changed", "participation_changed", "primary_objective_changed"] },
+        "fromValue": { "type": ["string", "null"] },
+        "toValue": { "type": "string", "minLength": 1 },
+        "occurredAt": { "type": "string", "format": "date-time" },
+        "recordedAt": { "type": "string", "format": "date-time" },
+        "source": { "enum": ["adult", "system"] }
+      }
+    },
+    "stepProgress": {
+      "type": "object", "additionalProperties": false, "required": ["stepId", "status", "completedAt", "issueCode"],
+      "properties": {
+        "stepId": { "type": "string", "pattern": "^STEP-[0-9]{2}$" },
+        "status": { "enum": ["not_started", "in_progress", "completed", "skipped"] },
+        "completedAt": { "type": ["string", "null"], "format": "date-time" },
+        "issueCode": { "type": ["string", "null"] }
+      }
+    },
+    "appliedAdaptation": {
+      "type": "object", "additionalProperties": false, "required": ["adaptationId", "appliedAt", "appliedByAdultId", "clientEventId"],
+      "properties": {
+        "adaptationId": { "type": "string", "pattern": "^ADAPT-[A-Z0-9-]+$" },
+        "appliedAt": { "type": "string", "format": "date-time" },
+        "appliedByAdultId": { "type": ["string", "null"] },
+        "clientEventId": { "type": "string", "minLength": 1 }
+      }
+    },
+    "rating": {
+      "type": "object", "additionalProperties": false, "required": ["skillId", "independenceRating", "contextFlags", "otherContext"],
+      "properties": {
+        "skillId": { "type": "string", "minLength": 1 },
+        "independenceRating": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "contextFlags": { "type": "array", "uniqueItems": true, "items": { "enum": ["equipment_problem", "material_problem", "group_dependency", "fatigue", "interruption", "other"] } },
+        "otherContext": { "type": ["string", "null"] }
+      }
+    },
+    "participantResult": {
+      "type": "object", "additionalProperties": false,
+      "required": ["learnerId", "disposition", "primaryRating", "secondaryRatings", "skipReason"],
+      "properties": {
+        "learnerId": { "type": "string", "minLength": 1 },
+        "disposition": { "enum": ["rated", "skipped", "not_observed", "did_not_participate"] },
+        "primaryRating": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/rating" }] },
+        "secondaryRatings": { "type": "array", "items": { "$ref": "#/$defs/rating" } },
+        "skipReason": { "type": ["string", "null"] }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "disposition": { "const": "rated" } }, "required": ["disposition"] },
+          "then": { "properties": { "primaryRating": { "$ref": "#/$defs/rating" } } },
+          "else": { "properties": { "primaryRating": { "type": "null" } } }
+        },
+        {
+          "if": { "properties": { "disposition": { "const": "did_not_participate" } }, "required": ["disposition"] },
+          "then": { "properties": { "secondaryRatings": { "type": "array", "maxItems": 0 } } }
+        }
+      ]
+    },
+    "closeOut": {
+      "type": "object", "additionalProperties": false,
+      "required": ["closedAt", "participantResults", "observationInputRefs", "closedByAdultId"],
+      "properties": {
+        "closedAt": { "type": "string", "format": "date-time" },
+        "participantResults": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "$ref": "#/$defs/participantResult" } },
+        "observationInputRefs": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "closedByAdultId": { "type": "string", "minLength": 1 }
+      }
+    },
+    "offlineState": {
+      "type": "object", "additionalProperties": false,
+      "required": ["packId", "manifestContentHash", "deviceId", "baseServerRevision", "localRevision", "pendingEventIds", "conflictEventIds", "lastSyncedAt"],
+      "properties": {
+        "packId": { "type": "string", "pattern": "^PACK-[A-Z0-9-]+$" },
+        "manifestContentHash": { "$ref": "#/$defs/sha256" },
+        "deviceId": { "type": "string", "minLength": 1 },
+        "baseServerRevision": { "type": "integer", "minimum": 0 },
+        "localRevision": { "type": "integer", "minimum": 0 },
+        "pendingEventIds": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^EVT-[A-Z0-9-]+$" } },
+        "conflictEventIds": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^EVT-[A-Z0-9-]+$" } },
+        "lastSyncedAt": { "type": ["string", "null"], "format": "date-time" }
+      }
+    }
+  }
+}

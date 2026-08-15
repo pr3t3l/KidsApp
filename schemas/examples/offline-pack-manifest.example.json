@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "0.1",
+  "packId": "PACK-DEMO-WEEK-001",
+  "manifestVersion": 1,
+  "manifestContentHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "familyId": "FAMILY-DEMO",
+  "planId": "PLAN-DEMO-WEEK-001",
+  "generatedAt": "2026-08-16T13:55:00Z",
+  "expiresAt": "2026-08-23T23:59:59Z",
+  "baseServerRevision": 2,
+  "activityEntries": [
+    {
+      "activityId": "ACT-9001",
+      "version": "0.2.0",
+      "schemaVersion": "0.1",
+      "contentHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "locale": "es-US",
+      "safetyParticipationLevel": "A"
+    }
+  ],
+  "sessionAssignments": [
+    {
+      "sessionId": "SES-DEMO-001",
+      "activityId": "ACT-9001",
+      "activityVersion": "0.2.0",
+      "learnerId": "LEARNER-DEMO-A",
+      "roleTemplateId": "ROLE-BUILDER",
+      "primaryObjectiveSkillId": "MOT-SKL-PRECISE-FOLDING"
+    }
+  ],
+  "assets": [
+    {
+      "assetId": "ASSET-ACT9001-VIS01",
+      "activityId": "ACT-9001",
+      "activityVersion": "0.2.0",
+      "contentHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "mediaType": "image/webp",
+      "byteSize": 24576
+    }
+  ]
+}

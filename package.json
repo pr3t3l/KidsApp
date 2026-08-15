@@ -1,0 +1,17 @@
+{
+  "name": "kids-learning-system-specs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Product specifications, machine-readable schemas, and pilot content for Kids Learning System.",
+  "scripts": {
+    "validate:schemas": "node scripts/validate-schemas.mjs",
+    "validate:examples": "node scripts/validate-schemas.mjs --examples",
+    "validate:domain": "node scripts/validate-domain.mjs",
+    "validate:docs": "node scripts/validate-docs.mjs",
+    "validate": "npm run validate:schemas && npm run validate:examples && npm run validate:domain && npm run validate:docs"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

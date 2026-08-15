@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "0.1",
+  "eventId": "EVT-DEMO-ROLE-CONFLICT",
+  "idempotencyKey": "DEVICE-DEMO-2:SES-DEMO-001:0007",
+  "deviceId": "DEVICE-DEMO-2",
+  "familyId": "FAMILY-DEMO",
+  "sessionId": "SES-DEMO-001",
+  "eventType": "role_changed",
+  "occurredAt": "2026-08-17T20:15:00Z",
+  "queuedAt": "2026-08-17T20:15:01Z",
+  "baseServerRevision": 2,
+  "clientSequence": 7,
+  "payload": {
+    "kind": "role_changed",
+    "learnerId": "LEARNER-DEMO-A",
+    "fromRoleTemplateId": "ROLE-BUILDER",
+    "toRoleTemplateId": "ROLE-TESTER"
+  },
+  "syncStatus": "conflict",
+  "serverRevision": 4,
+  "conflict": {
+    "conflictId": "CONFLICT-DEMO-001",
+    "serverRevision": 4,
+    "reason": "role_changed_elsewhere",
+    "resolutionStatus": "pending_adult_choice"
+  }
+}

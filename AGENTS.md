@@ -52,6 +52,7 @@ No resolver contradicciones importantes inventando una interpretación. Document
 ## Implementación futura
 
 - Trabajar por vertical slices descritos en `docs/08-delivery/vertical-slices.md`.
+- Ejecutar `npm install` una vez y `npm run validate` antes de entregar cambios de contratos, documentación o actividades piloto.
 - Toda función debe enlazar requisitos y criterios de aceptación.
 - Añadir pruebas para reglas de seguridad, autorización, evidencia y límites de adaptación de IA.
 - Evitar incorporar servicios o frameworks no decididos en los specs.

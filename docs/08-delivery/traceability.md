@@ -31,6 +31,10 @@ Principio
 | Imágenes verificadas | DEC-021, ACT-VIS-002 | Editorial Workspace | VisualAsset, QA result | VS-10 | QA + aprobación humana |
 | Comunidad separada | DEC-022, COM-001/006 | Portfolio/Community | PortfolioAsset, Submission, License | VS-11/12 | Permisos y retirada |
 | Gates editoriales | DEC-023, OPS-001/003 | Editorial Workspace | Review, Role, ActivityVersion | VS-08 | Workflow y auditoría |
+| Tres actividades piloto reproducibles | ACT-001/012, SAFE-001/008 | Pilot Pack | ActivityVersion, VisualBrief, ReviewRecord | Etapa editorial previa a VS-01 | `npm run validate`, revisión cruzada y ejecución familiar |
+| Contratos ejecutables de contenido y sesión | DATA-001/002, ENG-001/004, OFF-003 | Catalog, Session, Learning Journey | JSON Schemas + invariantes de dominio | VS-01–04/09 | Ejemplos positivos, fixtures negativas y referencias cruzadas |
+| Semillas como manipulativos no comestibles | SAFE-001/002/006/007 | ACT-0002 | Material, Hazard, StopCondition | Piloto editorial | Revisión de toxicología, piezas pequeñas y prueba 1–3 niños |
+| Circuito de baja tensión con control adulto | SAFE-003/004/008 | ACT-0003 | AdultOnlyStep, Hazard, ReviewGate | Piloto editorial reforzado | Cálculo, números de parte, inspección física y especialista |
 
 ## Regla para tareas futuras
 
@@ -43,3 +47,10 @@ Toda tarea de implementación debe declarar:
 - Riesgos de privacidad/seguridad.
 
 Si no existe requisito para una función importante, primero se actualiza el spec.
+
+## Evidencia del Pilot Pack v0.1
+
+- La guía de ejecución vive en [Pilot Pack v0.1](pilot-pack-v0.1.md).
+- Las actividades permanecen `Draft`; su presencia en el repositorio no satisface el gate `Published`.
+- Los contratos y ejemplos viven en `schemas/`; `npm run validate` es el gate automatizado mínimo.
+- La revisión cruzada por agentes detecta defectos editoriales, pero no sustituye revisión pedagógica, técnica, legal o de seguridad humana.

@@ -1,0 +1,293 @@
+{
+  "schemaVersion": "0.1",
+  "activityId": "ACT-9001",
+  "version": "0.2.0",
+  "contentHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "status": "draft",
+  "locales": {
+    "en-US": {
+      "title": "Synthetic Paper Bridge Contract",
+      "summary": "Compare paper shapes and improve a bridge so it supports more equal test pieces.",
+      "openingQuestion": "Can one sheet of paper bridge a gap and hold a load?",
+      "adultBriefExplanation": "Folds can make paper more resistant to bending.",
+      "adultDetailedExplanation": "Changing the cross-sectional shape changes how paper resists bending and distributes a load. Results depend on paper, span, folds, and load placement.",
+      "childExplanation": "A flat sheet bends easily. Folds make little walls that help it keep its shape.",
+      "reflectionQuestions": ["Which shape held more pieces?", "What stayed the same for a fair test?"]
+    },
+    "es-US": {
+      "title": "Contrato sintético de puente de papel",
+      "summary": "Compara formas de papel y mejora un puente para que sostenga más piezas de prueba iguales.",
+      "openingQuestion": "¿Puede una hoja cruzar un espacio y sostener peso?",
+      "adultBriefExplanation": "Los pliegues pueden hacer que el papel resista mejor la flexión.",
+      "adultDetailedExplanation": "Cambiar la forma transversal modifica cómo el papel resiste la flexión y distribuye la carga. El resultado depende del papel, la distancia, los pliegues y la posición de la carga.",
+      "childExplanation": "Una hoja plana se dobla fácilmente. Los pliegues forman paredes pequeñas que ayudan a conservar la forma.",
+      "reflectionQuestions": ["¿Qué forma sostuvo más piezas?", "¿Qué mantuvimos igual para comparar justamente?"]
+    }
+  },
+  "ageRange": { "minimumYears": 5, "maximumYears": 10 },
+  "levels": ["L1", "L2", "L3", "L4"],
+  "participants": { "minimum": 1, "maximum": 3, "supportedCounts": [1, 2, 3] },
+  "timing": { "totalMinutesMin": 35, "totalMinutesMax": 60, "adultPrepMinutes": 5, "cleanupMinutes": 5 },
+  "environment": { "spaces": ["stable_table"], "messLevel": "low", "offlineCapable": true },
+  "learning": {
+    "primaryArea": "ENG",
+    "secondaryAreas": ["MAT", "MOT", "LOG"],
+    "concepts": [
+      { "conceptId": "ENG-CON-STRUCTURAL-RIGIDITY", "name": { "en-US": "Structural rigidity", "es-US": "Rigidez estructural" } }
+    ],
+    "skills": [
+      {
+        "skillId": "MOT-SKL-PRECISE-FOLDING",
+        "name": { "en-US": "Fold paper with control", "es-US": "Doblar papel con control" },
+        "observableActions": [{ "en-US": "Makes repeated folds with decreasing help.", "es-US": "Realiza pliegues repetidos con ayuda decreciente." }],
+        "nonEvidence": [{ "en-US": "Watching an adult fold.", "es-US": "Observar al adulto doblar." }]
+      },
+      {
+        "skillId": "MAT-SKL-ONE-TO-ONE-COUNTING",
+        "name": { "en-US": "Count one test piece at a time", "es-US": "Contar una pieza de prueba a la vez" },
+        "observableActions": [{ "en-US": "Adds one piece and updates the count once.", "es-US": "Agrega una pieza y actualiza el conteo una vez." }],
+        "nonEvidence": [{ "en-US": "Repeating another person's total.", "es-US": "Repetir el total de otra persona." }]
+      },
+      {
+        "skillId": "ENG-SKL-COMPARE-REDESIGN",
+        "name": { "en-US": "Use test results to redesign", "es-US": "Usar resultados para rediseñar" },
+        "observableActions": [{ "en-US": "Names one change and retests it under equal conditions.", "es-US": "Nombra un cambio y vuelve a probarlo en condiciones iguales." }],
+        "nonEvidence": [{ "en-US": "Changing several conditions without comparison.", "es-US": "Cambiar varias condiciones sin comparar." }]
+      }
+    ],
+    "cycleStages": ["discover", "imagine", "build_or_do", "experiment", "improve", "explain"]
+  },
+  "materials": [
+    {
+      "materialId": "MAT-COPY-PAPER",
+      "name": { "en-US": "Equal copy-paper sheets", "es-US": "Hojas iguales de papel de copia" },
+      "quantity": 6,
+      "unit": "sheet",
+      "required": true,
+      "consumable": true,
+      "adultPreparation": { "en-US": "Use equal undamaged sheets.", "es-US": "Usa hojas iguales y sin daños." },
+      "approvedSubstitutions": [
+        {
+          "substitutionId": "SUB-EQUAL-CONSTRUCTION-PAPER",
+          "name": { "en-US": "Equal construction-paper sheets", "es-US": "Hojas iguales de cartulina" },
+          "quantity": 6,
+          "unit": "sheet",
+          "conditions": { "en-US": "Run a new baseline with every bridge shape.", "es-US": "Realiza una nueva referencia con cada forma de puente." },
+          "rationale": { "en-US": "The mechanism remains paper-shape rigidity.", "es-US": "El mecanismo sigue siendo rigidez por la forma del papel." },
+          "safetyImpact": "reviewed_equivalent"
+        }
+      ],
+      "safetyNotes": { "en-US": "Stop if a paper cut occurs.", "es-US": "Detente si ocurre un corte con papel." }
+    },
+    {
+      "materialId": "MAT-TEST-BLOCKS",
+      "name": { "en-US": "Equal large test blocks", "es-US": "Bloques grandes iguales" },
+      "quantity": 20,
+      "unit": "piece",
+      "required": true,
+      "consumable": false,
+      "adultPreparation": { "en-US": "Choose pieces too large to swallow.", "es-US": "Elige piezas demasiado grandes para tragarse." },
+      "approvedSubstitutions": [],
+      "safetyNotes": { "en-US": "Never use coins, glass, or heavy weights.", "es-US": "Nunca uses monedas, vidrio ni pesos grandes." }
+    }
+  ],
+  "roleTemplates": [
+    {
+      "roleTemplateId": "ROLE-BUILDER",
+      "name": { "en-US": "Builder", "es-US": "Constructor" },
+      "contribution": { "en-US": "Creates bridge shapes.", "es-US": "Crea las formas del puente." },
+      "compatibleLevels": ["L1", "L2", "L3"],
+      "eligiblePrimarySkillIds": ["MOT-SKL-PRECISE-FOLDING"],
+      "exposureSkillIds": ["MOT-SKL-PRECISE-FOLDING"],
+      "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"],
+      "responsibilities": [{ "en-US": "Fold and place the bridge.", "es-US": "Doblar y colocar el puente." }],
+      "allowedStepIds": ["STEP-01", "STEP-02", "STEP-03", "STEP-04", "STEP-05", "STEP-06", "STEP-07"],
+      "restrictedStepIds": []
+    },
+    {
+      "roleTemplateId": "ROLE-TESTER",
+      "name": { "en-US": "Test Engineer", "es-US": "Ingeniero de pruebas" },
+      "contribution": { "en-US": "Runs a fair load test.", "es-US": "Realiza una prueba de carga justa." },
+      "compatibleLevels": ["L1", "L2", "L3"],
+      "eligiblePrimarySkillIds": ["MAT-SKL-ONE-TO-ONE-COUNTING"],
+      "exposureSkillIds": ["MAT-SKL-ONE-TO-ONE-COUNTING"],
+      "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"],
+      "responsibilities": [{ "en-US": "Add one equal piece at a time.", "es-US": "Agregar una pieza igual a la vez." }],
+      "allowedStepIds": ["STEP-01", "STEP-02", "STEP-04", "STEP-05", "STEP-06", "STEP-07"],
+      "restrictedStepIds": ["STEP-03"]
+    },
+    {
+      "roleTemplateId": "ROLE-DESIGNER",
+      "name": { "en-US": "Design Engineer", "es-US": "Ingeniero de diseño" },
+      "contribution": { "en-US": "Uses evidence to propose an improvement.", "es-US": "Usa evidencia para proponer una mejora." },
+      "compatibleLevels": ["L2", "L3", "L4"],
+      "eligiblePrimarySkillIds": ["ENG-SKL-COMPARE-REDESIGN"],
+      "exposureSkillIds": ["ENG-SKL-COMPARE-REDESIGN"],
+      "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"],
+      "responsibilities": [{ "en-US": "Compare results and choose one change.", "es-US": "Comparar resultados y elegir un cambio." }],
+      "allowedStepIds": ["STEP-01", "STEP-02", "STEP-03", "STEP-04", "STEP-05", "STEP-06", "STEP-07"],
+      "restrictedStepIds": []
+    }
+  ],
+  "groupConfigurations": [
+    { "participantCount": 1, "roleTemplateIds": ["ROLE-BUILDER"], "notes": { "en-US": "The child rotates through all contributions.", "es-US": "El niño rota por todas las contribuciones." } },
+    { "participantCount": 2, "roleTemplateIds": ["ROLE-BUILDER", "ROLE-TESTER"], "notes": { "en-US": "Both children decide the redesign.", "es-US": "Ambos niños deciden el rediseño." } },
+    { "participantCount": 3, "roleTemplateIds": ["ROLE-BUILDER", "ROLE-TESTER", "ROLE-DESIGNER"], "notes": { "en-US": "Each child has one visible contribution.", "es-US": "Cada niño tiene una contribución visible." } }
+  ],
+  "steps": [
+    {
+      "stepId": "STEP-01", "stage": "discover", "actor": "group",
+      "title": { "en-US": "Ask", "es-US": "Preguntar" },
+      "instruction": { "en-US": "Show the gap and ask what a paper bridge needs to do.", "es-US": "Muestra el espacio y pregunta qué necesita hacer un puente de papel." },
+      "expectedResult": { "en-US": "Children identify the span and load.", "es-US": "Los niños identifican el espacio y la carga." },
+      "minutes": 4, "successSignal": { "en-US": "A testable need is named.", "es-US": "Se nombra una necesidad comprobable." },
+      "commonProblems": [{ "problem": { "en-US": "A child seeks the correct prediction.", "es-US": "Un niño busca la predicción correcta." }, "safeResponse": { "en-US": "Record every prediction without grading it.", "es-US": "Registra cada predicción sin calificarla." } }],
+      "warning": { "en-US": "Only the adult positions the supports.", "es-US": "Solo el adulto coloca los soportes." },
+      "resumeInstruction": { "en-US": "Return to the same support spacing.", "es-US": "Regresa a la misma distancia entre soportes." },
+      "visualBriefIds": ["VIS-01"], "exposureSkillIds": [], "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"]
+    },
+    {
+      "stepId": "STEP-02", "stage": "imagine", "actor": "group",
+      "title": { "en-US": "Predict", "es-US": "Predecir" },
+      "instruction": { "en-US": "Draw or describe a paper shape that may resist bending.", "es-US": "Dibuja o describe una forma de papel que podría resistir la flexión." },
+      "expectedResult": { "en-US": "Each child can offer an idea.", "es-US": "Cada niño puede proponer una idea." },
+      "minutes": 4, "successSignal": { "en-US": "At least one shape is selected.", "es-US": "Se elige al menos una forma." },
+      "commonProblems": [{ "problem": { "en-US": "The group combines several ideas.", "es-US": "El grupo combina varias ideas." }, "safeResponse": { "en-US": "Choose one change for each test.", "es-US": "Elige un cambio para cada prueba." } }],
+      "warning": { "en-US": "Do not add a load during prediction.", "es-US": "No agregues carga durante la predicción." },
+      "resumeInstruction": { "en-US": "Keep the selected drawing with the materials.", "es-US": "Conserva el dibujo elegido con los materiales." },
+      "visualBriefIds": ["VIS-02"], "exposureSkillIds": ["ENG-SKL-COMPARE-REDESIGN"], "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"]
+    },
+    {
+      "stepId": "STEP-03", "stage": "build_or_do", "actor": "assigned_role",
+      "title": { "en-US": "Build two shapes", "es-US": "Construir dos formas" },
+      "instruction": { "en-US": "Prepare one flat and one accordion bridge with equal sheets.", "es-US": "Prepara un puente plano y uno en acordeón con hojas iguales." },
+      "expectedResult": { "en-US": "Two bridges span the same gap one at a time.", "es-US": "Dos puentes cruzan el mismo espacio, uno por vez." },
+      "minutes": 10, "successSignal": { "en-US": "The folded sheet rests on both supports.", "es-US": "La hoja plegada descansa en ambos soportes." },
+      "commonProblems": [{ "problem": { "en-US": "Supports move.", "es-US": "Los soportes se mueven." }, "safeResponse": { "en-US": "Use stable supports or reduce the span.", "es-US": "Usa soportes estables o reduce la distancia." } }],
+      "warning": { "en-US": "Use intact paper and no sharp fasteners.", "es-US": "Usa papel intacto y ningún sujetador afilado." },
+      "resumeInstruction": { "en-US": "Store each bridge flat beside the fixed supports.", "es-US": "Guarda cada puente junto a los soportes fijos." },
+      "visualBriefIds": ["VIS-02"], "exposureSkillIds": ["MOT-SKL-PRECISE-FOLDING"], "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"]
+    },
+    {
+      "stepId": "STEP-04", "stage": "experiment", "actor": "assigned_role",
+      "title": { "en-US": "Run equal tests", "es-US": "Realizar pruebas iguales" },
+      "instruction": { "en-US": "Add one equal block at a time and count before the bridge bends.", "es-US": "Agrega un bloque igual a la vez y cuenta antes de que el puente se doble." },
+      "expectedResult": { "en-US": "The shapes support different loads.", "es-US": "Las formas sostienen cargas distintas." },
+      "minutes": 10, "successSignal": { "en-US": "The same span and blocks are used.", "es-US": "Se usan la misma distancia y los mismos bloques." },
+      "commonProblems": [{ "problem": { "en-US": "The count is lost.", "es-US": "Se pierde el conteo." }, "safeResponse": { "en-US": "Stop, clear the load, and restart the test.", "es-US": "Detén, retira la carga y reinicia la prueba." } }],
+      "warning": { "en-US": "Keep faces away and stop if a support moves.", "es-US": "Mantén las caras alejadas y detente si se mueve un soporte." },
+      "resumeInstruction": { "en-US": "Record the last complete test before pausing.", "es-US": "Registra la última prueba completa antes de pausar." },
+      "visualBriefIds": ["VIS-03"], "exposureSkillIds": ["MAT-SKL-ONE-TO-ONE-COUNTING"], "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"]
+    },
+    {
+      "stepId": "STEP-05", "stage": "improve", "actor": "group",
+      "title": { "en-US": "Choose one change", "es-US": "Elegir un cambio" },
+      "instruction": { "en-US": "Change one feature and predict the effect.", "es-US": "Cambia una característica y predice el efecto." },
+      "expectedResult": { "en-US": "The group names one deliberate change.", "es-US": "El grupo nombra un cambio deliberado." },
+      "minutes": 10, "successSignal": { "en-US": "Other conditions remain equal.", "es-US": "Las demás condiciones siguen iguales." },
+      "commonProblems": [{ "problem": { "en-US": "Several variables are changed.", "es-US": "Se cambian varias variables." }, "safeResponse": { "en-US": "Keep one change and save the rest for another test.", "es-US": "Conserva un cambio y guarda los demás para otra prueba." } }],
+      "warning": { "en-US": "Do not increase load weight or support height.", "es-US": "No aumentes el peso de la carga ni la altura de los soportes." },
+      "resumeInstruction": { "en-US": "Mark the one feature selected for change.", "es-US": "Marca la característica elegida para cambiar." },
+      "visualBriefIds": ["VIS-02"], "exposureSkillIds": ["ENG-SKL-COMPARE-REDESIGN"], "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"]
+    },
+    {
+      "stepId": "STEP-06", "stage": "explain", "actor": "group",
+      "title": { "en-US": "Explain with evidence", "es-US": "Explicar con evidencia" },
+      "instruction": { "en-US": "Compare counts and describe where each bridge bent.", "es-US": "Compara conteos y describe dónde se dobló cada puente." },
+      "expectedResult": { "en-US": "An explanation cites an observation.", "es-US": "Una explicación cita una observación." },
+      "minutes": 5, "successSignal": { "en-US": "A shape is linked to a result.", "es-US": "Se relaciona una forma con un resultado." },
+      "commonProblems": [{ "problem": { "en-US": "The explanation does not cite a result.", "es-US": "La explicación no cita un resultado." }, "safeResponse": { "en-US": "Point to the recorded counts or visible bending.", "es-US": "Señala los conteos registrados o la flexión visible." } }],
+      "warning": { "en-US": "Explain with the bridge unloaded.", "es-US": "Explica con el puente sin carga." },
+      "resumeInstruction": { "en-US": "Keep the recorded counts with the bridges.", "es-US": "Conserva los conteos con los puentes." },
+      "visualBriefIds": ["VIS-03"], "exposureSkillIds": ["ENG-SKL-COMPARE-REDESIGN"], "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"]
+    },
+    {
+      "stepId": "STEP-07", "stage": "cleanup", "actor": "group",
+      "title": { "en-US": "Clean", "es-US": "Limpiar" },
+      "instruction": { "en-US": "Count all blocks and store or recycle paper.", "es-US": "Cuenta los bloques y guarda o recicla el papel." },
+      "expectedResult": { "en-US": "The table and floor are clear.", "es-US": "La mesa y el piso quedan despejados." },
+      "minutes": 5, "successSignal": { "en-US": "All pieces are accounted for.", "es-US": "Todas las piezas están contadas." },
+      "commonProblems": [{ "problem": { "en-US": "A block is missing.", "es-US": "Falta un bloque." }, "safeResponse": { "en-US": "Keep the area closed until the adult finds it.", "es-US": "Mantén el área cerrada hasta que el adulto lo encuentre." } }],
+      "warning": { "en-US": "Account for every test piece before leaving.", "es-US": "Cuenta cada pieza de prueba antes de salir." },
+      "resumeInstruction": { "en-US": "Cleanup must finish before another activity.", "es-US": "La limpieza debe terminar antes de otra actividad." },
+      "visualBriefIds": ["VIS-01"], "exposureSkillIds": [], "exposureConceptIds": []
+    }
+  ],
+  "safety": {
+    "participationLevel": "A",
+    "supervision": { "en-US": "An adult remains present and controls material selection.", "es-US": "Un adulto permanece presente y controla los materiales." },
+    "hazards": [{ "hazardId": "HAZ-SMALL-PARTS", "category": "small_parts", "description": { "en-US": "Test pieces may be swallowed.", "es-US": "Las piezas de prueba pueden tragarse." }, "controls": [{ "en-US": "Use only large blocks and account for each one.", "es-US": "Usa solo bloques grandes y cuenta cada uno." }] }],
+    "adultOnlyStepIds": [],
+    "stopConditions": [{ "en-US": "Stop if a child mouths a piece or a support becomes unstable.", "es-US": "Detente si un niño lleva una pieza a la boca o un soporte se vuelve inestable." }],
+    "prohibitedAdaptations": [{ "en-US": "Do not use sharp, breakable, hot, or heavy loads.", "es-US": "No uses cargas afiladas, rompibles, calientes o pesadas." }],
+    "cleanup": { "en-US": "Count and store every block.", "es-US": "Cuenta y guarda cada bloque." }
+  },
+  "adaptations": [
+    {
+      "adaptationId": "ADAPT-SHORT-SESSION", "type": "duration",
+      "name": { "en-US": "Short comparison", "es-US": "Comparación corta" },
+      "conditions": { "en-US": "Use when only 35 minutes are available.", "es-US": "Usar cuando solo hay 35 minutos." },
+      "changes": { "en-US": "Test flat and accordion shapes once.", "es-US": "Prueba una vez las formas plana y acordeón." },
+      "safetyImpact": "none", "requiresAdultConfirmation": false
+    }
+  ],
+  "observationPrompts": [
+    {
+      "skillId": "MOT-SKL-PRECISE-FOLDING",
+      "question": { "en-US": "How independently did the child make controlled folds?", "es-US": "¿Qué tan independientemente hizo pliegues controlados?" },
+      "evidenceExamples": [{ "en-US": "Aligned folds with decreasing help.", "es-US": "Alineó pliegues con ayuda decreciente." }],
+      "nonEvidenceExamples": [{ "en-US": "Only watched another person fold.", "es-US": "Solo observó a otra persona doblar." }],
+      "externalFactors": [{ "en-US": "Paper was damaged.", "es-US": "El papel estaba dañado." }]
+    },
+    {
+      "skillId": "MAT-SKL-ONE-TO-ONE-COUNTING",
+      "question": { "en-US": "How independently did the child add and count one block at a time?", "es-US": "¿Qué tan independientemente agregó y contó un bloque a la vez?" },
+      "evidenceExamples": [{ "en-US": "Kept one number per block.", "es-US": "Mantuvo un número por bloque." }],
+      "nonEvidenceExamples": [{ "en-US": "Repeated another person's total.", "es-US": "Repitió el total de otra persona." }],
+      "externalFactors": [{ "en-US": "Another child moved the blocks.", "es-US": "Otro niño movió los bloques." }]
+    },
+    {
+      "skillId": "ENG-SKL-COMPARE-REDESIGN",
+      "question": { "en-US": "How independently did the child use a test result to choose one redesign?", "es-US": "¿Qué tan independientemente usó un resultado para elegir un rediseño?" },
+      "evidenceExamples": [{ "en-US": "Named a result and changed one feature.", "es-US": "Nombró un resultado y cambió una característica." }],
+      "nonEvidenceExamples": [{ "en-US": "Changed several features without comparison.", "es-US": "Cambió varias características sin comparar." }],
+      "externalFactors": [{ "en-US": "Support spacing changed.", "es-US": "Cambió la distancia entre soportes." }]
+    }
+  ],
+  "visualBriefs": [
+    {
+      "visualBriefId": "VIS-01", "assetVersion": "0.1.0", "type": "materials",
+      "purpose": { "en-US": "Identify the full material set.", "es-US": "Identificar todos los materiales." },
+      "style": "photorealistic", "mustShow": ["six equal paper sheets", "two supports", "twenty large blocks"],
+      "mustNotShow": ["coins", "glass", "faces"],
+      "altText": { "en-US": "Paper bridge materials on a clear table.", "es-US": "Materiales del puente de papel sobre una mesa despejada." },
+      "source": "ai_generated", "rights": "Internal pilot generation; human approval required.", "linkedStepIds": ["STEP-01", "STEP-07"]
+    },
+    {
+      "visualBriefId": "VIS-02", "assetVersion": "0.1.0", "type": "step",
+      "purpose": { "en-US": "Show flat and accordion shapes.", "es-US": "Mostrar las formas plana y acordeón." },
+      "style": "instructional_diagram", "mustShow": ["same paper size", "same span"], "mustNotShow": ["tape", "unsafe load"],
+      "altText": { "en-US": "A flat sheet and accordion-fold sheet span the same gap.", "es-US": "Una hoja plana y otra en acordeón cruzan el mismo espacio." },
+      "source": "internal_diagram", "rights": "Owned by the project.", "linkedStepIds": ["STEP-02", "STEP-03", "STEP-05"]
+    },
+    {
+      "visualBriefId": "VIS-03", "assetVersion": "0.1.0", "type": "expected_result",
+      "purpose": { "en-US": "Show an equal load test.", "es-US": "Mostrar una prueba de carga igual." },
+      "style": "instructional_diagram", "mustShow": ["one block at a time", "load near center"], "mustNotShow": ["guaranteed count", "heavy weights"],
+      "altText": { "en-US": "Equal blocks are placed one at a time at the center of a paper bridge.", "es-US": "Bloques iguales se colocan uno a la vez en el centro del puente." },
+      "source": "internal_diagram", "rights": "Owned by the project.", "linkedStepIds": ["STEP-04", "STEP-06"]
+    }
+  ],
+  "editorial": {
+    "authors": ["pilot-content-team"],
+    "requiredReviewGates": ["education", "safety", "language", "visual", "publisher"],
+    "reviewRecords": [],
+    "pilotRecords": [],
+    "changeLog": [
+      {
+        "entryId": "CHANGE-ACT9001-020", "version": "0.2.0", "occurredAt": "2026-08-17T12:00:00Z",
+        "summary": { "en-US": "Created the executable contract example.", "es-US": "Se creó el ejemplo de contrato ejecutable." }
+      }
+    ]
+  }
+}

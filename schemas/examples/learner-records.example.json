@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "0.1",
+  "learnerId": "LEARNER-DEMO-A",
+  "revision": 3,
+  "exposures": [
+    {
+      "exposureId": "EXP-DEMO-001",
+      "sessionId": "SES-DEMO-001",
+      "activityRef": {
+        "activityId": "ACT-9001",
+        "version": "0.2.0",
+        "contentHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "skillOrConceptId": "MOT-SKL-PRECISE-FOLDING",
+      "kind": "skill",
+      "source": "role_actual",
+      "roleTemplateIds": ["ROLE-BUILDER"],
+      "occurredAt": "2026-08-17T20:22:00Z",
+      "recordedAt": "2026-08-17T20:44:00Z",
+      "clientEventId": null
+    },
+    {
+      "exposureId": "EXP-DEMO-002",
+      "sessionId": "SES-DEMO-001",
+      "activityRef": {
+        "activityId": "ACT-9001",
+        "version": "0.2.0",
+        "contentHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "skillOrConceptId": "ENG-CON-STRUCTURAL-RIGIDITY",
+      "kind": "concept",
+      "source": "role_actual",
+      "roleTemplateIds": ["ROLE-BUILDER"],
+      "occurredAt": "2026-08-17T20:40:00Z",
+      "recordedAt": "2026-08-17T20:44:00Z",
+      "clientEventId": null
+    }
+  ],
+  "observations": [
+    {
+      "observationId": "OBS-DEMO-001",
+      "sessionId": "SES-DEMO-001",
+      "skillId": "MOT-SKL-PRECISE-FOLDING",
+      "source": "primary_rating",
+      "status": "observed",
+      "independenceRating": 4,
+      "fact": {
+        "en-US": "The child aligned repeated folds with only a brief reminder.",
+        "es-US": "La niña alineó pliegues repetidos con solo un recordatorio breve."
+      },
+      "context": {
+        "activityRef": {
+          "activityId": "ACT-9001",
+          "version": "0.2.0",
+          "contentHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "roleTemplateIds": ["ROLE-BUILDER"],
+        "contextFlags": [],
+        "supportDescription": "One verbal reminder."
+      },
+      "occurredAt": "2026-08-17T20:22:00Z",
+      "createdAt": "2026-08-17T20:44:00Z",
+      "revision": 1,
+      "supersedesObservationId": null,
+      "correctionReason": null,
+      "rejectionReason": null,
+      "provenance": {
+        "createdBy": "system",
+        "adultId": null,
+        "inputRef": "RATING-SES-DEMO-001-A",
+        "aiAssisted": false,
+        "providerDeploymentId": null,
+        "clientEventId": null
+      }
+    }
+  ],
+  "inferences": [
+    {
+      "inferenceId": "INF-DEMO-001",
+      "skillId": "MOT-SKL-PRECISE-FOLDING",
+      "state": "developing",
+      "confidence": "initial",
+      "evidenceLinks": [
+        { "observationId": "OBS-DEMO-001", "relationship": "supporting", "contextNote": "One recent paper-folding context." }
+      ],
+      "explanation": {
+        "en-US": "One recent observation shows near-independent folding; more contexts are needed.",
+        "es-US": "Una observación reciente muestra plegado casi independiente; se necesitan más contextos."
+      },
+      "updatedAt": "2026-08-17T20:44:00Z",
+      "lastEvidenceAt": "2026-08-17T20:22:00Z",
+      "confirmationState": "auto_updated",
+      "revision": 1,
+      "supersedesInferenceId": null,
+      "correctionReason": null,
+      "ruleVersion": "learner-inference-0.1"
+    }
+  ]
+}

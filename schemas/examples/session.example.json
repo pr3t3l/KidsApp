@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "0.1",
+  "sessionId": "SES-DEMO-001",
+  "familyId": "FAMILY-DEMO",
+  "activityRef": {
+    "activityId": "ACT-9001",
+    "version": "0.2.0",
+    "schemaVersion": "0.1",
+    "contentHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "deliveryMode": "editorial_preview",
+  "locale": "es-US",
+  "status": "completed",
+  "serverRevision": 3,
+  "scheduledAt": "2026-08-17T20:00:00Z",
+  "startedAt": "2026-08-17T20:04:00Z",
+  "completedAt": "2026-08-17T20:43:00Z",
+  "assignments": [
+    {
+      "assignmentId": "ASN-DEMO-A",
+      "learnerId": "LEARNER-DEMO-A",
+      "participationStatus": "participated",
+      "plannedRoleTemplateId": "ROLE-BUILDER",
+      "actualRoleTemplateIds": ["ROLE-BUILDER"],
+      "primaryObjectiveSkillId": "MOT-SKL-PRECISE-FOLDING",
+      "plannedExposureSkillIds": ["MOT-SKL-PRECISE-FOLDING"],
+      "plannedExposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"],
+      "actualExposureSkillIds": ["MOT-SKL-PRECISE-FOLDING"],
+      "actualExposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"],
+      "assignmentSource": "recommendation",
+      "changeReason": null,
+      "participatedStepIds": ["STEP-01", "STEP-02", "STEP-03", "STEP-04", "STEP-05", "STEP-06", "STEP-07"]
+    }
+  ],
+  "assignmentEvents": [],
+  "stepProgress": [
+    { "stepId": "STEP-01", "status": "completed", "completedAt": "2026-08-17T20:08:00Z", "issueCode": null },
+    { "stepId": "STEP-02", "status": "completed", "completedAt": "2026-08-17T20:12:00Z", "issueCode": null },
+    { "stepId": "STEP-03", "status": "completed", "completedAt": "2026-08-17T20:22:00Z", "issueCode": null },
+    { "stepId": "STEP-04", "status": "completed", "completedAt": "2026-08-17T20:32:00Z", "issueCode": null },
+    { "stepId": "STEP-05", "status": "completed", "completedAt": "2026-08-17T20:38:00Z", "issueCode": null },
+    { "stepId": "STEP-06", "status": "completed", "completedAt": "2026-08-17T20:40:00Z", "issueCode": null },
+    { "stepId": "STEP-07", "status": "completed", "completedAt": "2026-08-17T20:43:00Z", "issueCode": null }
+  ],
+  "appliedAdaptations": [],
+  "closeOut": {
+    "closedAt": "2026-08-17T20:43:00Z",
+    "participantResults": [
+      {
+        "learnerId": "LEARNER-DEMO-A",
+        "disposition": "rated",
+        "primaryRating": {
+          "skillId": "MOT-SKL-PRECISE-FOLDING",
+          "independenceRating": 4,
+          "contextFlags": [],
+          "otherContext": null
+        },
+        "secondaryRatings": [],
+        "skipReason": null
+      }
+    ],
+    "observationInputRefs": [],
+    "closedByAdultId": "ADULT-DEMO-1"
+  },
+  "offlineState": {
+    "packId": "PACK-DEMO-WEEK-001",
+    "manifestContentHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "deviceId": "DEVICE-DEMO-1",
+    "baseServerRevision": 2,
+    "localRevision": 3,
+    "pendingEventIds": [],
+    "conflictEventIds": [],
+    "lastSyncedAt": "2026-08-17T20:45:00Z"
+  }
+}

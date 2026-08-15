@@ -29,7 +29,8 @@ La IA no improvisará el núcleo de una actividad para una familia. Seleccionar�
 11. [User stories](docs/03-product/user-stories.md)
 12. [Suscripción, trial y cancelación](docs/03-product/subscription-spec.md)
 13. [Arquitectura conceptual](docs/07-engineering/architecture.md)
-14. [Roadmap](docs/08-delivery/roadmap.md)
+14. [Pilot Pack v0.1](docs/08-delivery/pilot-pack-v0.1.md)
+15. [Roadmap](docs/08-delivery/roadmap.md)
 
 Los agentes de desarrollo deben leer también [AGENTS.md](AGENTS.md).
 
@@ -46,6 +47,8 @@ docs/
 ├── 06-data/         Modelo conceptual, diccionario y gobernanza
 ├── 07-engineering/  Arquitectura, contratos, seguridad y pruebas
 └── 08-delivery/     Roadmap, vertical slices, decisiones y trazabilidad
+schemas/             Contratos JSON Schema y ejemplos ficticios
+scripts/             Validaciones ejecutables de contratos y documentación
 ```
 
 ## Método de construcción
@@ -92,4 +95,4 @@ La versión v0.1 captura las decisiones de la conversación inicial. Las decisio
 
 ## Próximo hito
 
-Completar la revisión humana del Foundation Pack y de los cinco specs centrales: Learning Framework, Learner Model, Activity Content Model, Recommendation Engine y Evidence Model. Después se diseñará y construirá el primer vertical slice.
+Revisar las tres actividades del [Pilot Pack v0.1](docs/08-delivery/pilot-pack-v0.1.md), completar primero dry runs adultos y gates previos, y solo después probarlas de forma controlada con niños. En paralelo puede comenzar la infraestructura y el prototipo de `VS-01` con fixtures no familiares, pero el slice no puede darse por terminado ni exponer contenido `Draft` como publicado.

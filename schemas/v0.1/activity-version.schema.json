@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-learning.local/schemas/v0.1/activity-version.schema.json",
+  "title": "ActivityVersion",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "activityId", "version", "contentHash", "status", "locales", "ageRange", "levels", "participants", "timing", "learning", "materials", "roleTemplates", "groupConfigurations", "steps", "safety", "adaptations", "observationPrompts", "visualBriefs", "editorial"],
+  "properties": {
+    "schemaVersion": { "const": "0.1" },
+    "activityId": { "type": "string", "pattern": "^ACT-[0-9]{4}$" },
+    "version": { "$ref": "#/$defs/semanticVersion" },
+    "contentHash": { "$ref": "#/$defs/sha256" },
+    "status": { "enum": ["draft", "pedagogical_review", "safety_review", "ready_for_pilot", "family_pilot", "published", "retired"] },
+    "locales": {
+      "type": "object", "additionalProperties": false, "required": ["en-US", "es-US"],
+      "properties": { "en-US": { "$ref": "#/$defs/localeBundle" }, "es-US": { "$ref": "#/$defs/localeBundle" } }
+    },
+    "ageRange": {
+      "type": "object", "additionalProperties": false, "required": ["minimumYears", "maximumYears"],
+      "properties": { "minimumYears": { "type": "integer", "minimum": 0, "maximum": 17 }, "maximumYears": { "type": "integer", "minimum": 0, "maximum": 17 } }
+    },
+    "levels": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/level" } },
+    "participants": {
+      "type": "object", "additionalProperties": false, "required": ["minimum", "maximum", "supportedCounts"],
+      "properties": {
+        "minimum": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "maximum": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "supportedCounts": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "integer", "minimum": 1, "maximum": 4 } }
+      }
+    },
+    "timing": {
+      "type": "object", "additionalProperties": false, "required": ["totalMinutesMin", "totalMinutesMax", "adultPrepMinutes", "cleanupMinutes"],
+      "properties": {
+        "totalMinutesMin": { "type": "integer", "minimum": 5, "maximum": 180 },
+        "totalMinutesMax": { "type": "integer", "minimum": 5, "maximum": 180 },
+        "adultPrepMinutes": { "type": "integer", "minimum": 0, "maximum": 120 },
+        "cleanupMinutes": { "type": "integer", "minimum": 0, "maximum": 60 }
+      }
+    },
+    "environment": {
+      "type": "object", "additionalProperties": false, "required": ["spaces", "messLevel", "offlineCapable"],
+      "properties": {
+        "spaces": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "messLevel": { "enum": ["low", "medium", "high"] },
+        "offlineCapable": { "type": "boolean" }
+      }
+    },
+    "learning": {
+      "type": "object", "additionalProperties": false, "required": ["primaryArea", "secondaryAreas", "concepts", "skills", "cycleStages"],
+      "properties": {
+        "primaryArea": { "$ref": "#/$defs/areaCode" },
+        "secondaryAreas": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/areaCode" } },
+        "concepts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/concept" } },
+        "skills": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/skill" } },
+        "cycleStages": { "type": "array", "minItems": 3, "uniqueItems": true, "items": { "$ref": "#/$defs/cycleStage" } }
+      }
+    },
+    "materials": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/material" } },
+    "roleTemplates": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/roleTemplate" } },
+    "groupConfigurations": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/groupConfiguration" } },
+    "steps": { "type": "array", "minItems": 3, "items": { "$ref": "#/$defs/step" } },
+    "safety": { "$ref": "#/$defs/safety" },
+    "adaptations": { "type": "array", "items": { "$ref": "#/$defs/adaptation" } },
+    "observationPrompts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/observationPrompt" } },
+    "visualBriefs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/visualBrief" } },
+    "editorial": { "$ref": "#/$defs/editorial" }
+  },
+  "$defs": {
+    "semanticVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "sha256": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "localizedString": {
+      "type": "object", "additionalProperties": false, "required": ["en-US", "es-US"],
+      "properties": { "en-US": { "type": "string", "minLength": 1 }, "es-US": { "type": "string", "minLength": 1 } }
+    },
+    "localeBundle": {
+      "type": "object", "additionalProperties": false,
+      "required": ["title", "summary", "openingQuestion", "adultBriefExplanation", "adultDetailedExplanation", "childExplanation", "reflectionQuestions"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 }, "summary": { "type": "string", "minLength": 1 },
+        "openingQuestion": { "type": "string", "minLength": 1 }, "adultBriefExplanation": { "type": "string", "minLength": 1 },
+        "adultDetailedExplanation": { "type": "string", "minLength": 1 }, "childExplanation": { "type": "string", "minLength": 1 },
+        "reflectionQuestions": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "level": { "enum": ["L1", "L2", "L3", "L4"] },
+    "cycleStage": { "enum": ["discover", "imagine", "build_or_do", "experiment", "improve", "explain"] },
+    "areaCode": { "enum": ["PHY", "ENG", "ELE", "MAT", "CHE", "BIO", "MOT", "CRE", "LOG", "COM", "SEL", "PRA"] },
+    "concept": {
+      "type": "object", "additionalProperties": false, "required": ["conceptId", "name"],
+      "properties": { "conceptId": { "type": "string", "pattern": "^[A-Z]{3}-CON-[A-Z0-9-]+$" }, "name": { "$ref": "#/$defs/localizedString" } }
+    },
+    "skill": {
+      "type": "object", "additionalProperties": false, "required": ["skillId", "name", "observableActions", "nonEvidence"],
+      "properties": {
+        "skillId": { "type": "string", "pattern": "^[A-Z]{3}-SKL-[A-Z0-9-]+$" }, "name": { "$ref": "#/$defs/localizedString" },
+        "observableActions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } },
+        "nonEvidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } }
+      }
+    },
+    "approvedSubstitution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["substitutionId", "name", "quantity", "unit", "conditions", "rationale", "safetyImpact"],
+      "properties": {
+        "substitutionId": { "type": "string", "pattern": "^SUB-[A-Z0-9-]+$" }, "name": { "$ref": "#/$defs/localizedString" },
+        "quantity": { "type": "number", "exclusiveMinimum": 0 }, "unit": { "type": "string", "minLength": 1 },
+        "conditions": { "$ref": "#/$defs/localizedString" }, "rationale": { "$ref": "#/$defs/localizedString" },
+        "safetyImpact": { "enum": ["none", "reduced", "reviewed_equivalent"] }
+      }
+    },
+    "material": {
+      "type": "object", "additionalProperties": false,
+      "required": ["materialId", "name", "quantity", "unit", "required", "consumable", "adultPreparation", "approvedSubstitutions", "safetyNotes"],
+      "properties": {
+        "materialId": { "type": "string", "pattern": "^MAT-[A-Z0-9-]+$" }, "name": { "$ref": "#/$defs/localizedString" },
+        "quantity": { "type": "number", "exclusiveMinimum": 0 }, "unit": { "type": "string", "minLength": 1 },
+        "required": { "type": "boolean" }, "consumable": { "type": "boolean" }, "adultPreparation": { "$ref": "#/$defs/localizedString" },
+        "approvedSubstitutions": { "type": "array", "items": { "$ref": "#/$defs/approvedSubstitution" } }, "safetyNotes": { "$ref": "#/$defs/localizedString" }
+      }
+    },
+    "roleTemplate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["roleTemplateId", "name", "contribution", "compatibleLevels", "eligiblePrimarySkillIds", "exposureSkillIds", "exposureConceptIds", "responsibilities", "allowedStepIds", "restrictedStepIds"],
+      "properties": {
+        "roleTemplateId": { "type": "string", "pattern": "^ROLE-[A-Z0-9-]+$" }, "name": { "$ref": "#/$defs/localizedString" },
+        "contribution": { "$ref": "#/$defs/localizedString" },
+        "compatibleLevels": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/level" } },
+        "eligiblePrimarySkillIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+        "exposureSkillIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "exposureConceptIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "responsibilities": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } },
+        "allowedStepIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+        "restrictedStepIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+      }
+    },
+    "groupConfiguration": {
+      "type": "object", "additionalProperties": false, "required": ["participantCount", "roleTemplateIds", "notes"],
+      "properties": {
+        "participantCount": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "roleTemplateIds": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "type": "string" } },
+        "notes": { "$ref": "#/$defs/localizedString" }
+      }
+    },
+    "step": {
+      "type": "object", "additionalProperties": false,
+      "required": ["stepId", "stage", "actor", "title", "instruction", "expectedResult", "minutes", "successSignal", "commonProblems", "warning", "resumeInstruction", "visualBriefIds", "exposureSkillIds", "exposureConceptIds"],
+      "properties": {
+        "stepId": { "type": "string", "pattern": "^STEP-[0-9]{2}$" },
+        "stage": { "enum": ["discover", "imagine", "build_or_do", "experiment", "improve", "explain", "cleanup"] },
+        "actor": { "enum": ["adult", "child", "group", "assigned_role"] }, "title": { "$ref": "#/$defs/localizedString" },
+        "instruction": { "$ref": "#/$defs/localizedString" }, "expectedResult": { "$ref": "#/$defs/localizedString" },
+        "minutes": { "type": "integer", "minimum": 1, "maximum": 60 }, "successSignal": { "$ref": "#/$defs/localizedString" },
+        "commonProblems": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/problemSolution" } }, "warning": { "$ref": "#/$defs/localizedString" },
+        "resumeInstruction": { "$ref": "#/$defs/localizedString" },
+        "visualBriefIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+        "exposureSkillIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "exposureConceptIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+      }
+    },
+    "problemSolution": {
+      "type": "object", "additionalProperties": false, "required": ["problem", "safeResponse"],
+      "properties": { "problem": { "$ref": "#/$defs/localizedString" }, "safeResponse": { "$ref": "#/$defs/localizedString" } }
+    },
+    "safety": {
+      "type": "object", "additionalProperties": false,
+      "required": ["participationLevel", "supervision", "hazards", "adultOnlyStepIds", "stopConditions", "prohibitedAdaptations", "cleanup"],
+      "properties": {
+        "participationLevel": { "enum": ["A", "B", "C", "D"] }, "supervision": { "$ref": "#/$defs/localizedString" },
+        "hazards": { "type": "array", "items": { "$ref": "#/$defs/hazard" } },
+        "adultOnlyStepIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "stopConditions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } },
+        "prohibitedAdaptations": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } },
+        "cleanup": { "$ref": "#/$defs/localizedString" }
+      }
+    },
+    "hazard": {
+      "type": "object", "additionalProperties": false, "required": ["hazardId", "category", "description", "controls"],
+      "properties": {
+        "hazardId": { "type": "string", "pattern": "^HAZ-[A-Z0-9-]+$" },
+        "category": { "enum": ["ingestion", "small_parts", "cut", "heat", "flame", "electricity", "pressure", "glass", "irritation", "spill", "allergy", "entanglement", "other"] },
+        "description": { "$ref": "#/$defs/localizedString" },
+        "controls": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } }
+      }
+    },
+    "adaptation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["adaptationId", "type", "name", "conditions", "changes", "safetyImpact", "requiresAdultConfirmation"],
+      "properties": {
+        "adaptationId": { "type": "string", "pattern": "^ADAPT-[A-Z0-9-]+$" },
+        "type": { "enum": ["presentation", "difficulty", "role", "material", "duration", "extension", "simplification"] },
+        "name": { "$ref": "#/$defs/localizedString" }, "conditions": { "$ref": "#/$defs/localizedString" }, "changes": { "$ref": "#/$defs/localizedString" },
+        "safetyImpact": { "enum": ["none", "reduced", "reviewed_equivalent"] }, "requiresAdultConfirmation": { "type": "boolean" }
+      }
+    },
+    "observationPrompt": {
+      "type": "object", "additionalProperties": false,
+      "required": ["skillId", "question", "evidenceExamples", "nonEvidenceExamples", "externalFactors"],
+      "properties": {
+        "skillId": { "type": "string" }, "question": { "$ref": "#/$defs/localizedString" },
+        "evidenceExamples": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } },
+        "nonEvidenceExamples": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } },
+        "externalFactors": { "type": "array", "items": { "$ref": "#/$defs/localizedString" } }
+      }
+    },
+    "visualBrief": {
+      "type": "object", "additionalProperties": false,
+      "required": ["visualBriefId", "assetVersion", "type", "purpose", "style", "mustShow", "mustNotShow", "altText", "source", "rights", "linkedStepIds"],
+      "properties": {
+        "visualBriefId": { "type": "string", "pattern": "^VIS-[0-9]{2}$" }, "assetVersion": { "$ref": "#/$defs/semanticVersion" },
+        "type": { "enum": ["materials", "preparation", "step", "expected_result", "concept", "troubleshooting"] },
+        "purpose": { "$ref": "#/$defs/localizedString" },
+        "style": { "enum": ["photorealistic", "instructional_diagram", "child_friendly_illustration"] },
+        "mustShow": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "mustNotShow": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "altText": { "$ref": "#/$defs/localizedString" }, "source": { "enum": ["ai_generated", "internal_diagram", "commissioned", "licensed", "pilot_photo"] },
+        "rights": { "type": "string", "minLength": 1 }, "linkedStepIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } }
+      }
+    },
+    "reviewGate": { "enum": ["education", "subject", "safety", "development", "language", "visual", "publisher"] },
+    "reviewRecord": {
+      "type": "object", "additionalProperties": false,
+      "required": ["reviewId", "gate", "reviewerRole", "decision", "reviewedVersion", "contentHash", "occurredAt"],
+      "properties": {
+        "reviewId": { "type": "string", "pattern": "^REV-[A-Z0-9-]+$" }, "gate": { "$ref": "#/$defs/reviewGate" },
+        "reviewerRole": { "enum": ["educator", "subject_specialist", "safety_reviewer", "safety_specialist", "development_specialist", "language_reviewer", "visual_reviewer", "publisher"] },
+        "decision": { "enum": ["approved", "changes_required", "rejected"] }, "reviewedVersion": { "$ref": "#/$defs/semanticVersion" },
+        "contentHash": { "$ref": "#/$defs/sha256" }, "occurredAt": { "type": "string", "format": "date-time" }, "notes": { "$ref": "#/$defs/localizedString" }
+      }
+    },
+    "pilotRecord": {
+      "type": "object", "additionalProperties": false,
+      "required": ["pilotRecordId", "familyPilotId", "participantCount", "facilitatorKind", "durationMinutes", "outcome", "incidentCount", "occurredAt"],
+      "properties": {
+        "pilotRecordId": { "type": "string", "pattern": "^PILOT-[A-Z0-9-]+$" }, "familyPilotId": { "type": "string", "pattern": "^PILOT-FAMILY-[A-Z0-9-]+$" },
+        "participantCount": { "type": "integer", "minimum": 1, "maximum": 4 }, "facilitatorKind": { "enum": ["author", "other_adult"] },
+        "durationMinutes": { "type": "integer", "minimum": 1, "maximum": 240 }, "outcome": { "enum": ["completed", "partial", "stopped_for_safety", "stopped_other"] },
+        "incidentCount": { "type": "integer", "minimum": 0 }, "occurredAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "changeLogEntry": {
+      "type": "object", "additionalProperties": false, "required": ["entryId", "version", "occurredAt", "summary"],
+      "properties": {
+        "entryId": { "type": "string", "pattern": "^CHANGE-[A-Z0-9-]+$" }, "version": { "$ref": "#/$defs/semanticVersion" },
+        "occurredAt": { "type": "string", "format": "date-time" }, "summary": { "$ref": "#/$defs/localizedString" }
+      }
+    },
+    "editorial": {
+      "type": "object", "additionalProperties": false, "required": ["authors", "requiredReviewGates", "reviewRecords", "pilotRecords", "changeLog"],
+      "properties": {
+        "authors": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "requiredReviewGates": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/reviewGate" } },
+        "reviewRecords": { "type": "array", "items": { "$ref": "#/$defs/reviewRecord" } },
+        "pilotRecords": { "type": "array", "items": { "$ref": "#/$defs/pilotRecord" } },
+        "changeLog": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/changeLogEntry" } }
+      }
+    }
+  }
+}

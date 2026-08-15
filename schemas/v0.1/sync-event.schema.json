@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-learning.local/schemas/v0.1/sync-event.schema.json",
+  "title": "OfflineSyncEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "eventId", "idempotencyKey", "deviceId", "familyId", "sessionId", "eventType", "occurredAt", "queuedAt", "baseServerRevision", "clientSequence", "payload", "syncStatus", "serverRevision", "conflict"],
+  "properties": {
+    "schemaVersion": { "const": "0.1" },
+    "eventId": { "type": "string", "pattern": "^EVT-[A-Z0-9-]+$" },
+    "idempotencyKey": { "type": "string", "minLength": 16, "maxLength": 200 },
+    "deviceId": { "type": "string", "minLength": 1 },
+    "familyId": { "type": "string", "minLength": 1 },
+    "sessionId": { "type": "string", "pattern": "^SES-[A-Z0-9-]+$" },
+    "eventType": { "$ref": "#/$defs/eventType" },
+    "occurredAt": { "type": "string", "format": "date-time" },
+    "queuedAt": { "type": "string", "format": "date-time" },
+    "baseServerRevision": { "type": "integer", "minimum": 0 },
+    "clientSequence": { "type": "integer", "minimum": 1 },
+    "payload": { "$ref": "#/$defs/payload" },
+    "syncStatus": { "enum": ["pending", "accepted", "conflict", "rejected"] },
+    "serverRevision": { "type": ["integer", "null"], "minimum": 0 },
+    "conflict": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/conflict" }] }
+  },
+  "$defs": {
+    "eventType": { "enum": ["step_progressed", "role_changed", "participation_changed", "session_completed", "primary_rating_recorded", "secondary_rating_recorded", "observation_text_recorded", "observation_corrected"] },
+    "contextFlags": { "type": "array", "uniqueItems": true, "items": { "enum": ["equipment_problem", "material_problem", "group_dependency", "fatigue", "interruption", "other"] } },
+    "payload": {
+      "oneOf": [
+        { "$ref": "#/$defs/stepPayload" },
+        { "$ref": "#/$defs/rolePayload" },
+        { "$ref": "#/$defs/participationPayload" },
+        { "$ref": "#/$defs/completedPayload" },
+        { "$ref": "#/$defs/ratingPayload" },
+        { "$ref": "#/$defs/textPayload" },
+        { "$ref": "#/$defs/correctionPayload" }
+      ]
+    },
+    "stepPayload": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "stepId", "status"],
+      "properties": {
+        "kind": { "const": "step_progressed" }, "stepId": { "type": "string", "pattern": "^STEP-[0-9]{2}$" },
+        "status": { "enum": ["not_started", "in_progress", "completed", "skipped"] }
+      }
+    },
+    "rolePayload": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "learnerId", "fromRoleTemplateId", "toRoleTemplateId"],
+      "properties": {
+        "kind": { "const": "role_changed" }, "learnerId": { "type": "string", "minLength": 1 },
+        "fromRoleTemplateId": { "type": "string", "pattern": "^ROLE-[A-Z0-9-]+$" }, "toRoleTemplateId": { "type": "string", "pattern": "^ROLE-[A-Z0-9-]+$" }
+      }
+    },
+    "participationPayload": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "learnerId", "fromStatus", "toStatus"],
+      "properties": {
+        "kind": { "const": "participation_changed" }, "learnerId": { "type": "string", "minLength": 1 },
+        "fromStatus": { "enum": ["planned", "participated", "partial", "did_not_participate"] },
+        "toStatus": { "enum": ["planned", "participated", "partial", "did_not_participate"] }
+      }
+    },
+    "completedPayload": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "completedAt"],
+      "properties": { "kind": { "const": "session_completed" }, "completedAt": { "type": "string", "format": "date-time" } }
+    },
+    "ratingPayload": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "learnerId", "skillId", "independenceRating", "contextFlags", "otherContext"],
+      "properties": {
+        "kind": { "enum": ["primary_rating_recorded", "secondary_rating_recorded"] }, "learnerId": { "type": "string", "minLength": 1 },
+        "skillId": { "type": "string", "minLength": 1 }, "independenceRating": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "contextFlags": { "$ref": "#/$defs/contextFlags" }, "otherContext": { "type": ["string", "null"] }
+      }
+    },
+    "textPayload": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "learnerId", "observationInputRef", "attributionConfirmed"],
+      "properties": {
+        "kind": { "const": "observation_text_recorded" }, "learnerId": { "type": ["string", "null"] },
+        "observationInputRef": { "type": "string", "minLength": 1 }, "attributionConfirmed": { "type": "boolean" }
+      }
+    },
+    "correctionPayload": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "learnerId", "observationId", "replacementObservationId", "reason"],
+      "properties": {
+        "kind": { "const": "observation_corrected" }, "learnerId": { "type": "string", "minLength": 1 },
+        "observationId": { "type": "string", "pattern": "^OBS-[A-Z0-9-]+$" },
+        "replacementObservationId": { "type": "string", "pattern": "^OBS-[A-Z0-9-]+$" }, "reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "conflict": {
+      "type": "object", "additionalProperties": false, "required": ["conflictId", "serverRevision", "reason", "resolutionStatus"],
+      "properties": {
+        "conflictId": { "type": "string", "pattern": "^CONFLICT-[A-Z0-9-]+$" }, "serverRevision": { "type": "integer", "minimum": 0 },
+        "reason": { "enum": ["stale_revision", "role_changed_elsewhere", "session_already_closed", "observation_already_corrected", "permission_changed", "activity_retired", "domain_invariant_failed"] },
+        "resolutionStatus": { "enum": ["pending_adult_choice", "server_kept", "client_reapplied", "merged", "discarded"] }
+      }
+    }
+  }
+}
