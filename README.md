@@ -31,6 +31,7 @@ La IA no improvisará el núcleo de una actividad para una familia. Seleccionar�
 13. [Arquitectura conceptual](docs/07-engineering/architecture.md)
 14. [Pilot Pack v0.1](docs/08-delivery/pilot-pack-v0.1.md)
 15. [Roadmap](docs/08-delivery/roadmap.md)
+16. [Prototipo móvil familiar v0.1](prototypes/family-mobile-v0.1/README.md)
 
 Los agentes de desarrollo deben leer también [AGENTS.md](AGENTS.md).
 
@@ -49,6 +50,7 @@ docs/
 └── 08-delivery/     Roadmap, vertical slices, decisiones y trazabilidad
 schemas/             Contratos JSON Schema y ejemplos ficticios
 scripts/             Validaciones ejecutables de contratos y documentación
+prototypes/          Artefactos interactivos para validar UX antes de implementar
 ```
 
 ## Método de construcción
@@ -93,6 +95,10 @@ La versión v0.1 captura las decisiones de la conversación inicial. Las decisio
 | `DATA` | Datos |
 | `ENG` | Ingeniería |
 
+## Prototipo de experiencia
+
+El [prototipo móvil familiar v0.1](prototypes/family-mobile-v0.1/index.html) permite recorrer planificación por tiempo, roles flexibles, preparación, una sesión de seis etapas y el cierre contextual de tres niños. Incluye un [sistema visual](prototypes/family-mobile-v0.1/design-system.html), copias standalone y evidencia de QA a 360×800 y 430×932. Usa datos sintéticos y muestra `ACT-0001@0.2.2` como `Draft`; no constituye entrega familiar ni implementación de producción.
+
 ## Próximo hito
 
-Revisar las tres actividades del [Pilot Pack v0.1](docs/08-delivery/pilot-pack-v0.1.md), completar primero dry runs adultos y gates previos, y solo después probarlas de forma controlada con niños. En paralelo puede comenzar la infraestructura y el prototipo de `VS-01` con fixtures no familiares, pero el slice no puede darse por terminado ni exponer contenido `Draft` como publicado.
+Probar el prototipo con la fundadora en una ejecución adulta guiada, ajustar lenguaje/carga mental y después usarlo con la hija de cinco años en el piloto controlado de ACT-0001. En paralelo deben completarse los dry runs y gates humanos del [Pilot Pack v0.1](docs/08-delivery/pilot-pack-v0.1.md). `VS-01` todavía requiere una actividad publicada y backend real; el prototipo no satisface ese gate.

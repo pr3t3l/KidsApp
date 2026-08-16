@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "source": "C:\\Users\\prett\\Documents\\ChatGPT\\Otros\\kids-system-studio",
+      "file_count": 20,
+      "total_bytes": 1117132,
+      "extensions": {
+        ".png": 7,
+        ".html": 5,
+        ".json": 3,
+        ".md": 3,
+        ".css": 1,
+        ".js": 1
+      },
+      "groups": {
+        "code": 7,
+        "data": 3,
+        "documents": 3,
+        "images": 7
+      },
+      "aggregate_metrics": {
+        "lines": 3676,
+        "click_handlers": 9,
+        "aria_attributes": 89,
+        "buttons": 140,
+        "form_controls": 12,
+        "css_variables": 134,
+        "media_queries": 18,
+        "design_canvas": 0,
+        "headings": 46,
+        "urls": 5,
+        "design_canvas_files": 0
+      },
+      "duplicate_sets": [
+        [
+          "prototype-standalone.html",
+          "qa/isolated-standalone.html"
+        ]
+      ],
+      "unsafe_archive_members": [],
+      "files": [
+        {
+          "path": "app.js",
+          "extension": ".js",
+          "size": 30012,
+          "sha256": "657189dddd8dec2877899f5c49b766408230cfcb2195454ef9f3e6525a2c7bae",
+          "metrics": {
+            "lines": 261,
+            "click_handlers": 1,
+            "aria_attributes": 9
+          }
+        },
+        {
+          "path": "design-system.html",
+          "extension": ".html",
+          "size": 35860,
+          "sha256": "0f2b62b78fe306abdd66ca06ce457955e0f53727bc5a29a8c54c47fbb124ad2a",
+          "metrics": {
+            "lines": 57,
+            "buttons": 10,
+            "form_controls": 1,
+            "click_handlers": 3,
+            "aria_attributes": 10,
+            "css_variables": 40,
+            "media_queries": 3,
+            "design_canvas": false
+          }
+        },
+        {
+          "path": "design/design-system.md",
+          "extension": ".md",
+          "size": 4675,
+          "sha256": "8c9b76ccba743a64211f5c67da2c39308d375ace1cbd52dc2ebb308897e7d072",
+          "metrics": {
+            "lines": 89,
+            "headings": 16,
+            "urls": 0
+          }
+        },
+        {
+          "path": "handoff/implementation.md",
+          "extension": ".md",
+          "size": 7405,
+          "sha256": "3ce054e0f5e7c8c63ee940f6aae8f31bb835152a3341185d3a8899dc767b4e5a",
+          "metrics": {
+            "lines": 128,
+            "headings": 12,
+            "urls": 0
+          }
+        },
+        {
+          "path": "index.html",
+          "extension": ".html",
+          "size": 5743,
+          "sha256": "3ff7799e55c75f9ce2b887ea28064d35640195c3fe234178cd88442f0a4c8060",
+          "metrics": {
+            "lines": 104,
+            "buttons": 16,
+            "form_controls": 0,
+            "click_handlers": 0,
+            "aria_attributes": 14,
+            "css_variables": 0,
+            "media_queries": 0,
+            "design_canvas": false
+          }
+        },
+        {
+          "path": "prototype-standalone.html",
+          "extension": ".html",
+          "size": 77325,
+          "sha256": "1b6a102334b0105a7ec4b1a7346f31d1fc2a0b6e32742dc29095c3ef0bfc2b8c",
+          "metrics": {
+            "lines": 724,
+            "buttons": 52,
+            "form_controls": 5,
+            "click_handlers": 1,
+            "aria_attributes": 23,
+            "css_variables": 18,
+            "media_queries": 4,
+            "design_canvas": false
+          }
+        },
+        {
+          "path": "qa/close-360.png",
+          "extension": ".png",
+          "size": 61451,
+          "sha256": "eb3a6f02028c0e9dbb9fd4d9299b2978d96805b01a609dbb505dc5b8136ba8d6",
+          "metrics": {}
+        },
+        {
+          "path": "qa/editorial-1280.png",
+          "extension": ".png",
+          "size": 113727,
+          "sha256": "f725b49da1c12650d4b6886dcd52e627034ead69a8df2bffa2b35053187e92e8",
+          "metrics": {}
+        },
+        {
+          "path": "qa/home-1280.png",
+          "extension": ".png",
+          "size": 162587,
+          "sha256": "5fc5feea5dbffd757bc0796a329ff1f0f5924ad8e11dfad82b523fb608cefb67",
+          "metrics": {}
+        },
+        {
+          "path": "qa/home-360.png",
+          "extension": ".png",
+          "size": 125704,
+          "sha256": "ed0609620b29480c0ef8fb6f638bec06b1fdc63135ff7065fa46180641b67a1b",
+          "metrics": {}
+        },
+        {
+          "path": "qa/home-768.png",
+          "extension": ".png",
+          "size": 164056,
+          "sha256": "27db9fad9ab6f289c162d13a33b4479f90a8e2c04e0232e49edb61b37e3b478f",
+          "metrics": {}
+        },
+        {
+          "path": "qa/isolated-standalone.html",
+          "extension": ".html",
+          "size": 77325,
+          "sha256": "1b6a102334b0105a7ec4b1a7346f31d1fc2a0b6e32742dc29095c3ef0bfc2b8c",
+          "metrics": {
+            "lines": 724,
+            "buttons": 52,
+            "form_controls": 5,
+            "click_handlers": 1,
+            "aria_attributes": 23,
+            "css_variables": 18,
+            "media_queries": 4,
+            "design_canvas": false
+          }
+        },
+        {
+          "path": "qa/journey-360.png",
+          "extension": ".png",
+          "size": 66130,
+          "sha256": "5ff0a5022d3cecdef76a694135d26b6e9ba4bd5a7dd8110b6c87ca7c09d01f22",
+          "metrics": {}
+        },
+        {
+          "path": "qa/session-360.png",
+          "extension": ".png",
+          "size": 74441,
+          "sha256": "0aebff741575f0bfbd090b4cd97b02bf350127d9d34fb6569170d145510ead3a",
+          "metrics": {}
+        },
+        {
+          "path": "research/brief.md",
+          "extension": ".md",
+          "size": 8602,
+          "sha256": "2b4f3c634595a22981974fbff7590c411c4a6849738210abf5f09650db39132e",
+          "metrics": {
+            "lines": 124,
+            "headings": 18,
+            "urls": 5
+          }
+        },
+        {
+          "path": "research/evidence.json",
+          "extension": ".json",
+          "size": 9339,
+          "sha256": "d0dca6d8fe15ccc3760d2983aa7a184f84c2ee9179f4d1d1158bc5119d157368",
+          "metrics": {
+            "lines": 163
+          }
+        },
+        {
+          "path": "research/source-inventory.json",
+          "extension": ".json",
+          "size": 24913,
+          "sha256": "6b05041717144670b99f643d4f1ecd6025fa5203fbc30decc8449788fddfb982",
+          "metrics": {
+            "lines": 830
+          }
+        },
+        {
+          "path": "standalone.html",
+          "extension": ".html",
+          "size": 35977,
+          "sha256": "b02931956551da1504638a8952fb8eed21bcb85fac2a2d82df53cacc33bf8cb4",
+          "metrics": {
+            "lines": 58,
+            "buttons": 10,
+            "form_controls": 1,
+            "click_handlers": 3,
+            "aria_attributes": 10,
+            "css_variables": 40,
+            "media_queries": 3,
+            "design_canvas": false
+          }
+        },
+        {
+          "path": "studio-manifest.json",
+          "extension": ".json",
+          "size": 2587,
+          "sha256": "50e7c29de3ad3b3111f258cfa27a696518d8de38c201048525cb5e321b43e82b",
+          "metrics": {
+            "lines": 58
+          }
+        },
+        {
+          "path": "styles.css",
+          "extension": ".css",
+          "size": 29273,
+          "sha256": "276e68467e8ec8bbb7b8da03a0106679f4ac72b625fc4632a11da9a9498144c8",
+          "metrics": {
+            "lines": 356,
+            "css_variables": 18,
+            "media_queries": 4
+          }
+        }
+      ]
+    }
+  ]
+}

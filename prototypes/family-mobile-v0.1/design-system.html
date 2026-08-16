@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="studio-artifact" content="visual-system">
+  <meta name="description" content="Sistema visual móvil Pocket Workshop para Kids Learning System.">
+  <title>Pocket Workshop — Sistema visual móvil</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body.ds-body { background: #d9d5ca; }
+    .ds-shell { max-width: 1220px; margin: 0 auto; padding: 24px; }
+    .ds-nav { position: sticky; top: 12px; z-index: 20; display: flex; gap: 6px; overflow-x: auto; background: rgba(16,24,32,.95); color: white; border-radius: 16px; padding: 8px; box-shadow: var(--shadow); }
+    .ds-nav a { flex: 0 0 auto; color: #dfe6e9; text-decoration: none; border-radius: 10px; padding: 10px 12px; font-size: 11px; font-weight: 800; }
+    .ds-nav a:hover, .ds-nav a:focus-visible { background: var(--yellow); color: var(--ink); }
+    .ds-hero { margin-top: 18px; min-height: 410px; display: grid; grid-template-columns: 1.25fr .75fr; background: var(--ink); color: white; border-radius: 28px; overflow: hidden; }
+    .ds-hero-copy { padding: clamp(28px, 5vw, 72px); align-self: center; }
+    .ds-hero-copy h1 { font-size: clamp(54px, 8vw, 104px); }
+    .ds-hero-copy h1 span { color: var(--cyan); }
+    .ds-hero-copy p { color: #bdc8ce; font-size: 16px; line-height: 1.55; max-width: 600px; }
+    .ds-hero-mark { min-height: 360px; display: grid; place-items: center; background: repeating-linear-gradient(90deg,transparent 0 31px,rgba(82,213,230,.12) 32px),repeating-linear-gradient(0deg,transparent 0 31px,rgba(82,213,230,.12) 32px),#12303d; }
+    .ds-hero-mark .brand-mark { width: 180px; height: 180px; gap: 14px; }
+    .ds-section { margin-top: 18px; padding: clamp(22px, 4vw, 46px); background: var(--surface); border: 1px solid var(--line); border-radius: 24px; }
+    .ds-section > header { display: grid; grid-template-columns: 100px 1fr; gap: 18px; align-items: start; margin-bottom: 28px; }
+    .ds-index { font: 800 12px var(--mono); color: var(--muted); }
+    .ds-section h2 { font-size: clamp(34px, 5vw, 56px); }
+    .ds-section header p { max-width: 660px; color: var(--muted); line-height: 1.55; }
+    .ds-grid { display: grid; grid-template-columns: repeat(12,1fr); gap: 12px; }
+    .ds-card { grid-column: span 4; min-height: 150px; border: 1px solid var(--line); border-radius: 16px; padding: 18px; background: var(--paper); }
+    .ds-card.wide { grid-column: span 8; }
+    .ds-card.full { grid-column: 1 / -1; }
+    .ds-card strong, .ds-card small { display: block; }
+    .ds-card small { margin-top: 6px; color: var(--muted); line-height: 1.45; }
+    .swatch { height: 120px; border-radius: 14px; margin-bottom: 14px; border: 1px solid rgba(16,24,32,.16); }
+    .token { margin-top: 10px; color: var(--muted); font: 11px var(--mono); }
+    .type-display { font: 800 clamp(48px, 8vw, 96px)/.9 var(--display); letter-spacing: -.04em; }
+    .type-body { font: 16px/1.6 var(--body); max-width: 720px; }
+    .type-mono { font: 13px/1.6 var(--mono); }
+    .icon-board { display: flex; gap: 12px; flex-wrap: wrap; }
+    .icon-chip { width: 82px; height: 82px; display: grid; place-items: center; background: white; border: 1px solid var(--line); border-radius: 18px; font-size: 28px; }
+    .measure { position: relative; min-height: 150px; background: repeating-linear-gradient(90deg,var(--cyan-soft) 0 7.8%,transparent 7.8% 8.3%); border-radius: 14px; }
+    .measure::after { content: "12 columnas · 16 px borde móvil · 8 px ritmo base"; position: absolute; inset: auto 12px 12px; background: var(--ink); color: white; padding: 10px; border-radius: 10px; font: 11px var(--mono); }
+    .component-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .state-demo { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+    .state-demo .card { min-height: 155px; }
+    .mobile-demo { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; align-items: start; }
+    .phone { max-width: 330px; min-height: 520px; margin: auto; border: 9px solid var(--ink); border-radius: 32px; overflow: hidden; background: var(--paper); box-shadow: 0 18px 36px rgba(16,24,32,.18); }
+    .phone-bar { height: 42px; background: var(--ink); color: white; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; font-size: 9px; }
+    .phone-content { padding: 18px 14px; }
+    .phone h3 { font-size: 28px; }
+    .phone p { font-size: 11px; line-height: 1.45; }
+    .rating-mini { display: grid; grid-template-columns: repeat(5,1fr); gap: 3px; }
+    .rating-mini span { min-height: 53px; display: grid; place-items: center; text-align: center; border: 1px solid var(--line); border-radius: 8px; font-size: 7px; background: white; }
+    .rating-mini span:nth-child(4) { background: var(--yellow); border-color: #c79d00; }
+    .a11y-list { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+    .a11y-item { padding: 16px; background: var(--mint-soft); border: 1px solid #a2dfc7; border-radius: 14px; }
+    .a11y-item strong { display: block; margin-bottom: 5px; }
+    .ds-footer { padding: 28px 4px 70px; display: flex; justify-content: space-between; gap: 14px; color: #46535c; font-size: 11px; }
+    @media (max-width: 760px) {
+      .ds-shell { padding: 10px; }
+      .ds-hero { grid-template-columns: 1fr; }
+      .ds-hero-mark { min-height: 230px; }
+      .ds-section > header { grid-template-columns: 1fr; }
+      .ds-card, .ds-card.wide { grid-column: 1 / -1; }
+      .mobile-demo, .state-demo, .a11y-list { grid-template-columns: 1fr; }
+      .ds-footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; } }
+  </style>
+</head>
+<body class="ds-body">
+  <main class="ds-shell">
+    <nav class="ds-nav" aria-label="Secciones del sistema visual">
+      <a href="#brand">Marca</a><a href="#color">Color</a><a href="#typography">Tipo</a><a href="#iconography">Iconos</a><a href="#foundations">Bases</a><a href="#components">Componentes</a><a href="#accessibility">Accesibilidad</a><a href="#platform">Móvil</a>
+    </nav>
+
+    <header class="ds-hero">
+      <div class="ds-hero-copy"><p class="eyebrow" style="color:var(--yellow)">Sistema visual móvil · v0.1</p><h1>Pocket<br><span>Workshop.</span></h1><p>Un taller de bolsillo que ayuda al adulto a preparar, acompañar y observar sin convertir la tarde en una pantalla ni al niño en una puntuación.</p><div class="tag-row"><span class="tag yellow">Trabajo real</span><span class="tag cyan">Guía clara</span><span class="tag coral">Seguridad visible</span></div></div>
+      <div class="ds-hero-mark"><span class="brand-mark" aria-label="Marca modular de tres barras"><i></i><i></i><i></i></span></div>
+    </header>
+
+    <section class="ds-section" id="brand"><header><span class="ds-index">01 / BRAND</span><div><h2>Marca provisional</h2><p>La marca modular representa tres aportes distintos que construyen una experiencia común. Es una dirección de producto todavía no aprobada comercialmente.</p></div></header><div class="ds-grid"><div class="ds-card wide" style="background:var(--ink);color:white"><span class="brand-mark" style="width:72px;height:72px"><i></i><i></i><i></i></span><h3 style="font-size:34px;margin-top:22px">Kids Learning System</h3><small style="color:#b9c4ca">Descriptor: taller familiar</small></div><div class="ds-card"><strong>Principio verbal</strong><small>Curioso, concreto y respetuoso. Habla al adulto como acompañante capaz; nunca diagnostica ni compite.</small><p class="token">“Probemos una idea” · no “demuestra que puedes”</p></div></div></section>
+
+    <section class="ds-section" id="color"><header><span class="ds-index">02 / COLOR</span><div><h2>Herramientas, no decoración</h2><p>El color señala función: grafito estructura, amarillo acción y seguridad, cyan guía, coral excepción y mint confirmación.</p></div></header><div class="ds-grid">
+      <div class="ds-card"><div class="swatch" style="background:#101820"></div><strong>Graphite</strong><small>Jerarquía, sesión, texto.</small><p class="token">#101820</p></div>
+      <div class="ds-card"><div class="swatch" style="background:#F3F1E9"></div><strong>Work paper</strong><small>Fondo cálido, baja fatiga.</small><p class="token">#F3F1E9</p></div>
+      <div class="ds-card"><div class="swatch" style="background:#FFC928"></div><strong>Safety yellow</strong><small>Acción primaria y cautela.</small><p class="token">#FFC928</p></div>
+      <div class="ds-card"><div class="swatch" style="background:#52D5E6"></div><strong>Blueprint cyan</strong><small>Guías y estructura.</small><p class="token">#52D5E6</p></div>
+      <div class="ds-card"><div class="swatch" style="background:#FF6B56"></div><strong>Coral</strong><small>Estado Draft y atención.</small><p class="token">#FF6B56</p></div>
+      <div class="ds-card"><div class="swatch" style="background:#58C79A"></div><strong>Mint</strong><small>Listo, guardado, progreso.</small><p class="token">#58C79A</p></div>
+    </div></section>
+
+    <section class="ds-section" id="typography"><header><span class="ds-index">03 / TYPE</span><div><h2>Lectura a un vistazo</h2><p>Bahnschrift crea títulos compactos de taller; Aptos/Segoe UI mantiene instrucciones legibles; Cascadia Mono expone IDs y estados editoriales.</p></div></header><div class="ds-grid"><div class="ds-card full"><div class="type-display">Construir<br>es pensar.</div><p class="token">Display · Bahnschrift 800 · 0.9 line-height</p></div><div class="ds-card wide"><p class="type-body">Doblen el papel con cuidado y coloquen la estructura sobre dos apoyos iguales. Cambien una sola variable antes de volver a probar.</p><p class="token">Body · Aptos / Segoe UI · 1.5–1.6 line-height</p></div><div class="ds-card"><p class="type-mono">ACT-0001@0.2.2<br>STATUS: DRAFT<br>RISK: A</p><p class="token">Mono · contratos y trazabilidad</p></div></div></section>
+
+    <section class="ds-section" id="iconography"><header><span class="ds-index">04 / ICON</span><div><h2>Trazo funcional</h2><p>Iconos de 20–24 px, trazo 1.8, siempre acompañados por texto cuando comunican una acción o estado importante.</p></div></header><div class="icon-board" aria-label="Muestras de iconografía"><span class="icon-chip">⌂</span><span class="icon-chip">↔</span><span class="icon-chip">▶</span><span class="icon-chip">Ⅱ</span><span class="icon-chip">✓</span><span class="icon-chip">!</span><span class="icon-chip">?</span><span class="icon-chip">⌁</span></div><p class="token">Esquinas redondeadas · extremos de línea redondos · sin emoji en producto</p></section>
+
+    <section class="ds-section" id="foundations"><header><span class="ds-index">05 / BASE</span><div><h2>Fundamentos móviles</h2><p>El sistema usa un ritmo base de 8 px, bordes de 16 px, tarjetas de 14–22 px y áreas táctiles mínimas de 44 px.</p></div></header><div class="ds-grid"><div class="ds-card full"><div class="measure"></div></div><div class="ds-card"><strong>Radio</strong><small>10 control · 14 botón · 18 tarjeta · 24 sheet · 30 dispositivo.</small></div><div class="ds-card"><strong>Profundidad</strong><small>La mayoría del UI es plano; elevación solo para acción sticky, sheet y marco de demo.</small></div><div class="ds-card"><strong>Movimiento</strong><small>Entrada 220 ms y sheet 220 ms. Respetar reduced-motion y nunca animar una advertencia.</small></div></div></section>
+
+    <section class="ds-section" id="components"><header><span class="ds-index">06 / UI</span><div><h2>Componentes y estados</h2><p>La interacción se construye con bloques reconocibles: acción, asignación, instrucción, seguridad, excepción y evidencia.</p></div></header><div class="ds-grid"><div class="ds-card full"><p class="eyebrow">Botones</p><div class="component-row"><button class="button primary">Continuar →</button><button class="button secondary">Necesito ayuda</button><button class="button ghost">Pausar</button><button class="button danger">Salir sin guardar</button><button class="button primary" disabled>Falta información</button></div></div><div class="ds-card full"><p class="eyebrow">Estados de tarjeta</p><div class="state-demo"><article class="card"><span class="tag cyan">Asignación</span><h3 style="margin-top:13px">Constructora</h3><p class="caption">Objetivo principal visible.</p></article><article class="card yellow"><span class="tag yellow">Cuidado</span><h3 style="margin-top:13px">Control adulto</h3><p class="caption">Advertencia junto al paso.</p></article><article class="card mint"><span class="tag mint">Guardado</span><h3 style="margin-top:13px">Registro contextual</h3><p class="caption">Confirmación sin nota global.</p></article></div></div><div class="ds-card wide"><p class="eyebrow">Escala con lenguaje</p><div class="rating-mini"><span>1<br>Todavía no</span><span>2<br>Mucha ayuda</span><span>3<br>Alguna ayuda</span><span>4<br>Casi solo</span><span>5<br>Solo y seguro</span></div></div><div class="ds-card"><p class="eyebrow">Estado editorial</p><div class="tag-row"><span class="tag coral">Draft</span><span class="tag mint">Published</span><span class="tag dark">Retired</span></div><small>Nunca depender solo del color.</small></div></div></section>
+
+    <section class="ds-section" id="accessibility"><header><span class="ds-index">07 / A11Y</span><div><h2>Accesibilidad incorporada</h2><p>El adulto puede estar de pie, sostener materiales y cuidar a varios niños. La interfaz debe soportar atención dividida.</p></div></header><div class="a11y-list"><div class="a11y-item"><strong>Objetivos táctiles</strong>44 × 44 px mínimo; primarios 50 px.</div><div class="a11y-item"><strong>Contraste</strong>Texto principal grafito; estados combinan texto, forma y color.</div><div class="a11y-item"><strong>Lenguaje</strong>Oraciones concretas, actor explícito y una acción por bloque.</div><div class="a11y-item"><strong>Foco</strong>Anillo cyan de 3 px; sheets devuelven foco al disparador.</div><div class="a11y-item"><strong>Movimiento</strong>Reduced-motion elimina entrada, scroll suave y transición del sheet.</div><div class="a11y-item"><strong>Errores</strong>“No pude observar” no se convierte en una puntuación baja.</div></div></section>
+
+    <section class="ds-section" id="platform"><header><span class="ds-index">08 / MOBILE</span><div><h2>Patrones de teléfono</h2><p>La navegación inferior sirve para destinos. La actividad abre una pila de tarea de pantalla completa y conserva el control del adulto.</p></div></header><div class="mobile-demo"><div class="phone"><div class="phone-bar"><strong>HOY</strong><span>En línea</span></div><div class="phone-content"><p class="eyebrow">Plan familiar</p><h3>Una tarde para pensar juntos.</h3><p>Tiempo, participantes y una recomendación explicable.</p><article class="card dark" style="margin-top:18px"><span class="tag yellow">45 min</span><h3 style="color:white;margin-top:14px">Puentes de papel</h3><p style="color:#bcc7cd">Actividad compartida.</p></article><button class="button primary block" style="margin-top:14px">Revisar plan</button></div></div><div class="phone"><div class="phone-bar"><strong>3 / 6</strong><span>Pausar</span></div><div class="phone-content"><p class="eyebrow">Construir</p><h3>Transformen la hoja.</h3><p>Una instrucción, el actor, una advertencia y ayuda contextual.</p><article class="safety-card" style="margin-top:18px"><b>!</b><div><strong>Durante este paso</strong><p>Revisar superficie estable.</p></div></article><button class="button primary block" style="margin-top:14px">Siguiente</button></div></div><div class="phone"><div class="phone-bar"><strong>CIERRE</strong><span>0:12</span></div><div class="phone-content"><p class="eyebrow">Una por niño</p><h3>¿Cuánta ayuda necesitó?</h3><p>La frase da significado al número.</p><div class="rating-mini" style="margin-top:20px"><span>1<br>Todavía no</span><span>2<br>Mucha ayuda</span><span>3<br>Alguna ayuda</span><span>4<br>Casi solo</span><span>5<br>Solo y seguro</span></div><button class="button primary block" style="margin-top:14px">Ver registro</button></div></div></div><p class="caption" style="margin-top:20px">Objetivos de prueba: 360 × 800 y 430 × 932 px. Safe areas se resuelven con env(safe-area-inset-*).</p></section>
+
+    <footer class="ds-footer"><span>Kids Learning System · Pocket Workshop v0.1</span><span>Dirección visual provisional · datos y ejemplos sintéticos</span></footer>
+  </main>
+</body>
+</html>

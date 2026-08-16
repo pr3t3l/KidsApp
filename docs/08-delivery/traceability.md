@@ -36,6 +36,7 @@ Principio
 | Contratos ejecutables de contenido y sesión | DATA-001/002, ENG-001/004, OFF-003 | Catalog, Session, Learning Journey | JSON Schemas + invariantes de dominio | VS-01–04/09 | Ejemplos positivos, fixtures negativas y referencias cruzadas |
 | Semillas como manipulativos no comestibles | SAFE-001/002/006/007 | ACT-0002 | Material, Hazard, StopCondition | Piloto editorial | Revisión de toxicología, piezas pequeñas y prueba 1–3 niños |
 | Circuito de baja tensión con participación infantil segura por definir | SAFE-003/004/008, DEC-040 | ACT-0003 | AdultOnlyStep, PermittedChildAction, Hazard, ReviewGate | Piloto editorial reforzado | Cálculo, números de parte, inspección física, montaje desenergizado y especialista |
+| Prototipo móvil familiar de punta a punta | DEC-015/017/026/036/041, UX-201/401/501, EVD-013 | Today, Participants and Roles, Preparation, Activity Session, Session Close | Fixtures sintéticos de Assignment, Participation y Observation | Exploración UX de VS-02/03 | Smoke test interactivo, 360×800, 430×932 y prueba humana pendiente |
 
 ## Regla para tareas futuras
 
@@ -55,3 +56,11 @@ Si no existe requisito para una función importante, primero se actualiza el spe
 - Las actividades permanecen `Draft`; su presencia en el repositorio no satisface el gate `Published`.
 - Los contratos y ejemplos viven en `schemas/`; `npm run validate` es el gate automatizado mínimo.
 - La revisión cruzada por agentes detecta defectos editoriales, pero no sustituye revisión pedagógica, técnica, legal o de seguridad humana.
+
+## Evidencia del prototipo móvil familiar v0.1
+
+- El artefacto editable vive en [`prototypes/family-mobile-v0.1/`](../../prototypes/family-mobile-v0.1/README.md).
+- La evidencia de decisiones e incertidumbres vive en `research/evidence.json`; el handoff enlaza interacción, dominio y aceptación.
+- `qa/flow-smoke.mjs` recorre desde planificación hasta guardado, incluyendo observación sin evaluación.
+- Las capturas verifican 360×800 y 430×932 sin overflow horizontal.
+- La prueba técnica no sustituye usabilidad real con un adulto facilitando una actividad ni convierte ACT-0001 en publicada.

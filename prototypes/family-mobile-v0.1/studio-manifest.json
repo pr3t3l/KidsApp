@@ -1,0 +1,58 @@
+{
+  "artifact": {
+    "name": "Kids Learning System — Prototipo móvil familiar",
+    "version": "0.1.0",
+    "createdAt": "2026-08-16",
+    "locale": "es-US",
+    "entrypoint": "index.html",
+    "visualSystemEntrypoint": "design-system.html",
+    "standaloneEntrypoint": "standalone.html",
+    "prototypeStandaloneEntrypoint": "prototype-standalone.html",
+    "type": "mobile family product prototype"
+  },
+  "platform": {
+    "mode": "mobile-app",
+    "rationale": "The first product is a phone app used by an adult with divided attention while facilitating a hands-on activity.",
+    "targetViewports": ["360x800", "430x932"],
+    "primaryInput": "touch with keyboard and screen-reader support"
+  },
+  "sourceProject": {
+    "path": "C:/Users/prett/Documents/Kids System",
+    "visualReference": "C:/Users/prett/Documents/ChatGPT/Otros/kids-system-studio",
+    "sourceMutation": false,
+    "documentationStatus": "approved product decisions plus Draft activity content",
+    "sampleActivity": "ACT-0001@0.2.2"
+  },
+  "views": [
+    "Today planning by available time and participants",
+    "Flexible role and objective review",
+    "Adult preparation and structural guidance",
+    "Six-stage hands-on session",
+    "Contextual troubleshooting and approved pacing adaptations",
+    "Sub-20-second close with verbal 1–5 anchors",
+    "Editable evidence receipt",
+    "Synthetic Plan, Journey and Family previews"
+  ],
+  "fixturePolicy": "All names, profiles, observations and session outcomes shown are synthetic.",
+  "standalone": {
+    "file": "standalone.html",
+    "purpose": "offline visual-system specimen",
+    "offlineRuntime": true,
+    "buildCommand": "python C:/Users/prett/.codex/skills/research-design-studio/scripts/make_standalone.py C:/Users/prett/Documents/Kids System/prototypes/family-mobile-v0.1 --source design-system.html --output standalone.html",
+    "prototypeBuildCommand": "python C:/Users/prett/.codex/skills/research-design-studio/scripts/make_standalone.py C:/Users/prett/Documents/Kids System/prototypes/family-mobile-v0.1 --source index.html --output prototype-standalone.html"
+  },
+  "knownLimits": [
+    "Pocket Workshop is not an approved commercial identity.",
+    "ACT-0001@0.2.2 is Draft and appears only as an explicitly labeled prototype preview.",
+    "No backend, authentication, persistence, model call, voice capture, billing or real child data is implemented.",
+    "The optional Evaluate more flow is signposted but intentionally not expanded in this validation slice."
+  ],
+  "files": {
+    "evidence": "research/evidence.json",
+    "brief": "research/brief.md",
+    "sourceInventory": "research/source-inventory.json",
+    "designSystem": "design/design-system.md",
+    "visualSystemSpecimen": "design-system.html",
+    "handoff": "handoff/implementation.md"
+  }
+}

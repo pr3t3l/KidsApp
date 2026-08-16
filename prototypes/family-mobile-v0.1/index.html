@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101820">
+  <meta name="description" content="Simulador móvil del recorrido familiar para preparar, realizar y cerrar una actividad compartida.">
+  <title>Kids Learning System — Prototipo móvil familiar</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="prototype-frame">
+    <div class="prototype-label" aria-hidden="true">
+      <strong>Simulador móvil</strong>
+      <span>360–430 px · datos sintéticos · ACT-0001 Draft</span>
+    </div>
+    <div class="app" id="app">
+      <header class="app-header" id="appHeader">
+        <button class="brand-button" data-action="home" aria-label="Ir a Hoy">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span><strong>Kids Learning System</strong><small>taller familiar · prototipo</small></span>
+        </button>
+        <button class="status-button" data-action="toggle-offline" aria-label="Cambiar conexión">
+          <svg aria-hidden="true"><use href="#i-signal"></use></svg><span id="connectionText">En línea</span>
+        </button>
+      </header>
+
+      <main id="view" tabindex="-1" aria-live="polite"></main>
+      <nav class="bottom-nav" id="bottomNav" aria-label="Navegación principal">
+        <button data-action="tab" data-target="today" class="is-active"><svg aria-hidden="true"><use href="#i-home"></use></svg><span>Hoy</span></button>
+        <button data-action="tab" data-target="plan"><svg aria-hidden="true"><use href="#i-calendar"></use></svg><span>Plan</span></button>
+        <button data-action="tab" data-target="journey"><svg aria-hidden="true"><use href="#i-journey"></use></svg><span>Journey</span></button>
+        <button data-action="tab" data-target="family"><svg aria-hidden="true"><use href="#i-family"></use></svg><span>Familia</span></button>
+      </nav>
+    </div>
+  </div>
+
+  <div class="scrim" id="scrim" hidden data-action="close-sheet"></div>
+  <section class="sheet" id="sheet" aria-modal="true" role="dialog" aria-labelledby="sheetTitle" aria-hidden="true">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div id="sheetContent"></div>
+  </section>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <svg class="icon-sprite" aria-hidden="true">
+    <defs>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v10h-6v-6H9v6H3V11Z"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></symbol>
+      <symbol id="i-journey" viewBox="0 0 24 24"><path d="M4 18 9 13l3 3 7-8"/><path d="M15 8h4v4"/></symbol>
+      <symbol id="i-family" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20c0-4 2-7 6-7s6 3 6 7m6-6c3 0 5 2 5 5"/></symbol>
+      <symbol id="i-signal" viewBox="0 0 24 24"><path d="M4 17h2m3-4h2m3-4h2m3-4h2"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 12H4m6-6-6 6 6 6"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14m8-14v14"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z"/></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5m0 3h.01"/></symbol>
+      <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.7 2.7 0 1 1 4 2.4c-1 .6-1.5 1.1-1.5 2.1m0 3.5h.01"/></symbol>
+      <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 7h14m-4-4 4 4-4 4M20 17H6m4 4-4-4 4-4"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+    </defs>
+  </svg>
+  <script src="app.js"></script>
+</body>
+</html>

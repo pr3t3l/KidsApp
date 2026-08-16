@@ -45,6 +45,7 @@
 | DEC-038 | Planear tanto aplicación web familiar como portal administrativo/editorial; decidir su secuencia en el roadmap. | Aprobada | Ambos recorridos aportan valor, pero no tienen que construirse simultáneamente. |
 | DEC-039 | No diseñar variantes educativas por estado; usar un baseline nacional protector y una matriz legal de aplicabilidad basada en los estados reales del piloto y lanzamiento. | Aprobada | Los estados no deben fragmentar la experiencia pedagógica, pero sí afectan obligaciones de privacidad y distribución. |
 | DEC-040 | Investigar una configuración del probador de conductividad que permita montaje infantil significativo con el circuito desenergizado; las pilas, la inspección, la autorización para energizar y cualquier paso no aprobado permanecen bajo control adulto. | Propuesta | Preservar el valor de construir el circuito sin relajar el gate eléctrico/mecánico ni asignar acciones infantiles antes de revisión experta. |
+| DEC-041 | Usar la dirección visual “Pocket Workshop” del estudio anterior como base del prototipo móvil familiar, manteniéndola explícitamente como identidad provisional y separando la app familiar del workspace editorial. | Aprobada | Permite validar experiencia y coherencia visual sin aprobar todavía nombre, marca comercial ni arquitectura de implementación. |
 
 ## Plantilla
 

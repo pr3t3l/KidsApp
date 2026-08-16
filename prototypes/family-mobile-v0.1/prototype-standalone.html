@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta name="studio-package" content="standalone-offline">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101820">
+  <meta name="description" content="Simulador móvil del recorrido familiar para preparar, realizar y cerrar una actividad compartida.">
+  <title>Kids Learning System — Prototipo móvil familiar</title>
+  <style data-standalone-source="styles.css">
+:root {
+  --ink: #101820;
+  --ink-2: #24303a;
+  --paper: #f3f1e9;
+  --paper-2: #e5e1d5;
+  --surface: #fffef9;
+  --yellow: #ffc928;
+  --yellow-dark: #a77c00;
+  --cyan: #52d5e6;
+  --cyan-soft: #dff8fb;
+  --coral: #ff6b56;
+  --coral-soft: #fff0ed;
+  --mint: #58c79a;
+  --mint-soft: #e2f6ee;
+  --muted: #68757e;
+  --line: rgba(16, 24, 32, .14);
+  --shadow: 0 18px 46px rgba(16, 24, 32, .15);
+  --radius: 18px;
+  --display: "Bahnschrift", "Arial Narrow", Arial, sans-serif;
+  --body: "Aptos", "Segoe UI", Arial, sans-serif;
+  --mono: "Cascadia Mono", Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+html { color-scheme: light; background: #d9d5ca; }
+body { margin: 0; color: var(--ink); background: radial-gradient(circle at 20% 0, #f8d75f 0 10%, transparent 10.2%), #d9d5ca; font-family: var(--body); }
+button, input, textarea { font: inherit; }
+button { color: inherit; }
+button, label { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+.icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.prototype-frame { min-height: 100dvh; display: grid; grid-template-columns: 1fr minmax(360px, 430px) 1fr; gap: 22px; align-items: start; padding: 24px; }
+.prototype-label { align-self: start; justify-self: end; width: 210px; margin-top: 26px; color: var(--ink); position: sticky; top: 24px; }
+.prototype-label strong, .prototype-label span { display: block; }
+.prototype-label strong { font: 800 20px/1 var(--display); }
+.prototype-label span { margin-top: 8px; color: #45515a; font-size: 12px; line-height: 1.45; }
+.app { grid-column: 2; width: 100%; min-height: min(932px, calc(100dvh - 48px)); height: min(932px, calc(100dvh - 48px)); background: var(--paper); border: 1px solid rgba(16,24,32,.55); border-radius: 30px; overflow: hidden; box-shadow: var(--shadow); position: relative; display: grid; grid-template-rows: auto minmax(0,1fr) auto; }
+.app-header { min-height: 72px; padding: max(14px, env(safe-area-inset-top)) 16px 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--ink); color: var(--surface); z-index: 5; }
+.app-header[hidden] { display: none; }
+.brand-button { border: 0; background: transparent; color: inherit; padding: 0; display: flex; gap: 10px; align-items: center; text-align: left; cursor: pointer; min-width: 0; }
+.brand-button strong, .brand-button small { display: block; }
+.brand-button strong { font: 800 13px var(--display); white-space: nowrap; }
+.brand-button small { color: #aeb8bf; font-size: 9px; margin-top: 2px; }
+.brand-mark { width: 34px; height: 34px; display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; transform: skew(-7deg); flex: 0 0 auto; }
+.brand-mark i { background: var(--yellow); border-radius: 2px; }
+.brand-mark i:nth-child(2) { background: var(--cyan); transform: translateY(5px); }
+.brand-mark i:nth-child(3) { background: var(--coral); transform: translateY(-2px); }
+.status-button { height: 44px; border: 1px solid rgba(255,255,255,.22); background: transparent; color: inherit; border-radius: 13px; padding: 0 10px; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+.status-button span { font-size: 10px; }
+.app.is-offline .status-button { color: var(--yellow); border-color: var(--yellow); }
+
+#view { overflow: auto; overscroll-behavior: contain; scroll-behavior: smooth; padding: 24px 16px 36px; }
+#view.no-bottom { padding-bottom: 28px; }
+.screen { min-height: 100%; animation: enter .22s cubic-bezier(.2,.7,.2,1); }
+@keyframes enter { from { opacity: .25; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.eyebrow { margin: 0 0 7px; color: var(--muted); font: 800 10px/1.2 var(--display); letter-spacing: .12em; text-transform: uppercase; }
+.eyebrow.coral { color: #b93625; }
+h1, h2, h3, p { overflow-wrap: anywhere; }
+h1 { margin: 0; font: 800 38px/.94 var(--display); letter-spacing: -.035em; }
+h2 { margin: 0; font: 800 26px/1 var(--display); letter-spacing: -.025em; }
+h3 { margin: 0; font: 800 17px/1.1 var(--display); }
+.lead { margin: 12px 0 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+.caption { color: var(--muted); font-size: 11px; line-height: 1.45; }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin: 26px 0 12px; }
+.section-head h2 { font-size: 22px; }
+.section-head button { align-self: center; }
+.stack { display: grid; gap: 12px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; box-shadow: 0 1px 0 rgba(16,24,32,.05); }
+.card.dark { background: var(--ink); color: white; border-color: transparent; }
+.card.cyan { background: var(--cyan-soft); border-color: #9de4ed; }
+.card.yellow { background: #fff3bd; border-color: #efc84d; }
+.card.mint { background: var(--mint-soft); border-color: #a2dfc7; }
+.tag { display: inline-flex; align-items: center; gap: 5px; min-height: 26px; padding: 5px 9px; border-radius: 999px; background: var(--paper-2); color: var(--ink); font: 800 9px var(--display); letter-spacing: .06em; text-transform: uppercase; }
+.tag.coral { background: var(--coral); color: white; }
+.tag.cyan { background: var(--cyan); }
+.tag.yellow { background: var(--yellow); }
+.tag.mint { background: var(--mint); }
+.tag.dark { background: #27343e; color: #dce4e8; }
+.tag-row { display: flex; gap: 7px; flex-wrap: wrap; }
+
+.hero { background: var(--ink); color: white; padding: 22px; border-radius: 22px; position: relative; overflow: hidden; min-height: 288px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow); }
+.hero::after, .blueprint::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .48; background: repeating-linear-gradient(90deg, transparent 0 31px, rgba(82,213,230,.12) 32px), repeating-linear-gradient(0deg, transparent 0 31px, rgba(82,213,230,.12) 32px); }
+.hero > * { position: relative; z-index: 1; }
+.hero h2 { margin: 26px 0 8px; max-width: 280px; font-size: 46px; }
+.hero h2 span { color: var(--cyan); }
+.hero p { margin: 0; color: #c1cbd0; font-size: 13px; line-height: 1.45; }
+.hero-meta { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 24px; }
+.hero-meta strong, .hero-meta small { display: block; }
+.hero-meta strong { color: white; font: 800 21px var(--display); }
+.hero-meta small { color: #b5c0c6; font-size: 9px; margin-top: 2px; }
+
+.choice-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.choice { min-height: 58px; border: 1px solid var(--line); background: var(--surface); border-radius: 14px; cursor: pointer; font-weight: 800; display: grid; place-items: center; padding: 8px; }
+.choice small { display: block; font-size: 9px; color: var(--muted); font-weight: 600; margin-top: 2px; }
+.choice.is-selected { background: var(--yellow); border-color: #d8a900; box-shadow: inset 0 -4px 0 rgba(138,98,0,.24); }
+.participant-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.participant { border: 1px solid var(--line); background: var(--surface); border-radius: 15px; padding: 12px 7px; min-height: 100px; cursor: pointer; text-align: center; position: relative; }
+.participant .avatar { margin: 0 auto 7px; }
+.participant strong, .participant small { display: block; }
+.participant strong { font-size: 12px; }
+.participant small { color: var(--muted); font-size: 9px; margin-top: 2px; }
+.participant.is-selected { background: var(--ink); color: white; border-color: var(--ink); }
+.participant.is-selected small { color: #b8c3c9; }
+.participant-check { position: absolute; top: 7px; right: 7px; width: 19px; height: 19px; border-radius: 6px; display: grid; place-items: center; border: 1px solid #9ca7ae; background: white; color: var(--ink); font-size: 11px; font-weight: 900; }
+.participant.is-selected .participant-check { background: var(--cyan); border-color: var(--cyan); }
+.avatar { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--cyan-soft); color: #086575; font-weight: 900; }
+
+.button { min-height: 50px; border-radius: 14px; padding: 0 17px; border: 0; display: inline-flex; justify-content: center; align-items: center; gap: 8px; cursor: pointer; font-weight: 850; }
+.button svg { width: 19px; height: 19px; }
+.button.primary { background: var(--yellow); color: var(--ink); box-shadow: 0 5px 0 var(--yellow-dark); }
+.button.primary:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--yellow-dark); }
+.button.secondary { background: var(--surface); border: 1px solid var(--line); }
+.button.ghost { background: transparent; border: 1px solid currentColor; }
+.button.danger { background: var(--coral-soft); color: #a32b1c; border: 1px solid #ffc0b7; }
+.button.block { width: 100%; }
+.button:disabled { opacity: .42; cursor: not-allowed; box-shadow: none; }
+.text-button { border: 0; background: transparent; padding: 7px 0; text-decoration: underline; text-underline-offset: 3px; font-weight: 800; cursor: pointer; }
+.action-dock { position: sticky; bottom: -36px; margin: 24px -16px -36px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: linear-gradient(transparent, var(--paper) 24%); z-index: 4; }
+
+.role-card { border-top: 5px solid var(--cyan); }
+.role-card[data-color="yellow"] { border-top-color: var(--yellow); }
+.role-card[data-color="coral"] { border-top-color: var(--coral); }
+.role-head { display: grid; grid-template-columns: 42px 1fr auto; gap: 11px; align-items: center; }
+.role-head .avatar { width: 42px; height: 42px; }
+.role-head strong, .role-head small { display: block; }
+.role-head strong { font-size: 14px; }
+.role-head small { color: var(--muted); font-size: 10px; margin-top: 2px; }
+.role-title { margin: 15px 0 5px; font: 800 18px var(--display); }
+.objective { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.role-contribution { margin: 13px 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 12px; line-height: 1.45; }
+.inline-button { min-width: 44px; min-height: 42px; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; cursor: pointer; font-weight: 800; }
+.principle-note { display: grid; grid-template-columns: 34px 1fr; gap: 11px; align-items: start; }
+.principle-note b { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--cyan); }
+.principle-note p { margin: 3px 0 0; font-size: 12px; line-height: 1.5; }
+
+.checklist { list-style: none; padding: 0; margin: 0; }
+.checklist li { border-bottom: 1px solid var(--line); }
+.checklist li:last-child { border-bottom: 0; }
+.check-label { min-height: 55px; display: grid; grid-template-columns: 28px 1fr; gap: 11px; align-items: center; cursor: pointer; font-size: 13px; }
+.check-label input { position: absolute; opacity: 0; pointer-events: none; }
+.check-box { width: 27px; height: 27px; border: 2px solid #a6b0b6; border-radius: 8px; display: grid; place-items: center; background: white; }
+.check-label input:checked + .check-box { background: var(--mint); border-color: var(--mint); }
+.check-label input:checked + .check-box::after { content: "✓"; font-weight: 900; }
+.progress-meter { height: 8px; border-radius: 99px; background: var(--paper-2); overflow: hidden; }
+.progress-meter i { height: 100%; display: block; background: var(--mint); border-radius: inherit; transition: width .2s; }
+.guide-options { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; margin-top: 13px; }
+.guide-option { min-height: 74px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px; font-size: 10px; line-height: 1.35; }
+.shape { height: 25px; margin-bottom: 8px; display: flex; align-items: end; gap: 2px; }
+.shape.accordion i { width: 9px; height: 20px; border-left: 3px solid var(--ink); transform: skew(-20deg); }
+.shape.channel { border: 3px solid var(--ink); border-top: 0; margin: 0 12px 8px; }
+.shape.wide i { width: 18px; height: 18px; border-left: 3px solid var(--ink); transform: skew(-26deg); }
+.shape.guide { background: repeating-linear-gradient(90deg, transparent 0 15px, var(--ink) 16px 17px); }
+
+.flow-header { display: grid; grid-template-columns: 48px 1fr 48px; align-items: center; gap: 10px; margin-bottom: 17px; }
+.flow-header button { width: 48px; height: 48px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); display: grid; place-items: center; cursor: pointer; font-weight: 900; }
+.flow-header h1 { font-size: 23px; text-align: center; }
+.flow-header small { display: block; text-align: center; color: var(--muted); font-size: 9px; margin-top: 3px; }
+.step-progress { display: grid; grid-template-columns: repeat(6,1fr); gap: 5px; margin-bottom: 14px; }
+.step-progress i { height: 5px; background: #d3d0c7; border-radius: 99px; }
+.step-progress i.done { background: var(--mint); }
+.step-progress i.current { background: var(--yellow); }
+.stage-track { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 1px 1px 8px; margin-bottom: 10px; scrollbar-width: none; }
+.stage-track::-webkit-scrollbar { display: none; }
+.stage-button { flex: 0 0 94px; min-height: 63px; scroll-snap-align: start; border: 1px solid var(--line); background: var(--surface); border-radius: 14px; padding: 8px; text-align: left; cursor: pointer; }
+.stage-button strong, .stage-button small { display: block; }
+.stage-button strong { font-size: 11px; }
+.stage-button small { color: var(--muted); font-size: 9px; margin-top: 4px; }
+.stage-button.is-current { background: var(--ink); color: white; border-color: var(--ink); box-shadow: inset 0 -5px 0 var(--yellow); }
+.stage-button.is-current small { color: #bac5ca; }
+.instruction-card { padding: 0; overflow: hidden; }
+.instruction-copy { padding: 19px; }
+.instruction-copy h2 { font-size: 28px; }
+.instruction-copy .lead { font-size: 14px; }
+.blueprint { height: 188px; background: #12303d; position: relative; overflow: hidden; display: grid; place-items: center; color: var(--cyan); }
+.blueprint > * { position: relative; z-index: 1; }
+.bridge-diagram { width: 82%; display: grid; grid-template-columns: 28% 44% 28%; align-items: end; }
+.support { height: 62px; background: #eee6c7; border: 4px solid var(--surface); }
+.paper-bridge { height: 46px; display: flex; align-items: end; justify-content: center; gap: 1px; }
+.paper-bridge i { width: 12px; height: 38px; border-left: 7px solid var(--yellow); transform: skew(-26deg); }
+.actor-card { display: grid; grid-template-columns: 42px 1fr auto; align-items: center; gap: 10px; }
+.actor-card strong, .actor-card small { display: block; }
+.actor-card small { color: var(--muted); font-size: 10px; margin-top: 3px; }
+.safety-card { display: grid; grid-template-columns: 38px 1fr; gap: 11px; background: #fff2bd; border: 1px solid #e8c341; border-radius: 16px; padding: 15px; }
+.safety-card b { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--yellow); }
+.safety-card strong { font-size: 13px; }
+.safety-card p { margin: 4px 0 0; font-size: 11px; line-height: 1.45; }
+.offline-banner { display: grid; grid-template-columns: 30px 1fr; gap: 9px; padding: 11px; border-radius: 13px; color: #744f00; background: #fff0a6; font-size: 11px; line-height: 1.4; margin-bottom: 12px; }
+
+.close-intro { padding-bottom: 18px; }
+.timer { font: 800 28px var(--display); margin-top: 15px; }
+.timer small { display: block; color: var(--muted); font: 500 9px var(--body); }
+.rating-card { padding: 16px; }
+.rating-head { display: grid; grid-template-columns: 40px 1fr; gap: 10px; align-items: center; }
+.rating-head strong { font-size: 13px; }
+.rating-head small { display: block; color: var(--muted); font-size: 9px; margin-top: 3px; }
+.rating-options { display: grid; grid-template-columns: repeat(5,1fr); gap: 4px; margin-top: 15px; }
+.rating-option { min-height: 58px; border: 1px solid var(--line); background: white; border-radius: 11px; padding: 5px 2px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
+.rating-option b { font: 800 16px var(--display); }
+.rating-option span { max-width: 52px; font-size: 8.5px; line-height: 1.1; text-align: center; color: var(--muted); }
+.rating-option.is-selected { background: var(--yellow); border-color: #d5a600; box-shadow: inset 0 -4px 0 rgba(138,98,0,.22); }
+.rating-option.is-selected span { color: var(--ink); font-weight: 700; }
+.rating-exception { margin-top: 10px; display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+.rating-exception button { border: 0; background: transparent; padding: 6px 0; font-size: 10px; font-weight: 800; text-decoration: underline; cursor: pointer; }
+.rating-card.is-skipped { opacity: .62; }
+.rating-card.is-skipped .rating-options { pointer-events: none; }
+
+.receipt-item { display: grid; grid-template-columns: 36px 1fr; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.receipt-item:last-child { border-bottom: 0; }
+.receipt-icon { width: 34px; height: 34px; background: var(--cyan-soft); border-radius: 10px; display: grid; place-items: center; font-weight: 900; color: #087180; }
+.receipt-item strong, .receipt-item small { display: block; }
+.receipt-item strong { font-size: 12px; }
+.receipt-item small { color: var(--muted); font-size: 10px; margin-top: 3px; line-height: 1.4; }
+.saved-mark { width: 76px; height: 76px; border-radius: 24px; display: grid; place-items: center; background: var(--mint); margin: 18px auto; color: var(--ink); }
+.saved-mark svg { width: 42px; height: 42px; stroke-width: 2.5; }
+.saved-screen { text-align: center; padding-top: 30px; }
+.saved-screen .lead { max-width: 310px; margin-left: auto; margin-right: auto; }
+
+.bottom-nav { min-height: 68px; padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); background: rgba(255,254,249,.97); border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4,1fr); z-index: 6; }
+.bottom-nav[hidden] { display: none; }
+.bottom-nav button { border: 0; background: transparent; min-height: 54px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--muted); cursor: pointer; }
+.bottom-nav button span { font-size: 9px; }
+.bottom-nav button svg { width: 20px; height: 20px; }
+.bottom-nav button.is-active { color: var(--ink); background: var(--paper); font-weight: 900; }
+
+.scrim { position: fixed; inset: 0; background: rgba(16,24,32,.48); z-index: 40; }
+.sheet { position: fixed; left: 50%; bottom: 0; width: min(430px, 100%); max-height: min(760px, 88dvh); overflow: auto; background: var(--surface); border-radius: 24px 24px 0 0; padding: 10px 18px calc(22px + env(safe-area-inset-bottom)); box-shadow: 0 -20px 60px rgba(16,24,32,.26); transform: translate(-50%, 105%); transition: transform .22s cubic-bezier(.2,.7,.2,1); z-index: 41; }
+.sheet.is-open { transform: translate(-50%, 0); }
+.sheet-handle { width: 44px; height: 5px; border-radius: 99px; background: #c8c5bb; margin: 0 auto 16px; }
+.sheet header { display: flex; justify-content: space-between; align-items: start; gap: 14px; margin-bottom: 16px; }
+.sheet-close { width: 44px; height: 44px; border: 1px solid var(--line); background: white; border-radius: 12px; display: grid; place-items: center; cursor: pointer; }
+.sheet-option { width: 100%; min-height: 62px; border: 1px solid var(--line); background: white; border-radius: 14px; padding: 12px; text-align: left; cursor: pointer; margin-bottom: 8px; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+.sheet-option strong, .sheet-option small { display: block; }
+.sheet-option strong { font-size: 13px; }
+.sheet-option small { color: var(--muted); font-size: 10px; margin-top: 3px; line-height: 1.35; }
+.sheet-option.is-current { border: 2px solid var(--ink); background: var(--cyan-soft); }
+.sheet textarea { width: 100%; min-height: 110px; border: 1px solid var(--line); border-radius: 14px; padding: 12px; resize: vertical; }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); background: var(--ink); color: white; border-radius: 13px; padding: 12px 16px; font-size: 12px; box-shadow: var(--shadow); z-index: 60; opacity: 0; pointer-events: none; transition: .2s; }
+.toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+.secondary-screen { padding-top: 10px; }
+.mini-plan { display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: start; }
+.day-chip { width: 42px; height: 48px; border-radius: 12px; background: var(--yellow); display: grid; place-items: center; font: 800 17px var(--display); }
+.opportunity { height: 8px; border-radius: 99px; background: var(--paper-2); overflow: hidden; margin-top: 8px; }
+.opportunity i { display: block; height: 100%; background: var(--mint); }
+
+@media (max-width: 780px) {
+  html, body { background: var(--paper); }
+  .prototype-frame { display: block; min-height: 100dvh; padding: 0; }
+  .prototype-label { display: none; }
+  .app { width: 100%; max-width: none; height: 100dvh; min-height: 100dvh; border: 0; border-radius: 0; box-shadow: none; }
+}
+
+@media (max-width: 370px) {
+  #view { padding-left: 13px; padding-right: 13px; }
+  h1 { font-size: 34px; }
+  .hero h2 { font-size: 42px; }
+  .participant strong { font-size: 11px; }
+  .rating-option span { font-size: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+</style>
+</head>
+<body>
+  <div class="prototype-frame">
+    <div class="prototype-label" aria-hidden="true">
+      <strong>Simulador móvil</strong>
+      <span>360–430 px · datos sintéticos · ACT-0001 Draft</span>
+    </div>
+    <div class="app" id="app">
+      <header class="app-header" id="appHeader">
+        <button class="brand-button" data-action="home" aria-label="Ir a Hoy">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span><strong>Kids Learning System</strong><small>taller familiar · prototipo</small></span>
+        </button>
+        <button class="status-button" data-action="toggle-offline" aria-label="Cambiar conexión">
+          <svg aria-hidden="true"><use href="#i-signal"></use></svg><span id="connectionText">En línea</span>
+        </button>
+      </header>
+
+      <main id="view" tabindex="-1" aria-live="polite"></main>
+      <nav class="bottom-nav" id="bottomNav" aria-label="Navegación principal">
+        <button data-action="tab" data-target="today" class="is-active"><svg aria-hidden="true"><use href="#i-home"></use></svg><span>Hoy</span></button>
+        <button data-action="tab" data-target="plan"><svg aria-hidden="true"><use href="#i-calendar"></use></svg><span>Plan</span></button>
+        <button data-action="tab" data-target="journey"><svg aria-hidden="true"><use href="#i-journey"></use></svg><span>Journey</span></button>
+        <button data-action="tab" data-target="family"><svg aria-hidden="true"><use href="#i-family"></use></svg><span>Familia</span></button>
+      </nav>
+    </div>
+  </div>
+
+  <div class="scrim" id="scrim" hidden data-action="close-sheet"></div>
+  <section class="sheet" id="sheet" aria-modal="true" role="dialog" aria-labelledby="sheetTitle" aria-hidden="true">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div id="sheetContent"></div>
+  </section>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <svg class="icon-sprite" aria-hidden="true">
+    <defs>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v10h-6v-6H9v6H3V11Z"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></symbol>
+      <symbol id="i-journey" viewBox="0 0 24 24"><path d="M4 18 9 13l3 3 7-8"/><path d="M15 8h4v4"/></symbol>
+      <symbol id="i-family" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20c0-4 2-7 6-7s6 3 6 7m6-6c3 0 5 2 5 5"/></symbol>
+      <symbol id="i-signal" viewBox="0 0 24 24"><path d="M4 17h2m3-4h2m3-4h2m3-4h2"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 12H4m6-6-6 6 6 6"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14m8-14v14"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z"/></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5m0 3h.01"/></symbol>
+      <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.7 2.7 0 1 1 4 2.4c-1 .6-1.5 1.1-1.5 2.1m0 3.5h.01"/></symbol>
+      <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 7h14m-4-4 4 4-4 4M20 17H6m4 4-4-4 4-4"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+    </defs>
+  </svg>
+  <script data-standalone-source="app.js">
+const learners = [
+  { id: "sofi", name: "Sofi", initials: "SO", age: "5–6 años", color: "cyan" },
+  { id: "mateo", name: "Mateo", initials: "MA", age: "7–8 años", color: "yellow" },
+  { id: "leo", name: "Leo", initials: "LE", age: "9–10 años", color: "coral" }
+];
+
+const roles = {
+  designer: {
+    title: "Diseñadora y constructora",
+    objective: "Seguir una secuencia de plegado y explicar una decisión.",
+    contribution: "Propone la forma del papel y construye el primer modelo.",
+    exposure: "formas, estructura, comparación"
+  },
+  tester: {
+    title: "Probador de cargas",
+    objective: "Añadir y contar una carga a la vez con una regla estable.",
+    contribution: "Prueba cada puente y anuncia el resultado de cada intento.",
+    exposure: "conteo, predicción, evidencia"
+  },
+  coordinator: {
+    title: "Coordinador del experimento",
+    objective: "Mantener constantes los apoyos y registrar lo que cambia.",
+    contribution: "Ayuda a que la comparación sea justa y resume hallazgos.",
+    exposure: "medición, control de variables, comunicación"
+  }
+};
+
+const stages = [
+  {
+    name: "Descubrir", time: "4 min", eyebrow: "Miren antes de construir",
+    title: "¿Por qué una hoja plana se dobla?",
+    copy: "Sostengan una hoja entre dos apoyos. Presionen suavemente el centro y describan qué observan.",
+    prompt: "Pregunta al grupo: ¿qué tendría que cambiar para que resista más?",
+    warning: "Todavía no coloquen objetos pesados. Esta primera prueba se hace solo con un dedo.",
+    help: "Si la hoja no se dobla, separen un poco más los apoyos. Mantengan la misma distancia para todas las pruebas."
+  },
+  {
+    name: "Imaginar", time: "4 min", eyebrow: "Una idea por turno",
+    title: "Elijan una forma para probar",
+    copy: "Comparen un canal, un acordeón o varios pliegues anchos. No hay una respuesta correcta antes de experimentar.",
+    prompt: "Cada niño puede proponer; la persona constructora elige la primera forma con ayuda del grupo.",
+    warning: "El adulto conserva los bordes de los apoyos alineados y revisa que la superficie sea estable.",
+    help: "Si no saben cuál elegir, comiencen con un acordeón de pliegues anchos. Luego cambien una sola cosa."
+  },
+  {
+    name: "Construir", time: "6 min", eyebrow: "Manos compartidas",
+    title: "Transformen la hoja",
+    copy: "Doblen con cuidado y coloquen el papel sobre los dos apoyos. Una hoja plana será el modelo de comparación.",
+    prompt: "El adulto puede ayudar a marcar los pliegues; esa ayuda no reduce el valor del aprendizaje.",
+    warning: "Usen papel común, no cartón rígido ni objetos cortantes. Mantengan despejado el borde de la mesa.",
+    help: "Si el puente queda inclinado, igualen la altura de los apoyos y vuelvan a centrar la hoja."
+  },
+  {
+    name: "Experimentar", time: "10 min", eyebrow: "Una carga a la vez",
+    title: "Prueben con una regla justa",
+    copy: "El adulto centra el vaso liviano. El probador añade una carga, cuenta y espera antes de colocar la siguiente.",
+    prompt: "Comparen el puente plano y el plegado sin cambiar los apoyos ni el tipo de carga.",
+    warning: "Deténganse si un apoyo se mueve, el vaso se inclina o el puente cae. Reorganicen antes de continuar.",
+    help: "Un colapso no es un error: retiren las cargas, registren el último número estable y reinicien desde cero."
+  },
+  {
+    name: "Mejorar", time: "8 min", eyebrow: "Cambien una variable",
+    title: "Hagan un segundo intento",
+    copy: "Elijan solo un cambio: número de pliegues, ancho de los pliegues o posición del puente.",
+    prompt: "Antes de probar, cada persona dice qué cree que ocurrirá y por qué.",
+    warning: "No cambien el tamaño o peso de las cargas durante la comparación.",
+    help: "Si ambas versiones resisten igual, aumenten gradualmente la distancia entre apoyos y repitan."
+  },
+  {
+    name: "Explicar", time: "5 min", eyebrow: "Lo que sabemos ahora",
+    title: "Cuenten la historia de la prueba",
+    copy: "¿Qué diseño funcionó mejor? Usen una observación concreta: forma, número de cargas o estabilidad.",
+    prompt: "Una conclusión útil puede empezar así: «Vimos que…» o «La próxima vez probaríamos…».",
+    warning: "No conviertan el resultado en una competencia entre niños. El equipo probó ideas, no personas.",
+    help: "Si cuesta explicarlo, comparen dos fotos mentales: cómo se veía antes de doblarse y justo antes de caer."
+  }
+];
+
+const ratingScale = [
+  { value: 1, label: "Todavía no", detail: "No pudo hacerlo esta vez" },
+  { value: 2, label: "Mucha ayuda", detail: "Necesitó guía continua" },
+  { value: 3, label: "Alguna ayuda", detail: "Lo hizo con recordatorios" },
+  { value: 4, label: "Casi solo", detail: "Solo necesitó una pista" },
+  { value: 5, label: "Solo y seguro", detail: "Lo hizo con independencia" }
+];
+
+const state = {
+  screen: "today",
+  time: 45,
+  selected: ["sofi", "mateo", "leo"],
+  assignments: { sofi: "designer", mateo: "tester", leo: "coordinator" },
+  participation: { sofi: "active", mateo: "active", leo: "active" },
+  materials: { paper: true, supports: true, crayons: true, cup: false, surface: false },
+  stage: 0,
+  highestStage: 0,
+  offline: false,
+  paused: false,
+  ratings: {},
+  skipped: {},
+  note: "",
+  roleChanges: [],
+  closeStartedAt: null,
+  savedElapsed: null
+};
+
+const requestedPreview = new URLSearchParams(window.location.search).get("screen");
+if (["today", "roles", "prep", "session", "close", "summary", "saved", "plan", "journey", "family"].includes(requestedPreview)) {
+  state.screen = requestedPreview;
+  if (requestedPreview === "close") state.closeStartedAt = Date.now();
+}
+
+const view = document.querySelector("#view");
+const app = document.querySelector("#app");
+const appHeader = document.querySelector("#appHeader");
+const bottomNav = document.querySelector("#bottomNav");
+const sheet = document.querySelector("#sheet");
+const sheetContent = document.querySelector("#sheetContent");
+const scrim = document.querySelector("#scrim");
+const toast = document.querySelector("#toast");
+const connectionText = document.querySelector("#connectionText");
+let lastFocus = null;
+let toastTimer = null;
+let closeTimer = null;
+
+const icon = (name) => `<svg aria-hidden="true"><use href="#i-${name}"></use></svg>`;
+const learnerById = (id) => learners.find((learner) => learner.id === id);
+const activeLearners = () => state.selected.map(learnerById).filter(Boolean);
+const evaluableLearners = () => activeLearners().filter((learner) => state.participation[learner.id] === "active");
+const roleFor = (id) => roles[state.assignments[id]];
+const isTopLevel = () => ["today", "plan", "journey", "family"].includes(state.screen);
+
+function avatar(learner) {
+  return `<span class="avatar" data-color="${learner.color}" aria-hidden="true">${learner.initials}</span>`;
+}
+
+function flowHeader(title, subtitle, backTarget, action = "") {
+  return `<header class="flow-header">
+    <button data-action="navigate" data-target="${backTarget}" aria-label="Volver">${icon("back")}</button>
+    <div><h1>${title}</h1><small>${subtitle}</small></div>
+    ${action || "<span></span>"}
+  </header>`;
+}
+
+function setScreen(screen, options = {}) {
+  state.screen = screen;
+  if (screen === "close" && !state.closeStartedAt) state.closeStartedAt = Date.now();
+  closeSheet();
+  render();
+  if (!options.preserveScroll) view.scrollTop = 0;
+  requestAnimationFrame(() => view.focus({ preventScroll: true }));
+}
+
+function render() {
+  const topLevel = isTopLevel();
+  appHeader.hidden = !topLevel;
+  bottomNav.hidden = !topLevel;
+  view.classList.toggle("no-bottom", !topLevel);
+  app.classList.toggle("is-offline", state.offline);
+  connectionText.textContent = state.offline ? "Sin conexión" : "En línea";
+  [...bottomNav.querySelectorAll("button")].forEach((button) => button.classList.toggle("is-active", button.dataset.target === state.screen));
+
+  const renderers = {
+    today: renderToday,
+    plan: renderPlan,
+    journey: renderJourney,
+    family: renderFamily,
+    roles: renderRoles,
+    prep: renderPrep,
+    session: renderSession,
+    close: renderClose,
+    summary: renderSummary,
+    saved: renderSaved
+  };
+  view.innerHTML = (renderers[state.screen] || renderToday)();
+  if (state.screen === "close") startCloseTimer(); else stopCloseTimer();
+}
+
+function renderToday() {
+  const ready = state.selected.length > 0;
+  return `<section class="screen">
+    <p class="eyebrow">Domingo · prueba familiar</p>
+    <h1>Una tarde para<br>pensar <span style="color:#0b8394">juntos.</span></h1>
+    <p class="lead">Elige cuánto tiempo tienen. La actividad se adapta al grupo antes de empezar.</p>
+
+    ${state.offline ? `<div class="offline-banner" style="margin-top:18px">${icon("signal")}<span>El paquete de esta actividad está descargado. Puedes completar la sesión y sincronizar después.</span></div>` : ""}
+
+    <div class="section-head"><h2>Tiempo disponible</h2><span class="caption">incluye cierre</span></div>
+    <div class="choice-row" aria-label="Tiempo disponible">
+      ${[30, 45, 60].map((minutes) => `<button class="choice ${state.time === minutes ? "is-selected" : ""}" data-action="select-time" data-value="${minutes}">${minutes} min<small>${minutes === 30 ? "versión breve" : minutes === 45 ? "recomendado" : "con extensión"}</small></button>`).join("")}
+    </div>
+
+    <div class="section-head"><h2>¿Quiénes participan?</h2><span class="caption">1–4 en producto · 3 en demo</span></div>
+    <div class="participant-grid">
+      ${learners.map((learner) => `<button class="participant ${state.selected.includes(learner.id) ? "is-selected" : ""}" data-action="toggle-participant" data-id="${learner.id}" aria-pressed="${state.selected.includes(learner.id)}">
+        <span class="participant-check">${state.selected.includes(learner.id) ? "✓" : ""}</span>${avatar(learner)}<strong>${learner.name}</strong><small>${learner.age}</small>
+      </button>`).join("")}
+    </div>
+
+    <div class="section-head"><h2>Actividad sugerida</h2><span class="tag coral">Vista previa · Draft</span></div>
+    <article class="hero">
+      <div><span class="tag yellow">ACT-0001 · v0.2.2</span><h2>Puentes<br>de <span>papel</span></h2><p>Transformar una hoja, probarla y mejorar el diseño usando materiales cotidianos.</p></div>
+      <div class="hero-meta"><div><strong>${state.time}</strong><small>minutos</small></div><div><strong>${state.selected.length}</strong><small>participantes</small></div><div><strong>A</strong><small>riesgo bajo</small></div></div>
+    </article>
+    <p class="caption" style="margin:10px 2px 0">Este prototipo usa una actividad Draft para validar la experiencia. Una familia real solo recibiría contenido publicado.</p>
+
+    <div class="action-dock"><button class="button primary block" data-action="navigate" data-target="roles" ${ready ? "" : "disabled"}>Revisar el plan ${icon("arrow")}</button></div>
+  </section>`;
+}
+
+function renderRoles() {
+  return `<section class="screen">
+    ${flowHeader("Plan del equipo", `${activeLearners().length} participantes · ${state.time} min`, "today")}
+    <p class="eyebrow">Roles flexibles</p>
+    <h2>Cada quien aporta de una forma distinta.</h2>
+    <p class="lead">Estos roles ayudan a organizarse; no son etiquetas. Pueden cambiarlos, compartirlos o solo observar.</p>
+    <div class="stack" style="margin-top:18px">
+      ${activeLearners().map((learner) => {
+        const observing = state.participation[learner.id] === "observer";
+        const role = roleFor(learner.id);
+        return `<article class="card role-card" data-color="${learner.color}">
+          <div class="role-head">${avatar(learner)}<div><strong>${learner.name}</strong><small>${observing ? "Participará observando" : "Objetivo principal de hoy"}</small></div><button class="inline-button" data-action="edit-role" data-id="${learner.id}" aria-label="Cambiar rol de ${learner.name}">${icon("swap")}</button></div>
+          <p class="role-title">${observing ? "Observador/a del equipo" : role.title}</p>
+          <p class="objective">${observing ? "Mira, pregunta y puede entrar o salir cuando quiera. No se pedirá una valoración final." : role.objective}</p>
+          <p class="role-contribution"><strong>${observing ? "Registro:" : "Aporte al equipo:"}</strong> ${observing ? "No se infiere habilidad, dificultad ni exposición por solo observar." : role.contribution}</p>
+        </article>`;
+      }).join("")}
+    </div>
+    <article class="card cyan principle-note" style="margin-top:14px"><b>↔</b><div><strong>El rol es una invitación.</strong><p>Si alguien pierde interés o prefiere otra tarea, el adulto puede cambiarlo durante la actividad.</p></div></article>
+    <div class="action-dock"><button class="button primary block" data-action="navigate" data-target="prep">Ver preparación ${icon("arrow")}</button></div>
+  </section>`;
+}
+
+function renderPrep() {
+  const entries = [
+    ["paper", "6 hojas de papel carta común"],
+    ["supports", "2 apoyos iguales (libros o cajas estables)"],
+    ["crayons", "8–15 crayones iguales como cargas"],
+    ["cup", "1 vaso plástico liviano para contener las cargas"],
+    ["surface", "Mesa despejada y seca, lejos del borde"]
+  ];
+  const checked = entries.filter(([id]) => state.materials[id]).length;
+  const ready = checked === entries.length;
+  return `<section class="screen">
+    ${flowHeader("Preparación", `${checked} de ${entries.length} listos`, "roles")}
+    <p class="eyebrow">2–4 minutos del adulto</p><h2>Deja el espacio listo.</h2>
+    <p class="lead">Los niños pueden ayudar a reunir y contar. El adulto comprueba la estabilidad de la mesa y los apoyos.</p>
+    <div class="progress-meter" style="margin:18px 0 10px"><i style="width:${checked / entries.length * 100}%"></i></div>
+    <article class="card"><ul class="checklist">
+      ${entries.map(([id, label]) => `<li><label class="check-label"><input type="checkbox" data-action="material" data-id="${id}" ${state.materials[id] ? "checked" : ""}><span class="check-box"></span><span>${label}</span></label></li>`).join("")}
+    </ul></article>
+
+    <div class="section-head"><h2>Guía de estructuras</h2><span class="tag cyan">para acompañar</span></div>
+    <article class="card">
+      <p style="margin:0;font-size:12px;line-height:1.5">Doblar el papel cambia su forma y puede hacerlo más rígido. Invita a probar; no construyas la respuesta por el niño.</p>
+      <div class="guide-options">
+        <div class="guide-option"><div class="shape channel"></div><strong>Canal</strong><br>Bordes levantados.</div>
+        <div class="guide-option"><div class="shape accordion"><i></i><i></i><i></i><i></i></div><strong>Acordeón</strong><br>Varios pliegues.</div>
+        <div class="guide-option"><div class="shape wide"><i></i><i></i><i></i></div><strong>Pliegues anchos</strong><br>Pocas crestas.</div>
+        <div class="guide-option"><div class="shape guide"></div><strong>Una variable</strong><br>Cambiar de a una.</div>
+      </div>
+    </article>
+    <article class="safety-card" style="margin-top:12px"><b>${icon("alert")}</b><div><strong>Control del adulto</strong><p>El adulto coloca y retira el vaso, estabiliza los apoyos y detiene la prueba si algo se inclina.</p></div></article>
+    <div class="action-dock"><button class="button primary block" data-action="start-session" ${ready ? "" : "disabled"}>Empezar actividad ${icon("play")}</button></div>
+  </section>`;
+}
+
+function renderSession() {
+  const stage = stages[state.stage];
+  const learner = activeLearners().find((person) => state.participation[person.id] === "active" && state.assignments[person.id] === ["designer", "designer", "designer", "tester", "coordinator", "coordinator"][state.stage]) || evaluableLearners()[0] || activeLearners()[0];
+  return `<section class="screen">
+    ${flowHeader("Puentes de papel", `${state.stage + 1} de ${stages.length} · ${stage.name}`, "prep", `<button data-action="pause" aria-label="Pausar">${icon(state.paused ? "play" : "pause")}</button>`)}
+    ${state.offline ? `<div class="offline-banner">${icon("signal")}<span>Modo sin conexión. Instrucciones y ayuda están disponibles; el cierre se sincronizará después.</span></div>` : ""}
+    <div class="step-progress">${stages.map((_, index) => `<i class="${index < state.stage ? "done" : index === state.stage ? "current" : ""}"></i>`).join("")}</div>
+    <div class="stage-track" aria-label="Etapas de la actividad">
+      ${stages.map((item, index) => `<button class="stage-button ${index === state.stage ? "is-current" : ""}" data-action="stage" data-value="${index}"><strong>${index + 1}. ${item.name}</strong><small>${item.time}</small></button>`).join("")}
+    </div>
+    <article class="card instruction-card">
+      <div class="blueprint"><div class="bridge-diagram"><div class="support"></div><div class="paper-bridge"><i></i><i></i><i></i><i></i><i></i></div><div class="support"></div></div></div>
+      <div class="instruction-copy"><p class="eyebrow">${stage.eyebrow}</p><h2>${stage.title}</h2><p class="lead">${stage.copy}</p></div>
+    </article>
+    ${learner ? `<article class="card actor-card" style="margin-top:12px">${avatar(learner)}<div><strong>${learner.name} puede liderar este paso</strong><small>${stage.prompt}</small></div><button class="inline-button" data-action="change-during" data-id="${learner.id}" aria-label="Cambiar quién lidera">${icon("swap")}</button></article>` : ""}
+    <article class="safety-card" style="margin-top:12px"><b>${icon("alert")}</b><div><strong>Durante este paso</strong><p>${stage.warning}</p></div></article>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+      <button class="button secondary" data-action="help">${icon("help")} Necesito ayuda</button>
+      <button class="button secondary" data-action="adapt">Ajustar ritmo</button>
+    </div>
+    <div class="action-dock" style="display:grid;grid-template-columns:${state.stage > 0 ? "54px 1fr" : "1fr"};gap:8px">
+      ${state.stage > 0 ? `<button class="button secondary" data-action="previous-stage" aria-label="Paso anterior">${icon("back")}</button>` : ""}
+      <button class="button primary block" data-action="next-stage">${state.stage === stages.length - 1 ? "Cerrar actividad" : `Siguiente: ${stages[state.stage + 1].name}`} ${icon("arrow")}</button>
+    </div>
+  </section>`;
+}
+
+function renderClose() {
+  const complete = evaluableLearners().every((learner) => state.ratings[learner.id] || state.skipped[learner.id]);
+  return `<section class="screen">
+    ${flowHeader("Cierre rápido", "Una observación por niño", "session", `<button data-action="close-info" aria-label="Por qué preguntamos">?</button>`)}
+    <div class="close-intro"><p class="eyebrow">Objetivo principal de hoy</p><h2>¿Cuánta ayuda necesitó?</h2><p class="lead">No mide inteligencia ni califica al niño. Describe solamente lo que observaste en esta actividad.</p><p class="timer" id="closeTimer">0:00<small>tiempo de cierre · meta: menos de 20 segundos</small></p></div>
+    <div class="stack">
+      ${evaluableLearners().map((learner) => {
+        const role = roleFor(learner.id);
+        const skipped = state.skipped[learner.id];
+        return `<article class="card rating-card ${skipped ? "is-skipped" : ""}">
+          <div class="rating-head">${avatar(learner)}<div><strong>${learner.name}: ${role.title}</strong><small>${role.objective}</small></div></div>
+          <div class="rating-options" role="group" aria-label="Independencia observada de ${learner.name}">
+            ${ratingScale.map((option) => `<button class="rating-option ${state.ratings[learner.id] === option.value ? "is-selected" : ""}" data-action="rating" data-id="${learner.id}" data-value="${option.value}" aria-pressed="${state.ratings[learner.id] === option.value}"><b>${option.value}</b><span>${option.label}</span></button>`).join("")}
+          </div>
+          <div class="rating-exception"><span class="caption">${state.ratings[learner.id] ? ratingScale[state.ratings[learner.id] - 1].detail : skipped ? "No se guardará una conclusión" : "Elige la frase más cercana"}</span><button data-action="skip-rating" data-id="${learner.id}">${skipped ? "Sí pude observar" : "No pude observar"}</button></div>
+        </article>`;
+      }).join("")}
+      ${activeLearners().filter((learner) => state.participation[learner.id] === "observer").map((learner) => `<article class="card cyan receipt-item">${avatar(learner)}<div><strong>${learner.name} observó hoy</strong><small>No pedimos una valoración ni inferimos desempeño.</small></div></article>`).join("")}
+    </div>
+    <button class="button secondary block" style="margin-top:12px" data-action="voice-note">${icon("mic")} ${state.note ? "Editar observación extra" : "Observación extra por voz o texto"}</button>
+    <button class="text-button" style="width:100%;margin-top:8px" data-action="evaluate-more">Evaluar más (opcional)</button>
+    <div class="action-dock"><button class="button primary block" data-action="complete-close" ${complete ? "" : "disabled"}>Ver lo que se guardará ${icon("arrow")}</button></div>
+  </section>`;
+}
+
+function renderSummary() {
+  return `<section class="screen">
+    ${flowHeader("Antes de guardar", "Puedes corregir cualquier dato", "close")}
+    <p class="eyebrow">Registro contextual</p><h2>Esto es lo que aprendimos hoy.</h2>
+    <p class="lead">Se guarda la actividad, el rol real y una observación breve. No se crean etiquetas sobre los niños.</p>
+    <article class="card dark" style="margin-top:18px"><div class="tag-row"><span class="tag yellow">Puentes de papel</span><span class="tag dark">ACT-0001 · Draft</span></div><h3 style="font-size:24px;margin-top:15px">${activeLearners().length} participantes · ${state.time} min</h3><p style="color:#bdc8ce;font-size:12px;line-height:1.45;margin-bottom:0">Completaron las seis etapas y compararon al menos dos estructuras.</p></article>
+    <div class="section-head"><h2>Por niño</h2><span class="caption">editable</span></div>
+    <article class="card">
+      ${activeLearners().map((learner) => {
+        if (state.participation[learner.id] === "observer") return `<div class="receipt-item"><span class="receipt-icon">${learner.initials}</span><div><strong>${learner.name} · Observó</strong><small>Sin objetivo evaluado ni exposición inferida.</small></div></div>`;
+        const role = roleFor(learner.id);
+        const rating = state.ratings[learner.id] ? ratingScale[state.ratings[learner.id] - 1] : null;
+        return `<div class="receipt-item"><span class="receipt-icon">${learner.initials}</span><div><strong>${learner.name} · ${role.title}</strong><small>${rating ? `${rating.value}/5 · ${rating.label}. ${rating.detail}.` : "El adulto indicó que no pudo observar."}<br>Exposiciones: ${role.exposure}.</small></div></div>`;
+      }).join("")}
+    </article>
+    ${state.note ? `<article class="card cyan" style="margin-top:12px"><p class="eyebrow">Observación extra</p><p style="margin:0;font-size:13px;line-height:1.5">“${escapeHtml(state.note)}”</p></article>` : ""}
+    <article class="card mint" style="margin-top:12px"><strong>Qué hará el sistema</strong><p style="margin:6px 0 0;font-size:12px;line-height:1.5">Usará estas observaciones, junto con evidencia futura, para variar oportunidades. Una sola sesión nunca determina una conclusión fuerte.</p></article>
+    <div class="action-dock"><button class="button primary block" data-action="save-session">Guardar sesión ${icon("check")}</button></div>
+  </section>`;
+}
+
+function renderSaved() {
+  return `<section class="screen saved-screen"><div class="saved-mark">${icon("check")}</div><p class="eyebrow">Sesión guardada</p><h1>Listo. Sigan con su tarde.</h1><p class="lead">${state.offline ? "El registro quedó protegido en este dispositivo y se sincronizará cuando vuelva la conexión." : "El registro se añadió al recorrido familiar."} El cierre tomó ${formatElapsed(state.savedElapsed || 0)}.</p><article class="card" style="text-align:left;margin-top:24px"><strong>Próxima oportunidad</strong><p style="margin:7px 0 0;font-size:12px;line-height:1.5;color:var(--muted)">La siguiente recomendación alternará roles y evitará repetir una conclusión a partir de un solo día.</p></article><button class="button primary block" style="margin-top:20px" data-action="finish">Volver a Hoy ${icon("home")}</button></section>`;
+}
+
+function renderPlan() {
+  return `<section class="screen secondary-screen"><p class="eyebrow">Semana familiar</p><h1>Plan</h1><p class="lead">Organiza tiempo, no una cuota rígida de actividades.</p><div class="section-head"><h2>Esta semana</h2><span class="tag yellow">90 min</span></div><div class="stack"><article class="card mini-plan"><span class="day-chip">HOY</span><div><strong>Puentes de papel</strong><p class="caption">45 min · estructura, evidencia y mejora</p><div class="opportunity"><i style="width:55%"></i></div></div></article><article class="card mini-plan"><span class="day-chip" style="background:var(--cyan)">MIÉ</span><div><strong>Clasificar semillas</strong><p class="caption">30 min · patrones y categorías</p><div class="opportunity"><i style="width:35%;background:var(--cyan)"></i></div></div></article></div><p class="caption" style="margin-top:14px">Contenido sintético para visualizar el concepto; no representa un calendario guardado.</p></section>`;
+}
+
+function renderJourney() {
+  return `<section class="screen secondary-screen"><p class="eyebrow">Observaciones, no etiquetas</p><h1>Journey</h1><p class="lead">Una vista del recorrido y de las oportunidades vividas, siempre con contexto.</p><div class="section-head"><h2>Últimas experiencias</h2><span class="caption">familia completa</span></div><article class="card"><div class="receipt-item"><span class="receipt-icon">SO</span><div><strong>Sofi · Construcción</strong><small>Tuvo oportunidades de plegar, comparar y explicar. Evidencia todavía limitada.</small></div></div><div class="receipt-item"><span class="receipt-icon">MA</span><div><strong>Mateo · Medición</strong><small>Dos observaciones recientes muestran mayor independencia; no es un diagnóstico.</small></div></div><div class="receipt-item"><span class="receipt-icon">LE</span><div><strong>Leo · Comunicación</strong><small>Una exposición registrada. Hace falta observar en otros contextos.</small></div></div></article><article class="card yellow" style="margin-top:12px"><strong>Diseño pendiente de validar</strong><p style="font-size:12px;line-height:1.5;margin-bottom:0">Esta pantalla prueba cómo comunicar incertidumbre a familias sin convertirla en un tablero de notas.</p></article></section>`;
+}
+
+function renderFamily() {
+  return `<section class="screen secondary-screen"><p class="eyebrow">Cuenta del adulto</p><h1>Familia</h1><p class="lead">Perfiles mínimos para adaptar oportunidades y compartir acceso entre cuidadores.</p><div class="section-head"><h2>Niños</h2><span class="caption">datos sintéticos</span></div><div class="stack">${learners.map((learner) => `<article class="card actor-card">${avatar(learner)}<div><strong>${learner.name}</strong><small>${learner.age} · sin fecha de nacimiento completa</small></div><button class="inline-button" data-action="not-built">•••</button></article>`).join("")}</div><div class="section-head"><h2>Adultos con acceso</h2></div><article class="card"><div class="receipt-item"><span class="receipt-icon">AM</span><div><strong>Adulto principal</strong><small>Gestiona suscripción, privacidad y permisos.</small></div></div><div class="receipt-item"><span class="receipt-icon">AP</span><div><strong>Adulto invitado</strong><small>Puede planear y realizar actividades.</small></div></div></article></section>`;
+}
+
+function roleSheet(learnerId) {
+  const learner = learnerById(learnerId);
+  const observing = state.participation[learnerId] === "observer";
+  openSheet(`<header><div><p class="eyebrow">Rol de ${learner.name}</p><h2 id="sheetTitle">¿Cómo quiere participar?</h2></div><button class="sheet-close" data-action="close-sheet" aria-label="Cerrar">${icon("close")}</button></header>
+    ${Object.entries(roles).map(([id, role]) => `<button class="sheet-option ${!observing && state.assignments[learnerId] === id ? "is-current" : ""}" data-action="choose-role" data-id="${learnerId}" data-value="${id}"><span><strong>${role.title}</strong><small>${role.contribution}</small></span>${!observing && state.assignments[learnerId] === id ? "✓" : ""}</button>`).join("")}
+    <button class="sheet-option ${observing ? "is-current" : ""}" data-action="choose-observer" data-id="${learnerId}"><span><strong>Hoy prefiere observar</strong><small>Puede entrar o salir; no se evaluará ni se inferirá exposición.</small></span>${observing ? "✓" : ""}</button>
+    <p class="caption">Cambiar un rol actualiza el objetivo principal de esta sesión, no el perfil permanente del niño.</p>`);
+}
+
+function helpSheet() {
+  const stage = stages[state.stage];
+  openSheet(`<header><div><p class="eyebrow">Ayuda contextual</p><h2 id="sheetTitle">Si algo no funciona</h2></div><button class="sheet-close" data-action="close-sheet" aria-label="Cerrar">${icon("close")}</button></header><article class="card cyan"><strong>${stage.name}</strong><p style="font-size:13px;line-height:1.55;margin-bottom:0">${stage.help}</p></article><article class="safety-card" style="margin-top:12px"><b>${icon("alert")}</b><div><strong>Primero la seguridad</strong><p>Si el montaje se vuelve inestable, detengan la prueba. No hace falta completar todas las etapas.</p></div></article><button class="button primary block" style="margin-top:16px" data-action="close-sheet">Entendido</button>`);
+}
+
+function adaptSheet() {
+  openSheet(`<header><div><p class="eyebrow">Adaptaciones aprobadas</p><h2 id="sheetTitle">Ajustar sin cambiar la seguridad</h2></div><button class="sheet-close" data-action="close-sheet" aria-label="Cerrar">${icon("close")}</button></header>
+    <button class="sheet-option" data-action="apply-adaptation" data-value="slow"><span><strong>Ir más despacio</strong><small>Repite la instrucción y divide el paso en dos.</small></span>+</button>
+    <button class="sheet-option" data-action="apply-adaptation" data-value="demonstrate"><span><strong>Mostrar una vez</strong><small>El adulto modela el gesto con otra hoja y devuelve el turno.</small></span>+</button>
+    <button class="sheet-option" data-action="apply-adaptation" data-value="short"><span><strong>Terminar después de esta prueba</strong><small>Conserva la observación; no obliga a completar el ciclo.</small></span>+</button>
+    <p class="caption">La IA no puede añadir materiales, cambiar cargas ni alterar controles de seguridad.</p>`);
+}
+
+function pauseSheet() {
+  openSheet(`<header><div><p class="eyebrow">Actividad en pausa</p><h2 id="sheetTitle">Tómense el tiempo que necesiten.</h2></div><button class="sheet-close" data-action="close-sheet" aria-label="Cerrar">${icon("close")}</button></header><button class="button primary block" data-action="resume">${icon("play")} Continuar</button><button class="button secondary block" style="margin-top:9px" data-action="finish-early">Terminar y cerrar ahora</button><button class="button danger block" style="margin-top:9px" data-action="abandon">Salir sin guardar</button>`);
+}
+
+function noteSheet() {
+  openSheet(`<header><div><p class="eyebrow">Opcional</p><h2 id="sheetTitle">Observación extra</h2></div><button class="sheet-close" data-action="close-sheet" aria-label="Cerrar">${icon("close")}</button></header><p class="caption">En el producto real, el adulto podrá dictar, revisar la transcripción y corregirla antes de guardar. Ejemplo: “Cambiaron el diseño cuando vieron que el vaso se inclinaba”.</p><textarea id="noteInput" aria-label="Observación extra">${escapeHtml(state.note)}</textarea><button class="button primary block" style="margin-top:12px" data-action="save-note">Guardar observación</button>`);
+  requestAnimationFrame(() => document.querySelector("#noteInput")?.focus());
+}
+
+function openSheet(content) {
+  lastFocus = document.activeElement;
+  sheetContent.innerHTML = content;
+  scrim.hidden = false;
+  sheet.classList.add("is-open");
+  sheet.setAttribute("aria-hidden", "false");
+  requestAnimationFrame(() => sheet.querySelector("button, textarea")?.focus());
+}
+
+function closeSheet() {
+  if (!sheet.classList.contains("is-open")) return;
+  sheet.classList.remove("is-open");
+  sheet.setAttribute("aria-hidden", "true");
+  scrim.hidden = true;
+  setTimeout(() => { sheetContent.innerHTML = ""; lastFocus?.focus?.(); }, 230);
+}
+
+function showToast(message) {
+  clearTimeout(toastTimer);
+  toast.textContent = message;
+  toast.classList.add("is-visible");
+  toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 2600);
+}
+
+function formatElapsed(milliseconds) {
+  const seconds = Math.max(0, Math.floor(milliseconds / 1000));
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
+}
+
+function startCloseTimer() {
+  stopCloseTimer();
+  const tick = () => {
+    const target = document.querySelector("#closeTimer");
+    if (target && state.closeStartedAt) target.firstChild.textContent = formatElapsed(Date.now() - state.closeStartedAt);
+  };
+  tick();
+  closeTimer = setInterval(tick, 1000);
+}
+
+function stopCloseTimer() {
+  if (closeTimer) clearInterval(closeTimer);
+  closeTimer = null;
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[character]);
+}
+
+document.addEventListener("click", (event) => {
+  const control = event.target.closest("[data-action]");
+  if (!control || control.disabled) return;
+  const { action, target, id, value } = control.dataset;
+
+  if (action === "tab" || action === "navigate") return setScreen(target);
+  if (action === "home") return setScreen("today");
+  if (action === "select-time") { state.time = Number(value); return render(); }
+  if (action === "toggle-participant") {
+    state.selected = state.selected.includes(id) ? state.selected.filter((item) => item !== id) : [...state.selected, id];
+    return render();
+  }
+  if (action === "edit-role" || action === "change-during") return roleSheet(id);
+  if (action === "choose-role") {
+    const previous = state.assignments[id];
+    state.assignments[id] = value;
+    state.participation[id] = "active";
+    if (previous !== value) state.roleChanges.push({ learnerId: id, from: previous, to: value, atStage: state.stage });
+    closeSheet(); render(); showToast("Rol y objetivo actualizados para esta sesión."); return;
+  }
+  if (action === "choose-observer") {
+    state.participation[id] = "observer";
+    delete state.ratings[id];
+    delete state.skipped[id];
+    closeSheet(); render(); showToast("Se registrará como observador, sin evaluación."); return;
+  }
+  if (action === "start-session") return setScreen("session");
+  if (action === "stage") { state.stage = Number(value); state.highestStage = Math.max(state.highestStage, state.stage); return render(); }
+  if (action === "previous-stage") { state.stage = Math.max(0, state.stage - 1); return render(); }
+  if (action === "next-stage") {
+    if (state.stage === stages.length - 1) return setScreen("close");
+    state.stage += 1; state.highestStage = Math.max(state.highestStage, state.stage); return render();
+  }
+  if (action === "help") return helpSheet();
+  if (action === "adapt") return adaptSheet();
+  if (action === "apply-adaptation") { closeSheet(); showToast(value === "short" ? "La sesión puede cerrarse después de este intento." : "Apoyo añadido para este paso."); return; }
+  if (action === "pause") { state.paused = true; return pauseSheet(); }
+  if (action === "resume") { state.paused = false; closeSheet(); return render(); }
+  if (action === "finish-early") { state.paused = false; closeSheet(); return setScreen("close"); }
+  if (action === "abandon") { state.paused = false; closeSheet(); return setScreen("today"); }
+  if (action === "rating") { state.ratings[id] = Number(value); state.skipped[id] = false; return render(); }
+  if (action === "skip-rating") { state.skipped[id] = !state.skipped[id]; delete state.ratings[id]; return render(); }
+  if (action === "voice-note") return noteSheet();
+  if (action === "save-note") { state.note = document.querySelector("#noteInput")?.value.trim() || ""; closeSheet(); render(); return; }
+  if (action === "evaluate-more") return showToast("Flujo opcional documentado; no se abre por defecto.");
+  if (action === "complete-close") { state.savedElapsed = Date.now() - state.closeStartedAt; return setScreen("summary"); }
+  if (action === "save-session") return setScreen("saved");
+  if (action === "finish") return setScreen("today");
+  if (action === "toggle-offline") { state.offline = !state.offline; render(); showToast(state.offline ? "Paquete descargado: modo sin conexión simulado." : "Conexión restaurada: sincronización simulada."); return; }
+  if (action === "close-info") return openSheet(`<header><div><p class="eyebrow">Escala de independencia</p><h2 id="sheetTitle">Describe esta ocasión, no al niño.</h2></div><button class="sheet-close" data-action="close-sheet" aria-label="Cerrar">${icon("close")}</button></header>${ratingScale.map((item) => `<div class="receipt-item"><span class="receipt-icon">${item.value}</span><div><strong>${item.label}</strong><small>${item.detail}</small></div></div>`).join("")}`);
+  if (action === "not-built") return showToast("Este control está fuera del recorrido que estamos validando.");
+  if (action === "close-sheet") return closeSheet();
+});
+
+document.addEventListener("change", (event) => {
+  const control = event.target.closest('[data-action="material"]');
+  if (!control) return;
+  state.materials[control.dataset.id] = control.checked;
+  render();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeSheet();
+});
+
+render();
+
+</script>
+</body>
+</html>

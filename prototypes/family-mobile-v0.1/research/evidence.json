@@ -1,0 +1,82 @@
+[
+  {
+    "id": "MOB-E-001",
+    "status": "decision",
+    "confidence": "high",
+    "claim": "La primera experiencia familiar es una aplicación móvil iOS/Android dirigida al adulto.",
+    "source": "docs/00-foundation/open-questions.md; docs/08-delivery/decision-log.md",
+    "screen": "shell móvil y recorrido completo"
+  },
+  {
+    "id": "MOB-E-002",
+    "status": "verified",
+    "confidence": "high",
+    "claim": "Cada participante tiene como máximo un objetivo principal por sesión; las demás habilidades son exposiciones.",
+    "source": "AGENTS.md; docs/01-learning/evidence-model.md",
+    "screen": "roles y cierre"
+  },
+  {
+    "id": "MOB-E-003",
+    "status": "decision",
+    "confidence": "high",
+    "claim": "Los roles son contribuciones flexibles que pueden intercambiarse, combinarse u omitirse sin señal negativa.",
+    "source": "DEC-036; PRD-107; US-ACT-006",
+    "screen": "propuesta de roles y cambio de participación"
+  },
+  {
+    "id": "MOB-E-004",
+    "status": "verified",
+    "confidence": "high",
+    "claim": "La escala 1–5 mide independencia contextual y debe aparecer con anclas verbales, no como nota aislada.",
+    "source": "DEC-007; EVD-003; EVD-013",
+    "screen": "cierre rápido"
+  },
+  {
+    "id": "MOB-E-005",
+    "status": "verified",
+    "confidence": "high",
+    "claim": "El cierre normal con tres niños tiene meta inferior a 20 segundos.",
+    "source": "AGENTS.md; UX-501",
+    "screen": "temporizador de cierre"
+  },
+  {
+    "id": "MOB-E-006",
+    "status": "verified",
+    "confidence": "high",
+    "claim": "Una guía descargada conserva pasos, roles y seguridad sin conexión; la IA no es necesaria para continuar.",
+    "source": "PRD-OFF-001; UX-404; docs/07-engineering/mobile-offline-strategy.md",
+    "screen": "sesión, pausa y offline"
+  },
+  {
+    "id": "MOB-E-007",
+    "status": "verified",
+    "confidence": "high",
+    "claim": "ACT-0001@0.2.2 sigue siendo Draft y solo puede mostrarse como fixture de preview editorial.",
+    "source": "docs/02-content/sample-activities/ACT-0001-puente-de-papel.md",
+    "screen": "hoy, preparación, sesión y resumen"
+  },
+  {
+    "id": "MOB-E-008",
+    "status": "decision",
+    "confidence": "medium",
+    "claim": "La dirección visual Pocket Workshop se reutiliza como propuesta de experiencia, no como marca comercial aprobada.",
+    "source": "C:/Users/prett/Documents/ChatGPT/Otros/kids-system-studio/design/design-system.md",
+    "screen": "sistema completo"
+  },
+  {
+    "id": "MOB-E-009",
+    "status": "unknown",
+    "confidence": "low",
+    "claim": "Todavía no sabemos si tres tarjetas paralelas o una secuencia por niño produce menos errores de atribución.",
+    "source": "docs/04-ux/flows/session-close.md",
+    "screen": "cierre; requiere prueba comparativa"
+  },
+  {
+    "id": "MOB-E-010",
+    "status": "hypothesis",
+    "confidence": "low",
+    "claim": "Pedir al adulto que consulte al niño antes de confirmar el rol reducirá resistencia sin aumentar demasiado la preparación.",
+    "source": "Hipótesis derivada de DEC-036 y feedback de la fundadora",
+    "screen": "roles; requiere observación en piloto"
+  }
+]
