@@ -1,7 +1,7 @@
 # Preguntas y decisiones de definición
 
 **Estado:** Review  
-**Versión:** 0.3
+**Versión:** 0.4
 
 ## Decisiones confirmadas por la fundadora
 
@@ -9,7 +9,7 @@
 |---|---|
 | Mercado | Estados Unidos. |
 | Idiomas | Inglés y español desde el lanzamiento. |
-| Plataforma | Aplicación móvil iOS/Android; posible aplicación web posterior. |
+| Plataforma | Aplicación móvil iOS/Android y dos experiencias web previstas: aplicación familiar y portal administrativo/editorial. El orden de construcción web se decide en el roadmap. |
 | Interfaz inicial | Dirigida al adulto. El niño participa fuera de pantalla; puede recibir preguntas e imágenes presentadas por el adulto. |
 | Cuenta | Un adulto paga; varios adultos autorizados pueden usar la familia. |
 | Perfiles | La familia puede crear los perfiles infantiles que necesite. |
@@ -31,10 +31,13 @@
 | Prueba comercial | Siete días gratuitos para una familia elegible, antes de conversión automática claramente informada. |
 | Cancelación | Autoservicio, desde la aplicación, mediante la tienda de origen o Stripe; detiene renovación y conserva acceso hasta terminar el período vigente. |
 | Comunidad | Visible únicamente para adultos autenticados dentro de la aplicación. |
+| Fotografías comunitarias | El adulto decide si publica solo el proyecto/manos o si incluye a un niño reconocible. La opción segura por defecto favorece proyecto/manos; una imagen reconocible requiere confirmación explícita, revisión de privacidad y moderación. La elección parental no elimina las responsabilidades de la plataforma. |
 | Marketing social | Un tag externo puede iniciar una solicitud de permiso; no autoriza reutilización automática. |
 | Edición | Comienza con la fundadora y evoluciona a equipo especializado colaborativo. |
 | Importación masiva | No se prioriza importación/exportación de actividades por spreadsheet. |
 | Piloto | Ocho semanas con la hija de la fundadora como caso de un solo niño y familias amigas con dos o tres niños cada una. |
+| Actividades de calibración | La fundadora acepta conceptualmente puente de papel, clasificación con semillas y probador de conductividad. Siguen siendo borradores sujetos a gates. |
+| Estrategia estatal | No crear variantes educativas por estado. Diseñar con un baseline nacional protector, registrar los estados donde ocurran pilotos y completar una matriz legal de aplicabilidad antes del lanzamiento. |
 
 ## Recomendaciones adoptadas provisionalmente
 
@@ -47,8 +50,8 @@
 
 ## Preguntas todavía abiertas
 
-1. ¿Se permitirán niños reconocibles en publicaciones comunitarias o la primera versión aceptará únicamente proyectos/manos?
-2. ¿Qué estados de Estados Unidos se priorizarán para el piloto y lanzamiento?
-3. ¿Cuál será el precio mensual y anual después de validar el piloto?
-4. ¿Se lanzará una aplicación web para familias o solamente un portal web administrativo/editorial durante la primera etapa?
-5. ¿Se solicitará inclusión en Apple Kids Category o se distribuirá como aplicación para adultos que acompañan niños? Requiere revisión legal y de App Store.
+1. ¿Cuál será el precio mensual y anual después de validar el piloto?
+2. ¿Qué experiencia web se construye primero: la familiar o el portal administrativo/editorial?
+3. ¿Se solicitará inclusión en Apple Kids Category o se distribuirá como aplicación para adultos que acompañan niños? Esta decisión sí cambia metadata, parental gates, SDKs, analítica y revisión de tienda; requiere revisión legal y de App Store.
+4. ¿Qué configuración eléctrica exacta permite que los niños participen materialmente en el montaje desenergizado sin acceder a pilas, uniones fijas peligrosas o componentes no aprobados?
+5. ¿Qué mecanismo de consentimiento, revisión de privacidad y retirada se usará cuando un adulto elija publicar una imagen con un niño reconocible?

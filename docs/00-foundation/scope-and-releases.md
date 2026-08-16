@@ -1,7 +1,7 @@
 # Alcance y estrategia de versiones
 
 **Estado:** Draft  
-**Versión:** 0.1
+**Versión:** 0.2
 
 ## Piloto interno
 
@@ -46,7 +46,8 @@ Incluye además:
 - Suscripción mensual o anual administrada por un adulto.
 - Prueba gratuita comercial de siete días con cancelación autoservicio.
 - Acceso de varios adultos autorizados a la misma familia.
-- Compras móviles por App Store/Google Play; Stripe se reserva para una aplicación web futura.
+- Compras móviles por App Store/Google Play; Stripe se usará para la aplicación web familiar cuando se construya.
+- Se planifican tanto una aplicación web familiar como un portal web administrativo/editorial; el roadmap decidirá cuál se implementa primero y ninguna debe retrasar el recorrido móvil del piloto.
 
 ## Primera versión comercial
 
@@ -61,6 +62,7 @@ Posibles capacidades, sujetas a validación:
 - Colaboración entre adultos autorizados de una familia.
 - Plataforma editorial colaborativa para autores y revisores especializados.
 - Portafolio privado opcional de proyectos.
+- Aplicación web familiar, si las pruebas confirman que aporta valor junto a la aplicación móvil.
 
 ## Fuera de alcance previsible
 

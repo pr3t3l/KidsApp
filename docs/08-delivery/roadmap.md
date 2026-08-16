@@ -1,7 +1,7 @@
 # Roadmap de documentación y construcción
 
 **Estado:** Review  
-**Versión:** 0.1
+**Versión:** 0.2
 
 ## Fase 0 — Fundamentos
 
@@ -29,6 +29,7 @@ Salida: biblioteca pequeña y reproducible.
 ## Fase 2 — Prototipo de experiencia
 
 - Wireframes de onboarding, plan, sesión y cierre.
+- Prototipar primero el recorrido móvil adulto y comparar después los recorridos web familiar y administrativo/editorial para decidir su secuencia de construcción.
 - Prueba de cierre en menos de 20 segundos.
 - Prueba de atención dividida.
 - Refinamiento de journeys y modelo conceptual.

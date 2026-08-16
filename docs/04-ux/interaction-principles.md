@@ -1,7 +1,7 @@
 # Principios de interacción
 
 **Estado:** Review  
-**Versión:** 0.1
+**Versión:** 0.2
 
 ## Atención dividida
 
@@ -24,6 +24,7 @@
 - Separar explicación adulta de frase sugerida para el niño.
 - Evitar “tu hijo falló” o “nivel bajo”.
 - Usar “todavía no tenemos evidencia” y “necesitó apoyo en esta ocasión”.
+- Mostrar la valoración de independencia con acción y palabras (`Con alguna ayuda`, `Casi solo`), nunca como un número aislado, nota escolar o puntuación del niño.
 
 ## Interfaz para el adulto
 

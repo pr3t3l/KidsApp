@@ -1,7 +1,7 @@
 # SPEC-07 — Evidence Model
 
 **Estado:** Review  
-**Versión:** 0.1  
+**Versión:** 0.2<br>
 **Propietario:** Producto/Pedagogía/Datos
 
 ## 1. Propósito
@@ -35,6 +35,8 @@ Escala:
 | 5 | Lo hizo sola y con seguridad. |
 
 La escala representa independencia contextual, no inteligencia ni valor personal.
+
+La interfaz no muestra el número aislado como si fuera una nota. Cada opción presenta su ancla breve —por ejemplo, `3 · Con alguna ayuda`— y la pregunta nombra la acción observada. No se promedian puntuaciones entre actividades ni se crea un puntaje global del niño. Cuando una acción adulta es obligatoria por seguridad, esa ayuda no reduce la valoración; se considera únicamente la independencia dentro de las acciones permitidas al niño.
 
 ## 4. Presupuesto de interacción
 
@@ -94,6 +96,7 @@ Observaciones propuestas:
 - **EVD-010:** La UI de cierre debe cumplir el presupuesto de 20 segundos en pruebas.
 - **EVD-011:** El audio se elimina tras transcripción exitosa o expiración; la transcripción editable expira a los 30 días y las observaciones estructuradas siguen su propia retención.
 - **EVD-012:** Una inferencia actualizada sin confirmación previa debe aparecer en el historial y admitir corrección posterior.
+- **EVD-013:** La UI presenta cada valor 1–5 con su ancla verbal y nunca como una calificación aislada, promedio global o comparación entre niños.
 
 ## 9. Eventos mínimos
 

@@ -26,9 +26,9 @@ Ante una contradicción se aplica la precedencia de `AGENTS.md`; seguridad y pri
 
 | ID y versión | Actividad | Duración | Niños | Nivel preliminar | Estado y gate distintivo |
 |---|---|---:|---:|---|---|
-| `ACT-0001@0.2.1` | [Puente de papel](../02-content/sample-activities/ACT-0001-puente-de-papel.md) | 30–60 min | 1–3 | A | Validar físicamente vaso/carga, estabilidad de soportes y reproducibilidad. |
+| `ACT-0001@0.2.2` | [Puente de papel](../02-content/sample-activities/ACT-0001-puente-de-papel.md) | 30–60 min | 1–3 | A | Validar físicamente vaso/carga, estabilidad de soportes, guía adulta de estructuras y reproducibilidad. |
 | `ACT-0002@0.1.1` | [Clasificación con semillas](../02-content/sample-activities/ACT-0002-clasificacion-semillas.md) | 30–60 min | 1–3 | B | Revisar alergias, toxinas naturales, piezas pequeñas, ingestión, etiquetado y almacenamiento. |
-| `ACT-0003@0.1.1` | [Probador de conductividad](../02-content/sample-activities/ACT-0003-probador-conductividad.md) | 35–60 min | 1–3 | C | Revisión eléctrica/mecánica reforzada, selección A/B, componentes exactos y montaje exclusivamente adulto. |
+| `ACT-0003@0.1.2` | [Probador de conductividad](../02-content/sample-activities/ACT-0003-probador-conductividad.md) | 35–60 min | 1–3 | C | Revisión eléctrica/mecánica reforzada, selección de una configuración, componentes exactos y gate para co-montaje infantil desenergizado. |
 
 Las tres actividades incluyen bundles `es-US` y `en-US`, roles para uno, dos y tres niños, diferenciación funcional, un objetivo principal por niño, exposiciones secundarias, cierre 1–5, troubleshooting y briefs visuales. Ninguna puede aparecer en el catálogo familiar mientras su versión no tenga estado `published`.
 
@@ -58,7 +58,7 @@ La validación debe ejecutarse en CI. Incluye seis ejemplos positivos, referenci
 1. Hacer un dry run de cada actividad dirigido por un adulto y sin participación infantil, comenzando por `ACT-0001` y `ACT-0002`.
 2. Registrar tiempos, confusiones, sustituciones solicitadas, incidentes y casi-incidentes del dry run.
 3. Corregir la `ActivityVersion`; cualquier cambio en pasos, materiales, roles u objetivos crea una nueva versión según el ciclo editorial.
-4. Completar revisión pedagógica y revisión de seguridad; `ACT-0003` requiere además gates eléctrico y mecánico, componentes exactos y prueba física adulta.
+4. Completar revisión pedagógica y revisión de seguridad; `ACT-0003` requiere además gates eléctrico y mecánico, componentes exactos, prueba física adulta y decisión explícita sobre qué conexiones puede realizar un niño con el circuito desenergizado.
 5. Producir y revisar visuales después de estabilizar pasos y materiales; cada asset queda ligado a una versión exacta.
 6. Cambiar a `ready_for_pilot` únicamente cuando los gates previos estén registrados.
 7. Solo entonces ejecutar pruebas controladas con niños y cubrir configuraciones de uno, dos y tres participantes; registrar cada ejecución como pilot record.
@@ -135,6 +135,7 @@ Implementar `VS-08` antes de escalar la biblioteca: autoría, revisiones indepen
 ### Gate reforzado de `ACT-0003`
 
 - especialista apropiado aprueba fuente, resistencia, LED, conexiones, aislamiento y modos de falla;
+- especialista apropiado define y aprueba —o rechaza con causa— una ruta de co-montaje infantil desenergizado, con acciones permitidas por edad;
 - números de parte exactos y ficha técnica archivada;
 - prueba de control abierto/cerrado, polaridad, falso negativo y cortocircuito evitado;
 - verificación de ausencia de calor, olor, fuga, chispa o acceso infantil a pilas;

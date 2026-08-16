@@ -1,7 +1,7 @@
 # Registro de decisiones
 
 **Estado:** Active  
-**Versión:** 0.1
+**Versión:** 0.2
 
 | ID | Decisión | Estado | Motivo |
 |---|---|---|---|
@@ -11,7 +11,7 @@
 | DEC-004 | Asignar un objetivo principal por niño/sesión. | Aprobada | Señal clara y baja carga. |
 | DEC-005 | Registrar las demás habilidades como exposición. | Aprobada | Exposición no equivale a desempeño. |
 | DEC-006 | Ofrecer “Evaluar más” de forma opcional. | Aprobada | Permite detalle sin convertir cierre en encuesta. |
-| DEC-007 | Usar escala 1–5 de independencia contextual. | Aprobada | Fácil de responder y menos valorativa. |
+| DEC-007 | Usar escala 1–5 de independencia contextual; la UI muestra cada número con su ancla verbal y nunca como nota global. | Aprobada | Fácil de responder y menos valorativa cuando la pregunta nombra una acción concreta. |
 | DEC-008 | Permitir una observación adicional por voz. | Aprobada | Captura matices con poca fricción. |
 | DEC-009 | Guardar observaciones, no etiquetas. | Aprobada | Evita generalizaciones rígidas. |
 | DEC-010 | Usar modelo general + memoria estructurada, no entrenar una IA por niño. | Aprobada | Control, auditoría, corrección y eliminación. |
@@ -39,6 +39,12 @@
 | DEC-032 | Un tag social externo inicia solicitud de permiso, pero no autoriza reutilización. | Aprobada | Separación de publicación y licencia. |
 | DEC-033 | Determinar gates editoriales por categoría/riesgo; psicología no es revisión universal. | Aprobada | Usar especialidad donde aporta valor real. |
 | DEC-034 | Aprobar 1–4 niños por sesión y perfiles familiares sin límite comercial pequeño. | Aprobada | Cobertura del piloto y flexibilidad familiar. |
+| DEC-035 | Aceptar conceptualmente las tres actividades de calibración: puente de papel, clasificación con semillas y probador de conductividad. | Aprobada | Representan el aprendizaje práctico deseado; la aceptación conceptual no sustituye gates de seguridad, pedagogía o piloto. |
+| DEC-036 | Tratar los roles infantiles como contribuciones propuestas, compatibles y flexibles: el adulto puede intercambiarlos y el niño puede aceptar, cambiar, combinar, observar o dejar de participar sin señal negativa. | Aprobada | Evitar rigidez, jerarquías entre hermanos y conflicto innecesario; validar la respuesta real de los niños durante el piloto. |
+| DEC-037 | Permitir que el adulto elija si una publicación comunitaria muestra solo proyecto/manos o incluye un niño reconocible, con opción segura por defecto, confirmación explícita, moderación y retirada. | Aprobada | Conservar agencia parental sin transferirle las responsabilidades de privacidad y operación de la plataforma. |
+| DEC-038 | Planear tanto aplicación web familiar como portal administrativo/editorial; decidir su secuencia en el roadmap. | Aprobada | Ambos recorridos aportan valor, pero no tienen que construirse simultáneamente. |
+| DEC-039 | No diseñar variantes educativas por estado; usar un baseline nacional protector y una matriz legal de aplicabilidad basada en los estados reales del piloto y lanzamiento. | Aprobada | Los estados no deben fragmentar la experiencia pedagógica, pero sí afectan obligaciones de privacidad y distribución. |
+| DEC-040 | Investigar una configuración del probador de conductividad que permita montaje infantil significativo con el circuito desenergizado; las pilas, la inspección, la autorización para energizar y cualquier paso no aprobado permanecen bajo control adulto. | Propuesta | Preservar el valor de construir el circuito sin relajar el gate eléctrico/mecánico ni asignar acciones infantiles antes de revisión experta. |
 
 ## Plantilla
 

@@ -1,7 +1,7 @@
 # Plan de piloto familiar
 
 **Estado:** Draft  
-**Versión:** 0.1
+**Versión:** 0.2
 
 ## Propósito
 
@@ -40,7 +40,7 @@ Diversidad buscada:
 ## Preguntas de investigación
 
 1. ¿La preparación coincide con el tiempo anunciado?
-2. ¿Los roles permiten trabajar juntos o generan espera/conflicto?
+2. ¿Los niños aceptan y comprenden los roles? ¿Permiten trabajar juntos o generan espera, jerarquía, competencia o conflicto?
 3. ¿El adulto entiende el objetivo principal?
 4. ¿Puede cerrar en menos de 20 segundos?
 5. En la fase funcional con `VS-05`, ¿la señal obtenida mejora la siguiente recomendación?
@@ -52,6 +52,7 @@ Diversidad buscada:
 
 - Actividad/version.
 - Participantes y roles.
+- Rol propuesto, rol real y motivo opcional de cambio, combinación, observación o no participación.
 - Inicio, cierre y duración aproximada.
 - Valoración principal opcional.
 - Falla o abandono.

@@ -1,7 +1,7 @@
 # ACT-0003 — Probador de conductividad / Conductivity Tester
 
 **Estado:** Draft — no entregable a familias<br>
-**Versión:** 0.1.1<br>
+**Versión:** 0.1.2<br>
 **Idioma fuente:** Español (`es-US`)<br>
 **Bundles requeridos:** `es-US`, `en-US`<br>
 **Autoría:** Equipo del proyecto; borrador asistido por IA<br>
@@ -13,7 +13,7 @@
 | Campo | Valor |
 |---|---|
 | `activity_id` | `ACT-0003` |
-| `version` | `0.1.1` |
+| `version` | `0.1.2` |
 | `status` | `draft` |
 | `slug` | `probador-conductividad` |
 | Título `es-US` | Probador de conductividad |
@@ -44,6 +44,7 @@ Esta versión es un borrador para revisión y piloto. No cumple todavía los gat
 |---|---|---|---|
 | 0.1.0 | 15 de agosto de 2026 | Primera ActivityVersion bilingüe: circuito de 2 pilas AA, LED rojo y resistencia de 330 Ω; roles para 1–3 niños; evaluación, seguridad y briefs visuales. | Equipo del proyecto; borrador asistido por IA |
 | 0.1.1 | 15 de agosto de 2026 | Correcciones de revisión cruzada: retención mecánica, localización completa, tiempos, cálculo con tolerancia, evidencia justa, seguridad, campos estructurados y gates A/B. | Equipo del proyecto; revisión cruzada asistida por IA |
+| 0.1.2 | 16 de agosto de 2026 | Aclara que A/B son candidatos editoriales, elimina la referencia ambigua “A resulte seleccionada” y registra como requisito de diseño una ruta de montaje infantil desenergizado sujeta a revisión experta. | Feedback de la fundadora; edición asistida por IA |
 
 ### Review records
 
@@ -99,7 +100,13 @@ Este montaje es un **probador cualitativo**, no un medidor de conductividad. “
 
 ### 4.1 Circuito — exactamente una de dos configuraciones candidatas
 
-Ninguna configuración está seleccionada como preferida en este borrador. Antes de pasar a `pedagogical_review`, el gate eléctrico y mecánico debe escoger A o B, documentar por qué es la alternativa de menor riesgo que conserva el aprendizaje y retirar la otra de las instrucciones familiares de esa versión.
+Las letras **A** y **B** son etiquetas internas para comparar dos diseños editoriales; no son pasos ni elecciones que una familia deba entender. **A** usa LED y resistencia visibles como componentes separados. **B** usa un módulo LED preensamblado con limitación de corriente integrada. Ninguna está seleccionada en este borrador. Antes de pasar a `pedagogical_review`, el gate eléctrico y mecánico debe escoger una configuración, documentar por qué es la alternativa de menor riesgo que conserva el aprendizaje y retirar por completo la otra de las instrucciones familiares de la siguiente versión.
+
+La fundadora ha definido que construir el circuito debería ser una parte significativa de la experiencia infantil. Esta versión todavía no autoriza a los niños a formar uniones fijas: primero debe evaluarse una ruta de **co-montaje desenergizado** con componentes exactos, conexiones mecánicamente protegidas y acciones infantiles definidas por edad. El especialista decidirá qué puede conectar el niño y qué permanece `adult-only`; el adulto conserva siempre las pilas, la inspección final y la autorización para energizar.
+
+**`en-US`:** Letters **A** and **B** are internal labels for comparing two editorial designs; they are not steps or choices a family should need to understand. **A** uses a visible discrete LED and resistor. **B** uses a preassembled LED module with integrated current limiting. Neither is selected in this draft. Before `pedagogical_review`, the electrical and mechanical gate must select one configuration, document why it is the lowest-risk option that preserves the learning, and completely remove the other from the next version's family instructions.
+
+The founder has specified that building the circuit should be a meaningful part of the child experience. This version does not yet authorize children to make fixed joints: a **de-energized co-assembly** path must first be evaluated using exact components, mechanically protected connections, and child actions defined by age. The specialist will decide what a child may connect and what remains `adult-only`; the adult always controls the cells, final inspection, and authorization to energize.
 
 #### Configuración A — componentes visibles, candidata
 
@@ -140,10 +147,10 @@ Las configuraciones A y B no se mezclan ni se improvisan. Esta versión no inclu
 
 | Grupo/ID | Obligatorio | Ciclo | Sustituible | Preparación adulta |
 |---|---|---|---|---|
-| Configuración A: `circuit.holder-2aa`, `circuit.led-red`, `circuit.resistor-330`, `circuit.clip-lead` | Sí, solo si A resulta seleccionada | Reutilizable | No automático | Seleccionar número de parte, inspeccionar, montar, aislar y validar retención. |
+| Configuración A: `circuit.holder-2aa`, `circuit.led-red`, `circuit.resistor-330`, `circuit.clip-lead` | Sí, solo si el gate editorial selecciona la configuración A | Reutilizable | No automático | Seleccionar número de parte, inspeccionar, montar, aislar y validar retención. |
 | `circuit.cell-aa` | Sí, dos en A o B | Consumible/reemplazable | Solo dos AA alcalinas aprobadas | Insertar, retirar, contar y almacenar. |
 | `circuit.insulation-tape` | Sí en A | Consumible | No | Aplicar por separado; reemplazar ante desprendimiento. |
-| `circuit.module-led-3v` | Sí, solo si B resulta seleccionada | Reutilizable | No automático | Verificar ficha, polaridad, limitación y protección mecánica. |
+| `circuit.module-led-3v` | Sí, solo si el gate editorial selecciona la configuración B | Reutilizable | No automático | Verificar ficha, polaridad, limitación y protección mecánica. |
 | `sample.*` | Siete en recorrido completo; cuatro en adaptación breve | Reutilizable | Solo según 4.4 | Inspeccionar sequedad, tamaño, bordes, recubrimientos y ausencia de conexión externa. |
 | `record.*` | Sí | Consumible o reutilizable según formato | Sí, por equivalente seguro | Preparar columnas, iconos e idioma. |
 | `visual.white-card` | No | Reutilizable | Sí, por superficie blanca mate | Reservar si la iluminación dificulta ver el LED. |
@@ -157,14 +164,18 @@ Las configuraciones A y B no se mezclan ni se improvisan. Esta versión no inclu
 
 **`en-US` non-negotiable substitutions and prohibitions:** Do not change the source, LED, resistor value, or module type without a new safety review. A sample may be replaced only by another large, dry, loose, blunt, nonelectronic, unpowered, nonfood object approved by the adult; no result is promised for a substitute. Never test an outlet, receptacle, wall switch, installed cable, charger, device, screen, appliance, powered toy, battery, vehicle, valuable jewelry, skin, person, animal, mouth, plant, food, powder, wet object, liquid, chemical, or unknown object. Never use a coin as a battery, and never use a button/coin cell as either the source or a sample.
 
-## 5. Preparación exclusiva del adulto
+## 5. Preparación exclusiva del adulto en esta versión
 
 Todos los puntos de esta sección son `adult-only`. Los niños pueden observar desde una distancia segura, pero no insertar pilas, seleccionar componentes al azar ni preparar uniones fijas.
+
+Esta es una restricción provisional de `ACT-0003@0.1.2`, no la experiencia final deseada. Durante `build`, los niños pueden ordenar tarjetas grandes que representen los componentes, señalar la trayectoria y decidir el orden lógico con el portapilas vacío; no manipulan LED, resistencia ni conexiones eléctricas sueltas en esta versión. Esas acciones permiten aprender el circuito, pero no sustituyen la futura prueba de co-montaje físico. Una versión posterior solo podrá ampliar permisos infantiles después del gate eléctrico/mecánico y una prueba por edad.
+
+**`en-US`:** This is a provisional restriction of `ACT-0003@0.1.2`, not the desired final experience. During `build`, children may arrange large cards representing the components, point out the path, and decide the logical order while the battery holder is empty; they do not handle the loose LED, resistor, or electrical connections in this version. Those actions support circuit learning but do not replace the future physical co-assembly test. A later version may expand child permissions only after the electrical/mechanical gate and age-based testing.
 
 1. **Preparar el espacio / Prepare the space.** Trabaje sobre una mesa seca y despejada, al menos a 1 m / 3 ft de enchufes, fregaderos, líquidos, alimentos y dispositivos. Retire cualquier objeto que no esté en la lista aprobada.
 2. **Inspeccionar / Inspect.** Confirme que portapilas, cables, aislamiento, LED y resistencia no estén agrietados, calientes, corroídos, húmedos o dañados. Confirme la etiqueta `330 Ω`.
 3. **Mantener sin energía / Keep power off.** Deje el interruptor en `OFF` y el portapilas vacío mientras conecta el circuito.
-4. **Montar la trayectoria / Assemble the path.** Solo después de que A resulte seleccionada y exista un diagrama aprobado: cable 1 une rojo `+` a resistencia; cable 2 une resistencia a pata larga/ánodo; cable 3 une pata corta/cátodo y deja su otro extremo como pinza de prueba A; cable 4 deja un extremo como pinza de prueba B y une el otro a negro `−`. Las pinzas A/B quedan separadas. Cubra por separado las seis uniones fijas y todas las patas expuestas. Aplique el alivio de tensión exacto aprobado; la cinta sola no lo sustituye.
+4. **Montar la trayectoria / Assemble the path.** Este paso solo aplica si el gate editorial selecciona la **Configuración A — componentes visibles** y existe un diagrama aprobado que nombre cada componente y conexión: cable 1 une rojo `+` a resistencia; cable 2 une resistencia a pata larga/ánodo; cable 3 une pata corta/cátodo y deja su otro extremo como pinza de prueba A; cable 4 deja un extremo como pinza de prueba B y une el otro a negro `−`. Las “pinzas de prueba A y B” son los dos extremos que tocarán el objeto; no se refieren a las configuraciones editoriales A/B. Manténgalas separadas. Cubra por separado las seis uniones fijas y todas las patas expuestas. Aplique el alivio de tensión exacto aprobado; la cinta sola no lo sustituye. Si se selecciona la Configuración B, este paso se reemplaza por las instrucciones específicas del módulo aprobado; nunca se mezclan ambas rutas.
 5. **Comprobar polaridad / Check polarity.** La pata larga del LED va hacia la resistencia y el cable rojo. La pata corta y el lado plano de la cápsula van hacia la pinza que finalmente regresa al cable negro. No energice un LED invertido para “ver qué pasa”.
 6. **Insertar las pilas / Insert batteries.** Inserte dos pilas alcalinas AA siguiendo `+` y `−`; cierre y asegure la tapa. Mantenga todas las pilas sueltas fuera del alcance infantil.
 7. **Prueba abierta / Open control.** Separe las pinzas, encienda durante 2 segundos y confirme que el LED permanece apagado. Apague.
@@ -189,7 +200,7 @@ Every item below is `adult-only`. Children may watch from a safe distance, but t
 1. **Prepare the space.** Work on a dry, clear table at least 1 m / 3 ft from outlets, sinks, liquids, food, and devices. Remove every object that is not on the approved list.
 2. **Inspect.** Confirm that the holder, leads, insulation, LED, and resistor are not cracked, warm, corroded, wet, or damaged. Confirm the `330 Ω` label.
 3. **Keep power off.** Leave the switch `OFF` and the holder empty while assembling the circuit.
-4. **Assemble the path.** Only after A is selected and an approved diagram exists: lead 1 joins red `+` to the resistor; lead 2 joins the resistor to the long LED lead/anode; lead 3 joins the short lead/cathode and leaves its other end as test clip A; lead 4 leaves one end as test clip B and joins its other end to black `−`. Keep A/B apart. Separately cover all six fixed joints and every exposed component lead. Apply the exact approved strain relief; tape alone is not strain relief.
+4. **Assemble the path.** This step applies only if the editorial gate selects **Configuration A — visible components** and an approved diagram names every component and connection: lead 1 joins red `+` to the resistor; lead 2 joins the resistor to the long LED lead/anode; lead 3 joins the short lead/cathode and leaves its other end as test clip A; lead 4 leaves one end as test clip B and joins its other end to black `−`. “Test clips A and B” are the two ends that touch the sample; they are not the editorial Configurations A/B. Keep the test clips apart. Separately cover all six fixed joints and every exposed component lead. Apply the exact approved strain relief; tape alone is not strain relief. If Configuration B is selected, replace this step with the approved module-specific instructions; never mix the two paths.
 5. **Check polarity.** The LED long lead faces the resistor and red lead. The short lead and flat side of the LED body face the clip that eventually returns to the black lead. Do not energize a reversed LED “to see what happens.”
 6. **Insert the cells.** Insert two alkaline AA cells according to `+` and `−`; close and secure the cover. Keep all loose cells out of children's reach.
 7. **Open control.** Keep the clips apart, switch on for 2 seconds, and confirm that the LED remains off. Switch off.
@@ -558,7 +569,7 @@ Detenga de inmediato si un niño intenta probar una persona, animal, líquido, e
 
 Si un niño participó, registrar automáticamente:
 
-- ActivityVersion `ACT-0003@0.1.1`.
+- ActivityVersion `ACT-0003@0.1.2`.
 - Rol real y configuración de participantes.
 - Objetivo principal asignado.
 - Exposiciones previstas según su rol.
@@ -611,7 +622,7 @@ Estas observaciones conservan contexto y apoyo. No producen etiquetas globales s
 
 ## 13. Briefs de recursos visuales
 
-Todos los recursos se vinculan a `ACT-0003@0.1.1`, pasan QA automático y aprobación humana, y contienen texto como capa programática. No mostrar rostros, marcas, enchufes, líquidos, pilas tipo moneda, fuente USB ni niños manipulando el portapilas.
+Todos los recursos se vinculan a `ACT-0003@0.1.2`, pasan QA automático y aprobación humana, y contienen texto como capa programática. No mostrar rostros, marcas, enchufes, líquidos, pilas tipo moneda, fuente USB ni niños manipulando el portapilas.
 
 ### ACT-0003-VIS-01 — Materials board fotorealista
 
@@ -693,7 +704,8 @@ Esta sección documenta la plausibilidad del diseño; no reemplaza la ejecución
 - [ ] Revisión pedagógica: objetivos observables, lenguaje 5–10 y roles con agencia.
 - [ ] Revisión eléctrica/seguridad por profesional competente: componentes exactos, portapilas, corriente con tolerancias, aislamiento, falla segura y advertencias bilingües.
 - [ ] Revisión mecánica: terminales, separación, alivio de tensión, resistencia a tirón, fatiga de cinta/cubiertas y conducta ante desprendimiento.
-- [ ] Decisión A vs B: comparar riesgo residual, retención mecánica, facilidad de montaje, disponibilidad y valor pedagógico; seleccionar una sola configuración y retirarla otra del bundle familiar de la siguiente versión.
+- [ ] Decisión A vs B: comparar riesgo residual, retención mecánica, facilidad de montaje, disponibilidad y valor pedagógico; seleccionar una sola configuración y retirar la otra del bundle familiar de la siguiente versión.
+- [ ] Gate de co-montaje infantil: comparar al menos una ruta física desenergizada en la que el niño realice conexiones significativas con piezas exactas, protegidas y apropiadas para su edad; definir por escrito acciones permitidas por rango, inspección adulta, prevención de conexiones incorrectas y criterio para detenerse. Si ninguna ruta supera el gate, mantener las uniones fijas como `adult-only` y explicar la limitación a la fundadora antes del piloto.
 - [ ] Revisión bilingüe `es-US`/`en-US`, con atención especial a `adult-only`, prohibiciones y troubleshooting.
 - [ ] QA visual automático y humano de ACT-0003-VIS-01 a ACT-0003-VIS-07.
 - [ ] Revisión de accesibilidad y flujo con atención dividida.
@@ -736,4 +748,4 @@ Esta sección documenta la plausibilidad del diseño; no reemplaza la ejecución
 
 ## 17. Resultado editorial requerido para avanzar
 
-Para pasar de `draft` a `pedagogical_review`, el equipo debe decidir formalmente entre A y B, seleccionar números de parte concretos para todos los componentes de la configuración elegida, documentar el diagrama y alivio de tensión, superar la prueba de tirón y diez ciclos, ejecutar el montaje, completar la matriz de resultados con los siete objetos, medir tiempo y brillo y resolver todos los hallazgos del gate. La configuración no elegida se elimina del bundle familiar de la siguiente versión. Cualquier cambio en fuente, resistencia, componente luminoso, retención mecánica, objetos permitidos o pasos de seguridad crea una nueva versión y repite las revisiones afectadas.
+Para pasar de `draft` a `pedagogical_review`, el equipo debe decidir formalmente entre A y B, seleccionar números de parte concretos para todos los componentes de la configuración elegida, documentar el diagrama y alivio de tensión, evaluar el gate de co-montaje infantil, superar la prueba de tirón y diez ciclos, ejecutar el montaje, completar la matriz de resultados con los siete objetos, medir tiempo y brillo y resolver todos los hallazgos del gate. La configuración no elegida se elimina del bundle familiar de la siguiente versión. Cualquier cambio en fuente, resistencia, componente luminoso, retención mecánica, objetos permitidos, permisos infantiles o pasos de seguridad crea una nueva versión y repite las revisiones afectadas.

@@ -1,7 +1,7 @@
 # Trazabilidad
 
 **Estado:** Active  
-**Versión:** 0.1
+**Versión:** 0.2
 
 ## Cadena
 
@@ -22,6 +22,7 @@ Principio
 | Una evaluación por niño | P-06, LRN-102, EVD-002 | Session Close | Assignment, Observation | VS-03 | Tiempo y restricción de dominio |
 | Exposición no es desempeño | P-07, LRN-103, EVD-001 | Session, Journey | Exposure separado | VS-03/04 | Pruebas de inferencia |
 | Roles diferenciados | P-05, ACT-004, REC-105 | Activity Session | RoleTemplate, Assignment | VS-02 | Casos 1–4 niños |
+| Roles flexibles y no coercitivos | DEC-036, PRD-107, US-ACT-006 | Participants and Roles | Assignment, RoleChanged, ParticipationChanged | VS-02/03 | Pruebas de aceptación, intercambio, combinación y no participación |
 | Biblioteca publicada | P-03, ACT-002, REC-101 | Plan, Session | ActivityVersion.status | VS-01/08 | Filtro y retiro |
 | Inferencias explicables | P-08, LRN-104, EVD-008 | Learning Journey | EvidenceLink, Inference | VS-04 | “¿Por qué?” y corrección |
 | Medios temporales | P-09, PRV-101/102 | Troubleshoot, Voice | MediaAsset.expiry | VS-06/07 | Job de expiración |
@@ -34,7 +35,7 @@ Principio
 | Tres actividades piloto reproducibles | ACT-001/012, SAFE-001/008 | Pilot Pack | ActivityVersion, VisualBrief, ReviewRecord | Etapa editorial previa a VS-01 | `npm run validate`, revisión cruzada y ejecución familiar |
 | Contratos ejecutables de contenido y sesión | DATA-001/002, ENG-001/004, OFF-003 | Catalog, Session, Learning Journey | JSON Schemas + invariantes de dominio | VS-01–04/09 | Ejemplos positivos, fixtures negativas y referencias cruzadas |
 | Semillas como manipulativos no comestibles | SAFE-001/002/006/007 | ACT-0002 | Material, Hazard, StopCondition | Piloto editorial | Revisión de toxicología, piezas pequeñas y prueba 1–3 niños |
-| Circuito de baja tensión con control adulto | SAFE-003/004/008 | ACT-0003 | AdultOnlyStep, Hazard, ReviewGate | Piloto editorial reforzado | Cálculo, números de parte, inspección física y especialista |
+| Circuito de baja tensión con participación infantil segura por definir | SAFE-003/004/008, DEC-040 | ACT-0003 | AdultOnlyStep, PermittedChildAction, Hazard, ReviewGate | Piloto editorial reforzado | Cálculo, números de parte, inspección física, montaje desenergizado y especialista |
 
 ## Regla para tareas futuras
 

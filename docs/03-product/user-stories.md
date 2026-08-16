@@ -1,7 +1,7 @@
 # Catálogo inicial de user stories
 
 **Estado:** Draft  
-**Versión:** 0.1
+**Versión:** 0.2
 
 Las historias describen valor. Los requisitos normativos viven en los specs y los criterios detallados se enlazarán a tareas de cada vertical slice.
 
@@ -62,6 +62,12 @@ Como adulto, quiero pausar y continuar desde el último paso para atender una in
 ### US-ACT-005 — Resolver una falla
 
 Como adulto, quiero pedir ayuda desde el paso actual para no repetir qué actividad estoy haciendo.
+
+### US-ACT-006 — Adaptar roles a la dinámica real
+
+Como adulto, quiero cambiar, combinar u omitir un rol cuando un niño no lo acepta o la colaboración no funciona para poder continuar sin convertir la actividad en una lucha.
+
+**Aceptación:** el niño puede elegir entre opciones compatibles, observar o dejar de participar; los cambios se registran como contexto de sesión y nunca como evidencia negativa, desobediencia ni rasgo personal.
 
 ## Evidencia
 

@@ -2,7 +2,7 @@
 
 **Estado / Status:** Draft — no elegible para recomendación familiar / not eligible for family recommendation
 
-**Versión / Version:** 0.2.1
+**Versión / Version:** 0.2.2
 
 **Idioma fuente / Source language:** Español (`es-US`)
 
@@ -19,7 +19,7 @@
 | Campo | Valor |
 |---|---|
 | `activity_id` | `ACT-0001` |
-| `version` | `0.2.1` |
+| `version` | `0.2.2` |
 | `slug` | `paper-bridge` |
 | `status` | `draft` |
 | `age_range` | 5–10 años / ages 5–10 |
@@ -47,7 +47,7 @@ Esta versión soporta sesiones de uno, dos o tres niños. Una sesión de cuatro 
 | `ACT-0001-GATE-04` Revisión de seguridad | Pendiente | Ejecución de falla segura y validación del vaso, protocolo de carga y controles. |
 | `ACT-0001-GATE-05` Revisión bilingüe | Pendiente | Verificar equivalencia científica, instrucciones y advertencias `es-US`/`en-US`. |
 | `ACT-0001-GATE-06` Family pilot → Published | No iniciado | Tras `ready_for_pilot`: ejecución del autor y al menos tres ejecuciones adicionales en dos familias, incluida una dirigida por otro adulto. |
-| `ACT-0001-GATE-07` Recursos visuales | Pendiente | Assets ligados a 0.2.1 con QA automático y aprobación humana. |
+| `ACT-0001-GATE-07` Recursos visuales | Pendiente | Assets ligados a 0.2.2 con QA automático y aprobación humana. |
 
 No hay `review_records` aprobados. Por tanto, esta ActivityVersion no puede entrar en planes ni sesiones familiares de producción.
 
@@ -57,7 +57,7 @@ Este documento usa directamente los patrones del JSON Schema cuando existen:
 
 - `stepId`: `STEP-00` a `STEP-09`; `STEP-00`, `STEP-04` y `STEP-08` conforman `adultOnlyStepIds`.
 - El entero `minutes` de cada paso usa la ruta canónica de 45 minutos; `minutes_by_path` conserva las variantes 30/45/60 indicadas en la ficha. La limpieza se registra también en `timing.cleanupMinutes` y ya está incluida en el total de cada ruta.
-- `visualBriefId`: `VIS-01` a `VIS-08`; el contexto `ACT-0001@0.2.1` da el namespace global.
+- `visualBriefId`: `VIS-01` a `VIS-08`; el contexto `ACT-0001@0.2.2` da el namespace global.
 - `adaptationId`: prefijo `ADAPT-`, por ejemplo `ADAPT-BRIDGE-PAUSE`.
 - `materialId`, `roleTemplateId` y `hazardId`: prefijos `MAT-`, `ROLE-` y `HAZ-` respectivamente.
 - Los `ACT-0001-OBJ-*` son identificadores editoriales locales de pregunta/rúbrica; el campo serializado `primaryObjectiveSkillId` y `eligiblePrimarySkillIds` usa el `skillId` canónico asociado en 3.2.
@@ -166,8 +166,8 @@ La comparación es válida dentro de la sesión. No se comparan números entre f
 |---|---|---:|---:|---|---|---|---|
 | `MAT-PAPER-COPY` | 6 `sheet` | Sí / Yes | Sí / Yes | Papel común de impresora/copia, carta o A4, del mismo paquete / Standard printer/copy paper, Letter or A4, from the same package | Reservar 3 para diseños núcleo, 1 para planificación y 2 para error o extensión; inspeccionar sequedad e integridad. / Reserve 3 for core designs, 1 for planning, and 2 for error or extension; inspect for dryness and intact edges. | Retirar hojas húmedas, rasgadas o con bordes que puedan cortar. / Remove damp or torn sheets and any edge that could cut. | Carta o A4; elegir uno y no mezclar tamaños. / Letter or A4; choose one and do not mix sizes. |
 | `MAT-SUPPORT-BOOK` | 2 `item` | Sí / Yes | No | Libros de tapa dura estables, cada uno de al menos 15 × 20 cm y 3–6 cm de grosor; diferencia de grosor ≤0.5 cm / Stable hardcover books, each at least 6 × 8 in and about 1.2–2.4 in thick; thickness difference ≤3/16 in | El adulto comprueba que estén secos, planos, sin piezas sueltas y que no se deslicen. / The adult checks that they are dry, flat, have no loose parts, and do not slide. | Solo el adulto coloca, mueve y guarda los soportes. / Only the adult places, moves, and stores the supports. | Dos cajas rectangulares cerradas, firmes, secas, no frágiles y de igual altura, tras validación adulta. / Two closed, sturdy, dry, nonbreakable rectangular boxes of equal height after adult validation. |
-| `MAT-CUP-LIGHT` | 1 `item` | Sí / Yes | No | Vaso liviano de papel, vacío, de 8–12 oz, con base plana de 5–7 cm / 2–2.75 in / Empty lightweight 8–12 oz paper cup with a flat 2–2.75 in / 5–7 cm base | Inspeccionar que no esté aplastado, húmedo ni deformado; usar el mismo en todas las pruebas. / Check that it is not crushed, damp, or warped; use the same cup in every test. | No usar con líquido ni si se tambalea sobre una mesa plana. / Do not use with liquid or if it rocks on a flat table. | Ninguna en 0.2.1; otra forma o material requiere validación física y nueva versión. / None in 0.2.1; another shape or material requires physical validation and a new version. |
-| `MAT-CRAYON-LOAD` | 20 `item` | Sí / Yes | No | Veinte crayones estándar, no jumbo, intactos y de tamaño semejante, aproximadamente 8–10 cm / 3–4 in de largo / Twenty standard, non-jumbo, intact, similarly sized crayons, approximately 3–4 in / 8–10 cm long | Contar 20, retirar fragmentos y conservar exactamente el mismo set durante la sesión. / Count 20, remove fragments, and keep exactly the same set throughout the session. | Mantener fuera de la boca; bajar cada crayón dentro del vaso, no lanzarlo. / Keep out of mouths; lower each crayon into the cup rather than dropping it. | Ninguna en 0.2.1; marcadores, bloques, monedas y otras cargas no están validados. / None in 0.2.1; markers, blocks, coins, and other loads are not validated. |
+| `MAT-CUP-LIGHT` | 1 `item` | Sí / Yes | No | Vaso liviano de papel, vacío, de 8–12 oz, con base plana de 5–7 cm / 2–2.75 in / Empty lightweight 8–12 oz paper cup with a flat 2–2.75 in / 5–7 cm base | Inspeccionar que no esté aplastado, húmedo ni deformado; usar el mismo en todas las pruebas. / Check that it is not crushed, damp, or warped; use the same cup in every test. | No usar con líquido ni si se tambalea sobre una mesa plana. / Do not use with liquid or if it rocks on a flat table. | Ninguna en 0.2.2; otra forma o material requiere validación física y nueva versión. / None in 0.2.2; another shape or material requires physical validation and a new version. |
+| `MAT-CRAYON-LOAD` | 20 `item` | Sí / Yes | No | Veinte crayones estándar, no jumbo, intactos y de tamaño semejante, aproximadamente 8–10 cm / 3–4 in de largo / Twenty standard, non-jumbo, intact, similarly sized crayons, approximately 3–4 in / 8–10 cm long | Contar 20, retirar fragmentos y conservar exactamente el mismo set durante la sesión. / Count 20, remove fragments, and keep exactly the same set throughout the session. | Mantener fuera de la boca; bajar cada crayón dentro del vaso, no lanzarlo. / Keep out of mouths; lower each crayon into the cup rather than dropping it. | Ninguna en 0.2.2; marcadores, bloques, monedas y otras cargas no están validados. / None in 0.2.2; markers, blocks, coins, and other loads are not validated. |
 | `MAT-RULER` | 1 `item` | Sí / Yes | No | Regla de 30 cm / 12 in sin bordes rotos / 30 cm / 12 in ruler with no broken edges | Inspeccionar; el niño puede leerla o señalar mientras el adulto mueve soportes. / Inspect it; the child may read or point while the adult moves supports. | Retirar una regla quebrada o con borde afilado. / Remove a cracked ruler or one with a sharp edge. | Cinta métrica flexible intacta bajo control adulto. / Intact flexible measuring tape under adult control. |
 | `MAT-MARKER` | 1 `item` | Sí / Yes | No | Lápiz o marcador lavable / Pencil or washable marker | Comprobar que sea no tóxico y apropiado para la edad. / Check that it is nontoxic and age-appropriate. | Tapar el marcador al terminar; retirar puntas rotas. / Cap the marker after use; remove broken tips. | Otro utensilio de escritura no tóxico y apropiado para la edad. / Another nontoxic, age-appropriate writing tool. |
 | `MAT-TAPE-MARK` | 4 `piece`, 2–3 cm / 1 in | No | Sí / Yes | Cinta de pintor removible opcional / Optional removable painter's tape | El adulto corta o rasga cuatro trozos y los usa solo para marcar la posición exterior de los libros. / The adult tears or cuts four pieces and uses them only to mark the books' outer positions. | Nunca fijar el puente ni pegar cinta a piel o cabello. / Never attach the bridge or put tape on skin or hair. | Omitir y comprobar la posición con la regla antes de cada prueba. / Omit it and check position with the ruler before each test. |
@@ -545,6 +545,28 @@ Los totales incluyen preparación, cierre y limpieza; no se añade tiempo oculto
 
 **`en-US`:** Bending stiffness depends on both the material and the geometry of its cross-section. Because the sheets come from the same package, geometry is the variable we intend to change. Folding moves some paper farther from the central region where the structure bends and creates walls that resist deformation. This can increase the stiffness of the structure without changing the material. The result also depends on fold direction, uniformity, and damage; load placement; gap width; and support stability. An accordion is therefore not guaranteed to outperform the flat sheet. An unexpected result is a reason to check the setup and repeat—not to replace the data with the expected result.
 
+### 10.2.1 Guía práctica para que el adulto acompañe el diseño
+
+Esta guía ayuda al adulto a hacer preguntas y mostrar posibilidades sin diseñar el puente por el niño.
+
+**`es-US`:**
+
+1. Empieza con la hoja plana y pregunta: “¿Dónde se está doblando?” y “¿Cómo podríamos hacer que una parte del papel quede de pie en vez de completamente acostada?”.
+2. Si el niño no tiene una idea, usa la hoja de planificación para mostrar **un solo pliegue de ejemplo**, no el puente completo. Después devuelve la decisión: “¿Quieres repetirlo, hacerlo más ancho o probar otra forma?”.
+3. Ofrece como posibilidades, no como respuestas: un acordeón con montañas y valles repetidos; bordes largos levantados como un canal; pliegues más anchos o más estrechos; o guías para que los pliegues queden rectos.
+4. Antes de probar, pregunta: “¿Las crestas van de un libro al otro?” Las crestas que cruzan el espacio pueden funcionar como pequeñas paredes; si van de lado a lado del puente, quizá no ayuden de la misma manera.
+5. Ayuda a hacer pliegues definidos y uniformes sin romper el papel. No digas que “más pliegues siempre es mejor”: demasiados pliegues pequeños pueden aplastarse o quedar desiguales.
+6. Después de la prueba, vuelve a la evidencia: “¿Qué cambiaste?”, “¿Dónde se dobló?” y “¿Qué intentarías ahora?”. El objetivo es iterar, no adivinar el diseño ganador.
+
+**`en-US`:**
+
+1. Begin with the flat sheet and ask, “Where is it bending?” and “How could we make part of the paper stand up instead of lying completely flat?”
+2. If the child has no idea, use the planning sheet to demonstrate **one sample fold**, not the complete bridge. Return the choice: “Would you like to repeat it, make it wider, or try another shape?”
+3. Offer possibilities rather than answers: an accordion with repeating peaks and valleys; raised long edges forming a channel; wider or narrower folds; or guidelines that help keep folds straight.
+4. Before testing, ask, “Do the ridges run from one book to the other?” Ridges that span the gap can act like small walls; ridges running across the bridge may not help in the same way.
+5. Support crisp, even folds without tearing the paper. Do not say “more folds are always better”: too many small folds may flatten or become uneven.
+6. After the test, return to evidence: “What did you change?”, “Where did it bend?” and “What would you try next?” The goal is iteration, not guessing the winning design.
+
 ### 10.3 Explicación infantil
 
 **`es-US`:** “El papel sigue siendo papel, pero su forma cambió. Las crestas son como muchas paredes pequeñas que pueden ayudarlo a no doblarse tan rápido. La prueba nos dice qué ocurrió con nuestras formas.”
@@ -753,7 +775,7 @@ Todos los assets permanecen en estado `planned` hasta generación, QA automátic
 - Los bundles usan el mismo asset físico cuando corresponde y overlays/alt text revisados por idioma.
 - `VIS-05` se interpreta como dos momentos secuenciales del mismo set de materiales, nunca como dos montajes simultáneos.
 - `VIS-07` diferencia visualmente `invalid_setup` de `bridge_deformation` sin atribuir una causa que la imagen no permita verificar.
-- Se registra modelo/proveedor, brief, resultado de QA, aprobador, fecha y vínculo a `ACT-0001@0.2.1`.
+- Se registra modelo/proveedor, brief, resultado de QA, aprobador, fecha y vínculo a `ACT-0001@0.2.2`.
 
 ## 16. Criterios de aceptación de la versión
 
@@ -764,11 +786,11 @@ Todos los assets permanecen en estado `planned` hasta generación, QA automátic
 - Se pueden registrar exposiciones sin convertirlas en evidencia de independencia.
 - `invalid_setup`, `bridge_deformation` y `safe_stop` producen estados distintos; solo una prueba válida produce puntuación y ninguno produce por sí mismo una valoración negativa del niño.
 - La actividad se puede ejecutar sin tijeras, monedas, adhesivos en el puente ni conexión de red.
-- El vaso y la carga no tienen sustituciones en 0.2.1; cualquier alternativa se rechaza o crea una nueva versión después de validación.
+- El vaso y la carga no tienen sustituciones en 0.2.2; cualquier alternativa se rechaza o crea una nueva versión después de validación.
 - Ninguna adaptación aprobada aumenta altura, energía, peso, temperatura, presión, toxicidad o velocidad.
 - Los bundles `es-US` y `en-US` comunican el mismo mecanismo y controles de seguridad.
 - Cada `STEP-00`–`STEP-09` declara actor, stage, tiempo, resultado esperado, señal de éxito, reanudación, advertencia y problema común; las referencias cumplen el mapping de 1.2.
-- Una instancia JSON de 0.2.1 valida contra el schema vigente antes de `ready_for_pilot`.
+- Una instancia JSON de 0.2.2 valida contra el schema vigente antes de `ready_for_pilot`.
 - Un resultado igual o contrario a la expectativa sigue siendo válido y no se reemplaza por una conclusión garantizada.
 
 ## 17. Trazabilidad
@@ -792,7 +814,8 @@ Todos los assets permanecen en estado `planned` hasta generación, QA automátic
 |---|---|---|
 | 0.1.0 | Draft histórico | Esqueleto inicial para validar el esquema. |
 | 0.2.0 | Draft histórico | Amplía a ActivityVersion editorial bilingüe; fija materiales y prueba; documenta rutas de 30–60 minutos, configuraciones 1–3, roles, objetivos/rúbricas, seguridad, adaptaciones, troubleshooting, cierre y briefs visuales. Cambia la carga de monedas/bloques ambiguos a crayones intactos en vaso liviano y limita esta versión a tres niños hasta validación. |
-| 0.2.1 | Draft actual | Retira sustituciones no validadas de vaso y carga; distingue `invalid_setup`, `bridge_deformation` y `safe_stop`; estructura `STEP-00`–`STEP-09`; completa campos bilingües de materiales, roles, peligros y adaptaciones; alinea IDs con el schema; corrige tolerancias y briefs visuales; añade gate científico y gate físico de vaso/carga. |
+| 0.2.1 | Draft histórico | Retira sustituciones no validadas de vaso y carga; distingue `invalid_setup`, `bridge_deformation` y `safe_stop`; estructura `STEP-00`–`STEP-09`; completa campos bilingües de materiales, roles, peligros y adaptaciones; alinea IDs con el schema; corrige tolerancias y briefs visuales; añade gate científico y gate físico de vaso/carga. |
+| 0.2.2 | Draft actual | Añade una guía bilingüe y práctica para que el adulto pueda proponer pliegues, canales y preguntas de diseño sin entregar la solución ni prometer que una forma será superior. |
 
 ## 19. Evidencia requerida antes de cambiar a `ready_for_pilot`
 
@@ -803,7 +826,7 @@ Todos los assets permanecen en estado `planned` hasta generación, QA automátic
 5. Cronometrar rutas y preparación con un adulto distinto al autor, y cronometrar limpieza por separado.
 6. Validar simultaneidad, espera y contribución real con uno, dos y tres niños.
 7. Confirmar que las preguntas de cierre distinguen apoyo, `invalid_setup`, `bridge_deformation`, `safe_stop` y no observación.
-8. Serializar `ACT-0001@0.2.1` y validar todos sus IDs, campos localizados y referencias contra el schema vigente.
+8. Serializar `ACT-0001@0.2.2` y validar todos sus IDs, campos localizados y referencias contra el schema vigente.
 9. Completar y registrar revisión científica, pedagógica, de seguridad y bilingüe.
 10. Generar los ocho assets y completar QA; no usar imágenes familiares sin consentimiento separado.
 

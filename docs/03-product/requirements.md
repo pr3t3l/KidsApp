@@ -1,7 +1,7 @@
 # Requisitos del producto
 
 **Estado:** Draft  
-**Versión:** 0.1
+**Versión:** 0.2
 
 ## Familia y perfiles
 
@@ -22,6 +22,7 @@
 - **PRD-104:** Cada participante infantil recibe un rol y un objetivo principal.
 - **PRD-105:** El adulto puede cambiar roles y objetivos entre opciones compatibles.
 - **PRD-106:** La sesión guarda la versión exacta y asignaciones reales.
+- **PRD-107:** Un rol es una propuesta de contribución, no una orden ni una etiqueta. El adulto puede intercambiarlo, combinarlo o retirarlo y el niño puede observar o no participar sin recibir exposición, valoración negativa ni inferencia.
 
 ## Planificación
 
@@ -84,6 +85,8 @@
 - **PRV-COM-003:** Toda publicación comunitaria pasa moderación antes de hacerse visible en la primera versión.
 - **PRV-COM-004:** Marketing requiere consentimiento/licencia separados de la publicación comunitaria.
 - **PRV-COM-005:** La primera comunidad no incluye mensajes directos, comentarios ni perfiles infantiles públicos.
+- **PRV-COM-006:** La publicación favorece proyecto/manos por defecto. Incluir un niño reconocible requiere elección adulta explícita, revisión de privacidad previa, eliminación de metadata innecesaria, moderación y retirada accesible.
+- **PRV-COM-007:** La elección adulta sobre una imagen no elimina las obligaciones de consentimiento, seguridad, retención, moderación y cumplimiento de la plataforma.
 
 ## Operación editorial
 
