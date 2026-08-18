@@ -1,7 +1,7 @@
 # QA del prototipo móvil
 
 **Fecha:** 2026-08-18
-**Resultado:** Pass v0.6
+**Resultado:** Pass v0.7
 
 ## Viewports inspeccionados
 
@@ -19,6 +19,10 @@
 | Sesión compacta | 360×800 | 360 | Sin overflow horizontal; riel de fases contenido |
 | Cierre | 430×932 | 430 | Cinco anclas verbales, sin cronómetro y con guardado directo |
 | Sistema visual | 1280×900 | 1280 | Navegación, hero y primera sección sin overflow |
+| Today en inglés | 360×800 | 360 | Selector ES visible, jerarquía y tarjetas sin overflow |
+| Experiment en inglés | 430×932 | 430 | Guion, tres acciones nominales y navegación sin mezcla de idioma |
+| Foil Boat en inglés | 430×932 | 430 | Promesa, propósito, foco, materiales y acciones localizados |
+| Shopping en inglés | 360×800 | 360 | Tres secciones, cantidades y procedencia localizadas sin overflow |
 
 Capturas:
 
@@ -65,6 +69,20 @@ Capturas:
 16. persistencia local del checklist y el punto de cierre después de recargar;
 17. estado final guardado y ausencia de excepciones de JavaScript.
 
+`i18n-smoke.mjs` valida:
+
+1. selección y persistencia de `es-US`/`en-US`;
+2. metadata y manifiesto instalable correspondientes al idioma;
+3. las cinco fichas de actividad y sus secuencias completas;
+4. las seis fases de Paper Bridges y las acciones nominales de tres niños;
+5. preparación, compras, seguridad, ayudas, nota, cierre, resumen, Journey e instalación;
+6. ausencia de palabras o signos españoles residuales en todas las superficies recorridas en modo inglés;
+7. retorno a español sin perder la preferencia y ausencia de excepciones.
+
+```powershell
+node qa/i18n-smoke.mjs http://127.0.0.1:4173/index.html
+```
+
 ## PWA y uso desde celular
 
 Con el prototipo servido por HTTP(S) y Chrome iniciado con depuración remota:
@@ -73,7 +91,7 @@ Con el prototipo servido por HTTP(S) y Chrome iniciado con depuración remota:
 node qa/pwa-smoke.mjs http://127.0.0.1:4173/index.html
 ```
 
-La prueba verifica manifest e iconos, control del service worker, cache del shell y recarga completa sin red. La protección/autenticación del hosting no forma parte del prototipo estático y debe configurarse antes de invitar familias externas.
+La prueba verifica manifiestos localizados e iconos, control del service worker, cache del shell bilingüe y recarga completa sin red. La protección/autenticación del hosting no forma parte del prototipo estático y debe configurarse antes de invitar familias externas.
 
 ## Resultado visual
 

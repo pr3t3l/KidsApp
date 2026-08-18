@@ -1,7 +1,7 @@
 # Requisitos del producto
 
 **Estado:** Draft  
-**Versión:** 0.2
+**Versión:** 0.3
 
 ## Familia y perfiles
 
@@ -89,6 +89,7 @@
 - **PRD-PILOT-002:** El prototipo conserva en el dispositivo el checklist de compras, preparación y punto de la actividad para permitir reanudar el dry run después de cerrar, recargar o perder la conexión.
 - **PRD-PILOT-003:** La persistencia del prototipo es local y separada de la arquitectura futura: no crea cuentas, no sincroniza entre dispositivos, no sube observaciones y ofrece una acción explícita para reiniciar el estado local.
 - **PRD-PILOT-004:** Un despliegue temporal no autenticado usa únicamente fixtures y contenido controlado; no se habilitan fotografías, voz real, comunidad, pagos ni datos sensibles infantiles.
+- **PRD-PILOT-005:** La interfaz, los cinco ejercicios, materiales, compras, guiones, ayudas, seguridad, cierre, accesibilidad e instalación del founder pilot se entregan completos en `es-US` y `en-US`; la selección persiste en el dispositivo y una prueba automatizada bloquea pantallas mezcladas.
 
 ## Comunidad y portafolio
 

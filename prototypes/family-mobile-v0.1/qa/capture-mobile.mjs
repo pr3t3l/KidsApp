@@ -90,3 +90,4 @@ const capture = await command("Page.captureScreenshot", {
 await writeFile(output, Buffer.from(capture.data, "base64"));
 console.log(layout.result.value);
 socket.close();
+await fetch(`http://127.0.0.1:9222/json/close/${target.id}`).catch(() => {});

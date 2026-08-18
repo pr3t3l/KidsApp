@@ -6,8 +6,11 @@ on:
     paths:
       - "prototypes/family-mobile-v0.1/index.html"
       - "prototypes/family-mobile-v0.1/app.js"
+      - "prototypes/family-mobile-v0.1/i18n.js"
       - "prototypes/family-mobile-v0.1/styles.css"
       - "prototypes/family-mobile-v0.1/manifest.webmanifest"
+      - "prototypes/family-mobile-v0.1/manifest.es.webmanifest"
+      - "prototypes/family-mobile-v0.1/manifest.en.webmanifest"
       - "prototypes/family-mobile-v0.1/sw.js"
       - "prototypes/family-mobile-v0.1/icon.svg"
       - "prototypes/family-mobile-v0.1/icon-192.png"
@@ -39,7 +42,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p _site
-          cp prototypes/family-mobile-v0.1/{index.html,app.js,styles.css,manifest.webmanifest,sw.js,icon.svg,icon-192.png,icon-512.png,apple-touch-icon.png} _site/
+          cp prototypes/family-mobile-v0.1/{index.html,i18n.js,app.js,styles.css,manifest.webmanifest,manifest.es.webmanifest,manifest.en.webmanifest,sw.js,icon.svg,icon-192.png,icon-512.png,apple-touch-icon.png} _site/
           touch _site/.nojekyll
 
       - name: Configure GitHub Pages

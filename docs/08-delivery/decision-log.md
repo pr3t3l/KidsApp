@@ -1,7 +1,7 @@
 # Registro de decisiones
 
 **Estado:** Active  
-**Versión:** 0.2
+**Versión:** 0.3
 
 | ID | Decisión | Estado | Motivo |
 |---|---|---|---|
@@ -55,6 +55,7 @@
 | DEC-048 | Ejecutar primero un founder pilot de cinco días con Sofía: dos actividades Draft existentes y tres candidatos de bajo riesgo; mantener `ACT-0003` fuera de la ejecución infantil hasta completar su gate técnico. | Aprobada | Permite comprar y probar una semana completa sin presentar contenido no validado como publicado ni improvisar el circuito eléctrico. |
 | DEC-049 | Hacer navegable cada actividad del plan y derivar una lista de compras semanal por sección: sumar consumibles repetidos, usar el máximo para herramientas reutilizables y mostrar siempre la procedencia por día. | Aprobada | Evita tarjetas sin salida y cálculos manuales, sin inflar compras de objetos que pueden reutilizarse. |
 | DEC-050 | Publicar el prototipo del founder pilot como PWA estática instalable, con cache del shell y persistencia exclusivamente local; usar GitHub Pages público solo con fixtures para la prueba de la fundadora y pasar a hosting privado/autenticado antes de invitar familias piloto. | Aprobada | Permite ejecutar el dry run desde el celular sin confundir el prototipo con la aplicación de producción ni subir datos infantiles a un backend incompleto. |
+| DEC-051 | Entregar el founder pilot con bundles completos `es-US` y `en-US` sobre el mismo modelo y recorrido; persistir la elección de idioma, usar manifiestos instalables localizados y bloquear mediante QA cualquier pantalla inglesa con texto español residual. | Aprobada | Cumple el mercado bilingüe sin duplicar lógica, evita pantallas mixtas y mantiene español como fuente normativa de documentación v0.x. |
 
 ## Plantilla
 

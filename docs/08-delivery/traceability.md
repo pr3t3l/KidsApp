@@ -1,7 +1,7 @@
 # Trazabilidad
 
 **Estado:** Active  
-**Versión:** 0.2
+**Versión:** 0.3
 
 ## Cadena
 
@@ -43,6 +43,7 @@ Principio
 | Founder pilot de cinco días | DEC-048, SAFE-001/008, UX-501 | Sofia Five-Day Dry Run | PilotRun, Observation, Incident | Etapa editorial previa a VS-01 | Preflight adulto, hoja de observación, lista consolidada y bloqueo explícito de ACT-0003 infantil |
 | Plan navegable y compra consolidada | REC-007/008/009, US-PLN-004/005, DEC-049 | Plan → Activity Detail / Shopping | PlannedActivity, MaterialRequirement, ShoppingAggregate | VS-05 | Abrir los cinco días, sumar consumibles, reutilizar herramientas, mostrar procedencia y agrupar por sección |
 | Founder pilot instalable en celular | PRD-PILOT-001/004, DEC-050, OFF-001 | Plan → Session → Close en PWA estática | Estado local de prototipo; sin backend familiar | Evidencia previa a VS-09 | Manifest, service worker, persistencia tras recarga, prueba offline y headers de despliegue |
+| Founder pilot bilingüe completo | PRD-008, PRD-PILOT-005, ACT-011/012, DEC-014/051 | Today, Plan, compras, cinco detalles, seis fases, ayudas, cierre e instalación | Bundles `es-US`/`en-US` compartiendo IDs y lógica | Exploración UX de VS-01/03/05 | `qa/i18n-smoke.mjs`, manifiestos localizados y recorrido español sin regresión |
 
 ## Regla para tareas futuras
 
@@ -69,5 +70,6 @@ Si no existe requisito para una función importante, primero se actualiza el spe
 - El artefacto editable vive en [`prototypes/family-mobile-v0.1/`](../../prototypes/family-mobile-v0.1/README.md).
 - La evidencia de decisiones e incertidumbres vive en `research/evidence.json`; el handoff enlaza interacción, dominio y aceptación.
 - `qa/flow-smoke.mjs` recorre desde planificación hasta guardado, incluyendo observación sin evaluación.
+- `qa/i18n-smoke.mjs` abre ambos idiomas y comprueba todas las pantallas, cinco ejercicios, seis fases, ayudas, seguridad, cierre, instalación y ausencia de texto español residual en modo inglés.
 - Las capturas verifican 360×800 y 430×932 sin overflow horizontal.
 - La prueba técnica no sustituye usabilidad real con un adulto facilitando una actividad ni convierte ACT-0001 en publicada.

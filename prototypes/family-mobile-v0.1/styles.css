@@ -47,9 +47,13 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .brand-mark i { background: var(--yellow); border-radius: 2px; }
 .brand-mark i:nth-child(2) { background: var(--cyan); transform: translateY(5px); }
 .brand-mark i:nth-child(3) { background: var(--coral); transform: translateY(-2px); }
+.header-actions { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; }
 .status-button { height: 44px; border: 1px solid rgba(255,255,255,.22); background: transparent; color: inherit; border-radius: 13px; padding: 0 10px; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
 .status-button span { font-size: 10px; }
 .app.is-offline .status-button { color: var(--yellow); border-color: var(--yellow); }
+.language-button { width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.3); border-radius: 13px; background: rgba(255,255,255,.08); color: var(--surface); font: 800 11px var(--display); letter-spacing: .05em; cursor: pointer; }
+.language-button:focus-visible, .status-button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+@media (max-width: 390px) { .status-button span { display: none; } .status-button { width: 44px; justify-content: center; padding: 0; } }
 
 #view { --view-gutter: 16px; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; scroll-behavior: smooth; padding: 24px var(--view-gutter) 36px; }
 #view.no-bottom { padding-bottom: 28px; }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-US">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -15,6 +15,7 @@
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
+  <script src="i18n.js"></script>
 </head>
 <body>
   <div class="prototype-frame">
@@ -28,9 +29,12 @@
           <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
           <span><strong>Kids Learning System</strong><small>taller familiar · prototipo</small></span>
         </button>
-        <button class="status-button" data-action="connection-info" aria-label="Ver estado de conexión">
-          <svg aria-hidden="true"><use href="#i-signal"></use></svg><span id="connectionText">En línea</span>
-        </button>
+        <div class="header-actions">
+          <button class="status-button" data-action="connection-info" aria-label="Ver estado de conexión">
+            <svg aria-hidden="true"><use href="#i-signal"></use></svg><span id="connectionText">En línea</span>
+          </button>
+          <button class="language-button" data-action="switch-language" aria-label="Switch to English">EN</button>
+        </div>
       </header>
 
       <main id="view" tabindex="-1" aria-live="polite"></main>

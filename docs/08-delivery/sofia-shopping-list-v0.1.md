@@ -1,5 +1,7 @@
 # Lista de compras — cinco días con Sofía
 
+> **Versión inglesa revisada:** [Shopping List — Five Days with Sofia](sofia-shopping-list-v0.1.en.md). El español sigue siendo la fuente normativa durante v0.x.
+
 **Para:** dry run v0.1
 **Criterio:** comprar una vez y reutilizar durante la semana. Revisar primero lo que ya existe en casa.
 

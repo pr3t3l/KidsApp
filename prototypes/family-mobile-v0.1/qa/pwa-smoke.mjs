@@ -4,6 +4,7 @@ if (!/^https?:\/\//.test(artifactUrl)) throw new Error("PWA smoke requires an HT
 
 const targetUrl = new URL(artifactUrl);
 targetUrl.searchParams.set("reset", "1");
+const expectedOfflineLabel = targetUrl.searchParams.get("lang") === "en" ? "Offline" : "Sin conexión";
 const target = await fetch(`http://127.0.0.1:9222/json/new?${encodeURIComponent(targetUrl.href)}`, { method: "PUT" }).then((response) => response.json());
 const socket = new WebSocket(target.webSocketDebuggerUrl);
 await new Promise((resolve, reject) => {
@@ -16,7 +17,7 @@ const pending = new Map();
 const runtimeErrors = [];
 socket.addEventListener("message", (event) => {
   const message = JSON.parse(event.data);
-  if (message.method === "Runtime.exceptionThrown") runtimeErrors.push(message.params.exceptionDetails.text);
+  if (message.method === "Runtime.exceptionThrown") runtimeErrors.push(message.params.exceptionDetails.exception?.description || message.params.exceptionDetails.text);
   if (!message.id || !pending.has(message.id)) return;
   const request = pending.get(message.id);
   pending.delete(message.id);
@@ -52,10 +53,10 @@ await command("Page.reload", { ignoreCache: false });
 await new Promise((resolve) => setTimeout(resolve, 650));
 
 await expect("Service worker controls the installed shell", `navigator.serviceWorker.controller !== null`);
-await expect("Manifest exposes 192 and 512 pixel icons", `fetch('manifest.webmanifest').then((response) => response.json()).then((manifest) => manifest.display === 'standalone' && manifest.icons.some((icon) => icon.sizes === '192x192') && manifest.icons.some((icon) => icon.sizes === '512x512'))`);
-await expect("App shell cache contains the core files", `caches.open('kids-founder-pilot-v1').then((cache) => cache.keys()).then((requests) => ['index.html','styles.css','app.js'].every((name) => requests.some((request) => request.url.endsWith(name))))`);
+await expect("Manifest exposes 192 and 512 pixel icons", `fetch(document.querySelector('link[rel="manifest"]').href).then((response) => response.json()).then((manifest) => manifest.display === 'standalone' && ['es-US','en-US'].includes(manifest.lang) && manifest.icons.some((icon) => icon.sizes === '192x192') && manifest.icons.some((icon) => icon.sizes === '512x512'))`);
+await expect("App shell cache contains the bilingual core files", `caches.open('kids-founder-pilot-v3').then((cache) => cache.keys()).then((requests) => ['index.html','styles.css','i18n.js','app.js','manifest.es.webmanifest','manifest.en.webmanifest'].every((name) => requests.some((request) => request.url.endsWith(name))))`);
 await evaluate(`window.dispatchEvent(new Event('offline')); true`);
-await expect("Connectivity event updates the visible status", `document.body.textContent.includes('Sin conexión')`);
+await expect("Connectivity event updates the visible status", `document.body.textContent.includes(${JSON.stringify(expectedOfflineLabel)})`);
 await evaluate(`window.dispatchEvent(new Event('online')); true`);
 
 await command("Network.emulateNetworkConditions", { offline: true, latency: 0, downloadThroughput: 0, uploadThroughput: 0 });
@@ -67,3 +68,4 @@ await command("Network.emulateNetworkConditions", { offline: false, latency: 0, 
 if (runtimeErrors.length) throw new Error(`Runtime exceptions: ${runtimeErrors.join('; ')}`);
 console.log("PASS no runtime exceptions");
 socket.close();
+await fetch(`http://127.0.0.1:9222/json/close/${target.id}`).catch(() => {});

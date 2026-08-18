@@ -1,10 +1,10 @@
-const learners = [
+let learners = [
   { id: "sofi", name: "Sofi", initials: "SO", age: "5–6 años", color: "cyan" },
   { id: "mateo", name: "Mateo", initials: "MA", age: "7–8 años", color: "yellow" },
   { id: "leo", name: "Leo", initials: "LE", age: "9–10 años", color: "coral" }
 ];
 
-const learningFocuses = {
+let learningFocuses = {
   designer: {
     title: "Diseñar y probar una forma",
     objective: "Proponer una forma, construirla y relacionar el resultado de su propia prueba con una decisión de diseño.",
@@ -31,7 +31,7 @@ const learningFocuses = {
   }
 };
 
-const stages = [
+let stages = [
   {
     name: "Descubrir", time: "6 min", eyebrow: "Vean el problema en acción",
     title: "Prueben primero la hoja plana",
@@ -196,7 +196,7 @@ const stages = [
   }
 ];
 
-const ratingScale = [
+let ratingScale = [
   { value: 1, label: "Todavía no", detail: "No pudo hacerlo esta vez" },
   { value: 2, label: "Mucha ayuda", detail: "Necesitó guía continua" },
   { value: 3, label: "Alguna ayuda", detail: "Lo hizo con recordatorios" },
@@ -204,7 +204,7 @@ const ratingScale = [
   { value: 5, label: "Solo y seguro", detail: "Lo hizo con independencia" }
 ];
 
-const weeklyActivities = [
+let weeklyActivities = [
   {
     id: "day1", day: "DÍA 1", title: "Puentes de papel", duration: 40, color: "var(--yellow)", activityRef: "ACT-0001 · v0.3.0", status: "Draft",
     promise: "Construyan y comparen puentes hechos con una sola hoja para descubrir cómo la forma puede ayudar al papel a resistir una carga.",
@@ -303,11 +303,24 @@ const weeklyActivities = [
   }
 ];
 
-const shoppingSectionMeta = {
+let shoppingSectionMeta = {
   Supermercado: { code: "SUP", note: "Alimentos secos, hogar y desechables" },
   Papelería: { code: "PAP", note: "Papelería y manualidades" },
   Casa: { code: "CASA", note: "Revisa primero; compra solo si falta" }
 };
+
+const i18n = window.KidsI18n;
+const locale = i18n?.locale || "es";
+const tr = (spanish, english) => locale === "en" ? (english || i18n?.text(spanish) || spanish) : spanish;
+
+if (locale === "en" && i18n?.en) {
+  learners = i18n.en.learners;
+  learningFocuses = i18n.en.learningFocuses;
+  stages = i18n.en.stages;
+  ratingScale = i18n.en.ratingScale;
+  weeklyActivities = i18n.en.weeklyActivities;
+  shoppingSectionMeta = i18n.en.shoppingSectionMeta;
+}
 
 function aggregateShopping(activities = weeklyActivities) {
   const items = new Map();
@@ -480,7 +493,7 @@ function render() {
   bottomNav.hidden = !topLevel;
   view.classList.toggle("no-bottom", !topLevel);
   app.classList.toggle("is-offline", state.offline);
-  connectionText.textContent = state.offline ? "Sin conexión" : "En línea";
+  connectionText.textContent = state.offline ? tr("Sin conexión", "Offline") : tr("En línea", "Online");
   [...bottomNav.querySelectorAll("button")].forEach((button) => button.classList.toggle("is-active", button.dataset.target === state.screen));
 
   const renderers = {
@@ -497,6 +510,12 @@ function render() {
     saved: renderSaved
   };
   view.innerHTML = (renderers[state.screen] || renderToday)();
+  i18n?.localizeDom(document);
+  const languageButton = document.querySelector("[data-action='switch-language']");
+  if (languageButton) {
+    languageButton.textContent = locale === "es" ? "EN" : "ES";
+    languageButton.setAttribute("aria-label", locale === "es" ? "Switch to English" : "Switch to Spanish");
+  }
   persistLocalState();
 }
 
@@ -618,7 +637,8 @@ function renderPrep() {
 }
 
 function stageVisual(stageName) {
-  const key = stageName.toLowerCase();
+  const keys = { discover: "descubrir", imagine: "imaginar", build: "construir", experiment: "experimentar", improve: "mejorar", explain: "explicar" };
+  const key = keys[stageName.toLowerCase()] || stageName.toLowerCase();
   const visuals = {
     descubrir: `<div class="mini-bridge"><i></i><b></b><i></i><span class="mini-cup">0</span></div>`,
     imaginar: `<div class="mini-shapes"><span class="mini-channel"></span><span class="mini-accordion">/\/\/</span><span class="mini-wide">/‾\</span></div>`,
@@ -642,7 +662,7 @@ function renderSession() {
   const stage = stages[state.stage];
   const chosenSupport = state.supportUsed[state.stage] !== undefined ? stage.helpOptions[state.supportUsed[state.stage]] : null;
   return `<section class="screen">
-    ${flowHeader("Puentes de papel", `${state.stage + 1} de ${stages.length} · ${stage.name}`, "prep", `<button data-action="pause" aria-label="Pausar">${icon(state.paused ? "play" : "pause")}</button>`)}
+    ${flowHeader(tr("Puentes de papel", "Paper Bridges"), locale === "en" ? `${state.stage + 1} of ${stages.length} · ${stage.name}` : `${state.stage + 1} de ${stages.length} · ${stage.name}`, "prep", `<button data-action="pause" aria-label="Pausar">${icon(state.paused ? "play" : "pause")}</button>`)}
     ${state.offline ? `<div class="offline-banner">${icon("signal")}<span>Modo sin conexión. Las instrucciones, la ayuda y el avance local siguen disponibles.</span></div>` : ""}
     <div class="stage-track" aria-label="Etapas de la actividad">
       ${stages.map((item, index) => `<button class="stage-button ${index === state.stage ? "is-current" : ""}" data-action="stage" data-value="${index}"><strong>${index + 1}. ${item.name}</strong><small>${item.time}</small></button>`).join("")}
@@ -662,7 +682,7 @@ function renderSession() {
 
     <article class="facilitation-block participant-actions" style="margin-top:12px">
       <header><span class="block-number cyan">2</span><div><p class="eyebrow">Los niños</p><h3>Ahora cada uno</h3></div></header>
-      ${stage.name === "Experimentar" ? `<div class="turn-order"><strong>Un turno completo a la vez</strong><span>${activeLearners().map((learner) => learner.name).join(" → ")}</span></div>` : ""}
+      ${state.stage === 3 ? `<div class="turn-order"><strong>Un turno completo a la vez</strong><span>${activeLearners().map((learner) => learner.name).join(" → ")}</span></div>` : ""}
       ${activeLearners().map((learner) => `<div class="named-action">${avatar(learner)}<div><strong>${learner.name}</strong><p>${stage.actions[state.assignments[learner.id]]}</p></div></div>`).join("")}
       ${stage.decision ? `<div class="inline-decision"><span>?</span><p><strong>Ellos deciden</strong>${stage.decision}</p></div>` : ""}
     </article>
@@ -756,6 +776,10 @@ function renderPlan() {
 
 function formatUnit(quantity, unit) {
   if (quantity === 1) return unit;
+  if (locale === "en") {
+    const plurals = { sheet: "sheets", book: "books", cup: "cups", crayon: "crayons", ruler: "rulers", marker: "markers", towel: "towels", roll: "rolls", tray: "trays", container: "containers", spoon: "spoons", sponge: "sponges", stick: "sticks", card: "cards", "small bag": "small bags" };
+    return plurals[unit] || unit;
+  }
   const plurals = { vaso: "vasos", hoja: "hojas", libro: "libros", crayón: "crayones", regla: "reglas", marcador: "marcadores", toalla: "toallas", rollo: "rollos", bandeja: "bandejas", recipiente: "recipientes", cuchara: "cucharas", taza: "tazas", esponja: "esponjas", palito: "palitos", tarjeta: "tarjetas", "bolsa pequeña": "bolsas pequeñas" };
   return plurals[unit] || unit;
 }
@@ -887,6 +911,7 @@ function noteSheet() {
 function openSheet(content) {
   lastFocus = document.activeElement;
   sheetContent.innerHTML = content;
+  i18n?.localizeDom(sheetContent);
   scrim.hidden = false;
   sheet.classList.add("is-open");
   sheet.setAttribute("aria-hidden", "false");
@@ -903,7 +928,7 @@ function closeSheet() {
 
 function showToast(message) {
   clearTimeout(toastTimer);
-  toast.textContent = message;
+  toast.textContent = i18n?.text(message) || message;
   toast.classList.add("is-visible");
   toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 2600);
 }
@@ -919,6 +944,7 @@ document.addEventListener("click", (event) => {
 
   if (action === "tab" || action === "navigate") return setScreen(target);
   if (action === "home") return setScreen("today");
+  if (action === "switch-language") return i18n?.setLocale(locale === "es" ? "en" : "es");
   if (action === "select-time") { state.time = Number(value); return render(); }
   if (action === "plan-view") { state.planView = value; return render(); }
   if (action === "open-plan-day") { state.selectedPlanDay = id; return setScreen("planned-activity"); }
@@ -953,7 +979,7 @@ document.addEventListener("click", (event) => {
   if (action === "connection-info") return openSheet(`<header><div><p class="eyebrow">Estado de conexión</p><h2 id="sheetTitle">${state.offline ? "Sin conexión" : "En línea"}</h2></div><button class="sheet-close" data-action="close-sheet" aria-label="Cerrar">${icon("close")}</button></header><article class="card ${state.offline ? "yellow" : "mint"}"><strong>${state.offline ? "Puedes continuar" : "El contenido está listo"}</strong><p>${state.offline ? "La aplicación, el plan y el avance local siguen disponibles. No hay sincronización con un servidor en este prototipo." : "El dispositivo conservará localmente tus compras y el punto de la actividad."}</p></article>`);
   if (action === "install-app") return requestInstall();
   if (action === "reset-prototype") {
-    if (!window.confirm("¿Reiniciar compras, preparación y avance de la actividad en este dispositivo?")) return;
+    if (!window.confirm(tr("¿Reiniciar compras, preparación y avance de la actividad en este dispositivo?", "Reset shopping, preparation, and activity progress on this device?"))) return;
     try { localStorage.removeItem(storageKey); } catch (error) { console.warn("No se pudo reiniciar el estado local.", error); }
     window.location.assign(`${window.location.pathname}?reset=1`);
     return;

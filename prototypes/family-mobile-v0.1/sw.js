@@ -1,10 +1,13 @@
-const CACHE_NAME = "kids-founder-pilot-v1";
+const CACHE_NAME = "kids-founder-pilot-v3";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./styles.css",
+  "./i18n.js",
   "./app.js",
   "./manifest.webmanifest",
+  "./manifest.es.webmanifest",
+  "./manifest.en.webmanifest",
   "./icon.svg",
   "./icon-192.png",
   "./icon-512.png",

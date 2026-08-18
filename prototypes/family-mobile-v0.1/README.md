@@ -1,10 +1,11 @@
-# Prototipo móvil familiar v0.6
+# Prototipo móvil familiar v0.7
 
-Este artefacto convierte las decisiones de producto, el contenido editorial de ACT-0001 y el estudio visual previo en un recorrido móvil interactivo dirigido al adulto. La revisión v0.6 conserva el plan semanal navegable y la compra consolidada de v0.5 y añade una PWA instalable: cachea la interfaz y conserva localmente compras, preparación y punto de la actividad para el dry run desde un celular.
+Este artefacto convierte las decisiones de producto, el contenido editorial de ACT-0001 y el estudio visual previo en un recorrido móvil interactivo dirigido al adulto. La revisión v0.7 conserva la PWA instalable de v0.6 y entrega toda la interfaz, los cinco ejercicios, las seis fases del puente, compras, ayudas, seguridad, cierre e instalación en español (`es-US`) e inglés (`en-US`).
 
 - `index.html`: prototipo editable.
+- `i18n.js`: bundles de contenido y localización; español e inglés comparten IDs, estado y lógica.
 - `prototype-standalone.html`: copia interactiva en un solo archivo.
-- `manifest.webmanifest`, `icon.svg` y `sw.js`: instalación, identidad y cache offline del prototipo servido por HTTPS.
+- `manifest.es.webmanifest`, `manifest.en.webmanifest`, `icon.svg` y `sw.js`: instalación localizada, identidad y cache offline del prototipo servido por HTTPS.
 - `vercel.json`: headers mínimos de seguridad y entrega del service worker.
 - `.github/workflows/deploy-founder-pilot-pages.yml`: publica únicamente los archivos del shell estático en GitHub Pages; no expone los documentos editoriales ni las capturas de QA dentro del sitio.
 - `design-system.html`: espécimen editable de Pocket Workshop.
@@ -14,6 +15,13 @@ Este artefacto convierte las decisiones de producto, el contenido editorial de A
 - `handoff/`: límites y guía de implementación.
 
 El contenido familiar completo es sintético. `ACT-0001@0.3.0` es Draft y aparece solo como vista previa para validar la experiencia. La persistencia es local al navegador: no hay cuenta, backend, cifrado de aplicación ni sincronización entre dispositivos. El despliegue temporal no debe recibir fotografías, voz ni información infantil sensible.
+
+## Idioma
+
+La app elige `es-US` o `en-US` desde `?lang=`, la preferencia guardada o el idioma del navegador, en ese orden. El botón `EN`/`ES` guarda la elección en el dispositivo. Cada idioma usa su propio manifiesto instalable. La prueba `qa/i18n-smoke.mjs` recorre las cinco actividades, las seis fases y los overlays para impedir contenido mezclado.
+
+- Español: [https://pr3t3l.github.io/KidsApp/?lang=es](https://pr3t3l.github.io/KidsApp/?lang=es)
+- English: [https://pr3t3l.github.io/KidsApp/?lang=en](https://pr3t3l.github.io/KidsApp/?lang=en)
 
 ## Acceso web del founder pilot
 

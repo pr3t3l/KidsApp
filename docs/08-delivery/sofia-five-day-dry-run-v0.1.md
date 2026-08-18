@@ -1,5 +1,7 @@
 # Dry run de cinco días con Sofía v0.1
 
+> **Versión inglesa revisada:** [Five-Day Dry Run with Sofia](sofia-five-day-dry-run-v0.1.en.md). El español sigue siendo la fuente normativa durante v0.x.
+
 **Estado:** Controlled founder pilot — no publicable
 **Participante:** Sofía, 5 años
 **Duración objetivo:** 25–45 minutos por día, incluido el cierre

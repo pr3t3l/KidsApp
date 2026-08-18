@@ -15,7 +15,7 @@ const pending = new Map();
 const runtimeErrors = [];
 socket.addEventListener("message", (event) => {
   const message = JSON.parse(event.data);
-  if (message.method === "Runtime.exceptionThrown") runtimeErrors.push(message.params.exceptionDetails.text);
+  if (message.method === "Runtime.exceptionThrown") runtimeErrors.push(message.params.exceptionDetails.exception?.description || message.params.exceptionDetails.text);
   if (!message.id || !pending.has(message.id)) return;
   const request = pending.get(message.id);
   pending.delete(message.id);
@@ -107,3 +107,4 @@ await expect("Reload restores the saved screen", `document.body.textContent.incl
 if (runtimeErrors.length) throw new Error(`Runtime exceptions: ${runtimeErrors.join('; ')}`);
 console.log("PASS no runtime exceptions");
 socket.close();
+await fetch(`http://127.0.0.1:9222/json/close/${target.id}`).catch(() => {});
