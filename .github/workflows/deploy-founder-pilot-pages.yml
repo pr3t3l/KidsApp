@@ -1,0 +1,55 @@
+name: Deploy founder pilot to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "prototypes/family-mobile-v0.1/index.html"
+      - "prototypes/family-mobile-v0.1/app.js"
+      - "prototypes/family-mobile-v0.1/styles.css"
+      - "prototypes/family-mobile-v0.1/manifest.webmanifest"
+      - "prototypes/family-mobile-v0.1/sw.js"
+      - "prototypes/family-mobile-v0.1/icon.svg"
+      - "prototypes/family-mobile-v0.1/icon-192.png"
+      - "prototypes/family-mobile-v0.1/icon-512.png"
+      - "prototypes/family-mobile-v0.1/apple-touch-icon.png"
+      - ".github/workflows/deploy-founder-pilot-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Prepare static pilot
+        shell: bash
+        run: |
+          mkdir -p _site
+          cp prototypes/family-mobile-v0.1/{index.html,app.js,styles.css,manifest.webmanifest,sw.js,icon.svg,icon-192.png,icon-512.png,apple-touch-icon.png} _site/
+          touch _site/.nojekyll
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload pilot artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

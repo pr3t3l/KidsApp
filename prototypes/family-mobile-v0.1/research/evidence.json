@@ -13,15 +13,15 @@
     "confidence": "high",
     "claim": "Cada participante tiene como máximo un objetivo principal por sesión; las demás habilidades son exposiciones.",
     "source": "AGENTS.md; docs/01-learning/evidence-model.md",
-    "screen": "roles y cierre"
+    "screen": "focos por niño y cierre"
   },
   {
     "id": "MOB-E-003",
     "status": "decision",
     "confidence": "high",
-    "claim": "Los roles son contribuciones flexibles que pueden intercambiarse, combinarse u omitirse sin señal negativa.",
-    "source": "DEC-036; PRD-107; US-ACT-006",
-    "screen": "propuesta de roles y cambio de participación"
+    "claim": "Los roles siguen siendo estructura editorial interna; la familia ve un foco de aprendizaje y un aporte sugerido por niño, sin control normal de cambio de rol.",
+    "source": "DEC-042; UX-FAC-003; UX-FAC-004",
+    "screen": "mapa educativo y focos por niño"
   },
   {
     "id": "MOB-E-004",
@@ -33,17 +33,17 @@
   },
   {
     "id": "MOB-E-005",
-    "status": "verified",
+    "status": "decision",
     "confidence": "high",
-    "claim": "El cierre normal con tres niños tiene meta inferior a 20 segundos.",
-    "source": "AGENTS.md; UX-501",
-    "screen": "temporizador de cierre"
+    "claim": "El cierre normal con tres niños tiene meta inferior a 20 segundos, pero esa métrica se observa internamente y nunca se muestra como cronómetro o cuenta regresiva.",
+    "source": "AGENTS.md; UX-501; UX-505; DEC-046",
+    "screen": "cierre rápido y protocolo de prueba"
   },
   {
     "id": "MOB-E-006",
     "status": "verified",
     "confidence": "high",
-    "claim": "Una guía descargada conserva pasos, roles y seguridad sin conexión; la IA no es necesaria para continuar.",
+    "claim": "Una guía descargada conserva propósito, pasos, acciones nombradas, focos y seguridad sin conexión; la IA no es necesaria para continuar.",
     "source": "PRD-OFF-001; UX-404; docs/07-engineering/mobile-offline-strategy.md",
     "screen": "sesión, pausa y offline"
   },
@@ -51,7 +51,7 @@
     "id": "MOB-E-007",
     "status": "verified",
     "confidence": "high",
-    "claim": "ACT-0001@0.2.2 sigue siendo Draft y solo puede mostrarse como fixture de preview editorial.",
+    "claim": "ACT-0001@0.3.0 sigue siendo Draft y solo puede mostrarse como fixture de preview editorial.",
     "source": "docs/02-content/sample-activities/ACT-0001-puente-de-papel.md",
     "screen": "hoy, preparación, sesión y resumen"
   },
@@ -75,8 +75,80 @@
     "id": "MOB-E-010",
     "status": "hypothesis",
     "confidence": "low",
-    "claim": "Pedir al adulto que consulte al niño antes de confirmar el rol reducirá resistencia sin aumentar demasiado la preparación.",
-    "source": "Hipótesis derivada de DEC-036 y feedback de la fundadora",
-    "screen": "roles; requiere observación en piloto"
+    "claim": "Presentar el aporte como una sugerencia contextual —sin pedir al adulto administrar roles— reducirá conflicto sin perder claridad sobre la participación.",
+    "source": "Hipótesis derivada de DEC-042 y feedback de la fundadora",
+    "screen": "focos por niño; requiere observación en piloto"
+  },
+  {
+    "id": "MOB-E-011",
+    "status": "decision",
+    "confidence": "high",
+    "claim": "Antes de empezar, el adulto debe poder entender propósito educativo, áreas, conceptos, mecanismo y decisión infantil mediante divulgación progresiva.",
+    "source": "DEC-043; UX-FAC-001; UX-FAC-002",
+    "screen": "mapa educativo y focos por niño"
+  },
+  {
+    "id": "MOB-E-012",
+    "status": "decision",
+    "confidence": "high",
+    "claim": "Cada fase conserva acciones del adulto, guion literal, acciones nombradas, decisión, observación, estado de éxito, seguridad y ayuda; la interfaz los jerarquiza y agrupa para evitar una tarjeta independiente por concepto.",
+    "source": "DEC-043; UX-FAC-005; UX-FAC-006; UX-FAC-007; UX-FAC-008; UX-406",
+    "screen": "seis fases de sesión"
+  },
+  {
+    "id": "MOB-E-013",
+    "status": "decision",
+    "confidence": "high",
+    "claim": "La ayuda durante una fase parte de un problema observable y explica cambio, impacto, punto de reanudación y límite de seguridad; no usa una acción genérica de ajustar ritmo.",
+    "source": "DEC-043; UX-FAC-009; UX-FAC-010",
+    "screen": "sheet Ayuda con este paso"
+  },
+  {
+    "id": "MOB-E-014",
+    "status": "decision",
+    "confidence": "high",
+    "claim": "Las pantallas se derivan de una historia causal validada; la salida de una fase coincide con la entrada de la siguiente.",
+    "source": "DEC-044; ACT-NAR-003; ACT-NAR-012; UX-FAC-013",
+    "screen": "contexto inicial y bloque compacto de resultado en cada fase"
+  },
+  {
+    "id": "MOB-E-015",
+    "status": "decision",
+    "confidence": "high",
+    "claim": "Cuando la actividad lo permite, cada participante completa el ciclo esencial; el foco modifica la observación y el apoyo, no reserva diseñar, construir o probar a un solo niño.",
+    "source": "DEC-044; ACT-NAR-004; ACT-NAR-005; UX-FAC-014",
+    "screen": "focos por niño y acciones nominales de Build, Experiment e Improve"
+  },
+  {
+    "id": "MOB-E-016",
+    "status": "decision",
+    "confidence": "high",
+    "claim": "La función del vaso, el papel, los apoyos, la carga y la toalla aparece dentro de la fila del material y antes de utilizarlo en el procedimiento.",
+    "source": "ACT-NAR-008; ACT-0001@0.3.0 sección 3.4",
+    "screen": "preparación y Discover"
+  },
+  {
+    "id": "MOB-E-017",
+    "status": "decision",
+    "confidence": "high",
+    "claim": "La promesa de la ActivityVersion es el mensaje principal; el ciclo propio de cada niño se comunica como funcionamiento de la experiencia y no sustituye el propósito educativo.",
+    "source": "DEC-047; ACT-0001@0.3.0",
+    "screen": "actividad sugerida y mapa educativo"
+  },
+  {
+    "id": "MOB-E-018",
+    "status": "decision",
+    "confidence": "high",
+    "claim": "El cierre guarda directamente después de explicar en una línea qué se conservará; revisar un recibo no es un paso obligatorio.",
+    "source": "UX-505; UX-506; DEC-046",
+    "screen": "cierre rápido y confirmación"
+  },
+  {
+    "id": "MOB-E-019",
+    "status": "decision",
+    "confidence": "high",
+    "claim": "Cada actividad planificada abre un detalle y la compra semanal muestra totales por sección con procedencia; suma consumibles y reutiliza herramientas.",
+    "source": "REC-007; REC-008; REC-009; DEC-049; feedback de la fundadora",
+    "screen": "Plan, detalle de actividad y Compras"
   }
 ]

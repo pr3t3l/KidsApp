@@ -45,6 +45,8 @@ function validateActivity(activity, errors) {
     ["material", activity.materials, (item) => item.materialId],
     ["role", activity.roleTemplates, (item) => item.roleTemplateId],
     ["step", activity.steps, (item) => item.stepId],
+    ["narrative state", activity.experienceNarrative.states, (item) => item.stateId],
+    ["objective guidance", activity.objectiveGuidance, (item) => item.skillId],
     ["adaptation", activity.adaptations, (item) => item.adaptationId],
     ["visual brief", activity.visualBriefs, (item) => item.visualBriefId],
     ["review", activity.editorial.reviewRecords, (item) => item.reviewId],
@@ -60,6 +62,8 @@ function validateActivity(activity, errors) {
   const conceptIds = setOf(activity.learning.concepts, (item) => item.conceptId);
   const roleIds = setOf(activity.roleTemplates, (item) => item.roleTemplateId);
   const stepIds = setOf(activity.steps, (item) => item.stepId);
+  const stateIds = setOf(activity.experienceNarrative.states, (item) => item.stateId);
+  const materialIds = setOf(activity.materials, (item) => item.materialId);
   const adaptationIds = setOf(activity.adaptations, (item) => item.adaptationId);
   const visualIds = setOf(activity.visualBriefs, (item) => item.visualBriefId);
 
@@ -69,12 +73,39 @@ function validateActivity(activity, errors) {
     }
   };
 
+  checkRefs([activity.experienceNarrative.startingStateId], stateIds, "ACT_NARRATIVE_STATE_REF", "experienceNarrative.startingStateId");
+  checkRefs([activity.experienceNarrative.endingStateId], stateIds, "ACT_NARRATIVE_STATE_REF", "experienceNarrative.endingStateId");
+  const stepOrder = new Map(activity.steps.map((step, index) => [step.stepId, index]));
+  const materialIntroduction = new Map();
+  for (const materialFunction of activity.experienceNarrative.materialFunctions) {
+    checkRefs([materialFunction.materialId], materialIds, "ACT_NARRATIVE_MATERIAL_REF", "experienceNarrative.materialFunctions");
+    checkRefs([materialFunction.introducedAtStepId], stepIds, "ACT_NARRATIVE_STEP_REF", materialFunction.materialId);
+    if (materialIntroduction.has(materialFunction.materialId)) {
+      addError(errors, "ACT_NARRATIVE_MATERIAL_DUPLICATE", `material ${materialFunction.materialId} has more than one narrative introduction`);
+    }
+    materialIntroduction.set(materialFunction.materialId, stepOrder.get(materialFunction.introducedAtStepId));
+  }
+
+  const guidanceSkillIds = setOf(activity.objectiveGuidance, (item) => item.skillId);
+  for (const guidance of activity.objectiveGuidance) {
+    checkRefs([guidance.skillId], skillIds, "ACT_OBJECTIVE_GUIDANCE_SKILL_REF", "objectiveGuidance");
+    if (guidance.startingAgeRange.minimumYears > guidance.startingAgeRange.maximumYears) {
+      addError(errors, "ACT_OBJECTIVE_GUIDANCE_AGE", `${guidance.skillId} has a reversed starting age range`);
+    }
+    if (guidance.startingAgeRange.minimumYears < activity.ageRange.minimumYears || guidance.startingAgeRange.maximumYears > activity.ageRange.maximumYears) {
+      addError(errors, "ACT_OBJECTIVE_GUIDANCE_AGE", `${guidance.skillId} guidance is outside the ActivityVersion age range`);
+    }
+  }
+
   for (const role of activity.roleTemplates) {
     checkRefs(role.eligiblePrimarySkillIds, skillIds, "ACT_ROLE_SKILL_REF", role.roleTemplateId);
     checkRefs(role.exposureSkillIds, skillIds, "ACT_ROLE_SKILL_REF", role.roleTemplateId);
     checkRefs(role.exposureConceptIds, conceptIds, "ACT_ROLE_CONCEPT_REF", role.roleTemplateId);
     checkRefs(role.allowedStepIds, stepIds, "ACT_ROLE_STEP_REF", role.roleTemplateId);
     checkRefs(role.restrictedStepIds, stepIds, "ACT_ROLE_STEP_REF", role.roleTemplateId);
+    for (const skillId of role.eligiblePrimarySkillIds) {
+      if (!guidanceSkillIds.has(skillId)) addError(errors, "ACT_OBJECTIVE_GUIDANCE_COVERAGE", `${role.roleTemplateId} eligible skill ${skillId} has no objective guidance`);
+    }
     const restricted = setOf(role.restrictedStepIds);
     for (const stepId of role.allowedStepIds) {
       if (restricted.has(stepId)) addError(errors, "ACT_ROLE_STEP_OVERLAP", `${role.roleTemplateId} both allows and restricts ${stepId}`);
@@ -93,9 +124,47 @@ function validateActivity(activity, errors) {
   }
 
   for (const step of activity.steps) {
+    checkRefs([step.entryStateId, step.exitStateId], stateIds, "ACT_NARRATIVE_STATE_REF", step.stepId);
     checkRefs(step.visualBriefIds, visualIds, "ACT_STEP_VISUAL_REF", step.stepId);
     checkRefs(step.exposureSkillIds, skillIds, "ACT_STEP_SKILL_REF", step.stepId);
     checkRefs(step.exposureConceptIds, conceptIds, "ACT_STEP_CONCEPT_REF", step.stepId);
+    for (const action of step.participantActionTemplates) {
+      checkRefs(action.roleTemplateIds, roleIds, "ACT_STEP_ACTION_ROLE_REF", `${step.stepId}/${action.actionTemplateId}`);
+    }
+    if (step.cycleActions.some((action) => action.audience === "every_active_participant") && !step.participantActionTemplates.some((action) => action.audience === "all_participants")) {
+      addError(errors, "ACT_PARTICIPANT_CYCLE_ACTION", `${step.stepId} declares an action for every participant but provides no all-participants action template`);
+    }
+    for (const cue of step.observationCues) {
+      checkRefs([cue.skillId], skillIds, "ACT_STEP_CUE_SKILL_REF", `${step.stepId}/${cue.cueId}`);
+    }
+    for (const materialUse of step.materialUses) {
+      checkRefs([materialUse.materialId], materialIds, "ACT_STEP_MATERIAL_REF", step.stepId);
+      if (!materialIntroduction.has(materialUse.materialId)) {
+        addError(errors, "ACT_NARRATIVE_MATERIAL_FUNCTION", `${step.stepId} uses ${materialUse.materialId} without a declared material function`);
+      } else if (materialIntroduction.get(materialUse.materialId) > stepOrder.get(step.stepId)) {
+        addError(errors, "ACT_NARRATIVE_MATERIAL_ORDER", `${step.stepId} uses ${materialUse.materialId} before its narrative introduction`);
+      }
+    }
+  }
+  if (activity.steps[0]?.entryStateId !== activity.experienceNarrative.startingStateId) {
+    addError(errors, "ACT_NARRATIVE_START", "the first step entry state must equal experienceNarrative.startingStateId");
+  }
+  for (let index = 0; index < activity.steps.length - 1; index += 1) {
+    const current = activity.steps[index];
+    const next = activity.steps[index + 1];
+    if (current.exitStateId !== next.entryStateId) {
+      addError(errors, "ACT_NARRATIVE_CONTINUITY", `${current.stepId} exits at ${current.exitStateId}, but ${next.stepId} enters at ${next.entryStateId}`);
+    }
+  }
+  if (activity.steps.at(-1)?.exitStateId !== activity.experienceNarrative.endingStateId) {
+    addError(errors, "ACT_NARRATIVE_END", "the final step exit state must equal experienceNarrative.endingStateId");
+  }
+  for (const requiredAction of activity.experienceNarrative.participantCycle.requiredActions) {
+    const matchingActions = activity.steps.flatMap((step) => step.cycleActions).filter((item) => item.action === requiredAction);
+    const covered = activity.experienceNarrative.participantCycle.completionPolicy === "every_active_participant"
+      ? matchingActions.some((item) => item.audience === "every_active_participant")
+      : matchingActions.some((item) => ["every_active_participant", "shared_group"].includes(item.audience));
+    if (!covered) addError(errors, "ACT_PARTICIPANT_CYCLE_COVERAGE", `required cycle action ${requiredAction} lacks the declared participant coverage`);
   }
   for (const stage of activity.learning.cycleStages) {
     if (!activity.steps.some((step) => step.stage === stage)) {

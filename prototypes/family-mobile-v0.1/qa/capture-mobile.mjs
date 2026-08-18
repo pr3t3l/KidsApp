@@ -45,11 +45,39 @@ await command("Emulation.setDeviceMetricsOverride", {
 await command("Emulation.setTouchEmulationEnabled", { enabled: true, maxTouchPoints: 5 });
 await command("Page.navigate", { url });
 await new Promise((resolve) => setTimeout(resolve, 700));
+await command("Runtime.evaluate", {
+  expression: `(() => {
+    const amount = Number(new URLSearchParams(location.search).get('scroll') || 0);
+    const view = document.querySelector('#view');
+    if (view && amount > 0) {
+      view.style.scrollBehavior = 'auto';
+      view.scrollTop = amount;
+    }
+  })()`
+});
+await new Promise((resolve) => setTimeout(resolve, 120));
 const layout = await command("Runtime.evaluate", {
   expression: `JSON.stringify({
     viewport: { width: innerWidth, height: innerHeight },
     documentWidth: document.documentElement.scrollWidth,
     appWidth: document.querySelector('#app')?.getBoundingClientRect().width,
+    view: {
+      clientWidth: document.querySelector('#view')?.clientWidth,
+      clientHeight: document.querySelector('#view')?.clientHeight,
+      scrollWidth: document.querySelector('#view')?.scrollWidth,
+      scrollHeight: document.querySelector('#view')?.scrollHeight,
+      scrollLeft: document.querySelector('#view')?.scrollLeft,
+      scrollTop: document.querySelector('#view')?.scrollTop
+    },
+    content: {
+      width: document.querySelector('.screen')?.getBoundingClientRect().width,
+      left: document.querySelector('.screen')?.getBoundingClientRect().left
+    },
+    stageTrack: {
+      clientWidth: document.querySelector('.stage-track')?.clientWidth,
+      scrollWidth: document.querySelector('.stage-track')?.scrollWidth,
+      scrollLeft: document.querySelector('.stage-track')?.scrollLeft
+    },
     screen: new URLSearchParams(location.search).get('screen')
   })`,
   returnByValue: true

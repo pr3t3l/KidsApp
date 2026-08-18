@@ -2,7 +2,7 @@
 
 **Estado / Status:** Draft — no elegible para recomendación familiar / not eligible for family recommendation
 
-**Versión / Version:** 0.2.2
+**Versión / Version:** 0.3.0
 
 **Idioma fuente / Source language:** Español (`es-US`)
 
@@ -19,7 +19,7 @@
 | Campo | Valor |
 |---|---|
 | `activity_id` | `ACT-0001` |
-| `version` | `0.2.2` |
+| `version` | `0.3.0` |
 | `slug` | `paper-bridge` |
 | `status` | `draft` |
 | `age_range` | 5–10 años / ages 5–10 |
@@ -47,7 +47,7 @@ Esta versión soporta sesiones de uno, dos o tres niños. Una sesión de cuatro 
 | `ACT-0001-GATE-04` Revisión de seguridad | Pendiente | Ejecución de falla segura y validación del vaso, protocolo de carga y controles. |
 | `ACT-0001-GATE-05` Revisión bilingüe | Pendiente | Verificar equivalencia científica, instrucciones y advertencias `es-US`/`en-US`. |
 | `ACT-0001-GATE-06` Family pilot → Published | No iniciado | Tras `ready_for_pilot`: ejecución del autor y al menos tres ejecuciones adicionales en dos familias, incluida una dirigida por otro adulto. |
-| `ACT-0001-GATE-07` Recursos visuales | Pendiente | Assets ligados a 0.2.2 con QA automático y aprobación humana. |
+| `ACT-0001-GATE-07` Recursos visuales | Pendiente | Assets ligados a 0.3.0 con QA automático y aprobación humana. |
 
 No hay `review_records` aprobados. Por tanto, esta ActivityVersion no puede entrar en planes ni sesiones familiares de producción.
 
@@ -57,7 +57,7 @@ Este documento usa directamente los patrones del JSON Schema cuando existen:
 
 - `stepId`: `STEP-00` a `STEP-09`; `STEP-00`, `STEP-04` y `STEP-08` conforman `adultOnlyStepIds`.
 - El entero `minutes` de cada paso usa la ruta canónica de 45 minutos; `minutes_by_path` conserva las variantes 30/45/60 indicadas en la ficha. La limpieza se registra también en `timing.cleanupMinutes` y ya está incluida en el total de cada ruta.
-- `visualBriefId`: `VIS-01` a `VIS-08`; el contexto `ACT-0001@0.2.2` da el namespace global.
+- `visualBriefId`: `VIS-01` a `VIS-08`; el contexto `ACT-0001@0.3.0` da el namespace global.
 - `adaptationId`: prefijo `ADAPT-`, por ejemplo `ADAPT-BRIDGE-PAUSE`.
 - `materialId`, `roleTemplateId` y `hazardId`: prefijos `MAT-`, `ROLE-` y `HAZ-` respectivamente.
 - Los `ACT-0001-OBJ-*` son identificadores editoriales locales de pregunta/rúbrica; el campo serializado `primaryObjectiveSkillId` y `eligiblePrimarySkillIds` usa el `skillId` canónico asociado en 3.2.
@@ -106,6 +106,18 @@ Cada niño recibe exactamente uno de estos objetivos principales antes de inicia
 
 La edad filtra lenguaje y seguridad, pero no decide por sí sola el objetivo. Si no existe evidencia previa, usar el objetivo predeterminado de la configuración como exploración o crecimiento y explicar la selección como “oportunidad para observar”, no como predicción de capacidad.
 
+#### 3.2.1 Calibración inicial sin evidencia previa
+
+Esta tabla orienta el fixture y la primera recomendación; no reemplaza evidencia individual.
+
+| Rango orientativo | Foco inicial preferido | Intención | Por qué puede aportar reto | Si resulta fácil / difícil |
+|---|---|---|---|---|
+| 5–6 | `OBJ-01` correspondencia uno a uno durante su propia prueba | Consolidación o crecimiento | Mantener una acción por número, esperar la estabilidad y recuperar el total integra conteo con una situación física. | Fácil: comparar su total con la referencia. Difícil: contar con apoyo visual o adulto y valorar solo la correspondencia observada. |
+| 7–8 | `OBJ-05` proponer, construir y probar una forma propia | Crecimiento | Convierte una idea en un diseño comprobable y exige relacionarlo con un resultado, no solo plegar. | Fácil: justificar un único cambio. Difícil: elegir entre dos formas aprobadas y construir con guías. |
+| 9–10 | `OBJ-04` mantener condiciones constantes | Crecimiento | Exige controlar varias condiciones mientras cada niño prueba un diseño distinto. | Fácil: registrar y explicar por qué una prueba no fue comparable. Difícil: comprobar una condición asignada con checklist. |
+
+En cualquier rango, evidencia reciente puede justificar otro objetivo elegible. Contar hasta 20 sin espera, correspondencia o recuperación no se usa como reto principal para un niño cuando ya existe evidencia de independencia; se selecciona comparación, diseño, control de condiciones o explicación.
+
 ### 3.3 Exposiciones secundarias previstas
 
 Solo se registra una exposición cuando el niño participó realmente en la acción o conversación correspondiente.
@@ -120,6 +132,37 @@ Solo se registra una exposición cuando el niño participó realmente en la acci
 | Diseño e iteración / Design and iteration | Propuso, eligió o construyó un cambio. / Proposed, chose, or built a change. | Que la mejora funcionó o que ya domina diseño. / That the change improved the bridge or the child has mastered design. |
 | Explicación / Explanation | Compartió una predicción, observación o razón. / Shared a prediction, observation, or reason. | Que la explicación científica fue completa. / That the scientific explanation was complete. |
 
+### 3.4 Instancia del contrato narrativo
+
+- **Modo:** `hybrid`.
+- **Parte individual obligatoria:** cada participante activo encuentra el problema, propone una forma, construye una hoja propia, realiza su prueba por turnos, observa/registra su resultado y propone una mejora.
+- **Parte compartida:** el grupo selecciona un único cambio basado en los resultados, construye una hoja de mejora y vuelve a probarla.
+- **Regla de foco:** el objetivo principal determina qué señal observa el adulto; no reserva diseño, construcción o prueba para un solo niño.
+
+#### Función de materiales
+
+| Material | Función visible antes del primer uso | Introducción |
+|---|---|---|
+| Libros | Crear dos apoyos iguales separados 15 cm / 6 in. | `STEP-00` |
+| Papel | Convertirse en el puente; una hoja por diseño. | `STEP-01` |
+| Vaso | Recipiente de carga colocado en el centro; siempre vacío al iniciar una prueba. | `STEP-01` |
+| Crayones | Unidades de carga iguales que se agregan de una en una dentro del vaso. | `STEP-01` |
+| Regla/marcas | Comprobar que la separación permanece igual. | `STEP-00` |
+| Hoja de registro | Conservar idea, diseño, resultado y comparabilidad de cada prueba. | `STEP-01` |
+
+#### Estados y continuidad
+
+| Paso | Estado de entrada | Acción causal | Estado de salida | Por qué habilita el siguiente momento |
+|---|---|---|---|---|
+| `STEP-01` Discover | `STATE-READY` | Presentar función de materiales y probar una hoja plana. | `STATE-BASELINE-OBSERVED` | Ya existe un problema visto y un resultado de referencia sobre el cual imaginar. |
+| `STEP-02` Imagine | `STATE-BASELINE-OBSERVED` | Proponer formas, ver una demostración adulta y elegir una forma por niño. | `STATE-DESIGNS-CHOSEN` | Cada niño tiene una intención concreta que puede construir. |
+| `STEP-03` Build | `STATE-DESIGNS-CHOSEN` | Cada niño construye y etiqueta su propia hoja. | `STATE-CHILD-DESIGNS-READY` | Hay artefactos identificables listos para probar uno por uno. |
+| `STEP-04/05` Experiment | `STATE-CHILD-DESIGNS-READY` | Cada niño realiza su prueba en el mismo montaje y registra el resultado. | `STATE-CHILD-RESULTS-RECORDED` | Existen varios resultados comparables que permiten escoger una mejora. |
+| `STEP-06` Improve | `STATE-CHILD-RESULTS-RECORDED` | Todos proponen; el grupo construye y prueba un único cambio. | `STATE-IMPROVEMENT-TESTED` | Hay una iteración vinculada a evidencia anterior. |
+| `STEP-07` Explain | `STATE-IMPROVEMENT-TESTED` | Cada niño conecta su diseño o la mejora con algo visto o contado. | `STATE-EXPLANATION-SHARED` | La experiencia termina con evidencia expresada, no solo con un objeto. |
+
+Una pantalla no puede cambiar este orden, omitir la prueba plana de referencia ni volver exclusivas para un solo niño las acciones individuales obligatorias.
+
 ## 4. Parámetros canónicos de la prueba
 
 Estos parámetros forman parte del núcleo y se mantienen iguales entre diseños:
@@ -128,7 +171,7 @@ Estos parámetros forman parte del núcleo y se mantienen iguales entre diseños
 2. El borde largo de la hoja cruza un espacio de `15 cm / 6 in` entre los bordes interiores de los soportes.
 3. La hoja descansa sobre ambos soportes sin cinta, pegamento, clips ni otra fijación.
 4. El mismo vaso liviano se coloca con su base aproximadamente en el centro del espacio y sin tocar los soportes.
-5. La única carga aprobada es el mismo set de 20 crayones canónicos. El Probador baja un crayón suavemente hasta dejarlo completamente dentro del vaso; no lo deja caer. Alterna el lado del centro donde lo coloca para no concentrar toda la carga en un borde.
+5. La única carga aprobada es el mismo set de 20 crayones canónicos. En su propia prueba, cada niño baja un crayón suavemente hasta dejarlo completamente dentro del vaso; no lo deja caer. Alterna el lado del centro donde lo coloca para no concentrar toda la carga en un borde.
 6. Antes de añadir el primer crayón, el adulto confirma soportes inmóviles, hoja apoyada y vaso centrado. El vaso vacío debe permanecer estable durante una cuenta lenta de tres.
 7. La puntuación es la última cantidad de crayones que permaneció estable durante una cuenta lenta de tres bajo un montaje válido.
 8. Si sostiene los 20, se registra `20+`; no se añaden objetos ni se sustituye la carga.
@@ -139,7 +182,7 @@ Estos parámetros forman parte del núcleo y se mantienen iguales entre diseños
 2. The sheet's long edge spans a `15 cm / 6 in` gap between the inner edges of the supports.
 3. The sheet rests on both supports without tape, glue, clips, or other attachment.
 4. Place the same lightweight cup with its base near the center of the gap and without touching the supports.
-5. The only approved load is the same canonical set of 20 crayons. The Tester gently lowers one crayon fully into the cup and alternates the side of center to avoid concentrating the load on one edge.
+5. The only approved load is the same canonical set of 20 crayons. The child whose turn it is gently lowers one crayon fully into the cup and alternates the side of center to avoid concentrating the load on one edge.
 6. Before the first crayon, the adult confirms stationary supports, sheet overlap, and a centered cup. The empty cup remains stable for a slow count of three.
 7. The score is the last number of crayons that remained stable for a slow count of three under a valid setup.
 8. If the bridge holds all 20, record `20+`; do not add or substitute objects.
@@ -164,10 +207,10 @@ La comparación es válida dentro de la sesión. No se comparan números entre f
 
 | ID | Cantidad / unidad | Required | Consumable | Nombre `es-US` / `en-US` | Preparación adulta / Adult preparation | Nota de seguridad / Safety note | Sustitución aprobada / Approved substitution |
 |---|---|---:|---:|---|---|---|---|
-| `MAT-PAPER-COPY` | 6 `sheet` | Sí / Yes | Sí / Yes | Papel común de impresora/copia, carta o A4, del mismo paquete / Standard printer/copy paper, Letter or A4, from the same package | Reservar 3 para diseños núcleo, 1 para planificación y 2 para error o extensión; inspeccionar sequedad e integridad. / Reserve 3 for core designs, 1 for planning, and 2 for error or extension; inspect for dryness and intact edges. | Retirar hojas húmedas, rasgadas o con bordes que puedan cortar. / Remove damp or torn sheets and any edge that could cut. | Carta o A4; elegir uno y no mezclar tamaños. / Letter or A4; choose one and do not mix sizes. |
+| `MAT-PAPER-COPY` | 6 `sheet` | Sí / Yes | Sí / Yes | Papel común de impresora/copia, carta o A4, del mismo paquete / Standard printer/copy paper, Letter or A4, from the same package | Reservar 1 para referencia plana y demostración adulta, hasta 3 para un diseño por niño, 1 para mejora grupal y 1 para planificación/resultados; inspeccionar sequedad e integridad. / Reserve 1 for the flat baseline and adult demonstration, up to 3 for one child design each, 1 for the group improvement, and 1 for planning/results; inspect for dryness and intact edges. | Retirar hojas húmedas, rasgadas o con bordes que puedan cortar. / Remove damp or torn sheets and any edge that could cut. | Carta o A4; elegir uno y no mezclar tamaños. / Letter or A4; choose one and do not mix sizes. |
 | `MAT-SUPPORT-BOOK` | 2 `item` | Sí / Yes | No | Libros de tapa dura estables, cada uno de al menos 15 × 20 cm y 3–6 cm de grosor; diferencia de grosor ≤0.5 cm / Stable hardcover books, each at least 6 × 8 in and about 1.2–2.4 in thick; thickness difference ≤3/16 in | El adulto comprueba que estén secos, planos, sin piezas sueltas y que no se deslicen. / The adult checks that they are dry, flat, have no loose parts, and do not slide. | Solo el adulto coloca, mueve y guarda los soportes. / Only the adult places, moves, and stores the supports. | Dos cajas rectangulares cerradas, firmes, secas, no frágiles y de igual altura, tras validación adulta. / Two closed, sturdy, dry, nonbreakable rectangular boxes of equal height after adult validation. |
-| `MAT-CUP-LIGHT` | 1 `item` | Sí / Yes | No | Vaso liviano de papel, vacío, de 8–12 oz, con base plana de 5–7 cm / 2–2.75 in / Empty lightweight 8–12 oz paper cup with a flat 2–2.75 in / 5–7 cm base | Inspeccionar que no esté aplastado, húmedo ni deformado; usar el mismo en todas las pruebas. / Check that it is not crushed, damp, or warped; use the same cup in every test. | No usar con líquido ni si se tambalea sobre una mesa plana. / Do not use with liquid or if it rocks on a flat table. | Ninguna en 0.2.2; otra forma o material requiere validación física y nueva versión. / None in 0.2.2; another shape or material requires physical validation and a new version. |
-| `MAT-CRAYON-LOAD` | 20 `item` | Sí / Yes | No | Veinte crayones estándar, no jumbo, intactos y de tamaño semejante, aproximadamente 8–10 cm / 3–4 in de largo / Twenty standard, non-jumbo, intact, similarly sized crayons, approximately 3–4 in / 8–10 cm long | Contar 20, retirar fragmentos y conservar exactamente el mismo set durante la sesión. / Count 20, remove fragments, and keep exactly the same set throughout the session. | Mantener fuera de la boca; bajar cada crayón dentro del vaso, no lanzarlo. / Keep out of mouths; lower each crayon into the cup rather than dropping it. | Ninguna en 0.2.2; marcadores, bloques, monedas y otras cargas no están validados. / None in 0.2.2; markers, blocks, coins, and other loads are not validated. |
+| `MAT-CUP-LIGHT` | 1 `item` | Sí / Yes | No | Vaso liviano de papel, vacío, de 8–12 oz, con base plana de 5–7 cm / 2–2.75 in / Empty lightweight 8–12 oz paper cup with a flat 2–2.75 in / 5–7 cm base | Inspeccionar que no esté aplastado, húmedo ni deformado; usar el mismo en todas las pruebas. Su función es contener la carga en el centro del puente. / Check that it is not crushed, damp, or warped; use the same cup in every test. Its function is to hold the load at the bridge center. | No usar con líquido ni si se tambalea sobre una mesa plana. / Do not use with liquid or if it rocks on a flat table. | Ninguna en 0.3.0; otra forma o material requiere validación física y nueva versión. / None in 0.3.0; another shape or material requires physical validation and a new version. |
+| `MAT-CRAYON-LOAD` | 20 `item` | Sí / Yes | No | Veinte crayones estándar, no jumbo, intactos y de tamaño semejante, aproximadamente 8–10 cm / 3–4 in de largo / Twenty standard, non-jumbo, intact, similarly sized crayons, approximately 3–4 in / 8–10 cm long | Contar 20, retirar fragmentos y conservar exactamente el mismo set durante la sesión. Cada crayón es una unidad de carga agregada de una en una. / Count 20, remove fragments, and keep exactly the same set throughout the session. Each crayon is one load unit added one at a time. | Mantener fuera de la boca; bajar cada crayón dentro del vaso, no lanzarlo. / Keep out of mouths; lower each crayon into the cup rather than dropping it. | Ninguna en 0.3.0; marcadores, bloques, monedas y otras cargas no están validados. / None in 0.3.0; markers, blocks, coins, and other loads are not validated. |
 | `MAT-RULER` | 1 `item` | Sí / Yes | No | Regla de 30 cm / 12 in sin bordes rotos / 30 cm / 12 in ruler with no broken edges | Inspeccionar; el niño puede leerla o señalar mientras el adulto mueve soportes. / Inspect it; the child may read or point while the adult moves supports. | Retirar una regla quebrada o con borde afilado. / Remove a cracked ruler or one with a sharp edge. | Cinta métrica flexible intacta bajo control adulto. / Intact flexible measuring tape under adult control. |
 | `MAT-MARKER` | 1 `item` | Sí / Yes | No | Lápiz o marcador lavable / Pencil or washable marker | Comprobar que sea no tóxico y apropiado para la edad. / Check that it is nontoxic and age-appropriate. | Tapar el marcador al terminar; retirar puntas rotas. / Cap the marker after use; remove broken tips. | Otro utensilio de escritura no tóxico y apropiado para la edad. / Another nontoxic, age-appropriate writing tool. |
 | `MAT-TAPE-MARK` | 4 `piece`, 2–3 cm / 1 in | No | Sí / Yes | Cinta de pintor removible opcional / Optional removable painter's tape | El adulto corta o rasga cuatro trozos y los usa solo para marcar la posición exterior de los libros. / The adult tears or cuts four pieces and uses them only to mark the books' outer positions. | Nunca fijar el puente ni pegar cinta a piel o cabello. / Never attach the bridge or put tape on skin or hair. | Omitir y comprobar la posición con la regla antes de cada prueba. / Omit it and check position with the ruler before each test. |
@@ -197,8 +240,8 @@ Do not replace the load with markers, blocks, coins, marbles, batteries, rocks, 
 2. Inspecciona los libros, el vaso, la regla y los crayones. Retira cualquier objeto roto, afilado o frágil.
 3. Extiende la toalla en una sola capa sobre la mesa. Coloca un libro a cada lado, completamente plano; la toalla no debe tocar el puente ni el vaso al inicio.
 4. Deja exactamente `15 cm / 6 in` entre los bordes interiores. Marca la posición exterior con cinta removible, si la tienes.
-5. Separa seis hojas del mismo paquete. Reserva una para dibujar/registrar y dos para errores o extensión.
-6. Carga la configuración de participantes. Confirma un rol y un solo objetivo principal para cada niño.
+5. Separa seis hojas del mismo paquete: referencia/demostración, una por niño (máximo tres), mejora grupal y registro.
+6. Carga la configuración de participantes. Confirma un solo objetivo principal por niño; todos completarán su propio diseño y prueba.
 7. Mantén los 20 crayones dentro de tu alcance y fuera del borde de la mesa.
 
 #### Instructions `en-US`
@@ -207,8 +250,8 @@ Do not replace the load with markers, blocks, coins, marbles, batteries, rocks, 
 2. Inspect the books, cup, ruler, and crayons. Remove anything broken, sharp, or fragile.
 3. Lay the towel flat in one layer on the table. Place one book on each side, fully flat; the towel must not touch the bridge or cup at the start.
 4. Leave exactly `15 cm / 6 in` between the inner edges. Mark each outer position with removable tape, if available.
-5. Set aside six sheets from the same paper package. Reserve one for drawing/recording and two for mistakes or the extension.
-6. Load the participant configuration. Confirm one role and exactly one primary objective for each child.
+5. Set aside six sheets from the same paper package: baseline/demonstration, one per child (up to three), group improvement, and recording.
+6. Load the participant configuration. Confirm exactly one primary objective per child; everyone will complete a design and test of their own.
 7. Keep the 20 crayons within adult reach and away from the table edge.
 
 ### 6.3 Registro de riesgos y controles
@@ -234,8 +277,8 @@ Do not replace the load with markers, blocks, coins, marbles, batteries, rocks, 
 
 `adultOnlyStepIds = [STEP-00, STEP-04, STEP-08]`.
 
-- **`es-US`:** El adulto elige y despeja el lugar; inspecciona materiales; coloca, mide y reajusta los libros; clasifica una falla como `invalid_setup`, `bridge_deformation` o `safe_stop`; retira el vaso entre pruebas; y guarda los soportes. El niño con objetivo de medición puede leer la regla o indicar la posición, pero no mueve los soportes.
-- **`en-US`:** The adult chooses and clears the location; inspects materials; places, measures, and resets the books; classifies a failure as `invalid_setup`, `bridge_deformation`, or `safe_stop`; removes the cup between tests; and stores the supports. A child with a measurement objective may read the ruler or indicate position but does not move the supports.
+- **`es-US`:** El adulto elige y despeja el lugar; inspecciona materiales; coloca, mide y reajusta los libros; coloca/centra el vaso vacío al inicio de cada prueba; clasifica una falla como `invalid_setup`, `bridge_deformation` o `safe_stop`; retira el vaso entre pruebas; y guarda los soportes. Un niño puede leer la regla o indicar la posición, pero no mueve los soportes.
+- **`en-US`:** The adult chooses and clears the location; inspects materials; places, measures, and resets the books; places/centers the empty cup at the start of every test; classifies a failure as `invalid_setup`, `bridge_deformation`, or `safe_stop`; removes the cup between tests; and stores the supports. A child may read the ruler or indicate position but does not move the supports.
 
 La IA no puede reasignar estos pasos a un niño ni eliminar la advertencia.
 
@@ -247,45 +290,42 @@ AI may not reassign these steps to a child or remove the warning.
 
 | ID / nombre bilingüe | Compatible levels | Contribución / Contribution | Responsabilidades / Responsibilities | Objetivos elegibles / Eligible objectives | Allowed step IDs | Restricted step IDs | Dependencias / Dependencies |
 |---|---|---|---|---|---|---|---|
-| `ROLE-BRIDGE-ENGINEER` Diseñador/a y constructor/a / Bridge Designer & Builder | L1–L4 según objetivo / by objective | Convierte ideas de forma en estructuras comprobables. / Turns shape ideas into testable structures. | Dibuja o elige una forma, pliega, coloca la hoja y propone la mejora. / Draws or chooses a shape, folds, places the sheet, and proposes the improvement. | `OBJ-02`, `OBJ-05`, `OBJ-06` | `STEP-01`, `STEP-02`, `STEP-03`, `STEP-06`, `STEP-07`, `STEP-09` | `STEP-00`, `STEP-04`, `STEP-08` | Necesita el montaje adulto listo y los datos del Probador. / Needs the adult setup ready and the Tester's data. |
-| `ROLE-LOAD-TESTER` Probador/a de carga / Load Tester | L1–L4 según objetivo / by objective | Produce los datos de cada diseño. / Produces the data for each design. | Predice, coloca el vaso cuando el adulto da la señal, baja un crayón a la vez, cuenta y anuncia el resultado. / Predicts, places the cup when the adult signals, lowers one crayon at a time, counts, and announces the result. | `OBJ-01`, `OBJ-03`, `OBJ-06` | `STEP-01`, `STEP-02`, `STEP-05`, `STEP-06`, `STEP-07`, `STEP-09` | `STEP-00`, `STEP-04`, `STEP-08` | Espera confirmación adulta de que soportes y puente están listos. / Waits for adult confirmation that supports and bridge are ready. |
-| `ROLE-FAIR-TEST` Coordinador/a de prueba justa / Fair-Test Coordinator | L1–L4 según objetivo / by objective | Mantiene la comparación interpretable. / Keeps the comparison interpretable. | Lee o señala la separación, comprueba orientación, registra resultados y avisa si cambia una condición. / Reads or points to the gap, checks orientation, records results, and reports when a condition changes. | `OBJ-03`, `OBJ-04`, `OBJ-06` | `STEP-01`, `STEP-02`, `STEP-05`, `STEP-06`, `STEP-07`, `STEP-09` | `STEP-00`, `STEP-04`, `STEP-08` | El adulto mueve los soportes; recibe el resultado del Probador. / The adult moves supports; receives the Tester's result. |
-| `ROLE-ALL-IN-ONE` Ingeniero/a del puente / Bridge Engineer | L1–L4 según objetivo / by objective | Realiza el ciclo infantil completo con apoyo adulto. / Completes the full child-facing cycle with adult support. | Diseña, construye, prueba, registra, mejora y explica. / Designs, builds, tests, records, improves, and explains. | Cualquiera de `OBJ-01` a `OBJ-06`, exactamente uno por sesión / Any of `OBJ-01` through `OBJ-06`, exactly one per session | `STEP-01`, `STEP-02`, `STEP-03`, `STEP-05`, `STEP-06`, `STEP-07`, `STEP-09` | `STEP-00`, `STEP-04`, `STEP-08` | El adulto realiza los pasos exclusivos y ofrece apoyo sin sustituir el objetivo. / The adult performs restricted steps and supports without replacing the objective action. |
+| `ROLE-CHILD-INVESTIGATOR` Investigador/a de puente / Bridge Investigator | L1–L4 según objetivo / by objective | Completa un ciclo propio dentro del reto compartido. / Completes an individual cycle within the shared challenge. | Observa la referencia, propone, construye una hoja, realiza su prueba, registra/observa, recomienda una mejora y explica. / Observes the baseline, proposes, builds one sheet, runs an individual test, records/observes, recommends an improvement, and explains. | Cualquiera de `OBJ-01` a `OBJ-06`, exactamente uno por sesión / Any of `OBJ-01` through `OBJ-06`, exactly one per session | `STEP-01`, `STEP-02`, `STEP-03`, `STEP-05`, `STEP-06`, `STEP-07`, `STEP-09` | `STEP-00`, `STEP-04`, `STEP-08` | El adulto prepara/restablece el montaje y todos esperan el turno de prueba. / The adult prepares/resets the setup and everyone waits for the testing turn. |
 
-Ningún rol es “para el niño mayor”. La asignación depende de objetivo, interés, independencia y variedad histórica. Las instrucciones deben nombrar la contribución de cada niño y no comparar resultados entre hermanos.
+Todos los niños usan la misma plantilla interna porque todos viven el ciclo completo. El objetivo principal personaliza observación, lenguaje y apoyo; no asigna monopolios sobre diseñar, contar o probar. La UI familiar no muestra el nombre técnico del rol.
 
 ### 7.2 Configuración de un niño
 
 | Participante / Participant | Rol / Role | Objetivo predeterminado sin evidencia / Default objective without evidence | Exposiciones secundarias / Secondary exposures |
 |---|---|---|---|
-| Niño 1 / Child 1 | `ROLE-ALL-IN-ONE` | `ACT-0001-OBJ-05` Proponer, construir y probar una mejora / Propose, build, and test an improvement | Estructura, carga, conteo, plegado, comparación y explicación, solo según participación real / Structure, load, counting, folding, comparison, and explanation only when actually performed |
+| Niño 1 / Child 1 | `ROLE-CHILD-INVESTIGATOR` | Según 3.2.1 y evidencia; sin evidencia, `OBJ-01` para 5–6, `OBJ-05` para 7–8 u `OBJ-04` para 9–10 / Per 3.2.1 and evidence | Estructura, carga, conteo, plegado, comparación y explicación, solo según participación real / Structure, load, counting, folding, comparison, and explanation only when actually performed |
 
-Para L1 o cuando el objetivo predeterminado resulte demasiado abierto, el recomendador puede elegir `OBJ-01` o `OBJ-03` como exploración. El adulto sigue haciendo los pasos exclusivos. / For L1 or when the default objective is too open-ended, the recommender may choose `OBJ-01` or `OBJ-03` as exploration. The adult still performs adult-only steps.
+El adulto sigue haciendo los pasos exclusivos. El niño realiza su diseño y su prueba con el apoyo apropiado. / The adult still performs adult-only steps. The child completes an individual design and test with appropriate support.
 
 ### 7.3 Configuración de dos niños
 
 | Participante / Participant | Rol / Role | Objetivo predeterminado sin evidencia / Default objective without evidence | Exposiciones secundarias / Secondary exposures |
 |---|---|---|---|
-| Niño 1 / Child 1 | `ROLE-BRIDGE-ENGINEER` | `ACT-0001-OBJ-02` Seguir la secuencia de plegado y colocar la estructura / Follow the folding sequence and place the structure | Diseño, comparación, explicación / Design, comparison, explanation |
-| Niño 2 / Child 2 | `ROLE-LOAD-TESTER` + registro verbal/visual / verbal or visual recording | `ACT-0001-OBJ-03` Comparar resultados usando más, menos o igual / Compare results using more, less, or the same | Conteo, carga, prueba justa, explicación / Counting, load, fair test, explanation |
+| Niño 1 / Child 1 | `ROLE-CHILD-INVESTIGATOR` | Según 3.2.1 y evidencia / Per 3.2.1 and evidence | Ciclo completo en su hoja / Full cycle on an individual sheet |
+| Niño 2 / Child 2 | `ROLE-CHILD-INVESTIGATOR` | Según 3.2.1 y evidencia / Per 3.2.1 and evidence | Ciclo completo en su hoja / Full cycle on an individual sheet |
 
-Ambos proponen la mejora. El Diseñador la construye y el Probador la prueba. En una sesión futura deben poder intercambiar roles; no se cambia el objetivo a mitad de esta sesión salvo corrección explícita del adulto. / Both propose the improvement. The Designer builds it and the Tester tests it. They should be able to swap roles in a future session; the objective does not change mid-session unless the adult explicitly corrects it.
+Ambos proponen, construyen y prueban una hoja por turnos. Comparten la mejora final. / Both propose, build, and test one sheet in turn. They share the final improvement.
 
 ### 7.4 Configuración de tres niños
 
 | Participante / Participant | Rol / Role | Objetivo predeterminado sin evidencia / Default objective without evidence | Exposiciones secundarias / Secondary exposures |
 |---|---|---|---|
-| Niño 1 / Child 1 | `ROLE-BRIDGE-ENGINEER` | `ACT-0001-OBJ-02` Seguir la secuencia de plegado y colocar la estructura / Follow the folding sequence and place the structure | Diseño, comparación, explicación / Design, comparison, explanation |
-| Niño 2 / Child 2 | `ROLE-LOAD-TESTER` | `ACT-0001-OBJ-01` Añadir y contar una carga a la vez / Add and count one load item at a time | Carga, comparación, explicación / Load, comparison, explanation |
-| Niño 3 / Child 3 | `ROLE-FAIR-TEST` | `ACT-0001-OBJ-04` Mantener constantes las condiciones / Keep test conditions constant | Medición, registro, comparación, explicación / Measurement, recording, comparison, explanation |
+| Niño 1 / Child 1 | `ROLE-CHILD-INVESTIGATOR` | Según 3.2.1 y evidencia / Per 3.2.1 and evidence | Ciclo completo en su hoja / Full cycle on an individual sheet |
+| Niño 2 / Child 2 | `ROLE-CHILD-INVESTIGATOR` | Según 3.2.1 y evidencia / Per 3.2.1 and evidence | Ciclo completo en su hoja / Full cycle on an individual sheet |
+| Niño 3 / Child 3 | `ROLE-CHILD-INVESTIGATOR` | Según 3.2.1 y evidencia / Per 3.2.1 and evidence | Ciclo completo en su hoja / Full cycle on an individual sheet |
 
-Los tres toman una decisión visible en Imagine o Improve. Para reducir espera, el Diseñador pliega mientras el Coordinador prepara la tabla de resultados y el Probador organiza los crayones en una fila; no se inicia la carga hasta que los tres confirmen que la prueba está lista. / All three make a visible decision during Imagine or Improve. To reduce waiting, the Designer folds while the Coordinator prepares the results table and the Tester arranges the crayons in a row; loading starts only after all three confirm the test is ready.
+Los tres proponen, construyen y prueban su propia hoja en orden visible. Mientras uno prueba, los demás observan y comparan; observar la prueba ajena no sustituye la prueba propia. Los tres proponen la mejora compartida. / All three propose, build, and test their own sheet in a visible order. While one tests, the others observe and compare; watching another test does not replace one's own test. All three propose the shared improvement.
 
 ### 7.5 Regla de asignación
 
 - Antes de iniciar: exactamente un `primary_objective_id` por participante.
-- Durante la sesión: el rol puede recibir apoyo, pero el objetivo no se reemplaza silenciosamente.
-- Al cerrar: confirmar quién participó y qué rol realizó realmente.
+- Durante la sesión: cada niño conserva acceso al ciclo completo; el objetivo puede recibir apoyo, pero no se reemplaza silenciosamente.
+- Al cerrar: confirmar quién participó y si realizó su prueba propia.
 - Si un niño no participó: no crear exposición ni pedir valoración.
 - Si el adulto hizo la acción objetivo: ofrecer “No se pudo observar / Could not observe”; no asignar un 1.
 
@@ -296,111 +336,121 @@ En la serialización, `eligiblePrimarySkillIds` usa los `skillId` canónicos de 
 | Fase / Stage | Ruta / Path 30 min | Ruta / Path 45 min | Ruta / Path 60 min |
 |---|---:|---:|---:|
 | Preparación adulta / Adult preparation | 5 min | 5 min | 5 min |
-| Discover | 3 min | 4 min | 4 min |
-| Imagine | 3 min | 4 min | 6 min |
-| Build | 5 min | 6 min | 8 min |
-| Experiment | 7 min | 10 min | 11 min |
-| Improve | 4 min | 9 min | 16 min |
-| Explain y cierre / Explain and close | 1 min | 4 min | 6 min |
-| Cleanup / Limpieza | 2 min | 3 min | 4 min |
+| Discover | 4 min | 6 min | 7 min |
+| Imagine | 3 min | 5 min | 7 min |
+| Build | 5 min | 8 min | 10 min |
+| Experiment | 7 min | 10 min | 14 min |
+| Improve | 3 min | 6 min | 11 min |
+| Explain y cierre / Explain and close | 1 min | 2 min | 3 min |
+| Cleanup / Limpieza | 2 min | 3 min | 3 min |
 
-La ruta corta conserva las seis fases. La ruta de 60 minutos puede repetir el mejor diseño con una cuarta hoja para comprobar si el resultado se repite; la repetición es una extensión aprobada, no una promesa de idéntico resultado. / The short path keeps all six stages. The 60-minute path may repeat the best design with a fourth sheet to check whether the result is similar; repetition is an approved extension, not a promise of an identical result.
+La ruta corta conserva las seis fases y una prueba por niño. La ruta de 60 minutos amplía planificación, construcción y comparación; solo repite la mejora cuando el número de participantes deja una hoja canónica sin usar. Con tres niños no añade una séptima hoja en esta versión. / The short path keeps all six stages and one test per child. The 60-minute path expands planning, building, and comparison; it repeats the improvement only when participant count leaves one canonical sheet unused. With three children, this version does not add a seventh sheet.
 
 Los totales incluyen preparación, cierre y limpieza; no se añade tiempo oculto al bloque familiar. / Totals include preparation, close, and cleanup; no hidden time is added to the family's block.
 
 ## 9. Ejecución localizada
 
-### 9.1 `STEP-01` — Discover / Descubrir (3–5 min)
+### 9.1 `STEP-01` — Discover / Descubrir (4–7 min)
 
-**Stage:** `discover`. **Actor:** `group`; el adulto facilita / adult-facilitated. **Minutes:** 4 canónicos; 3/4/4 en rutas 30/45/60 / canonical; 3/4/4 on 30/45/60 paths.
+**Stage:** `discover`. **Actor:** `group`; el adulto facilita / adult-facilitated. **Minutes:** 6 canónicos; 4/6/7 en rutas 30/45/60 / canonical; 4/6/7 on 30/45/60 paths.
 
 **Visual brief IDs:** `VIS-02`.
 
-**Expected result / Resultado esperado:** una hoja plana cruza el espacio sin carga y cada niño tiene un medio accesible para predecir. / A flat sheet spans the unloaded gap and every child has an accessible way to predict.
+**Entry / Entrada:** `STATE-READY`. **Exit / Salida:** `STATE-BASELINE-OBSERVED`.
 
-**Resume / Reanudación:** puede pausarse después de registrar la predicción; al volver, el adulto repite `STEP-04` antes de cualquier prueba. / Pause after recording the prediction; on return, the adult repeats `STEP-04` before any test.
+**Expected result / Resultado esperado:** el grupo entiende para qué sirven vaso y crayones, observa una prueba real de la hoja plana y registra un resultado de referencia. / The group understands the purpose of the cup and crayons, observes a real flat-sheet test, and records a baseline result.
 
-**Warning / Advertencia:** el vaso y los crayones permanecen fuera del puente; solo el adulto corrige los soportes. / Keep the cup and crayons off the bridge; only the adult adjusts supports.
+**Resume / Reanudación:** puede pausarse después de registrar el resultado de referencia; al volver, el adulto repite `STEP-04` antes de cualquier prueba. / Pause after recording the baseline result; on return, the adult repeats `STEP-04` before any test.
+
+**Warning / Advertencia:** el adulto centra el vaso y corrige los soportes; los niños solo agregan crayones después de la señal y por turnos. / The adult centers the cup and adjusts supports; children add crayons only after the signal and in turn.
 
 **`es-US`**
 
-1. El adulto coloca una hoja plana, con el borde largo cruzando el espacio, sin fijarla.
-2. Di: “Esta hoja tiene que cruzar el espacio y sostener el vaso. Todavía no vamos a probarla”.
-3. Pregunta: “¿Qué crees que hará la hoja cuando añadamos crayones? ¿Dónde podría doblarse?”
-4. Cada niño señala, dice o dibuja una predicción. No se corrige la predicción.
+1. Señala los materiales: “Los libros son los apoyos. Esta hoja será el puente. El vaso irá vacío en el centro y guardará los crayones. Cada crayón será una unidad de carga”.
+2. Coloca la hoja plana sobre los apoyos y pregunta: “¿Qué creen que ocurrirá cuando el vaso empiece a llenarse? ¿Dónde podría doblarse?” Cada niño predice hablando, señalando o dibujando.
+3. Da la señal. El adulto centra el vaso vacío. Si permanece estable durante tres segundos, los niños agregan un crayón por turno, dicen el número y esperan tres segundos.
+4. Detén la prueba cuando el papel falle o llegue a 20. Registra `PLANA`, el último número estable y si la prueba fue comparable.
+5. Pregunta: “¿Qué vieron que ahora necesitamos cambiar?” No expliques todavía qué forma será mejor.
 
 **`en-US`**
 
-1. The adult places one flat sheet with its long edge crossing the gap, without attaching it.
-2. Say: “This sheet has to cross the gap and hold the cup. We are not testing it yet.”
-3. Ask: “What do you think the paper will do when we add crayons? Where might it bend?”
-4. Each child points to, says, or draws a prediction. Do not correct the prediction.
+1. Point to the materials: “The books are supports. This sheet will be the bridge. The empty cup will sit in the center and hold the crayons. Each crayon is one load unit.”
+2. Place the flat sheet on the supports and ask: “What do you think will happen as the cup fills? Where might it bend?” Each child predicts by speaking, pointing, or drawing.
+3. Give the signal. The adult centers the empty cup. If it stays stable for three seconds, children add one crayon in turn, say the number, and wait three seconds.
+4. Stop when the paper fails or reaches 20. Record `FLAT`, the last stable number, and whether the test was comparable.
+5. Ask: “What did you see that we now need to change?” Do not explain which shape will work best.
 
-**Señal de éxito / Success signal:** cada participante tuvo una forma accesible de predecir. / Each participant had an accessible way to make a prediction.
+**Señal de éxito / Success signal:** todos observaron el problema físico y existe un resultado de referencia; ahora tiene sentido imaginar formas. / Everyone observed the physical problem and a baseline result exists; imagining shapes now has a reason.
 
 **Problema común / Common issue:** si el niño busca la “respuesta correcta”, responde: “Todavía no lo sabemos; la prueba nos dará información”. / If the child seeks the “right answer,” respond: “We do not know yet; the test will give us information.”
 
 ### 9.2 `STEP-02` — Imagine / Imaginar (3–7 min)
 
-**Stage:** `imagine`. **Actor:** `group`; todos los niños según rol y el adulto facilita / all children by role, with adult facilitation. **Minutes:** 4 canónicos; 3/4/6 por ruta / canonical; 3/4/6 by path.
+**Stage:** `imagine`. **Actor:** `group`; todos los niños proponen y el adulto facilita / all children propose, with adult facilitation. **Minutes:** 5 canónicos; 3/5/7 por ruta / canonical; 3/5/7 by path.
 
 **Visual brief IDs:** `VIS-03`.
 
-**Expected result / Resultado esperado:** queda registrada una forma para probar y al menos una condición que permanecerá igual. / One shape to test and at least one condition to keep constant are recorded.
+**Entry / Entrada:** `STATE-BASELINE-OBSERVED`. **Exit / Salida:** `STATE-DESIGNS-CHOSEN`.
 
-**Resume / Reanudación:** guardar el dibujo o marcar la forma elegida; al volver, confirmar la elección con el grupo. / Save the drawing or mark the chosen shape; on return, confirm the choice with the group.
+**Expected result / Resultado esperado:** cada niño elige o dibuja una forma propia después de observar la referencia; el grupo identifica las condiciones que permanecerán iguales. / Each child chooses or draws an individual shape after observing the baseline; the group identifies the conditions that will stay the same.
+
+**Resume / Reanudación:** guardar cada dibujo con el nombre del niño; al volver, confirmar una forma por participante. / Save each drawing with the child's name; on return, confirm one shape per participant.
 
 **Warning / Advertencia:** solo elegir formas de papel aprobadas; no añadir herramientas, fijaciones, otra hoja ni una carga diferente. / Choose only approved paper shapes; do not add tools, fasteners, another sheet, or a different load.
 
 **`es-US`**
 
-1. Muestra una hoja plana y el diagrama de una hoja en acordeón.
-2. Pregunta: “Sin agregar papel, ¿qué formas podríamos darle?”
-3. El Diseñador dibuja o señala una idea. El Probador predice cuál sostendrá más. El Coordinador identifica qué debe permanecer igual.
-4. Acuerden probar primero una hoja plana y después una hoja con pliegues de acordeón.
+1. Retira vaso y carga. Coloca a la vista el resultado `PLANA` y pregunta: “¿Cómo podríamos cambiar la forma de una hoja para que sea más difícil de doblar?” Registra todas las ideas.
+2. Usa la hoja de referencia ya probada para mostrar solo el inicio de un acordeón: doblar una franja, voltear y doblar otra. Muestra también los diagramas de canal y pliegues anchos; no construyas los diseños infantiles.
+3. Entrega a cada niño un espacio de planificación. Cada uno elige o dibuja una forma aprobada para su propia hoja y predice qué ocurrirá.
+4. Pregunta: “¿Qué debe permanecer igual aunque cada puente tenga otra forma?” Confirmen papel, 15 cm, vaso, 20 crayones y procedimiento.
+5. Ordenen los turnos de construcción y prueba. Ninguna idea se elimina por parecer menos resistente.
 
 **`en-US`**
 
-1. Show a flat sheet and the diagram of an accordion-folded sheet.
-2. Ask: “Without adding paper, what shapes could we give it?”
-3. The Designer draws or points to an idea. The Tester predicts which will hold more. The Coordinator names what must stay the same.
-4. Agree to test a flat sheet first and an accordion-folded sheet second.
+1. Remove the cup and load. Keep the `FLAT` result visible and ask: “How could we change one sheet's shape so it is harder to bend?” Record every idea.
+2. Use the tested baseline sheet to demonstrate only the start of an accordion: fold one strip, turn, and fold again. Also show channel and wide-fold diagrams; do not build the children's designs.
+3. Give each child planning space. Each chooses or draws one approved shape for an individual sheet and predicts what will happen.
+4. Ask: “What must stay the same even when each bridge has a different shape?” Confirm paper, 6 in, cup, 20 crayons, and procedure.
+5. Set the build and test order. Do not remove an idea because it seems less strong.
 
-**Señal de éxito / Success signal:** se identifica al menos una forma y una condición que debe mantenerse igual. / At least one shape and one condition to keep the same are identified.
+**Señal de éxito / Success signal:** existe una forma identificada por niño y una lista común de condiciones fijas; ahora cada idea puede construirse. / One identified shape exists per child and there is a shared list of fixed conditions; each idea can now be built.
 
 **Problema común / Common issue:** múltiples ideas incompatibles. Registra todas y elige una por turno; no las combines en la misma prueba. / If there are several incompatible ideas, record all of them and choose one per turn; do not combine them in one test.
 
 ### 9.3 `STEP-03` — Build / Construir (5–10 min)
 
-**Stage:** `build_or_do`. **Actor:** `assigned_role`; Diseñador/Constructor o niño único, con conteo grupal opcional / Designer/Builder or single child, with optional group fold counting. **Minutes:** 6 canónicos; 5/6/8 por ruta / canonical; 5/6/8 by path.
+**Stage:** `build_or_do`. **Actor:** `group`; cada participante construye una hoja propia con apoyo / each participant builds an individual sheet with support. **Minutes:** 8 canónicos; 5/8/10 por ruta / canonical; 5/8/10 by path.
 
 **Visual brief IDs:** `VIS-03`.
 
 **Advertencia / Warning:** usar solo papel intacto; no usar tijeras ni fijaciones. / Use only intact paper; do not use scissors or fasteners.
 
-**Expected result / Resultado esperado:** dos estructuras de una hoja, una plana y una en acordeón con crestas longitudinales, quedan separadas y etiquetadas. / Two one-sheet structures—one flat and one accordion with lengthwise ridges—are separated and labeled.
+**Entry / Entrada:** `STATE-DESIGNS-CHOSEN`. **Exit / Salida:** `STATE-CHILD-DESIGNS-READY`.
 
-**Resume / Reanudación:** escribir “plano / flat” y “acordeón / accordion” en la hoja de registro y dejar ambos diseños separados. / Label the recording sheet and keep both designs separate.
+**Expected result / Resultado esperado:** hay una estructura de una hoja por niño, identificada con nombre/diseño y orientación de prueba. / There is one single-sheet structure per child, identified by child/design and test orientation.
+
+**Resume / Reanudación:** conservar cada estructura junto a su dibujo y nombre; no apilarlas ni cambiar su orientación. / Keep each structure beside its drawing and name; do not stack it or change its orientation.
 
 **`es-US`**
 
-1. Deja la primera hoja plana. Esta es la estructura de referencia.
-2. Toma una segunda hoja con el borde largo frente a ti.
-3. Dobla una franja de aproximadamente `2.5 cm / 1 in` hacia arriba. Presiona el pliegue.
-4. Voltea la hoja y dobla otra franja del mismo ancho. Continúa alternando hasta el otro borde.
-5. Abre suavemente el acordeón. Sus crestas deben recorrer el largo que cruzará entre los libros.
-6. Si los últimos pliegues son más estrechos, consérvalos y anótalo; no recortes la hoja.
+1. Entrega una hoja igual a cada niño. Mantén la hoja de referencia/demostración separada.
+2. Uno por uno, pide que muestre su plan y diga o señale qué forma intentará. El adulto puede marcar guías o sostener el papel.
+3. Cada niño construye su forma. Para acordeón: doblar una franja de aproximadamente `2.5 cm / 1 in`, voltear y repetir. Para canal: levantar ambos bordes largos. Para pliegues anchos: repetir la secuencia con menos franjas.
+4. El niño coloca su nombre o símbolo en la hoja de registro, no sobre la zona de prueba del puente.
+5. Abre y orienta cada estructura para que cruce el espacio. El adulto comprueba integridad, pero no corrige el diseño para hacerlo “ganar”.
+6. Ordena las estructuras según el turno acordado.
 
 **`en-US`**
 
-1. Leave the first sheet flat. This is the baseline structure.
-2. Take a second sheet with its long edge facing you.
-3. Fold a strip about `2.5 cm / 1 in` upward. Press the crease.
-4. Flip the sheet and fold another strip the same width. Keep alternating to the other edge.
-5. Gently open the accordion. Its ridges should run along the length that will cross between the books.
-6. If the last folds are narrower, keep them and note it; do not trim the sheet.
+1. Give one equal sheet to each child. Keep the baseline/demonstration sheet separate.
+2. One at a time, ask each child to show the plan and say or point to the intended shape. The adult may mark guides or hold the paper.
+3. Each child builds the chosen shape. For an accordion: fold a strip about `1 in`, turn, and repeat. For a channel: lift both long edges. For wide folds: repeat the sequence with fewer strips.
+4. The child adds a name or symbol to the recording sheet, not to the bridge test area.
+5. Open and orient every structure so it can span the gap. The adult checks integrity but does not correct a design to make it “win.”
+6. Place structures in the agreed test order.
 
-**Señal de éxito / Success signal:** hay dos estructuras de una hoja: una plana y una con crestas longitudinales. / There are two one-sheet structures: one flat and one with lengthwise ridges.
+**Señal de éxito / Success signal:** cada niño puede identificar su estructura y cómo se colocará; ahora existen artefactos propios listos para probar. / Each child can identify an individual structure and its orientation; individual artifacts are now ready to test.
 
 **Problemas comunes / Common issues:**
 
@@ -418,7 +468,7 @@ Los totales incluyen preparación, cierre y limpieza; no se añade tiempo oculto
 
 **Expected result / Resultado esperado:** soportes inmóviles, espacio de 15 cm / 6 in, toalla sin contacto inicial y hoja con apoyo semejante en ambos lados. / Stationary supports, a 15 cm / 6 in gap, no initial towel contact, and similar sheet overlap on both sides.
 
-**Success signal / Señal de éxito:** el adulto y el Coordinador confirman las condiciones; solo el adulto ha movido los soportes. / The adult and Coordinator confirm the conditions; only the adult has moved the supports.
+**Success signal / Señal de éxito:** el adulto y el niño cuyo turno comienza confirman las condiciones; solo el adulto ha movido los soportes. / The adult and the child whose turn begins confirm the conditions; only the adult has moved the supports.
 
 **Resume / Reanudación:** repetir todo `STEP-04` después de una pausa y antes de cada diseño. / Repeat all of `STEP-04` after a pause and before every design.
 
@@ -431,11 +481,13 @@ Los totales incluyen preparación, cierre y limpieza; no se añade tiempo oculto
 
 #### `STEP-05` — Cargar, observar y registrar / Load, observe, and record
 
-**Stage:** `experiment`. **Actor:** `assigned_role`. **Minutes:** 8 canónicos; 6/8/9 por ruta / canonical; 6/8/9 by path.
+**Stage:** `experiment`. **Actor:** `group`; cada niño prueba por turno / each child tests in turn. **Minutes:** 8 canónicos; 6/8/12 por ruta / canonical; 6/8/12 by path.
 
 **Visual brief IDs:** `VIS-04`, `VIS-05`, `VIS-07`.
 
-**Expected result / Resultado esperado:** cada diseño produce un resultado `0–20+` bajo montaje válido o un estado `No comparable` con causa; nunca un número adivinado. / Each design produces a `0–20+` result under a valid setup or a `No comparable` state with a cause; never a guessed number.
+**Entry / Entrada:** `STATE-CHILD-DESIGNS-READY`. **Exit / Salida:** `STATE-CHILD-RESULTS-RECORDED`.
+
+**Expected result / Resultado esperado:** la hoja de referencia y cada diseño infantil producen un resultado `0–20+` bajo montaje válido o `No comparable` con causa; cada niño realizó su propia prueba. / The baseline and every child design produce a `0–20+` result under a valid setup or `Not comparable` with a cause; every child ran an individual test.
 
 **Resume / Reanudación:** registrar diseño, resultado y estado antes de pausar; al volver, comenzar desde `STEP-04`, no desde una carga parcial. / Record design, result, and status before pausing; on return, restart from `STEP-04`, not from a partial load.
 
@@ -443,35 +495,37 @@ Los totales incluyen preparación, cierre y limpieza; no se añade tiempo oculto
 
 **`es-US`**
 
-1. Tras la señal adulta, el Probador centra el vaso vacío sin tocar los soportes.
-2. Cuenten lentamente hasta tres. Si el papel se deforma y falla con el vaso bien colocado, registren 0; si el montaje estaba descentrado o fue tocado, apliquen `invalid_setup`.
-3. Baja un crayón completamente dentro del vaso, alternando el lado del centro donde lo colocas. No lo dejes caer.
-4. Cuenta lentamente hasta tres después de cada crayón. El Coordinador observa soportes, apoyo y posición del vaso.
-5. Cuando ocurra una falla, el adulto aplica la clasificación de 4.1. En `bridge_deformation`, registra la última cantidad estable; en `invalid_setup`, no produce puntuación y restablece una sola vez.
-6. El adulto completa `STEP-04` con el siguiente diseño. Prueben primero la hoja plana y después el acordeón, con crestas de un libro al otro.
-7. Comparen solo resultados válidos: ¿más, menos o igual? Si ambos sostienen 20, registren `20+` para ambos.
+1. Mantén visible el resultado `PLANA`. Toma la primera estructura infantil y nombra el turno: diseño de [niño].
+2. El adulto completa `STEP-04`, coloca la estructura y centra el vaso vacío. El niño del turno confirma su forma y espera la señal.
+3. El niño baja un crayón completamente dentro del vaso, dice el número y espera tres segundos. Alterna el lado del centro; no lo deja caer. Los demás observan dónde se dobla y si cambia una condición.
+4. Cuando ocurra una falla, el adulto aplica 4.1. En `bridge_deformation`, registra la última cantidad estable; en `invalid_setup`, no registra número y restablece una sola vez.
+5. El niño del turno dice o señala qué observó en su puente. Registra diseño, resultado, comparabilidad y observación antes de retirar la hoja.
+6. Repite desde `STEP-04` para cada participante. Observar la prueba de otro no sustituye realizar la propia.
+7. Cuando todos hayan probado, comparen resultados válidos con `más`, `menos` o `igual`; si un diseño sostiene 20, registra `20+`.
 
 **`en-US`**
 
-1. After the adult's signal, the Tester centers the empty cup without touching the supports.
-2. Count slowly to three. If the paper deforms and fails with a correctly placed cup, record 0; if the setup was off-center or touched, apply `invalid_setup`.
-3. Lower one crayon fully into the cup, alternating the side of center where it is placed. Do not drop it.
-4. Count slowly to three after each crayon. The Coordinator watches the supports, overlap, and cup position.
-5. When a failure occurs, the adult applies the classification in 4.1. For `bridge_deformation`, record the last stable amount; for `invalid_setup`, produce no score and reset only once.
-6. The adult completes `STEP-04` for the next design. Test the flat sheet first and then the accordion with ridges running from one book to the other.
-7. Compare only valid results: more, less, or the same? If both hold 20, record `20+` for both.
+1. Keep the `FLAT` result visible. Take the first child structure and name the turn: [child]'s design.
+2. The adult completes `STEP-04`, places the structure, and centers the empty cup. The child confirms the shape and waits for the signal.
+3. The child lowers one crayon fully into the cup, says the number, and waits three seconds. Alternate sides of center; do not drop it. Others watch where it bends and whether a condition changes.
+4. When a failure occurs, the adult applies 4.1. For `bridge_deformation`, record the last stable amount; for `invalid_setup`, record no number and reset only once.
+5. The child says or points to what happened to the bridge. Record design, result, comparability, and observation before removing the sheet.
+6. Repeat from `STEP-04` for every participant. Watching another test does not replace running one's own.
+7. After everyone tests, compare valid results using `more`, `less`, or `the same`; if a design holds 20, record `20+`.
 
-**Success signal / Señal de éxito:** se obtienen dos resultados comparables o se documenta honestamente por qué no fueron comparables, incluso si contradicen la predicción. / Two comparable results are obtained, or the reason they were not comparable is documented honestly, even if results contradict the prediction.
+**Success signal / Señal de éxito:** existe un resultado u observación honesta por participante y al menos dos resultados pueden compararse; ahora la mejora puede basarse en evidencia real. / A result or honest observation exists for every participant and at least two results can be compared; improvement can now use real evidence.
 
 **Common problem / Problema común:** si el vaso se inclina entre crestas, no reiniciar automáticamente; el adulto decide entre `invalid_setup` y `bridge_deformation` según 4.1. / If the cup tips between ridges, do not automatically restart; the adult chooses `invalid_setup` or `bridge_deformation` under 4.1.
 
-### 9.5 `STEP-06` — Improve / Mejorar (4–16 min)
+### 9.5 `STEP-06` — Improve / Mejorar (3–11 min)
 
-**Stage:** `improve`. **Actor:** `group`; todos deciden, el Diseñador construye y los demás repiten sus responsabilidades / all decide, the Designer builds, and the others repeat their responsibilities. **Minutes:** 9 canónicos; 4/9/16 por ruta / canonical; 4/9/16 by path.
+**Stage:** `improve`. **Actor:** `group`; todos proponen y comparten construcción/prueba / everyone proposes and shares building/testing. **Minutes:** 6 canónicos; 3/6/11 por ruta / canonical; 3/6/11 by path.
 
 **Visual brief IDs:** `VIS-08`.
 
-**Expected result / Resultado esperado:** una tercera hoja incorpora exactamente un cambio aprobado y produce un resultado válido o `No comparable` documentado. / A third sheet incorporates exactly one approved change and produces a valid result or a documented `No comparable` state.
+**Entry / Entrada:** `STATE-CHILD-RESULTS-RECORDED`. **Exit / Salida:** `STATE-IMPROVEMENT-TESTED`.
+
+**Expected result / Resultado esperado:** una hoja grupal incorpora exactamente un cambio basado en los resultados infantiles y produce un resultado válido o `No comparable` documentado. / One group sheet incorporates exactly one change based on the children's results and produces a valid result or a documented `Not comparable` state.
 
 **Resume / Reanudación:** dibujar la mejora elegida y guardar la hoja sin carga; al volver, repetir `STEP-04`. / Draw the chosen improvement and store the unloaded sheet; on return, repeat `STEP-04`.
 
@@ -479,33 +533,35 @@ Los totales incluyen preparación, cierre y limpieza; no se añade tiempo oculto
 
 **`es-US`**
 
-1. Pregunta: “¿Qué nos dice la primera comparación? ¿Qué cambiaríamos en una hoja nueva?”
-2. Elijan un solo cambio aprobado: pliegues más anchos, pliegues más estrechos, pliegues más rectos con guías o dos bordes longitudinales doblados hacia arriba como pequeñas paredes.
-3. Construyan la nueva forma con una tercera hoja. No agreguen cinta ni otra hoja.
-4. Predigan si sostendrá más, menos o igual que el mejor diseño anterior y expliquen por qué.
-5. Repitan la misma prueba. Registren el resultado aunque la mejora sostenga menos.
-6. En la ruta de 60 minutos, usen una cuarta hoja para repetir el mejor diseño y comprobar si el resultado es parecido.
+1. Coloca juntos la tabla de resultados y los diseños sin carga. Cada niño responde: “¿Qué cambiarías después de ver tu prueba y por qué?”
+2. Registra las tres recomendaciones. El grupo elige un solo cambio aprobado: ancho, cantidad o rectitud de pliegues, o bordes longitudinales levantados.
+3. Usa la hoja reservada para mejora. Cada niño realiza una parte compatible: marcar/indicar el cambio, plegar con apoyo y comprobar que coincide con la decisión.
+4. Todos predicen si sostendrá más, menos o igual que un resultado anterior y nombran con cuál lo compararán.
+5. Repitan `STEP-04/05`: por turnos, uno confirma el cambio, otro agrega/contabiliza carga y otro vigila condiciones; estas funciones rotan y no reemplazan las pruebas propias ya realizadas.
+6. Registren el resultado aunque sostenga menos o no sea comparable. En 60 minutos, repitan la mejora solo si el número de participantes dejó una hoja canónica sin usar; con tres niños profundicen la comparación sin añadir papel.
 
 **`en-US`**
 
-1. Ask: “What does the first comparison tell us? What would we change on a new sheet?”
-2. Choose one approved change: wider folds, narrower folds, straighter folds using guidelines, or both long edges folded upward like small walls.
-3. Build the new shape with a third sheet. Do not add tape or another sheet.
-4. Predict whether it will hold more, less, or the same as the previous best design, and explain why.
-5. Repeat the same test. Record the result even if the improvement holds less.
-6. On the 60-minute path, use a fourth sheet to repeat the best design and see whether the result is similar.
+1. Place the result table and unloaded designs together. Each child answers: “After seeing your test, what would you change and why?”
+2. Record all recommendations. The group chooses one approved change: fold width, number, or straightness, or raised long edges.
+3. Use the reserved improvement sheet. Each child performs a compatible part: mark/name the change, fold with support, and verify that it matches the decision.
+4. Everyone predicts whether it will hold more, less, or the same as one prior result and names the comparison.
+5. Repeat `STEP-04/05`: in turn, one confirms the change, one adds/counts load, and one watches conditions; these functions rotate and do not replace the individual tests already completed.
+6. Record the result even if it holds less or is not comparable. On a 60-minute path, repeat the improvement only when participant count left one canonical sheet unused; with three children, deepen comparison without adding paper.
 
 **Señal de éxito / Success signal:** el grupo cambia una variable de forma, prueba y conserva el resultado sin llamarlo éxito o fracaso personal. / The group changes one shape variable, tests it, and keeps the result without framing it as personal success or failure.
 
 **Problema común / Common issue:** si quieren cambiar varias cosas, dibuja las ideas y elige una; las demás quedan para otra hoja o sesión. / If the group wants to change several things, draw the ideas and choose one; save the others for another sheet or session.
 
-### 9.6 `STEP-07` — Explain / Explicar (1–6 min)
+### 9.6 `STEP-07` — Explain / Explicar (1–3 min)
 
-**Stage:** `explain`. **Actor:** `group`; el adulto escucha y hace una pregunta de evidencia / the adult listens and asks an evidence question. **Minutes:** 4 canónicos; 1/4/6 por ruta / canonical; 1/4/6 by path.
+**Stage:** `explain`. **Actor:** `group`; el adulto escucha y hace una pregunta de evidencia / the adult listens and asks an evidence question. **Minutes:** 2 canónicos; 1/2/3 por ruta / canonical; 1/2/3 by path.
 
 **Visual brief IDs:** `VIS-05`, `VIS-06`.
 
-**Expected result / Resultado esperado:** cada niño dispone de una modalidad accesible para conectar una observación con un diseño; la familia conserva resultados inesperados. / Every child has an accessible mode for connecting an observation to a design; the family keeps unexpected results.
+**Entry / Entrada:** `STATE-IMPROVEMENT-TESTED`. **Exit / Salida:** `STATE-EXPLANATION-SHARED`.
+
+**Expected result / Resultado esperado:** cada niño conecta su propia prueba o la mejora grupal con algo visto o contado; la familia conserva resultados inesperados. / Every child connects an individual test or the group improvement to something seen or counted; the family keeps unexpected results.
 
 **Resume / Reanudación:** puede completarse después usando la hoja de resultados; indicar que la explicación fue diferida. / It may be completed later using the results sheet; mark that explanation was deferred.
 
@@ -513,21 +569,21 @@ Los totales incluyen preparación, cierre y limpieza; no se añade tiempo oculto
 
 **`es-US`**
 
-1. Coloquen juntos los diseños sin carga.
-2. Pregunta: “¿Qué diseño hizo algo diferente? ¿Qué viste o contaste que apoya tu idea?”
-3. Pregunta: “¿Qué mantuvimos igual para que la comparación fuera justa?”
-4. Di la explicación infantil breve y conecta las palabras del niño con el resultado, sin declarar que más pliegues siempre son mejores.
-5. Celebren una decisión, una observación o una mejora de método, no el número más alto.
+1. Coloquen juntos los diseños sin carga, cada uno junto a su resultado, y la mejora grupal al final.
+2. Por turnos pregunta a cada niño: “En tu puente, ¿qué hiciste y qué viste o contaste?” Acepta señalar, dibujar o elegir.
+3. Pregunta: “¿Qué recomendaste cambiar después de tu prueba? ¿Dónde aparece esa idea en la mejora grupal?”
+4. Pregunta al grupo: “¿Qué mantuvimos igual para poder comparar?”
+5. Conecta sus palabras con forma, carga y flexión sin declarar que más pliegues siempre son mejores. Celebren haber completado pregunta, diseño, prueba y mejora, no el número más alto.
 
 **`en-US`**
 
-1. Put the unloaded designs side by side.
-2. Ask: “Which design did something different? What did you see or count that supports your idea?”
-3. Ask: “What did we keep the same to make the comparison fair?”
-4. Share the short child explanation and connect the child's words to the result, without claiming that more folds are always better.
-5. Celebrate a decision, an observation, or an improvement in method—not the highest number.
+1. Put the unloaded designs beside their results, with the group improvement last.
+2. In turn ask each child: “In your bridge, what did you do and what did you see or count?” Accept pointing, drawing, or choosing.
+3. Ask: “What change did you recommend after your test? Where can we see that idea in the group improvement?”
+4. Ask the group: “What did we keep the same so we could compare?”
+5. Connect their words to shape, load, and bending without claiming that more folds are always better. Celebrate completing the question, design, test, and improvement—not the highest number.
 
-**Señal de éxito / Success signal:** cada niño puede participar señalando, eligiendo, contando, describiendo o explicando según su acceso al lenguaje. No se exige vocabulario científico. / Each child can participate by pointing, choosing, counting, describing, or explaining according to their language access. Scientific vocabulary is not required.
+**Señal de éxito / Success signal:** cada niño identifica una acción propia y un resultado; la explicación cierra el ciclo que comenzó con la hoja plana. No se exige vocabulario científico. / Every child identifies an individual action and result; the explanation closes the cycle that began with the flat sheet. Scientific vocabulary is not required.
 
 **Common problem / Problema común:** un niño repite la explicación adulta; volver a “¿qué viste o contaste?” y aceptar gesto, dibujo o elección sin corregir hacia una frase modelo. / A child repeats the adult explanation; return to “what did you see or count?” and accept a gesture, drawing, or choice without correcting toward a model sentence.
 
@@ -599,7 +655,7 @@ Esta guía ayuda al adulto a hacer preguntas y mostrar posibilidades sin diseña
 | El acordeón sostiene menos / Accordion holds less | Revisa orientación, daño y uniformidad. Si la prueba fue justa, conserva el dato y explora una mejora. | Check orientation, damage, and evenness. If the test was fair, keep the result and explore an improvement. | No sustituir por una expectativa editorial. / Do not replace it with an editorial expectation. |
 | Plegar resulta difícil / Folding is difficult | Marca guías, estabiliza el papel o permite que el niño dirija al adulto. Cambia el objetivo si todavía no inició; si ya inició, registra el apoyo real. | Mark guidelines, stabilize the paper, or let the child direct the adult. Change the objective if the session has not started; otherwise record the actual support. | No valorar precisión si el adulto creó los pliegues. / Do not rate folding accuracy if the adult made the folds. |
 | Un niño no quiere participar / A child does not want to participate | Ofrece observar, dibujar o retirarse. Confirma no participación al cierre. | Offer observing, drawing, or opting out. Confirm nonparticipation at close. | No exposición ni valoración principal si no participó. / No exposure or primary rating when the child did not participate. |
-| Los niños compiten por la carga / Children compete for the load | Recuerda que se comparan formas. Usa turnos definidos o asigna al Coordinador la entrega de cada crayón al Probador. | Remind them that the shapes—not the children—are being compared. Use set turns or have the Coordinator hand each crayon to the Tester. | No interpretar conflicto como habilidad o interés. / Do not interpret conflict as skill or interest. |
+| Los niños compiten por la carga / Children compete for the load | Recuerda que se comparan formas y que cada niño tendrá su propia prueba. Mantén el orden visible; solo el niño del turno añade carga. | Remind them that shapes are compared and every child will run an individual test. Keep the order visible; only the child whose turn it is adds load. | No interpretar conflicto como habilidad o interés. / Do not interpret conflict as skill or interest. |
 
 ## 12. Adaptaciones y extensiones aprobadas
 
@@ -617,7 +673,7 @@ Once this version reaches `published`, AI may choose only these options without 
 | `ADAPT-BRIDGE-DIFFICULTY` / `difficulty` | Evidencia inicial o fuerte / Initial or strong evidence | Medir ancho de pliegue, justificar una variable controlada o repetir el mejor diseño. / Measure fold width, justify a controlled variable, or repeat the best design. | No añadir peso, altura, adhesivos, separación ni riesgo. / Do not add weight, height, adhesives, gap, or risk. | `none` | Sí / Yes |
 | `ADAPT-BRIDGE-PAUSE` / `duration` | Necesidad de pausa / A pause is needed | Pausar después de una fase, fotografiar solo el montaje si el adulto elige o anotar resultados, y etiquetar materiales. / Pause after a stage, photograph only the setup if the adult chooses or write results, and label materials. | Al volver repetir `STEP-04`; la foto no se guarda por defecto. / On return repeat `STEP-04`; the photo is not saved by default. | `none` | Sí / Yes |
 | `ADAPT-BRIDGE-MATERIAL` / `material` | Falta papel, soporte, regla, utensilio de escritura, cinta o toalla canónicos / Canonical paper, support, ruler, writing tool, tape, or towel is unavailable | Usar solo la sustitución expresa de la fila correspondiente en 5.1. / Use only the explicit substitute in that material's row in 5.1. | No sustituir vaso ni carga; usar un solo tipo de papel y soporte durante la sesión. / Do not replace cup or load; use one paper and support type throughout the session. | `reviewed_equivalent` | Sí / Yes |
-| `ADAPT-BRIDGE-REPEAT` / `extension` | Ruta de 60 min / 60-minute path | Repetir el mejor diseño con una hoja nueva para explorar repetibilidad. / Repeat the best design with a new sheet to explore repeatability. | Máximo cuatro diseños y 20 crayones por prueba. / No more than four designs and 20 crayons per test. | `none` | Sí / Yes |
+| `ADAPT-BRIDGE-REPEAT` / `extension` | Ruta de 60 min y una o dos participantes / 60-minute path with one or two participants | Usar una hoja canónica no asignada para repetir la mejora y explorar repetibilidad. / Use an unassigned canonical sheet to repeat the improvement and explore repeatability. | No añadir una séptima hoja con tres participantes; máximo 20 crayones por prueba. / Do not add a seventh sheet with three participants; no more than 20 crayons per test. | `none` | Sí / Yes |
 
 ### 12.1 Adaptaciones prohibidas
 
@@ -757,9 +813,9 @@ Todos los assets permanecen en estado `planned` hasta generación, QA automátic
 |---|---|---|---|---|---|---|
 | `VIS-01` | Materials board fotorealista | Lista de materiales | Vista cenital sobre fondo neutro: seis hojas carta o A4 apiladas, dos libros de tapa dura separados, vaso de papel vacío, 20 crayones intactos ordenados, regla, lápiz, toalla extendida y, en un recuadro separado, cuatro trozos de cinta removible con overlay “Opcional / Optional” | Mostrar cantidades comprobables y solo materiales de esta versión; distinguir la cinta opcional; sin texto generado dentro de la imagen, sustituciones de carga, tijeras, vidrio o manos infantiles | Materiales requeridos del puente de papel y cinta opcional ordenados desde arriba. | Required paper bridge materials and optional tape arranged from above. |
 | `VIS-02` | Preparación fotorealista | Preparación/Discover | Mesa baja y firme; toalla bajo un espacio entre dos libros planos; regla mostrando la separación; hoja plana apoyada sobre ambos; manos adultas ajustando un libro | Mostrar 15 cm / 6 in mediante overlay; actor adulto; sin libros apilados ni vaso cargado | Un adulto ajusta dos libros planos separados por 15 centímetros, con una toalla debajo y una hoja cruzando el espacio. | An adult adjusts two flat books 6 inches apart, with a towel underneath and a sheet crossing the gap. |
-| `VIS-03` | Diagrama instructivo, 4 paneles | Build | Secuencia: borde largo al frente; primer pliegue de 2.5 cm / 1 in; voltear y plegar alternando; abrir acordeón con crestas paralelas al largo | Flechas y números como overlays; geometría posible; sin tijeras, cinta o manos adult-only falsas | Cuatro pasos muestran cómo doblar una hoja en acordeón con crestas a lo largo. | Four steps show how to accordion-fold a sheet with ridges running lengthwise. |
+| `VIS-03` | Diagrama instructivo, 6 paneles | Imagine/Build | Tres opciones aprobadas —acordeón, canal y pliegues anchos— seguidas por la secuencia del acordeón: primer pliegue de 2.5 cm / 1 in, voltear/repetir y abrir con crestas longitudinales | Presentar opciones, no una respuesta correcta; flechas y números como overlays; sin tijeras, cinta o manos adult-only falsas | Opciones de forma y pasos para doblar una hoja en acordeón con crestas a lo largo. | Shape options and steps for accordion-folding a sheet with lengthwise ridges. |
 | `VIS-04` | Diagrama instructivo | Experiment | Vaso centrado sobre puente bajo; una mano infantil baja suavemente un crayón dentro del vaso; 19 restantes en una fila; toalla bajo el espacio; libros planos | Mostrar solo acción infantil permitida; el crayón no cae; sin caras, cargas sustitutas o manos bajo soportes | Una mano baja un crayón dentro del vaso centrado sobre el puente, con una toalla debajo. | A hand lowers one crayon into the cup centered on the bridge, with a towel underneath. |
-| `VIS-05` | Resultado esperado fotorealista, split-panel secuencial | Experiment/Explain | Dos paneles representan momentos distintos del mismo montaje con exactamente los mismos dos libros y el mismo vaso: primero la hoja plana visiblemente flexionada; después el acordeón sosteniendo el vaso de forma plausible; fondo y cámara idénticos; sin número exacto de cargas | Overlay “Mismo montaje, dos momentos; ejemplo, tus resultados pueden variar / Same setup, two moments; example, your results may vary”; no duplicar materiales, prometer superioridad ni mostrar física imposible | Dos momentos del mismo montaje comparan una hoja plana y una hoja plegada; los resultados pueden variar. | Two moments of the same setup compare a flat sheet and a folded sheet; results may vary. |
+| `VIS-05` | Resultado esperado fotorealista, secuencia de 4 paneles | Experiment/Explain | El mismo montaje, cámara y vaso muestran referencia plana y tres formas infantiles distintas, una por vez; cada panel tiene espacio externo para símbolo/nombre y resultado, sin número generado dentro de la imagen | Overlay “Mismo montaje; un turno por diseño; los resultados pueden variar / Same setup; one turn per design; results may vary”; no duplicar soportes, prometer superioridad ni mostrar física imposible | Cuatro turnos del mismo montaje muestran una referencia plana y tres diseños infantiles probados por separado. | Four turns on the same setup show a flat baseline and three child designs tested separately. |
 | `VIS-06` | Diagrama conceptual, no a escala | Explicación | Cortes transversales: hoja plana y hoja con crestas; flechas de carga hacia abajo; pequeñas paredes verticales resaltadas | Marcar “diagrama, no a escala”; overlays bilingües separados; sin ecuaciones requeridas | Diagrama no a escala compara una hoja plana con crestas que forman pequeñas paredes bajo una carga. | Not-to-scale diagram compares a flat sheet with ridges that form small walls under a load. |
 | `VIS-07` | Troubleshooting, diagrama comparativo | Fallas | Tres paneles: montaje válido; `invalid_setup` con soporte desplazado o vaso inicialmente descentrado; `bridge_deformation` con papel curvado antes de inclinarse el vaso | Cruz/check y etiquetas como overlays controlados; no mostrar caída cerca de un niño ni sugerir reinicio automático | Comparación entre montaje válido, montaje inválido y deformación del puente. | Comparison of a valid setup, an invalid setup, and bridge deformation. |
 | `VIS-08` | Diagrama instructivo | Improve | Cuatro opciones separadas: pliegues más anchos, más estrechos, guías rectas y bordes largos elevados; cada una usa una sola hoja | Presentar como opciones, no como resultados garantizados; sin combinarlas en un diseño | Cuatro cambios de forma aprobados para probar una mejora con una sola hoja. | Four approved shape changes for testing an improvement with one sheet. |
@@ -775,22 +831,23 @@ Todos los assets permanecen en estado `planned` hasta generación, QA automátic
 - Los bundles usan el mismo asset físico cuando corresponde y overlays/alt text revisados por idioma.
 - `VIS-05` se interpreta como dos momentos secuenciales del mismo set de materiales, nunca como dos montajes simultáneos.
 - `VIS-07` diferencia visualmente `invalid_setup` de `bridge_deformation` sin atribuir una causa que la imagen no permita verificar.
-- Se registra modelo/proveedor, brief, resultado de QA, aprobador, fecha y vínculo a `ACT-0001@0.2.2`.
+- Se registra modelo/proveedor, brief, resultado de QA, aprobador, fecha y vínculo a `ACT-0001@0.3.0`.
 
 ## 16. Criterios de aceptación de la versión
 
 - Un adulto puede preparar el montaje únicamente con la lista y `VIS-01`/`VIS-02`.
 - Las rutas de 30, 45 y 60 minutos conservan Discover–Imagine–Build–Experiment–Improve–Explain.
-- Las configuraciones de uno, dos y tres niños asignan una contribución visible y exactamente un objetivo principal por participante.
+- Las configuraciones de uno, dos y tres niños asignan exactamente un objetivo principal y permiten que cada participante proponga, construya, pruebe, observe y recomiende una mejora.
 - El flujo de cierre necesita un toque por participante y puede completarse en menos de 20 segundos para tres niños en prueba de usabilidad.
 - Se pueden registrar exposiciones sin convertirlas en evidencia de independencia.
 - `invalid_setup`, `bridge_deformation` y `safe_stop` producen estados distintos; solo una prueba válida produce puntuación y ninguno produce por sí mismo una valoración negativa del niño.
 - La actividad se puede ejecutar sin tijeras, monedas, adhesivos en el puente ni conexión de red.
-- El vaso y la carga no tienen sustituciones en 0.2.2; cualquier alternativa se rechaza o crea una nueva versión después de validación.
+- El vaso y la carga no tienen sustituciones en 0.3.0; cualquier alternativa se rechaza o crea una nueva versión después de validación.
 - Ninguna adaptación aprobada aumenta altura, energía, peso, temperatura, presión, toxicidad o velocidad.
 - Los bundles `es-US` y `en-US` comunican el mismo mecanismo y controles de seguridad.
-- Cada `STEP-00`–`STEP-09` declara actor, stage, tiempo, resultado esperado, señal de éxito, reanudación, advertencia y problema común; las referencias cumplen el mapping de 1.2.
-- Una instancia JSON de 0.2.2 valida contra el schema vigente antes de `ready_for_pilot`.
+- Cada `STEP-00`–`STEP-09` declara actor, stage, tiempo, estado de entrada/salida, resultado esperado, señal de éxito, reanudación, advertencia y problema común; las referencias cumplen el mapping de 1.2.
+- La salida de cada fase coincide con la entrada de la siguiente y el walkthrough de mesa confirma la función de vaso/crayones y una prueba propia por niño.
+- Una instancia JSON de 0.3.0 valida contra el schema vigente antes de `ready_for_pilot`.
 - Un resultado igual o contrario a la expectativa sigue siendo válido y no se reemplaza por una conclusión garantizada.
 
 ## 17. Trazabilidad
@@ -815,7 +872,8 @@ Todos los assets permanecen en estado `planned` hasta generación, QA automátic
 | 0.1.0 | Draft histórico | Esqueleto inicial para validar el esquema. |
 | 0.2.0 | Draft histórico | Amplía a ActivityVersion editorial bilingüe; fija materiales y prueba; documenta rutas de 30–60 minutos, configuraciones 1–3, roles, objetivos/rúbricas, seguridad, adaptaciones, troubleshooting, cierre y briefs visuales. Cambia la carga de monedas/bloques ambiguos a crayones intactos en vaso liviano y limita esta versión a tres niños hasta validación. |
 | 0.2.1 | Draft histórico | Retira sustituciones no validadas de vaso y carga; distingue `invalid_setup`, `bridge_deformation` y `safe_stop`; estructura `STEP-00`–`STEP-09`; completa campos bilingües de materiales, roles, peligros y adaptaciones; alinea IDs con el schema; corrige tolerancias y briefs visuales; añade gate científico y gate físico de vaso/carga. |
-| 0.2.2 | Draft actual | Añade una guía bilingüe y práctica para que el adulto pueda proponer pliegues, canales y preguntas de diseño sin entregar la solución ni prometer que una forma será superior. |
+| 0.2.2 | Draft histórico | Añade una guía bilingüe y práctica para que el adulto pueda proponer pliegues, canales y preguntas de diseño sin entregar la solución ni prometer que una forma será superior. |
+| 0.3.0 | Draft actual | Reescribe la actividad desde un contrato narrativo causal: prueba de referencia real en Discover, función explícita del vaso y los crayones, diseño y prueba propios por niño, mejora grupal, transiciones verificables y focos calibrados por edad/evidencia. |
 
 ## 19. Evidencia requerida antes de cambiar a `ready_for_pilot`
 
@@ -824,9 +882,9 @@ Todos los assets permanecen en estado `planned` hasta generación, QA automátic
 3. Ejecutar con papel carta y A4 comunes y documentar si 15 cm / 6 in produce al menos dos pruebas comparables sin carga sustituta ni aumento del espacio.
 4. Verificar que vaso y 20 crayones permanecen dentro del perfil de falla segura sobre la mesa baja; cualquier rotura, rebote fuera de la mesa o necesidad de mayor carga bloquea la versión.
 5. Cronometrar rutas y preparación con un adulto distinto al autor, y cronometrar limpieza por separado.
-6. Validar simultaneidad, espera y contribución real con uno, dos y tres niños.
+6. Ejecutar walkthrough de mesa y validar continuidad, espera y una prueba propia completa con uno, dos y tres niños; ningún paso puede requerir inventar la función de un material o la transición.
 7. Confirmar que las preguntas de cierre distinguen apoyo, `invalid_setup`, `bridge_deformation`, `safe_stop` y no observación.
-8. Serializar `ACT-0001@0.2.2` y validar todos sus IDs, campos localizados y referencias contra el schema vigente.
+8. Serializar `ACT-0001@0.3.0` y validar todos sus IDs, campos localizados, narrativa y referencias contra el schema vigente.
 9. Completar y registrar revisión científica, pedagógica, de seguridad y bilingüe.
 10. Generar los ocho assets y completar QA; no usar imágenes familiares sin consentimiento separado.
 

@@ -1,0 +1,27 @@
+{
+  "id": "./",
+  "name": "Kids Learning System — Founder Pilot",
+  "short_name": "Kids Pilot",
+  "description": "Plan familiar de cinco días, compras y guía paso a paso para el founder pilot.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f3f1e9",
+  "theme_color": "#101820",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

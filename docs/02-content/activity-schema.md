@@ -53,6 +53,9 @@ Cantidades y unidades se representan de forma estructurada para renderizar siste
 - Área principal y áreas secundarias.
 - Conceptos explicados.
 - Habilidades practicables.
+- Meta de la experiencia y mecanismo de aprendizaje: por qué las acciones permiten practicar esas habilidades.
+- Decisiones infantiles reales y condiciones que permanecen fijas.
+- Señales que el adulto puede observar sin evaluar durante la ejecución.
 - Ciclo Discover–Imagine–Build–Experiment–Improve–Explain.
 - Pregunta de apertura.
 - Predicción esperada, sin exigir respuesta correcta.
@@ -60,6 +63,8 @@ Cantidades y unidades se representan de forma estructurada para renderizar siste
 - Explicación para el adulto.
 - Explicación con lenguaje infantil.
 - Preguntas de reflexión.
+
+Antes de redactar pasos o pantallas, la actividad completa el [Contrato narrativo de la experiencia](activity-narrative-contract.md). Este contrato define el modo de participación, estados físicos, función de materiales, ciclo esencial de cada niño y transiciones causales.
 
 ## 5. Materiales
 
@@ -90,6 +95,18 @@ Cada paso contiene:
 - Problemas comunes y soluciones.
 - Advertencia localizada.
 - Posibilidad de reanudar.
+- Propósito pedagógico de la fase.
+- Acciones adultas numeradas y físicamente precisas.
+- Frases o preguntas literales sugeridas para el adulto.
+- Acciones por `roleTemplate` que la sesión resolverá con los nombres de participantes.
+- Decisión infantil del paso o `null` explícito cuando no existe.
+- Señales de observación vinculadas a habilidades, sin solicitar una valoración en vivo.
+- Estado de entrada y salida con identificadores estables.
+- Razón por la que la salida habilita el siguiente paso.
+- Materiales usados y función concreta en ese momento.
+- Acciones del ciclo esencial y audiencia que las completa.
+
+El contrato editorial conserva roles y mappings. La presentación familiar sigue [SPEC-UX-04](../04-ux/activity-facilitation-model.md) y los traduce a aportes sugeridos, focos por niño y acciones nominales.
 
 ## 7. Roles
 
@@ -111,6 +128,8 @@ Ejemplo para un puente:
 | Builder | unir y montar estructura | motricidad, secuenciación, ensamblaje |
 | Test Engineer | medir y probar carga | medición, comparación, registro |
 | Design Engineer | dibujar e iterar | planificación, estabilidad, explicación |
+
+En la UI familiar, el nombre del rol no domina la experiencia ni exige configuración manual. La asignación se presenta como `aporte sugerido` + `foco de aprendizaje`, con una razón comprensible. Cambiar participación es un flujo de excepción; no un control permanente junto a cada paso.
 
 ## 8. Variaciones y extensiones
 
@@ -183,3 +202,9 @@ Para cada objetivo elegible:
 - **ACT-010:** Las imágenes deben estar versionadas con el contenido.
 - **ACT-011:** Una versión lanzada en Estados Unidos requiere bundles completos y revisados en inglés y español.
 - **ACT-012:** Advertencias y adult-only steps reciben revisión bilingüe específica.
+- **ACT-013:** Toda actividad declara meta de experiencia, mecanismo de aprendizaje, decisiones infantiles y señales adultas de observación.
+- **ACT-014:** Cada paso infantil declara propósito, acciones adultas, guion sugerido, acciones por participante y señales de observación.
+- **ACT-015:** Las acciones por participante se vinculan a `roleTemplateId`; la sesión resuelve nombres desde asignaciones reales.
+- **ACT-016:** Cada problema/adaptación entregable declara el cambio exacto, impacto educativo, reanudación y límite de seguridad.
+- **ACT-017:** Toda actividad cumple `ACT-NAR-001` a `ACT-NAR-012` antes de revisión visual.
+- **ACT-018:** Cada objetivo elegible declara orientación de reto específica para edad/evidencia, simplificación y extensión.

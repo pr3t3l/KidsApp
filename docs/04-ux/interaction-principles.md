@@ -37,6 +37,7 @@
 
 - Mostrar por qué se recomendó una actividad.
 - Mostrar qué datos se guardarán antes de conservar medios.
+- Para observaciones estructuradas rutinarias, explicar el alcance junto a `Guardar y terminar`; no añadir una pantalla de confirmación redundante si todo puede corregirse después.
 - Permitir revisar correcciones de IA.
 - Diferenciar contenido publicado de sugerencias experimentales.
 

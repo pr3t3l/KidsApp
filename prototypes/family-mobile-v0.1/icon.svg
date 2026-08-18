@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">Kids Learning System</title>
+  <desc id="description">Tres piezas inclinadas de colores sobre un fondo azul oscuro.</desc>
+  <rect width="512" height="512" fill="#101820"/>
+  <g transform="translate(112 108) skewX(-8)">
+    <rect width="78" height="296" rx="24" fill="#52d5e6"/>
+    <rect x="105" width="78" height="296" rx="24" fill="#ffc928"/>
+    <rect x="210" width="78" height="296" rx="24" fill="#ff6b56"/>
+  </g>
+</svg>

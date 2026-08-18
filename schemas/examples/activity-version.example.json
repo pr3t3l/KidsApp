@@ -30,6 +30,8 @@
   "timing": { "totalMinutesMin": 35, "totalMinutesMax": 60, "adultPrepMinutes": 5, "cleanupMinutes": 5 },
   "environment": { "spaces": ["stable_table"], "messLevel": "low", "offlineCapable": true },
   "learning": {
+    "experienceGoal": { "en-US": "Run two comparable tests and use the result to improve one paper shape.", "es-US": "Realizar dos pruebas comparables y usar el resultado para mejorar una forma de papel." },
+    "learningMechanism": { "en-US": "Changing only the paper shape makes bending resistance visible while equal loads provide evidence for comparison.", "es-US": "Cambiar únicamente la forma del papel hace visible la resistencia a la flexión mientras cargas iguales aportan evidencia para comparar." },
     "primaryArea": "ENG",
     "secondaryAreas": ["MAT", "MOT", "LOG"],
     "concepts": [
@@ -55,8 +57,63 @@
         "nonEvidence": [{ "en-US": "Changing several conditions without comparison.", "es-US": "Cambiar varias condiciones sin comparar." }]
       }
     ],
+    "childDecisions": [
+      { "en-US": "Choose one paper-shape change for the improvement test.", "es-US": "Elegir un cambio de forma del papel para la prueba de mejora." }
+    ],
+    "adultLookFors": [
+      { "en-US": "Notice the amount of help used for each assigned action without grading predictions or physical results.", "es-US": "Observar cuánta ayuda requiere cada acción asignada sin calificar predicciones ni resultados físicos." }
+    ],
     "cycleStages": ["discover", "imagine", "build_or_do", "experiment", "improve", "explain"]
   },
+  "experienceNarrative": {
+    "mode": "hybrid",
+    "startingStateId": "STATE-READY",
+    "endingStateId": "STATE-CLEARED",
+    "states": [
+      { "stateId": "STATE-READY", "description": { "en-US": "Materials are prepared and no result is known.", "es-US": "Los materiales están preparados y no se conoce ningún resultado." } },
+      { "stateId": "STATE-PROBLEM-SEEN", "description": { "en-US": "Every child has observed the flat-sheet baseline.", "es-US": "Cada niño observó la referencia con hoja plana." } },
+      { "stateId": "STATE-DESIGNS-CHOSEN", "description": { "en-US": "Every child has selected a paper shape.", "es-US": "Cada niño eligió una forma de papel." } },
+      { "stateId": "STATE-CHILD-DESIGNS-READY", "description": { "en-US": "Every child has a labeled bridge ready to test.", "es-US": "Cada niño tiene un puente identificado listo para probar." } },
+      { "stateId": "STATE-CHILD-RESULTS-RECORDED", "description": { "en-US": "Every child completed a test and has a result.", "es-US": "Cada niño completó una prueba y tiene un resultado." } },
+      { "stateId": "STATE-IMPROVEMENT-TESTED", "description": { "en-US": "The group selected and tested one improvement.", "es-US": "El grupo eligió y probó una mejora." } },
+      { "stateId": "STATE-EXPLANATION-SHARED", "description": { "en-US": "Every child connected a design to an observation.", "es-US": "Cada niño conectó un diseño con una observación." } },
+      { "stateId": "STATE-CLEARED", "description": { "en-US": "Materials are counted and safely stored.", "es-US": "Los materiales están contados y guardados con seguridad." } }
+    ],
+    "materialFunctions": [
+      { "materialId": "MAT-COPY-PAPER", "introducedAtStepId": "STEP-01", "purpose": { "en-US": "The paper is the bridge; its shape is the changed variable.", "es-US": "El papel es el puente; su forma es la variable que cambia." } },
+      { "materialId": "MAT-TEST-BLOCKS", "introducedAtStepId": "STEP-01", "purpose": { "en-US": "Each equal block is one load unit added during a test.", "es-US": "Cada bloque igual es una unidad de carga añadida durante la prueba." } }
+    ],
+    "participantCycle": {
+      "completionPolicy": "every_active_participant",
+      "requiredActions": ["encounter_problem", "propose", "build_or_do", "test_or_check", "observe_result", "improve_or_recommend", "explain"]
+    }
+  },
+  "objectiveGuidance": [
+    {
+      "skillId": "MAT-SKL-ONE-TO-ONE-COUNTING",
+      "startingAgeRange": { "minimumYears": 5, "maximumYears": 6 },
+      "intent": "consolidation",
+      "rationale": { "en-US": "With no prior evidence, one-to-one counting during a real test is a useful starting opportunity for ages five to six.", "es-US": "Sin evidencia previa, el conteo uno a uno durante una prueba real es una oportunidad inicial útil para cinco a seis años." },
+      "simplification": { "en-US": "Use fewer blocks and let the child touch each block while saying the number.", "es-US": "Usa menos bloques y permite que el niño toque cada bloque al decir el número." },
+      "extension": { "en-US": "Ask the child to recover the total after each waiting interval.", "es-US": "Pide al niño recuperar el total después de cada intervalo de espera." }
+    },
+    {
+      "skillId": "ENG-SKL-COMPARE-REDESIGN",
+      "startingAgeRange": { "minimumYears": 7, "maximumYears": 8 },
+      "intent": "growth",
+      "rationale": { "en-US": "With no prior evidence, proposing, testing, and revising a personal design provides an open challenge for ages seven to eight.", "es-US": "Sin evidencia previa, proponer, probar y revisar un diseño propio ofrece un reto abierto para siete a ocho años." },
+      "simplification": { "en-US": "Offer two approved shapes and ask the child to choose one and predict its behavior.", "es-US": "Ofrece dos formas aprobadas y pide al niño elegir una y predecir su comportamiento." },
+      "extension": { "en-US": "Ask the child to justify the redesign with two observations.", "es-US": "Pide al niño justificar el rediseño con dos observaciones." }
+    },
+    {
+      "skillId": "MOT-SKL-PRECISE-FOLDING",
+      "startingAgeRange": { "minimumYears": 5, "maximumYears": 10 },
+      "intent": "exploration",
+      "rationale": { "en-US": "Folding is available to every participant but is selected as a primary objective only when evidence makes it useful.", "es-US": "El plegado está disponible para cada participante, pero solo se elige como objetivo principal cuando la evidencia lo vuelve útil." },
+      "simplification": { "en-US": "Mark guides or stabilize the sheet while the child completes the fold.", "es-US": "Marca guías o estabiliza la hoja mientras el niño completa el pliegue." },
+      "extension": { "en-US": "Ask the child to plan and repeat a chosen fold interval.", "es-US": "Pide al niño planear y repetir un intervalo de plegado elegido." }
+    }
+  ],
   "materials": [
     {
       "materialId": "MAT-COPY-PAPER",
@@ -94,51 +151,71 @@
   "roleTemplates": [
     {
       "roleTemplateId": "ROLE-BUILDER",
-      "name": { "en-US": "Builder", "es-US": "Constructor" },
-      "contribution": { "en-US": "Creates bridge shapes.", "es-US": "Crea las formas del puente." },
+      "name": { "en-US": "Child investigator — folding focus", "es-US": "Investigador infantil — foco en plegado" },
+      "contribution": { "en-US": "Completes the full cycle while the adult observes folding support.", "es-US": "Completa el ciclo entero mientras el adulto observa el apoyo durante el plegado." },
       "compatibleLevels": ["L1", "L2", "L3"],
       "eligiblePrimarySkillIds": ["MOT-SKL-PRECISE-FOLDING"],
       "exposureSkillIds": ["MOT-SKL-PRECISE-FOLDING"],
       "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"],
-      "responsibilities": [{ "en-US": "Fold and place the bridge.", "es-US": "Doblar y colocar el puente." }],
+      "responsibilities": [{ "en-US": "Propose, build, test, observe, recommend, and explain a personal bridge.", "es-US": "Proponer, construir, probar, observar, recomendar y explicar un puente propio." }],
       "allowedStepIds": ["STEP-01", "STEP-02", "STEP-03", "STEP-04", "STEP-05", "STEP-06", "STEP-07"],
       "restrictedStepIds": []
     },
     {
       "roleTemplateId": "ROLE-TESTER",
-      "name": { "en-US": "Test Engineer", "es-US": "Ingeniero de pruebas" },
-      "contribution": { "en-US": "Runs a fair load test.", "es-US": "Realiza una prueba de carga justa." },
+      "name": { "en-US": "Child investigator — counting focus", "es-US": "Investigador infantil — foco en conteo" },
+      "contribution": { "en-US": "Completes the full cycle while the adult observes one-to-one counting.", "es-US": "Completa el ciclo entero mientras el adulto observa el conteo uno a uno." },
       "compatibleLevels": ["L1", "L2", "L3"],
       "eligiblePrimarySkillIds": ["MAT-SKL-ONE-TO-ONE-COUNTING"],
       "exposureSkillIds": ["MAT-SKL-ONE-TO-ONE-COUNTING"],
       "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"],
-      "responsibilities": [{ "en-US": "Add one equal piece at a time.", "es-US": "Agregar una pieza igual a la vez." }],
-      "allowedStepIds": ["STEP-01", "STEP-02", "STEP-04", "STEP-05", "STEP-06", "STEP-07"],
-      "restrictedStepIds": ["STEP-03"]
+      "responsibilities": [{ "en-US": "Propose, build, test, observe, recommend, and explain a personal bridge.", "es-US": "Proponer, construir, probar, observar, recomendar y explicar un puente propio." }],
+      "allowedStepIds": ["STEP-01", "STEP-02", "STEP-03", "STEP-04", "STEP-05", "STEP-06", "STEP-07"],
+      "restrictedStepIds": []
     },
     {
       "roleTemplateId": "ROLE-DESIGNER",
-      "name": { "en-US": "Design Engineer", "es-US": "Ingeniero de diseño" },
-      "contribution": { "en-US": "Uses evidence to propose an improvement.", "es-US": "Usa evidencia para proponer una mejora." },
+      "name": { "en-US": "Child investigator — redesign focus", "es-US": "Investigador infantil — foco en rediseño" },
+      "contribution": { "en-US": "Completes the full cycle while the adult observes evidence-based redesign.", "es-US": "Completa el ciclo entero mientras el adulto observa el rediseño basado en evidencia." },
       "compatibleLevels": ["L2", "L3", "L4"],
       "eligiblePrimarySkillIds": ["ENG-SKL-COMPARE-REDESIGN"],
       "exposureSkillIds": ["ENG-SKL-COMPARE-REDESIGN"],
       "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"],
-      "responsibilities": [{ "en-US": "Compare results and choose one change.", "es-US": "Comparar resultados y elegir un cambio." }],
+      "responsibilities": [{ "en-US": "Propose, build, test, observe, recommend, and explain a personal bridge.", "es-US": "Proponer, construir, probar, observar, recomendar y explicar un puente propio." }],
       "allowedStepIds": ["STEP-01", "STEP-02", "STEP-03", "STEP-04", "STEP-05", "STEP-06", "STEP-07"],
       "restrictedStepIds": []
     }
   ],
   "groupConfigurations": [
-    { "participantCount": 1, "roleTemplateIds": ["ROLE-BUILDER"], "notes": { "en-US": "The child rotates through all contributions.", "es-US": "El niño rota por todas las contribuciones." } },
-    { "participantCount": 2, "roleTemplateIds": ["ROLE-BUILDER", "ROLE-TESTER"], "notes": { "en-US": "Both children decide the redesign.", "es-US": "Ambos niños deciden el rediseño." } },
-    { "participantCount": 3, "roleTemplateIds": ["ROLE-BUILDER", "ROLE-TESTER", "ROLE-DESIGNER"], "notes": { "en-US": "Each child has one visible contribution.", "es-US": "Cada niño tiene una contribución visible." } }
+    { "participantCount": 1, "roleTemplateIds": ["ROLE-BUILDER"], "notes": { "en-US": "The child completes one full personal cycle.", "es-US": "El niño completa un ciclo personal entero." } },
+    { "participantCount": 2, "roleTemplateIds": ["ROLE-BUILDER", "ROLE-TESTER"], "notes": { "en-US": "Both children complete a personal cycle; focus changes only the observation cue.", "es-US": "Ambos niños completan un ciclo propio; el foco solo cambia la señal observada." } },
+    { "participantCount": 3, "roleTemplateIds": ["ROLE-BUILDER", "ROLE-TESTER", "ROLE-DESIGNER"], "notes": { "en-US": "Every child completes a personal cycle; the group shares one improvement.", "es-US": "Cada niño completa un ciclo propio; el grupo comparte una mejora." } }
   ],
   "steps": [
     {
       "stepId": "STEP-01", "stage": "discover", "actor": "group",
+      "entryStateId": "STATE-READY", "exitStateId": "STATE-PROBLEM-SEEN",
+      "transitionReason": { "en-US": "The observed flat-sheet result creates a concrete problem to solve.", "es-US": "El resultado observado de la hoja plana crea un problema concreto que resolver." },
       "title": { "en-US": "Ask", "es-US": "Preguntar" },
+      "learningPurpose": { "en-US": "Elicit a prediction before anyone knows the outcome.", "es-US": "Provocar una predicción antes de que alguien conozca el resultado." },
       "instruction": { "en-US": "Show the gap and ask what a paper bridge needs to do.", "es-US": "Muestra el espacio y pregunta qué necesita hacer un puente de papel." },
+      "adultActions": [{ "en-US": "Position the supports and show one unloaded flat sheet.", "es-US": "Coloca los soportes y muestra una hoja plana sin carga." }],
+      "facilitatorPrompts": [{ "en-US": "What do you think the paper will do when we add the test pieces?", "es-US": "¿Qué creen que hará el papel cuando agreguemos las piezas de prueba?" }],
+      "participantActionTemplates": [
+        { "actionTemplateId": "ACTN-01-ALL", "audience": "all_participants", "roleTemplateIds": [], "action": { "en-US": "Point, say, or draw a prediction without needing to be correct.", "es-US": "Señalar, decir o dibujar una predicción sin necesidad de acertar." }, "turnOrder": "sequential" }
+      ],
+      "cycleActions": [
+        { "action": "encounter_problem", "audience": "every_active_participant" },
+        { "action": "observe_result", "audience": "every_active_participant" }
+      ],
+      "materialUses": [
+        { "materialId": "MAT-COPY-PAPER", "purpose": { "en-US": "Provide the flat baseline bridge.", "es-US": "Proporcionar el puente plano de referencia." } },
+        { "materialId": "MAT-TEST-BLOCKS", "purpose": { "en-US": "Create equal load units in the baseline test.", "es-US": "Crear unidades iguales de carga en la prueba de referencia." } }
+      ],
+      "childDecision": { "en-US": "Choose whether to answer by pointing, speaking, or drawing.", "es-US": "Elegir si responder señalando, hablando o dibujando." },
+      "observationCues": [
+        { "cueId": "CUE-01-PREDICT", "skillId": "ENG-SKL-COMPARE-REDESIGN", "behavior": { "en-US": "Offers a testable prediction or question.", "es-US": "Propone una predicción o pregunta comprobable." }, "doNotInfer": { "en-US": "Prediction accuracy is not evidence of understanding.", "es-US": "Acertar la predicción no demuestra comprensión." } }
+      ],
       "expectedResult": { "en-US": "Children identify the span and load.", "es-US": "Los niños identifican el espacio y la carga." },
       "minutes": 4, "successSignal": { "en-US": "A testable need is named.", "es-US": "Se nombra una necesidad comprobable." },
       "commonProblems": [{ "problem": { "en-US": "A child seeks the correct prediction.", "es-US": "Un niño busca la predicción correcta." }, "safeResponse": { "en-US": "Record every prediction without grading it.", "es-US": "Registra cada predicción sin calificarla." } }],
@@ -148,8 +225,22 @@
     },
     {
       "stepId": "STEP-02", "stage": "imagine", "actor": "group",
+      "entryStateId": "STATE-PROBLEM-SEEN", "exitStateId": "STATE-DESIGNS-CHOSEN",
+      "transitionReason": { "en-US": "The baseline observation gives every child evidence for choosing a shape.", "es-US": "La observación de referencia da a cada niño evidencia para elegir una forma." },
       "title": { "en-US": "Predict", "es-US": "Predecir" },
+      "learningPurpose": { "en-US": "Turn several ideas into one testable shape and one fair condition.", "es-US": "Convertir varias ideas en una forma comprobable y una condición justa." },
       "instruction": { "en-US": "Draw or describe a paper shape that may resist bending.", "es-US": "Dibuja o describe una forma de papel que podría resistir la flexión." },
+      "adultActions": [{ "en-US": "Show the flat sheet and the approved folded-shape diagram without naming a winner.", "es-US": "Muestra la hoja plana y el diagrama de formas plegadas aprobadas sin decir cuál ganará." }],
+      "facilitatorPrompts": [{ "en-US": "Without adding paper, what shape could we give this sheet? What must stay the same?", "es-US": "Sin agregar papel, ¿qué forma podríamos darle a esta hoja? ¿Qué debe permanecer igual?" }],
+      "participantActionTemplates": [
+        { "actionTemplateId": "ACTN-02-ALL", "audience": "all_participants", "roleTemplateIds": [], "action": { "en-US": "Choose or draw a personal paper shape, predict its behavior, and name one condition that remains equal.", "es-US": "Elegir o dibujar una forma propia de papel, predecir su comportamiento y nombrar una condición que permanece igual." }, "turnOrder": "sequential" }
+      ],
+      "cycleActions": [{ "action": "propose", "audience": "every_active_participant" }],
+      "materialUses": [{ "materialId": "MAT-COPY-PAPER", "purpose": { "en-US": "Represent or demonstrate approved shape choices.", "es-US": "Representar o demostrar opciones de forma aprobadas." } }],
+      "childDecision": { "en-US": "Every child chooses one approved shape for a personal test.", "es-US": "Cada niño elige una forma aprobada para una prueba propia." },
+      "observationCues": [
+        { "cueId": "CUE-02-CHOOSE", "skillId": "ENG-SKL-COMPARE-REDESIGN", "behavior": { "en-US": "Names one change and one condition to keep equal.", "es-US": "Nombra un cambio y una condición que debe mantenerse igual." }, "doNotInfer": { "en-US": "Choosing a suggested option alone is not independent redesign evidence.", "es-US": "Elegir una opción sugerida no demuestra por sí solo rediseño independiente." } }
+      ],
       "expectedResult": { "en-US": "Each child can offer an idea.", "es-US": "Cada niño puede proponer una idea." },
       "minutes": 4, "successSignal": { "en-US": "At least one shape is selected.", "es-US": "Se elige al menos una forma." },
       "commonProblems": [{ "problem": { "en-US": "The group combines several ideas.", "es-US": "El grupo combina varias ideas." }, "safeResponse": { "en-US": "Choose one change for each test.", "es-US": "Elige un cambio para cada prueba." } }],
@@ -158,22 +249,56 @@
       "visualBriefIds": ["VIS-02"], "exposureSkillIds": ["ENG-SKL-COMPARE-REDESIGN"], "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"]
     },
     {
-      "stepId": "STEP-03", "stage": "build_or_do", "actor": "assigned_role",
-      "title": { "en-US": "Build two shapes", "es-US": "Construir dos formas" },
-      "instruction": { "en-US": "Prepare one flat and one accordion bridge with equal sheets.", "es-US": "Prepara un puente plano y uno en acordeón con hojas iguales." },
-      "expectedResult": { "en-US": "Two bridges span the same gap one at a time.", "es-US": "Dos puentes cruzan el mismo espacio, uno por vez." },
-      "minutes": 10, "successSignal": { "en-US": "The folded sheet rests on both supports.", "es-US": "La hoja plegada descansa en ambos soportes." },
+      "stepId": "STEP-03", "stage": "build_or_do", "actor": "group",
+      "entryStateId": "STATE-DESIGNS-CHOSEN", "exitStateId": "STATE-CHILD-DESIGNS-READY",
+      "transitionReason": { "en-US": "Every selected idea becomes a labeled structure that can be tested.", "es-US": "Cada idea elegida se convierte en una estructura identificada que puede probarse." },
+      "title": { "en-US": "Build one personal bridge per child", "es-US": "Construir un puente propio por niño" },
+      "learningPurpose": { "en-US": "Turn every selected idea into a testable one-sheet structure while preserving the flat reference.", "es-US": "Convertir cada idea elegida en una estructura comprobable de una hoja conservando la referencia plana." },
+      "instruction": { "en-US": "Give every child one equal sheet to build and label a personal bridge shape.", "es-US": "Da a cada niño una hoja igual para construir e identificar una forma propia de puente." },
+      "adultActions": [{ "en-US": "Offer guides or stabilize the sheet without replacing the child's design decisions.", "es-US": "Ofrece guías o estabiliza la hoja sin reemplazar las decisiones de diseño del niño." }],
+      "facilitatorPrompts": [{ "en-US": "Show me the shape you chose and tell me when your bridge is ready to test.", "es-US": "Muéstrame la forma que elegiste y dime cuándo tu puente está listo para probar." }],
+      "participantActionTemplates": [
+        { "actionTemplateId": "ACTN-03-ALL", "audience": "all_participants", "roleTemplateIds": [], "action": { "en-US": "Build and label a personal bridge shape with available support.", "es-US": "Construir e identificar una forma propia de puente con el apoyo disponible." }, "turnOrder": "simultaneous" }
+      ],
+      "cycleActions": [{ "action": "build_or_do", "audience": "every_active_participant" }],
+      "materialUses": [{ "materialId": "MAT-COPY-PAPER", "purpose": { "en-US": "Give every child an equal sheet for a personal design.", "es-US": "Dar a cada niño una hoja igual para un diseño propio." } }],
+      "childDecision": null,
+      "observationCues": [
+        { "cueId": "CUE-03-FOLD", "skillId": "MOT-SKL-PRECISE-FOLDING", "behavior": { "en-US": "Continues the fold-turn sequence with the recorded amount of help.", "es-US": "Continúa la secuencia doblar-voltear con la cantidad de ayuda registrada." }, "doNotInfer": { "en-US": "Do not rate folding if the adult created the folds.", "es-US": "No valorar plegado si el adulto creó los pliegues." } }
+      ],
+      "expectedResult": { "en-US": "Every child has a labeled bridge that can span the same gap one at a time.", "es-US": "Cada niño tiene un puente identificado que puede cruzar el mismo espacio uno por vez." },
+      "minutes": 10, "successSignal": { "en-US": "Every participant can identify a personal structure and its test orientation.", "es-US": "Cada participante puede identificar su estructura y la orientación de prueba." },
       "commonProblems": [{ "problem": { "en-US": "Supports move.", "es-US": "Los soportes se mueven." }, "safeResponse": { "en-US": "Use stable supports or reduce the span.", "es-US": "Usa soportes estables o reduce la distancia." } }],
       "warning": { "en-US": "Use intact paper and no sharp fasteners.", "es-US": "Usa papel intacto y ningún sujetador afilado." },
-      "resumeInstruction": { "en-US": "Store each bridge flat beside the fixed supports.", "es-US": "Guarda cada puente junto a los soportes fijos." },
+      "resumeInstruction": { "en-US": "Keep every bridge beside its name or symbol and planned orientation.", "es-US": "Conserva cada puente junto a su nombre o símbolo y orientación planeada." },
       "visualBriefIds": ["VIS-02"], "exposureSkillIds": ["MOT-SKL-PRECISE-FOLDING"], "exposureConceptIds": ["ENG-CON-STRUCTURAL-RIGIDITY"]
     },
     {
-      "stepId": "STEP-04", "stage": "experiment", "actor": "assigned_role",
-      "title": { "en-US": "Run equal tests", "es-US": "Realizar pruebas iguales" },
-      "instruction": { "en-US": "Add one equal block at a time and count before the bridge bends.", "es-US": "Agrega un bloque igual a la vez y cuenta antes de que el puente se doble." },
-      "expectedResult": { "en-US": "The shapes support different loads.", "es-US": "Las formas sostienen cargas distintas." },
-      "minutes": 10, "successSignal": { "en-US": "The same span and blocks are used.", "es-US": "Se usan la misma distancia y los mismos bloques." },
+      "stepId": "STEP-04", "stage": "experiment", "actor": "group",
+      "entryStateId": "STATE-CHILD-DESIGNS-READY", "exitStateId": "STATE-CHILD-RESULTS-RECORDED",
+      "transitionReason": { "en-US": "Each personal structure is tested under the same conditions to produce a result.", "es-US": "Cada estructura propia se prueba en las mismas condiciones para producir un resultado." },
+      "title": { "en-US": "Give every child a personal test", "es-US": "Dar a cada niño una prueba propia" },
+      "learningPurpose": { "en-US": "Produce one comparable result per child by adding and counting one equal load at a time.", "es-US": "Producir un resultado comparable por niño agregando y contando una carga igual a la vez." },
+      "instruction": { "en-US": "Reset the setup, then let each child test a personal bridge with one equal block at a time.", "es-US": "Restablece el montaje y permite que cada niño pruebe su puente con un bloque igual a la vez." },
+      "adultActions": [{ "en-US": "Before each design, reset the supports, center the bridge, and give the ready signal.", "es-US": "Antes de cada diseño, restablece los soportes, centra el puente y da la señal de listo." }],
+      "facilitatorPrompts": [{ "en-US": "One piece, one number, then wait. Tell me if anything besides the paper changes.", "es-US": "Una pieza, un número y después espera. Avísenme si cambia algo además del papel." }],
+      "participantActionTemplates": [
+        { "actionTemplateId": "ACTN-04-ALL", "audience": "all_participants", "roleTemplateIds": [], "action": { "en-US": "In a personal turn, check the setup, add and count one equal piece at a time, observe the bridge, and keep the result.", "es-US": "En un turno propio, comprobar el montaje, agregar y contar una pieza igual a la vez, observar el puente y conservar el resultado." }, "turnOrder": "sequential" }
+      ],
+      "cycleActions": [
+        { "action": "test_or_check", "audience": "every_active_participant" },
+        { "action": "observe_result", "audience": "every_active_participant" }
+      ],
+      "materialUses": [
+        { "materialId": "MAT-COPY-PAPER", "purpose": { "en-US": "Serve as each child's bridge during a personal test.", "es-US": "Servir como puente de cada niño durante una prueba propia." } },
+        { "materialId": "MAT-TEST-BLOCKS", "purpose": { "en-US": "Provide identical load units for every test.", "es-US": "Proporcionar unidades de carga idénticas en cada prueba." } }
+      ],
+      "childDecision": null,
+      "observationCues": [
+        { "cueId": "CUE-04-COUNT", "skillId": "MAT-SKL-ONE-TO-ONE-COUNTING", "behavior": { "en-US": "Uses one number for each piece and recovers the count after waiting.", "es-US": "Usa un número por pieza y recupera el conteo después de esperar." }, "doNotInfer": { "en-US": "A setup failure is not evidence about counting ability.", "es-US": "Una falla del montaje no aporta evidencia sobre conteo." } }
+      ],
+      "expectedResult": { "en-US": "Every child has a valid result or a documented non-comparable test.", "es-US": "Cada niño tiene un resultado válido o una prueba no comparable documentada." },
+      "minutes": 10, "successSignal": { "en-US": "Every child tested a bridge using the same span, container, and load units.", "es-US": "Cada niño probó un puente usando la misma distancia, recipiente y unidades de carga." },
       "commonProblems": [{ "problem": { "en-US": "The count is lost.", "es-US": "Se pierde el conteo." }, "safeResponse": { "en-US": "Stop, clear the load, and restart the test.", "es-US": "Detén, retira la carga y reinicia la prueba." } }],
       "warning": { "en-US": "Keep faces away and stop if a support moves.", "es-US": "Mantén las caras alejadas y detente si se mueve un soporte." },
       "resumeInstruction": { "en-US": "Record the last complete test before pausing.", "es-US": "Registra la última prueba completa antes de pausar." },
@@ -181,8 +306,26 @@
     },
     {
       "stepId": "STEP-05", "stage": "improve", "actor": "group",
+      "entryStateId": "STATE-CHILD-RESULTS-RECORDED", "exitStateId": "STATE-IMPROVEMENT-TESTED",
+      "transitionReason": { "en-US": "Personal results support recommendations for one shared improvement.", "es-US": "Los resultados propios sustentan recomendaciones para una mejora compartida." },
       "title": { "en-US": "Choose one change", "es-US": "Elegir un cambio" },
+      "learningPurpose": { "en-US": "Use the first comparison to choose and test one deliberate change.", "es-US": "Usar la primera comparación para elegir y probar un cambio deliberado." },
       "instruction": { "en-US": "Change one feature and predict the effect.", "es-US": "Cambia una característica y predice el efecto." },
+      "adultActions": [{ "en-US": "Show only approved shape options and keep paper, span, and load unchanged.", "es-US": "Muestra solo opciones de forma aprobadas y conserva iguales el papel, la distancia y la carga." }],
+      "facilitatorPrompts": [{ "en-US": "What did the first tests show? Which one change should we try next?", "es-US": "¿Qué mostraron las primeras pruebas? ¿Qué único cambio deberíamos probar ahora?" }],
+      "participantActionTemplates": [
+        { "actionTemplateId": "ACTN-05-RECOMMEND", "audience": "all_participants", "roleTemplateIds": [], "action": { "en-US": "Recommend one change using a personal result and help the group choose one.", "es-US": "Recomendar un cambio usando un resultado propio y ayudar al grupo a elegir uno." }, "turnOrder": "sequential" },
+        { "actionTemplateId": "ACTN-05-SHARED", "audience": "all_participants", "roleTemplateIds": [], "action": { "en-US": "Contribute to building and testing the selected group improvement.", "es-US": "Contribuir a construir y probar la mejora grupal elegida." }, "turnOrder": "facilitator_cued" }
+      ],
+      "cycleActions": [{ "action": "improve_or_recommend", "audience": "every_active_participant" }],
+      "materialUses": [
+        { "materialId": "MAT-COPY-PAPER", "purpose": { "en-US": "Build the shared improvement from the selected recommendation.", "es-US": "Construir la mejora compartida desde la recomendación elegida." } },
+        { "materialId": "MAT-TEST-BLOCKS", "purpose": { "en-US": "Retest the group design with the same load units.", "es-US": "Volver a probar el diseño grupal con las mismas unidades de carga." } }
+      ],
+      "childDecision": { "en-US": "Choose the single shape feature to change.", "es-US": "Elegir la única característica de forma que cambiarán." },
+      "observationCues": [
+        { "cueId": "CUE-05-REDESIGN", "skillId": "ENG-SKL-COMPARE-REDESIGN", "behavior": { "en-US": "Uses a prior result to select one new feature.", "es-US": "Usa un resultado anterior para elegir una característica nueva." }, "doNotInfer": { "en-US": "The redesigned bridge does not need to hold more for the decision to count.", "es-US": "El puente rediseñado no necesita sostener más para que la decisión cuente." } }
+      ],
       "expectedResult": { "en-US": "The group names one deliberate change.", "es-US": "El grupo nombra un cambio deliberado." },
       "minutes": 10, "successSignal": { "en-US": "Other conditions remain equal.", "es-US": "Las demás condiciones siguen iguales." },
       "commonProblems": [{ "problem": { "en-US": "Several variables are changed.", "es-US": "Se cambian varias variables." }, "safeResponse": { "en-US": "Keep one change and save the rest for another test.", "es-US": "Conserva un cambio y guarda los demás para otra prueba." } }],
@@ -192,8 +335,25 @@
     },
     {
       "stepId": "STEP-06", "stage": "explain", "actor": "group",
+      "entryStateId": "STATE-IMPROVEMENT-TESTED", "exitStateId": "STATE-EXPLANATION-SHARED",
+      "transitionReason": { "en-US": "Visible designs and results let every child explain a connection from their own experience.", "es-US": "Los diseños y resultados visibles permiten que cada niño explique una conexión desde su propia experiencia." },
       "title": { "en-US": "Explain with evidence", "es-US": "Explicar con evidencia" },
+      "learningPurpose": { "en-US": "Connect a claim about shape to something seen or counted.", "es-US": "Conectar una idea sobre la forma con algo visto o contado." },
       "instruction": { "en-US": "Compare counts and describe where each bridge bent.", "es-US": "Compara conteos y describe dónde se dobló cada puente." },
+      "adultActions": [{ "en-US": "Place unloaded designs side by side and point to the recorded results.", "es-US": "Coloca los diseños sin carga uno junto al otro y señala los resultados registrados." }],
+      "facilitatorPrompts": [{ "en-US": "What did you see or count that supports your idea?", "es-US": "¿Qué vieron o contaron que apoya su idea?" }],
+      "participantActionTemplates": [
+        { "actionTemplateId": "ACTN-06-ALL", "audience": "all_participants", "roleTemplateIds": [], "action": { "en-US": "Share one observation by speaking, pointing, drawing, or choosing.", "es-US": "Compartir una observación hablando, señalando, dibujando o eligiendo." }, "turnOrder": "sequential" }
+      ],
+      "cycleActions": [{ "action": "explain", "audience": "every_active_participant" }],
+      "materialUses": [
+        { "materialId": "MAT-COPY-PAPER", "purpose": { "en-US": "Keep each personal and group design visible for explanation.", "es-US": "Mantener visible cada diseño propio y grupal durante la explicación." } },
+        { "materialId": "MAT-TEST-BLOCKS", "purpose": { "en-US": "Refer to the recorded load counts without reloading the bridges.", "es-US": "Referirse a los conteos registrados sin volver a cargar los puentes." } }
+      ],
+      "childDecision": { "en-US": "Choose which observation or result to use in the explanation.", "es-US": "Elegir qué observación o resultado usar en la explicación." },
+      "observationCues": [
+        { "cueId": "CUE-06-EVIDENCE", "skillId": "ENG-SKL-COMPARE-REDESIGN", "behavior": { "en-US": "Links one shape or change to a visible or counted result.", "es-US": "Relaciona una forma o cambio con un resultado visible o contado." }, "doNotInfer": { "en-US": "Repeating the adult explanation is not independent evidence.", "es-US": "Repetir la explicación adulta no es evidencia independiente." } }
+      ],
       "expectedResult": { "en-US": "An explanation cites an observation.", "es-US": "Una explicación cita una observación." },
       "minutes": 5, "successSignal": { "en-US": "A shape is linked to a result.", "es-US": "Se relaciona una forma con un resultado." },
       "commonProblems": [{ "problem": { "en-US": "The explanation does not cite a result.", "es-US": "La explicación no cita un resultado." }, "safeResponse": { "en-US": "Point to the recorded counts or visible bending.", "es-US": "Señala los conteos registrados o la flexión visible." } }],
@@ -203,8 +363,25 @@
     },
     {
       "stepId": "STEP-07", "stage": "cleanup", "actor": "group",
+      "entryStateId": "STATE-EXPLANATION-SHARED", "exitStateId": "STATE-CLEARED",
+      "transitionReason": { "en-US": "The investigation is complete, so materials can be counted and safely stored.", "es-US": "La investigación terminó, por lo que los materiales pueden contarse y guardarse con seguridad." },
       "title": { "en-US": "Clean", "es-US": "Limpiar" },
+      "learningPurpose": { "en-US": "Close the practical cycle by accounting for materials and leaving a safe space.", "es-US": "Cerrar el ciclo práctico contando materiales y dejando un espacio seguro." },
       "instruction": { "en-US": "Count all blocks and store or recycle paper.", "es-US": "Cuenta los bloques y guarda o recicla el papel." },
+      "adultActions": [{ "en-US": "Remove supports first and verify the floor and table before leaving.", "es-US": "Retira primero los soportes y revisa el piso y la mesa antes de salir." }],
+      "facilitatorPrompts": [{ "en-US": "Let us account for every piece and choose which paper to keep or recycle.", "es-US": "Contemos cada pieza y elijamos qué papel guardar o reciclar." }],
+      "participantActionTemplates": [
+        { "actionTemplateId": "ACTN-07-ALL", "audience": "all_participants", "roleTemplateIds": [], "action": { "en-US": "Count, sort, and store materials after the adult removes supports.", "es-US": "Contar, clasificar y guardar materiales después de que el adulto retire los soportes." }, "turnOrder": "simultaneous" }
+      ],
+      "cycleActions": [],
+      "materialUses": [
+        { "materialId": "MAT-COPY-PAPER", "purpose": { "en-US": "Choose which designs to keep or recycle.", "es-US": "Elegir qué diseños guardar o reciclar." } },
+        { "materialId": "MAT-TEST-BLOCKS", "purpose": { "en-US": "Account for and store every test unit.", "es-US": "Contar y guardar cada unidad de prueba." } }
+      ],
+      "childDecision": { "en-US": "Choose which intact paper designs to keep or recycle.", "es-US": "Elegir qué diseños de papel intactos guardar o reciclar." },
+      "observationCues": [
+        { "cueId": "CUE-07-COUNT", "skillId": "MAT-SKL-ONE-TO-ONE-COUNTING", "behavior": { "en-US": "Accounts for one stored piece at a time with available support.", "es-US": "Cuenta una pieza guardada a la vez con el apoyo disponible." }, "doNotInfer": { "en-US": "Cleanup participation is an exposure unless the adult chooses Evaluate more.", "es-US": "Participar en la limpieza es exposición salvo que el adulto elija Evaluar más." } }
+      ],
       "expectedResult": { "en-US": "The table and floor are clear.", "es-US": "La mesa y el piso quedan despejados." },
       "minutes": 5, "successSignal": { "en-US": "All pieces are accounted for.", "es-US": "Todas las piezas están contadas." },
       "commonProblems": [{ "problem": { "en-US": "A block is missing.", "es-US": "Falta un bloque." }, "safeResponse": { "en-US": "Keep the area closed until the adult finds it.", "es-US": "Mantén el área cerrada hasta que el adulto lo encuentre." } }],

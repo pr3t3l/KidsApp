@@ -6,7 +6,7 @@
 ## Navegación primaria propuesta
 
 1. **Hoy** — próxima actividad, preparación y participantes.
-2. **Plan** — semana, sustituciones y lista de materiales.
+2. **Plan** — semana navegable, detalle de cada actividad, sustituciones y compras consolidadas por sección.
 3. **Explorar** — biblioteca filtrable.
 4. **Journey** — proyectos, conceptos y observaciones por niño.
 5. **Familia** — miembros, inventario, preferencias y privacidad.
@@ -23,16 +23,19 @@ La aplicación se diseña para inglés y español desde el sistema de contenido,
 
 ### Antes de la sesión
 
-- Resumen.
+- Resumen educativo: propósito, áreas, conceptos, mecanismo y decisión infantil.
 - Materiales.
 - Preparación y seguridad.
-- Roles y objetivos.
+- Aportes sugeridos, focos principales y razones por niño.
 - Alternativas aprobadas.
 
 ### Durante la sesión
 
 - Paso actual.
-- Actor/rol.
+- Propósito de la fase.
+- Acción adulta y guion sugerido.
+- Acción nominal de cada participante.
+- Decisión infantil y señales de observación.
 - Imagen.
 - Resultado esperado.
 - Ayuda contextual.

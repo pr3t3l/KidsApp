@@ -7,7 +7,7 @@ Estos JSON Schemas convierten los specs conceptuales en contratos verificables. 
 
 ## Schemas
 
-- `v0.1/activity-version.schema.json`: versión editorial inmutable de una actividad.
+- `v0.1/activity-version.schema.json`: versión editorial inmutable de una actividad, incluido contrato narrativo, estados, función de materiales, ciclo esencial por participante y calibración inicial de objetivos.
 - `v0.1/session.schema.json`: planificación, ejecución y cierre de una sesión familiar.
 - `v0.1/learner-records.schema.json`: exposiciones, observaciones e inferencias explicables.
 - `v0.1/offline-pack-manifest.schema.json`: contenido, hashes, assets, asignaciones y vencimiento de un paquete descargado.
@@ -31,12 +31,14 @@ Capas:
 3. `validate:domain`: comprueba referencias y reglas entre ActivityVersion, Session, LearnerRecords, manifest y eventos.
 4. `validate:docs`: comprueba enlaces Markdown locales y señales mínimas de las tres actividades piloto.
 
-El validador de dominio genera recorridos positivos de uno, dos y tres participantes y ejecuta además once mutaciones negativas. El comando falla si acepta rango de edad invertido, participantes contradictorios, referencia de skill inexistente, publicación sin gates/pilotos, sesión completada sin cierre, Learner duplicado, cierre duplicado, evidencia para no participante, inferencia fuerte sin evidencia, rating sin valor o EvidenceLink inexistente.
+El validador de dominio genera recorridos positivos de uno, dos y tres participantes y ejecuta además mutaciones negativas. El comando falla si acepta rango de edad invertido, participantes contradictorios, referencia de skill inexistente, acción de paso dirigida a un rol inexistente, señal de observación ligada a una skill inexistente, transición narrativa rota, acción esencial ausente para un participante, ciclo declarado para todos pero escondido detrás de un solo rol, material usado antes de explicar su función, rango de calibración invertido, publicación sin gates/pilotos, sesión completada sin cierre, Learner duplicado, cierre duplicado, evidencia para no participante, inferencia fuerte sin evidencia, rating sin valor o EvidenceLink inexistente.
 
 ## Reglas que JSON Schema no expresa completamente
 
 - Rangos mínimos/máximos, IDs únicos y cobertura de participantes.
-- Referencias rol→skill/concept/step, step→visual/exposición y safety→adult-only step.
+- Continuidad `exitStateId → entryStateId`, función de cada material antes de usarlo y cobertura del ciclo esencial según el modo de participación.
+- Cobertura de todos los objetivos elegibles mediante orientación inicial por edad, siempre corregible por evidencia del niño.
+- Referencias rol→skill/concept/step, step→visual/exposición, participantAction→role, observationCue→skill y safety→adult-only step.
 - `primaryObjectiveSkillId` elegible, exposiciones derivables de roles/pasos reales y un Learner por sesión.
 - `family_recommendation` solo con `published`; `pilot` solo con `ready_for_pilot` o `family_pilot`; `editorial_preview` para fixtures/dry runs.
 - Sesión `completed` con cierre, un resultado por participante y ninguna evidencia para quien no participó.
@@ -56,6 +58,7 @@ Estas invariantes están implementadas en `scripts/domain-rules.mjs` y probadas 
 
 ## Versionado
 
-- Cambios compatibles añaden campos opcionales dentro de `v0.1`.
+- Mientras `v0.1` siga en Draft y no tenga consumidores de producción, puede incorporar campos obligatorios aprobados para cerrar ambigüedades del contrato. Esta excepción termina al congelar el primer vertical slice.
+- Después del freeze, cambios compatibles añaden campos opcionales dentro de `v0.1`.
 - Cambios incompatibles crean un nuevo directorio (`v0.2`, `v1.0`).
 - ActivityVersion y Session conservan la versión de schema utilizada.

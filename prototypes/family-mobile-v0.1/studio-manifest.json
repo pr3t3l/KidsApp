@@ -1,7 +1,7 @@
 {
   "artifact": {
     "name": "Kids Learning System — Prototipo móvil familiar",
-    "version": "0.1.0",
+    "version": "0.5.0",
     "createdAt": "2026-08-16",
     "locale": "es-US",
     "entrypoint": "index.html",
@@ -21,16 +21,20 @@
     "visualReference": "C:/Users/prett/Documents/ChatGPT/Otros/kids-system-studio",
     "sourceMutation": false,
     "documentationStatus": "approved product decisions plus Draft activity content",
-    "sampleActivity": "ACT-0001@0.2.2"
+    "sampleActivity": "ACT-0001@0.3.0"
   },
   "views": [
     "Today planning by available time and participants",
-    "Flexible role and objective review",
+    "Educational map with purpose, areas, concepts and child decisions",
+    "Suggested learning focus and contribution for every child",
     "Adult preparation and structural guidance",
-    "Six-stage hands-on session",
-    "Contextual troubleshooting and approved pacing adaptations",
-    "Sub-20-second close with verbal 1–5 anchors",
-    "Editable evidence receipt",
+    "Six-stage causal facilitation guide with one stage-specific visual and action-first hierarchy",
+    "A complete personal design-and-test cycle for every active child",
+    "Problem-specific help with impact, resume point and safety boundary",
+    "Sub-20-second close with verbal 1–5 anchors and no visible timer",
+    "Direct save with concise transparency and post-save correction",
+    "Five-day plan with navigable activity details",
+    "Store-section shopping list with summed consumables, reusable tools and per-day provenance",
     "Synthetic Plan, Journey and Family previews"
   ],
   "fixturePolicy": "All names, profiles, observations and session outcomes shown are synthetic.",
@@ -43,7 +47,7 @@
   },
   "knownLimits": [
     "Pocket Workshop is not an approved commercial identity.",
-    "ACT-0001@0.2.2 is Draft and appears only as an explicitly labeled prototype preview.",
+    "ACT-0001@0.3.0 is Draft and appears only as an explicitly labeled prototype preview.",
     "No backend, authentication, persistence, model call, voice capture, billing or real child data is implemented.",
     "The optional Evaluate more flow is signposted but intentionally not expanded in this validation slice."
   ],

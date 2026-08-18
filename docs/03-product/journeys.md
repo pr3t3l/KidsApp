@@ -10,9 +10,10 @@ Crear familia
 → añadir adulto y niños
 → indicar tiempo/materiales mínimos
 → recibir actividad publicada
+→ entender propósito y mapa educativo
+→ revisar foco y aporte sugerido por niño
 → revisar preparación y seguridad
-→ aceptar o cambiar roles/objetivos
-→ ejecutar guía
+→ ejecutar guía de facilitación
 → evaluar un objetivo por niño
 → ver qué se registró
 ```
@@ -24,8 +25,10 @@ Resultado: el adulto completa valor sin configurar un perfil exhaustivo.
 ```text
 Confirmar participantes y disponibilidad
 → sistema propone actividades balanceadas
+→ adulto puede abrir el detalle completo de cada día
 → adulto revisa materiales y sustituye días
-→ lista de preparación consolidada
+→ lista de compras consolidada por sección de tienda
+→ consumibles se suman y herramientas reutilizables se cuentan una vez
 → recordatorio opcional
 → actividades quedan disponibles
 ```
@@ -37,10 +40,10 @@ Resultado: la familia sabe qué necesita antes de comenzar la semana.
 ```text
 Seleccionar participantes
 → obtener proyecto compartido
-→ ver rol y objetivo principal por niño
-→ cambiar asignación si hace falta
+→ ver foco, aporte y objetivo principal por niño
 → iniciar
-→ cada niño contribuye
+→ adulto sigue guion y cada niño recibe una acción nombrada
+→ ajustar participación solo si la dinámica real cambia
 → cerrar con tres valoraciones
 → nota grupal opcional
 ```
@@ -63,10 +66,10 @@ Resultado: ayuda contextual sin que el adulto repita toda la configuración.
 ## J-05 — “Está muy fácil/difícil”
 
 ```text
-Abrir Adapt
-→ elegir demasiado fácil o difícil
-→ IA selecciona adaptación aprobada
-→ muestra qué cambia y qué no
+Abrir Ayuda con este paso
+→ elegir el problema observable
+→ sistema selecciona apoyo publicado
+→ muestra qué cambia, impacto, límite y punto de reanudación
 → adulto acepta
 → sesión conserva ambos estados
 ```

@@ -11,16 +11,17 @@
 | SCR-002 | Crear familia | Idioma, unidades y configuración mínima | VS-01 |
 | SCR-003 | Añadir niño | Alias y rango de edad | VS-01 |
 | SCR-004 | Hoy | Próxima actividad y preparación | VS-01 |
-| SCR-005 | Detalle de actividad | Propósito, tiempo, materiales, seguridad | VS-01 |
-| SCR-006 | Participantes y roles | Confirmar niños, roles y objetivos | VS-02 |
-| SCR-007 | Sesión paso a paso | Guiar ejecución y mostrar actor | VS-03 |
-| SCR-008 | Ayuda contextual | Explain/Troubleshoot/Adapt | VS-06 |
+| SCR-005 | Entender y preparar actividad | Propósito, áreas, conceptos, decisión infantil, tiempo, materiales y seguridad | VS-01 |
+| SCR-006 | Focos por participante | Mostrar aporte sugerido, foco principal, razón y exposiciones por niño | VS-02 |
+| SCR-007 | Facilitación paso a paso | Guiar acciones adultas, guion, acciones nominales, observación y seguridad | VS-03 |
+| SCR-008 | Ayuda con este paso | Resolver un problema concreto mediante troubleshooting/adaptación publicada | VS-06 |
 | SCR-009 | Cierre | Una valoración por niño | VS-03 |
 | SCR-010 | Evaluar más | Habilidades secundarias opcionales | VS-03 |
 | SCR-011 | Observación por voz | Grabar, transcribir y confirmar | VS-07 |
 | SCR-012 | Resumen de sesión | Mostrar qué se guardó | VS-03 |
-| SCR-013 | Plan semanal | Revisar y modificar semana | VS-05 |
-| SCR-014 | Lista de materiales | Consolidar preparación | VS-05 |
+| SCR-013 | Plan semanal | Revisar y abrir cada actividad de la semana | VS-05 |
+| SCR-014 | Lista de compras | Consolidar cantidades por sección, mostrar procedencia y marcar lo conseguido | VS-05 |
+| SCR-014A | Detalle de actividad planificada | Promesa, propósito, foco, materiales, recorrido, cierre, seguridad y estado editorial | VS-05/01 |
 | SCR-015 | Explorar biblioteca | Buscar actividad publicada | Posterior |
 | SCR-016 | Learning Journey | Proyectos, conceptos y oportunidades | VS-04 |
 | SCR-017 | Detalle de habilidad | Evidencia, confianza y “¿Por qué?” | VS-04 |

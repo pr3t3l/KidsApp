@@ -9,10 +9,10 @@ Repositorio de producto, pedagogía, contenido y arquitectura para un acompañan
 Este repositorio será la fuente de verdad para diseñar y, posteriormente, construir el producto. La documentación separa tres sistemas conectados:
 
 1. **Sistema educativo:** habilidades, conceptos, progresión, observaciones y evidencia.
-2. **Sistema de contenido:** biblioteca validada de actividades, roles, materiales, imágenes y seguridad.
+2. **Sistema de contenido:** biblioteca validada de actividades, focos de aprendizaje, aportes sugeridos, materiales, imágenes y seguridad.
 3. **Producto de software:** familias, perfiles, planificación, ejecución, IA, datos e interfaz.
 
-La IA no improvisará el núcleo de una actividad para una familia. Seleccionará una actividad publicada, asignará objetivos y roles apropiados, y podrá proponer adaptaciones dentro de límites definidos.
+La IA no improvisará el núcleo de una actividad para una familia. Seleccionará una actividad publicada, sugerirá un foco y un aporte apropiado para cada niño, y podrá proponer adaptaciones dentro de límites definidos.
 
 ## Orden de lectura
 
@@ -97,8 +97,8 @@ La versión v0.1 captura las decisiones de la conversación inicial. Las decisio
 
 ## Prototipo de experiencia
 
-El [prototipo móvil familiar v0.1](prototypes/family-mobile-v0.1/index.html) permite recorrer planificación por tiempo, roles flexibles, preparación, una sesión de seis etapas y el cierre contextual de tres niños. Incluye un [sistema visual](prototypes/family-mobile-v0.1/design-system.html), copias standalone y evidencia de QA a 360×800 y 430×932. Usa datos sintéticos y muestra `ACT-0001@0.2.2` como `Draft`; no constituye entrega familiar ni implementación de producción.
+El [prototipo móvil familiar v0.6](prototypes/family-mobile-v0.1/index.html) permite recorrer planificación por tiempo, un plan de cinco actividades navegables, compras consolidadas, mapa educativo, focos sugeridos por niño, preparación, facilitación de seis etapas y cierre contextual. La compra agrupa por supermercado, papelería y casa, suma consumibles y reutiliza herramientas con procedencia visible por día. Puede servirse por HTTPS como PWA instalable y conserva localmente el avance operativo para el dry run. Incluye un [sistema visual](prototypes/family-mobile-v0.1/design-system.html), copias standalone y evidencia de QA a 360×800 y 430×932. Usa datos sintéticos y contenido `Draft`/candidato; no constituye entrega familiar ni implementación de producción.
 
 ## Próximo hito
 
-Probar el prototipo con la fundadora en una ejecución adulta guiada, ajustar lenguaje/carga mental y después usarlo con la hija de cinco años en el piloto controlado de ACT-0001. En paralelo deben completarse los dry runs y gates humanos del [Pilot Pack v0.1](docs/08-delivery/pilot-pack-v0.1.md). `VS-01` todavía requiere una actividad publicada y backend real; el prototipo no satisface ese gate.
+Ejecutar el [dry run de cinco días con Sofía](docs/08-delivery/sofia-five-day-dry-run-v0.1.md) usando la [lista consolidada de compras](docs/08-delivery/sofia-shopping-list-v0.1.md) y la [hoja breve de observación](docs/08-delivery/founder-dry-run-observation-sheet-v0.1.md). Después se ajustan lenguaje, carga mental, materiales y secuencia, y se decide qué candidatos convertir primero en `ActivityVersion`. En paralelo deben completarse los gates humanos del [Pilot Pack v0.1](docs/08-delivery/pilot-pack-v0.1.md). `VS-01` todavía requiere una actividad publicada y backend real; el prototipo no satisface ese gate.

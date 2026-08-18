@@ -17,12 +17,13 @@
 ## Actividades
 
 - **PRD-101:** Solo se muestran como recomendables versiones publicadas.
-- **PRD-102:** Antes de iniciar se muestran duración, materiales, preparación, propósito y seguridad.
+- **PRD-102:** Antes de iniciar se muestran duración, materiales, preparación, propósito, áreas, conceptos, mecanismo de aprendizaje, decisión infantil y seguridad mediante divulgación progresiva.
 - **PRD-103:** El adulto confirma participantes y materiales críticos.
-- **PRD-104:** Cada participante infantil recibe un rol y un objetivo principal.
-- **PRD-105:** El adulto puede cambiar roles y objetivos entre opciones compatibles.
+- **PRD-104:** Cada participante infantil recibe internamente un rol compatible y como máximo un objetivo principal; la interfaz familiar lo presenta como foco de aprendizaje y aporte sugerido, no como identidad.
+- **PRD-105:** El camino normal no ofrece intercambio de roles. Si la participación real cambia, el adulto puede marcar observar/no participar o solicitar una nueva asignación compatible sin producir evidencia negativa.
 - **PRD-106:** La sesión guarda la versión exacta y asignaciones reales.
-- **PRD-107:** Un rol es una propuesta de contribución, no una orden ni una etiqueta. El adulto puede intercambiarlo, combinarlo o retirarlo y el niño puede observar o no participar sin recibir exposición, valoración negativa ni inferencia.
+- **PRD-107:** Un rol es estructura interna para derivar foco, aporte y exposiciones, no una orden ni una etiqueta visible. El niño puede contribuir de otra forma, observar o no participar sin recibir exposición, valoración negativa ni inferencia indebida.
+- **PRD-108:** La interfaz solo entrega procedimientos derivados de una narrativa con estados, transiciones, función de materiales y ciclo por participante validados.
 
 ## Planificación
 
@@ -32,19 +33,23 @@
 - **REC-003:** El adulto puede sustituir una actividad sin perder el resto del plan.
 - **REC-004:** El sistema evita repetición excesiva de área, material y rol.
 - **REC-005:** Si no existe actividad segura para todos, debe explicarlo y proponer alternativas.
-- **REC-006:** El plan semanal descargado conserva roles, objetivos, pasos, seguridad e imágenes sin conexión.
+- **REC-006:** El plan semanal descargado conserva focos, aportes, objetivos, pasos, guiones, acciones nombradas, seguridad e imágenes sin conexión.
+- **REC-007:** Cada actividad del plan abre un detalle navegable con promesa, propósito, foco, materiales, recorrido, pregunta de cierre, seguridad, estado editorial y procedencia.
+- **REC-008:** El plan genera una lista de compras consolidada, agrupada por lugar probable de compra, con cantidad total y procedencia por actividad.
+- **REC-009:** La consolidación suma cantidades de materiales consumibles entre actividades y usa la cantidad simultánea máxima para herramientas explícitamente reutilizables; la regla aplicada se muestra al adulto y nunca oculta de qué actividades proviene el total.
 
 ## Ejecución y cierre
 
 - **UX-101:** La guía permite avanzar, retroceder y reanudar.
-- **UX-102:** Cada paso muestra actor, acción, resultado y advertencia relevante.
+- **UX-102:** Cada fase muestra propósito, acciones del adulto, guion literal, acción nombrada de cada niño, decisión infantil cuando aplique, qué observar, cuándo avanzar, advertencia y ayuda contextual relevante.
+- **UX-106:** Cuando sea físicamente viable, cada niño completa el ciclo esencial; los focos cambian observación y apoyo, no reservan construir o probar a un solo participante.
 - **UX-103:** El cierre normal requiere una valoración por niño.
 - **UX-104:** “Evaluar más” y nota de voz son opcionales.
 - **UX-105:** El adulto puede omitir el cierre sin señal negativa.
 
 ## Evidencia y progreso
 
-- **EVD-101:** Las exposiciones se registran automáticamente desde el rol real.
+- **EVD-101:** Las exposiciones se derivan automáticamente del rol y los pasos realmente realizados; la interfaz familiar puede expresarlas como habilidades practicadas sin exponer la taxonomía interna.
 - **EVD-102:** El sistema muestra qué observación se creó desde una valoración o voz.
 - **EVD-103:** Las inferencias son explicables y corregibles.
 - **EVD-104:** La vista de progreso distingue explorado, observado e inferido.
@@ -77,6 +82,13 @@
 - **PRD-SUB-006:** Cancelar no elimina datos familiares ni corta el período ya pagado.
 - **PRD-OFF-001:** Recomendación, AI Companion, comunidad y sincronización requieren conexión.
 - **PRD-OFF-002:** Evaluaciones realizadas offline se almacenan cifradas localmente y se sincronizan de forma idempotente.
+
+## Prototipo del founder pilot
+
+- **PRD-PILOT-001:** El prototipo del founder pilot puede publicarse por HTTPS como aplicación web instalable sin convertir contenido `Draft` en entrega familiar publicada.
+- **PRD-PILOT-002:** El prototipo conserva en el dispositivo el checklist de compras, preparación y punto de la actividad para permitir reanudar el dry run después de cerrar, recargar o perder la conexión.
+- **PRD-PILOT-003:** La persistencia del prototipo es local y separada de la arquitectura futura: no crea cuentas, no sincroniza entre dispositivos, no sube observaciones y ofrece una acción explícita para reiniciar el estado local.
+- **PRD-PILOT-004:** Un despliegue temporal no autenticado usa únicamente fixtures y contenido controlado; no se habilitan fotografías, voz real, comunidad, pagos ni datos sensibles infantiles.
 
 ## Comunidad y portafolio
 

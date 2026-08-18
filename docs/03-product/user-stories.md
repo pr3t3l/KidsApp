@@ -17,7 +17,7 @@ Como adulto, quiero crear perfiles mínimos para mis hijos para recibir una prim
 
 Como adulto con varios niños, quiero elegir quién participa hoy para que el proyecto se adapte al grupo real.
 
-**Aceptación:** se puede cambiar participantes por sesión; cada participante recibe rol y objetivo; un ausente no recibe exposición.
+**Aceptación:** se puede cambiar participantes por sesión; cada participante recibe internamente una asignación compatible y ve un foco/aporte; un ausente no recibe exposición.
 
 ### US-FAM-003 — Contexto de hoy
 
@@ -29,7 +29,7 @@ Como adulto, quiero indicar que hoy tengo menos tiempo o no tolero desorden para
 
 Como adulto, quiero recibir un plan semanal variado para no repetir el mismo fenómeno o habilidad.
 
-**Aceptación:** razones visibles; materiales consolidados; variedad por área/rol; sustitución individual.
+**Aceptación:** razones visibles; materiales consolidados; variedad por área, habilidad y aporte; sustitución individual.
 
 ### US-PLN-002 — Usar lo que tengo
 
@@ -38,6 +38,18 @@ Como adulto, quiero priorizar materiales disponibles para reducir compras y prep
 ### US-PLN-003 — Sustituir sin empezar de nuevo
 
 Como adulto, quiero cambiar una actividad que no me conviene sin regenerar toda la semana.
+
+### US-PLN-004 — Abrir cualquier día
+
+Como adulto, quiero abrir cada actividad del plan para entender qué haremos, qué aprenderá el niño y cómo prepararme antes de aceptarla.
+
+**Aceptación:** todas las tarjetas son táctiles y muestran un detalle con promesa, propósito, foco, materiales, recorrido, cierre, seguridad y estado editorial; volver conserva la semana.
+
+### US-PLN-005 — Comprar una sola vez
+
+Como adulto, quiero una lista semanal organizada por lugar de compra para conseguir todo en una sola salida sin sumar cantidades manualmente.
+
+**Aceptación:** cada total muestra sus actividades de origen; consumibles repetidos se suman; herramientas reutilizables usan la cantidad máxima; los elementos que probablemente ya están en casa aparecen separados.
 
 ## Actividad
 
@@ -49,11 +61,11 @@ Como adulto, quiero ver materiales, tiempo, seguridad y pasos exclusivos del adu
 
 Como adulto con tres niños, quiero una actividad común con responsabilidades diferentes para acompañarlos simultáneamente.
 
-**Aceptación:** contribuciones significativas; objetivos compatibles; no se asigna tutoría automática al mayor; se muestran dependencias y turnos.
+**Aceptación:** contribuciones significativas y acciones nominales en cada fase; objetivos compatibles; no se asigna tutoría automática al mayor; se muestran dependencias y turnos sin exigir que el adulto configure roles técnicos.
 
 ### US-ACT-003 — Cambiar asignación
 
-Como adulto, quiero intercambiar roles u objetivos compatibles cuando conozco mejor la disposición de mis hijos ese día.
+Como adulto, quiero recibir un foco y aporte sugeridos para cada niño y poder registrar una participación diferente solo si la dinámica real lo requiere, sin reorganizar la actividad antes de comenzar.
 
 ### US-ACT-004 — Reanudar
 
@@ -63,11 +75,23 @@ Como adulto, quiero pausar y continuar desde el último paso para atender una in
 
 Como adulto, quiero pedir ayuda desde el paso actual para no repetir qué actividad estoy haciendo.
 
-### US-ACT-006 — Adaptar roles a la dinámica real
+### US-ACT-006 — Ajustar la participación real
 
-Como adulto, quiero cambiar, combinar u omitir un rol cuando un niño no lo acepta o la colaboración no funciona para poder continuar sin convertir la actividad en una lucha.
+Como adulto, quiero indicar que un niño está contribuyendo de otra forma, observando o deja de participar para continuar sin convertir la actividad en una lucha ni administrar roles técnicos.
 
-**Aceptación:** el niño puede elegir entre opciones compatibles, observar o dejar de participar; los cambios se registran como contexto de sesión y nunca como evidencia negativa, desobediencia ni rasgo personal.
+**Aceptación:** la excepción no domina la guía; el sistema puede recalcular acciones compatibles; los cambios se registran como contexto de sesión y nunca como evidencia negativa, desobediencia ni rasgo personal.
+
+### US-ACT-007 — Saber cómo facilitar el aprendizaje
+
+Como adulto no especialista, quiero ver qué hacer, qué decir, qué hará cada niño, qué pueden decidir y qué observar en cada fase para acompañar habilidades concretas sin leer el documento editorial completo.
+
+**Aceptación:** cada fase cumple `UX-FAC-005` a `UX-FAC-009`; la ayuda nombra el problema y el cambio real; el mismo patrón funciona para actividades de distintas áreas.
+
+### US-ACT-008 — Vivir el ciclo completo
+
+Como adulto con varios niños, quiero que cada uno proponga, construya o ejecute, pruebe y observe cuando la actividad lo permita para que un foco diferente no lo excluya de la experiencia esencial.
+
+**Aceptación:** el modo narrativo y las acciones del ciclo están declarados; cada participante activo completa las acciones obligatorias o la actividad justifica por qué el artefacto debe ser compartido.
 
 ## Evidencia
 

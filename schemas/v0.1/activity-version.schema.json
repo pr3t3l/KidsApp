@@ -4,7 +4,7 @@
   "title": "ActivityVersion",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "activityId", "version", "contentHash", "status", "locales", "ageRange", "levels", "participants", "timing", "learning", "materials", "roleTemplates", "groupConfigurations", "steps", "safety", "adaptations", "observationPrompts", "visualBriefs", "editorial"],
+  "required": ["schemaVersion", "activityId", "version", "contentHash", "status", "locales", "ageRange", "levels", "participants", "timing", "learning", "experienceNarrative", "objectiveGuidance", "materials", "roleTemplates", "groupConfigurations", "steps", "safety", "adaptations", "observationPrompts", "visualBriefs", "editorial"],
   "properties": {
     "schemaVersion": { "const": "0.1" },
     "activityId": { "type": "string", "pattern": "^ACT-[0-9]{4}$" },
@@ -46,15 +46,21 @@
       }
     },
     "learning": {
-      "type": "object", "additionalProperties": false, "required": ["primaryArea", "secondaryAreas", "concepts", "skills", "cycleStages"],
+      "type": "object", "additionalProperties": false, "required": ["experienceGoal", "learningMechanism", "primaryArea", "secondaryAreas", "concepts", "skills", "childDecisions", "adultLookFors", "cycleStages"],
       "properties": {
+        "experienceGoal": { "$ref": "#/$defs/localizedString" },
+        "learningMechanism": { "$ref": "#/$defs/localizedString" },
         "primaryArea": { "$ref": "#/$defs/areaCode" },
         "secondaryAreas": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/areaCode" } },
         "concepts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/concept" } },
         "skills": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/skill" } },
+        "childDecisions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } },
+        "adultLookFors": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } },
         "cycleStages": { "type": "array", "minItems": 3, "uniqueItems": true, "items": { "$ref": "#/$defs/cycleStage" } }
       }
     },
+    "experienceNarrative": { "$ref": "#/$defs/experienceNarrative" },
+    "objectiveGuidance": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/objectiveGuidance" } },
     "materials": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/material" } },
     "roleTemplates": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/roleTemplate" } },
     "groupConfigurations": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/groupConfiguration" } },
@@ -95,6 +101,61 @@
         "skillId": { "type": "string", "pattern": "^[A-Z]{3}-SKL-[A-Z0-9-]+$" }, "name": { "$ref": "#/$defs/localizedString" },
         "observableActions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } },
         "nonEvidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } }
+      }
+    },
+    "experienceNarrative": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "startingStateId", "endingStateId", "states", "materialFunctions", "participantCycle"],
+      "properties": {
+        "mode": { "enum": ["individual_cycles", "shared_artifact", "hybrid"] },
+        "startingStateId": { "type": "string", "pattern": "^STATE-[A-Z0-9-]+$" },
+        "endingStateId": { "type": "string", "pattern": "^STATE-[A-Z0-9-]+$" },
+        "states": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/narrativeState" } },
+        "materialFunctions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/materialFunction" } },
+        "participantCycle": { "$ref": "#/$defs/participantCycle" }
+      }
+    },
+    "narrativeState": {
+      "type": "object", "additionalProperties": false, "required": ["stateId", "description"],
+      "properties": {
+        "stateId": { "type": "string", "pattern": "^STATE-[A-Z0-9-]+$" },
+        "description": { "$ref": "#/$defs/localizedString" }
+      }
+    },
+    "materialFunction": {
+      "type": "object", "additionalProperties": false, "required": ["materialId", "introducedAtStepId", "purpose"],
+      "properties": {
+        "materialId": { "type": "string", "pattern": "^MAT-[A-Z0-9-]+$" },
+        "introducedAtStepId": { "type": "string", "pattern": "^STEP-[0-9]{2}$" },
+        "purpose": { "$ref": "#/$defs/localizedString" }
+      }
+    },
+    "participantCycle": {
+      "type": "object", "additionalProperties": false, "required": ["completionPolicy", "requiredActions"],
+      "properties": {
+        "completionPolicy": { "enum": ["every_active_participant", "shared_group"] },
+        "requiredActions": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "enum": ["encounter_problem", "propose", "build_or_do", "test_or_check", "observe_result", "improve_or_recommend", "explain"] }
+        }
+      }
+    },
+    "objectiveGuidance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["skillId", "startingAgeRange", "intent", "rationale", "simplification", "extension"],
+      "properties": {
+        "skillId": { "type": "string" },
+        "startingAgeRange": {
+          "type": "object", "additionalProperties": false, "required": ["minimumYears", "maximumYears"],
+          "properties": {
+            "minimumYears": { "type": "integer", "minimum": 0, "maximum": 17 },
+            "maximumYears": { "type": "integer", "minimum": 0, "maximum": 17 }
+          }
+        },
+        "intent": { "enum": ["exploration", "growth", "consolidation"] },
+        "rationale": { "$ref": "#/$defs/localizedString" },
+        "simplification": { "$ref": "#/$defs/localizedString" },
+        "extension": { "$ref": "#/$defs/localizedString" }
       }
     },
     "approvedSubstitution": {
@@ -142,18 +203,69 @@
     },
     "step": {
       "type": "object", "additionalProperties": false,
-      "required": ["stepId", "stage", "actor", "title", "instruction", "expectedResult", "minutes", "successSignal", "commonProblems", "warning", "resumeInstruction", "visualBriefIds", "exposureSkillIds", "exposureConceptIds"],
+      "required": ["stepId", "stage", "actor", "entryStateId", "exitStateId", "transitionReason", "title", "learningPurpose", "instruction", "adultActions", "facilitatorPrompts", "participantActionTemplates", "cycleActions", "materialUses", "childDecision", "observationCues", "expectedResult", "minutes", "successSignal", "commonProblems", "warning", "resumeInstruction", "visualBriefIds", "exposureSkillIds", "exposureConceptIds"],
       "properties": {
         "stepId": { "type": "string", "pattern": "^STEP-[0-9]{2}$" },
         "stage": { "enum": ["discover", "imagine", "build_or_do", "experiment", "improve", "explain", "cleanup"] },
+        "entryStateId": { "type": "string", "pattern": "^STATE-[A-Z0-9-]+$" },
+        "exitStateId": { "type": "string", "pattern": "^STATE-[A-Z0-9-]+$" },
+        "transitionReason": { "$ref": "#/$defs/localizedString" },
         "actor": { "enum": ["adult", "child", "group", "assigned_role"] }, "title": { "$ref": "#/$defs/localizedString" },
-        "instruction": { "$ref": "#/$defs/localizedString" }, "expectedResult": { "$ref": "#/$defs/localizedString" },
+        "learningPurpose": { "$ref": "#/$defs/localizedString" },
+        "instruction": { "$ref": "#/$defs/localizedString" },
+        "adultActions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } },
+        "facilitatorPrompts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedString" } },
+        "participantActionTemplates": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/participantActionTemplate" } },
+        "cycleActions": { "type": "array", "items": { "$ref": "#/$defs/cycleAction" } },
+        "materialUses": { "type": "array", "items": { "$ref": "#/$defs/stepMaterialUse" } },
+        "childDecision": { "oneOf": [{ "$ref": "#/$defs/localizedString" }, { "type": "null" }] },
+        "observationCues": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/observationCue" } },
+        "expectedResult": { "$ref": "#/$defs/localizedString" },
         "minutes": { "type": "integer", "minimum": 1, "maximum": 60 }, "successSignal": { "$ref": "#/$defs/localizedString" },
         "commonProblems": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/problemSolution" } }, "warning": { "$ref": "#/$defs/localizedString" },
         "resumeInstruction": { "$ref": "#/$defs/localizedString" },
         "visualBriefIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
         "exposureSkillIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
         "exposureConceptIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+      }
+    },
+    "cycleAction": {
+      "type": "object", "additionalProperties": false, "required": ["action", "audience"],
+      "properties": {
+        "action": { "enum": ["encounter_problem", "propose", "build_or_do", "test_or_check", "observe_result", "improve_or_recommend", "explain"] },
+        "audience": { "enum": ["every_active_participant", "shared_group", "assigned_participant", "adult"] }
+      }
+    },
+    "stepMaterialUse": {
+      "type": "object", "additionalProperties": false, "required": ["materialId", "purpose"],
+      "properties": {
+        "materialId": { "type": "string", "pattern": "^MAT-[A-Z0-9-]+$" },
+        "purpose": { "$ref": "#/$defs/localizedString" }
+      }
+    },
+    "participantActionTemplate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["actionTemplateId", "audience", "roleTemplateIds", "action", "turnOrder"],
+      "properties": {
+        "actionTemplateId": { "type": "string", "pattern": "^ACTN-[A-Z0-9-]+$" },
+        "audience": { "enum": ["all_participants", "role_templates"] },
+        "roleTemplateIds": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^ROLE-[A-Z0-9-]+$" } },
+        "action": { "$ref": "#/$defs/localizedString" },
+        "turnOrder": { "enum": ["simultaneous", "sequential", "facilitator_cued"] }
+      },
+      "allOf": [
+        { "if": { "properties": { "audience": { "const": "all_participants" } } }, "then": { "properties": { "roleTemplateIds": { "type": "array", "maxItems": 0 } } } },
+        { "if": { "properties": { "audience": { "const": "role_templates" } } }, "then": { "properties": { "roleTemplateIds": { "type": "array", "minItems": 1 } } } }
+      ]
+    },
+    "observationCue": {
+      "type": "object", "additionalProperties": false,
+      "required": ["cueId", "skillId", "behavior", "doNotInfer"],
+      "properties": {
+        "cueId": { "type": "string", "pattern": "^CUE-[A-Z0-9-]+$" },
+        "skillId": { "type": "string" },
+        "behavior": { "$ref": "#/$defs/localizedString" },
+        "doNotInfer": { "$ref": "#/$defs/localizedString" }
       }
     },
     "problemSolution": {

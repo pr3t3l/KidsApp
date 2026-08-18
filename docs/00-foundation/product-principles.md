@@ -19,9 +19,9 @@ El núcleo de toda actividad proviene de una versión publicada y revisada. La I
 
 La edad orienta adecuación y seguridad, pero la dificultad depende también de experiencia, independencia, intereses, evidencia y contexto familiar.
 
-## P-05 — Un proyecto compartido, retos distintos
+## P-05 — Una experiencia compartida, ciclos completos
 
-Varios niños pueden participar en la misma actividad con roles y objetivos principales diferentes, sin convertir al mayor en asistente permanente del menor.
+Varios niños pueden participar en el mismo reto con objetivos principales diferentes. Cuando la naturaleza física lo permita, cada niño propone, construye o ejecuta, prueba, observa y mejora o recomienda; el foco determina qué se observa, no qué partes esenciales puede vivir. Ningún niño se convierte en asistente permanente de otro.
 
 ## P-06 — Una señal útil, poca fricción
 
@@ -45,7 +45,7 @@ La seguridad no será una advertencia editorial aislada: materiales, pasos, role
 
 ## P-11 — El adulto conserva agencia
 
-El adulto puede cambiar roles, omitir evaluaciones, corregir inferencias, decidir qué guardar y eliminar datos. La automatización facilita; no desplaza responsabilidad parental.
+El adulto puede ajustar participación, omitir evaluaciones, corregir inferencias, decidir qué guardar y eliminar datos. La automatización facilita; no desplaza responsabilidad parental.
 
 ## P-12 — Diseñado para atención dividida
 

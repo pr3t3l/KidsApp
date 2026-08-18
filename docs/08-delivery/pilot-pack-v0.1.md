@@ -26,7 +26,7 @@ Ante una contradicción se aplica la precedencia de `AGENTS.md`; seguridad y pri
 
 | ID y versión | Actividad | Duración | Niños | Nivel preliminar | Estado y gate distintivo |
 |---|---|---:|---:|---|---|
-| `ACT-0001@0.2.2` | [Puente de papel](../02-content/sample-activities/ACT-0001-puente-de-papel.md) | 30–60 min | 1–3 | A | Validar físicamente vaso/carga, estabilidad de soportes, guía adulta de estructuras y reproducibilidad. |
+| `ACT-0001@0.3.0` | [Puente de papel](../02-content/sample-activities/ACT-0001-puente-de-papel.md) | 30–60 min | 1–3 | A | Validar físicamente vaso/carga, estabilidad de soportes, historia causal, una prueba propia por niño, guía adulta de estructuras y reproducibilidad. |
 | `ACT-0002@0.1.1` | [Clasificación con semillas](../02-content/sample-activities/ACT-0002-clasificacion-semillas.md) | 30–60 min | 1–3 | B | Revisar alergias, toxinas naturales, piezas pequeñas, ingestión, etiquetado y almacenamiento. |
 | `ACT-0003@0.1.2` | [Probador de conductividad](../02-content/sample-activities/ACT-0003-probador-conductividad.md) | 35–60 min | 1–3 | C | Revisión eléctrica/mecánica reforzada, selección de una configuración, componentes exactos y gate para co-montaje infantil desenergizado. |
 
@@ -52,6 +52,10 @@ npm run validate
 La validación debe ejecutarse en CI. Incluye seis ejemplos positivos, referencias cruzadas y once mutaciones negativas de reglas centrales. Un cambio que rompa schemas, invariantes, ejemplos, enlaces locales o señales obligatorias de una actividad piloto no puede integrarse.
 
 ## Orden de construcción
+
+### Paquete inmediato de calibración con Sofía
+
+Para la primera semana controlada, usar el [dry run de cinco días](sofia-five-day-dry-run-v0.1.md), su [lista consolidada de compras](sofia-shopping-list-v0.1.md) y la [hoja breve de observación](founder-dry-run-observation-sheet-v0.1.md). Los días 3–5 son candidatos editoriales, no `ActivityVersion` publicadas. `ACT-0003` permanece fuera de la ejecución infantil hasta completar su gate eléctrico y mecánico.
 
 ### Etapa 1 — calibrar el contenido sin software de familia
 
