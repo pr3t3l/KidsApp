@@ -14,3 +14,10 @@ Este artefacto convierte las decisiones de producto, el contenido editorial de A
 - `handoff/`: límites y guía de implementación.
 
 El contenido familiar completo es sintético. `ACT-0001@0.3.0` es Draft y aparece solo como vista previa para validar la experiencia. La persistencia es local al navegador: no hay cuenta, backend, cifrado de aplicación ni sincronización entre dispositivos. El despliegue temporal no debe recibir fotografías, voz ni información infantil sensible.
+
+## Acceso web del founder pilot
+
+- Aplicación: [https://pr3t3l.github.io/KidsApp/](https://pr3t3l.github.io/KidsApp/)
+- Código: [https://github.com/pr3t3l/KidsApp](https://github.com/pr3t3l/KidsApp)
+
+GitHub Pages se actualiza automáticamente desde `main` con una lista cerrada de archivos estáticos. La URL es pública y no tiene autenticación; se usa únicamente para la prueba de la fundadora con el contenido y fixtures actuales. Antes de invitar familias externas debe migrarse a hosting privado/autenticado.
