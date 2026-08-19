@@ -1,99 +1,111 @@
-# Arquitectura conceptual
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/07-engineering/architecture.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Conceptual architecture
 
-## Objetivo
+**Status:** Draft
+**Version:** 0.1
 
-Definir fronteras antes de elegir stack. La arquitectura técnica final se decidirá después de confirmar mercado, plataforma y requisitos de operación.
+## Objective
 
-## Contextos delimitados
+Define system boundaries before choosing an implementation stack. The final technical architecture still requires explicit decisions for runtime, database, authentication, hosting, storage, and mobile framework.
 
-```text
-Family & Identity
-       │
-       ├──────────────┐
-       ▼              ▼
-Planning        Learner Records
-       │              ▲
-       ▼              │
-Activity Sessions ─ Evidence
-       │
-       ├── Activity Catalog
-       ├── Recommendation & Roles
-       └── AI Companion
+## Bounded contexts
 
-Content Operations ──publishes──> Activity Catalog
-Safety & Privacy ──govern──> todos los contextos
+```mermaid
+flowchart LR
+    Identity["Family and Identity"]
+    Planning["Planning"]
+    Sessions["Activity Sessions"]
+    Records["Learner Records"]
+    Evidence["Evidence"]
+    Catalog["Activity Catalog"]
+    Recommendation["Recommendation and Assignment"]
+    Companion["AI Companion"]
+    Content["Content Operations"]
+    Governance["Safety and Privacy"]
+
+    Identity --> Planning
+    Identity --> Records
+    Planning --> Sessions
+    Catalog --> Planning
+    Recommendation --> Planning
+    Sessions --> Evidence
+    Evidence --> Records
+    Sessions --> Companion
+    Content -->|publishes| Catalog
+    Governance -. governs .-> Identity
+    Governance -. governs .-> Catalog
+    Governance -. governs .-> Sessions
+    Governance -. governs .-> Records
+    Governance -. governs .-> Companion
 ```
 
-## Componentes lógicos
+## Logical components
 
-### Aplicación familiar
+### Family app
 
-Onboarding, plan, guía de sesión, cierre, journey y privacidad.
+Onboarding, planning, activity facilitation, close-out, Learning Journey, and privacy controls.
 
-### Aplicación editorial
+### Editorial application
 
-Autoría, revisiones, pilotos, publicación, retiro y recursos visuales.
+Authoring, review, pilot, publication, retirement, and visual-asset workflows.
 
-### API de dominio
+### Domain API
 
-Expone operaciones de familia, catálogo, planes, sesiones, evidencia y medios con autorización consistente.
+Exposes family, catalog, planning, session, evidence, entitlement, media, and editorial capabilities with consistent resource-level authorization.
 
-### Motores deterministas
+### Deterministic engines
 
-Elegibilidad, filtros de seguridad, asignaciones compatibles, invariantes de evidencia y publicación. Deben funcionar y probarse sin depender de generación de IA.
+Eligibility, safety filters, compatible assignments, evidence rules, and publication invariants. These engines must work and be testable without AI generation.
 
-### Capa de IA
+### AI Layer
 
-Orquesta modelos generales con contexto estructurado, herramientas limitadas y salidas validadas. No es fuente de verdad.
+Orchestrates general-purpose models with structured context, bounded tools, and validated outputs. It is not a source of truth.
 
-La capa usa un gateway propio y un registro de proveedores/capacidades. Ningún proveedor recibe datos infantiles por el solo hecho de estar disponible; debe estar aprobado para el tipo de dato, región, retención y caso de uso.
+The layer uses an internal gateway and a provider/capability registry. A provider may receive child-related data only when its deployment is explicitly approved for the data class, region, retention policy, and use case.
 
-### Persistencia
+### Persistence
 
-Datos transaccionales, contenido versionado, medios temporales y auditoría separados según sensibilidad.
+Transactional data, immutable versioned content, temporary media, and audit records are separated according to sensitivity and lifecycle.
 
-## Regla fundamental
+## Fundamental rule
 
-Las decisiones críticas no dependen únicamente de texto generado:
+Critical decisions do not depend solely on generated text:
 
-- Publicación y seguridad: reglas/estado verificable.
-- Autorización: políticas de servidor.
-- Un objetivo principal: restricción de dominio/datos.
-- Retención: jobs y metadatos verificables.
-- Adaptaciones: identificadores de opciones publicadas.
+- Publication and safety: deterministic rules and verifiable status.
+- Authorization: server-side resource policies.
+- One primary objective: domain and persistence constraints.
+- Retention: scheduled jobs and verifiable lifecycle metadata.
+- Adaptations: identifiers of approved options from the exact activity version.
 
-## Enfoque inicial
+## Initial approach
 
-Para el piloto, se recomienda un monolito modular con una base transaccional y almacenamiento de objetos separado. Reduce complejidad operativa y conserva fronteras de dominio. Microservicios solo se justifican por escala, seguridad u organización demostradas.
+For the pilot, a modular monolith with a transactional database and separate object storage is recommended. It reduces operational complexity while preserving domain boundaries. Microservices require demonstrated scale, security, or organizational need.
 
-El cliente será una aplicación móvil. El framework nativo o multiplataforma queda por decidir después de prototipos y requisitos de background sync, cámara, audio, compras y accesibilidad.
+The primary client will be an iOS/Android mobile application. The native or cross-platform framework remains undecided pending validation of background sync, camera, audio, shopping, and accessibility requirements. Family web and editorial web experiences are also planned.
 
-## Resiliencia
+## Resilience
 
-- La guía publicada debe estar disponible sin IA.
-- Una sesión guarda progreso local o recuperable.
-- El paquete semanal descargado contiene una versión inmutable de las actividades asignadas y no depende del modelo de IA para ejecutarse.
-- Los jobs de voz/foto son idempotentes.
-- Publicar o retirar invalida cachés de elegibilidad.
-- Una falla de analítica no bloquea producto.
+- The published guide must be available without AI.
+- A session saves local or recoverable progress.
+- A downloaded weekly pack contains immutable assigned activity versions and does not depend on an AI model for delivery.
+- Voice/photo jobs are idempotent.
+- Publishing or retiring content invalidates eligibility caches.
+- An analytics failure does not block the product.
 
-## Observabilidad
+## Observability
 
-- Eventos de dominio sin contenido infantil innecesario.
-- Auditoría de acceso, publicación, corrección y eliminación.
-- Métricas de latencia y error por modo de IA.
-- Trazas con referencias internas, no prompts completos por defecto.
+- Domain events without unnecessary child content.
+- Audit access, publication, correction, and deletion.
+- Latency and error metrics by AI mode.
+- Traces with internal references, not complete prompts by default.
 
-## Decisiones pendientes
+## Pending decisions
 
-- Plataforma cliente.
-- Lenguaje/framework.
-- Base de datos.
-- Autenticación.
-- Proveedores de IA, voz, imágenes y almacenamiento.
-- Región y despliegue.
-- Estrategia offline.
-- Integración de suscripciones en App Store/Google Play y posible compra web.
+- Mobile and backend languages/frameworks.
+- Database, migrations, and tenancy model.
+- Adult authentication and account recovery.
+- AI, voice, image, and storage providers.
+- Hosting region, deployment, and observability stack.
+- Background sync and local-encryption implementation.
+- App Store/Google Play entitlement integration and future Stripe web purchase.

@@ -1,115 +1,116 @@
-# SPEC-06 — Recommendation and Role Assignment Engine
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/05-ai/recommendation-engine.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Review  
-**Versión:** 0.1
+# SPEC-06—Recommendation and Role Assignment Engine
 
-## 1. Propósito
+**Status:** Review
+**Version:** 0.1
 
-Elegir una actividad publicada que la familia pueda realizar y asignar a cada niño un rol y un objetivo principal apropiados.
+## 1. Purpose
+
+Choose a published activity that the family can complete and assign each child an appropriate contribution and primary objective.
 
 ## 2. Pipeline
 
 ```text
-Contexto de sesión
-→ filtros de elegibilidad
-→ candidatos seguros
-→ puntuación pedagógica y operativa
-→ combinación de roles
-→ objetivo principal por niño
-→ explicación
-→ confirmación adulta
+Session context
+→ eligibility filters
+→ safe candidates
+→ educational and operational scoring
+→ role combination
+→ one primary objective per child
+→ explanation
+→ adult confirmation
 ```
+## 3. Hard filters
 
-## 3. Filtros duros
+An activity is excluded if:
 
-Una actividad se excluye si:
+- It is not published.
+- It violates an age, supervision, or declared restriction.
+- There is no safe combination of roles for participants.
+- A critical material is missing without approved replacement.
+- Exceeds explicit limits of time or space.
+- It is retired or disabled.
 
-- No está publicada.
-- Viola edad, supervisión o restricción declarada.
-- No existe combinación segura de roles para participantes.
-- Falta un material crítico sin sustitución aprobada.
-- Excede límites explícitos de tiempo o espacio.
-- Está retirada o deshabilitada.
+Hard filters are not compensated by a high score.
 
-Los filtros duros no se compensan con una puntuación alta.
+## 4. Ordering factors
 
-## 4. Factores de ordenamiento
+- Fit with current growth objectives.
+- Recent variety of areas, roles and mechanisms.
+- Interests as a motivating context.
+- Use of available materials.
+- Preparation effort and mess tolerance.
+- Opportunity to collect useful evidence.
+- Possibility of simultaneous participation.
+- The activity's history of successful completion and family satisfaction.
 
-- Adecuación a objetivos de crecimiento.
-- Variedad reciente de áreas, roles y mecanismos.
-- Intereses como contexto motivador.
-- Uso de materiales disponibles.
-- Preparación y desorden.
-- Oportunidad de recopilar evidencia útil.
-- Posibilidad de participación simultánea.
-- Historial de éxito y satisfacción de la actividad.
+The weights will be configurable, auditable and tested; the first version can use readable rules.
 
-Los pesos serán configurables, auditables y probados; la primera versión puede usar reglas legibles.
+## 5. Selection of the primary objective
 
-## 5. Selección del objetivo principal
+For each child:
 
-Para cada niño:
+1. Take the eligible skills from the child's possible contributions.
+2. Exclude unsafe or incompatible skills.
+3. Prefer an area for growth or consolidation.
+4. Consider family goals and missing evidence.
+5. Penalize recent repetition.
+6. Choose exactly one.
+7. Generate a brief explanation.
 
-1. Tomar habilidades elegibles de sus roles posibles.
-2. Excluir habilidades inseguras o incompatibles.
-3. Preferir zona de crecimiento o consolidación.
-4. Considerar metas familiares y evidencia faltante.
-5. Penalizar repetición reciente.
-6. Elegir exactamente una.
-7. Generar una explicación breve.
+Example:
 
-Ejemplo:
+> Measurement was chosen for Sofi because she already works independently in counting, we still have little evidence about measurement, and the Test Engineer contribution practices it naturally.
 
-> Medición fue elegida para Sofi porque ya ha contado con independencia, todavía tenemos poca evidencia de medición y el rol de Test Engineer la practica de forma natural.
+## 6. Role assignment
 
-## 6. Asignación de roles
+The combination must:
 
-La combinación debe:
+- Cover all participants.
+- Respect compatibility and safety constraints.
+- Avoid symbolic roles.
+- Reduce waiting when possible.
+- Rotate responsibilities over time.
+- Never automatically turn the oldest child into a supervisor.
 
-- Cubrir todos los participantes.
-- Respetar compatibilidad y seguridad.
-- Evitar roles simbólicos.
-- Reducir espera cuando sea posible.
-- Rotar responsabilidades a través del tiempo.
-- No convertir automáticamente al mayor en tutor.
+If there is no combination, the engine proposes another activity or two coordinated blocks and explains the limitation.
 
-Si no existe combinación, el motor propone otra actividad o dos bloques coordinados y explica la limitación.
+## 7. Adult control
 
-## 7. Control adulto
+The adult can:
 
-El adulto puede:
+- Change participants.
+- Exchange compatible roles.
+- Choose another available objective.
+- Reject the recommendation.
+- Indicate an optional reason.
 
-- Cambiar participantes.
-- Intercambiar roles compatibles.
-- Elegir otro objetivo disponible.
-- Rechazar la recomendación.
-- Indicar una razón opcional.
+The manual decision is respected and serves as a product signal, not as an evaluation of the child.
 
-La decisión manual se respeta y sirve como señal de producto, no como evaluación del niño.
+## 8. Composition of the day and week
 
-## 8. Composición del día y la semana
+The main input is a budget of minutes per day, not a fixed number of activities. The composer:
 
-El input principal es un presupuesto de minutos por día, no un número fijo de actividades. El compositor:
+1. Reserve explicit time for preparation and cleanup.
+2. Prefer a complete activity that fits well into the block.
+3. Combine two activities only when their duration, transition, and adult workload fit reasonably.
+4. It does not fragment an indivisible activity to exactly fill the time.
+5. Maintain weekly balance across mechanisms and learning areas.
+6. Leave unused minutes when appropriate instead of adding purposeless content.
 
-1. Reserva preparación y limpieza explícitas.
-2. Prefiere una actividad completa que se ajuste bien al bloque.
-3. Combina dos actividades solo cuando duración, transición y carga del adulto caben razonablemente.
-4. No fragmenta una actividad indivisible para llenar exactamente el tiempo.
-5. Mantiene balance semanal por mecanismos y áreas.
-6. Permite dejar minutos libres en vez de agregar contenido sin propósito.
+The week can propose up to five days by default, but the adult configures days and minutes independently.
 
-La semana puede proponer hasta cinco días por defecto, pero el adulto configura días y minutos independientemente.
+## 9. Requirements
 
-## 9. Requisitos
-
-- **REC-101:** Aplicar seguridad y publicación como filtros duros.
-- **REC-102:** Elegir máximo un objetivo principal por niño.
-- **REC-103:** Registrar todas las habilidades secundarias como exposiciones previstas.
-- **REC-104:** Explicar actividad, rol y objetivo en lenguaje breve.
-- **REC-105:** Permitir cambios manuales entre opciones compatibles.
-- **REC-106:** Mantener variedad semanal y por niño.
-- **REC-107:** Distinguir falta de evidencia de dificultad observada.
-- **REC-108:** La misma entrada y configuración de reglas debe producir una decisión reproducible o registrar la aleatoriedad.
-- **REC-109:** La cantidad de actividades diarias se deriva del presupuesto de tiempo y de actividades indivisibles.
-- **REC-110:** Preparación, transición y limpieza forman parte de la estimación familiar.
-- **REC-111:** El plan no agrega una segunda actividad solo para llenar minutos residuales.
+- **REC-101:** Apply safety and publishing status as hard filters.
+- **REC-102:** Choose a maximum of one primary objective per child.
+- **REC-103:** Record all secondary skills as intended exposures.
+- **REC-104:** Explain activity, role and objective in brief language.
+- **REC-105:** Allow manual changes between supported options.
+- **REC-106:** Maintain variety weekly and per child.
+- **REC-107:** Distinguish lack of evidence from observed difficulty.
+- **REC-108:** The same input and rule configuration must produce a reproducible decision or record randomness.
+- **REC-109:** The amount of daily activities is derived from the time budget and indivisible activities.
+- **REC-110:** Preparation, transition and cleaning are part of the family estimate.
+- **REC-111:** The plan does not add a second activity merely to fill remaining minutes.

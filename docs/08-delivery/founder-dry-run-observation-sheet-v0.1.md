@@ -1,82 +1,84 @@
-# Hoja de observación — founder dry run v0.1
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/08-delivery/founder-dry-run-observation-sheet-v0.1.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Uso:** una copia por actividad. Completar con frases cortas; no documentar todo lo que hace la niña.
+# Observation Sheet — Founder Dry Run v0.1
 
-## Identidad
+**Use:** one copy per activity. Complete it with short phrases; do not document everything the child does.
 
-- Fecha:
-- Actividad y versión:
-- Adulto facilitador:
-- Participante y edad/rango: Sofía, 5 años
-- Hora de inicio / final:
-- Duración real de preparación:
-- Duración real con la niña:
+## Identity
 
-## Preflight adulto
+- Date:
+- Activity and version:
+- Adult facilitator:
+- Participant and age/range: Sofia, age 5
+- Start/end time:
+- Actual preparation time:
+- Actual time with the child:
 
-- [ ] Pude ejecutar literalmente el montaje y la prueba central.
-- [ ] Los materiales se comportaron como describe el documento.
-- [ ] Entendí qué resultado era válido, no comparable y condición de parada.
-- [ ] No necesité sustituir un material ni inventar un paso.
+## Adult preflight
 
-**Primera frase o paso confuso:**
+- [ ] I could follow the setup and central test literally.
+- [ ] The materials behaved as described in the document.
+- [ ] I understood what counted as a valid result, a non-comparable result, and a stop condition.
+- [ ] I did not need to substitute a material or invent a step.
 
-**Resultado físico inesperado:**
+**First confusing phrase or step:**
 
-**Material que faltó o sobró:**
+**Unexpected physical result:**
 
-## Historia de la actividad
+**Material that was missing or left over:**
 
-| Comprobación | Sí | No | Nota breve |
+## Activity story
+
+| Check | Yes | No | Brief note |
 |---|:---:|:---:|---|
-| Descubrir mostró un problema o fenómeno real. | [ ] | [ ] | |
-| Imaginar usó algo que ya se había observado. | [ ] | [ ] | |
-| Construir/Hacer produjo algo que luego se probó. | [ ] | [ ] | |
-| Experimentar mantuvo condiciones comparables. | [ ] | [ ] | |
-| Mejorar cambió una sola cosa con una razón. | [ ] | [ ] | |
-| Explicar conectó una decisión con un resultado. | [ ] | [ ] | |
+| Discover revealed a real problem or phenomenon. | [ ] | [ ] | |
+| Imagine used something that had already been observed. | [ ] | [ ] | |
+| Build/Do produced something that was later tested. | [ ] | [ ] | |
+| Experiment maintained comparable conditions. | [ ] | [ ] | |
+| Improve changed one thing for a reason. | [ ] | [ ] | |
+| Explain connected a decision to a result. | [ ] | [ ] | |
 
-**Momento donde se rompió la continuidad:**
+**Where continuity broke:**
 
-**Texto que el adulto necesitó pero la interfaz/documento no ofreció:**
+**Text the adult needed but the interface/document did not provide:**
 
-## Experiencia de Sofía
+## Sofia's experience
 
-- Decisión real que tomó:
-- Acción central que hizo personalmente:
-- Apoyo que pidió o recibió:
-- Momento de mayor interés:
-- Momento de confusión, frustración o abandono:
-- ¿Quiso cambiar la actividad o participar de otra manera?:
+- Real decision she made:
+- Central action she performed herself:
+- Support she requested or received:
+- Moment of greatest interest:
+- Moment of confusion, frustration, or withdrawal:
+- Did she want to change the activity or participate differently?:
 
-No interpretar estas respuestas como rasgos permanentes, diagnósticos o inteligencia.
+Do not interpret these responses as permanent traits, diagnoses, or intelligence.
 
-## Una observación educativa
+## One educational observation
 
-- Foco principal observado:
-- Pregunta de cierre utilizada:
-- Respuesta 1–5 o “no pude observar”:
-- Observación opcional, concreta y contextual:
+- Primary focus observed:
+- Close-out question used:
+- 1–5 response or “I couldn't observe”:
+- Optional concrete, contextual observation:
 
-## Seguridad y operación
+## Safety and operation
 
-- [ ] Sin incidente ni casi-incidente.
-- [ ] Hubo condición de parada.
-- [ ] Hubo derrame, pieza rota, material en boca o pérdida de supervisión.
-- [ ] Hubo sustitución no prevista.
+- [ ] No incident or near miss.
+- [ ] A stop condition occurred.
+- [ ] There was a spill, broken piece, material in the mouth, or loss of supervision.
+- [ ] An unplanned substitution occurred.
 
-**Qué ocurrió y qué se hizo:**
+**What happened and what was done:**
 
-**Cambio requerido antes de repetir:**
+**Change required before repeating:**
 
-## Decisión editorial
+## Editorial decision
 
-Marcar solo una:
+Choose only one:
 
-- [ ] Repetir sin cambios para comprobar consistencia.
-- [ ] Revisar texto o jerarquía visual; el mecanismo puede mantenerse.
-- [ ] Revisar materiales o pasos y crear nueva versión.
-- [ ] Bloquear hasta revisión pedagógica o de seguridad.
-- [ ] Retirar el candidato.
+- [ ] Repeat without changes to check consistency.
+- [ ] Revise wording or visual hierarchy; the mechanism can remain.
+- [ ] Revise materials or steps and create a new version.
+- [ ] Block until pedagogical or safety review.
+- [ ] Withdraw the candidate.
 
-**Decisión y responsable:**
+**Decision and owner:**

@@ -1,67 +1,69 @@
-# Baseline de privacidad infantil y distribución en Estados Unidos
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/00-foundation/compliance-baseline.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft — no sustituye asesoría legal  
-**Versión:** 0.1  
-**Revisión:** 16 de agosto de 2026
+# Child Privacy and US Distribution Baseline
 
-## Contexto
+**Status:** Draft — does not substitute legal advice
+**Version:** 0.1
+**Revision:** August 16, 2026
 
-El producto se dirige a familias con niños de 5–10 años en Estados Unidos. Aunque el adulto controle la cuenta, la aplicación recopila información relacionada con menores y ofrece contenido dirigido a ellos. Debe diseñarse bajo COPPA y políticas de distribución infantil desde el inicio.
+## Context
+
+The product is intended for US families with children ages 5–10. Even when an adult controls the account, the application collects information related to minors and offers content that children participate in. COPPA and children's distribution policies must therefore inform the design from the beginning.
 
 ## COPPA
 
-La [FTC identifica COPPA como el marco que da a los padres control sobre la información recopilada de menores de 13 años](https://www.ftc.gov/business-guidance/privacy-security/childrens-privacy). La regla fue modificada en abril de 2025 y exige revisar la versión vigente.
+The [FTC identifies COPPA as the framework that gives parents control over information collected from children under 13 years of age](https://www.ftc.gov/business-guidance/privacy-security/childrens-privacy). The rule was modified in April 2025 and requires reviewing the current version.
 
-Baseline de producto:
+Product baseline:
 
-- Cuenta y consentimiento administrados por adulto.
-- Aviso claro de qué se recopila, propósito, proveedores y retención.
-- Consentimiento parental verificable cuando corresponda.
-- Minimización y retención limitada por propósito.
-- Acceso, corrección, exportación y eliminación.
-- Revisión de cada SDK/proveedor; tercerizar procesamiento no elimina responsabilidad.
-- Fotos, videos y voz infantiles se tratan como datos de alta sensibilidad.
-- Prohibido reutilizar datos infantiles para publicidad dirigida o entrenamiento sin una base y consentimiento específicamente aprobados.
+- Account and consent managed by an adult.
+- Clear notice of what is collected, its purpose, providers, and retention.
+- Verifiable parental consent when applicable.
+- Minimization and limited retention by purpose.
+- Access, correction, export and deletion.
+- Review of each SDK/vendor; outsourcing processing does not eliminate liability.
+- Children's photos, videos and voices are treated as highly sensitive data.
+- Reusing children's data for targeted advertising or training is prohibited without a specifically approved basis and consent.
 
 ## Apple App Store
 
-Las [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/) exigen moderación para contenido generado por usuarios, incluyendo filtrado, reporte, bloqueo cuando aplique y contacto público. Las apps de Kids Category tienen restricciones adicionales sobre enlaces, compras, datos y SDKs de terceros.
+The [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/) require moderation for user-generated content, including filtering, reporting, blocking where applicable, and public contact. Kids Category apps have additional restrictions on links, purchases, data, and third-party SDKs.
 
-Decisiones pendientes de distribución:
+Pending distribution decisions:
 
-- Confirmar si se solicitará Kids Category.
-- Diseñar parental gate para compras, enlaces y comunidad.
-- Revisar todos los SDKs de analítica e IA antes de integrar.
+- Confirm if Kids Category will be requested.
+- Design parental gate for purchases, links and community.
+- Review all analytics and AI SDKs before integrating.
 
 ## Google Play
 
-Las [Families Policy Requirements](https://support.google.com/googleplay/android-developer/answer/9893335) requieren declarar audiencia, datos sensibles, cámara/micrófono y SDKs; también establecen controles para funciones sociales. La [política de UGC](https://support.google.com/googleplay/android-developer/answer/9876937) exige términos, moderación, reportes y bloqueo según la experiencia.
+[Families Policy Requirements](https://support.google.com/googleplay/android-developer/answer/9893335) require declaring the audience, sensitive data, camera and microphone access, and SDKs; they also establish controls for social features. The [UGC policy](https://support.google.com/googleplay/android-developer/answer/9876937) requires terms, moderation, reporting, and blocking where applicable.
 
-Baseline de producto:
+Product baseline:
 
-- No depender de identificadores publicitarios.
-- No solicitar ubicación precisa.
-- Auditar SDKs para uso en servicios dirigidos a niños.
-- Publicación comunitaria únicamente mediante acción adulta.
-- Moderación continua, reporte y retiro.
+- Do not depend on advertising identifiers.
+- Do not request precise location.
+- Audit SDKs for use in services aimed at children.
+- Community publication only through adult action.
+- Continuous moderation, reporting and withdrawal.
 
-## Estados de Estados Unidos
+## US states
 
-El contenido educativo no se fragmentará por estado, pero la ubicación de familias piloto y usuarias sí puede cambiar qué obligaciones de privacidad, consentimiento, evaluación de impacto o derechos del consumidor resultan aplicables. El volumen y alcance de legislación estatal de privacidad y protección infantil continúa cambiando; antes de ampliar el piloto se registran los estados participantes y antes del lanzamiento se completa una matriz legal vigente. El producto adopta mientras tanto un baseline nacional protector y no usa la ausencia de una regla estatal específica para reducir controles.
+Educational content will not be fragmented by state, but the location of pilot families and users may change which privacy, consent, impact-assessment, or consumer-rights obligations apply. The volume and scope of state privacy and child-protection legislation continue to change. Before expanding the pilot, record the participating states and complete a current legal matrix. In the meantime, the product adopts a protective national baseline and does not use the absence of a specific state rule to reduce controls.
 
-Referencia de seguimiento: [NCSL — Consumer Privacy 2025 Legislation](https://www.ncsl.org/technology-and-communication/consumer-privacy-2025-legislation) y las fuentes oficiales de cada estado identificado.
+Tracking reference: [NCSL — Consumer Privacy 2025 Legislation](https://www.ncsl.org/technology-and-communication/consumer-privacy-2025-legislation) and the official sources for each identified state.
 
-## Consecuencia para la comunidad
+## Consequence for the community
 
-Una galería de proyectos no es “solo almacenamiento de fotos”: es UGC. Antes de habilitarla se requieren términos, normas comunitarias, moderación previa o equivalente, reporte, retirada, gestión de derechos y controles parentales. Marketing no puede reutilizar publicaciones automáticamente; necesita un consentimiento/licencia separados y explícitos.
+A project gallery is not “just photo storage”: it is user-generated content. Terms, community standards, prior moderation or an approved equivalent, reporting, withdrawal, rights management, and parental controls are required before enabling it. Marketing cannot automatically reuse posts; it requires separate, explicit consent or a license.
 
-El adulto puede decidir si una publicación incluye únicamente el proyecto/manos o muestra a un niño reconocible, pero esa elección no transfiere al adulto las obligaciones de la plataforma. El producto debe favorecer proyecto/manos por defecto, advertir sobre uniforme escolar, nombre, ubicación y metadata, pedir confirmación explícita antes de enviar una imagen reconocible, moderarla y permitir retirada. La implementación exacta requiere revisión legal vigente antes de habilitar comunidad.
+The adult can decide whether a post includes only the project or hands or shows a recognizable child, but that choice does not transfer the platform's obligations to the adult. The product must favor projects or hands by default; warn about school uniforms, names, locations, and metadata; request explicit confirmation before submitting a recognizable image; moderate it; and allow its removal. The exact implementation requires current legal review before enabling the community.
 
-## Gate antes de lanzamiento
+## Gate before launch
 
-- Asesoría legal de privacidad infantil en Estados Unidos.
-- Revisión de requisitos estatales aplicables.
-- Data map completo de aplicación y proveedores.
-- Flujo probado de consentimiento, acceso y eliminación.
-- Evaluación de App Store Kids Category y Google Play Families.
-- Políticas públicas de privacidad, comunidad y retención.
+- Legal advice on child privacy in the United States.
+- Review of applicable state requirements.
+- Complete data map of the application and its providers.
+- Tested consent, access and deletion flow.
+- App Store Kids Category and Google Play Families evaluation.
+- Public privacy, community and retention policies.

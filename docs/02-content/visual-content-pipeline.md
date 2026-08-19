@@ -1,90 +1,91 @@
-# Pipeline de imágenes instructivas
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/02-content/visual-content-pipeline.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Instructional Image Pipeline
 
-## Propósito
+**Status:** Draft
+**Version:** 0.1
 
-Producir imágenes bilingües, coherentes y versionadas para actividades aunque las primeras no sean fotografiadas en un estudio. La IA puede generar borradores; ninguna imagen entra en una actividad publicada sin QA y aprobación humana.
+## Purpose
 
-## Tipos de recurso
+Produce bilingual, coherent and versioned images for activities even if the first ones are not photographed in a studio. AI can generate drafts; no image enters a published activity without QA and human approval.
 
-1. **Materials board:** objetos requeridos, cantidades y etiquetas.
-2. **Preparation:** montaje previo y pasos exclusivos del adulto.
-3. **Step diagram:** una acción y resultado esperado.
-4. **Expected result:** apariencia correcta y variaciones normales.
-5. **Concept diagram:** explicación científica, marcada como diagrama cuando no está a escala.
-6. **Troubleshooting:** comparación entre estado correcto y error frecuente.
+## Resource types
 
-## Jerarquía visual aprobada
+1. **Materials board:** required objects, quantities and labels.
+2. **Preparation:** prior assembly and exclusive steps for the adult.
+3. **Step diagram:** an action and expected result.
+4. **Expected result:** Correct appearance and normal variations.
+5. **Concept diagram:** scientific explanation, marked as a diagram when not to scale.
+6. **Troubleshooting:** comparison between correct state and frequent error.
 
-1. **Fotorealismo:** materiales, montaje y resultado esperado cuando la fidelidad física ayuda a ejecutar.
-2. **Diagrama instructivo:** pasos, conexiones, fuerzas, secuencias y conceptos que necesitan simplificación visual.
-3. **Ilustración infantil:** narrativa, ambientación o motivación; no sustituye una referencia física importante.
+## Approved visual hierarchy
 
-Una actividad puede combinar los tres estilos con reglas consistentes. La seguridad y claridad determinan el estilo, no una preferencia estética aislada.
+1. **Photorealism:** materials, assembly and expected result when physical fidelity helps to execute.
+2. **Instructional diagram:** steps, connections, forces, sequences and concepts that need visual simplification.
+3. **Children's illustration:** narrative, setting or motivation; it does not replace an important physical reference.
+
+An activity can combine all three styles with consistent rules. Confidence and clarity determine style, not an isolated aesthetic preference.
 
 ## Pipeline
 
 ```text
-ActivityVersion estructurada
-→ shot list por paso
-→ prompt/brief generado
-→ generación de candidatos
-→ QA automático multimodal
-→ revisión editorial humana
-→ ajustes o regeneración
-→ aprobación
-→ publicación ligada a la versión
+Structured ActivityVersion
+→ shot list by step
+→ generated prompt/brief
+→ candidate generation
+→ multimodal automated QA
+→ human editorial review
+→ adjustments or regeneration
+→ approval
+→ publication tied to the version
 ```
+## Automatic QA
 
-## QA automático
+The verifier compares each candidate against structured data:
 
-El verificador compara cada candidato contra datos estructurados:
+- Correct materials and without extra dangerous objects.
+- Quantities and essential components visible.
+- Physical orientation consistent with the step.
+- Correct actor: do not show the child performing adult-only steps.
+- Possible result, without floating parts or false connections.
+- Absence of distorted text; tags are overlaid programmatically.
+- Visual consistency between steps.
+- Absence of brands, real faces or unauthorized identifiable information.
 
-- Materiales correctos y sin objetos extra peligrosos.
-- Cantidades y componentes esenciales visibles.
-- Orientación física coherente con el paso.
-- Actor correcto: no mostrar al niño realizando adult-only steps.
-- Resultado posible, sin piezas flotantes o conexiones falsas.
-- Ausencia de texto deformado; las etiquetas se superponen programáticamente.
-- Consistencia visual entre pasos.
-- Ausencia de marcas, rostros reales o información identificable no autorizada.
+Automated QA produces findings; does not approve on its own.
 
-El QA automático produce hallazgos; no aprueba por sí solo.
+## Human review
 
-## Revisión humana
+Requires confirmation:
 
-Requiere confirmar:
+- Version fidelity and safety.
+- Clarity for an adult who did not read the activity.
+- Coherence between English and Spanish.
+- Accessibility, alt text and contrast.
+- Rights and traceability of the provider and model.
 
-- Fidelidad a la versión y seguridad.
-- Claridad para un adulto que no leyó la actividad.
-- Coherencia entre inglés y español.
-- Accesibilidad, alt text y contraste.
-- Derechos y trazabilidad del proveedor/modelo.
+## Versioned
 
-## Versionado
+Each asset retains:
 
-Cada asset conserva:
+- ActivityVersion and step_id.
+- Type of resource.
+- Prompt or brief and model/provider.
+- Candidates and QA results according to editorial retention.
+- Approver and date.
+- Language and alt text.
+- Status: draft, review, approved, retired.
 
-- ActivityVersion y step_id.
-- Tipo de recurso.
-- Prompt/brief y modelo/proveedor.
-- Candidatos y resultado de QA según retención editorial.
-- Aprobador y fecha.
-- Idioma y alt text.
-- Estado: draft, review, approved, retired.
+A material change of steps invalidates the affected assets.
 
-Un cambio material de pasos invalida los assets afectados.
+## Future production
 
-## Producción futura
+Real photos of pilots can be used to understand failures, but they do not automatically become editorial or marketing material. Its use requires separate consent/license, privacy review and absence of unnecessary children's information.
 
-Las fotos reales de pilotos pueden servir para comprender fallas, pero no se convierten automáticamente en material editorial o marketing. Su uso requiere consentimiento/licencia separados, revisión de privacidad y ausencia de información infantil no necesaria.
+## Requirements
 
-## Requisitos
-
-- **ACT-VIS-001:** Toda imagen publicada referencia una ActivityVersion y propósito.
-- **ACT-VIS-002:** La imagen pasa QA automático y aprobación humana.
-- **ACT-VIS-003:** El texto visible se renderiza como capa controlada, no generado dentro de la imagen.
-- **ACT-VIS-004:** Los adult-only steps no muestran manipulación infantil.
-- **ACT-VIS-005:** Marketing no reutiliza medios familiares sin consentimiento específico separado.
+- **ACT-VIS-001:** Every published image references an ActivityVersion and purpose.
+- **ACT-VIS-002:** Image passes automatic QA and human approval.
+- **ACT-VIS-003:** Visible text is rendered as a controlled layer, not generated within the image.
+- **ACT-VIS-004:** The adult-only steps do not show child manipulation.
+- **ACT-VIS-005:** Marketing does not reuse family media without separate specific consent.

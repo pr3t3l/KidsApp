@@ -1,109 +1,111 @@
-# Requisitos del producto
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/03-product/requirements.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.3
+# Product requirements
 
-## Familia y perfiles
+**Status:** Draft
+**Version:** 0.3
 
-- **PRD-001:** Un adulto puede crear una familia con configuración mínima.
-- **PRD-002:** Una familia puede contener varios adultos autorizados y varios niños.
-- **PRD-003:** Un niño se representa con alias y rango de edad por defecto.
-- **PRD-004:** El adulto puede editar o eliminar perfiles y datos derivados.
-- **PRD-005:** El sistema debe permitir comenzar sin completar inventario ni evaluación inicial extensa.
-- **PRD-006:** Una familia puede autorizar varios adultos bajo una suscripción administrada por el propietario.
-- **PRD-007:** El producto no impone un límite comercial pequeño de perfiles; el MVP optimiza sesiones de 1–4 participantes.
-- **PRD-008:** Todo contenido y flujo principal de lanzamiento está disponible en inglés y español.
+## Family and profiles
 
-## Actividades
+- **PRD-001:** An adult can create a family with minimal configuration.
+- **PRD-002:** A family can contain multiple authorized adults and multiple Learner profiles.
+- **PRD-003:** A child is represented by an alias and age range by default.
+- **PRD-004:** The adult can edit or delete profiles and derived data.
+- **PRD-005:** The adult can start without completing an inventory or extensive initial assessment.
+- **PRD-006:** A family can authorize multiple adults under an owner-managed subscription.
+- **PRD-007:** The product does not impose a small commercial profile limit; MVP optimizes sessions for 1–4 participants.
+- **PRD-008:** All primary launch content and flows are available in English and Spanish.
 
-- **PRD-101:** Solo se muestran como recomendables versiones publicadas.
-- **PRD-102:** Antes de iniciar se muestran duración, materiales, preparación, propósito, áreas, conceptos, mecanismo de aprendizaje, decisión infantil y seguridad mediante divulgación progresiva.
-- **PRD-103:** El adulto confirma participantes y materiales críticos.
-- **PRD-104:** Cada participante infantil recibe internamente un rol compatible y como máximo un objetivo principal; la interfaz familiar lo presenta como foco de aprendizaje y aporte sugerido, no como identidad.
-- **PRD-105:** El camino normal no ofrece intercambio de roles. Si la participación real cambia, el adulto puede marcar observar/no participar o solicitar una nueva asignación compatible sin producir evidencia negativa.
-- **PRD-106:** La sesión guarda la versión exacta y asignaciones reales.
-- **PRD-107:** Un rol es estructura interna para derivar foco, aporte y exposiciones, no una orden ni una etiqueta visible. El niño puede contribuir de otra forma, observar o no participar sin recibir exposición, valoración negativa ni inferencia indebida.
-- **PRD-108:** La interfaz solo entrega procedimientos derivados de una narrativa con estados, transiciones, función de materiales y ciclo por participante validados.
+## Activities
 
-## Planificación
+- **PRD-101:** Only published versions are shown as recommended.
+- **PRD-102:** Before starting, the interface uses progressive disclosure to show duration, materials, preparation, purpose, learning areas, concepts, mechanism, child decisions, and safety controls.
+- **PRD-103:** The adult confirms participants and critical materials.
+- **PRD-104:** Each participating child receives an internal compatible role and at most one primary objective; the family interface presents these as a learning focus and suggested contribution, never as identity or ability labels.
+- **PRD-105:** The normal path does not display role-swapping controls. If participation changes, the adult can record observation-only or nonparticipation, or request a new compatible assignment, without creating negative evidence.
+- **PRD-106:** The session saves the exact activity version, planned assignments, actual participation, and auditable changes.
+- **PRD-107:** A role is an internal structure used to derive focus, suggested contribution, and presentation. It is not an order or visible label. A child may contribute differently, observe, or not participate without receiving false exposure, negative assessment, or unsupported inference.
+- **PRD-108:** The interface delivers procedures only when they derive from an activity narrative with validated states, transitions, material functions, and participant cycles.
 
-- **REC-000:** El adulto configura minutos disponibles por día; el sistema puede asignar una o varias actividades al bloque.
-- **REC-001:** El plan considera tiempo, participantes, inventario, seguridad, evidencia, variedad e intereses.
-- **REC-002:** Cada recomendación incluye una razón breve.
-- **REC-003:** El adulto puede sustituir una actividad sin perder el resto del plan.
-- **REC-004:** El sistema evita repetición excesiva de área, material y rol.
-- **REC-005:** Si no existe actividad segura para todos, debe explicarlo y proponer alternativas.
-- **REC-006:** El plan semanal descargado conserva focos, aportes, objetivos, pasos, guiones, acciones nombradas, seguridad e imágenes sin conexión.
-- **REC-007:** Cada actividad del plan abre un detalle navegable con promesa, propósito, foco, materiales, recorrido, pregunta de cierre, seguridad, estado editorial y procedencia.
-- **REC-008:** El plan genera una lista de compras consolidada, agrupada por lugar probable de compra, con cantidad total y procedencia por actividad.
-- **REC-009:** La consolidación suma cantidades de materiales consumibles entre actividades y usa la cantidad simultánea máxima para herramientas explícitamente reutilizables; la regla aplicada se muestra al adulto y nunca oculta de qué actividades proviene el total.
+## Planning
 
-## Ejecución y cierre
+- **REC-000:** The adult configures available minutes per day; the system may assign one or more activities to the block.
+- **REC-001:** The plan considers time, participants, inventory, safety, evidence, variety, and interests.
+- **REC-002:** Each recommendation includes a brief reason.
+- **REC-003:** The adult can substitute an activity without losing the rest of the plan.
+- **REC-004:** The system avoids excessive repetition of area, material and role.
+- **REC-005:** If no safe activity is eligible for all selected participants, the system explains the unmet constraints and proposes safe alternatives.
+- **REC-006:** The downloaded weekly plan preserves focuses, contributions, objectives, steps, scripts, named actions, safety controls, and required offline images.
+- **REC-007:** Each planned activity opens a navigable detail containing its promise, purpose, focus, materials, route, close-out question, safety controls, editorial status, and provenance.
+- **REC-008:** The plan generates a consolidated shopping list grouped by likely purchase location, with total quantity and source activity.
+- **REC-009:** Consolidation adds quantities of consumable materials across activities and uses the maximum simultaneous quantity for explicitly reusable tools; the applied rule is shown to the adult and never hides what activities the total comes from.
 
-- **UX-101:** La guía permite avanzar, retroceder y reanudar.
-- **UX-102:** Cada fase muestra propósito, acciones del adulto, guion literal, acción nombrada de cada niño, decisión infantil cuando aplique, qué observar, cuándo avanzar, advertencia y ayuda contextual relevante.
-- **UX-106:** Cuando sea físicamente viable, cada niño completa el ciclo esencial; los focos cambian observación y apoyo, no reservan construir o probar a un solo participante.
-- **UX-103:** El cierre normal requiere una valoración por niño.
-- **UX-104:** “Evaluar más” y nota de voz son opcionales.
-- **UX-105:** El adulto puede omitir el cierre sin señal negativa.
+## Execution and closure
 
-## Evidencia y progreso
+- **UX-101:** The guide allows the adult to advance, go back, pause, and resume.
+- **UX-102:** Each phase shows its purpose, adult actions, literal script, named action for every child, child decision when applicable, observation cues, completion condition, warning, and relevant contextual help.
+- **UX-106:** When physically viable, each child completes the essential cycle. Learning focuses change observation and support; they do not reserve building or testing for one participant.
+- **UX-103:** Default close-out requests one assessment per participating child.
+- **UX-104:** **Evaluate more** and a voice note are optional.
+- **UX-105:** The adult can skip an assessment without creating a negative signal.
 
-- **EVD-101:** Las exposiciones se derivan automáticamente del rol y los pasos realmente realizados; la interfaz familiar puede expresarlas como habilidades practicadas sin exponer la taxonomía interna.
-- **EVD-102:** El sistema muestra qué observación se creó desde una valoración o voz.
-- **EVD-103:** Las inferencias son explicables y corregibles.
-- **EVD-104:** La vista de progreso distingue explorado, observado e inferido.
-- **EVD-105:** No existen puntuación global ni comparación entre niños.
+## Evidence and progress
 
-## IA
+- **EVD-101:** Exposures are automatically derived from the role and steps actually performed; the family interface can express them as practiced skills without exposing the internal taxonomy.
+- **EVD-102:** The system shows whether an observation originated from a rating, text, voice, or later correction.
+- **EVD-103:** Inferences are explainable and correctable.
+- **EVD-104:** The progress view distinguishes explored, observed and inferred.
+- **EVD-105:** There is no global score or comparison between children.
 
-- **AI-001:** El compañero conoce familia autorizada, actividad, versión, paso y sesión actuales.
-- **AI-002:** La IA opera únicamente en modos y límites documentados.
-- **AI-003:** Adaptaciones automáticas deben provenir de opciones aprobadas.
-- **AI-004:** La IA debe expresar incertidumbre y detener recomendaciones inseguras.
-- **AI-005:** Una salida de IA no puede publicar contenido sin workflow editorial.
+## AI
 
-## Privacidad y seguridad
+- **AI-001:** The AI Companion knows the current authorized family, activity, version, step and session.
+- **AI-002:** AI operates only within documented modes and limits.
+- **AI-003:** Automatic adaptations must come from approved options.
+- **AI-004:** AI must express uncertainty and stop unsafe recommendations.
+- **AI-005:** An AI output cannot publish content without an editorial workflow.
 
-- **PRV-001:** Recopilar solo datos necesarios para la experiencia.
-- **PRV-002:** Fotos y audio se procesan temporalmente por defecto.
-- **PRV-003:** Conservar medios requiere elección explícita y propósito visible.
-- **PRV-004:** El adulto puede exportar y solicitar eliminación.
-- **SAFE-101:** Restricciones críticas de seguridad no pueden anularse desde personalización.
-- **SAFE-102:** Una versión retirada deja de ser elegible inmediatamente.
+## Privacy, safety, and security
 
-## Suscripción y offline
+- **PRV-001:** Collect only data necessary for the experience.
+- **PRV-002:** Photos and audio are temporarily processed by default.
+- **PRV-003:** Preserving media requires explicit choice and visible purpose.
+- **PRV-004:** The adult can export and request deletion.
+- **SAFE-101:** Critical safety restrictions cannot be overridden from customization.
+- **SAFE-102:** A retired version is immediately ineligible.
 
-- **PRD-SUB-001:** El producto soporta suscripción mensual y anual.
-- **PRD-SUB-002:** La pérdida temporal de conexión no interrumpe una actividad ya descargada.
-- **PRD-SUB-003:** El estado de acceso usa el entitlement de la tienda/servidor y una política de gracia; no exige una verificación manual arbitraria mensual.
-- **PRD-SUB-004:** La prueba comercial dura siete días y es distinta del acceso gratuito del piloto.
-- **PRD-SUB-005:** La aplicación enlaza directamente a la gestión/cancelación del canal de origen.
-- **PRD-SUB-006:** Cancelar no elimina datos familiares ni corta el período ya pagado.
-- **PRD-OFF-001:** Recomendación, AI Companion, comunidad y sincronización requieren conexión.
-- **PRD-OFF-002:** Evaluaciones realizadas offline se almacenan cifradas localmente y se sincronizan de forma idempotente.
+## Subscription and offline
 
-## Prototipo del founder pilot
+- **PRD-SUB-001:** The product supports monthly and annual subscription.
+- **PRD-SUB-002:** The temporary loss of connection does not interrupt an already downloaded activity.
+- **PRD-SUB-003:** Access uses server-verified store entitlement and a grace policy; it does not require arbitrary monthly manual verification.
+- **PRD-SUB-004:** The commercial trial lasts seven days and is different from the free pilot access.
+- **PRD-SUB-005:** The application links directly to subscription management and cancellation in the source channel.
+- **PRD-SUB-006:** Canceling does not delete family data or cut the period already paid.
+- **PRD-OFF-001:** Recommendation, AI Companion, community and sync require connection.
+- **PRD-OFF-002:** Assessments performed offline are stored locally encrypted and synchronized idempotently.
 
-- **PRD-PILOT-001:** El prototipo del founder pilot puede publicarse por HTTPS como aplicación web instalable sin convertir contenido `Draft` en entrega familiar publicada.
-- **PRD-PILOT-002:** El prototipo conserva en el dispositivo el checklist de compras, preparación y punto de la actividad para permitir reanudar el dry run después de cerrar, recargar o perder la conexión.
-- **PRD-PILOT-003:** La persistencia del prototipo es local y separada de la arquitectura futura: no crea cuentas, no sincroniza entre dispositivos, no sube observaciones y ofrece una acción explícita para reiniciar el estado local.
-- **PRD-PILOT-004:** Un despliegue temporal no autenticado usa únicamente fixtures y contenido controlado; no se habilitan fotografías, voz real, comunidad, pagos ni datos sensibles infantiles.
-- **PRD-PILOT-005:** La interfaz, los cinco ejercicios, materiales, compras, guiones, ayudas, seguridad, cierre, accesibilidad e instalación del founder pilot se entregan completos en `es-US` y `en-US`; la selección persiste en el dispositivo y una prueba automatizada bloquea pantallas mezcladas.
+## Founder pilot prototype
 
-## Comunidad y portafolio
+- **PRD-PILOT-001:** The founder pilot prototype can be published over HTTPS as an installable web application without converting `Draft` content into published family delivery.
+- **PRD-PILOT-002:** The prototype keeps shopping, preparation, and activity-progress checklists on the device so the dry run can resume after closing, reloading, or losing connectivity.
+- **PRD-PILOT-003:** The prototype persistence is local and separate from the future architecture: it does not create accounts, does not synchronize between devices, does not upload observations, and provides an explicit action to reset the local state.
+- **PRD-PILOT-004:** An unauthenticated temporary deployment uses only fixtures and controlled content; it enables no photographs, real voice, community, payments, or sensitive child data.
+- **PRD-PILOT-005:** The founder-pilot interface, five activities, materials, shopping, scripts, help, safety, close-out, accessibility, and installation are complete in `es-US` and `en-US`; the language selection persists on-device and an automated test blocks mixed-language screens.
 
-- **PRV-COM-001:** Guardar en portafolio privado y publicar en comunidad son decisiones separadas.
-- **PRV-COM-002:** Solo un adulto autorizado puede publicar contenido comunitario.
-- **PRV-COM-003:** Toda publicación comunitaria pasa moderación antes de hacerse visible en la primera versión.
-- **PRV-COM-004:** Marketing requiere consentimiento/licencia separados de la publicación comunitaria.
-- **PRV-COM-005:** La primera comunidad no incluye mensajes directos, comentarios ni perfiles infantiles públicos.
-- **PRV-COM-006:** La publicación favorece proyecto/manos por defecto. Incluir un niño reconocible requiere elección adulta explícita, revisión de privacidad previa, eliminación de metadata innecesaria, moderación y retirada accesible.
-- **PRV-COM-007:** La elección adulta sobre una imagen no elimina las obligaciones de consentimiento, seguridad, retención, moderación y cumplimiento de la plataforma.
+## Community and portfolio
 
-## Operación editorial
+- **PRV-COM-001:** Saving to private portfolio and publishing to community are separate decisions.
+- **PRV-COM-002:** Only an authorized adult can post community content.
+- **PRV-COM-003:** Every community post undergoes moderation before becoming visible in the first version.
+- **PRV-COM-004:** Marketing requires separate consent/license from community publishing.
+- **PRV-COM-005:** The first community does not include direct messages, comments or public children's profiles.
+- **PRV-COM-006:** Community publishing favors project-only or hands-only media by default. Including a recognizable child requires explicit adult choice, prior privacy review, removal of unnecessary metadata, moderation, and an accessible takedown process.
+- **PRV-COM-007:** Adult choice over an image does not eliminate the platform's consent, safety, security, retention, moderation, and compliance obligations.
 
-- **PRD-OPS-001:** Autores y especialistas pueden proponer, comentar y revisar ActivityVersions según permisos.
-- **PRD-OPS-002:** Pedagogía y seguridad son gates independientes antes de publicar.
-- **PRD-OPS-003:** Una ActivityVersion muestra diferencias, historial, responsables y reviews pendientes.
-- **PRD-OPS-004:** Ninguna sugerencia de IA se publica sin aprobación humana.
+## Editorial operation
+
+- **PRD-OPS-001:** Authors and specialists can propose, comment and review ActivityVersions according to permissions.
+- **PRD-OPS-002:** Pedagogy and safety are independent gates before publishing.
+- **PRD-OPS-003:** An ActivityVersion shows diffs, history, owners, and pending reviews.
+- **PRD-OPS-004:** No AI suggestions are published without human approval.

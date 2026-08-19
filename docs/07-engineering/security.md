@@ -1,58 +1,60 @@
-# Seguridad del producto
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/07-engineering/security.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Product Security
 
-## Activos prioritarios
+**Status:** Draft
+**Version:** 0.1
 
-- Identidad y membresía familiar.
-- Datos infantiles y Learner Models.
-- Fotos, audio y transcripciones.
-- Contenido editorial no publicado.
-- Reglas de seguridad y estado de publicación.
-- Credenciales y proveedores.
+## Priority assets
 
-## Amenazas principales
+- Family identity and membership.
+- Child data and Learner Models.
+- Photos, audio and transcriptions.
+- Unpublished editorial content.
+- Safety rules and publication status.
+- Credentials, secrets, and provider accounts.
 
-- Acceso entre familias.
-- Enumeración de perfiles.
-- Escalada de permisos de adulto o editor.
-- Inyección de instrucciones desde contenido, voz o imagen.
-- Publicación sin reviews.
-- Retención accidental de medios.
-- Filtración mediante logs, analítica o soporte.
-- Modificación de advertencias o restricciones.
-- Inferencias no autorizadas sobre niños.
+## Main threats
 
-## Controles
+- Access between families.
+- Profile enumeration.
+- Escalation of adult or editor permissions.
+- Injection of instructions from content, voice or image.
+- Publication without reviews.
+- Accidental retention of media.
+- Leakage through logs, analytics, or support tools.
+- Modification of warnings or restrictions.
+- Unauthorized inferences about children.
 
-- Autorización del lado servidor para cada recurso.
-- Separación lógica estricta por familia.
-- Cifrado en tránsito y reposo.
-- URLs de medios con vida corta y alcance limitado.
-- Validación de esquema para salidas de IA.
-- Herramientas de IA allowlisted por modo.
-- Contenido recuperado tratado como datos, no instrucciones.
-- Workflow de publicación con separación de funciones.
-- Auditoría inmutable de acciones críticas.
-- Secretos fuera del repositorio y rotación.
-- Redacción de datos sensibles en logs.
-- Jobs verificables para expiración y eliminación.
+## Controls
 
-## Requisitos
+- Server side authorization for each resource.
+- Strict logical separation by family.
+- Encryption in transit and at rest.
+- Short-lived, narrowly scoped media URLs.
+- Schema validation for AI outputs.
+- AI tools allowlisted by mode.
+- Retrieved content treated as untrusted data, not instructions.
+- Publishing workflow with separation of duties.
+- Immutable auditing of critical actions.
+- Secrets stored outside the repository and rotated.
+- Prohibit sensitive data in logs by default.
+- Verifiable jobs for expiration and deletion.
 
-- **ENG-SEC-001:** Ninguna consulta familiar confía solo en un identificador proporcionado por cliente.
-- **ENG-SEC-002:** Toda operación editorial crítica registra actor, tiempo y cambio.
-- **ENG-SEC-003:** Un modelo no recibe credenciales ni acceso directo amplio a almacenamiento.
-- **ENG-SEC-004:** Los medios temporales expiran incluso si falla el procesamiento.
-- **ENG-SEC-005:** Se prueba aislamiento entre familias antes de cada lanzamiento.
-- **ENG-SEC-006:** Retirar una actividad impide nuevas sesiones con esa versión.
+## Requirements
 
-## Antes del lanzamiento
+- **ENG-SEC-001:** No family query trusts only a client-provided identifier.
+- **ENG-SEC-002:** Every critical editorial operation records actor, time and change.
+- **ENG-SEC-003:** A model does not receive credentials or broad direct access to storage.
+- **ENG-SEC-004:** Temporary media expires even if processing fails.
+- **ENG-SEC-005:** Isolation between families is tested before each launch.
+- **ENG-SEC-006:** Retiring an activity version prevents new sessions from using it.
 
-- Threat model formal.
-- Revisión de privacidad y requisitos legales del mercado.
-- Pruebas de autorización y eliminación.
-- Plan de incidentes.
-- Revisión de proveedores y contratos.
-- Verificación de backups y borrado.
+## Before launch
+
+- Formal threat model.
+- Review of privacy and legal market requirements.
+- Authorization and deletion tests.
+- Incident plan.
+- Review of suppliers and contracts.
+- Verification of backups and deletion.

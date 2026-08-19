@@ -1,137 +1,138 @@
-# SPEC-05A — Contrato narrativo de la experiencia
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/02-content/activity-narrative-contract.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Review
-**Versión:** 0.1
-**Propietario:** Contenido/Pedagogía/UX/Seguridad
+# SPEC-05A — Experience narrative contract
 
-## 1. Propósito
+**Status:** Review
+**Version:** 0.1
+**Owner:** Content/Pedagogy/UX/Security
 
-Evitar que una actividad sea una colección de pantallas correctas pero una experiencia física incoherente. Antes de redactar copy de interfaz, cada `ActivityVersion` describe la historia causal de lo que ocurrirá sobre la mesa: estado inicial, problema, acciones, cambios físicos, información obtenida y razón para pasar al momento siguiente.
+## 1. Purpose
 
-El contrato no es una historia decorativa. Es la secuencia operativa que permite a otro adulto ejecutar la actividad sin completar mentalmente pasos omitidos.
+Prevent an activity from being a collection of correct screens but an incoherent physical experience. Before writing interface copy, each `ActivityVersion` describes the causal history of what will happen on the table: initial state, problem, actions, physical changes, information obtained, and reason for moving to the next moment.
 
-## 2. Unidad de experiencia
+The contract is not a decorative story. It is the operational sequence that allows another adult to execute the activity without mentally completing omitted steps.
 
-Toda actividad declara uno de estos modos:
+## 2. Unit of experience
 
-| Modo | Uso |
+Every activity declares one of these modes:
+
+| Mode | Usage |
 |---|---|
-| `individual_cycles` | Cada niño crea o manipula un artefacto propio y completa el ciclo esencial. |
-| `shared_artifact` | El resultado solo puede construirse colectivamente; la actividad justifica qué acción significativa realiza cada participante. |
-| `hybrid` | Cada niño completa acciones esenciales y el grupo comparte una comparación, integración o mejora. |
+| `individual_cycles` | Each child creates or manipulates their own artifact and completes the essential cycle. |
+| `shared_artifact` | The result can only be built collectively; the activity justifies what meaningful action each participant performs. |
+| `hybrid` | Each child completes essential actions and the group shares a comparison, integration or improvement. |
 
-El modo no se infiere desde el número de roles. Se elige desde la naturaleza física y educativa de la experiencia.
+The mode is not inferred from the number of roles. It is chosen from the physical and educational nature of the experience.
 
-## 3. Ciclo esencial por participante
+## 3. Essential cycle per participant
 
-La actividad declara las acciones esenciales que todo participante activo debe experimentar cuando sean físicamente viables:
+The activity states the essential actions that every active participant must experience when physically viable:
 
-1. `encounter_problem`: observar o experimentar el fenómeno/problema.
-2. `propose`: formular una idea, elección o predicción.
-3. `build_or_do`: construir, manipular o ejecutar.
-4. `test_or_check`: probar o comprobar el resultado.
-5. `observe_result`: observar, contar, medir o describir qué ocurrió.
-6. `improve_or_recommend`: realizar una mejora o proponerla usando lo observado.
-7. `explain`: comunicar una relación entre acción y resultado.
+1. `encounter_problem`: observe or experience the phenomenon/problem.
+2. `propose`: formulate an idea, choice or prediction.
+3. `build_or_do`: build, manipulate or execute.
+4. `test_or_check`: test or check the result.
+5. `observe_result`: observe, count, measure or describe what happened.
+6. `improve_or_recommend`: make an improvement or propose it using what was observed.
+7. `explain`: communicate a relationship between action and result.
 
-Un foco principal cambia qué se observa con mayor atención; no retira al niño del ciclo esencial. Dividir el proyecto en tareas exclusivas solo es válido cuando la actividad documenta por qué cada niño conserva una experiencia educativa completa.
+A primary focus changes what is most closely observed; it does not remove the child from the essential cycle. Dividing the project into unique tasks is only valid when the activity documents why each child retains a complete educational experience.
 
-## 4. Estados y transiciones
+## 4. States and transitions
 
-La narrativa declara estados identificables, por ejemplo:
+The narrative declares identifiable states, for example:
 
 ```text
 STATE-READY
-→ STEP-01 prueba de referencia
+→ STEP-01 baseline test
 → STATE-BASELINE-OBSERVED
 → STEP-02 propuestas individuales
 → STATE-DESIGNS-CHOSEN
 ```
+Each step reference:
 
-Cada paso referencia:
+- `entryStateId`: physical/informational state that must exist before;
+- `exitStateId`: status left upon completion;
+- `transitionReason`: why that result enables the next step;
+- `materialUses`: objects used and specific function;
+- `cycleActions`: action of the cycle and audience that completes it.
 
-- `entryStateId`: estado físico/informativo que debe existir antes;
-- `exitStateId`: estado que queda al terminar;
-- `transitionReason`: por qué ese resultado habilita el siguiente paso;
-- `materialUses`: objetos utilizados y función concreta;
-- `cycleActions`: acción del ciclo y audiencia que la completa.
+The output of one step must match the input of the next. A phase cannot ask to improve before obtaining a result, compare before producing data, or explain an object whose function was never presented.
 
-La salida de un paso debe coincidir con la entrada del siguiente. Una fase no puede pedir mejorar antes de obtener un resultado, comparar antes de producir datos o explicar un objeto cuya función nunca se presentó.
+## 5. Function of materials
 
-## 5. Función de los materiales
+Each required material states:
 
-Cada material requerido declara:
+- function within the experience;
+- first step where it appears;
+- who can manipulate it;
+- what physical change or data it produces;
+- safety and substitution limits.
 
-- función dentro de la experiencia;
-- primer paso donde aparece;
-- quién puede manipularlo;
-- qué cambio físico o dato produce;
-- límites de seguridad y sustitución.
+The guide introduces the function before or at the same time as the object. Example: `The cup is the load container; crayons are equal units added one at a time`.
 
-La guía introduce la función antes o al mismo tiempo que el objeto. Ejemplo: `El vaso es el recipiente de carga; los crayones son unidades iguales que se agregan de uno en uno`.
+## 6. Focus and calibration
 
-## 6. Foco y calibración
+Each eligible objective includes specific guidance for this activity:
 
-Cada objetivo elegible incluye orientación específica para esta actividad:
+- indicative age range;
+- intention: exploration, growth or consolidation;
+- recommended prerequisites, never assumed;
+- suitability reason;
+- approved simplification;
+- extension that avoids a trivial task.
 
-- rango de edad orientativo;
-- intención: exploración, crecimiento o consolidación;
-- prerrequisitos recomendados, nunca asumidos;
-- razón de adecuación;
-- simplificación aprobada;
-- extensión que evita una tarea trivial.
+Age is an initial sign when there is no evidence, not a conclusion about capacity. If the base focus is likely to be trivial for the range, the ActivityVersion offers an observable extension or selects another target.
 
-La edad es una señal inicial cuando no existe evidencia, no una conclusión sobre capacidad. Si el foco base probablemente resulta trivial para el rango, la ActivityVersion ofrece una extensión observable o selecciona otro objetivo.
+## 7. Beat template
 
-## 7. Plantilla de beat
-
-| Campo | Pregunta editorial |
+| Field | Editorial question |
 |---|---|
-| `entryStateId` | ¿Qué existe físicamente y qué sabe el grupo al entrar? |
-| Propósito | ¿Qué información o capacidad produce este momento? |
-| Acción adulta | ¿Qué prepara, muestra, controla o retira? |
-| Guion | ¿Qué necesita decir exactamente? |
-| Acción infantil | ¿Qué hace cada participante, no solo qué observa? |
-| Decisión | ¿Qué puede elegir y qué permanece fijo? |
-| Materiales | ¿Qué se usa y para qué? |
-| Resultado | ¿Qué objeto, registro u observación queda? |
-| `exitStateId` | ¿Cómo se identifica el nuevo estado? |
-| Transición | ¿Por qué ahora tiene sentido continuar? |
-| Contingencia | ¿Cómo se recupera una falla sin inventar datos? |
+| `entryStateId` | What exists physically and what does the group know when they enter? |
+| Purpose | What information or capacity does this moment produce? |
+| adult action | What do you prepare, display, control or remove? |
+| Screenplay | What exactly do you need to say? |
+| Children's action | What does each participant do, not just what they observe? |
+| Decision | What can you choose and what remains fixed? |
+| Materials | What is used and why? |
+| Result | What object, record or observation remains? |
+| `exitStateId` | How is the new state identified? |
+| Transition | Why does it make sense to continue now? |
+| Contingency | How do you recover from a failure without inventing data? |
 
-## 8. Revisión de mesa
+## 8. Table review
 
-Antes de revisión visual, una persona distinta al autor realiza un walkthrough narrado:
+Before visual review, a person other than the author performs a narrated walkthrough:
 
-1. Coloca los materiales reales o representaciones a escala.
-2. Lee la instrucción sin conocimiento previo.
-3. Dice dónde está cada objeto y quién lo toca.
-4. Comprueba qué recibe cada paso del anterior.
-5. Recorre la experiencia de cada niño por separado.
-6. Marca toda referencia a un objeto, dato o resultado que todavía no existe.
-7. Cronometra esperas y turnos con el máximo de participantes soportado.
+1. Place real materials or scale representations.
+2. Read the instruction without prior knowledge.
+3. Say where each object is and who touches it.
+4. Check what each step receives from the previous one.
+5. Go through each child's experience separately.
+6. Marks any reference to an object, data or result that does not yet exist.
+7. Time waits and turns with the maximum number of participants supported.
 
-Un documento no pasa a revisión pedagógica si el walkthrough requiere que el revisor invente una acción o transición.
+A document does not go to pedagogical review if the walkthrough requires the reviewer to invent an action or transition.
 
-## 9. Gates automáticos y humanos
+## 9. Automatic and human gates
 
-- **ACT-NAR-001:** Toda ActivityVersion declara modo, estado inicial, estado final, estados intermedios y ciclo esencial.
-- **ACT-NAR-002:** El primer paso entra desde el estado inicial y el último termina en el estado final.
-- **ACT-NAR-003:** La salida de cada paso coincide con la entrada del siguiente.
-- **ACT-NAR-004:** Todo material requerido tiene función y paso de introducción válidos.
-- **ACT-NAR-005:** Un paso solo puede usar materiales definidos e introducidos.
-- **ACT-NAR-006:** `improve_or_recommend` requiere al menos un `observe_result` anterior.
-- **ACT-NAR-007:** `explain` requiere un resultado o registro producido anteriormente.
-- **ACT-NAR-008:** En `individual_cycles` y en la parte individual de `hybrid`, cada participante activo completa las acciones esenciales declaradas.
-- **ACT-NAR-009:** Un foco principal no puede convertir las demás acciones esenciales del niño en mera observación pasiva.
-- **ACT-NAR-010:** Cada objetivo elegible declara orientación de reto por edad/evidencia y una extensión cuando pueda resultar trivial.
-- **ACT-NAR-011:** El walkthrough de mesa con el máximo de participantes se registra antes de `ready_for_pilot`.
-- **ACT-NAR-012:** Las pantallas se derivan del contrato narrativo; no crean ni reordenan procedimientos por conveniencia visual.
+- **ACT-NAR-001:** Every ActivityVersion declares mode, initial state, final state, intermediate states and essential loop.
+- **ACT-NAR-002:** The first step enters from the initial state and the last one ends in the final state.
+- **ACT-NAR-003:** The output of each step matches the input of the next.
+- **ACT-NAR-004:** All required material has a valid function and introduction step.
+- **ACT-NAR-005:** A step can only use defined and entered materials.
+- **ACT-NAR-006:** `improve_or_recommend` requires at least one previous `observe_result`.
+- **ACT-NAR-007:** `explain` requires a previously produced result or record.
+- **ACT-NAR-008:** In `individual_cycles` and in the individual part of `hybrid`, each active participant completes the declared essential actions.
+- **ACT-NAR-009:** A primary focus cannot convert the child's other essential actions into mere passive observation.
+- **ACT-NAR-010:** Each eligible objective declares challenge guidance by age/evidence and an extension when it may be trivial.
+- **ACT-NAR-011:** The table walkthrough with maximum participants is recorded before `ready_for_pilot`.
+- **ACT-NAR-012:** The screens are derived from the narrative contract; they do not create or rearrange procedures for visual convenience.
 
-## 10. Criterios de aceptación
+## 10. Acceptance criteria
 
-1. Un revisor puede narrar minuto a minuto qué ocurre y dónde queda cada objeto.
-2. Puede seguirse la trayectoria de un participante desde el problema hasta su explicación.
-3. Ningún material aparece sin función previamente visible.
-4. El mapa de estados permite detectar saltos causales sin ejecutar la interfaz.
-5. Clasificación, circuitos, naturaleza y vida práctica pueden usar el mismo contrato aunque cambien acciones y materiales.
+1. A reviewer can narrate minute by minute what happens and where each object is.
+2. A participant's path can be followed from the problem to its explanation.
+3. No material appears without a previously visible function.
+4. The state map allows detecting causal jumps without executing the interface.
+5. Classification, circuits, nature and practical life can use the same contract even if actions and materials change.

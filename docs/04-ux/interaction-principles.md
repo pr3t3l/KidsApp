@@ -1,56 +1,58 @@
-# Principios de interacción
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/04-ux/interaction-principles.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Review  
-**Versión:** 0.2
+# Principles of interaction
 
-## Atención dividida
+**Status:** Review
+**Version:** 0.2
 
-- Controles grandes y textos escaneables.
-- Una decisión principal por pantalla.
-- Reanudar en el último paso seguro.
-- Evitar temporizadores que penalicen.
-- Permitir voz sin hacerla obligatoria.
+## Divided attention
 
-## Menos pantalla durante la actividad
+- Large controls and scannable texts.
+- One main decision per screen.
+- Resume at the last safe step.
+- Avoid timers that penalize.
+- Allow voice without making it mandatory.
 
-- Preparación consolidada antes de reunir a los niños.
-- Modo paso a paso que no exige lectura continua.
-- Instrucciones que pueden escucharse por decisión del adulto.
-- Posible ficha imprimible en versiones posteriores.
+## Less screen during activity
 
-## Lenguaje
+- Consolidated preparation before gathering the children.
+- Step-by-step mode that does not require continuous reading.
+- Instructions that can be heard by decision of the adult.
+- Possible printable sheet in later versions.
 
-- Hablar al adulto en la interfaz principal.
-- Separar explicación adulta de frase sugerida para el niño.
-- Evitar “tu hijo falló” o “nivel bajo”.
-- Usar “todavía no tenemos evidencia” y “necesitó apoyo en esta ocasión”.
-- Mostrar la valoración de independencia con acción y palabras (`Con alguna ayuda`, `Casi solo`), nunca como un número aislado, nota escolar o puntuación del niño.
+## Language
 
-## Interfaz para el adulto
+- Talk to the adult in the main interface.
+- Separate adult explanation from phrase suggested for the child.
+- Avoid “your child failed” or “low level”.
+- Use “we still have no evidence” and “he needed support on this occasion.”
+- Show the independence rating with an action and words (`With some help`, `Almost independently`), never as an isolated number, school grade, or score for the child.
 
-- La primera versión no crea navegación, cuenta ni chatbot independiente para el niño.
-- La actividad puede incluir una tarjeta `Muéstrale/pregúntale esto` con imagen, pregunta o frase infantil.
-- El adulto controla cuándo mostrarla y continúa siendo el actor de la aplicación.
-- No se recopila respuesta directa del niño mediante voz, texto o perfil social en el MVP.
+## Adult interface
 
-## Control y transparencia
+- The first version does not create independent navigation, account or chatbot for the child.
+- The activity can include a `Show/ask this` card with an image, question, or children's phrase.
+- The adult controls when to show it and continues to be the actor of the application.
+- No direct response is collected from the child via voice, text, or social profile in the MVP.
 
-- Mostrar por qué se recomendó una actividad.
-- Mostrar qué datos se guardarán antes de conservar medios.
-- Para observaciones estructuradas rutinarias, explicar el alcance junto a `Guardar y terminar`; no añadir una pantalla de confirmación redundante si todo puede corregirse después.
-- Permitir revisar correcciones de IA.
-- Diferenciar contenido publicado de sugerencias experimentales.
+## Control and transparency
 
-## Accesibilidad
+- Show why an activity was recommended.
+- Show what data will be saved before retaining media.
+- For routine structured observations, explain the scope next to `Guardar y terminar`; Don't add a redundant confirmation screen if everything can be corrected later.
+- Allow reviewing AI fixes.
+- Differentiate published content from experimental suggestions.
 
-- No depender solo de color.
-- Alt text en recursos.
-- Soportar tamaño de texto y lectura por voz.
-- Subtítulos/transcripción para voz.
-- Diseñar acciones compatibles con movilidad limitada del adulto cuando sea viable.
+## Accessibility
 
-## Rendimiento percibido
+- Do not depend only on color.
+- Alt text in resources.
+- Support text size and voice reading.
+- Subtitles/transcription for voice.
+- Design actions compatible with limited adult mobility when feasible.
 
-- El plan y la actividad deben abrir con contenido esencial ya disponible.
-- Si la IA tarda, la guía validada sigue funcionando.
-- Las fallas de IA no bloquean pasos ni seguridad.
+## Perceived performance
+
+- The plan and activity must open with essential content already available.
+- If the AI ​​is late, the validated guide still works.
+- AI failures do not block the published steps or safety guidance.

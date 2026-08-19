@@ -1,38 +1,40 @@
-# Modelo conceptual de permisos
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/06-data/permissions.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Conceptual Permission Model
 
-## Roles familiares
+**Status:** Draft
+**Version:** 0.1
 
-| Rol | Capacidades propuestas |
+## Family roles
+
+| Role | Proposed capabilities |
 |---|---|
-| Owner | Administrar familia, miembros, privacidad, exportación y eliminación |
-| Caregiver | Planear, ejecutar, evaluar y ver Learner Models autorizados |
-| Limited adult | Ejecutar actividades asignadas y registrar observaciones limitadas |
+| Owner | Manage family, members, privacy, export and deletion |
+| Caregiver | Plan, facilitate, assess, and view authorized Learner Models |
+| Limited adult | Facilitate assigned activities and record limited observations |
 
-No se define inicialmente una cuenta infantil independiente.
+A separate child account is not initially defined.
 
-Solo Owner o Caregiver con permiso explícito puede guardar medios o publicar en comunidad. La aplicación puede requerir una reautenticación o parental gate para publicar.
+Only Owner or Caregiver with explicit permission can save media or post to community. The app may require reauthentication or parental gate to publish.
 
-## Roles editoriales
+## Editorial roles
 
-| Rol | Capacidades |
+| Role | Capabilities |
 |---|---|
-| Author | Crear y editar drafts |
-| Pedagogical reviewer | Aprobar propósito, objetivos y lenguaje |
-| Safety reviewer | Aprobar riesgos, controles y restricciones |
-| Publisher | Publicar o retirar después de gates |
-| Support auditor | Acceso excepcional, limitado y auditado |
-| Community moderator | Revisar publicaciones y reportes sin acceso general a Learner Models |
+| Author | Create and edit drafts |
+| Pedagogical reviewer | Approve purpose, objectives and language |
+| Safety reviewer | Approve risks, controls and restrictions |
+| Publisher | Publish or retire after required gates |
+| Support auditor | Exceptional, limited and audited access |
+| Community moderator | Review publications and reports without general access to Learner Models |
 
-## Reglas
+## Rules
 
-- Denegar por defecto.
-- Autorizar por familia y recurso, no solo por endpoint.
-- Separar datos familiares de operaciones editoriales.
-- Acceso de soporte requiere propósito, tiempo limitado y auditoría.
-- Un adulto removido pierde acceso inmediatamente.
-- Las URLs y búsquedas no deben permitir enumerar Learners o familias.
-- La IA actúa con el mismo alcance autorizado del adulto y modo actual.
-- Un moderador comunitario accede al asset presentado, contexto de moderación y cuenta adulta mínima; no a observaciones educativas.
+- Deny by default.
+- Authorize by family and resource, not just by endpoint.
+- Separate family data from editorial operations.
+- Support access requires purpose, limited time and audit.
+- A removed adult loses access immediately.
+- URLs and searches should not allow listing Learners or families.
+- AI tools operate within the current adult's authorized scope and the active companion mode.
+- A community moderator can access the submitted derivative, moderation context, and minimum necessary adult-account data, but not educational observations.

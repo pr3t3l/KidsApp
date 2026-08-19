@@ -1,43 +1,45 @@
-# Mapa de módulos
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/03-product/module-map.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Review  
-**Versión:** 0.1
+# Module Map
 
-## Módulos de experiencia
+**Status:** Review
+**Version:** 0.1
 
-| Módulo | Responsabilidad | Depende de |
+## Experience modules
+
+| Module | Responsibility | It depends on |
 |---|---|---|
-| Accounts & Family | Identidad, familia, miembros y permisos | Privacidad, datos |
-| Subscription | Mensual/anual, trial de 7 días, entitlement, cancelación y restauración | Stores, Stripe futuro, Accounts |
-| Onboarding | Configuración mínima y primera actividad | Family Model, biblioteca |
-| Learner Profiles | Perfil, intereses, evidencia y correcciones | Learner Model, Evidence |
-| Maker Inventory | Materiales disponibles | Activity Model, Family Model |
-| Activity Library | Navegación de versiones publicadas | Editorial, seguridad |
-| Weekly Planner | Selección y preparación semanal | Recomendador, inventario |
-| Activity Session | Guía, roles, pasos y progreso | Activity Model, UX |
-| Session Close | Valoración rápida y voz opcional | Evidence Model |
-| Learning Journey | Historial e inferencias explicables | Learner Model |
-| AI Companion | Explain, Troubleshoot, Adapt, Coach | IA, seguridad, contexto |
-| Content Operations | Crear, revisar, pilotar y publicar | Activity lifecycle |
-| Privacy Center | Consentimiento, exportación, retención y borrado | Datos, seguridad |
-| Offline Packs | Descargar plan, assets y registrar cambios pendientes | Sessions, sincronización |
-| Private Portfolio | Medios de proyecto visibles solo a la familia | Medios, privacidad |
-| Community | Galería moderada de proyectos publicados por adultos | UGC, moderación, posterior al MVP |
-| Editorial Workspace | Autoría, colaboración, reviews y publicación | Activity lifecycle, permisos |
+| Accounts & Family | Identity, family, members and permissions | Privacy, data |
+| Subscription | Monthly/annual, 7-day trial, entitlement, cancellation and restoration | Stores, Stripe future, Accounts |
+| Onboarding | Minimum configuration and first activity | Family Model, library |
+| Learner Profiles | Profile, interests, evidence and corrections | Learner Model, Evidence |
+| Maker Inventory | Available materials | Activity Model, Family Model |
+| Activity Library | Navigation of published versions | Editorial, safety |
+| Weekly Planner | Weekly selection and preparation | Recommender, inventory |
+| ActivitySession | Guide, roles, steps and progress | Activity Model, UX |
+| Session Close | Quick rating and optional voice | Evidence Model |
+| Learning Journey | History and explainable inferences | Learner Model |
+| AI Companion | Explain, Troubleshoot, Adapt, Coach | AI, safety, context |
+| Content Operations | Create, review, pilot and publish | Activity lifecycle |
+| Privacy Center | Consent, export, retention and deletion | Data, product security |
+| Offline Packs | Download plan, assets and register pending changes | Sessions, synchronization |
+| Private Portfolio | Project media visible only to family | Media, privacy |
+| Community | Moderated gallery of projects posted by adults | UGC, moderation, post-MVP |
+| Workspace Editorial | Authorship, collaboration, reviews and publication | Activity lifecycle, permissions |
 
-## Motores de dominio
+## Domain Engines
 
-| Motor | Entrada | Salida |
+| Engine | Entry | Output |
 |---|---|---|
-| Eligibility | Participantes, contexto, seguridad | Actividades elegibles |
-| Recommendation | Elegibles, objetivos, variedad | Plan o actividad ordenada |
-| Role Assignment | Actividad y Learner Models | Rol + objetivo por niño |
-| Adaptation | Estado de sesión y solicitud | Variante aprobada |
-| Evidence | Feedback y contexto | Observaciones/inferencias propuestas |
-| Learning Graph | Taxonomía y evidencia | Próximas oportunidades |
-| Media QA | ActivityVersion e imagen generada | Hallazgos y estado de revisión |
-| Moderation | Publicación comunitaria | Aprobar, rechazar, retirar, reportar |
+| Eligibility | Participants, context, safety constraints | Eligible activities |
+| Recommendation | Eligible, objectives, variety | Ordered plan or activity |
+| Role Assignment | Activity and Learner Models | Role + objective per child |
+| Adaptation | Session and request status | Approved variant |
+| Evidence | Feedback and context | Proposed observations/inferences |
+| Learning Graph | Taxonomy and evidence | Upcoming opportunities |
+| Media QA | ActivityVersion and generated image | Findings and review status |
+| Moderation | Community Post | Approve, reject, withdraw, report |
 
-## Regla de separación
+## Separation rule
 
-Los módulos de interfaz no implementan reglas pedagógicas o de seguridad directamente. Consumen decisiones explicables de los motores y presentan estados; las reglas centrales deben ser reutilizables y verificables fuera de la UI.
+Interface modules do not implement pedagogical or safety rules directly. They consume explainable decisions from domain engines and present their states; core rules must remain reusable and verifiable outside the UI.

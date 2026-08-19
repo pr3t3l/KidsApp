@@ -17,7 +17,14 @@ const pending = new Map();
 const runtimeErrors = [];
 socket.addEventListener("message", (event) => {
   const message = JSON.parse(event.data);
-  if (message.method === "Runtime.exceptionThrown") runtimeErrors.push(message.params.exceptionDetails.exception?.description || message.params.exceptionDetails.text);
+  if (message.method === "Runtime.exceptionThrown") {
+    const details = message.params.exceptionDetails;
+    runtimeErrors.push({
+      description: details.exception?.description || details.text,
+      url: details.url || "",
+      executionContextId: details.executionContextId
+    });
+  }
   if (!message.id || !pending.has(message.id)) return;
   const request = pending.get(message.id);
   pending.delete(message.id);
@@ -65,7 +72,7 @@ await new Promise((resolve) => setTimeout(resolve, 650));
 await expect("Offline reload renders the family prototype", `document.querySelector('#app') !== null && document.body.textContent.includes('Kids Learning System')`);
 await command("Network.emulateNetworkConditions", { offline: false, latency: 0, downloadThroughput: -1, uploadThroughput: -1 });
 
-if (runtimeErrors.length) throw new Error(`Runtime exceptions: ${runtimeErrors.join('; ')}`);
+if (runtimeErrors.length) throw new Error(`Runtime exceptions: ${runtimeErrors.map((error) => `${error.description} [${error.url || `context ${error.executionContextId}`}]`).join('; ')}`);
 console.log("PASS no runtime exceptions");
 socket.close();
 await fetch(`http://127.0.0.1:9222/json/close/${target.id}`).catch(() => {});

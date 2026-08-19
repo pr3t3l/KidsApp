@@ -1,73 +1,75 @@
-# SPEC-08 — AI Companion
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/05-ai/companion-spec.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1  
-**Propietario:** Producto/IA/Seguridad
+# SPEC-08—AI Companion
 
-## 1. Rol
+**Status:** Draft
+**Version:** 0.1
+**Owner:** Product/AI/Security
 
-El AI Companion ayuda principalmente al adulto. Conoce el contexto autorizado de familia, participantes, actividad, versión, asignaciones y paso actual. No actúa como evaluador clínico ni como cuidador autónomo del niño.
+## 1. Role
 
-## 2. Modos
+The AI Companion primarily assists the adult. It knows only the authorized context for the family, participants, activity version, assignments, and current step. It does not act as a clinical evaluator or an autonomous caregiver.
+
+## 2. Modes
 
 ### Troubleshoot
 
-Entrada: “No funciona”, texto, voz o foto opcional.  
-Salida: causas probables ordenadas, verificación segura y siguiente acción.  
-Límite: si no puede verificar seguridad, recomienda detenerse.
+Input: “Not working”, text, voice or optional photo.
+Output: ordered probable causes, a safe verification, and the next action.
+Limit: If it cannot verify safety, it recommends stopping.
 
 ### Explain
 
-Explica el concepto para adulto o propone lenguaje infantil correcto. Distingue observación de explicación causal.
+Explains the concept for adults or proposes age-appropriate language for children. It distinguishes observations from causal explanations.
 
 ### Adapt
 
-Selecciona una adaptación aprobada para dificultad, duración, participantes o materiales. No altera el núcleo de seguridad.
+Selects an approved adaptation for difficulty, duration, participants, or materials. It does not alter the safety core.
 
 ### Simplify
 
-Reduce pasos o asigna un rol compatible a un participante adicional usando opciones publicadas.
+Reduce steps or assign a compatible role to an additional participant using published options.
 
 ### Challenge
 
-Propone una extensión aprobada cuando el grupo termina pronto o solicita mayor dificultad.
+Proposes an approved extension when the group ends early or requests greater difficulty.
 
 ### Observe
 
-Convierte feedback explícito en observaciones propuestas. No observa continuamente ni infiere silenciosamente desde el entorno.
+Converts explicit feedback into proposed observations. It does not continuously observe or silently infer from the environment.
 
 ### Parent Coach
 
-Resume evidencia, explica incertidumbre y propone oportunidades futuras. No diagnostica ni compara hermanos.
+Summarizes evidence, explains uncertainty, and proposes future opportunities. It does not diagnose children or compare siblings.
 
-## 3. Contexto permitido
+## 3. Allowed context
 
-- Configuración familiar necesaria.
-- Alias de participantes.
-- Learner Models autorizados.
-- Actividad y versión exactas.
-- Paso, rol y objetivo actuales.
-- Restricciones de seguridad.
-- Adaptaciones publicadas.
-- Inventario aproximado.
-- Conversación de la sesión según retención.
+- Required family settings.
+- Aliases of participants.
+- Authorized Learner Models.
+- Exact activity and version.
+- Current step, role and objective.
+- Safety restrictions.
+- Published adaptations.
+- Approximate inventory.
+- Session conversation content, subject to the retention policy.
 
-Debe aplicarse mínimo privilegio: un modo recibe solo el contexto requerido.
+Least privilege must be applied: a mode receives only the required context.
 
-El modelo concreto se selecciona mediante el gateway de proveedores. El modo declara las capacidades y sensibilidad que necesita; no elige directamente OpenAI, Anthropic, Google u otro proveedor.
+The provider gateway selects the specific model. Each mode declares the capabilities and data sensitivity it requires; product code does not directly select OpenAI, Anthropic, Google, or another provider.
 
-## 4. Jerarquía de respuesta
+## 4. Response hierarchy
 
-1. Seguridad y restricciones.
-2. Contenido publicado de la versión.
-3. Estado real confirmado de la sesión.
-4. Datos familiares autorizados.
-5. Inferencias con confianza explícita.
-6. Conocimiento general, marcado cuando no pertenece a la actividad validada.
+1. Safety controls and restrictions.
+2. Released content of the version.
+3. Confirmed actual state of the session.
+4. Authorized family data.
+5. Inferences with an explicit confidence level.
+6. General knowledge, marked when it does not belong to the validated activity.
 
-## 5. Salida estructurada
+## 5. Structured output
 
-Las acciones deben devolver datos verificables además del texto:
+Actions must return verifiable data in addition to text:
 
 ```text
 mode
@@ -80,33 +82,32 @@ uncertainty
 sources_within_product
 requires_adult_confirmation
 ```
+## 6. Photos and voice
 
-## 6. Fotos y voz
+- They are requested only when they add value.
+- Purpose and retention are reported.
+- By default they are processed and deleted according to policy.
+- A photo is not used to identify the child.
+- Visual analysis offers hypotheses; it does not certify safety.
+- The adult confirms before saving ambiguous derived observations.
 
-- Se solicitan únicamente cuando aportan valor.
-- Se informa propósito y retención.
-- Por defecto se procesan y eliminan según política.
-- Una foto no se usa para identificar al niño.
-- El análisis visual ofrece hipótesis, no certifica seguridad.
-- El adulto confirma antes de guardar observaciones derivadas ambiguas.
+## 7. Prohibited behaviors
 
-## 7. Comportamientos prohibidos
+- Invent an unpublished activity for family execution.
+- Remove warnings or reassign adult-only steps.
+- Claim mastery or a general developmental delay without evidence.
+- Diagnose.
+- Compare children in an evaluative way.
+- Press to share photos, voice or personal information.
+- Hide uncertainty or present a substitution not validated as safe.
 
-- Inventar una actividad no publicada para ejecución familiar.
-- Quitar advertencias o reasignar adult-only steps.
-- Afirmar dominio o retraso general sin evidencia.
-- Diagnosticar.
-- Comparar niños de forma valorativa.
-- Presionar para compartir fotos, voz o información personal.
-- Ocultar incertidumbre o presentar una sustitución no validada como segura.
+## 8. Requirements
 
-## 8. Requisitos
-
-- **AI-101:** Cada interacción tiene modo explícito, aunque no se muestre al usuario.
-- **AI-102:** Toda acción de adaptación referencia una opción publicada.
-- **AI-103:** Las respuestas de progreso citan evidencia interna accesible al adulto.
-- **AI-104:** El modo Troubleshoot conserva la actividad y paso actuales.
-- **AI-105:** El sistema registra propuestas y confirmaciones relevantes para auditoría.
-- **AI-106:** El compañero puede decir “no sé” y ofrecer una verificación segura.
-- **AI-107:** La indisponibilidad del modelo no bloquea la guía publicada.
-- **AI-108:** Todo proveedor usado por un modo debe estar aprobado para el tipo de datos y medio enviado.
+- **AI-101:** Each interaction has an explicit mode, even if it is not shown to the user.
+- **AI-102:** Every adaptation action refers to a published option.
+- **AI-103:** Progress responses cite internal evidence accessible to the adult.
+- **AI-104:** Troubleshoot mode preserves the current activity and step.
+- **AI-105:** The system records relevant proposals and confirmations for audit.
+- **AI-106:** The companion can say “I don't know” and offer a safe verification.
+- **AI-107:** The unavailability of the model does not block the published guide.
+- **AI-108:** Any provider used by a mode must be approved for the type of data and media sent.

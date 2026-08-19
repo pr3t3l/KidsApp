@@ -1,134 +1,136 @@
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/01-learning/learner-model.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
+
 # SPEC-02 — Learner Model
 
-**Estado:** Review  
-**Versión:** 0.1  
-**Propietario:** Producto/Pedagogía/Datos
+**Status:** Review
+**Version:** 0.1
+**Owner:** Product/Pedagogy/Data
 
-## 1. Propósito
+## 1. Purpose
 
-Mantener una memoria educativa privada, estructurada y corregible para cada niño, suficiente para mejorar la siguiente decisión sin producir diagnósticos ni perfiles innecesarios.
+Maintain a private, structured, and correctable educational memory for each child. It should contain only what is useful for the next learning decision and must never become a diagnostic or intelligence profile.
 
-## 2. Principios
+## 2. Principles
 
-- Un Learner Model pertenece a un solo niño dentro de una familia.
-- Registra hechos contextuales antes que conclusiones.
-- Separa habilidad, interés, independencia y preferencias observadas.
-- Expresa incertidumbre.
-- Permite corrección y eliminación.
-- No entrena un modelo de IA independiente para cada niño; proporciona contexto estructurado a un modelo general.
+- A Learner Model belongs to a single child within a family.
+- Record contextual facts before drawing conclusions.
+- Separate observed performance, interest, independence, and provisional preferences.
+- Expresses uncertainty.
+- Allow correction and deletion.
+- Do not train a separate AI model for each child; provide approved structured context to a general-purpose model when needed.
 
-## 3. Datos mínimos
+## 3. Minimum data
 
-### Perfil
+### Profile
 
-- Alias o nickname.
-- Rango de edad; edad exacta opcional cuando sea necesaria.
-- Idioma preferido.
-- Restricciones de participación declaradas por el adulto, con minimización.
-- Intereses opcionales.
-- Historial de actividades y roles.
+- Alias or nickname.
+- Age range; exact age is optional only when necessary and approved.
+- Preferred language.
+- Participation restrictions declared by the adult, with minimization.
+- Optional interests.
+- History of activities and roles.
 
-### Estado educativo derivado
+### Derived educational status
 
-Por cada habilidad relevante:
+For each relevant skill:
 
-- Exposición acumulada.
-- Observaciones recientes.
-- Independencia observada por contexto.
-- Inferencia actual, si existe.
-- Confianza.
-- Fecha de última evidencia.
-- Evidencia que respalda la inferencia.
-- Estado: inferida, confirmada, corregida o descartada.
+- Cumulative exposure.
+- Recent observations.
+- Independence observed by context.
+- Current inference, if it exists.
+- Confidence.
+- Date of last evidence.
+- Evidence supporting the inference.
+- State: inferred, confirmed, corrected, or rejected.
 
-## 4. Lo que no almacena
+## 4. What it does not store
 
-- IQ o “inteligencia”.
-- Diagnóstico.
-- Valoración global del niño.
-- Etiquetas de personalidad permanentes.
-- Reconocimiento facial o biométrico.
-- Dirección, escuela, apellido o ubicación precisa.
-- Fecha de nacimiento completa salvo justificación aprobada.
-- Comparación pública con otros niños.
+- IQ or “intelligence”.
+- Diagnosis.
+- Global assessment of the child.
+- Permanent personality tags.
+- Facial or biometric recognition.
+- Address, school, last name or precise location.
+- Complete date of birth unless approved justification.
+- Public comparison with other children.
 
-## 5. Objetivo principal
+## 5. Primary objective
 
-Antes de una sesión, cada niño recibe como máximo un objetivo principal. La elección debe:
+Before a session, each child is given at most one primary objective. The choice must:
 
-1. Pertenecer a las habilidades posibles de la actividad y al rol asignado.
-2. Ser segura y viable para el niño.
-3. Representar consolidación o crecimiento apropiado.
-4. Aportar evidencia útil o cumplir un objetivo familiar.
-5. Mantener variedad con respecto a sesiones recientes.
+1. Belong to the possible skills of the activity and the assigned role.
+2. Be safe and viable for the child.
+3. Represent consolidation or appropriate growth.
+4. Provide useful evidence or meet a family objective.
+5. Maintain variety with respect to recent sessions.
 
-El adulto puede cambiar el objetivo antes de comenzar. El cambio se registra como decisión del adulto, no como fallo del recomendador.
+The adult can change the objective before starting. The change is recorded as an adult decision, not as a recommender failure.
 
-## 6. Exposiciones secundarias
+## 6. Secondary exposures
 
-El sistema registra automáticamente las habilidades y conceptos presentes en el rol ejecutado. Una exposición indica solamente oportunidad; no modifica por sí sola la inferencia de capacidad.
+The system automatically records the skills and concepts present in the role performed. An exposure indicates only opportunity; it does not by itself modify the inference of capacity.
 
-## 7. Dimensiones separadas
+## 7. Separate dimensions
 
-### Desempeño contextual
+### Contextual performance
 
-Qué acción ocurrió en una actividad específica.
+What action occurred in a specific activity.
 
-### Independencia
+### Independence
 
-Cuánto apoyo fue necesario, usando la escala de EVD-003.
+How much support was needed, using the EVD-003 scale.
 
-### Interés
+### Interest
 
-Señal opcional de participación o atracción, registrada como baja, media, alta o desconocida.
+Optional signal of participation or attraction, recorded as low, medium, high or unknown.
 
-### Preferencia provisional
+### Provisional preference
 
-Patrón respaldado por varias observaciones, por ejemplo “participa más cuando puede manipular antes de escuchar la explicación”. Nunca se presenta como estilo fijo.
+Pattern supported by several observations, for example, “participates more when they can manipulate materials before listening to an explanation.” It is never presented as a fixed learning style.
 
-## 8. Confianza
+## 8. Confidence
 
-| Nivel | Definición |
+| Level | Definition |
 |---|---|
-| Insuficiente | No existe observación directa o solo hay exposiciones. |
-| Inicial | Una observación útil o varias señales indirectas. |
-| Moderada | Varias observaciones coherentes en más de una sesión. |
-| Fuerte | Evidencia repetida y reciente en contextos variados, sin contradicciones relevantes. |
+| Insufficient | There is no direct observation or there are only exposures. |
+| Initial | A useful observation or several indirect signals. |
+| Moderate | Several coherent observations in more than one session. |
+| Strong | Repeated and recent evidence in varied contexts, without relevant contradictions. |
 
-Los umbrales exactos serán configurables y deberán validarse; no se convertirán en una fórmula opaca.
+Exact thresholds remain configurable and require validation; they must not become an opaque score.
 
-## 9. Cambios del modelo
+## 9. Model changes
 
-- Una nueva observación no sobrescribe las anteriores.
-- Una contradicción reduce confianza o separa contextos; no se descarta automáticamente.
-- La evidencia antigua pierde peso para recomendaciones, pero se conserva según política de retención.
-- Una corrección del adulto debe tener prioridad sobre una inferencia automática y conservar trazabilidad.
-- Las inferencias pueden actualizarse automáticamente desde evidencia suficiente, pero el cambio debe quedar visible, explicable y corregible. No se exige confirmar cada actualización.
-- Cuando una nota de voz no permite atribuir con claridad niño, habilidad o contexto, la atribución debe confirmarse antes de afectar una inferencia.
+- A new observation does not overwrite the previous ones.
+- A contradiction reduces confidence or separates contexts; it is not automatically discarded.
+- Old evidence loses weight for recommendations, but is preserved according to retention policy.
+- An adult correction must take priority over an automatic inference and retain traceability.
+- Inferences can be updated automatically from sufficient evidence, but the change must remain visible, explainable and correctable. There is no requirement to confirm each update.
+- When a voice note does not allow for clear attribution of child, skill, or context, the attribution must be confirmed before affecting an inference.
 
-## 10. Respuestas responsables
+## 10. Responsible responses
 
-Ante “¿Cómo va Sofi en matemáticas?”, el sistema debe responder por subáreas y evidencia:
+When asked “How is Sofi doing in mathematics?”, the system must respond by subareas and evidence:
 
-> Hay evidencia moderada sobre conteo y clasificación. Todavía no hay suficiente información sobre medición o geometría para resumir matemáticas en general.
+> There is moderate evidence on counting and classification. There is still not enough information on measurement or geometry to summarize mathematics in general.
 
-Después puede sugerir actividades para observar áreas faltantes.
+The system may then suggest activities that provide opportunities to observe the missing areas.
 
-## 11. Requisitos
+## 11. Requirements
 
-- **LRN-101:** Cada niño debe tener un Learner Model separado.
-- **LRN-102:** Una sesión puede asignar como máximo un objetivo principal evaluado por niño.
-- **LRN-103:** Las exposiciones no pueden interpretarse como desempeño.
-- **LRN-104:** Toda inferencia debe enlazar evidencia y confianza.
-- **LRN-105:** El adulto debe poder corregir o descartar inferencias.
-- **LRN-106:** El sistema debe separar interés, desempeño e independencia.
-- **LRN-107:** La respuesta debe indicar áreas sin evidencia suficiente.
-- **LRN-108:** Una eliminación de perfil debe eliminar o anonimizar sus datos dependientes según política aprobada.
+- **LRN-101:** Each child must have a separate Learner Model.
+- **LRN-102:** A session can assign a maximum of one primary objective assessed per child.
+- **LRN-103:** Exposures cannot be construed as performance.
+- **LRN-104:** Every inference must link evidence and confidence.
+- **LRN-105:** The adult must be able to correct or discard inferences.
+- **LRN-106:** The system must separate interest, performance and independence.
+- **LRN-107:** The response should indicate areas of insufficient evidence.
+- **LRN-108:** A profile deletion must remove or anonymize its dependent data per approved policy.
 
-## 12. Criterios de aceptación
+## 12. Acceptance criteria
 
-- Se puede explicar por qué una habilidad tiene confianza moderada.
-- Una sesión omitida no produce señal negativa.
-- Una exposición sin evaluación no aumenta capacidad inferida.
-- Una corrección por “herramienta dañada” deja intacta la inferencia de habilidad y registra el contexto.
-- El adulto puede visualizar, corregir y eliminar observaciones.
+- You can explain why a skill has moderate confidence.
+- A skipped session does not produce a negative signal.
+- An exposure without evaluation does not increase inferred capacity.
+- A correction for “damaged tool” leaves the skill inference intact and records the context.
+- The adult can view, correct and delete observations.

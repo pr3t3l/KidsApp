@@ -1,92 +1,94 @@
-# Contratos de API conceptuales
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/07-engineering/api-contracts.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Conceptual API contracts
 
-Este documento define capacidades, no rutas ni tecnología finales.
+**Status:** Draft
+**Version:** 0.1
+
+This document defines domain capabilities, not final routes, protocol, or implementation technology. Every child-related operation requires resource-level authorization through the family relationship.
 
 ## Families
 
-- Crear/editar familia.
-- Administrar miembros y permisos.
-- Crear/editar/eliminar Learner.
-- Administrar preferencias e inventario.
-- Exportar/eliminar datos.
+- Create and edit a family.
+- Manage adult memberships and permissions.
+- Create, edit, and delete a Learner.
+- Manage preferences and inventory.
+- Export and delete family data subject to policy.
 
 ## Subscription
 
-- Consultar entitlement familiar.
-- Procesar recibo/webhook de tienda.
-- Restaurar compra.
-- Aplicar período de gracia y cambios de plan.
-- Devolver deep link de gestión para Apple, Google o Stripe según origen.
-- Activar/revocar pilot entitlement sin crear una prueba comercial.
-- Detectar entitlement activo antes de iniciar otra compra.
+- Read family entitlement and source channel.
+- Process store receipt/webhook.
+- Restore purchase.
+- Apply grace periods and plan changes.
+- Return deep management link for Apple, Google or Stripe depending on origin.
+- Activate/revoke pilot entitlement without creating a commercial trial.
+- Detect active entitlement before starting another purchase.
 
 ## Catalog
 
-- Buscar versiones publicadas elegibles.
-- Obtener actividad/version/pasos/roles/recursos.
-- Confirmar disponibilidad de materiales.
-- Obtener sustituciones y adaptaciones aprobadas.
+- Search eligible published versions.
+- Retrieve an activity, exact version, steps, roles, resources, localized content, and safety controls.
+- Confirm availability of materials.
+- Obtain approved substitutions and adaptations.
 
 ## Planning
 
-- Solicitar recomendación con contexto.
-- Obtener explicación y restricciones.
-- Sustituir actividad.
-- Publicar plan familiar.
+- Request a recommendation using authorized family context.
+- Return an explanation, restrictions, and unmet constraints.
+- Replace activity.
+- Save a family plan pinned to exact activity versions.
 
 ## Sessions
 
-- Crear desde una ActivityVersion.
-- Confirmar participantes, roles y objetivos.
-- Iniciar/pausar/reanudar/completar.
-- Cambiar rol u objetivo dentro de reglas.
-- Registrar paso y adaptación.
-- Descargar manifest/pack semanal y sincronizar eventos offline idempotentes.
+- Create a session from an exact eligible ActivityVersion.
+- Confirm participants, internal assignments, and one primary objective per participant.
+- Start, pause, resume, and complete a session through valid state transitions.
+- Record changed participation or a compatible reassignment without creating negative evidence.
+- Record step progress, actual role, and an approved adaptation.
+- Download weekly manifest/pack and synchronize idempotent offline events.
 
 ## Evidence
 
-- Registrar evaluación principal.
-- Registrar evaluación secundaria.
-- Enviar observación de texto/voz.
-- Revisar propuestas.
-- Confirmar/corregir/rechazar.
-- Consultar evidencia e inferencias explicables.
+- Record a primary rating.
+- Record an optional secondary rating through **Evaluate more**.
+- Submit a text observation or a temporary voice-derived proposal.
+- Review structured observation proposals.
+- Confirm, correct, or reject an observation or inference.
+- Retrieve evidence, provenance, confidence, and explainable inferences.
 
 ## Companion
 
-- Iniciar interacción por modo.
-- Referenciar sesión/paso.
-- Solicitar upload temporal.
-- Recibir acción estructurada.
-- Confirmar una adaptación u observación.
+- Start an interaction in an approved mode.
+- Reference an authorized session, exact activity version, and step.
+- Request temporary upload.
+- Receive a validated structured action or safe-stop response.
+- Confirm an adaptation or observation.
 
 ## Content Operations
 
-- Crear Activity/ActivityVersion draft.
-- Validar esquema.
-- Registrar review/pilot.
-- Publicar/retirar.
-- Comentar, sugerir, asignar y aprobar gates por rol.
-- Generar candidato visual, registrar QA y aprobar asset.
+- Create an Activity and ActivityVersion draft.
+- Validate schema.
+- Register review/pilot.
+- Publish or retire through valid gates.
+- Comment, suggest, assign and approve gates by role.
+- Generate visual candidate, register QA and approve asset.
 
 ## Portfolio and Community
 
-- Crear upload privado con propósito.
-- Guardar/eliminar asset de portafolio.
-- Preparar derivado sin metadatos.
-- Crear submission comunitaria.
-- Moderar, publicar, reportar y retirar.
-- Registrar consentimiento/licencia de marketing por separado.
+- Create a private, purpose-bound upload authorization.
+- Save/delete portfolio asset.
+- Prepare a privacy-reviewed derivative with unnecessary metadata removed.
+- Create community submission.
+- Moderate, publish, report and remove.
+- Register separate marketing consent/license.
 
-## Convenciones futuras
+## Future conventions
 
-- Idempotency keys para cierres, uploads y jobs.
-- Versionado explícito de contratos.
-- Errores de dominio legibles.
-- Autorización por recurso.
-- Paginación y filtros.
-- ETags o control optimista para edición.
-- Nunca aceptar del cliente estados derivados como confianza final o publicación.
+- Idempotency keys for close-out, sync, uploads, webhooks, and jobs.
+- Explicit versioning of contracts.
+- Readable domain errors.
+- Resource-level authorization on every operation.
+- Pagination and filters.
+- ETags or optimistic concurrency for mutable editorial records.
+- Never accept derived states such as final confidence, eligibility, entitlement, or publication from the client.

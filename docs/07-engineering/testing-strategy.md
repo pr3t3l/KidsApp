@@ -1,82 +1,84 @@
-# Estrategia de pruebas
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/07-engineering/testing-strategy.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Testing strategy
 
-## Pirámide
+**Status:** Draft
+**Version:** 0.1
 
-### Dominio
+## Pyramid
 
-- Invariantes de objetivo principal.
-- Exposición versus evidencia.
-- Elegibilidad y seguridad.
-- Versionado y publicación.
-- Permisos.
+### Domain
 
-### Integración
+- Primary objective invariants.
+- Exposure versus evidence.
+- Eligibility and physical safety.
+- Versioning and publication.
+- Permissions.
 
-- Plan → sesión → cierre → Learner Model.
-- Upload temporal → procesamiento → expiración.
-- Publicación/retiro → catálogo.
-- Corrección adulta → recálculo de inferencia.
+### Integration
 
-### Contrato
+- Plan → session → close-out → Learner Model.
+- Temporary upload → processing → expiration.
+- Publication/retirement → catalog.
+- Adult correction → inference recalculation.
 
-- Cliente/API.
-- Proveedores de IA, voz y almacenamiento.
-- Esquemas de salida estructurada.
+### Contract
+
+- Client/API.
+- AI, voice and storage providers.
+- Structured output schemas.
 
 ### End-to-end
 
-- Primera actividad.
-- Tres niños con objetivos distintos.
-- Actividad sin evaluación.
-- Troubleshooting sin IA disponible.
-- Eliminación de perfil.
-- Descarga offline, cierre sin red y sincronización sin duplicados.
-- Suscripción en gracia sin interrumpir sesión.
-- Publicación comunitaria moderada y retirada.
+- First activity.
+- Three children with different objectives.
+- Activity without evaluation.
+- Troubleshooting without AI available.
+- Profile deletion.
+- Offline download, shutdown without network and synchronization without duplicates.
+- Grace subscription without interrupting session.
+- Moderated and removed community post.
 
-### UX y usabilidad
+### UX and usability
 
-- Cierre bajo 20 segundos.
-- Preparación con atención dividida.
-- Errores de atribución entre niños.
-- Comprensión de confianza e inferencias.
-- Accesibilidad.
+- Close-out in under 20 seconds for three children.
+- Preparation with divided attention.
+- Attribution errors among children.
+- Understanding confidence and explainable inferences.
+- Accessibility.
 
-### Contenido
+### Content
 
-- Ejecución literal independiente.
-- Materiales completos.
-- Resultados esperados.
-- Riesgos y adult-only steps.
-- Recursos visuales por versión.
+- Independent, literal activity run.
+- Complete materials.
+- Expected results.
+- Hazards, safety controls, and adult-only steps.
+- Visual resources per version.
 
-### IA
+### AI
 
-Usar la suite de `docs/05-ai/evaluations.md`, golden cases y evaluación humana. Ningún modelo se despliega solo porque mejora una métrica promedio si introduce una violación crítica.
+Use the `docs/05-ai/evaluations.md` suite, golden cases and human evaluation. No model is deployed just because it improves an average metric if it introduces a critical violation.
 
-### Imágenes y comunidad
+### Images and community
 
-- QA detecta materiales extra, pasos físicamente incoherentes y actor incorrecto.
-- Ningún asset draft aparece en actividad publicada.
-- Se eliminan metadatos de ubicación en derivados públicos.
-- Guardar privado no crea submission.
-- Publicar comunidad no crea licencia de marketing.
-- Reporte y retirada dejan de servir el asset público.
+- QA detects extra materials, physically incoherent steps and incorrect actor.
+- No asset draft appears in published activity.
+- Location metadata is removed from community derivatives.
+- Saving private does not create submission.
+- Posting community does not create marketing license.
+- Reporting and withdrawal stop serving the public asset.
 
-## Datos de prueba
+## Test data
 
-- Perfiles completamente sintéticos.
-- Familias de 1–4 niños con edades y experiencia variadas.
-- Casos con evidencia contradictoria.
-- No copiar fotos, voz o nombres reales de pilotos a entornos de desarrollo.
+- Completely synthetic profiles.
+- Families of 1–4 children with varied ages and experience.
+- Cases with contradictory evidence.
+- Do not copy photos, voices or real names of pilots to development environments.
 
-## Gates iniciales
+## Initial gates
 
-- Cero fallos de seguridad/autorización conocidos de severidad crítica o alta.
-- Cero recomendaciones de actividades no publicadas.
-- Cero asignaciones de más de un objetivo principal por niño/sesión.
-- Pruebas de retención y eliminación exitosas.
-- Suite de IA crítica aprobada.
+- Zero known security/authorization flaws of critical or high severity.
+- Zero recommendations for unpublished activities.
+- Zero assignments of more than one primary objective per child/session.
+- Successful retention and deletion tests.
+- Approved critical AI suite.

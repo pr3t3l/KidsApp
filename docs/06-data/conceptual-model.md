@@ -1,91 +1,105 @@
-# Modelo conceptual de datos
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/06-data/conceptual-model.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Conceptual data model
 
-## Dominios
+**Status:** Draft
+**Version:** 0.1
 
-```text
-Family ─┬─ AdultMembership
-        ├─ Learner
-        ├─ InventoryItem
-        ├─ SubscriptionEntitlement
-        ├─ WeeklyPlan ─ OfflinePack
-        └─ PortfolioAsset ─ CommunitySubmission
+## Domains
 
-Activity ─ ActivityVersion ─┬─ MaterialRequirement
-                            ├─ Step
-                            ├─ RoleTemplate
-                            ├─ SkillMapping
-                            ├─ AdaptationOption
-                            └─ SafetyConstraint
+```mermaid
+erDiagram
+    FAMILY ||--o{ ADULT_MEMBERSHIP : authorizes
+    FAMILY ||--o{ LEARNER : contains
+    FAMILY ||--o{ INVENTORY_ITEM : tracks
+    FAMILY ||--o{ SUBSCRIPTION_ENTITLEMENT : receives
+    FAMILY ||--o{ WEEKLY_PLAN : owns
+    WEEKLY_PLAN ||--o| OFFLINE_PACK : produces
 
-Session ─┬─ ParticipantAssignment ─ PrimaryObjective
-         ├─ Exposure
-         ├─ Observation ─ EvidenceLink ─ Inference
-         └─ CompanionInteraction
+    ACTIVITY ||--o{ ACTIVITY_VERSION : versions
+    ACTIVITY_VERSION ||--o{ MATERIAL_REQUIREMENT : contains
+    ACTIVITY_VERSION ||--o{ STEP : contains
+    ACTIVITY_VERSION ||--o{ ROLE_TEMPLATE : contains
+    ACTIVITY_VERSION ||--o{ SKILL_MAPPING : maps
+    ACTIVITY_VERSION ||--o{ ADAPTATION_OPTION : permits
+    ACTIVITY_VERSION ||--o{ SAFETY_CONSTRAINT : governs
+
+    FAMILY ||--o{ SESSION : owns
+    SESSION }o--|| ACTIVITY_VERSION : executes
+    SESSION ||--o{ PARTICIPANT_ASSIGNMENT : includes
+    PARTICIPANT_ASSIGNMENT }o--|| LEARNER : identifies
+    PARTICIPANT_ASSIGNMENT ||--|| PRIMARY_OBJECTIVE : has
+    PARTICIPANT_ASSIGNMENT ||--o{ EXPOSURE : derives
+    SESSION ||--o{ OBSERVATION : records
+    OBSERVATION ||--o{ EVIDENCE_LINK : supports
+    EVIDENCE_LINK }o--|| INFERENCE : informs
+    SESSION ||--o{ COMPANION_INTERACTION : contextualizes
+
+    FAMILY ||--o{ PORTFOLIO_ASSET : owns
+    PORTFOLIO_ASSET ||--o{ COMMUNITY_SUBMISSION : may_create
 ```
 
-## Límites de agregados
+## Aggregate limits
 
 ### Family
 
-Controla membresía, permisos, preferencias e inventario. No contiene directamente observaciones; las autoriza.
+Controls membership, permissions, preferences, and inventory. It authorizes access to learner records but does not contain those records directly.
 
 ### ActivityVersion
 
-Snapshot inmutable publicado. Pasos, materiales, roles, seguridad y adaptaciones se versionan juntos o mediante referencias inmutables.
+Immutable content snapshot. Steps, materials, roles, safety controls, and adaptations are versioned together or through immutable references. Only a published version is eligible for family delivery.
 
 ### Session
 
-Registra la ejecución real: versión, contexto, participantes, asignaciones, cambios, exposiciones y cierre.
+Records actual delivery: exact version, context, participants, assignments, participation changes, exposures, step progress, and close-out.
 
 ### Learner Model
 
-Compone observaciones e inferencias vinculadas a un Learner. Las inferencias son derivadas y reconstruibles.
+Composes observations and derived inferences linked to one Learner. Inferences remain reconstructable from evidence and correction history.
 
 ### Media and Community
 
-Separa asset privado, derivado comunitario, submission, decisión de moderación y licencia de marketing. Ninguna relación se deduce automáticamente de otra.
+Separates a private asset, community-safe derivative, submission, moderation decision, and marketing license. One permission never implies another.
 
-## Invariantes
+## Invariants
 
-- Una Session apunta a una ActivityVersion exacta.
-- Un ParticipantAssignment apunta a un solo Learner y RoleTemplate compatible.
-- Máximo un PrimaryObjective activo por participante y sesión.
-- Exposure no tiene campo de desempeño.
-- Observation conserva fuente y contexto.
-- Inference enlaza una o más observaciones/evidencias.
-- Medios se almacenan separados con propósito y expiración.
-- Una versión retirada no se elimina si existen sesiones históricas; se vuelve inelegible.
-- Un CommunitySubmission requiere uploader adulto autorizado y estado de moderación.
-- Una licencia de marketing es independiente del permiso de comunidad.
+- A Session points to an exact ActivityVersion.
+- A ParticipantAssignment points to a single Learner and compatible RoleTemplate.
+- At most one active PrimaryObjective exists per participant and session.
+- Exposure has no performance field.
+- Observation preserves source and context.
+- An Inference links to one or more valid observations through EvidenceLinks.
+- Media is stored separately with purpose and expiration.
+- A retired version remains available for historical sessions but becomes ineligible for new recommendations.
+- A CommunitySubmission requires authorized adult uploader and moderation status.
+- A marketing license is independent of community-publishing permission.
 
-## Eventos de dominio
+## Domain Events
 
-- FamilyCreated
-- LearnerAdded
-- ActivityVersionPublished
-- WeeklyPlanGenerated
-- SessionStarted
-- RoleChanged
-- SessionCompleted
-- ObservationRecorded
-- InferenceProposed
-- InferenceCorrected
-- MediaExpired
-- ActivityVersionRetired
-- OfflinePackDownloaded
-- SubscriptionEntitlementChanged
-- CommunitySubmissionCreated
-- CommunitySubmissionModerated
-- CommunityPostRetired
+- `FamilyCreated`
+- `LearnerAdded`
+- `ActivityVersionPublished`
+- `WeeklyPlanGenerated`
+- `SessionStarted`
+- `ParticipationChanged`
+- `RoleChanged`
+- `SessionCompleted`
+- `ObservationRecorded`
+- `InferenceProposed`
+- `InferenceCorrected`
+- `MediaExpired`
+- `ActivityVersionRetired`
+- `OfflinePackDownloaded`
+- `SubscriptionEntitlementChanged`
+- `CommunitySubmissionCreated`
+- `CommunitySubmissionModerated`
+- `CommunityPostRetired`
 
-## Pendiente para esquema físico
+## Pending physical design
 
-- Motor de base de datos.
-- Estrategia de multi-tenancy.
-- Proveedor de autenticación.
-- Almacenamiento de medios.
-- Cifrado y región.
-- Analítica y aislamiento.
+- Database engine.
+- Multi-tenancy strategy.
+- Authentication provider.
+- Media storage.
+- Encryption and region.
+- Analytics and isolation.

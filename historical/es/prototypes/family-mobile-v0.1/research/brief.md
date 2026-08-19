@@ -1,3 +1,5 @@
+> **Histórico — documentación en español.** Archivado el 18 de agosto de 2026. Se conserva para trazabilidad; toda documentación y cambios nuevos deben crearse en inglés.
+
 # Prototipo móvil familiar v0.6 — brief
 
 ## Resultado que debe probar

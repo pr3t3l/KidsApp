@@ -1,163 +1,162 @@
-# SPEC-UX-04 — Modelo de facilitación de actividades
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/04-ux/activity-facilitation-model.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Review
-**Versión:** 0.1
-**Propietario:** Producto/UX/Pedagogía/Contenido
+# SPEC-UX-04 — Activity Facilitation Model
 
-## 1. Propósito
+**Status:** Review
+**Version:** 0.1
+**Owner:** Product/UX/Pedagogy/Content
 
-Definir cómo la aplicación transforma una `ActivityVersion` extensa en una guía móvil que conserva intención pedagógica, precisión, participación de todos los niños y seguridad sin copiar el documento editorial completo a la pantalla.
+## 1. Purpose
 
-La interfaz no resume eliminando significado. Organiza la misma información en tres momentos:
+Define how the app transforms a lengthy `ActivityVersion` into a mobile guide that preserves pedagogical intent, accuracy, engagement of all children, and safety without copying the entire editorial document to the screen.
 
-1. **Comprender antes:** qué aprenderán, por qué funciona y qué decisión pertenece a los niños.
-2. **Facilitar durante:** qué hace el adulto, qué dice, qué hace cada participante y qué observar.
-3. **Registrar después:** una señal contextual por niño sobre su foco principal.
+The interface does not summarize eliminating meaning. Organize the same information in three moments:
 
-Las pantallas no son el origen del procedimiento. Se derivan del [Contrato narrativo de la experiencia](../02-content/activity-narrative-contract.md), ya validado por contenido y pedagogía.
+1. **Understand before:** what they will learn, why it works and what decision belongs to the children.
+2. **Facilitate during:** what the adult does, what they say, what each participant does and what to observe.
+3. **Record later:** a contextual cue per child about their main focus.
 
-## 2. Dos modelos conectados
+The screens are not the origin of the procedure. They are derived from the [Experience Narrative Contract](../02-content/activity-narrative-contract.md), already validated by content and pedagogy.
 
-La biblioteca conserva términos técnicos como `roleTemplate`, `skillId`, `conceptId`, restricciones y mappings. La aplicación familiar traduce esos objetos a lenguaje de facilitación:
+## 2. Two connected models
 
-| Modelo editorial/interno | Presentación familiar |
+The library preserves technical terms such as `roleTemplate`, `skillId`, `conceptId`, constraints and mappings. The family application translates those objects into facilitation language:
+
+| Editorial/internal model | Family presentation |
 |---|---|
-| `roleTemplate` | **Aporte sugerido** dentro del proyecto |
-| `primaryObjectiveSkillId` | **Foco de aprendizaje de hoy** |
-| `exposureSkillIds` | **También tendrá oportunidades de…** |
-| `cycleStage` | **Fase** y propósito de la fase |
-| `adaptation` + `commonProblem` | **Ayuda para este paso** con problema y cambio concretos |
+| `roleTemplate` | **Suggested contribution** within the project |
+| `primaryObjectiveSkillId` | **Today's learning focus** |
+| `exposureSkillIds` | **You will also have opportunities to…** |
+| `cycleStage` | **Phase** and purpose of the phase |
+| `adaptation` + `commonProblem` | **Help for this step** with specific problem and change |
 
-La palabra “rol” puede usarse editorialmente, pero no es el encabezado principal de la asignación familiar. El adulto no debe configurar el motor pedagógico para empezar una actividad normal.
+The word “role” may be used editorially, but it is not the main heading of the family assignment. The adult should not configure the pedagogical engine to begin a normal activity.
 
-## 3. Resumen educativo previo
+## 3. Previous educational summary
 
-Antes de la preparación material, `SCR-005` muestra un resumen escaneable con:
+Before material preparation, `SCR-005` displays a scannable summary with:
 
-- **Propósito educativo:** qué experiencia intenta producir, no solo qué objeto construirán.
-- **Área principal** y **áreas secundarias**.
-- **Conceptos clave** explicados con lenguaje adulto breve.
-- **Habilidades practicables**, distinguiendo foco principal y exposiciones.
-- **Mecanismo de aprendizaje:** por qué las acciones de la actividad permiten practicar esas habilidades.
-- **Decisión infantil real:** qué pueden decidir los niños sin que la aplicación entregue la respuesta.
-- **Éxito educativo:** qué cuenta como una experiencia válida aunque el resultado físico sea inesperado.
+- **Educational purpose:** what experience you are trying to produce, not just what object they will build.
+- **Primary area** and **secondary areas**.
+- **Key concepts** explained with brief adult language.
+- **Practical skills**, distinguishing main focus and exposures.
+- **Learning mechanism:** why the actions of the activity allow you to practice those skills.
+- **Real children's decision:** what children can decide without the application providing the answer.
+- **Educational success:** what counts as a valid experience even if the physical result is unexpected.
 
-El resumen usa divulgación progresiva: propósito, área principal, conceptos y decisión aparecen abiertos; explicación detallada, taxonomía completa y referencias editoriales aparecen bajo `Entender la actividad`.
+The summary uses progressive disclosure: purpose, primary area, concepts, and child decision appear open; detailed explanation, full taxonomy, and editorial references appear under **Understand this activity**.
 
-## 4. Foco sugerido por niño
+## 4. Focus suggested by child
 
-Cada participante activo recibe:
+Each active participant receives:
 
-- Nombre o alias.
-- Foco principal redactado como acción observable.
-- Aporte sugerido dentro del proyecto.
-- Razón de la selección: edad/rango permitido, primera exploración, evidencia previa, interés, variedad o crecimiento.
-- Exposiciones secundarias probables, condicionadas a participación real.
+- Name or alias.
+- Main focus written as observable action.
+- Suggested contribution within the project.
+- Reason for selection: age/allowed range, first exploration, previous evidence, interest, variety or growth.
+- Probable secondary exposures, conditional on real participation.
 
-La UI dice `Sugerido para [nombre]`, no `nivel de [nombre]`. Si no existe evidencia, la razón es `primera oportunidad para observar`, nunca una predicción de capacidad.
+The UI says `Suggested for [name]`, not `[name]'s level`. If there is no evidence, the reason is `first opportunity to observe`, never a capacity prediction.
 
-No se muestra un control de intercambio como acción normal. Si la participación real cambia, el adulto puede registrarlo desde un flujo de excepción (`No está participando como esperábamos`) sin tener que comprender roles técnicos ni reasignar objetivos en medio de la actividad.
+A swap check is not displayed as a normal action. If the actual participation changes, the adult can record it from an exception flow (`Not participating as expected`) without having to understand technical roles or reassign goals in the middle of the activity.
 
-## 5. Contrato de una fase
+## 5. One-phase contract
 
-Cada fase infantil renderiza estos bloques, en este orden:
+Each child phase renders these blocks, in this order:1. **What this phase is for** — one sentence and 1–3 related concepts/skills.
+2. **Do this** — adult actions, numbered and physically precise.
+3. **Tell them** — literal language or questions that the adult can pronounce.
+4. **Now each** — a specific action for each participant, resolved from their assignment and displayed with their name.
+5. **Children's decision** — when it exists; specifies what they can choose and what remains fixed.
+6. **Observe without interrupting** — signs related to the main focuses; it does not require evaluation during the session.
+7. **Result to continue** — visible state that allows progress even if it does not match an expectation.
+8. **Safety during this step** — localized control, before the risk action.
+9. **Help with this step** — specific problems, safe response and exact resumption point.
 
-1. **Para qué sirve esta fase** — una oración y 1–3 conceptos/habilidades relacionados.
-2. **Haz esto** — acciones del adulto, numeradas y físicamente precisas.
-3. **Diles** — lenguaje literal o preguntas que el adulto puede pronunciar.
-4. **Ahora cada uno** — una acción concreta para cada participante, resuelta desde su asignación y mostrada con su nombre.
-5. **Decisión de los niños** — cuando exista; especifica qué pueden elegir y qué permanece fijo.
-6. **Observa sin interrumpir** — señales relacionadas con los focos principales; no obliga a evaluar durante la sesión.
-7. **Resultado para continuar** — estado visible que permite avanzar aunque no coincida con una expectativa.
-8. **Seguridad durante este paso** — control localizado, antes de la acción de riesgo.
-9. **Ayuda con este paso** — problemas concretos, respuesta segura y punto exacto de reanudación.
+`Outcome that lets you continue` is not a physical promise. It may be a valid result, a documented unexpected result, or an honest reason why the test was not comparable.
 
-`Resultado para continuar` no es una promesa física. Puede ser un resultado válido, un resultado inesperado documentado o una razón honesta de por qué la prueba no fue comparable.
+Each phase also shows a compact continuity: `You arrive with…` and `At the end, you will have…`. Those texts come from `entryStateId` and `exitStateId`; they are not freely written in UI.
 
-Cada fase muestra además una continuidad compacta: `Llegan con…` y `Al terminar tendrán…`. Esos textos provienen de `entryStateId` y `exitStateId`; no se redactan libremente en UI.
+## 6. Nominal resolution of participants
 
-## 6. Resolución nominal de participantes
-
-La `ActivityVersion` no contiene nombres infantiles. Define acciones por aporte/rol o para todo el grupo. La sesión combina:
+`ActivityVersion` does not contain children's names. Define actions by contribution/role or for the entire group. The session combines:
 
 ```text
 participantActionTemplate.roleTemplateId
 + Assignment.actualRoleTemplateIds
 + Learner.alias
-→ “Mateo baja un crayón, cuenta y espera la señal.”
+→ “Mateo lowers one crayon, counts, and waits for the cue.”
 ```
+Rules:
 
-Reglas:
+- Every child phase names all active participants.
+- When the narrative states `individual_cycles` or `hybrid`, each child performs his or her own instance of the essential actions indicated; the spotlights do not divide the cycle into monopolies.
+- If two children share a contribution, the UI distributes turns or presents an explicit shared action.
+- With a child, compatible actions are combined and the adult always performs the exclusive steps.
+- A child who only observes does not automatically receive exposure or evaluation.
+- The text never makes the elder the permanent assistant of the minor.
 
-- Toda fase infantil nombra a todos los participantes activos.
-- Cuando la narrativa declara `individual_cycles` o `hybrid`, cada niño realiza su propia instancia de las acciones esenciales señaladas; los focos no dividen el ciclo en monopolios.
-- Si dos niños comparten un aporte, la UI distribuye turnos o presenta una acción compartida explícita.
-- Con un niño, se combinan acciones compatibles y el adulto realiza siempre los pasos exclusivos.
-- Un niño que solo observa no recibe automáticamente exposición ni valoración.
-- El texto nunca convierte al mayor en ayudante permanente del menor.
+## 7. Contextual help
 
-## 7. Ayuda contextual
+The generic **Adjust pace** control is removed from the primary path. Help appears in response to a recognizable problem, for example:
 
-Se elimina el control genérico `Ajustar ritmo` del camino principal. La ayuda aparece porque existe un problema reconocible, por ejemplo:
+- `They do not know which shape to choose` → show approved options and ask them to choose one.
+- `Folding is difficult` → mark guides or stabilize the paper; explain what is no longer evaluable if the adult folds.
+- `The cup tips` → distinguish an invalid setup from warping and restart from adult verification.
+- **They need to finish** → close after one complete test and retain the resumable state.
 
-- `No saben qué forma elegir` → mostrar opciones aprobadas y pedir elegir una.
-- `Plegar resulta difícil` → marcar guías o estabilizar el papel; explicar qué deja de ser evaluable si el adulto pliega.
-- `El vaso se inclina` → distinguir montaje inválido de deformación y reiniciar desde la verificación adulta.
-- `Necesitan terminar` → cerrar después de una prueba completa y conservar el estado de reanudación.
+Each option declares:
 
-Cada opción declara:
+- observed problem;
+- exact change;
+- what does not change;
+- impact on focus/evidence;
+- resumption instruction;
+- safety limit.
 
-- problema observado;
-- cambio exacto;
-- qué no cambia;
-- impacto en el foco/evidencia;
-- instrucción de reanudación;
-- límite de seguridad.
+The AI ​​can select or explain published options, but does not write a free modification of the procedure.
 
-La IA puede seleccionar o explicar opciones publicadas, pero no redacta una modificación libre del procedimiento.
+## 8. Mobile hierarchy
 
-## 8. Jerarquía móvil
+The guide is used with divided attention. In the base view they remain visible:
 
-La guía se usa con atención dividida. En la vista base permanecen visibles:
+- purpose of the phase;
+- actions of the adult;
+- phrase for children;
+- nominal shares;
+- child decision;
+- relevant warning.
 
-- propósito de la fase;
-- acciones del adulto;
-- frase para los niños;
-- acciones nominales;
-- decisión infantil;
-- advertencia relevante.
+They remain on demand:
 
-Se mantienen bajo demanda:
+- detailed scientific explanation;
+- complete taxonomy and IDs;
+- problems not present;
+- extensions;
+- editorial reasons and gates.
 
-- explicación científica detallada;
-- taxonomía completa e IDs;
-- problemas no presentes;
-- extensiones;
-- razones editoriales y gates.
+Vertical scrolling is acceptable; the omission of information necessary to execute or facilitate is not.
 
-El scroll vertical es aceptable; la omisión de información necesaria para ejecutar o facilitar no lo es.
+## 9. Requirements
 
-## 9. Requisitos
+- **UX-FAC-001:** Before starting, the family sees purpose, primary area, secondary areas, concepts, skills, mechanism, child decision, and learning outcome.
+- **UX-FAC-002:** Each active participant sees a main focus and suggested contribution with explainable reason.
+- **UX-FAC-003:** Family UI presents contributions/focuses; technical roles remain as an internal contract.
+- **UX-FAC-004:** There is no role exchange as primary control during the normal path.
+- **UX-FAC-005:** Each infant phase displays numbered adult actions and suggested literal language.
+- **UX-FAC-006:** Each child phase names all active participants and their specific action.
+- **UX-FAC-007:** Child decisions and fixed conditions are visually distinguished.
+- **UX-FAC-008:** Each phase indicates what to observe without asking for a live rating.
+- **UX-FAC-009:** All context-sensitive help names issue, change, impact, resume, and safety limit.
+- **UX-FAC-010:** The product does not use **Adjust pace** or another generic label without explaining exactly what changes.
+- **UX-FAC-011:** 1–4 child views are generated from content mappings and assignments, not from family-specific copy.
+- **UX-FAC-012:** The adult can continue with an unexpected or non-comparable result without inventing data or attributing the fault to the child.
+- **UX-FAC-013:** Each phase communicates its entry and exit status and respects the order of the narrative contract.
+- **UX-FAC-014:** In individual or hybrid activities, the guide offers each participant their own action of proposing, doing/trying and observing according to the declared cycle.
 
-- **UX-FAC-001:** Antes de iniciar, la familia ve propósito, área principal, áreas secundarias, conceptos, habilidades, mecanismo, decisión infantil y éxito educativo.
-- **UX-FAC-002:** Cada participante activo ve un foco principal y aporte sugerido con razón explicable.
-- **UX-FAC-003:** La UI familiar presenta aportes/focos; los roles técnicos permanecen como contrato interno.
-- **UX-FAC-004:** No existe intercambio de roles como control primario durante el camino normal.
-- **UX-FAC-005:** Cada fase infantil muestra acciones adultas numeradas y lenguaje literal sugerido.
-- **UX-FAC-006:** Cada fase infantil nombra a todos los participantes activos y su acción concreta.
-- **UX-FAC-007:** Las decisiones infantiles y condiciones fijas se distinguen visualmente.
-- **UX-FAC-008:** Cada fase indica qué observar sin pedir una calificación en vivo.
-- **UX-FAC-009:** Toda ayuda contextual nombra problema, cambio, impacto, reanudación y límite de seguridad.
-- **UX-FAC-010:** El producto no usa `Ajustar ritmo` o etiquetas genéricas sin explicar qué cambia.
-- **UX-FAC-011:** Las vistas de 1–4 niños se generan desde mappings de contenido y asignaciones, no desde copy específico de una familia.
-- **UX-FAC-012:** El adulto puede continuar con un resultado inesperado o no comparable sin inventar datos ni atribuir la falla al niño.
-- **UX-FAC-013:** Cada fase comunica su estado de entrada y salida y respeta el orden del contrato narrativo.
-- **UX-FAC-014:** En actividades individuales o híbridas, la guía ofrece a cada participante su propia acción de proponer, hacer/probar y observar según el ciclo declarado.
+## 10. Acceptance criteria
 
-## 10. Criterios de aceptación
-
-1. Un adulto que no conoce estructuras puede explicar el propósito del puente y ejecutar una prueba comparable usando solo la app.
-2. En una sesión de tres niños, el adulto puede decir qué hará cada uno en cada fase sin abrir un editor de roles.
-3. Otra actividad —clasificación, circuito, naturaleza o vida práctica— puede llenar el mismo contrato sin añadir componentes especiales.
-4. Ningún bloque familiar expone IDs técnicos como condición para comprender la actividad.
-5. Una revisión de contenido puede detectar automáticamente fases sin guion adulto, acción de participante, observación o ayuda segura.
+1. An adult who does not know structures can explain the purpose of the bridge and run a comparable test using only the app.
+2. In a session with three children, the adult can say what each child will do in each phase without opening a role editor.
+3. Another activity—classification, circuit, nature, or practical life—can fill the same contract without adding special components.
+4. No family block exposes technical IDs as a condition for understanding the activity.
+5. A content review can automatically detect phases without adult script, participant action, observation, or safe help.

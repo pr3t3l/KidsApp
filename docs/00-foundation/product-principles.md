@@ -1,60 +1,62 @@
-# Principios del producto
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/00-foundation/product-principles.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Review  
-**Versión:** 0.1
+# Product principles
 
-## P-01 — Aprender haciendo
+**Status:** Review
+**Version:** 0.1
 
-La sesión debe conducir de la curiosidad a la acción y de la acción a una explicación: predecir, construir, probar, observar, mejorar y contar lo aprendido.
+## P-01 — Learn by doing
+
+The session must lead from curiosity to action and from action to explanation: predict, build, test, observe, improve, and describe what was learned.
 
 ## P-02 — The world is the kit
 
-El sistema prioriza materiales comunes, reutilizados y abiertos. Un pitillo puede ser estructura, eje, conducto o separador; no se presenta el kit comprado como única forma de crear.
+The system prioritizes common, reusable, and open-ended materials. A straw can become a structure, axle, conduit, or separator; a purchased kit is never presented as the only way to create.
 
-## P-03 — Biblioteca antes que improvisación
+## P-03 — Library before improvisation
 
-El núcleo de toda actividad proviene de una versión publicada y revisada. La IA puede seleccionar, asignar roles y adaptar dentro de límites; no puede inventar libremente una actividad de riesgo para entregarla en vivo.
+The core of every family-delivered activity comes from a reviewed, published version. AI may select, assign roles, and adapt within defined limits; it may not freely invent a potentially unsafe activity for live delivery.
 
-## P-04 — Personalización basada en evidencia
+## P-04 — Evidence-based personalization
 
-La edad orienta adecuación y seguridad, pero la dificultad depende también de experiencia, independencia, intereses, evidencia y contexto familiar.
+Age guides suitability and safety, but difficulty also depends on experience, independence, interests, evidence and family context.
 
-## P-05 — Una experiencia compartida, ciclos completos
+## P-05 — A shared experience, complete cycles
 
-Varios niños pueden participar en el mismo reto con objetivos principales diferentes. Cuando la naturaleza física lo permita, cada niño propone, construye o ejecuta, prueba, observa y mejora o recomienda; el foco determina qué se observa, no qué partes esenciales puede vivir. Ningún niño se convierte en asistente permanente de otro.
+Several children can participate in the same challenge with different primary objectives. When the physical activity allows it, each child proposes, builds or performs, tests, observes, and improves or recommends. The focus determines what the adult observes; it does not reserve essential parts of the experience for one child. No child becomes another child's permanent assistant.
 
-## P-06 — Una señal útil, poca fricción
+## P-06 — A useful signal, little friction
 
-El sistema registra exposiciones automáticamente y solicita por defecto una sola valoración principal por niño. La evaluación ampliada y la nota de voz son opcionales.
+The system records exposures automatically and requests one primary assessment per child by default. Additional assessments and voice notes are optional.
 
-## P-07 — Observaciones, no etiquetas
+## P-07 — Observations, not labels
 
-Se guardan hechos contextuales y grados de apoyo. Las inferencias son prudentes, explicables, corregibles y nunca diagnósticas.
+The system stores contextual facts and degrees of support. Inferences are cautious, explainable, correctable, and never diagnostic.
 
-## P-08 — La incertidumbre es información
+## P-08 — Uncertainty is information
 
-El sistema debe decir cuándo carece de evidencia y puede proponer oportunidades para observar, en lugar de completar vacíos con afirmaciones.
+The system states when evidence is insufficient and may propose future opportunities to observe rather than filling gaps with assertions.
 
-## P-09 — Privacidad alta por defecto
+## P-09 — Default high privacy
 
-Se recopila únicamente lo necesario para mejorar la siguiente decisión educativa. Los medios infantiles se procesan de forma temporal por defecto y requieren una decisión explícita para conservarse.
+Only data necessary to improve the next educational decision is collected. Child media is processed temporarily by default and requires an explicit adult decision to be retained.
 
-## P-10 — Seguridad como dato estructurado
+## P-10 — Safety as structured data
 
-La seguridad no será una advertencia editorial aislada: materiales, pasos, roles, edad, supervisión y adaptaciones tendrán restricciones verificables.
+Safety is not an isolated editorial warning: materials, steps, roles, age, supervision, and adaptations have verifiable restrictions.
 
-## P-11 — El adulto conserva agencia
+## P-11 — The adult retains agency
 
-El adulto puede ajustar participación, omitir evaluaciones, corregir inferencias, decidir qué guardar y eliminar datos. La automatización facilita; no desplaza responsabilidad parental.
+The adult can adjust participation, skip assessments, correct inferences, decide what to retain, and delete data. Automation reduces effort; it does not displace adult responsibility.
 
-## P-12 — Diseñado para atención dividida
+## P-12 — Designed for divided attention
 
-Los flujos esenciales deben funcionar mientras el adulto acompaña niños y tareas domésticas: lectura breve, controles grandes, voz opcional, reanudación y pocos pasos.
+Essential flows must work while the adult supervises children and household tasks: concise copy, large controls, optional voice, resumability, and few required steps.
 
-## P-13 — Progresión sin gamificación manipuladora
+## P-13 — Progression without manipulative gamification
 
-El progreso muestra experiencias, proyectos y capacidades observadas. No usa presión, culpa, rachas obligatorias ni comparación pública entre niños.
+Progress shows observed experiences, projects, and developing capabilities. It does not use pressure, guilt, mandatory streaks, or public comparisons between children.
 
-## P-14 — Contenido versionado y probado
+## P-14 — Versioned and tested content
 
-Cada actividad tiene propietario editorial, estado, versión, evidencia de prueba y capacidad de retiro. La cantidad no reemplaza calidad.
+Each activity has an editorial owner, status, version, test evidence, and a withdrawal path. Quantity does not replace quality.

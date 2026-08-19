@@ -1,58 +1,60 @@
-# SPEC-10 — Editorial Collaboration Platform
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/03-product/editorial-platform.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# SPEC-10—Editorial Collaboration Platform
 
-## 1. Propósito
+**Status:** Draft
+**Version:** 0.1
 
-Permitir que la fundadora y, posteriormente, un equipo multidisciplinario diseñen, revisen, prueben, traduzcan, ilustren, publiquen y retiren actividades con trazabilidad.
+## 1. Purpose
+
+Allow the founder and, subsequently, a multidisciplinary team to design, review, test, translate, illustrate, publish and retire activities with traceability.
 
 ## 2. Roles
 
-| Rol | Responsabilidad |
+| Role | Responsibility |
 |---|---|
-| Author | Crea el brief y ActivityVersion draft. |
-| Education reviewer | Valida propósito, nivel, preguntas y evidencia. |
-| Subject specialist | Valida exactitud científica/matemática/técnica según categoría. |
-| Safety reviewer | Valida riesgos, controles y adult-only steps. |
-| Development reviewer | Revisa adecuación infantil cuando la categoría lo requiere; no diagnostica usuarios. |
-| Language reviewer | Revisa inglés/español y equivalencia conceptual. |
-| Visual reviewer | Valida imágenes, pasos, alt text y consistencia. |
-| Pilot coordinator | Registra ejecuciones y hallazgos. |
-| Publisher | Verifica gates y publica/retira. |
-| Admin | Gestiona permisos, categorías y políticas. |
+| Author | Create the brief and ActivityVersion draft. |
+| Education reviewer | Validates purpose, level, questions, and evidence. |
+| Subject specialist | Validates scientific, mathematical, or technical accuracy for the category. |
+| Safety reviewer | Validates hazards, controls, and adult-only steps. |
+| Development reviewer | Checks age appropriateness when the category requires it; does not diagnose users. |
+| Language reviewer | Reviews English, Spanish, and conceptual equivalence. |
+| Visual reviewer | Validates images, steps, alt text, and consistency. |
+| Pilot coordinator | Records pilot runs and findings. |
+| Publisher | Verifies gates and publishes or withdraws a version. |
+| Admin | Manages permissions, categories, and policies. |
 
-Una persona puede tener varios roles en etapas tempranas, pero cada decisión conserva el rol bajo el cual se tomó. Actividades de riesgo elevado pueden requerir separación entre autor y aprobador.
+A person may have several roles in early stages, but each decision retains the role under which it was made. High risk activities may require separation between author and approver.
 
-## 2.1 Matriz provisional de gates
+## 2.1 Provisional gate matrix
 
-| Categoría | Gates obligatorios |
+| Category | Mandatory Gates |
 |---|---|
-| Toda actividad | Author + Education + Safety + Language + Publisher |
-| Física/ingeniería/electricidad | Anteriores + Subject specialist técnico |
-| Química | Anteriores + profesional competente en química; C/D además revisión independiente de seguridad |
-| Biología/naturaleza | Anteriores + especialista cuando existan organismos, alergias, ingestión o impacto ambiental |
-| Matemáticas | Anteriores + reviewer de enseñanza de matemáticas para progresión o explicación nueva |
-| Motricidad/vida práctica | Anteriores + Development/Accessibility reviewer cuando se hagan afirmaciones de desarrollo o adaptaciones sensibles |
-| Actividad C/D | Anteriores + Safety reviewer independiente del autor y aprobación reforzada del Publisher |
+| Every activity | Author + Education + Safety + Language + Publisher |
+| Physics, engineering, or electricity | All previous gates + relevant technical specialist |
+| Chemistry | All previous gates + a competent chemistry professional; C/D also requires independent safety review |
+| Biology or nature | All previous gates + a specialist when organisms, allergies, ingestion, or environmental impact are involved |
+| Mathematics | All previous gates + a mathematics education reviewer for progression or a new explanation |
+| Motor skills or practical life | All previous gates + Development/Accessibility reviewer when sensitive developmental claims or adaptations are involved |
+| Level C/D activity | All previous gates + a Safety reviewer independent of the author and reinforced Publisher approval |
 
-Un psicólogo no es gate universal para todas las actividades. Se consulta cuando existen afirmaciones sobre desarrollo, conducta, accesibilidad o interacción familiar que exceden el diseño pedagógico ordinario.
+A psychologist is not a universal gate for all activities. It is consulted when there are statements about development, behavior, accessibility or family interaction that exceed the ordinary pedagogical design.
 
 ## 3. Workspace
 
-Cada ActivityVersion ofrece:
+Each ActivityVersion offers:
 
-- Estado, responsable y fecha objetivo.
-- Formulario basado en Activity Schema.
-- Validación inmediata de campos e invariantes.
-- Comentarios por campo/paso/recurso.
-- Sugerencias aceptables o rechazables.
-- Diff entre versiones.
-- Checklist de gates.
-- Registro de pilotos e incidentes.
-- Generación y QA de imágenes.
-- Vista previa inglés/español y modo familiar.
-- Historial de decisiones y auditoría.
+- Status, person in charge and target date.
+- Form based on Activity Schema.
+- Immediate validation of fields and invariants.
+- Comments by field/step/resource.
+- Acceptable or rejectable suggestions.
+- Diff between versions.
+- Gate checklist.
+- Record of pilots and incidents.
+- Generation and QA of images.
+- English/Spanish preview and family mode.
+- History of decisions and audit.
 
 ## 4. Workflow
 
@@ -60,7 +62,7 @@ Cada ActivityVersion ofrece:
 Draft
 → Content complete
 → Education review
-→ Subject review cuando aplica
+→ Subject review when applicable
 → Safety review
 → Visual/language review
 → Ready for pilot
@@ -68,43 +70,42 @@ Draft
 → Final review
 → Published
 ```
+A rejection returns the version to Draft/Revision with mandatory findings. A critical incident may withdraw a published version immediately.
 
-Un rechazo devuelve a Draft/Revision con hallazgo obligatorio. Un incidente crítico puede retirar una versión publicada inmediatamente.
+## 5. Editorial AI
 
-## 5. IA editorial
+You can:
 
-Puede:
+- Suggest missing fields.
+- Detect inconsistencies between materials and steps.
+- Propose questions, roles, translations and images.
+- Compare with Learning Graph and coverage.
+- Identify possible risks for review.
 
-- Sugerir campos faltantes.
-- Detectar inconsistencias entre materiales y pasos.
-- Proponer preguntas, roles, traducciones e imágenes.
-- Comparar con Learning Graph y cobertura.
-- Identificar posibles riesgos para revisión.
+You cannot:
 
-No puede:
+- Approve gates.
+- Publish.
+- Declare a safe activity.
+- Resolve a human comment as if you were the reviewer.
 
-- Aprobar gates.
-- Publicar.
-- Declarar una actividad segura.
-- Resolver un comentario humano como si fuera el revisor.
+## 6. Collaboration
 
-## 6. Colaboración
+- Mentions and assignment of reviewers.
+- Grouped, non-disruptive notifications.
+- Comment resolution.
+- Optimistic locking and conflict detection.
+- Review signature tied to the exact version.
+- Reviews invalidated when a related material field changes.
 
-- Menciones y asignación de revisores.
-- Notificaciones agrupadas, no adictivas.
-- Resolución de comentarios.
-- Locking optimista y detección de conflicto.
-- Firma de revisión con versión exacta.
-- Revisión invalidada cuando cambia un campo material relacionado.
+## 7. Requirements
 
-## 7. Requisitos
-
-- **OPS-001:** Toda aprobación referencia ActivityVersion exacta y rol del aprobador.
-- **OPS-002:** Cambios materiales invalidan reviews dependientes según reglas.
-- **OPS-003:** El publisher no puede omitir un gate requerido.
-- **OPS-004:** El retiro es inmediato para nuevas recomendaciones.
-- **OPS-005:** La plataforma conserva diff, comentarios y auditoría.
-- **OPS-006:** Inglés y español deben estar completos antes de publicar en ambos idiomas.
-- **OPS-007:** No se prioriza importación desde spreadsheet en el MVP editorial.
-- **OPS-008:** Los gates se determinan por categoría y riesgo, no por una lista idéntica para todas las actividades.
-- **OPS-009:** Una persona no puede autoaprobar una actividad C/D en el rol de seguridad.
+- **OPS-001:** All approval references exact ActivityVersion and approver's role.
+- **OPS-002:** Material changes invalidate dependent reviews according to rules.
+- **OPS-003:** The publisher cannot bypass a required gate.
+- **OPS-004:** Withdrawal is immediate for new recommendations.
+- **OPS-005:** The platform preserves diffs, comments, and an audit trail.
+- **OPS-006:** English and Spanish must be complete before publishing in both languages.
+- **OPS-007:** Import from spreadsheet is not prioritized in the editorial MVP.
+- **OPS-008:** Gates are determined by category and risk, not by an identical list for all activities.
+- **OPS-009:** A person cannot self-approve a C/D activity in the Safety reviewer role.

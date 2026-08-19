@@ -1,85 +1,87 @@
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/08-delivery/vertical-slices.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
+
 # Vertical slices
 
-**Estado:** Review  
-**Versión:** 0.1
+**Status:** Review
+**Version:** 0.1
 
-## VS-01 — Primera actividad publicada
+## VS-01 — First published activity
 
-Un adulto crea familia y dos Learners, abre una actividad publicada, revisa materiales y ve la guía.
+An authenticated adult creates a family and two Learners, opens a published activity, reviews materials, and views the immutable guide.
 
-Demuestra: identidad mínima, catálogo versionado y UI base.
+Demonstrates: minimal identity, family authorization, versioned catalog, and base UI.
 
-## VS-02 — Roles y objetivos
+## VS-02 — Roles and objectives
 
-La familia selecciona tres participantes; el sistema asigna roles significativos y un objetivo principal compatible a cada uno; el adulto puede intercambiarlos.
+The family selects three participants. The system derives a meaningful suggested contribution and compatible primary objective for each child. Changed participation is handled as an exception without negative evidence.
 
-Demuestra: Family Model, Activity Schema y motor de asignación.
+Demonstrates: Family Model, Activity Content Model, and deterministic assignment engine.
 
-## VS-03 — Sesión y cierre
+## VS-03 — Session and closure
 
-El adulto completa pasos, registra cambios reales y responde una valoración por niño en menos de 20 segundos.
+The adult completes steps, records actual participation changes, and answers one contextual assessment per child in less than 20 seconds.
 
-Demuestra: sesión, exposiciones, evidencia y UX de atención dividida.
+Demonstrates: session lifecycle, exposures, evidence, and divided-attention UX.
 
-## VS-04 — Learning Journey explicable
+## VS-04 — Explainable Learning Journey
 
-El adulto ve observaciones e inferencias prudentes, abre “¿Por qué?” y corrige una atribución por problema de herramienta.
+The adult sees cautious observations and inferences, opens **Why?**, and corrects an attribution affected by a tool problem.
 
-Demuestra: Learner Model, procedencia y corrección.
+Demonstrates: Learner Model, provenance, uncertainty, and correction history.
 
-## VS-05 — Recomendación semanal
+## VS-05 — Weekly recommendation
 
-El sistema crea un plan balanceado desde biblioteca, participantes, tiempo e inventario; el adulto sustituye una actividad.
+The system creates a balanced plan from the published library, participants, available time, and inventory; the adult replaces one activity.
 
-Demuestra: recomendación y planificación.
+Demonstrates: eligibility, explainable recommendation, and planning.
 
 ## VS-06 — Troubleshoot
 
-Durante un paso, el adulto describe una falla; el AI Companion usa la versión y paso para proponer verificaciones seguras.
+During a step, the adult describes a failure. The AI Companion uses the exact activity version and step to propose safe, bounded checks.
 
-Demuestra: orquestación IA y fallback sin generación libre.
+Demonstrates: AI orchestration, validated tools, and deterministic fallback without free-form activity generation.
 
-## VS-07 — Voz opcional
+## VS-07 — Optional voice
 
-El adulto dicta una observación para varios niños; el sistema estructura hechos y solicita confirmación solo donde hay ambigüedad.
+The adult dictates an observation for several children; the system structures facts and requests confirmation only where there is ambiguity.
 
-Demuestra: procesamiento temporal, atribución y retención.
+Demonstrates: temporary processing, attribution, confirmation, and retention.
 
-## VS-08 — Operación editorial
+## VS-08 — Editorial operation
 
-Un autor crea una versión, recibe revisiones, ejecuta piloto, publica y luego retira.
+An author creates a version, receives independent reviews, runs a pilot, publishes through required gates, and later retires it.
 
-Demuestra: workflow, permisos y catálogo.
+Demonstrates: workflow, permissions and catalog.
 
-## VS-09 — Paquete semanal offline
+## VS-09 — Offline weekly package
 
-El adulto descarga el plan, pierde conexión, completa una actividad y sincroniza valoraciones después sin duplicarlas.
+The adult downloads the plan, loses connectivity, completes an activity, and later synchronizes assessments without duplication or silent data loss.
 
-Demuestra: cache versionado, cifrado local, idempotencia y UX de estado.
+Demonstrates: versioned cache, local encryption, idempotence and stateful UX.
 
-## VS-10 — Generación y QA visual
+## VS-10 — Generation and visual QA
 
-El sistema genera candidatos para un paso, detecta inconsistencias, recibe aprobación humana y publica el asset con la ActivityVersion.
+The system generates candidates for a step, detects inconsistencies, receives human approval and publishes the asset with the ActivityVersion.
 
-Demuestra: pipeline multimodal, trazabilidad y gate editorial.
+Demonstrates: multimodal pipeline, traceability and editorial gate.
 
-## VS-11 — Portafolio privado
+## VS-11 — Private Portfolio
 
-Un adulto guarda un medio del proyecto, lo ve en familia y lo elimina sin afectar observaciones educativas.
+An adult saves project media to the private family portfolio, views it, and deletes it without affecting educational observations.
 
-Demuestra: consentimiento, aislamiento y retención de medios.
+Demonstrates: consent, isolation and media retention.
 
-## VS-12 — Comunidad moderada
+## VS-12 — Moderated Community
 
-Un adulto envía una imagen del portafolio, revisa privacidad, pasa moderación y la publica bajo una actividad; otro adulto la reporta y el equipo la retira.
+An adult submits a portfolio image, completes the privacy review, and sends it for moderation. After publication under an activity, another adult reports the post and the team removes it.
 
-Demuestra: UGC, moderación y separación de marketing.
+Demonstrates: UGC, moderation and marketing separation.
 
-## Definition of done por slice
+## Definition of done per slice
 
-- Requisitos enlazados.
-- Criterios de aceptación automatizados y/o de usabilidad.
-- Estados de error y permisos.
-- Telemetría minimizada.
-- Documentación actualizada.
-- Revisión de seguridad/privacidad cuando aplique.
+- Linked requirements and approved decisions.
+- Automated acceptance and/or usability criteria.
+- Error states and permissions.
+- Telemetry minimized.
+- Updated documentation.
+- Safety, security, and privacy review when applicable.

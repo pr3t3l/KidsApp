@@ -1,104 +1,106 @@
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/01-learning/evidence-model.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
+
 # SPEC-07 — Evidence Model
 
-**Estado:** Review  
-**Versión:** 0.2<br>
-**Propietario:** Producto/Pedagogía/Datos
+**Status:** Review
+**Version:** 0.2<br>
+**Owner:** Product/Pedagogy/Data
 
-## 1. Propósito
+## 1. Purpose
 
-Convertir feedback mínimo del adulto en observaciones útiles, manteniendo contexto, trazabilidad e incertidumbre.
+Convert minimal adult feedback into useful observations while preserving context, provenance, and uncertainty.
 
-## 2. Fuentes
+## 2. Sources
 
-1. **Automática:** actividad, versión, participantes, roles, objetivo principal y exposiciones previstas.
-2. **Valoración rápida:** una respuesta por niño sobre el objetivo principal.
-3. **Evaluar más:** valoraciones opcionales de objetivos secundarios.
-4. **Nota de voz o texto:** observación libre del adulto.
-5. **Ayuda durante la sesión:** hechos explícitos surgidos al resolver un problema, solo con confirmación apropiada.
+1. **Automatic:** activity, version, participants, roles, primary objective and planned exposures.
+2. **Quick assessment:** one response per child on the primary objective.
+3. **Evaluate more:** optional assessments of secondary objectives.
+4. **Voice or text note:** free adult observation.
+5. **Help during the session:** explicit facts arising when solving a problem, only with appropriate confirmation.
 
-La ausencia de feedback no es evidencia negativa.
+The absence of feedback is not negative evidence.
 
-## 3. Evaluación principal
+## 3. Primary assessment
 
-La pregunta debe nombrar la acción y el contexto:
+The question must name the action and the context:
 
-> Para Sofi, ¿qué tan independientemente pudo medir y marcar las piezas?
+> How independently did Sofi measure and mark the pieces during this activity?
 
-Escala:
+Scale:
 
-| Valor | Ancla |
+| Value | Anchor |
 |---|---|
-| 1 | No pudo hacerlo todavía, incluso con apoyo razonable. |
-| 2 | Lo logró con bastante ayuda. |
-| 3 | Lo logró con alguna ayuda. |
-| 4 | Lo logró casi sola. |
-| 5 | Lo hizo sola y con seguridad. |
+| 1 | Not yet, even with reasonable support. |
+| 2 | With a lot of help. |
+| 3 | With some help. |
+| 4 | Almost independently. |
+| 5 | Independently and safely. |
 
-La escala representa independencia contextual, no inteligencia ni valor personal.
+The scale represents contextual independence, not intelligence or personal worth.
 
-La interfaz no muestra el número aislado como si fuera una nota. Cada opción presenta su ancla breve —por ejemplo, `3 · Con alguna ayuda`— y la pregunta nombra la acción observada. No se promedian puntuaciones entre actividades ni se crea un puntaje global del niño. Cuando una acción adulta es obligatoria por seguridad, esa ayuda no reduce la valoración; se considera únicamente la independencia dentro de las acciones permitidas al niño.
+The interface never presents the number alone as if it were a grade. Each option includes its verbal anchor—for example, `3 · With some help`—and the question names the observed action. Ratings are not averaged across activities and never produce an overall child score. When adult action is mandatory for safety, that action does not lower the rating; assess independence only within the actions the child was allowed to perform.
 
-## 4. Presupuesto de interacción
+## 4. Interaction budget
 
-- Camino normal: un toque por niño.
-- Para tres niños, meta total inferior a 20 segundos.
-- Nota de voz: opcional y única para la sesión; puede mencionar varios niños.
-- “Evaluar más”: disponible, pero visualmente secundario.
-- Se puede omitir o completar después.
+- Normal path: one touch per child.
+- For three children, the total target is under 20 seconds.
+- Voice note: optional and shared by the session; it may mention several children.
+- “Evaluate more”: available, but visually secondary.
+- Can be skipped or completed later.
 
-## 5. Normalización de voz
+## 5. Voice normalization
 
-La IA puede proponer observaciones estructuradas desde una nota. Debe:
+AI can propose structured observations from a note. The system must:
 
-- Distinguir niño, habilidad, acción, apoyo y contexto.
-- Separar hechos de interpretación.
-- Marcar ambigüedad.
-- No inferir diagnósticos ni atributos sensibles.
-- Mostrar la transcripción para edición; solo pedir confirmación adicional cuando la atribución sea ambigua o el contenido pueda cambiar materialmente un perfil.
-- Respetar la política de retención del audio.
+- Distinguish child, skill, action, support, and context.
+- Separate facts from interpretation.
+- Mark ambiguity.
+- Avoid diagnoses and sensitive-attribute inference.
+- Show the transcript for editing; only ask for additional confirmation when attribution is ambiguous or content may materially change a profile.
+- Respect the audio retention policy.
 
-Ejemplo:
+Example:
 
-> “Mateo se frustró, pero descubrió que una base más ancha sostenía más peso.”
+> “Matthew became frustrated, but discovered that a wider base held more weight.”
 
-Observaciones propuestas:
+Proposed observations:
 
-- Persistió después de una dificultad durante ACT-X.
-- Relacionó ancho de base con estabilidad durante ACT-X.
+- Persisted after difficulty during ACT-X.
+- Related base width to stability during ACT-X.
 
-## 6. Estados
+## 6. States
 
-- `observed`: dato explícito del adulto o evento verificable.
-- `inferred`: interpretación propuesta por IA.
-- `confirmed`: adulto aceptó la interpretación.
-- `corrected`: adulto modificó contexto o significado.
-- `rejected`: no debe influir en el Learner Model.
+- `observed`: explicit data of the adult or verifiable event.
+- `inferred`: interpretation proposed by AI.
+- `confirmed`: adult accepted the interpretation.
+- `corrected`: adult modified context or meaning.
+- `rejected`: should not influence the Learner Model.
 
-## 7. Reglas de acumulación
+## 7. Accumulation rules
 
-- Una valoración aislada produce confianza inicial como máximo.
-- Contextos variados aumentan la fuerza de evidencia.
-- Señales contradictorias se conservan y requieren explicación.
-- Evidencia reciente pesa más para recomendación, sin borrar historia.
-- Exposición automática nunca se convierte en evidencia de independencia.
+- An isolated assessment produces initial confidence at most.
+- Varied contexts increase the strength of evidence.
+- Contradictory signals remain and require explanation.
+- Recent evidence weighs more for recommendation, without erasing history.
+- Automatic exposure never becomes evidence of independence.
 
-## 8. Requisitos
+## 8. Requirements
 
-- **EVD-001:** Registrar exposiciones automáticamente sin inferir capacidad.
-- **EVD-002:** Solicitar por defecto una valoración por niño y sesión.
-- **EVD-003:** Usar la escala contextual de independencia 1–5.
-- **EVD-004:** Permitir omitir sin penalización.
-- **EVD-005:** Ofrecer “Evaluar más” de forma opcional.
-- **EVD-006:** Aceptar una nota de voz o texto que cubra varios niños.
-- **EVD-007:** Toda observación debe enlazar sesión, fuente y contexto.
-- **EVD-008:** Toda inferencia debe enlazar evidencia y confianza.
-- **EVD-009:** El adulto puede corregir o rechazar.
-- **EVD-010:** La UI de cierre debe cumplir el presupuesto de 20 segundos en pruebas.
-- **EVD-011:** El audio se elimina tras transcripción exitosa o expiración; la transcripción editable expira a los 30 días y las observaciones estructuradas siguen su propia retención.
-- **EVD-012:** Una inferencia actualizada sin confirmación previa debe aparecer en el historial y admitir corrección posterior.
-- **EVD-013:** La UI presenta cada valor 1–5 con su ancla verbal y nunca como una calificación aislada, promedio global o comparación entre niños.
+- **EVD-001:** Record exposures automatically without inferring capacity.
+- **EVD-002:** Request by default one assessment per child and session.
+- **EVD-003:** Use the contextual independence scale 1–5.
+- **EVD-004:** Allow skipping without penalty.
+- **EVD-005:** Offer “Evaluate more” optionally.
+- **EVD-006:** Accept a voice or text note covering multiple children.
+- **EVD-007:** Every observation must link session, source and context.
+- **EVD-008:** Every inference must link evidence and confidence.
+- **EVD-009:** The adult can correct or reject.
+- **EVD-010:** The close-out UI must meet the 20-second budget in testing.
+- **EVD-011:** Audio is deleted upon successful transcription or expiration; the editable transcript expires after 30 days and the structured observations follow their own retention.
+- **EVD-012:** An updated inference without prior confirmation must appear in history and support subsequent correction.
+- **EVD-013:** The UI presents each value 1–5 with its verbal anchor and never as an isolated score, global average or comparison between children.
 
-## 9. Eventos mínimos
+## 9. Minimum domain events
 
 ```text
 SessionCompleted
@@ -111,11 +113,10 @@ ObservationConfirmed
 ObservationCorrected
 InferenceUpdated
 ```
+## 10. Borderline cases
 
-## 10. Casos límite
-
-- Si el niño no participó, no crear exposición ni evaluación.
-- Si cambió de rol, registrar el rol real confirmado al cierre.
-- Si falló el material, permitir marcar “problema de equipo”.
-- Si el adulto realizó la tarea, registrar apoyo alto sin concluir incapacidad.
-- Si varios niños colaboraron inseparablemente, registrar evidencia de grupo y no atribuir desempeño individual sin confirmación.
+- If the child did not participate, do not create an exposure or evaluation.
+- If you changed roles, record the actual role confirmed at closing.
+- If the material failed, allow marking “equipment problem”.
+- If the adult performed the task, record high support without concluding incapacity.
+- If several children collaborated inseparably, record group evidence and do not attribute individual performance without confirmation.

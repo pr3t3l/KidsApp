@@ -1,53 +1,55 @@
-# Arquitectura de información
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/04-ux/information-architecture.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Information architecture
 
-## Navegación primaria propuesta
+**Status:** Draft
+**Version:** 0.1
 
-1. **Hoy** — próxima actividad, preparación y participantes.
-2. **Plan** — semana navegable, detalle de cada actividad, sustituciones y compras consolidadas por sección.
-3. **Explorar** — biblioteca filtrable.
-4. **Journey** — proyectos, conceptos y observaciones por niño.
-5. **Familia** — miembros, inventario, preferencias y privacidad.
+## Proposed primary navigation
 
-Después del MVP:
+1. **Today** — next activity, preparation and participants.
+2. **Plan** — navigable week, details of each activity, substitutions and consolidated purchases by section.
+3. **Explore** — filterable library.
+4. **Journey** — projects, concepts and observations per child.
+5. **Family** — members, inventory, preferences and privacy.
 
-6. **Proyectos** — portafolio privado y acceso separado a comunidad moderada.
+After MVP:
 
-El AI Companion aparece como acción contextual, no como destino principal aislado.
+6. **Projects** — private portfolio and separate access to moderated community.
 
-La aplicación se diseña para inglés y español desde el sistema de contenido, no mediante cadenas incrustadas en pantallas.
+The AI ​​Companion appears as a contextual action, not as an isolated primary destination.
 
-## Contextos
+The application is designed for English and Spanish from the content system, not through strings embedded in screens.
 
-### Antes de la sesión
+## Contexts
 
-- Resumen educativo: propósito, áreas, conceptos, mecanismo y decisión infantil.
-- Materiales.
-- Preparación y seguridad.
-- Aportes sugeridos, focos principales y razones por niño.
-- Alternativas aprobadas.
+### Before the session
 
-### Durante la sesión
+- Educational summary: purpose, areas, concepts, mechanism and children's decision.
+- Materials.
+- Preparation and safety.
+- Suggested contributions, main focuses and reasons per child.
+- Approved alternatives.
 
-- Paso actual.
-- Propósito de la fase.
-- Acción adulta y guion sugerido.
-- Acción nominal de cada participante.
-- Decisión infantil y señales de observación.
-- Imagen.
-- Resultado esperado.
-- Ayuda contextual.
-- Pausa y reanudación.
+### During the session
 
-### Después
+- Current step.
+- Purpose of the phase.
+- Adult action and suggested script.
+- Nominal action of each participant.
+- Children's decision and observation signals.
+- Image.
+- Expected result.
+- Contextual help.
+- Pause and resume.
 
-- Evaluación rápida.
-- Resultado/proyecto.
-- Observaciones creadas.
-- Próxima oportunidad opcional.
+### After
 
-## Panel editorial separado
+- Quick evaluation.
+- Result/project.
+- Observations created.
+- Optional next opportunity.
 
-La autoría, revisión, pilotaje, publicación y retiro no deben mezclarse con la aplicación familiar. Comparten modelo de contenido, pero requieren navegación, roles y controles distintos.
+## Separate editorial panel
+
+Authoring, review, piloting, publication and retirement should not be mixed with the family application. They share a content model, but require different navigation, roles and controls.

@@ -1,76 +1,78 @@
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/01-learning/family-model.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
+
 # SPEC-03 — Family Model
 
-**Estado:** Draft  
-**Versión:** 0.1
+**Status:** Draft
+**Version:** 0.1
 
-## 1. Propósito
+## 1. Purpose
 
-Representar el contexto operativo necesario para que una recomendación funcione en la vida real, sin recopilar información familiar delicada que no mejore la actividad.
+Represent the operational context necessary for a recommendation to work in real life, without collecting sensitive family information that does not improve the activity.
 
-## 2. Componentes
+## 2. Components
 
-### Familia
+### Family
 
-- Identificador interno.
-- Idioma y unidades.
-- Zona horaria aproximada para planificación.
-- Preferencias de frecuencia y duración.
-- Presupuesto y tolerancia de preparación opcionales.
-- Tolerancia al desorden: baja, media, alta o desconocida.
-- Espacios disponibles: mesa, piso, exterior, agua, taller; todos opcionales.
-- Estado de suscripción y adultos autorizados, sin mezclarlo con Learner Models.
+- Internal identifier.
+- Language and units.
+- Approximate time zone for planning.
+- Frequency and duration preferences.
+- Optional budget and preparation tolerance.
+- Mess tolerance: low, medium, high, or unknown.
+- Available spaces: table, floor, exterior, water, workshop; all optional.
+- Subscription status and authorized adults, without mixing it with Learner Models.
 
-### Adultos
+### Adults
 
-- Alias o nombre visible.
-- Rol y permisos.
-- Comodidad declarada con herramientas, ciencia y electrónica.
-- Preferencias de instrucciones.
-- Disponibilidad aproximada.
+- Alias or visible name.
+- Role and permissions.
+- Stated comfort with tools, science and electronics.
+- Instruction preferences.
+- Approximate availability.
 
-### Niños
+### Children
 
-- Referencias a Learner Models separados.
-- Participación por sesión.
-- La familia puede crear los perfiles que necesite; la experiencia de sesión inicial se optimiza para 1–4 niños.
+- References to separate Learner Models.
+- Participation per session.
+- The family can create the profiles they need; the initial session experience is optimized for 1–4 children.
 
-### Inventario
+### Inventory
 
 - Material.
-- Cantidad aproximada opcional.
-- Estado: disponible, bajo, agotado, desconocido.
-- Reutilizable o consumible.
-- Herramienta restringida al adulto.
+- Approximate quantity optional.
+- Status: available, low, out of stock, unknown.
+- Reusable or consumable.
+- Tool restricted to adults.
 
-## 3. Contexto de una sesión
+## 3. Context of a session
 
-La recomendación usa un snapshot, no asume que el contexto familiar permanente aplica siempre:
+The recommendation uses a snapshot, it does not assume that the permanent family context always applies:
 
-- Participantes de hoy.
-- Tiempo disponible hoy.
-- Espacio.
-- Nivel de desorden aceptable.
-- Materiales disponibles.
-- Energía o preferencia declarada opcional: tranquila, activa, sin preferencia.
+- Today's participants.
+- Time available today.
+- Space.
+- Acceptable level of mess.
+- Materials available.
+- Energy or optional declared preference: calm, active, without preference.
 
-## 4. Múltiples niños
+## 4. Multiple children
 
-El sistema debe:
+The system must:
 
-- Recomendar un proyecto compartido cuando exista una combinación viable.
-- Dar a cada niño un rol significativo y un objetivo principal.
-- Evitar asignar sistemáticamente cuidado o enseñanza al niño mayor.
-- Permitir colaboración y turnos.
-- Señalar cuando una sola actividad no puede servir de forma segura al grupo.
-- Mantener un camino completo para un solo niño, necesario para familias y piloto.
+- Recommend a shared project when a viable combination exists.
+- Give each child a meaningful suggested contribution and one primary objective.
+- Avoid systematically assigning care or teaching to the older child.
+- Allow collaboration and record changed participation without negative evidence.
+- Point out when a single activity cannot safely serve the group.
+- Maintain a complete path for a single child, necessary for families and pilot.
 
-## 5. Requisitos
+## 5. Requirements
 
-- **LRN-201:** El sistema debe soportar varios Learner Models por familia.
-- **LRN-202:** El adulto elige participantes para cada sesión.
-- **LRN-203:** Las preferencias familiares son editables y pueden anularse para una sesión.
-- **LRN-204:** El inventario es aproximado; una recomendación debe confirmar materiales críticos.
-- **LRN-205:** Cada rol infantil debe tener una contribución real al proyecto.
-- **LRN-206:** La familia admite varios adultos autorizados y perfiles infantiles sin imponer un límite pequeño de producto.
-- **LRN-207:** El MVP valida asignación simultánea para 1–4 participantes infantiles.
-- **PRV-201:** No se solicitará estructura familiar, relaciones legales o ubicación precisa salvo necesidad aprobada.
+- **LRN-201:** The system must support several Learner Models per family.
+- **LRN-202:** The adult chooses participants for each session.
+- **LRN-203:** Family preferences are editable and can be overridden for a session.
+- **LRN-204:** Inventory is approximate; a recommendation must confirm critical materials.
+- **LRN-205:** Each child's suggested role must provide a meaningful contribution to the project.
+- **LRN-206:** Family supports multiple authorized adults and child profiles without imposing a small product limit.
+- **LRN-207:** The MVP validates simultaneous assignment for 1–4 child participants.
+- **PRV-201:** Family structure, legal relationships or precise location will not be requested unless approved.

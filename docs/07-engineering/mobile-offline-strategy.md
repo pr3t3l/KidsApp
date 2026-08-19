@@ -1,64 +1,66 @@
-# Estrategia móvil y offline
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/07-engineering/mobile-offline-strategy.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Mobile and offline strategy
 
-## Decisión
+**Status:** Draft
+**Version:** 0.1
 
-La aplicación será online-first y offline-friendly. No intentará ejecutar recomendación o IA completamente offline en el MVP, pero una actividad ya planificada debe continuar aunque se pierda conexión.
+## Proposed direction
 
-## Requiere conexión
+The application is online-first and offline-friendly. Recommendation and AI do not run fully offline in the MVP, but an already downloaded activity continues when connectivity is lost.
 
-- Crear/invitar adultos y verificar permisos.
-- Generar o recalcular planes.
-- AI Companion y procesamiento de voz/foto.
-- Publicar o moderar comunidad.
-- Sincronizar Learner Models entre dispositivos.
-- Descargar contenido nuevo o retirado.
-- Verificar entitlement cuando lo requiera la plataforma.
+## Requires connection
 
-## Disponible offline después de descarga
+- Create/invite adults and check permissions.
+- Generate or recalculate plans.
+- AI Companion and voice/photo processing.
+- Publish or moderate community.
+- Synchronize Learner Models between devices.
+- Download new or retired content.
+- Verify entitlement when required by the platform.
 
-- Agenda semanal.
-- ActivityVersion asignada.
-- Materiales, preparación y seguridad.
-- Roles y objetivos confirmados.
-- Pasos e imágenes.
-- Progreso de sesión.
-- Valoraciones y notas de texto pendientes de sincronizar.
+## Available offline after download
 
-La voz puede grabarse offline solo si existe consentimiento y política clara, pero se recomienda deshabilitar envío/dictado hasta recuperar conexión en el MVP para evitar audio retenido indefinidamente.
+- Weekly plan.
+- Exact assigned ActivityVersion.
+- Materials, preparation, and safety controls.
+- Confirmed roles and objectives.
+- Steps and images.
+- Session progress.
+- Ratings and text notes pending synchronization.
+
+Offline voice recording requires explicit consent and a defined deletion policy. For the MVP, disable voice capture until connectivity returns so audio cannot remain locally without a bounded processing path.
 
 ## Offline pack
 
-Contenido:
+Content:
 
-- Manifest con versión y hash.
-- Datos mínimos de participantes/assignments.
-- Traducciones elegidas.
-- Recursos visuales optimizados.
-- Restricciones y adaptaciones previamente elegidas.
-- Fecha de descarga/expiración.
+- Manifest with version and hash.
+- Minimum data on participants/assignments.
+- Required localized bundles.
+- Optimized visual resources.
+- Previously chosen restrictions and adaptations.
+- Download/expiration date.
 
-No contiene todo el historial del Learner Model ni medios privados innecesarios.
+It does not contain all Learner Model history or unnecessary private media.
 
-## Sincronización
+## Sync
 
-- Cola local cifrada.
-- Eventos idempotentes con identificadores de cliente.
-- Resolución explícita de conflictos de rol, cierre y corrección.
-- El servidor valida permisos e invariantes al recibir.
-- Una versión retirada descargada muestra bloqueo al recuperar conexión; la política de emergencia offline se definirá con seguridad.
+- Encrypted local queue.
+- Idempotent events with client identifiers.
+- Explicit resolution of assignment, close-out, and correction conflicts.
+- The server validates permissions and invariants upon receipt.
+- When a downloaded version has been retired, reconnection shows a clear warning and applies the documented retirement policy. The exact emergency behavior must be approved before production.
 
-## Suscripción
+## Subscription
 
-No se diseña una regla artificial de “conectarse una vez al mes”. El acceso usa recibos/entitlements de tienda y backend con un período de gracia configurable. Una actividad descargada no debe detenerse en medio de una sesión por una verificación fallida temporal.
+An artificial “connect once a month” rule is not designed. Access uses store and backend receipts/entitlements with a configurable grace period. A downloaded activity should not stop in the middle of a session because of a temporary failed check.
 
-## Requisitos
+## Requirements
 
-- **OFF-001:** Una sesión descargada continúa sin red.
-- **OFF-002:** Los datos locales sensibles se cifran mediante capacidades seguras del dispositivo.
-- **OFF-003:** La sincronización es idempotente y auditable.
-- **OFF-004:** El usuario ve qué está disponible y qué está pendiente.
-- **OFF-005:** La aplicación no promete IA ni comunidad offline.
-- **OFF-006:** Una interrupción de entitlement no corta una sesión en progreso.
+- **OFF-001:** A downloaded session continues without a network.
+- **OFF-002:** Sensitive local data is encrypted using secure capabilities of the device.
+- **OFF-003:** Synchronization is idempotent and auditable.
+- **OFF-004:** The user sees what is available and what is pending.
+- **OFF-005:** The application does not promise AI or community features while offline.
+- **OFF-006:** An entitlement interrupt does not break a session in progress.

@@ -1,127 +1,121 @@
-# Journeys del producto
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/03-product/journeys.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Product journeys
 
-## J-01 — Primera actividad
+**Status:** Draft
+**Version:** 0.1
+
+## J-01 — First activity
 
 ```text
-Crear familia
-→ añadir adulto y niños
-→ indicar tiempo/materiales mínimos
-→ recibir actividad publicada
-→ entender propósito y mapa educativo
-→ revisar foco y aporte sugerido por niño
-→ revisar preparación y seguridad
-→ ejecutar guía de facilitación
-→ evaluar un objetivo por niño
-→ ver qué se registró
+Create family
+→ add adult and children
+→ specify minimum time/materials
+→ receive published activity
+→ understand the purpose and learning map
+→ review the focus and suggested contribution for each child
+→ review preparation and safety
+→ run the facilitation guide
+→ assess one objective per child
+→ see what was recorded
 ```
+Result: the adult completes the value without setting up an exhaustive profile.
 
-Resultado: el adulto completa valor sin configurar un perfil exhaustivo.
-
-## J-02 — Plan semanal
+## J-02 — Weekly plan
 
 ```text
-Confirmar participantes y disponibilidad
-→ sistema propone actividades balanceadas
-→ adulto puede abrir el detalle completo de cada día
-→ adulto revisa materiales y sustituye días
-→ lista de compras consolidada por sección de tienda
-→ consumibles se suman y herramientas reutilizables se cuentan una vez
-→ recordatorio opcional
-→ actividades quedan disponibles
+Confirm participants and availability
+→ system proposes balanced activities
+→ adult can open each day’s full detail
+→ adult reviews materials and replaces days
+→ shopping list consolidated by store section
+→ consumables are added and reusable tools are counted once
+→ optional reminder
+→ activities become available
 ```
+Result: the family knows what they need before the week begins.
 
-Resultado: la familia sabe qué necesita antes de comenzar la semana.
-
-## J-03 — Actividad con tres niños
+## J-03 — Activity with three children
 
 ```text
-Seleccionar participantes
-→ obtener proyecto compartido
-→ ver foco, aporte y objetivo principal por niño
-→ iniciar
-→ adulto sigue guion y cada niño recibe una acción nombrada
-→ ajustar participación solo si la dinámica real cambia
-→ cerrar con tres valoraciones
-→ nota grupal opcional
+Select participants
+→ receive shared project
+→ see the focus, contribution and primary objective for each child
+→ start
+→ adult follows the script and each child receives a named action
+→ adjust participation only when the actual dynamic changes
+→ close with three ratings
+→ optional group note
 ```
+Result: a single project produces differentiated challenges without nine mandatory questions.
 
-Resultado: un solo proyecto produce retos diferenciados sin nueve preguntas obligatorias.
-
-## J-04 — “No funciona”
+## J-04 — “It doesn't work”
 
 ```text
-Abrir AI Companion desde paso actual
-→ describir o enviar foto opcional
-→ IA usa actividad/versión/paso/contexto
-→ identifica causas probables
-→ propone corrección segura o detenerse
-→ usuario confirma resultado
+Open AI Companion from the current step
+→ describe or optionally send a photo
+→ AI uses activity/version/step/context
+→ identifies likely causes
+→ proposes a safe correction or stopping
+→ user confirms the outcome
 ```
+Result: contextual help without the adult repeating the entire configuration.
 
-Resultado: ayuda contextual sin que el adulto repita toda la configuración.
-
-## J-05 — “Está muy fácil/difícil”
+## J-05 — “It is very easy/difficult”
 
 ```text
-Abrir Ayuda con este paso
-→ elegir el problema observable
-→ sistema selecciona apoyo publicado
-→ muestra qué cambia, impacto, límite y punto de reanudación
-→ adulto acepta
-→ sesión conserva ambos estados
+Open Help with this step
+→ choose the observable problem
+→ system selects published support
+→ shows what changes, impact, limit, and resumption point
+→ adult accepts
+→ session retains both states
 ```
-
-## J-06 — Comprender progreso
+## J-06 — Understanding Progress
 
 ```text
-Abrir Learning Journey
-→ ver proyectos y conceptos explorados
-→ ver inferencias por habilidad con confianza
-→ abrir “¿Por qué?”
-→ revisar evidencia
-→ corregir o eliminar
-→ ver oportunidades siguientes
+Open Learning Journey
+→ see explored projects and concepts
+→ see skill inferences with confidence
+→ open “Why?”
+→ review evidence
+→ correct or delete
+→ see next opportunities
 ```
-
-## J-07 — Gestionar privacidad
+## J-07 — Manage privacy
 
 ```text
-Abrir controles familiares
-→ revisar datos por miembro
-→ configurar retención opcional
-→ exportar
-→ eliminar observación, medio, perfil o familia
-→ recibir confirmación clara
+Open family controls
+→ review data by member
+→ configure optional retention
+→ export
+→ delete an observation, media item, profile, or family
+→ receive clear confirmation
 ```
-
-## J-08 — Guardar y compartir un proyecto
+## J-08 — Save and share a project
 
 ```text
-Terminar actividad
-→ agregar foto/video opcional al portafolio privado
-→ elegir “Compartir con la comunidad” por separado
-→ revisar recorte, metadatos y visibilidad
-→ aceptar reglas de publicación
-→ enviar a moderación
-→ aprobar/rechazar con explicación
-→ publicar bajo la actividad correspondiente
+Finish activity
+→ add an optional photo/video to the private portfolio
+→ separately choose “Share with the community”
+→ review crop, metadata, and visibility
+→ accept publication rules
+→ submit for moderation
+→ approve/reject with an explanation
+→ publish under the corresponding activity
 ```
+Result: The family preserves private memories without automatically converting them to public content.
 
-Resultado: la familia conserva recuerdos privados sin convertirlos automáticamente en contenido público.
-
-## J-09 — Crear y aprobar una actividad
+## J-09 — Create and approve an activity
 
 ```text
-Autor crea ActivityVersion draft
-→ IA ayuda a completar campos/imágenes
-→ colaborador comenta o propone cambio
-→ revisor pedagógico decide
-→ especialista de seguridad decide
-→ se ejecuta piloto
-→ visual QA y traducción
-→ publisher publica
-→ monitoreo y posible retiro
+Author creates a draft ActivityVersion
+→ AI helps complete fields/images
+→ collaborator comments or proposes a change
+→ educational reviewer decides
+→ safety specialist decides
+→ pilot is run
+→ visual QA and translation
+→ publisher publishes
+→ monitoring and possible retirement
 ```

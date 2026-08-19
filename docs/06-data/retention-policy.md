@@ -1,40 +1,42 @@
-# Política conceptual de retención
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/06-data/retention-policy.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft — requiere validación legal y técnica  
-**Versión:** 0.1
+# Conceptual retention policy
 
-## Principios
+**Status:** Draft — requires legal and technical validation
+**Version:** 0.1
 
-- Minimización por defecto.
-- Propósito visible.
-- Retención limitada.
-- Eliminación verificable.
-- Elección adulta para portafolio.
+## Principles
 
-## Propuesta inicial
+- Minimization by default.
+- Visible purpose.
+- Limited retention.
+- Verifiable deletion.
+- Adult choice for portfolio.
 
-| Dato | Predeterminado |
+## Initial proposal
+
+| Data | Default |
 |---|---|
-| Perfil mínimo | Mientras la cuenta/perfil exista |
-| Sesiones y exposiciones | Mientras el perfil exista o hasta eliminación |
-| Observaciones confirmadas | Mientras aporten al Learner Model; editables/eliminables |
-| Inferencias | Recalculables; eliminar con evidencia/perfil |
-| Audio de nota | Eliminar tras transcripción exitosa y sincronizada o al vencer un máximo operativo corto, propuesto en 24 horas |
-| Transcripción de nota | Editable hasta 30 días; luego eliminar y conservar solo observaciones estructuradas necesarias |
-| Foto de troubleshooting | Procesamiento temporal; no conservar por defecto |
-| Foto de proyecto | Solo con “Guardar en portafolio” explícito |
-| Derivado comunitario | Mientras la publicación exista; separado del original privado y sujeto a retirada |
-| Consentimiento/licencia de marketing | Según alcance y vigencia explícitos; separado de comunidad |
-| Logs técnicos | Plazo mínimo operativo, con reducción de contenido personal |
+| Minimum profile | As long as the account/profile exists |
+| Sessions and exposures | As long as the profile exists or until deletion |
+| Confirmed observations | As long as they contribute to the Learner Model; editable/deletable |
+| Inferences | Recalculatable; delete with evidence/profile |
+| Voice-note audio | Delete after successful synchronized transcription or after a short operational maximum, proposed at 24 hours |
+| Note transcription | Editable up to 30 days; then delete and keep only necessary structured observations |
+| Troubleshooting photo | Temporary processing; do not retain by default |
+| Project photo | Only with explicit “Save to Portfolio” |
+| Community derivative | As long as the publication exists; separated from the private original and subject to withdrawal |
+| Marketing Consent/License | According to explicit scope and validity; separated from community |
+| Technical logs | Minimum operational period, with reduction of personal content |
 
-Los plazos exactos dependen de mercado, proveedores y arquitectura.
+The exact deadlines depend on the market, suppliers and architecture.
 
-## Requisitos
+## Requirements
 
-- **PRV-101:** Cada medio tiene propósito, propietario y expiración.
-- **PRV-102:** La retención opcional requiere acción explícita.
-- **PRV-103:** El adulto puede eliminar observaciones sin borrar necesariamente la sesión.
-- **PRV-104:** Eliminar un Learner inicia eliminación de sus datos y derivados.
-- **PRV-105:** Los entornos de prueba no usan datos infantiles reales salvo protocolo aprobado.
-- **PRV-106:** Borrar una transcripción no elimina observaciones confirmadas, pero el adulto puede eliminarlas por separado.
-- **PRV-107:** Una copia comunitaria se retira sin asumir que el adulto desea borrar el original privado.
+- **PRV-101:** Each media asset has a purpose, owner, and expiration.
+- **PRV-102:** Optional retention requires explicit action.
+- **PRV-103:** The adult can delete observations without necessarily deleting the session.
+- **PRV-104:** Deleting a Learner initiates deletion of its data and derivatives.
+- **PRV-105:** Test environments do not use real child data unless approved protocol.
+- **PRV-106:** Deleting a transcript does not delete confirmed observations, but the adult can delete them separately.
+- **PRV-107:** A community copy is removed without assuming that the adult wishes to delete the private original.

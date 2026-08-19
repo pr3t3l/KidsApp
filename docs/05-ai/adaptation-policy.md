@@ -1,47 +1,49 @@
-# Política de adaptación
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/05-ai/adaptation-policy.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Review  
-**Versión:** 0.1
+# Adaptation Policy
 
-## Capas
+**Status:** Review
+**Version:** 0.1
 
-### Permitido automáticamente
+## Layers
 
-- Cambiar lenguaje o tema narrativo.
-- Elegir una variante visual o explicación publicada.
-- Asignar roles compatibles.
-- Reducir número de repeticiones.
-- Elegir una extensión o simplificación aprobada.
-- Cambiar duración dentro de rangos documentados.
+### Automatically allowed
 
-### Requiere confirmación adulta
+- Change language or narrative theme.
+- Choose a visual variant or published explanation.
+- Assign compatible roles.
+- Reduce number of repetitions.
+- Choose an approved extension or simplification.
+- Change duration within documented ranges.
 
-- Sustitución aprobada de material.
-- Cambio de rol durante la sesión.
-- Guardar una observación derivada de voz o foto.
-- Conservar un medio.
-- Cambiar objetivo principal después de comenzar.
+### Adult confirmation required
 
-### Prohibido para entrega automática
+- Approved replacement of material.
+- Role change during the session.
+- Save an observation derived from voice or photo.
+- Retain a media item.
+- Change primary objective after starting.
 
-- Agregar llama, calor, presión, electricidad de red o sustancias no listadas.
-- Sustituir materiales sin revisión.
-- Eliminar controles de seguridad.
-- Convertir un paso adulto en paso infantil.
-- Inventar una reacción o mecanismo no probado.
-- Publicar una variante generada por IA.
+### Prohibited for automatic delivery
 
-## Registro
+- Add flame, heat, pressure, mains electricity or unlisted substances.
+- Replace materials without review.
+- Eliminate safety controls.
+- Convert an adult step into a child step.
+- Invent an unproven reaction or mechanism.
+- Publish an AI-generated variant.
 
-Cada adaptación conserva:
+## Audit record
 
-- Versión base.
-- Regla u opción utilizada.
-- Solicitud que la originó.
-- Actor que confirmó.
-- Cambios visibles.
-- Impacto en objetivos/exposiciones.
+Each adaptation preserves:
 
-## Regla de escape
+- Base version.
+- Rule or option used.
+- Request that initiated it.
+- Actor who confirmed.
+- Visible changes.
+- Impact on objectives/exposures.
 
-Cuando no existe una adaptación validada, la respuesta correcta puede ser: detener, guardar para después, seleccionar otra actividad o crear una propuesta editorial que no se entrega en vivo.
+## Escape rule
+
+When there is no validated adaptation, the correct response may be: stop, save for later, select another activity, or create an editorial proposal that is not delivered live.

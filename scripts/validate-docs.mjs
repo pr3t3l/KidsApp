@@ -21,9 +21,42 @@ function relative(absolutePath) {
 const markdownFiles = walk(root);
 const errors = [];
 
+const canonicalEnglishRoots = [
+  "AGENTS.md",
+  "README.md",
+  "docs",
+  "schemas/README.md",
+  "prototypes/family-mobile-v0.1/README.md",
+];
+
+function isCanonicalEnglishFile(file) {
+  const name = relative(file);
+  return canonicalEnglishRoots.some((candidate) =>
+    candidate.endsWith(".md") ? name === candidate : name.startsWith(`${candidate}/`),
+  );
+}
+
+const knownTranslationRegressions = [
+  ["unspaced Markdown heading", /^#{1,6}[^ #\r\n]/m],
+  ["two table rows joined together", / \|\| /],
+  ["table delimiter joined to its first row", /^\|[-:| ]+\|\|/m],
+  ["two Markdown list items joined together", /\.- (?=\*\*|[A-Z`])/],
+  ["machine-translated exposure terminology", /\b(?:exhibition|exhibitions|exhibits)\b/i],
+  ["obsolete Evaluate more wording", /\b(?:Rate More|Evaluate further)\b/i],
+  ["machine-translated family UI wording", /\bfamiliar (?:UI|interface|application|app|instructions)\b/i],
+  ["machine-translated media wording", /\btemporary means\b/i],
+  ["known residual Spanish UI copy", /\b(?:Entender la actividad|Ajustar ritmo|Necesitan terminar|todos los contextos|privado\/autenticado)\b/i],
+];
+
 for (const file of markdownFiles) {
   const contents = fs.readFileSync(file, "utf8");
   const links = contents.matchAll(/\[[^\]]*\]\(([^)]+)\)/g);
+
+  if (isCanonicalEnglishFile(file)) {
+    for (const [label, pattern] of knownTranslationRegressions) {
+      if (pattern.test(contents)) errors.push(`${relative(file)}: ${label}`);
+    }
+  }
 
   for (const match of links) {
     let target = match[1].trim();
@@ -57,8 +90,8 @@ const pilotActivities = [
 ];
 
 const requiredActivitySignals = [
-  ["draft status", /\*\*Estado(?: \/ Status)?:\*\* Draft/i],
-  ["Spanish locale", /es-US/],
+  ["draft status", /\*\*Status(?: \/ Status)?:\*\* Draft/i],
+  ["Spanish localization", /es-US/],
   ["English locale", /en-US/],
   ["ages 5–10", /5[–-]10/],
   ["one primary objective", /objetivo principal|primary objective/i],
@@ -68,7 +101,7 @@ const requiredActivitySignals = [
   ["safety controls", /seguridad|safety|riesgos|risks/i],
   ["observation close-out", /observaci[oó]n|observation/i],
   ["visual briefs", /briefs? visual|visual briefs?/i],
-  ["editorial gates", /gates?(?: editoriales?| y plan)|editorial gates?|GATE-[0-9]{2}/i],
+  ["editorial gates", /gates?(?: editorial(?:es)?| and plan)|editorial gates?|GATE-[0-9]{2}/i],
 ];
 
 for (const activityPath of pilotActivities) {

@@ -1,71 +1,74 @@
-# Registro de decisiones
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/08-delivery/decision-log.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Active  
-**Versión:** 0.3
+# Decision Log
 
-| ID | Decisión | Estado | Motivo |
+**Status:** Active
+**Version:** 0.4
+
+| ID | Decision | Status | Rationale |
 |---|---|---|---|
-| DEC-001 | Usar una biblioteca validada como origen del núcleo de actividades. | Aprobada | Consistencia, seguridad y calidad. |
-| DEC-002 | La IA selecciona actividades y adapta roles dentro de opciones aprobadas. | Aprobada | Personalización sin improvisación de riesgo. |
-| DEC-003 | Mantener Learner Models separados por niño y Family Model compartido. | Aprobada | Soporte de múltiples niños sin mezclar progreso. |
-| DEC-004 | Asignar un objetivo principal por niño/sesión. | Aprobada | Señal clara y baja carga. |
-| DEC-005 | Registrar las demás habilidades como exposición. | Aprobada | Exposición no equivale a desempeño. |
-| DEC-006 | Ofrecer “Evaluar más” de forma opcional. | Aprobada | Permite detalle sin convertir cierre en encuesta. |
-| DEC-007 | Usar escala 1–5 de independencia contextual; la UI muestra cada número con su ancla verbal y nunca como nota global. | Aprobada | Fácil de responder y menos valorativa cuando la pregunta nombra una acción concreta. |
-| DEC-008 | Permitir una observación adicional por voz. | Aprobada | Captura matices con poca fricción. |
-| DEC-009 | Guardar observaciones, no etiquetas. | Aprobada | Evita generalizaciones rígidas. |
-| DEC-010 | Usar modelo general + memoria estructurada, no entrenar una IA por niño. | Aprobada | Control, auditoría, corrección y eliminación. |
-| DEC-011 | Procesar fotos/audio temporalmente por defecto. | Propuesta | Minimización de datos infantiles. |
-| DEC-012 | Empezar con un monolito modular. | Propuesta | Simplicidad para piloto; depende del stack. |
-| DEC-013 | Usar español como idioma fuente de specs v0.x. | Propuesta operativa | Idioma de trabajo actual. |
-| DEC-014 | Lanzar inicialmente en Estados Unidos, en inglés y español, para edades 5–10. | Aprobada | Definición de mercado y contenido. |
-| DEC-015 | Construir una aplicación móvil iOS/Android. | Aprobada | Contexto principal de uso familiar. |
-| DEC-016 | Usar suscripción mensual o anual pagada por un adulto, con varios adultos por familia. | Aprobada | Modelo comercial y colaboración familiar. |
-| DEC-017 | Planificar por minutos disponibles; la cantidad de actividades es derivada. | Aprobada | El tiempo familiar importa más que contar actividades. |
-| DEC-018 | Optimizar sesiones MVP para 1–4 niños. | Propuesta | Cubre piloto individual y grupos familiares manejables. |
-| DEC-019 | Hacer la app online-first y offline-friendly mediante paquetes semanales. | Propuesta | La ejecución no debe depender de conectividad continua. |
-| DEC-020 | Usar gateway agnóstico de proveedores de IA con deployments aprobados por tipo de dato. | Aprobada | Portabilidad, costo y gobernanza. |
-| DEC-021 | Generar imágenes con IA, con QA automático y aprobación humana. | Aprobada | Escala editorial sin sacrificar coherencia. |
-| DEC-022 | Separar portafolio privado, comunidad y licencia de marketing. | Propuesta | Privacidad, consentimiento y UGC. |
-| DEC-023 | Construir un workspace editorial multidisciplinario con gates independientes. | Aprobada | Escalamiento de calidad y seguridad. |
-| DEC-024 | Conservar transcripción editable hasta 30 días y observaciones estructuradas según utilidad. | Propuesta | Minimización con capacidad de corrección. |
-| DEC-025 | Permitir llama, vidrio o presión solo como categoría adulta especial posterior al piloto básico. | Propuesta | Conservar valor pedagógico con gate reforzado. |
-| DEC-026 | Dirigir la primera interfaz al adulto; el niño participa fuera de pantalla. | Aprobada | Reduce datos infantiles y mantiene foco en actividad física. |
-| DEC-027 | Usar fotorealismo como referencia física, diagramas para instrucción e ilustración infantil como tercera opción. | Aprobada | Claridad y coherencia visual. |
-| DEC-028 | Vender móvil por App Store/Google Play y reservar Stripe para web futura. | Aprobada | Cumplir canales de distribución y mantener opción web. |
-| DEC-029 | Ofrecer prueba gratuita comercial de siete días, separada del piloto. | Aprobada | Decisión comercial inicial. |
-| DEC-030 | Cancelación autoservicio por canal de origen, efectiva al fin del período vigente. | Aprobada | Estándar claro y no obstructivo. |
-| DEC-031 | Limitar comunidad a adultos autenticados dentro de la aplicación. | Aprobada | Privacidad y control. |
-| DEC-032 | Un tag social externo inicia solicitud de permiso, pero no autoriza reutilización. | Aprobada | Separación de publicación y licencia. |
-| DEC-033 | Determinar gates editoriales por categoría/riesgo; psicología no es revisión universal. | Aprobada | Usar especialidad donde aporta valor real. |
-| DEC-034 | Aprobar 1–4 niños por sesión y perfiles familiares sin límite comercial pequeño. | Aprobada | Cobertura del piloto y flexibilidad familiar. |
-| DEC-035 | Aceptar conceptualmente las tres actividades de calibración: puente de papel, clasificación con semillas y probador de conductividad. | Aprobada | Representan el aprendizaje práctico deseado; la aceptación conceptual no sustituye gates de seguridad, pedagogía o piloto. |
-| DEC-036 | Tratar los roles infantiles como contribuciones propuestas, compatibles y flexibles: el adulto puede intercambiarlos y el niño puede aceptar, cambiar, combinar, observar o dejar de participar sin señal negativa. | Aprobada | Evitar rigidez, jerarquías entre hermanos y conflicto innecesario; validar la respuesta real de los niños durante el piloto. |
-| DEC-037 | Permitir que el adulto elija si una publicación comunitaria muestra solo proyecto/manos o incluye un niño reconocible, con opción segura por defecto, confirmación explícita, moderación y retirada. | Aprobada | Conservar agencia parental sin transferirle las responsabilidades de privacidad y operación de la plataforma. |
-| DEC-038 | Planear tanto aplicación web familiar como portal administrativo/editorial; decidir su secuencia en el roadmap. | Aprobada | Ambos recorridos aportan valor, pero no tienen que construirse simultáneamente. |
-| DEC-039 | No diseñar variantes educativas por estado; usar un baseline nacional protector y una matriz legal de aplicabilidad basada en los estados reales del piloto y lanzamiento. | Aprobada | Los estados no deben fragmentar la experiencia pedagógica, pero sí afectan obligaciones de privacidad y distribución. |
-| DEC-040 | Investigar una configuración del probador de conductividad que permita montaje infantil significativo con el circuito desenergizado; las pilas, la inspección, la autorización para energizar y cualquier paso no aprobado permanecen bajo control adulto. | Propuesta | Preservar el valor de construir el circuito sin relajar el gate eléctrico/mecánico ni asignar acciones infantiles antes de revisión experta. |
-| DEC-041 | Usar la dirección visual “Pocket Workshop” del estudio anterior como base del prototipo móvil familiar, manteniéndola explícitamente como identidad provisional y separando la app familiar del workspace editorial. | Aprobada | Permite validar experiencia y coherencia visual sin aprobar todavía nombre, marca comercial ni arquitectura de implementación. |
-| DEC-042 | Presentar la asignación familiar como “foco de aprendizaje” y “aporte sugerido para [niño]”, sin controles de intercambio de rol en el camino normal; conservar roles/mappings como modelo interno y participación distinta como excepción. | Aprobada | Reduce configuración y confusión, mantiene personalización por edad/evidencia y conserva agencia cuando la dinámica real cambia. |
-| DEC-043 | Entregar cada actividad mediante un resumen educativo previo y fases con acción adulta, guion literal, acciones nominales de todos los niños, decisión infantil, observación, resultado y ayuda contextual específica. | Aprobada | Usa la riqueza de la ActivityVersion sin trasladar el documento completo ni dejar al adulto improvisando la mediación pedagógica. |
-| DEC-044 | Escribir y validar la historia causal de la experiencia antes de derivar pasos o pantallas; cuando sea físicamente viable, cada niño completa el ciclo esencial y el foco solo determina qué observar. | Aprobada | Evita secuencias desconectadas, materiales sin función y división excesiva del aprendizaje entre niños. |
-| DEC-045 | Incorporar continuidad narrativa, función de materiales, ciclo por participante y calibración de objetivos como campos obligatorios del contrato `ActivityVersion` v0.1 mientras siga en Draft; congelar compatibilidad al iniciar el primer consumidor de producción. | Aprobada | El schema aún no tiene consumidores de producción y es preferible cerrar ahora ambigüedades que perpetuar un contrato incompleto. |
-| DEC-046 | Tratar la meta de cierre inferior a 20 segundos como una métrica interna: no mostrar cronómetro ni cuenta regresiva al adulto. | Aprobada | La velocidad se valida sin presionar ni convertir una observación contextual en prueba cronometrada. |
-| DEC-047 | Usar la promesa editorial de la `ActivityVersion` como mensaje principal; la participación individual se explica después, sin reemplazar el propósito de la actividad. | Aprobada | Mantiene coherencia entre catálogo, preparación y experiencia real y evita que una regla operativa opaque el valor educativo. |
-| DEC-048 | Ejecutar primero un founder pilot de cinco días con Sofía: dos actividades Draft existentes y tres candidatos de bajo riesgo; mantener `ACT-0003` fuera de la ejecución infantil hasta completar su gate técnico. | Aprobada | Permite comprar y probar una semana completa sin presentar contenido no validado como publicado ni improvisar el circuito eléctrico. |
-| DEC-049 | Hacer navegable cada actividad del plan y derivar una lista de compras semanal por sección: sumar consumibles repetidos, usar el máximo para herramientas reutilizables y mostrar siempre la procedencia por día. | Aprobada | Evita tarjetas sin salida y cálculos manuales, sin inflar compras de objetos que pueden reutilizarse. |
-| DEC-050 | Publicar el prototipo del founder pilot como PWA estática instalable, con cache del shell y persistencia exclusivamente local; usar GitHub Pages público solo con fixtures para la prueba de la fundadora y pasar a hosting privado/autenticado antes de invitar familias piloto. | Aprobada | Permite ejecutar el dry run desde el celular sin confundir el prototipo con la aplicación de producción ni subir datos infantiles a un backend incompleto. |
-| DEC-051 | Entregar el founder pilot con bundles completos `es-US` y `en-US` sobre el mismo modelo y recorrido; persistir la elección de idioma, usar manifiestos instalables localizados y bloquear mediante QA cualquier pantalla inglesa con texto español residual. | Aprobada | Cumple el mercado bilingüe sin duplicar lógica, evita pantallas mixtas y mantiene español como fuente normativa de documentación v0.x. |
+| DEC-001 | Use a validated library as the source of core activities. | Approved | Consistency, safety and quality. |
+| DEC-002 | AI selects activities and adapts roles within approved options. | Approved | Customization without risky improvisation. |
+| DEC-003 | Maintain separate Learner Models per child and shared Family Model. | Approved | Support multiple children without mixing progress. |
+| DEC-004 | Assign a primary objective per child/session. | Approved | Clear signal and low load. |
+| DEC-005 | Record other practiced skills as exposures. | Approved | Exposure does not equal performance. |
+| DEC-006 | Offer **Evaluate more** as an optional action. | Approved | Allows additional detail without turning close-out into a survey. |
+| DEC-007 | Use a 1–5 scale of contextual independence; show every number with a verbal anchor and never as a global score. | Approved | Easy to answer and less evaluative when the question names a specific action. |
+| DEC-008 | Allow additional observation by voice. | Approved | Capture nuances with little friction. |
+| DEC-009 | Save observations, not labels. | Approved | Avoid rigid generalizations. |
+| DEC-010 | Use a general-purpose model plus structured memory; do not train a separate AI model for each child. | Approved | Enables control, audit, correction, and deletion. |
+| DEC-011 | Process photos and audio temporarily by default. | Proposed | Minimize child data. |
+| DEC-012 | Start with a modular monolith. | Proposed | Reduce pilot complexity while preserving domain boundaries; the final stack remains undecided. |
+| DEC-013 | Use Spanish as the source language of v0.x specifications. | Superseded by DEC-052 | Previous working-language decision. |
+| DEC-014 | Initially launching in the United States, in English and Spanish, for ages 5–10. | Approved | Definition of market and content. |
+| DEC-015 | Build an iOS/Android mobile application. | Approved | Main context of family use. |
+| DEC-016 | Use monthly or annual subscription paid for by one adult, with multiple adults per family. | Approved | Business model and family collaboration. |
+| DEC-017 | Plan by available minutes; the number of activities is derived. | Approved | Family time matters more than counting activities. |
+| DEC-018 | Optimize MVP sessions for 1–4 children. | Superseded by DEC-034 | DEC-034 subsequently approved the same operating range. |
+| DEC-019 | Make the app online-first and offline-friendly through weekly packs. | Proposed | Activity delivery should not depend on continuous connectivity. |
+| DEC-020 | Use a vendor-agnostic AI gateway with approved deployments by data type. | Approved | Portability, cost control, and governance. |
+| DEC-021 | Generate images with AI, with automatic QA and human approval. | Approved | Editorial scale without sacrificing coherence. |
+| DEC-022 | Separate private portfolio, community publishing, and marketing license. | Proposed | Privacy, consent, and UGC require distinct purposes. |
+| DEC-023 | Build a multidisciplinary editorial workspace with independent gates. | Approved | Quality and safety escalation. |
+| DEC-024 | Keep editable transcripts for up to 30 days, then retain only useful structured observations. | Proposed | Minimization with a correction window. |
+| DEC-025 | Allow flame, glass, or pressure only as a special adult-controlled category after the basic pilot. | Proposed | Preserve pedagogical value behind a reinforced gate. |
+| DEC-026 | Direct the first interface to the adult; the child participates off screen. | Approved | Reduces child data and maintains focus on physical activity. |
+| DEC-027 | Use photorealism as a physical reference, diagrams for instruction and children's illustration as a third option. | Approved | Clarity and visual coherence. |
+| DEC-028 | Sell mobile subscriptions through the App Store and Google Play; reserve Stripe for a future web channel. | Approved | Respect distribution channels while preserving a web option. |
+| DEC-029 | Offer a free seven-day commercial trial, separate from the pilot. | Approved | Initial business decision. |
+| DEC-030 | Self-service cancellation by channel of origin, effective at the end of the current period. | Approved | Clear and unobtrusive standard. |
+| DEC-031 | Limit community to authenticated adults within the application. | Approved | Privacy and control. |
+| DEC-032 | An external social tag initiates a permission request, but does not authorize reuse. | Approved | Separation of publication and license. |
+| DEC-033 | Determine editorial gates by category and risk; psychology review is not universal. | Approved | Use each specialty where it provides real value. |
+| DEC-034 | Support 1–4 children per session without imposing a small commercial limit on family profiles. | Approved | Pilot coverage and family flexibility. |
+| DEC-035 | Conceptually accept three calibration activities: Paper Bridges, Seed Sorting, and Conductivity Tester. | Approved | They represent the desired hands-on learning; conceptual acceptance does not replace safety, pedagogy, or pilot gates. |
+| DEC-036 | Treat children's roles as suggested, compatible, flexible contributions: a child may accept, change, combine, observe, or stop participating without a negative signal. | Approved | Avoid rigidity, sibling hierarchies, and unnecessary conflict; validate actual child response during the pilot. |
+| DEC-037 | Allow the adult to choose whether a community post shows only project/hands or includes a recognizable child, with safe default, explicit confirmation, moderation and withdrawal. | Approved | Maintain parental agency without transferring the privacy and operation responsibilities of the platform. |
+| DEC-038 | Plan both a family web application and an administrative/editorial portal; decide their sequence on the roadmap. | Approved | Both routes add value, but they do not have to be built simultaneously. |
+| DEC-039 | Do not design educational variants by state; use a protective national baseline and a legal applicability matrix based on actual pilot and launch states. | Approved | States should not fragment the pedagogical experience, but they do affect privacy and distribution obligations. |
+| DEC-040 | Investigate a conductivity tester configuration that permits meaningful child assembly while de-energized; batteries, inspection, authorization to energize, and unapproved steps remain adult-controlled. | Proposed | Preserve the value of circuit construction without weakening the electrical/mechanical gate or assigning token child actions before expert review. |
+| DEC-041 | Use the “Pocket Workshop” visual direction from the previous study as the basis of the family mobile prototype, explicitly maintaining it as a provisional identity and separating the family app from the editorial workspace. | Approved | It allows you to validate experience and visual consistency without yet approving name, trademark or implementation architecture. |
+| DEC-042 | Present each assignment as **learning focus** and **suggested contribution for [child]**, without role-swapping controls in the default path; keep roles and mappings internal and handle changed participation as an exception. | Approved | Reduces configuration and confusion, preserves evidence-based personalization, and maintains agency when real-world participation changes. |
+| DEC-043 | Deliver each activity through a prior learning summary and phases containing adult action, literal script, named actions for every child, child decision, observation cue, outcome, and specific contextual help. | Approved | Use the richness of the ActivityVersion without copying the entire editorial record or forcing the adult to improvise facilitation. |
+| DEC-044 | Write and validate the causal story of the experience before deriving steps or screens; when physically viable, each child completes the essential cycle and the focus only determines what to observe. | Approved | Avoid disconnected sequences, purposeless materials, and excessive division of learning between children. |
+| DEC-045 | Add narrative continuity, material function, per-participant cycle, and objective calibration as required `ActivityVersion` v0.1 fields while the contract remains Draft; freeze compatibility when the first production consumer starts. | Approved | There are no production consumers yet; resolving ambiguity now is safer than preserving an incomplete contract. |
+| DEC-046 | Treat the under-20-second close-out target as an internal metric; never show the adult a stopwatch or countdown. | Approved | Validate speed without pressure or turning a contextual observation into a timed test. |
+| DEC-047 | Use the `ActivityVersion` editorial promise as the primary message; explain individual participation afterward without replacing the activity's purpose. | Approved | Maintains coherence across catalog, preparation, and delivery while preventing an operational rule from overshadowing educational value. |
+| DEC-048 | First run a five-day founder pilot with Sofia: two existing Draft activities and three low-risk candidates; keep `ACT-0003` out of child delivery until its technical gate is complete. | Approved | Enables one full test week without presenting unpublished content as approved or improvising the electrical circuit. |
+| DEC-049 | Make each activity in the plan navigable and derive a weekly shopping list by section: add repeated consumables, use the maximum for reusable tools and always show the origin by day. | Approved | Avoid dead-end cards and manual calculations, without inflating purchases of objects that can be reused. |
+| DEC-050 | Publish the founder pilot prototype as an installable static PWA, with shell cache and exclusively local persistence; use public GitHub Pages only with fixtures for the founder test and move to private/authenticated hosting before inviting pilot families. | Approved | It allows you to run the dry run from your cell phone without confusing the prototype with the production application or uploading child data to an incomplete backend. |
+| DEC-051 | Deliver the founder pilot with complete `es-US` and `en-US` bundles on the same model and flow; persist language choice, use localized installable manifests, and block English screens containing residual Spanish copy. | Approved | Supports the bilingual market without duplicating logic and prevents mixed-language screens. |
+| DEC-052 | Use English as the normative source language for all new documentation and future changes; preserve Spanish specifications as historical records. | Approved | The founder confirmed that collaboration and future work will be in English, preserving Spanish content for traceability and history without creating two active sources. |
 
-## Plantilla
+## Template
 
 ```text
 ID:
-Fecha:
-Estado: Proposed | Approved | Rejected | Superseded
-Contexto:
-Decisión:
-Alternativas:
-Consecuencias:
-Documentos afectados:
+Date:
+Status: Proposed | Approved | Rejected | Superseded
+Context:
+Decision:
+Alternatives:
+Consequences:
+Affected documents:
 ```

@@ -1,42 +1,44 @@
-# Glosario del dominio
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/00-foundation/glossary.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Review  
-**Versión:** 0.1
+# Domain Glossary
 
-| Término | Definición normativa |
+**Status:** Review
+**Version:** 0.1
+
+| Term | Normative definition |
 |---|---|
-| Actividad | Experiencia educativa estructurada con propósito, materiales, pasos, seguridad y resultados esperados. |
-| Versión de actividad | Snapshot inmutable de una actividad. Los planes y sesiones apuntan a una versión exacta. |
-| Sesión | Ejecución concreta de una versión de actividad por una familia. |
-| Concepto | Idea o conocimiento que puede explicarse, por ejemplo fricción o circuito cerrado. |
-| Habilidad | Capacidad observable que puede practicarse, por ejemplo clasificar, medir o ensamblar. |
-| Exposición | Oportunidad registrada de interactuar con una habilidad o concepto; no implica desempeño ni dominio. |
-| Objetivo principal | Única habilidad prioritaria que el sistema pretende observar para un niño en una sesión. |
-| Objetivo secundario | Habilidad presente en la actividad que se registra como exposición salvo evaluación opcional. |
-| Rol | Conjunto de responsabilidades asignadas a un participante durante una actividad. |
-| Observación | Registro contextual de lo ocurrido, atribuido a una fuente y sin generalizar por sí mismo. |
-| Evidencia | Una o más observaciones normalizadas que respaldan una hipótesis sobre una habilidad. |
-| Inferencia | Interpretación calculada a partir de evidencia; siempre incluye confianza, explicación y estado de confirmación. |
-| Confianza | Grado cualitativo de respaldo de una inferencia: insuficiente, inicial, moderado o fuerte. |
-| Independencia | Cantidad de apoyo necesaria para ejecutar una acción en un contexto determinado. |
-| Interés | Señal contextual de atracción o participación; no equivale a habilidad. |
-| Preferencia de aprendizaje | Patrón provisional sobre condiciones que parecen facilitar participación; no es una categoría fija. |
-| Learner Model | Memoria educativa estructurada y separada para cada niño. |
-| Family Model | Contexto operativo de la familia: participantes, recursos, disponibilidad y preferencias. |
-| Learning Graph | Red de habilidades, conceptos y prerrequisitos usados para planificación. |
-| Activity Library | Conjunto versionado de actividades con estados editoriales y de seguridad. |
-| Adaptación | Cambio permitido de presentación, rol, dificultad o extensión sin alterar el núcleo de seguridad. |
-| Extensión | Reto adicional validado que profundiza una actividad ya completada. |
-| Restricción de seguridad | Condición no negociable asociada a materiales, pasos, supervisión o participantes. |
-| Adult-only step | Paso que solo puede ejecutar el adulto; el niño puede observar o participar de forma indirecta. |
-| Evaluar más | Acción opcional para registrar habilidades secundarias además del objetivo principal. |
-| Inventario | Lista aproximada y editable de materiales que una familia tiene disponibles. |
-| Plan semanal | Selección balanceada y calendarizada de actividades para una familia. |
-| Actividad publicada | Versión que superó las revisiones requeridas y puede recomendarse a familias. |
+| Activity | Structured learning experience with a purpose, materials, steps, safety controls, and expected outcomes. |
+| Activity version | Immutable snapshot of an activity. The plans and sessions point to an exact version. |
+| Session | One family's actual delivery of a specific activity version. |
+| Concept | Idea or knowledge that can be explained, such as friction or a closed circuit. |
+| Skill | Observable ability that can be practiced, such as sorting, measuring, or assembling. |
+| Exposure | Recorded opportunity to engage with a skill or concept; it does not imply performance or mastery. |
+| Primary objective | The one priority skill the system intends to observe for a child in a session. |
+| Secondary objective | Skill present in the activity that is recorded as exposure unless the adult chooses an optional additional assessment. |
+| Role | Set of responsibilities assigned to a participant during an activity. |
+| Observation | Contextual record of what happened, attributed to a source and not generalized on its own. |
+| Evidence | One or more normalized observations that support a hypothesis about a skill. |
+| Inference | Interpretation derived from evidence; it always includes confidence, an explanation, and confirmation state. |
+| Confidence | Qualitative degree of evidentiary support for an inference: insufficient, initial, moderate, or strong. |
+| Independence | Amount of support required to perform an action in a specific context. |
+| Interest | Contextual signal of attraction or participation; it does not equal skill. |
+| Learning preference | Provisional pattern describing conditions that appear to support participation; it is not a fixed category. |
+| Learner Model | Structured, separate educational memory for one child. |
+| Family Model | Shared family operating context: participants, resources, availability, and preferences. |
+| Learning Graph | Network of skills, concepts and prerequisites used for planning. |
+| Activity Library | Versioned set of activities with editorial and safety states. |
+| Adaptation | Approved change to presentation, role, difficulty, or extension that does not alter the safety core. |
+| Extension | Additional validated challenge that deepens an already completed activity. |
+| Safety restriction | Non-negotiable condition associated with materials, steps, supervision, or participants. |
+| Adult-only step | Step that only the adult can execute; the child can observe or participate indirectly. |
+| Evaluate more | Optional action to assess a secondary skill in addition to the primary objective. |
+| Inventory | Approximate and editable list of materials a family has available. |
+| Weekly plan | Balanced and scheduled selection of activities for a family. |
+| Published activity | Activity version that passed all required reviews and may be recommended to families. |
 
-## Términos deliberadamente evitados
+## Terms deliberately avoided
 
-- **Inteligencia / IQ:** fuera de alcance.
-- **Diagnóstico:** reservado a profesionales competentes y fuera del producto.
-- **Dominio** sin contexto: usar únicamente cuando exista evidencia suficiente y definición operacional.
-- **Estilo de aprendizaje fijo:** reemplazar por preferencias provisionales observadas.
+- **Intelligence / IQ:** out of reach.
+- **Diagnosis:** reserved for competent professionals and outside the product.
+- **Mastery** without context: use only when there is sufficient evidence and an operational definition.
+- **Fixed learning style:** replace with observed provisional preferences.

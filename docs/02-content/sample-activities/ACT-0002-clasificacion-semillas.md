@@ -1,130 +1,132 @@
-# ACT-0002 — Clasificación con semillas / Seed Sorting Lab
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../../historical/es/docs/02-content/sample-activities/ACT-0002-clasificacion-semillas.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft<br>
-**Versión de contenido:** 0.1.1<br>
-**Idioma fuente:** español (`es-US`)<br>
-**Bundles requeridos:** `es-US`, `en-US`<br>
-**Propietario editorial:** Equipo de contenido (por asignar)<br>
-**Autoría inicial:** Equipo del proyecto; borrador asistido por IA<br>
-**Última actualización:** 15 de agosto de 2026
+# ACT-0002 — Sorting with seeds / Seed Sorting Lab
 
-> Esta versión es un borrador editorial para el piloto. No puede recomendarse a una familia hasta completar revisión pedagógica, revisión de seguridad, pruebas familiares y aprobación visual.
+**Status:** Draft<br>
+**Content version:** 0.1.1<br>
+**Specification source language:** English (`en-US`)<br>
+**Bundles required:** `es-US`, `en-US`<br>
+**Editorial Owner:** Content Team (to be assigned)<br>
+**Initial authorship:** Project team; AI assisted draft<br>
+**Last updated:** August 15, 2026
 
-## 1. Identidad
+> This version is an editorial draft for the pilot. It cannot be recommended to a family until pedagogical review, safety review, family testing, and visual approval are completed.
 
-| Campo | Valor |
+## 1. Identity
+
+| Field | Value |
 |---|---|
 | `activity_id` | `ACT-0002` |
 | `version` | `0.1.1` |
 | `status` | `draft` |
 | `slug` | `clasificacion-semillas` |
-| Título `es-US` | Clasificación con semillas |
-| Título `en-US` | Seed Sorting Lab |
-| Resumen `es-US` | Observar, clasificar y reorganizar una colección de frijoles secos para descubrir que la misma colección puede agruparse de distintas maneras. |
+| Title `es-US` | Sorting with seeds |
+| Title `en-US` | Seed Sorting Lab |
+| Summary `es-US` | Observe, sort, and rearrange a collection of dried beans to discover that the same collection can be grouped in different ways. |
 | Summary `en-US` | Observe, sort, and reorganize a collection of dry beans to discover that the same collection can be grouped in different ways. |
-| Categoría editorial | Matemáticas, motricidad y pensamiento lógico |
-| Nivel de seguridad | B — piezas pequeñas y riesgo de alergia/ingestión; requiere supervisión cercana y continua |
-| Publicable | No; faltan los gates indicados en la sección 21 |
+| Editorial category | Mathematics, motor skills and logical thinking |
+| Safety level | B — small parts and risk of allergy or ingestion; requires close, continuous supervision |
+| Publishable | No; the gates indicated in section 21 are missing |
 
-## 2. Promesa y pregunta central
-
-**Español:** ¿De cuántas maneras podemos organizar la misma colección, y qué cambia cuando cambiamos la regla?
+## 2. Promise and central question
 
 **English:** How many ways can we organize the same collection, and what changes when we change the rule?
 
-El resultado no es una clasificación “correcta” única. La meta es que cada grupo use una regla observable, la mantenga mientras clasifica y pueda explicar o mostrar cómo decidió.
+**English:** How many ways can we organize the same collection, and what changes when we change the rule?
 
-## 3. Adecuación
+The result is not a single “correct” classification. The goal is for each group to use an observable rule, maintain it while classifying, and be able to explain or show how they decided.
 
-| Dimensión | Especificación `es-US` | Specification `en-US` |
+## 3. Suitability
+
+| Dimension | Specification `es-US` | Specification `en-US` |
 |---|---|---|
-| Edad / Age | 5–10 años; la edad no determina por sí sola la dificultad ni el objetivo. | Ages 5–10; age alone does not determine difficulty or the objective. |
-| Niveles / Levels | L1 Explorer, L2 Builder, L3 Inventor y una extensión L4 Engineer. | L1 Explorer, L2 Builder, L3 Inventor, plus an L4 Engineer extension. |
-| Participantes / Participants | 1–3 niños y un adulto supervisor. | 1–3 children and one supervising adult. |
-| Duración / Duration | Núcleo de 30–35 minutos; extensiones aprobadas hasta 60 minutos. | 30–35 minute core; approved extensions up to 60 minutes. |
-| Preparación / Setup | 7–10 minutos de preparación adulta. | 7–10 minutes of adult setup. |
-| Desorden / Mess | Bajo; posibles piezas derramadas. | Low; small items may spill. |
-| Espacio / Space | Mesa despejada, estable y bien iluminada, fuera del alcance de niños menores y mascotas. | Clear, stable, well-lit table away from younger children and pets. |
-| Lectura / Reading | No requerida. El adulto presenta las preguntas y etiquetas. | Not required. The adult presents questions and labels. |
-| Prerrequisitos / Prerequisites | Ninguno. Contar verbalmente ayuda, pero no es requisito para participar. | None. Verbal counting helps but is not required to participate. |
-| Accesibilidad / Accessibility | Transferencia manual, con cuchara o pinza infantil; etiquetas con color, forma y símbolo; respuesta oral, señalada o demostrada. | Hand, spoon, or child-safe tong transfer; color, shape, and symbol labels; spoken, pointed, or demonstrated responses. |
+| Age / Age | 5–10 years; Age alone does not determine the difficulty or the objective. | Ages 5–10; age alone does not determine difficulty or the objective. |
+| Levels / Levels | L1 Explorer, L2 Builder, L3 Inventor and an L4 Engineer extension. | L1 Explorer, L2 Builder, L3 Inventor, plus an L4 Engineer extension. |
+| Participants / Participants | 1–3 children and a supervising adult. | 1–3 children and one supervising adult. |
+| Duration / Duration | Core 30–35 minutes; Approved extensions up to 60 minutes. | 30–35 minute core; approved extensions up to 60 minutes. |
+| Preparation / Setup | 7–10 minutes of adult preparation. | 7–10 minutes of adult setup. |
+| Clutter / Mess | Low; Possible spilled parts. | Low; small items may spill. |
+| Space / Space | Clear, stable and well-lit table, out of the reach of small children and pets. | Clear, stable, well-lit table away from younger children and pets. |
+| Reading / Reading | Not required. The adult presents the questions and labels. | Not required. The adult presents questions and labels. |
+| Prerequisites / Prerequisites | None. Verbal counting helps, but is not a requirement to participate. | None. Verbal counting helps but is not required to participate. |
+| Accessibility / Accessibility | Manual transfer, with a spoon or child's tongs; labels with color, shape and symbol; oral, pointed or demonstrated response. | Hand, spoon, or child-safe tong transfer; color, shape, and symbol labels; spoken, pointed, or demonstrated responses. |
 
-## 4. Propósito educativo
+## 4. Educational purpose
 
-### Áreas
+### Areas
 
-- **Principal:** MAT — matemáticas.
-- **Secundarias:** MOT — motricidad; LOG — pensamiento lógico; COM — comunicación; PRA — vida práctica; BIO — biología/naturaleza como exposición breve.
+- **Main:** MAT — mathematics.
+- **Secondary:** MOT — motor skills; LOG — logical thinking; COM — communication; PRA — practical life; BIO — biology/nature as a brief exposition.
 
-### Conceptos
+### Concepts
 
-- Un **atributo** es una característica observable, como color, tamaño, forma o textura.
-- Una **regla de clasificación** indica qué atributo se usa para formar grupos.
-- La misma colección puede reorganizarse al cambiar la regla.
-- Contar con correspondencia uno a uno permite comparar cantidades.
-- Los frijoles son semillas de plantas; en esta actividad se usan únicamente como objetos de observación y no como alimento.
+- An **attribute** is an observable characteristic, such as color, size, shape, or texture.
+- A **classification rule** indicates which attribute is used to form groups.
+- The same collection can be reorganized by changing the rule.
+- Having one-to-one correspondence allows you to compare quantities.
+- Beans are plant seeds; In this activity they are used only as objects of observation and not as food.
 
-### Habilidades practicables
+### Practical skills
 
-- Observar y nombrar atributos / Observe and name attributes.
-- Clasificar por un atributo observable / Sort by one observable attribute.
-- Mantener una regla y detectar elementos dudosos / Maintain a rule and identify uncertain items.
-- Contar con correspondencia uno a uno / Count with one-to-one correspondence.
-- Comparar cantidades usando más, menos o igual / Compare quantities as more, fewer, or equal.
-- Representar grupos con filas, marcas, números o un gráfico físico simple / Represent groups with rows, tallies, numerals, or a simple physical graph.
-- Crear y continuar patrones repetitivos / Create and continue repeating patterns.
-- Transferir objetos pequeños con pinza de dedos, cuchara o pinza infantil / Transfer small objects with a pincer grasp, spoon, or child-safe tongs.
-- Explicar una decisión y escuchar una regla diferente / Explain a decision and listen to a different rule.
-- Preparar, organizar y limpiar un espacio de trabajo / Prepare, organize, and clean a workspace.
+- Observe and name attributes / Observe and name attributes.
+- Sort by one observable attribute.
+- Maintain a rule and identify uncertain items.
+- Count with one-to-one correspondence.
+- Compare quantities using more, less or equal / Compare quantities as more, fewer, or equal.
+- Represent groups with rows, tallies, numerals, or a simple physical graph.
+- Create and continue repeating patterns.
+- Transfer small objects with a pincer grasp, spoon, or child-safe tongs.
+- Explain a decision and listen to a different rule.
+- Prepare, organize, and clean a workspace.
 
-## 5. Resultado esperado
+## 5. Expected result
 
-Los niños forman grupos coherentes usando una regla observable, cuentan o comparan al menos algunos grupos y vuelven a clasificar la misma colección con una regla diferente. No se requiere que todos creen los mismos grupos ni que registren todos los números. Un elemento dudoso puede colocarse en una zona de “todavía no sé” mientras el grupo aclara la regla.
+Children form coherent groups using an observable rule, count or compare at least some groups, and reclassify the same collection with a different rule. Everyone is not required to create the same groups or register all numbers. A questionable item can be placed in a “don't know yet” zone while the group clarifies the rule.
 
-## 6. Materiales normalizados
+## 6. Standardized materials
 
-### Materiales obligatorios
+### Required materials
 
-| ID | Material y cantidad `es-US` / `en-US` | Uso / Use | Restricciones / Restrictions |
+| ID | Material and quantity `es-US` / `en-US` | Use / Use | Restrictions / Restrictions |
 |---|---|---|---|
-| `mat.beans` | 48 legumbres secas de grado alimentario, compradas selladas: 12 garbanzos, 12 frijoles negros, 12 frijoles pintos y 12 arvejas/guisantes verdes secos / 48 sealed, food-grade dry legumes: 12 chickpeas, 12 black beans, 12 pinto beans, and 12 dry green peas | Colección para observar, clasificar y contar / Collection to observe, sort, and count | Colección piloto exacta, usada solo como manipulativo no comestible. No probar, cocinar ni devolver a la despensa. No ejecutar ante alergia conocida o sospechada / Exact pilot collection, used only as a non-edible manipulative. Do not taste, cook, or return to the pantry. Do not run with a known or suspected legume/seed allergy. |
-| `mat.tray` | 1 bandeja grande, poco profunda y con borde / 1 large, shallow, rimmed tray | Contener la colección y reducir derrames / Contain the collection and reduce spills | Plástico o metal sin bordes filosos; no vidrio / Plastic or metal without sharp edges; no glass. |
-| `mat.bowls` | 5 recipientes irrompibles pequeños / 5 small, unbreakable containers | Cuatro categorías y una zona “todavía no sé” / Four categories and one “not sure yet” area | Plástico, silicona o cartón; no vidrio / Plastic, silicone, or paperboard; no glass. |
-| `mat.workmat` | 1 hoja de papel grande o cartulina clara, mínimo tamaño carta/Letter / 1 large sheet of paper or light poster board, at least US Letter size | Alinear, contar y crear un gráfico físico / Make rows, count, and create a physical graph | Sin grapas ni bordes cortantes / No staples or sharp edges. |
-| `mat.marker` | 1 marcador lavable de punta gruesa / 1 thick, washable marker | El adulto crea etiquetas o líneas / Adult makes labels or lines | Cerrar después de usar; no dibujar sobre los frijoles / Close after use; do not draw on the beans. |
-| `mat.storage` | 1 recipiente rígido con tapa, capacidad mínima 250 ml / 1 rigid, lidded container, minimum 1 cup capacity | Guardar o desechar todos los manipulativos durante una pausa o después de la actividad / Store or discard all manipulatives during a pause or after the activity | Etiqueta adulta: “SOLO PARA ACTIVIDAD — NO COMESTIBLE / ACTIVITY ONLY — NOT FOR EATING”. |
+| `mat.beans` | 48 sealed, food-grade dry legumes: 12 chickpeas, 12 black beans, 12 pinto beans, and 12 dry green peas | Collection to observe, sort, and count | Exact pilot collection, used only as a non-edible manipulative. Do not taste, cook or return to the pantry. Do not execute in case of known or suspected allergy / Exact pilot collection, used only as a non-edible manipulative. Do not taste, cook, or return to the pantry. Do not run with a known or suspected legume/seed allergy. |
+| `mat.tray` | 1 large, shallow, rimmed tray | Contain the collection and reduce spills / Contain the collection and reduce spills | Plastic or metal without sharp edges; no glass / Plastic or metal without sharp edges; not glass. |
+| `mat.bowls` | 5 small, unbreakable containers | Four categories and one “not sure yet” area | Plastic, silicone or cardboard; not glass / Plastic, silicone, or paperboard; not glass. |
+| `mat.workmat` | 1 large sheet of paper or light poster board, at least US Letter size | Align, count, and create a physical graph / Make rows, count, and create a physical graph | No staples or sharp edges. |
+| `mat.marker` | 1 thick, washable marker | The adult creates labels or lines / Adult makes labels or lines | Close after use; do not draw on the beans / Close after use; do not draw on the beans. |
+| `mat.storage` | 1 rigid container with lid, minimum capacity 250 ml / 1 rigid, lidded container, minimum 1 cup capacity | Store or discard all manipulatives during a pause or after the activity | Adult label: “SOLO PARA ACTIVIDAD — NON EDIBLE / ACTIVITY ONLY — NOT FOR EATING.” |
 
-La colección indicada es cerrada para esta versión. No usar frijoles rojos tipo kidney, frijoles blancos tipo kidney/cannellini, habas/fava ni frijoles lima; no sustituir una variedad sin una nueva revisión. Esta exclusión no convierte las demás piezas en alimento seguro: todas permanecen crudas, no comestibles durante la actividad y fuera de la boca. La aplicación no debe presentar ninguna variedad como libre de alérgenos o toxinas.
+The indicated collection is closed for this version. Do not use red kidney beans, white kidney/cannellini beans, broad beans/fava or lima beans; do not replace a variety without a new review. This exclusion does not make the other pieces safe food: they all remain raw, inedible during activity and outside the mouth. The application must not present any variety as free of allergens or toxins.
 
 The listed collection is closed for this version. Do not use red kidney beans, white kidney/cannellini beans, fava/broad beans, or lima beans, and do not replace a variety without a new review. This exclusion does not make the other items safe to eat: every item remains raw, non-edible during the activity, and away from the mouth. The app must not describe any variety as allergen- or toxin-free.
 
-### Materiales opcionales aprobados
+### Approved optional materials
 
-| ID | Material y cantidad `es-US` / `en-US` | Uso aprobado / Approved use | Límite / Limit |
+| ID | Material and quantity `es-US` / `en-US` | Approved use / Approved use | Limit / Limit |
 |---|---|---|---|
-| `mat.spoon` | 1 cuchara infantil / 1 child-size spoon | Transferencia con menor demanda de pinza fina / Transfer with lower fine-motor demand | Un solo manipulador activo; se rota por turnos / One active handler at a time; rotate by turns. |
-| `mat.tongs` | 1 pinza infantil de punta roma / 1 blunt child-safe tong | Mayor reto de coordinación / Greater coordination challenge | Sin puntas ni pinzas metálicas de precisión; un solo manipulador activo / No pointed or precision metal tweezers; one active handler at a time. |
-| `mat.labels` | Hasta 6 tarjetas de papel / Up to 6 paper cards | Dibujar atributo o registrar cantidad / Draw an attribute or record a quantity | Texto opcional; aceptar dibujos y símbolos / Text is optional; accept drawings and symbols. |
-| `mat.timer` | 1 temporizador del adulto / 1 adult-controlled timer | Extensión de estimación / Estimation extension | No convertirlo en competencia / Do not turn it into a competition. |
+| `mat.spoon` | 1 child-size spoon | Transfer with lower fine-motor demand | A single active manipulator; rotates in turns / One active handler at a time; rotate by turns. |
+| `mat.tongs` | 1 blunt child-safe tong / 1 blunt child-safe tong | Greater coordination challenge / Greater coordination challenge | No precision metal tips or tweezers; single active keyer / No pointed or precision metal tweezers; one active handler at a time. |
+| `mat.labels` | Up to 6 paper cards / Up to 6 paper cards | Draw an attribute or record a quantity | Optional text; accept drawings and symbols / Text is optional; accept drawings and symbols. |
+| `mat.timer` | 1 adult timer / 1 adult-controlled timer | Estimation extension / Estimation extension | Do not turn it into a competition. |
 
-### Sustituciones y prohibiciones
+### Substitutions and prohibitions
 
-- No sustituir las variedades indicadas ni usar cuentas, imanes, dulces, nueces, semillas tratadas para siembra u otros objetos sin una nueva revisión de seguridad y del mecanismo educativo.
-- Si existe una alergia conocida o sospechada a legumbres/semillas, **no ejecutar esta ActivityVersion**. El recomendador debe elegir otra actividad publicada; no improvisar un sustituto en vivo.
-- No usar frijoles húmedos, germinados, mohosos, rotos con bordes agudos, teñidos, recubiertos ni tratados químicamente.
-- No usar bolsas plásticas sueltas como recipiente infantil.
+- Do not substitute the indicated varieties or use beads, magnets, candy, nuts, treated seeds for sowing or other objects without a new review of safety and the educational mechanism.
+- If there is a known or suspected allergy to legumes/seeds, **do not run this ActivityVersion**. The recommender must choose another published activity; Don't improvise a live substitute.
+- Do not use wet, sprouted, moldy, broken with sharp edges, dyed, coated or chemically treated beans.
+- Do not use loose plastic bags as a child's container.
 
-**Approved substitution rules `en-US`:** Do not replace the listed varieties or use beads, magnets, candy, nuts, treated planting seed, or other objects without a new safety and educational-mechanism review. If any participant has a known or suspected legume/seed allergy, do not run this ActivityVersion; select another published activity. Do not use wet, sprouted, moldy, coated, dyed, chemically treated, or sharp broken beans. Do not give children loose plastic bags as containers.
+**Approved substitution rules `en-US`:** Do not replace the listed varieties or use beads, magnets, candy, nuts, treated planting seeds, or other objects without a new safety and educational-mechanism review. If any participant has a known or suspected legume/seed allergy, do not run this ActivityVersion; select another published activity. Do not use wet, sprouted, moldy, coated, dyed, chemically treated, or sharp broken beans. Do not give children loose plastic bags as containers.
 
-## 7. Preparación exclusiva del adulto
+## 7. Exclusive preparation of the adult
 
-1. Confirmar que ningún participante tenga alergia conocida o sospechada a legumbres/semillas y que nadie tienda a llevar objetos pequeños a la boca, nariz u oídos. Si existe cualquiera de estas condiciones, elegir otra actividad. Confirmar también que solo están presentes las cuatro variedades exactas de esta versión.
-2. Mantener fuera del área a niños menores de 5 años y mascotas.
-3. Contar e inspeccionar 12 piezas de cada uno de los cuatro tipos. Desechar piezas dañadas, húmedas, mohosas o con polvo excesivo.
-4. Mezclar las 48 piezas en la bandeja. No revelar todavía cuántas hay de cada tipo.
-5. Colocar cinco recipientes en el borde superior de la bandeja y el papel grande en el centro de la mesa.
-6. Reservar el recipiente rígido de almacenamiento fuera del alcance infantil hasta la limpieza.
-7. Asignar a cada niño un rol y exactamente un objetivo principal antes de comenzar. Las demás habilidades quedan como exposiciones salvo que el adulto elija “Evaluar más”.
+1. Confirm that no participant has a known or suspected allergy to legumes/seeds and that no one tends to put small objects in their mouth, nose or ears. If any of these conditions exist, choose another activity. Also confirm that only the exact four varieties of this version are present.
+2. Keep children under 5 years of age and pets out of the area.
+3. Count and inspect 12 pieces of each of the four types. Discard damaged, damp, moldy or excessively dusty parts.
+4. Mix the 48 pieces on the tray. Not yet revealing how many of each type there are.
+5. Place five containers on the top edge of the tray and the large paper in the center of the table.
+6. Reserve the rigid storage container out of reach of children until cleaning.
+7. Assign each child a role and exactly one primary objective before starting. The other skills remain as exposures unless the adult chooses “Evaluate more.”
 
 **Adult-only preparation `en-US`:**
 
@@ -136,60 +138,60 @@ The listed collection is closed for this version. Do not use red kidney beans, w
 6. Keep the rigid storage container out of children's reach until cleanup.
 7. Assign each child one role and exactly one primary objective before starting. Other skills remain exposures unless the adult selects “Assess more.”
 
-**Advertencia `es-US`:** Estas legumbres crudas son piezas pequeñas, pueden contener toxinas naturales y pueden causar asfixia o introducirse en nariz u oídos. Se usan solo para la actividad, nunca para comer. Permita un solo manipulador activo y mantenga supervisión cercana y continua.
+**Warning `es-US`:** These raw legumes are small pieces, may contain natural toxins and may cause choking or get into the nose or ears. They are used only for activity, never for eating. Allow only one active handler and maintain close, continuous supervision.
 
 **Warning `en-US`:** These raw legumes are small parts, may contain naturally occurring toxins, and can be a choking hazard or be placed in the nose or ears. They are for activity use only, never for eating. Allow one active handler and maintain close, continuous supervision.
 
-## 8. Riesgos, controles y detención
+## 8. Risks, controls and detention
 
-| Riesgo | Persona/condición expuesta | Control requerido | Señal para detenerse |
+| Risk | Exposed person/condition | Control required | Stop sign |
 |---|---|---|---|
-| Ingestión o asfixia | Niño que lleva una pieza a la boca | Supervisión continua; recordatorio antes de tocar; piezas siempre sobre bandeja | Una pieza entra o se acerca a la boca. Retirar inmediatamente la colección y terminar la actividad. |
-| Inserción en nariz u oído | Niño que juega con la pieza cerca del rostro | Modelar manos debajo del mentón; transferencia solo entre bandeja y recipientes | Una pieza se acerca a nariz u oído. Retirar la colección y terminar. |
-| Alergia o irritación por legumbres/polvo | Participante con alergia conocida/sospechada o síntomas durante uso | Verificación previa; no ejecutar ante duda; lavarse las manos al terminar | Cualquier reacción inesperada. Detener, alejar los materiales y seguir el plan familiar apropiado; esta actividad no ofrece instrucciones médicas. |
-| Toxinas naturales por ingestión de legumbres crudas | Cualquier participante que ingiera una o más piezas | Colección exacta; exclusión de variedades indicadas; advertencia de no comer; un solo manipulador; adulto al alcance | Cualquier pieza entra en la boca o se sospecha ingestión. Retirar la colección, terminar y buscar orientación apropiada de control de intoxicaciones o atención médica según el contexto; la app no diagnostica. |
-| Derrame y caída | Participantes, niños menores o mascotas | Bandeja con borde; trabajar sentado; recoger de inmediato antes de levantarse | Piezas en el suelo o fuera de control. Pausar hasta que el adulto confirme que todas fueron recogidas. |
-| Contaminación alimentaria | Familia que devuelve las piezas a la despensa | Recipiente rígido etiquetado; uso exclusivo para actividades | Si se mezclan con comida o material desconocido, desecharlas bajo control adulto. |
-| Frustración o competencia | Niños comparados por rapidez o cantidad | Comparar grupos, no personas; permitir zona “todavía no sé”; turnos definidos | Burlas, presión o disputa persistente. Pausar, reasignar turnos o cerrar con una sola regla. |
+| Ingestion or suffocation | Child carrying a piece to his mouth | Continuous supervision; reminder before touching; pieces always on tray | A piece enters or approaches the mouth. Immediately remove the collection and end the activity. |
+| Insertion in nose or ear | Child playing with piece near face | Model hands under the chin; transfer only between tray and containers | A piece is brought close to the nose or ear. Remove the collection and finish. |
+| Allergy or irritation due to legumes/dust | Participant with known/suspected allergy or symptoms during use | Prior verification; do not execute when in doubt; wash your hands when finished | Any unexpected reaction. Stop, move materials away, and follow the appropriate family plan; This activity does not offer medical instructions. |
+| Natural toxins from ingestion of raw legumes | Any participant who eats one or more pieces | Exact collection; exclusion of indicated varieties; warning not to eat; a single manipulator; adult within reach | Any piece enters the mouth or ingestion is suspected. Remove the collection, terminate and seek appropriate poison control guidance or medical attention depending on the context; the app does not diagnose. |
+| Spill and fall | Participants, minor children or pets | Rimmed tray; work sitting; pick up immediately before getting up | Parts on the ground or out of control. Pause until the adult confirms that they have all been collected. |
+| Food contamination | Family returning the pieces to the pantry | Labeled rigid container; exclusive use for activities | If they are mixed with food or unknown material, dispose of them under adult supervision. |
+| Frustration or competition | Children compared by speed or quantity | Compare groups, not people; allow “don't know yet” zone; defined shifts | Persistent teasing, pressure, or dispute. Pause, reassign shifts or close with a single rule. |
 
-**Prohibiciones de adaptación:** la IA no puede quitar estas advertencias, permitir degustación, reducir supervisión, introducir materiales no aprobados, convertir la tarea en una competencia de velocidad ni reasignar la verificación de alergias al niño.
+**Adaptation Prohibitions:** The AI ​​cannot remove these warnings, allow tasting, reduce supervision, introduce unapproved materials, turn the task into a speed competition, or reassign allergy checking to the child.
 
-**Safety summary `en-US`:** Raw legumes are non-edible small parts in this activity and may contain naturally occurring toxins. Use only the exact listed varieties, keep them on a rimmed tray, permit one active handler at a time, and maintain close, continuous supervision. Stop if an item approaches or enters a child's mouth, nose, or ear; if ingestion is suspected; if an unexpected reaction occurs; or if a spill cannot be controlled. Pause movement while the adult retrieves spilled items. Check the family for known or suspected legume/seed allergies before setup. Keep younger children and pets out of the area. Used beans never return to food storage. The AI may not remove warnings, allow tasting, reduce supervision, add unapproved materials, introduce speed competition, or ask a child to perform the allergy check.
+**Safety summary `en-US`:** Raw legumes are non-edible small parts in this activity and may contain naturally occurring toxins. Use only the exact varieties listed, keep them on a rimmed tray, allow one active handler at a time, and maintain close, continuous supervision. Stop if an item approaches or enters a child's mouth, nose, or ear; if ingestion is suspected; if an unexpected reaction occurs; or if a spill cannot be controlled. Pause movement while the adult retrieves spilled items. Check the family for known or suspected legume/seed allergies before setup. Keep younger children and pets out of the area. Used beans never return to food storage. The AI ​​may not remove warnings, allow tasting, reduce supervision, add unapproved materials, introduce speed competition, or ask a child to perform the allergy check.
 
-## 9. Roles y objetivos elegibles
+## 9. Eligible roles and objectives
 
-| Rol | Contribución real | Responsabilidades | Objetivos principales elegibles | Pasos | Restricciones |
+| Role | Meaningful contribution | Responsibilities | Eligible Primary Targets | Steps | Restrictions |
 |---|---|---|---|---|---|
-| Detective de atributos / Attribute Detective | Define y verifica la regla que organiza la colección | Observar, proponer un atributo, crear o señalar etiquetas, resolver piezas dudosas explicando la regla | Clasificar por un atributo; identificar atributos; explicar una regla | Discover, Imagine, Build-or-Do, Improve, Explain | No decide por los demás sin escuchar; no manipula piezas cerca del rostro. |
-| Organizador cuidadoso / Careful Organizer | Convierte la regla en grupos físicos claros | Transferir una pieza por vez, mantener grupos separados, usar mano/cuchara/pinza según adaptación | Transferir con control; clasificar por un atributo observable | Build-or-Do, Experiment, Improve | No se evalúa velocidad; una pieza por transferencia; es el único manipulador activo durante su turno. |
-| Contador y reportero / Counter & Reporter | Hace visible lo que contiene cada grupo | Alinear piezas, contar una a una, comparar y mostrar el resultado con voz, marcas, números o filas | Contar con correspondencia uno a uno; comparar cantidades; representar datos; continuar patrón | Experiment, Improve, Explain | Puede volver a contar; una discrepancia se investiga, no se trata como fracaso. |
+| Attribute Detective | Defines and verifies the rule that organizes the collection | Observe, propose an attribute, create or indicate labels, resolve doubtful pieces by explaining the rule | Classify by an attribute; identify attributes; explain a rule | Discover, Imagine, Build-or-Do, Improve, Explain | He does not decide for others without listening; do not manipulate pieces near the face. |
+| Careful Organizer / Careful Organizer | Convert the ruler into clear physical groups | Transfer one piece at a time, keep groups separate, use hand/spoon/tweezers as adapted | Transfer with control; classify by an observable attribute | Build-or-Do, Experiment, Improve | Speed ​​is not evaluated; one piece per transfer; He is the only active handler during his shift. |
+| Accountant and reporter / Counter & Reporter | Makes visible what each group contains | Align pieces, count one by one, compare and show the result with voice, marks, numbers or rows | Have one-to-one correspondence; compare quantities; represent data; continue pattern | Experiment, Improve, Explain | You can count again; a discrepancy is investigated, not treated as a failure. |
 
-En trabajo individual, un niño puede realizar los tres roles de forma secuencial, pero conserva un solo objetivo principal durante toda la sesión.
+In individual work, a child may perform all three roles sequentially, but maintains a single primary goal throughout the session.
 
 **Role behavior `en-US`:** The Attribute Detective observes, proposes one attribute, and helps resolve uncertain items by explaining the current rule. The Careful Organizer transfers one item at a time and keeps categories physically distinct using a hand, spoon, or approved tongs. The Counter & Reporter lines up, counts, compares, and represents groups. In individual work, one child may perform all three roles in sequence but keeps only one primary objective for the entire session.
 
-## 10. Configuraciones para 1, 2 y 3 niños
+## 10. Configurations for 1, 2 and 3 children
 
-### Un niño
+### A child
 
-- El niño rota por Detective → Organizador → Contador.
-- El adulto elige **un solo objetivo principal** según el Learner Model; las demás acciones se registran como exposiciones.
-- Ejemplo: objetivo principal “clasificar por un atributo observable”; conteo y transferencia quedan como exposiciones.
+- The child rotates through Detective → Organizer → Accountant.
+- The adult chooses **a single primary objective** according to the Learner Model; the other actions are recorded as exposures.
+- Example: primary objective “classify by an observable attribute”; counting and transfer remain as exposures.
 
-### Dos niños
+### Two children
 
-- Niño A: Detective + Organizador; objetivo principal sugerido de clasificación o transferencia controlada.
-- Niño B: Contador y Reportero; objetivo principal sugerido de conteo uno a uno o comparación.
-- En la segunda regla, intercambian la manipulación y el reporte sin cambiar el objetivo principal ya asignado.
-- Si ambos desean el mismo rol, cada uno propone una regla y lidera una ronda; no se crea competencia.
+- Child A: Detective + Organizer; Suggested primary goal of classification or controlled transfer.
+- Child B: Accountant and Reporter; Suggested primary objective of one-to-one counting or comparison.
+- In the second rule, they exchange manipulation and reporting without changing the primary objective already assigned.
+- If both want the same role, each one proposes a rule and leads a round; competition is not created.
 
-### Tres niños
+### Three children
 
-- Niño A: Detective de atributos; un objetivo principal de clasificación o explicación.
-- Niño B: Organizador cuidadoso; un objetivo principal de transferencia controlada o clasificación por un atributo observable.
-- Niño C: Contador y Reportero; un objetivo principal de conteo, comparación o representación.
-- En la segunda regla, los materiales cambian de manos para ofrecer variedad, pero cada niño sigue siendo evaluado únicamente sobre su objetivo principal.
-- Ningún rol queda definido como “ayudar al menor”. El adulto ofrece apoyos sin convertir a un niño en supervisor permanente de otro.
+- Child A: Attributes Detective; a primary goal of classification or explanation.
+- Child B: Careful organizer; a primary objective of controlled transfer or classification by an observable attribute.
+- Child C: Accountant and Reporter; a primary purpose of counting, comparison, or representation.
+- In the second rule, materials change hands to provide variety, but each child is still evaluated solely on his or her primary goal.
+- No role is defined as “helping the minor.” The adult offers support without turning one child into another's permanent supervisor.
 
 ### Configuration summary `en-US`
 
@@ -198,198 +200,188 @@ En trabajo individual, un niño puede realizar los tres roles de forma secuencia
 - **Three children:** assign one meaningful role to each child. Rotate access to materials during the second rule, but assess only each child's preassigned primary objective.
 - If children want the same role, each may lead one sorting round. No child is assigned as the permanent helper or supervisor of another child.
 
-## 11. Diferenciación funcional
+## 11. Functional differentiationThese options are chosen based on evidence and independence, not automatically based on age.
 
-Estas opciones se eligen por evidencia e independencia, no automáticamente por edad.
-
-| Nivel | Matemáticas y lógica | Motricidad | Comunicación y apoyo |
+| Level | Mathematics and logic | Motor skills | Communication and support |
 |---|---|---|---|
-| L1 Explorer | Clasificar un subconjunto de 12–20 piezas por un atributo evidente; comparar dos grupos como más/menos/igual sin exigir numeral | Mover con la mano o cuchara a recipientes cercanos; piezas grandes primero | El adulto ofrece dos reglas visuales posibles y modela una pieza. Respuesta señalada o demostrada. |
-| L2 Builder | Clasificar las 48 piezas por una regla; contar grupos hasta 20; crear o continuar patrón AB | Pinza de dedos o cuchara; una pieza por vez; recipientes separados | El niño nombra o dibuja su regla y explica una pieza dudosa. |
-| L3 Inventor | Reclasificar por una segunda regla; comparar resultados; representar cantidades con filas, marcas o números; crear patrones AAB/ABC | Pinzas infantiles de punta roma o transferencia a celdas dibujadas | El niño justifica categorías y explica por qué la colección total no cambió. |
-| L4 Engineer (extensión) | Diseñar una clasificación jerárquica de dos etapas o un gráfico físico; formular una regla que otro participante pueda seguir sin ayuda | Elegir herramienta según precisión y explicar la elección | El niño prueba la claridad de su instrucción y la revisa cuando aparece ambigüedad. |
+| L1 Explorer | Classify a subset of 12–20 pieces by an obvious attribute; compare two groups as more/less/equal without requiring numeral | Move by hand or spoon to nearby containers; big pieces first | The adult offers two possible visual rules and models a piece. Indicated or demonstrated response. |
+| L2Builder | Classify the 48 pieces by a ruler; count groups up to 20; create or continue AB pattern | Finger clamp or spoon; one piece at a time; separate containers | The child names or draws his rule and explains a questionable piece. |
+| L3 Inventor | Reclassify by a second rule; compare results; represent quantities with rows, marks, or numbers; create AAB/ABC patterns | Children's blunt tip tweezers or transfer to drawn cells | The child justifies categories and explains why the total collection did not change. |
+| L4 Engineer (extension) | Design a two-stage hierarchical classification or physical graph; formulate a rule that another participant can follow without help | Choose tool according to precision and explain the choice | The child tests the clarity of his instruction and revises it when ambiguity appears. |
 
 **Differentiation summary `en-US`:** L1 uses 12–20 items, one obvious attribute, hand or spoon transfer, and pointed/demonstrated responses. L2 sorts all 48 items using one rule, counts groups up to 20, and may build an AB pattern. L3 re-sorts with a second rule, compares and represents quantities, and may use blunt child-safe tongs. The L4 extension adds a two-stage classification or asks the child to write, draw, or demonstrate a rule another person can follow. Select options from evidence and independence, not age alone.
 
-## 12. Ciclo de la actividad
+## 12. Activity cycle
 
-### Paso 1 — Discover / Descubrir (`step.discover`, 4–5 min)
+### Step 1 — Discover (`step.discover`, 4–5 min)
 
-**Actor:** grupo, guiado por adulto.<br>
-**Español:** Sin clasificar todavía, miren la colección dentro de la bandeja. Pregunte: “¿Qué diferencias y semejanzas notas?” y “¿Qué grupos crees que podríamos formar?”. Cada niño puede señalar, describir o dibujar un atributo.<br>
+**Actor:** group, guided by adult.<br>
+**English:** Not classified yet, look at the collection inside the tray. Ask: “What differences and similarities do you notice?” and “What groups do you think we could form?” Each child can point out, describe or draw an attribute.<br>
 **English:** Before sorting, look at the collection inside the tray. Ask, “What differences and similarities do you notice?” and “What groups could we make?” Each child may point to, describe, or draw an attribute.<br>
-**Resultado esperado:** aparecen al menos dos atributos observables; no se exige vocabulario exacto.<br>
-**Señal de éxito:** el niño identifica o demuestra una diferencia relevante entre dos piezas.<br>
+**Expected result:** at least two observable attributes appear; exact vocabulary is not required.<br>
+**Success signal:** the child identifies or demonstrates a relevant difference between two pieces.<br>
 **Asset:** `ACT-0002-VIS-03`.<br>
-**Advertencia `es-US`:** las piezas permanecen sobre la bandeja y lejos del rostro; un solo niño las manipula por turno.<br>
+**Warning `es-US`:** the pieces remain on the tray and away from the face; a single child manipulates them in turn.<br>
 **Warning `en-US`:** items stay on the tray and away from faces; only one child handles them at a time.<br>
-**Problema/solución `es-US`:** si cuesta identificar diferencias, el adulto acerca dos piezas sin entregarlas y pregunta por una característica visible.<br>
+**Problem/solution `es-US`:** If it is difficult to identify differences, the adult brings two pieces together without handing them over and asks for a visible characteristic.<br>
 **Problem/solution `en-US`:** if differences are hard to identify, the adult places two items closer without handing them over and asks about one visible feature.<br>
-**Reanudación / Resume:** el adulto vuelve a mezclar la colección dentro de la bandeja y repite la advertencia; no se necesita una foto del estado inicial / the adult remixes the collection inside the tray and repeats the warning; no initial-state photo is required.
+**Resume/Resume:** the adult mixes the collection back into the tray and repeats the warning; no photo of the initial state is needed / the adult remixes the collection inside the tray and repeats the warning; no initial-state photo is required.
 
-### Paso 2 — Imagine / Imaginar (`step.imagine`, 3–5 min)
-
-**Actor:** Detective de atributos o niño individual.<br>
-**Español:** Elijan una sola regla para la primera ronda, por ejemplo color, tamaño, forma o tipo. Dibujen o coloquen una etiqueta junto a cada recipiente. Reserven el quinto recipiente para “todavía no sé”. Predigan qué grupo parecerá tener más piezas.<br>
+### Step 2 — Imagine (`step.imagine`, 3–5 min)**Actor:** Detective of attributes or individual child.<br>
+**English:** Choose a single rule for the first round, for example color, size, shape or type. Draw or place a label next to each container. Reserve the fifth container for “I don't know yet.” Predict which group will appear to have the most pieces.<br>
 **English:** Choose one rule for the first round, such as color, size, shape, or type. Draw or place a label beside each container. Reserve the fifth container for “not sure yet.” Predict which group might have the most pieces.<br>
-**Resultado esperado:** todos pueden indicar la regla antes de mover piezas.<br>
-**Señal de éxito:** otra persona puede repetir la regla con sus propias palabras o señalando las etiquetas.<br>
+**Expected result:** everyone can indicate the rule before moving pieces.<br>
+**Sign of success:** another person can repeat the rule in their own words or by pointing to the labels.<br>
 **Asset:** `ACT-0002-VIS-03`.<br>
-**Advertencia `es-US`:** todavía no se manipulan piezas; el adulto controla la colección mientras se decide la regla.<br>
+**Warning `es-US`:** no parts handling yet; the adult controls the collection while the rule is decided.<br>
 **Warning `en-US`:** items are not handled yet; the adult controls the collection while the rule is chosen.<br>
-**Problema/solución `es-US`:** si la regla combina atributos de forma inconsistente, el adulto pregunta: “¿Qué característica estamos usando primero?”.<br>
+**Problem/solution `es-US`:** If the rule combines attributes inconsistently, the adult asks: “Which characteristic are we using first?”<br>
 **Problem/solution `en-US`:** if the rule mixes attributes inconsistently, the adult asks, “Which feature are we using first?”<br>
-**Reanudación / Resume:** para una pausa, el adulto guarda las 48 piezas en `mat.storage`, conserva las etiquetas aparte y reinicia esta fase desde el comienzo / for a pause, the adult stores all 48 items in `mat.storage`, keeps labels separately, and restarts this stage from the beginning.
+**Resume:** for a pause, the adult stores all 48 items in `mat.storage`, keeps labels separately, and restarts this stage from the beginning.
 
-### Paso 3 — Build-or-Do / Hacer (`step.do`, 7–9 min)
+### Step 3 — Build-or-Do (`step.do`, 7–9 min)
 
-**Actor:** Organizador, con verificación del Detective.<br>
-**Español:** El Organizador mueve una pieza por vez desde la bandeja al recipiente que corresponda mientras los demás señalan, verifican o registran sin tocar la colección. Rote el turno de manipulación solo después de dejar todas las piezas en la bandeja o recipientes. Si una pieza no encaja claramente, colóquenla en “todavía no sé” y continúen. Al final, revisen juntos las piezas dudosas y aclaren la regla.<br>
+**Actor:** Organizer, with verification from the Detective.<br>
+**English:** The Organizer moves one piece at a time from the tray to the corresponding container while the others point, verify or record without touching the collection. Rotate handling only after all pieces are placed in the tray or containers. If a piece doesn't fit clearly, put it in “don't know yet” and move on. At the end, review the questionable pieces together and clarify the rule.<br>
 **English:** The Organizer moves one item at a time from the tray to the matching container while others point, verify, or record without touching the collection. Rotate the handling turn only after every item is resting in the tray or containers. If an item does not clearly fit, place it in “not sure yet” and continue. At the end, review the uncertain items together and clarify the rule.<br>
-**Resultado esperado:** las 48 piezas quedan contenidas en categorías o en la zona dudosa.<br>
-**Señal de éxito:** el grupo aplica una regla estable y puede corregir una pieza sin que el adulto dé la respuesta.<br>
+**Expected result:** the 48 pieces are contained in categories or in the doubtful area.<br>
+**Sign of success:** the group applies a stable rule and can correct a piece without the adult giving the answer.<br>
 **Asset:** `ACT-0002-VIS-04`.<br>
-**Advertencia `es-US`:** un solo niño manipula piezas; si una cae, todos paran mientras el adulto la recoge y verifica el área.<br>
-**Warning `en-US`:** only one child handles items; if one falls, everyone stops while the adult retrieves it and checks the area.<br>
-**Problema/solución `es-US`:** una pieza dudosa va al quinto recipiente; nadie necesita adivinar ni cambiar la regla silenciosamente.<br>
+**Warning `es-US`:** a single child manipulates pieces; if one falls, everyone stops while the adult picks it up and checks the area.<br>
+**Warning `en-US`:** only one child handles items; if one falls, everyone stops while the adults retrieve it and check the area.<br>
+**Problem/solution `es-US`:** a questionable piece goes to the fifth bin; no one needs to guess or silently change the rule.<br>
 **Problem/solution `en-US`:** an uncertain item goes in the fifth container; no one needs to guess or silently change the rule.<br>
-**Reanudación / Resume:** para una pausa, el adulto devuelve y cuenta las 48 piezas en `mat.storage`; al reanudar, reinicia la ronda con la misma etiqueta / for a pause, the adult returns and counts all 48 items into `mat.storage`; on resume, restart the round with the same label.
+**Resume/Resume:** For a pause, the adult returns and counts the 48 pieces in `mat.storage`; upon resumption, restart the round with the same tag / for a pause, the adult returns and counts all 48 items into `mat.storage`; on resume, restart the round with the same label.### Step 4 — Experiment (`step.experiment`, 7–9 min)
 
-### Paso 4 — Experiment / Experimentar (`step.experiment`, 7–9 min)
-
-**Actor:** Contador y Reportero; los demás ayudan según turnos.<br>
-**Español:** Vacíen un grupo a la vez sobre el papel y formen una fila. Toquen o deslicen cada pieza una vez mientras cuentan. Registren el total con un número, marcas o mostrando la fila. Comparen: ¿qué grupo tiene más, menos o la misma cantidad? Revisen la predicción inicial.<br>
+**Actor:** Accountant and Reporter; the others help in turns.<br>
+**English:** Pour one group at a time onto the paper and form a line. Touch or slide each piece once while counting. Record the total with a number, marks, or showing the row. Compare: which group has more, less or the same amount? Review the initial prediction.<br>
 **English:** Empty one group at a time onto the paper and make a row. Touch or slide each piece once while counting. Record the total with a numeral, tally marks, or by showing the row. Compare: which group has more, fewer, or the same number? Revisit the first prediction.<br>
-**Resultado esperado:** se cuenta o compara al menos dos grupos.<br>
-**Señal de éxito:** cada palabra-numero corresponde a una pieza o el niño usa una estrategia visible para no repetir/omitir.<br>
+**Expected result:** at least two groups are counted or compared.<br>
+**Success signal:** each number-word corresponds to a piece or the child uses a visible strategy to not repeat/omit.<br>
 **Asset:** `ACT-0002-VIS-05`.<br>
-**Advertencia `es-US`:** solo el Contador toca la fila activa; los demás observan o registran, y todas las piezas siguen sobre papel dentro de la bandeja.<br>
+**Warning `es-US`:** only the Counter touches the active row; the others observe or record, and all the pieces are still on paper in the tray.<br>
 **Warning `en-US`:** only the Counter touches the active row; others observe or record, and every item stays on paper inside the tray.<br>
-**Problema/solución `es-US`:** si se pierde la cuenta, separar una zona “por contar” y otra “contada”, o reducir a un subconjunto sin penalización.<br>
+**Problem/solution `es-US`:** if the count is lost, separate an area “to be counted” and another “counted”, or reduce to a subset without penalty.<br>
 **Problem/solution `en-US`:** if the count is lost, separate “to count” from “counted,” or reduce the subset without treating it as a penalty.<br>
-**Reanudación / Resume:** anotar los grupos ya contados; para una pausa, el adulto guarda y cuenta las 48 piezas en `mat.storage` y al volver reinicia el conteo de la ronda / record which groups were counted; for a pause, the adult stores and counts all 48 items in `mat.storage` and restarts the round's count on return.
+**Resume / Resume:** write down the groups already counted; for a pause, the adult saves and counts the 48 pieces in `mat.storage` and upon returning restarts the counting of the round / record which groups were counted; for a pause, the adult stores and counts all 48 items in `mat.storage` and restarts the round's count on return.
 
-### Paso 5 — Improve / Mejorar (`step.improve`, 5–15 min)
+### Step 5 — Improve (`step.improve`, 5–15 min)
 
-**Actor:** grupo.<br>
-**Español:** Devuelvan todas las piezas a la bandeja y elijan una regla diferente. Expliquen qué cambiará antes de reclasificar. Para una extensión de patrón, tomen piezas de dos o tres categorías y formen una secuencia repetitiva.<br>
+**Actor:** group.<br>
+**English:** Return all the pieces to the tray and choose a different ruler. Explain what will change before reclassifying. For a pattern extension, take pieces from two or three categories and form a repeating sequence.<br>
 **English:** Return every piece to the tray and choose a different rule. Explain what will change before sorting again. For a pattern extension, take pieces from two or three categories and make a repeating sequence.<br>
-**Resultado esperado:** la misma colección produce una organización distinta o un patrón documentado.<br>
-**Señal de éxito:** el niño distingue entre cambiar las piezas y cambiar la regla.<br>
+**Expected result:** the same collection produces a different organization or documented pattern.<br>
+**Success sign:** the child distinguishes between changing the pieces and changing the rule.<br>
 **Asset:** `ACT-0002-VIS-06`.<br>
-**Advertencia `es-US`:** se mantiene un solo manipulador activo; no se agregan materiales ni retos de velocidad.<br>
+**Warning `es-US`:** only one handler is kept active; no materials or speed challenges are added.<br>
 **Warning `en-US`:** keep one active handler; do not add materials or speed challenges.<br>
-**Problema/solución `es-US`:** si la segunda regla produce grupos ambiguos, definir el límite con dos piezas de ejemplo o elegir otra regla observable.<br>
+**Problem/solution `es-US`:** If the second rule produces ambiguous groups, define the boundary with two example pieces or choose another observable rule.<br>
 **Problem/solution `en-US`:** if the second rule produces ambiguous groups, define the boundary with two sample items or choose another observable rule.<br>
-**Reanudación / Resume:** conservar la etiqueta de la segunda regla; para una pausa, el adulto guarda y cuenta las 48 piezas en `mat.storage` y reinicia la clasificación al volver / keep the second-rule label; for a pause, the adult stores and counts all 48 items in `mat.storage` and restarts the sort on return.
+**Resume / Resume:** retain the label of the second rule; for a pause, the adult saves and counts the 48 pieces in `mat.storage` and restarts the sort by returning / keep the second-rule label; for a pause, the adult stores and counts all 48 items in `mat.storage` and restarts the sort on return.
 
-### Paso 6 — Explain / Explicar (`step.explain`, 3–5 min)
+### Step 6 — Explain (`step.explain`, 3–5 min)
 
-**Actor:** cada niño desde su rol.<br>
-**Español:** Pregunte: “¿Cuál fue nuestra regla?”, “¿Qué hiciste cuando una pieza era difícil de clasificar?” y “¿Qué cambió cuando usamos otra regla?”. Cada niño muestra o cuenta su contribución.<br>
+**Actor:** each child from their role.<br>
+**English:** Ask: “What was our rule?”, “What did you do when a piece was difficult to classify?” and “What changed when we used another rule?” Each child shows or tells their contribution.<br>
 **English:** Ask, “What was our rule?”, “What did you do when an item was hard to sort?” and “What changed when we used another rule?” Each child shows or tells their contribution.<br>
-**Resultado esperado:** al menos una explicación oral, señalada o demostrada conecta el atributo con los grupos.<br>
-**Señal de éxito:** la explicación se refiere a una regla, atributo, cantidad o cambio realmente observado.<br>
+**Expected result:** at least one oral, pointed out, or demonstrated explanation connects the attribute to the groups.<br>
+**Success signal:** the explanation refers to a rule, attribute, quantity or change actually observed.<br>
 **Asset:** `ACT-0002-VIS-07`.<br>
-**Advertencia `es-US`:** la colección queda bajo control adulto; explicar no requiere sostener piezas.<br>
+**Warning `es-US`:** collection remains under adult control; explaining does not require holding pieces.<br>
 **Warning `en-US`:** the collection remains under adult control; explaining does not require holding items.<br>
-**Problema/solución `es-US`:** si hablar resulta difícil, permitir señalar etiquetas, filas o el diagrama de proceso.<br>
+**Problem/solution `es-US`:** If speaking is difficult, allow pointing to labels, rows or the process diagram.<br>
 **Problem/solution `en-US`:** if speaking is difficult, allow pointing to labels, rows, or the process diagram.<br>
-**Reanudación / Resume:** conservar una etiqueta o dibujo de la regla; no conservar piezas sueltas / keep one rule label or drawing; do not leave loose items accessible.<br>
-**Cierre:** el adulto inicia la evaluación rápida de un objetivo principal por niño; “Evaluar más” es opcional.
+**Resume / Resume:** retain a label or drawing of the rule; do not keep loose parts / keep one rule label or drawing; do not leave loose items accessible.<br>
+**Closure:** Adult begins rapid assessment of one primary goal per child; “Evaluate more” is optional.
 
-## 13. Preguntas sugeridas
+## 13. Suggested questions
 
-### Apertura
-
-| `es-US` | `en-US` |
-|---|---|
-| ¿Qué notas sin mover todavía las piezas? | What do you notice before moving any pieces? |
-| ¿Qué podría significar “pertenece al mismo grupo”? | What might “belongs in the same group” mean? |
-| ¿Qué grupo predices que tendrá más? ¿Por qué? | Which group do you predict will have the most? Why? |
-
-### Durante la actividad
+### Opening
 
 | `es-US` | `en-US` |
 |---|---|
-| ¿Qué regla estás usando para esta pieza? | What rule are you using for this item? |
-| ¿Dónde podríamos dejar una pieza mientras decidimos? | Where could we place an item while we decide? |
-| ¿Cómo podemos contar sin repetir ni olvidar una pieza? | How can we count without repeating or missing an item? |
+| What do you notice without moving the pieces yet? | What do you notice before moving any pieces? |
+| What could “belongs to the same group” mean? | What might “belongs in the same group” mean? |
+| Which group do you predict will have the most? Because? | Which group do you predict will have the most? Why? |
 
-### Cierre
+### During the activity
 
 | `es-US` | `en-US` |
 |---|---|
-| ¿Podría otra persona ordenar las piezas usando tu regla? | Could someone else sort the items using your rule? |
-| ¿La colección cambió o cambió nuestra manera de mirarla? | Did the collection change, or did our way of looking at it change? |
-| ¿Qué regla probarías la próxima vez? | What rule would you try next time? |
+| What rule are you using for this piece? | What rule are you using for this item? |
+| Where could we leave a piece while we decide? | Where could we place an item while we decide? |
+| How can we count without repeating or forgetting a piece? | How can we count without repeating or missing an item? |
 
-## 14. Explicaciones localizadas
+### Closing
 
-### Para el adulto — breve
+| `es-US` | `en-US` |
+|---|---|
+| Could someone else arrange the pieces using your ruler? | Could someone else sort the items using your rule? |
+| Did the collection change or did it change our way of looking at it? | Did the collection change, or did our way of looking at it change? |
+| Which rule would you try next time? | What rule would you try next time? |
 
-**`es-US`:** Clasificar significa elegir un atributo observable y usarlo de manera consistente para formar grupos. Al cambiar la regla, la misma colección puede organizarse de otra manera. Contar una pieza por palabra-número permite comparar los grupos sin depender solo de cómo se ven.
+## 14. Localized explanations
+
+### For the adult — brief
+
+**`es-US`:** Classifying means choosing an observable attribute and using it consistently to form groups. By changing the rule, the same collection can be organized differently. Counting a piece by word-number allows groups to be compared without depending only on how they look.
 
 **`en-US`:** Sorting means choosing an observable attribute and using it consistently to make groups. When the rule changes, the same collection can be organized in a different way. Counting one item for each number word lets children compare groups instead of relying only on appearance.
 
-### Para el adulto — detallada
-
-**`es-US`:** La clasificación es una base del razonamiento matemático y del trabajo con datos. El niño debe atender a atributos, definir o comprender una regla y decidir si cada elemento cumple esa regla. No siempre existe una única clasificación correcta: “por tipo”, “claro/oscuro” o “grande/pequeño” pueden ser válidas si los límites se explican y se aplican con consistencia. La zona “todavía no sé” hace visible la incertidumbre y permite revisar la definición sin adivinar. Al alinear y contar las categorías, el niño practica correspondencia uno a uno y comparación. Volver a mezclar y reclasificar muestra que los objetos permanecen iguales aunque cambie la estructura que usamos para describirlos. Los frijoles son semillas, pero aquí se usan exclusivamente como manipulativos no comestibles.
+### For the adult — detailed**`es-US`:** Classification is a foundation of mathematical reasoning and working with data. The child must attend to attributes, define or understand a rule, and decide whether each element meets that rule. There is not always a single correct classification: “by type”, “light/dark” or “large/small” may be valid if the limits are explained and applied consistently. The “I don't know yet” zone makes the uncertainty visible and allows the definition to be revised without guessing. By lining up and counting the categories, the child practices one-to-one correspondence and comparison. Reshuffling and reclassifying shows that objects stay the same even if the structure we use to describe them changes. Beans are seeds, but here they are used exclusively as non-edible manipulatives.
 
 **`en-US`:** Classification is a foundation for mathematical reasoning and working with data. A child attends to attributes, defines or understands a rule, and decides whether each item fits that rule. There is not always one correct classification: “by type,” “light/dark,” or “large/small” can all be valid when the boundaries are explained and applied consistently. The “not sure yet” area makes uncertainty visible and lets children revise a definition instead of guessing. Lining up and counting categories practices one-to-one correspondence and comparison. Mixing and sorting again shows that the objects stay the same even when the structure used to describe them changes. Beans are seeds, but in this activity they are used only as non-edible manipulatives.
 
-### Lenguaje infantil
+### Children's language
 
-**`es-US`:** Los científicos miran con atención y buscan semejanzas y diferencias. Una regla nos ayuda a decidir dónde va cada semilla. Podemos cambiar la regla y crear grupos nuevos sin cambiar la colección.
+**`es-US`:** Scientists look closely and look for similarities and differences. A rule helps us decide where each seed goes. We can change the rule and create new groups without changing the collection.
 
 **`en-US`:** Scientists look closely for similarities and differences. A rule helps us decide where each seed belongs. We can change the rule and make new groups without changing the collection.
 
-## 15. Adaptaciones aprobadas
+## 15. Approved accommodations
 
-| Adaptación | Cuándo usar | Cambio permitido | Lo que no cambia |
+| Adaptation | When to use | Change allowed | What doesn't change |
 |---|---|---|---|
-| Subconjunto | Fatiga, tiempo de 30 minutos o conteo emergente | El adulto separa 12–20 piezas, conservando exactamente 3 de las variedades aprobadas | Advertencias, supervisión y objetivo principal. |
-| Menor demanda motriz | Dificultad de pinza, temblor o preferencia | Usar mano abierta o cuchara; recipientes más cercanos; permitir que el adulto estabilice la bandeja | El niño sigue tomando decisiones de clasificación. |
-| Mayor reto motriz | Coordinación consolidada | Usar pinza infantil roma o colocar piezas en celdas grandes dibujadas | Sin límite de tiempo ni competencia. |
-| Apoyo visual | Lenguaje emergente, bilingüismo o dificultad para recordar la regla | Etiquetas con color, dibujo, pieza modelo o símbolo | No revelar cada respuesta; la regla sigue siendo verificable. |
-| Respuesta sin habla | Preferencia o necesidad comunicativa | Señalar, emparejar, dibujar o demostrar la regla | La evidencia describe la acción observada, no una supuesta comprensión verbal. |
-| Reto matemático | Conteo y clasificación independientes | Segunda regla, patrón AAB/ABC, filas comparativas o clasificación jerárquica | La sesión conserva un objetivo principal por niño. |
-| Pausa y reanudación | Interrupción familiar | Cada categoría permanece en recipiente rígido sobre bandeja cubierta, bajo control adulto | Nunca dejar piezas pequeñas accesibles sin supervisión. |
+| Subset | Fatigue, 30-minute time or pop-up counting | The adult separates 12–20 pieces, keeping exactly 3 of the approved varieties | Warnings, supervision and primary objective. |
+| Lower motor demand | Gripper difficulty, tremor or preference | Use open hand or spoon; closest containers; allow adult to stabilize tray | The child continues to make classification decisions. |
+| Greater motor challenge | Consolidated coordination | Use blunt children's clamps or place pieces in large drawn cells | No time limit or competition. |
+| Visual support | Emergent language, bilingualism or difficulty remembering the rule | Labels with color, drawing, model part or symbol | Do not reveal every answer; the rule remains verifiable. |
+| Speechless response | Preference or communicative need | Point out, match, draw or demonstrate the rule | The evidence describes the observed action, not a supposed verbal understanding. |
+| Mathematical challenge | Independent counting and sorting | Second rule, AAB/ABC pattern, comparative rows or hierarchical classification | The session maintains one primary objective per child. |
+| Pause and resume | Family disruption | Each category remains in a rigid container on a covered tray, under adult control | Never leave small parts accessible unattended. |
 
-## 16. Extensiones publicables dentro de esta versión
+## 16. Publishable extensions within this version
 
-1. **Patrón físico (5–8 min):** construir y continuar AB, AAB o ABC con dos o tres tipos. El patrón es una exposición salvo que haya sido elegido como objetivo principal antes de la sesión.
-2. **Gráfico de objetos (8–12 min):** alinear cada categoría en columnas con el mismo punto de inicio y comparar alturas. El adulto aclara que cada pieza representa una pieza, no una medida continua.
-3. **Regla para otra persona (8–10 min):** un niño dibuja o explica una regla; otro intenta seguirla. Después revisan palabras o símbolos ambiguos.
-4. **Clasificación en dos etapas (10–15 min):** primero por color y después cada grupo por tamaño o forma. Recomendada para L3/L4.
+1. **Physical pattern (5–8 min):** build and continue AB, AAB, or ABC with two or three types. The pattern is an exposure unless it was chosen as the primary objective before the session.
+2. **Object Chart (8–12 min):** Align each category in columns with the same starting point and compare heights. The adult clarifies that each piece represents a piece, not a continuous measurement.
+3. **Rule for Someone Else (8–10 min):** a child draws or explains a rule; another tries to follow her. Then they review ambiguous words or symbols.
+4. **Classification in two stages (10–15 min):** first by color and then each group by size or shape. Recommended for L3/L4.
 
-**Approved extensions `en-US`:** Build and continue an AB, AAB, or ABC physical pattern; align categories into an object graph; create a rule for another person to follow and revise unclear directions; or use a two-stage sort. Extensions add 5–15 minutes each and may extend the session to 60 minutes. They may not add tasting, sprouting, water, heat, glue, treated materials, or timed competition.
+**Approved extensions `en-US`:** Build and continue an AB, AAB, or ABC physical pattern; align categories into an object graph; create a rule for another person to follow and review unclear directions; or use a two-stage sort. Extensions add 5–15 minutes each and may extend the session to 60 minutes. They may not add tasting, sprouting, water, heat, glue, treated materials, or timed competition.
 
-Ninguna extensión añade degustación, germinación, agua, calor, pegamento, materiales tratados ni competencia cronometrada.
+No extension adds tasting, germination, water, heat, glue, treated materials or timed competition.
 
-## 17. Troubleshooting bilingüe
+## 17. Bilingual troubleshooting
 
-| Situación | `es-US` | `en-US` |
+| Situation | `es-US` | `en-US` |
 |---|---|---|
-| Las piezas parecen demasiado parecidas | Use primero “tipo” con una pieza modelo en cada recipiente. Para la segunda ronda, pruebe claro/oscuro o grande/pequeño. | Start with “type” and place one sample item in each container. For the second round, try light/dark or large/small. |
-| El niño cambia la regla a mitad | Coloque una etiqueta visible y pregunte qué atributo están usando ahora. La pieza puede ir a “todavía no sé”. | Place a visible rule label and ask which attribute is being used now. The item may go in “not sure yet.” |
-| Dos niños no están de acuerdo | Pida a cada uno que aplique su regla a tres piezas. El grupo elige una regla para esta ronda y conserva la otra para Improve. | Ask each child to apply their rule to three items. The group chooses one rule for this round and saves the other for Improve. |
-| Se pierde la cuenta | Mueva cada pieza de “por contar” a “contada”, forme una fila o reduzca el subconjunto. Volver a contar está permitido. | Move each item from “to count” to “counted,” make a row, or reduce the subset. Recounting is allowed. |
-| El reto es demasiado fácil | Use una segunda regla, clasificación en dos etapas o pida crear instrucciones que otra persona pueda seguir. | Use a second rule, a two-stage sort, or ask the child to create directions another person can follow. |
-| El reto es demasiado difícil | Use 12 piezas de tres variedades aprobadas y tres categorías evidentes; modele una pieza y deje que el niño continúe. | Use 12 items from three approved varieties and three obvious categories; model one item and let the child continue. |
-| Se derraman piezas | Todos dejan de moverse. El adulto recoge y cuenta las piezas antes de continuar. Si no puede controlar el área, cierre la actividad. | Everyone stops moving. The adult collects and counts the items before continuing. If the area cannot be controlled, end the activity. |
-| El niño quiere comer una pieza | Recuerde que son materiales de actividad, no comida. Si vuelve a intentarlo, retire la colección y termine. | Remind them that these are activity materials, not food. If they try again, remove the collection and end the activity. |
+| The pieces seem too similar | Use “type” first with a model piece in each container. For the second round, try light/dark or large/small. | Start with “type” and place one sample item in each container. For the second round, try light/dark or large/small. |
+| The boy changes the rule halfway | Put a visible tag and ask what attribute they are using now. The piece can go to “I don't know yet.” | Place a visible rule label and ask which attribute is being used now. The item may go in “not sure yet.” |
+| Two children disagree | Ask everyone to apply their rule to three pieces. The group chooses one rule for this round and keeps the other for Improve. | Ask each child to apply their rule to three items. The group chooses one rule for this round and saves the other for Improve. |
+| Account is lost | Move each piece from “to be counted” to “counted,” form a row, or reduce the subset. Retelling is allowed. | Move each item from “to count” to “counted,” make a row, or reduce the subset. Recounting is allowed. |
+| The challenge is too easy | Use a second rule, two-stage sorting, or ask to create instructions that someone else can follow. | Use a second rule, a two-stage sort, or ask the child to create directions another person can follow. |
+| The challenge is too difficult | Use 12 pieces of three approved varieties and three obvious categories; Model a piece and let the child continue. | Use 12 items from three approved varieties and three obvious categories; model one item and let the child continue. |
+| Pieces spill out | Everyone stops moving. The adult collects and counts the pieces before continuing. If you cannot control the area, close the activity. | Everyone stops moving. The adult collects and counts the items before continuing. If the area cannot be controlled, end the activity. |
+| The child wants to eat a piece | Remember these are activity materials, not food. If you try again, remove the collection and finish. | Remind them that these are activity materials, not food. If they try again, remove the collection and end the activity. |
 
-## 18. Limpieza y almacenamiento
+## 18. Cleaning and storage
 
-### `es-US`
-
-1. Un niño a la vez puede devolver las piezas a la bandeja mientras el adulto mantiene supervisión; los demás no manipulan la colección.
-2. El adulto verifica la mesa, las sillas y el piso, y recoge todas las piezas.
-3. El adulto coloca los frijoles en el recipiente rígido etiquetado para uso exclusivo de actividades o los desecha. No los devuelve a la despensa ni los cocina.
-4. Limpiar la bandeja, recipientes y herramientas según su material.
-5. Todas las personas se lavan las manos al terminar.
-6. Si falta una pieza, mantener a niños menores y mascotas fuera del área hasta encontrarla o completar una limpieza minuciosa.
+### `es-US`1. One child at a time can return the pieces to the tray while the adult maintains supervision; the others do not manipulate the collection.
+2. The adult checks the table, chairs, and floor, and picks up all the pieces.
+3. The adult places the beans in the rigid container labeled for activity use only or discards them. He doesn't put them back in the pantry or cook them.
+4. Clean the tray, containers and tools according to their material.
+5. Everyone washes their hands when finished.
+6. If a piece is missing, keep small children and pets out of the area until it is found or thorough cleaning is completed.
 
 ### `en-US`
 
@@ -400,127 +392,125 @@ Ninguna extensión añade degustación, germinación, agua, calor, pegamento, ma
 5. Everyone washes their hands when finished.
 6. If an item is missing, keep younger children and pets away until it is found or the area has been thoroughly cleaned.
 
-## 19. Observación y evaluación
+## 19. Observation and evaluation
 
-### Regla de sesión
+### Session rule
 
-- La aplicación registra automáticamente las habilidades/conceptos ofrecidos como exposiciones para cada participante real.
-- Por defecto solicita **una sola valoración por niño** sobre el objetivo principal asignado antes de empezar.
-- “Evaluar más” permite valorar objetivos secundarios, pero es opcional y visualmente secundario.
-- Si un niño no participó, no se registra exposición ni evaluación.
-- Si los niños trabajaron de forma inseparable, no se atribuye desempeño individual sin confirmación adulta.
+- The app automatically records the skills/concepts offered as exposures for each actual participant.
+- By default, it requests **a single assessment per child** on the assigned primary objective before starting.
+- “Evaluate more” allows you to evaluate secondary objectives, but it is optional and visually secondary.
+- If a child did not participate, no exposure or evaluation is recorded.
+- If the children worked inseparably, individual performance is not attributed without adult confirmation.
 
-### Escala común de independencia 1–5
+### Common Independence Scale 1–5
 
-| Valor | Ancla `es-US` | Anchor `en-US` |
+| Value | Anchor `es-US` | Anchor `en-US` |
 |---:|---|---|
-| 1 | No pudo hacerlo todavía, incluso con apoyo razonable. | Could not do it yet, even with reasonable support. |
-| 2 | Lo logró con bastante ayuda. | Did it with substantial help. |
-| 3 | Lo logró con alguna ayuda. | Did it with some help. |
-| 4 | Lo logró casi de forma independiente. | Did it almost independently. |
-| 5 | Lo hizo de forma independiente y segura. | Did it independently and safely. |
+| 1 | He couldn't do it yet, even with reasonable support. | Could not do it yet, even with reasonable support. |
+| 2 | He did it with a lot of help. | Did it with substantial help. |
+| 3 | He did it with some help. | Did it with some help. |
+| 4 | He achieved it almost independently. | Did it almost independently. |
+| 5 | He did it independently and safely. | Did it independently and safely. |
 
-La escala mide independencia en esta actividad y contexto; no inteligencia, valor personal ni un nivel permanente.
+The scale measures independence in this activity and context; not intelligence, personal value or a permanent level.
 
-### Rúbricas de objetivos elegibles
+### Eligible Objective Rubrics
 
-| Objetivo | Pregunta final `es-US` / `en-US` | Evidencia válida | No es evidencia suficiente | Factores externos frecuentes |
+| Objective | Final question `es-US` / `en-US` | Valid evidence | It is not enough evidence | Frequent external factors |
 |---|---|---|---|---|
-| Clasificar por un atributo | “¿Qué tan independientemente clasificó las piezas usando una regla observable?” / “How independently did they sort the items using one observable rule?” | Aplica la misma regla a varias piezas; detecta o revisa una pieza dudosa | Estar presente, mover piezas copiando cada indicación o completar una pila hecha por otro | Etiquetas confusas, tipos poco distinguibles, disputa de regla |
-| Identificar atributos | “¿Qué tan independientemente identificó semejanzas o diferencias útiles para formar grupos?” / “How independently did they identify similarities or differences useful for making groups?” | Señala, nombra, dibuja o demuestra un atributo observable | Repetir una palabra sin relacionarla con piezas | Vocabulario bilingüe, visión, iluminación |
-| Transferir con control | “¿Qué tan independientemente movió las piezas de forma controlada usando la herramienta elegida?” / “How independently did they move the items with control using the chosen tool?” | Transfiere entre zonas con derrames limitados y ajusta agarre/herramienta | Rapidez o cantidad total movida | Fatiga, altura de mesa, herramienta inadecuada |
-| Contar uno a uno | “¿Qué tan independientemente contó una pieza por vez sin omitir ni repetir?” / “How independently did they count one item at a time without skipping or repeating?” | Toca/mueve cada pieza una vez o usa estrategia equivalente; puede autocorregirse | Recitar números sin correspondencia o repetir el total de otra persona | Tamaño del conjunto, interrupciones, disposición desordenada |
-| Comparar cantidades | “¿Qué tan independientemente comparó dos grupos como más, menos o igual?” / “How independently did they compare two groups as more, fewer, or equal?” | Usa conteo, filas u otra estrategia visible para justificar | Elegir por tamaño visual de las piezas sin revisar cantidad | Diferencias de tamaño de los frijoles, filas desalineadas |
-| Representar datos | “¿Qué tan independientemente mostró las cantidades con filas, marcas, números o un gráfico físico?” / “How independently did they show quantities with rows, tallies, numerals, or a physical graph?” | Correspondencia entre cada pieza/grupo y la representación | Dibujo decorativo sin relación verificable con las cantidades | Escritura emergente, espacio insuficiente |
-| Explicar una regla | “¿Qué tan independientemente explicó o demostró la regla para que otra persona pudiera seguirla?” / “How independently did they explain or demonstrate the rule so someone else could follow it?” | Instrucción oral, señalada o dibujada que otra persona puede aplicar | Fluidez verbal por sí sola | Diferencias de lenguaje, timidez, modalidad comunicativa |
-| Crear/continuar patrón | “¿Qué tan independientemente creó o continuó un patrón repetitivo con las piezas?” / “How independently did they create or continue a repeating pattern with the items?” | Mantiene una unidad repetitiva identificable y corrige una ruptura | Alternancia accidental de pocas piezas | Cantidad insuficiente de un tipo, demanda motriz |
+| Sort by an attribute | “How independently did you classify the pieces using an observable rule?” / “How independently did they sort the items using one observable rule?” | Apply the same rule to multiple pieces; detects or reviews a questionable part | Be present, move pieces by copying each indication or complete a pile made by another | Confusing labels, indistinguishable types, rule dispute |
+| Identify attributes | “How independently did you identify useful similarities or differences in forming groups?” / “How independently did they identify similarities or differences useful for making groups?” | Point out, name, draw or demonstrate an observable attribute | Repeat a word without relating it to pieces | Bilingual vocabulary, vision, enlightenment |
+| Transfer with control | “How independently did you move the pieces in a controlled manner using the chosen tool?” / “How independently did they move the items with control using the chosen tool?” | Transfer between limited spill areas and adjust grip/tool ​​| Speed ​​or total amount moved | Fatigue, table height, inappropriate tool |
+| Count one by one | “How independently did you tell one piece at a time without omitting or repeating?” / “How independently did they count one item at a time without skipping or repeating?” | Touch/move each piece once or use equivalent strategy; can self-correct | Reciting numbers without matching or repeating someone else's total | Set size, interruptions, messy arrangement |
+| Compare quantities | “How independently did you compare two groups as more, less, or equal?” / “How independently did they compare two groups as more, fewer, or equal?” | Use counting, rows, or another visible strategy to justify | Choose by visual size of the pieces without checking quantity | Bean size differences, misaligned rows |
+| Represent data | “How independently did you show quantities with rows, ticks, numbers, or a physical graph?” / “How independently did they show quantities with rows, tallies, numerals, or a physical graph?” | Correspondence between each piece/group and the representation | Decorative drawing with no verifiable relationship with quantities | Pop-up writing, insufficient space |
+| Explain a rule | “How independently did you explain or demonstrate the rule so that another person could follow it?” / “How independently did they explain or demonstrate the rule so someone else could follow it?” | Oral, marked or drawn instruction that another person can apply | Verbal fluency alone | Language differences, shyness, communicative modality |
+| Create/continue pattern | “How independently did you create or continue a repeating pattern with the pieces?” / “How independently did they create or continue a repeating pattern with the items?” | Maintains an identifiable repetitive unit and corrects a break | Accidental alternation of few pieces | Insufficient quantity of one type, motor demand |
 
-### Exposiciones secundarias previstas
+### Secondary exposures planned
 
-Según los pasos realmente realizados: observación de atributos, clasificación, conteo, comparación, patrones, coordinación fina, explicación, toma de turnos y organización/limpieza. Estas exposiciones no se convierten automáticamente en evidencia de desempeño.
+According to the steps actually performed: attribute observation, classification, counting, comparison, patterns, fine coordination, explanation, turn taking and organization/cleaning. These exposures do not automatically become evidence of performance.
 
-### Nota opcional de voz/texto
+### Optional voice/text note
 
-Una sola nota puede cubrir a los participantes. Ejemplo `es-US`: “Lina inventó la regla claro y oscuro; Tomás contó bien cuando puso las piezas en fila”. Ejemplo `en-US`: “Lina came up with the light-and-dark rule; Tomas counted accurately after lining the items up.” La atribución ambigua requiere confirmación. Audio y transcripción siguen la política de retención; solo la observación estructurada útil permanece según su propósito.
+A single note can cover the participants. Example `es-US`: “Lina invented the light and dark rule; Tomás counted correctly when he put the pieces in a row.” Example `en-US`: “Lina came up with the light-and-dark rule; Tomas counted accurately after lining the items up.” Ambiguous attribution requires confirmation. Audio and transcription follow retention policy; only useful structured observation remains as intended.
 
-## 20. Briefs visuales
+## 20. Visual briefs
 
-Todos los assets permanecen en `draft` hasta QA automático y aprobación humana. El texto visible y las etiquetas se superponen programáticamente; no se generan dentro de la imagen. No mostrar rostros, marcas comerciales, alimentos adicionales ni manos infantiles cerca de la boca.
+All assets remain in `draft` until automated QA and human approval. Visible text and labels are overlaid programmatically; they are not generated within the image. Do not show faces, commercial brands, additional foods or children's hands near the mouth.
 
-| Asset ID | Tipo/estilo | Brief sin texto generado | Alt text `es-US` | Alt text `en-US` | QA específico |
+| AssetID | Type/style | Brief without generated text | Alt text `es-US` | Alt text `en-US` | Specific QA |
 |---|---|---|---|---|---|
-| `ACT-0002-VIS-01` | Materials board fotorealista, vista cenital | Sobre fondo neutro: 12 garbanzos, 12 frijoles negros, 12 frijoles pintos y 12 arvejas/guisantes verdes secos en cuatro grupos; bandeja con borde, cinco recipientes irrompibles, papel grande, marcador grueso y recipiente rígido con tapa. Sin bolsas, vidrio ni utensilios puntiagudos. | Materiales de la actividad organizados sobre un fondo claro. | Activity materials organized on a light background. | Verificar los cuatro tipos exactos y 12 piezas de cada uno; ningún material extra; escala coherente. |
-| `ACT-0002-VIS-02` | Preparación fotorealista, vista 45° | Manos adultas mezclan las 48 piezas dentro de una bandeja con borde; cinco recipientes vacíos alineados; papel grande al centro. Sin niño visible. | Una persona adulta prepara la bandeja y los recipientes para clasificar. | An adult prepares the tray and containers for sorting. | Actor adulto claro; piezas contenidas; ningún recipiente de vidrio. |
-| `ACT-0002-VIS-03` | Diagrama instructivo Discover/Imagine | Acercamiento de cuatro piezas distintas con líneas simples que resaltan color, tamaño, forma y textura; cuatro tarjetas vacías para etiquetas controladas. | Cuatro semillas con diferentes atributos para observar. | Four seeds with different attributes to observe. | Marcar como diagrama; no sugerir que las diferencias están a escala exacta. |
-| `ACT-0002-VIS-04` | Diagrama de paso Build-or-Do | Flechas desde una bandeja central hacia cuatro recipientes según un solo atributo; quinto recipiente con símbolo de pregunta, sin palabras integradas. Mano debajo del mentón y otra mano mueve una pieza sobre la mesa. | Las piezas se mueven de la bandeja a grupos según una regla. | Items move from the tray into groups using one rule. | Regla visual consistente; ninguna pieza cerca del rostro; zona dudosa visible. |
-| `ACT-0002-VIS-05` | Diagrama instructivo Experiment | Dos grupos alineados en filas desde la misma línea de inicio; un dedo señala una pieza por vez; marcas de conteo vacías para capa programática. | Dos filas permiten contar y comparar grupos. | Two rows make it possible to count and compare groups. | Correspondencia uno a uno visible; cantidades coherentes; sin texto deformado. |
-| `ACT-0002-VIS-06` | Diagrama Before/After Improve | A la izquierda, colección agrupada por tipo; a la derecha, las mismas 48 piezas agrupadas por claro/oscuro con composición distinta. | La misma colección aparece organizada con dos reglas diferentes. | The same collection is organized using two different rules. | Exactamente las mismas piezas en ambos lados; no añadir ni perder objetos. |
-| `ACT-0002-VIS-07` | Concept diagram | Flujo: observar atributo → elegir regla → formar grupos → contar/comparar → cambiar regla. Iconos simples, sin texto integrado. | Diagrama del proceso de observar, clasificar y comparar. | Diagram of the process of observing, sorting, and comparing. | Secuencia correcta; etiquetas externas bilingües; marcado como explicación conceptual. |
-| `ACT-0002-VIS-08` | Troubleshooting fotorealista comparativo | Estado correcto: piezas contenidas en bandeja y recipientes. Estado incorrecto: tres piezas junto al borde de la mesa, señaladas para pausar; ningún niño ni mascota presente. | Comparación entre un área contenida y piezas cerca del borde que deben recogerse. | Comparison between a contained work area and items near the edge that must be collected. | No mostrar caída, ingestión ni conducta riesgosa; acción segura inequívoca. |
+| `ACT-0002-VIS-01` | Photorealistic materials board, overhead view | On a neutral background: 12 chickpeas, 12 black beans, 12 pinto beans, and 12 dried green peas in four groups; a rimmed tray, five shatterproof containers, large paper, thick marker, and rigid container with lid. No bags, glass, or sharp utensils. | Activity materials organized on a light background. | Activity materials organized on a light background. | Check the exact four types and 12 pieces of each; no extra materials; coherent scale. |
+| `ACT-0002-VIS-02` | Photorealistic preparation, 45° view | Adult hands mix the 48 pieces inside a rimmed tray; five empty containers lined up; large paper in the center. No child visible. | An adult prepares the tray and containers for sorting. | An adult prepares the tray and containers for sorting. | clear adult actor; parts contained; no glass container. |
+| `ACT-0002-VIS-03` | Discover/Imagine Instructional Diagram | Close-up of four different pieces with simple lines that highlight color, size, shape and texture; four empty cards for controlled labels. | Four seeds with different attributes to observe. | Four seeds with different attributes to observe. | Mark as diagram; not to suggest that the differences are to exact scale. |
+| `ACT-0002-VIS-04` | Build-or-Do Step Diagram | Arrows from a central tray to four containers based on a single attribute; fifth container with question symbol, without integrated words. Hand under the chin and other hand moves a piece on the table. | Pieces are moved from the tray to groups according to a rule. | Items move from the tray into groups using one rule. | Consistent visual rule; no piece near the face; visible doubtful area. |
+| `ACT-0002-VIS-05` | Experiment instructional diagram | Two groups lined up in rows from the same starting line; a finger points one piece at a time; empty count marks for programmatic layer. | Two rows allow counting and comparing groups. | Two rows make it possible to count and compare groups. | Visible one-to-one correspondence; coherent quantities; no warped text. |
+| `ACT-0002-VIS-06` | Before/After Improve Diagram | On the left, collection grouped by type; On the right, the same 48 pieces grouped by light/dark with different composition. | The same collection appears organized with two different rules. | The same collection is organized using two different rules. | Exactly the same pieces on both sides; do not add or lose objects. |
+| `ACT-0002-VIS-07` | Concept diagram | Flow: observe attribute → choose rule → form groups → count/compare → change rule. Simple icons, without integrated text. | Diagram of the process of observing, classifying and comparing. | Diagram of the process of observing, sorting, and comparing. | Correct sequence; bilingual external labels; marked as conceptual explanation. |
+| `ACT-0002-VIS-08` | Comparative photorealistic troubleshooting | Correct condition: pieces contained in tray and containers. Incorrect state: three pieces next to the edge of the table, marked for pause; no children or pets present. | Comparison between a contained area and pieces near the edge that need to be picked up. | Comparison between a contained work area and items near the edge that must be collected. | Do not show falls, ingestion or risky behavior; unequivocal safe action. |
 
-## 21. Gates editoriales y plan de prueba
+## 21. Gates editorials and test plan
 
-### Revisiones pendientes
+### Pending revisions- [ ] Pedagogical review: clarity of attributes, differentiation, rubrics and roles.
+- [ ] Safety review: small parts, allergies, cleaning and storage.
+- [ ] Food safety/toxicology review: exact collection, exclusions and response to suspected ingestion.
+- [ ] Compliance review to decide if the product or descriptive material triggers mandatory small parts warnings in the United States.
+- [ ] Bilingual review `es-US`/`en-US`, with special attention to warnings.
+- [ ] Production and QA of the eight visual assets.
+- [ ] Execution by the author or editorial owner.
+- [ ] At least three additional executions in two families, including one led by a different adult.
+- [ ] Explicit test with 1, 2 and 3 children.
+- [ ] Record of actual duration, preparation, spills, role conflicts and final evaluation time.
+- [ ] Confirm that three main assessments can be completed in less than 20 seconds.
+- [ ] Confirm with three children that the one-active handler rule allows for continuous supervision without excessive waiting or conflict.
 
-- [ ] Revisión pedagógica: claridad de atributos, diferenciación, rúbricas y roles.
-- [ ] Revisión de seguridad: piezas pequeñas, alergias, limpieza y almacenamiento.
-- [ ] Revisión de seguridad alimentaria/toxicología: colección exacta, exclusiones y respuesta ante ingestión sospechada.
-- [ ] Revisión de cumplimiento para decidir si el producto o material descriptivo activa advertencias obligatorias de piezas pequeñas en Estados Unidos.
-- [ ] Revisión bilingüe `es-US`/`en-US`, con atención especial a advertencias.
-- [ ] Producción y QA de los ocho assets visuales.
-- [ ] Ejecución por la autora o propietaria editorial.
-- [ ] Al menos tres ejecuciones adicionales en dos familias, incluida una dirigida por un adulto distinto.
-- [ ] Prueba explícita con 1, 2 y 3 niños.
-- [ ] Registro de duración real, preparación, derrames, conflictos de roles y tiempo de evaluación final.
-- [ ] Confirmar que tres valoraciones principales puedan completarse en menos de 20 segundos.
-- [ ] Confirmar con tres niños que la regla de un solo manipulador activo permite supervisión continua sin esperas o conflictos excesivos.
+### External references for review
 
-### Referencias externas para revisión
+- [FDA — Natural Toxins in Food](https://www.fda.gov/food/chemical-contaminants-pesticides/natural-toxins-food): basis for treating raw legumes as inedible and requiring review for natural toxins.
+- [Health Canada — Lectins in legumes](https://www.canada.ca/en/health-canada/services/food-nutrition/food-safety/chemical-contaminants/natural-toxins/lectins-legumes.html): identifies legumes of greatest concern and culinary controls that this activity does not perform.
+- [CPSC — Small Parts and Choking Hazard Labeling](https://www.cpsc.gov/FAQ/Small-Parts-and-Choking-Hazard-Labeling-FAQs): basis for the classification and labeling gate of the product aimed at the US market.
 
-- [FDA — Natural Toxins in Food](https://www.fda.gov/food/chemical-contaminants-pesticides/natural-toxins-food): base para tratar legumbres crudas como no comestibles y exigir revisión de toxinas naturales.
-- [Health Canada — Lectins in legumes](https://www.canada.ca/en/health-canada/services/food-nutrition/food-safety/chemical-contaminants/natural-toxins/lectins-legumes.html): identifica legumbres de mayor preocupación y controles culinarios que esta actividad no realiza.
-- [CPSC — Small Parts and Choking Hazard Labeling](https://www.cpsc.gov/FAQ/Small-Parts-and-Choking-Hazard-Labeling-FAQs): base para el gate de clasificación y etiquetado del producto dirigido al mercado estadounidense.
+### Minimum pilot data for this activity
 
-### Datos mínimos del piloto de esta actividad
+- Number and ages/functional ranges of participants.
+- Initial rule and second rule chosen.
+- Configuration 1/2/3 children and real roles.
+- Duration of preparation, core, extension and cleaning.
+- Used props and any material that is difficult to distinguish.
+- Incidents, near-incidents or reason to stop.
+- One main assessment per participant; secondary only if “Evaluate more” is used.
+- Adult feedback on bilingual clarity and images.
 
-- Cantidad y edades/rangos funcionales de participantes.
-- Regla inicial y segunda regla elegidas.
-- Configuración 1/2/3 niños y roles reales.
-- Duración de preparación, núcleo, extensión y limpieza.
-- Apoyos usados y cualquier material difícil de distinguir.
-- Incidentes, casi-incidentes o motivo para detener.
-- Una valoración principal por participante; secundarios solo si se usa “Evaluar más”.
-- Feedback adulto sobre claridad bilingüe e imágenes.
+## 22. Version acceptance criteria
 
-## 22. Criterios de aceptación de la versión
-
-- **ACT-0002-AC-01:** La actividad se completa en 30–35 minutos sin extensión y puede ampliarse de forma aprobada hasta 60 minutos.
-- **ACT-0002-AC-02:** Funciona con 1, 2 y 3 niños, con contribución visible para cada rol.
-- **ACT-0002-AC-03:** Cada participante recibe exactamente un objetivo principal antes de iniciar; las demás habilidades quedan como exposición por defecto.
-- **ACT-0002-AC-04:** Un adulto distinto al autor puede ejecutarla usando únicamente esta versión y sus assets aprobados.
-- **ACT-0002-AC-05:** Ningún paso requiere ingerir, cocinar, germinar o tratar químicamente los frijoles.
-- **ACT-0002-AC-06:** Advertencias bilingües aparecen antes de manipular y junto a los pasos relevantes.
-- **ACT-0002-AC-07:** Una regla inconsistente, una cuenta perdida y un derrame tienen recuperación segura documentada.
-- **ACT-0002-AC-08:** Las rúbricas permiten observar matemáticas o motricidad sin etiquetar al niño.
-- **ACT-0002-AC-09:** La actividad registra exposiciones por participación real y nunca las convierte automáticamente en evidencia.
-- **ACT-0002-AC-10:** Los visuales coinciden con cantidades, actores, seguridad y versión después de QA y aprobación humana.
+- **ACT-0002-AC-01:** The activity is completed in 30–35 minutes without extension and may be extended upon approval up to 60 minutes.
+- **ACT-0002-AC-02:** Works with 1, 2 and 3 children, with visible contribution for each role.
+- **ACT-0002-AC-03:** Each participant receives exactly one primary objective before starting; the other skills remain as exposure by default.
+- **ACT-0002-AC-04:** An adult other than the author can run it using only this version and its approved assets.
+- **ACT-0002-AC-05:** No step requires ingesting, cooking, sprouting or chemically treating the beans.
+- **ACT-0002-AC-06:** Bilingual warnings appear before handling and next to relevant steps.
+- **ACT-0002-AC-07:** An inconsistent rule, a lost count, and a spill have documented safe recovery.
+- **ACT-0002-AC-08:** Rubrics allow you to observe mathematics or motor skills without labeling the child.
+- **ACT-0002-AC-09:** The activity records exposures by actual participation and never automatically converts them into evidence.
+- **ACT-0002-AC-10:** Visuals match quantities, actors, safety controls, and version after QA and human approval.
 
 ## 23. Review records
 
-| Gate | Revisor | Estado | Fecha | Hallazgos |
+| Gate | Reviewer | State | Date | Findings |
 |---|---|---|---|---|
-| Pedagogía | Por asignar | Pendiente | — | — |
-| Seguridad | Por asignar | Pendiente | — | — |
-| Seguridad alimentaria/toxicología | Por asignar | Pendiente | — | Colección piloto restringida tras revisión cruzada; requiere confirmación experta. |
-| Cumplimiento/etiquetado US | Por asignar | Pendiente | — | Evaluar reglas de piezas pequeñas antes de comercializar. |
-| Localización `es-US` | Por asignar | Pendiente | — | — |
-| Localización `en-US` | Por asignar | Pendiente | — | — |
-| Visual | Por asignar | Pendiente | — | — |
-| Piloto familiar | Por asignar | Pendiente | — | — |
+| Pedagogy | To be assigned | Pending | — | — |
+| Safety | To be assigned | Pending | — | — |
+| Food safety/toxicology | To be assigned | Pending | — | Pilot collection restricted after cross-review; requires expert confirmation. |
+| US Compliance/Labeling | To be assigned | Pending | — | Evaluate small parts rules before marketing. |
+| Location `es-US` | To be assigned | Pending | — | — |
+| Location `en-US` | To be assigned | Pending | — | — |
+| Visual | To be assigned | Pending | — | — |
+| Family Pilot | To be assigned | Pending | — | — |
 
 ## 24. Change log
 
-| Versión | Fecha | Cambio | Autor |
+| Version | Date | Change | Author |
 |---|---|---|---|
-| 0.1.0 | 15 de agosto de 2026 | Borrador bilingüe inicial: configuraciones 1–3 niños, roles, diferenciación, seguridad, evaluación y briefs visuales. | Equipo del proyecto; borrador asistido por IA |
-| 0.1.1 | 15 de agosto de 2026 | Revisión cruzada: colección cerrada, riesgo de toxinas naturales, un manipulador activo, pasos bilingües completos, assets enlazados y gates especializados. | Equipo del proyecto; revisión asistida por IA |
+| 0.1.0 | August 15, 2026 | Initial bilingual draft: configurations 1–3 children, roles, differentiation, safety, evaluation and visual briefs. | Project team; AI assisted draft |
+| 0.1.1 | August 15, 2026 | Cross-review: closed collection, risk of natural toxins, an active handler, full bilingual steps, linked assets and specialized gates. | Project team; AI assisted review |

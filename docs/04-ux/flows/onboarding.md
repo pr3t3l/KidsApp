@@ -1,28 +1,30 @@
-# Flujo UX — Onboarding
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../../historical/es/docs/04-ux/flows/onboarding.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft
+# UX Flow — Onboarding
 
-## Objetivo
+**Status:** Draft
 
-Llegar a una primera actividad apropiada sin interrogatorio inicial.
+## Objective
 
-## Camino principal
+Arrive at a first appropriate activity without initial questioning.
 
-1. Crear cuenta adulta y aceptar términos aplicables.
-2. Crear familia con idioma/unidades.
-3. Añadir alias y rango de edad de cada niño.
-4. Elegir participantes para la primera actividad.
-5. Responder tres preferencias opcionales: tiempo, espacio y desorden.
-6. Recibir una actividad publicada de exploración.
-7. Confirmar materiales y seguridad.
+## Main path
 
-## Progresive profiling
+1. Create adult account and accept applicable terms.
+2. Create family with language/units.
+3. Add aliases and age range for each child.
+4. Choose participants for the first activity.
+5. Answer three optional preference questions: time, space, and tolerance for mess.
+6. Receive a published exploration activity.
+7. Confirm materials and safety.
 
-Inventario, intereses, herramientas y objetivos familiares se preguntan cuando mejoran una decisión concreta, no como formulario obligatorio inicial.
+## Progressive profiling
 
-## Criterios
+Inventory, interests, tools and family goals are asked when they improve a specific decision, not as an initial mandatory form.
 
-- **UX-201:** Se puede llegar a una actividad sin cargar foto, escuela o fecha de nacimiento completa.
-- **UX-202:** Todos los campos opcionales muestran por qué ayudan.
-- **UX-203:** Se puede añadir otro niño más adelante.
-- **UX-204:** No se crea una inferencia de habilidad durante onboarding sin evidencia.
+## Criteria
+
+- **UX-201:** You can reach an activity without uploading a photo, school, or full date of birth.
+- **UX-202:** All optional fields show why they help.
+- **UX-203:** Another child can be added later.
+- **UX-204:** A skill inference is not created during onboarding without evidence.

@@ -1,9 +1,11 @@
-# Ciclo de vida de actividades
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/02-content/activity-lifecycle.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Activity life cycle
 
-## Estados
+**Status:** Draft
+**Version:** 0.1
+
+## States
 
 ```text
 Idea
@@ -16,55 +18,54 @@ Idea
 → Published
 → Retired
 ```
-
-Una actividad puede volver a revisión desde cualquier estado. `Published` no significa permanente.
+An activity can be revisited from any state. `Published` does not mean permanent.
 
 ## Gates
 
 ### Draft → Pedagogical Review
 
-- Esquema completo.
-- Concepto e habilidad observables.
-- Instrucciones ejecutadas por el autor.
+- Complete scheme.
+- Observable concept and ability.
+- Instructions executed by the author.
 
 ### Pedagogical Review → Safety Review
 
-- Propósito coherente con los pasos.
-- Lenguaje correcto para adulto y niño.
-- Roles y objetivos evaluables.
+- Purpose consistent with the steps.
+- Correct language for adults and children.
+- Evaluable roles and objectives.
 
 ### Safety Review → Ready for Pilot
 
-- Riesgos, controles y adult-only steps aprobados.
-- Materiales y sustituciones verificados.
-- Troubleshooting documentado.
+- Approved risks, controls and adult-only steps.
+- Verified materials and substitutions.
+- Documented troubleshooting.
 
 ### Family Pilot → Published
 
-- Para A/B: ejecución del autor más tres ejecuciones satisfactorias adicionales en al menos dos familias, incluida una por otro adulto.
-- Tiempo real, problemas y reacciones registrados.
-- Cambios posteriores revisados.
-- Recursos visuales alineados.
+- For A/B: one run led by the author plus three additional successful runs in at least two families, including one led by another adult.
+- Real time, problems and reactions recorded.
+- Later changes revised.
+- Visual resources aligned.
 
-Las actividades C/D siguen un gate reforzado definido por categoría y especialista; no pueden usar el mínimo A/B.
+C/D activities follow a reinforced gate defined by category and specialist; they cannot use the minimum A/B.
 
-El mínimo anterior valida una versión piloto, no toda la biblioteca ni el lanzamiento comercial. El lanzamiento usa además los resultados del piloto de ocho semanas.
+The minimum above validates a pilot version, not the entire library or commercial release. The launch also uses results from the eight-week pilot.
 
-## Versionado
+## Versioned
 
-- Corrección editorial sin cambio de significado: patch.
-- Cambio en pasos, objetivos, roles o materiales: minor.
-- Cambio incompatible, de riesgo o propósito: major.
-- Una sesión siempre apunta a una versión exacta.
+- Editorial correction without change of meaning: patch.
+- Change in steps, objectives, roles or materials: minor.
+- Incompatible change, risk or purpose: major.
+- A session always points to an exact version.
 
-## Retiro
+## Withdrawal
 
-Una versión se retira por:
+One version is retired for:
 
-- Riesgo nuevo.
-- Instrucciones no reproducibles.
-- Concepto incorrecto.
-- Material no disponible o regulado.
-- Reemplazo por versión superior.
+- New risk.
+- Instructions not reproducible.
+- Wrong concept.
+- Material not available or regulated.
+- Replacement with higher version.
 
-Las sesiones históricas conservan referencia, pero una versión retirada no puede recomendarse.
+The historical sessions retain reference, but a retired version cannot be recommended.

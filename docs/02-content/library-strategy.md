@@ -1,105 +1,107 @@
-# Estrategia de la biblioteca inicial
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/02-content/library-strategy.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Initial library strategy
 
-## Objetivo
+**Status:** Draft
+**Version:** 0.1
 
-Validar el modelo editorial con variedad deliberada antes de escalar cantidad.
+## Objective
 
-## Principios de cobertura
+Validate the editorial model with deliberate variety before scaling quantity.
 
-- La edad filtra seguridad y presentación; el nivel funcional ajusta el reto.
-- Una misma actividad puede tener variantes L1–L4 sin pretender servir a todos los niveles.
-- La biblioteca debe balancear mecanismos, materiales, áreas y tipo de sesión.
-- No contar como variedad actividades que repiten el mismo fenómeno con decoración distinta.
+## Coverage principles
 
-## Biblioteca piloto propuesta
+- Age filters safety and presentation; the functional level adjusts the challenge.
+- The same activity can have variants L1–L4 without intending to serve all levels.
+- The library must balance mechanisms, materials, areas and type of session.
+- Do not count as variety activities that repeat the same phenomenon with different decoration.
 
-| ID provisional | Actividad | Área principal | Mecanismo/habilidad | Niveles |
+## Proposed pilot library
+
+| Provisional ID | Activity | Primary area | Mechanism/skill | Levels |
 |---|---|---|---|---|
-| ACT-0001 | Puente de papel | Ingeniería | estructuras y carga | L1–L4 |
-| ACT-0002 | Hovercraft de CD y globo | Física | aire y fricción | L2–L3 |
-| ACT-0003 | Probador de conductividad | Electricidad | circuito/conductores | L2–L4 |
-| ACT-0004 | Clasificador de semillas | Matemáticas | atributos, conteo, patrones | L1–L3 |
-| ACT-0005 | Transportador de agua | Motricidad/Ingeniería | transferencia, caudal | L1–L3 |
-| ACT-0006 | Torre con límite de materiales | Ingeniería | estabilidad e iteración | L1–L4 |
-| ACT-0007 | Mensaje con electricidad estática | Física | carga y atracción | L2–L3 |
-| ACT-0008 | Barco de carga | Física/Ingeniería | flotación y diseño | L1–L4 |
-| ACT-0009 | Polea de cartón | Ingeniería | fuerza y mecanismos | L2–L4 |
-| ACT-0010 | Jardín de germinación comparado | Biología | variables y registro | L1–L4 |
-| ACT-0011 | Patrones musicales caseros | Matemáticas/Comunicación | secuencia y ritmo | L1–L3 |
-| ACT-0012 | Reparar y documentar un juguete simple | Vida práctica | herramientas y diagnóstico | L2–L4 |
+| ACT-0001 | Paper bridge | Engineering | structures and load | L1–L4 |
+| ACT-0002 | CD and balloon hovercraft | Physics | air and friction | L2–L3 |
+| ACT-0003 | Conductivity tester | Electricity | circuit/conductors | L2–L4 |
+| ACT-0004 | Seed sorter | Mathematics | attributes, counting, patterns | L1–L3 |
+| ACT-0005 | Water transporter | Motor skills/Engineering | transfer, flow | L1–L3 |
+| ACT-0006 | Tower with material limit | Engineering | stability and iteration | L1–L4 |
+| ACT-0007 | Message with static electricity | Physics | charge and attraction | L2–L3 |
+| ACT-0008 | Cargo ship | Physics/Engineering | flotation and design | L1–L4 |
+| ACT-0009 | Cardboard pulley | Engineering | force and mechanisms | L2–L4 |
+| ACT-0010 | Germination garden compared | Biology | variables and registry | L1–L4 |
+| ACT-0011 | Homemade musical patterns | Mathematics/Communication | sequence and rhythm | L1–L3 |
+| ACT-0012 | Repair and document a simple toy | Practical life | tools and diagnosis | L2–L4 |
 
-Todos los títulos son candidatos; cada uno debe superar el ciclo editorial.
+All titles are candidates; each one must pass the editorial cycle.
 
-## Rango de edad inicial propuesto
+## Proposed initial age range
 
-El alcance inicial aprobado es **5–10 años**. Las actividades deben declarar restricciones específicas; no se usa el rango general como autorización.
+The initial approved scope is **5–10 years**. Activities must declare specific restrictions; general rank is not used as authorization.
 
-## Balance inicial
+## Initial balance
 
-El objetivo principal no es repartir porcentajes rígidos entre materias, sino desarrollar pensamiento, invención y capacidad de ver usos nuevos en objetos cotidianos. Para una semana de cinco días, el generador buscará:
+The primary objective is not to distribute rigid percentages between subjects, but to develop thinking, invention and the ability to see new uses in everyday objects. For a five-day week, the generator will look for:
 
-- Al menos una experiencia de diseñar, construir y mejorar.
-- Al menos una experiencia de observación científica o naturaleza.
-- Al menos una experiencia con matemáticas o lógica manipulativa.
-- Al menos una experiencia con motricidad o vida práctica.
-- Creatividad, explicación y pensamiento divergente integrados transversalmente.
+- At least one experience of designing, building and improving.
+- At least one scientific or nature observation experience.
+- At least one experience with mathematics or manipulative logic.
+- At least one experience with motor skills or practical life.
+- Creativity, explanation and divergent thinking integrated transversally.
 
-Una actividad puede satisfacer varias coberturas. El sistema evita llenar casillas con experiencias artificiales y prioriza variedad de mecanismos, decisiones y materiales.
+An activity can satisfy several coverages. The system avoids filling boxes with artificial experiences and prioritizes a variety of mechanisms, decisions and materials.
 
-## Matriz mínima de validación
+## Minimum validation matrix
 
-Cada actividad piloto debe probarse en al menos:
+Each pilot activity must be tested in at least:
 
-- Configuración de un niño.
-- Configuración de dos o tres niños cuando soporte grupo.
-- Un caso de nivel inferior y otro superior entre los declarados.
-- Una ejecución por adulto distinto al autor.
-- Una situación de falla común documentada.
+- Setting up a child.
+- Configuration of two or three children when group support.
+- One lower level case and one higher level case among those declared.
+- A run led by an adult other than the author.
+- A documented common failure situation.
 
-## Desarrollo de nuevas actividades
+## Development of new activities
 
-1. Elegir hueco real en Learning Graph o cobertura.
-2. Redactar brief de propósito y seguridad.
-3. Crear ActivityVersion draft completa.
-4. Ejecutar internamente.
-5. Revisar pedagogía y seguridad.
-6. Crear recursos visuales.
-7. Pilotar.
-8. Revisar y publicar.
+1. Choose real gap in Learning Graph or coverage.
+2. Write the purpose and safety brief.
+3. Create full ActivityVersion draft.
+4. Run internally.
+5. Review pedagogy and safety.
+6. Create visual resources.
+7. Pilot.
+8. Review and publish.
 
-## Indicadores editoriales
+## Editorial indicators
 
-- Tasa de finalización.
-- Duración real versus estimada.
-- Frecuencia de troubleshooting.
-- Materiales faltantes.
-- Distribución de dificultad percibida.
-- Calidad de evidencia del objetivo principal.
-- Utilidad con varios niños.
-- Incidentes o casi-incidentes de seguridad.
+- Completion rate.
+- Actual versus estimated duration.
+- Troubleshooting frequency.
+- Missing materials.
+- Distribution of perceived difficulty.
+- Quality of evidence of the primary objective.
+- Useful with several children.
+- Safety incidents or near misses.
 
-## Cuándo escalar
+## When to scale
 
-No producir más de 15 actividades hasta que:
+Do not produce more than 15 activities until:
 
-- El esquema deje de cambiar de manera estructural en varias pruebas.
-- Los roles sean comprensibles.
-- La evaluación genere señal útil.
-- El workflow de revisión sea sostenible.
-- Exista una métrica clara de cobertura del Learning Graph.
+- The scheme stopped changing structurally in several tests.
+- The roles are understandable.
+- The evaluation generates a useful signal.
+- The review workflow is sustainable.
+- There is a clear coverage metric for the Learning Graph.
 
-## Gate mínimo provisional
+## Provisional minimum gate
 
-Para una actividad A/B de bajo riesgo:
+For a low risk A/B activity:
 
-- Una ejecución completa del autor.
-- Tres ejecuciones satisfactorias adicionales distribuidas entre al menos dos familias.
-- Al menos una ejecución guiada por un adulto distinto al autor.
-- Al menos dos configuraciones de nivel o participantes dentro de las declaradas.
-- Cero incidentes o problemas críticos sin resolver.
-- Duración, fallas y cambios documentados.
+- One complete run led by the author.
+- Three additional successful runs distributed among at least two families.
+- At least one run led by an adult other than the author.
+- At least two level configurations or participants within those declared.
+- Zero incidents or unresolved critical problems.
+- Documented duration, failures and changes.
 
-Para actividades C/D, químicas, eléctricas o con llama, vidrio o presión, este gate no es suficiente. Requieren revisión por especialista de la categoría, protocolo específico y criterio de pilotaje reforzado antes de ser elegibles.
+For C/D, chemical, electrical or flame, glass or pressure activities, this gate is not sufficient. They require review by a category specialist, specific protocol and reinforced piloting criteria before being eligible.

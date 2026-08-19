@@ -1,84 +1,86 @@
-# Roadmap de documentación y construcción
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/08-delivery/roadmap.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Review  
-**Versión:** 0.2
+# Documentation and construction roadmap
 
-## Fase 0 — Fundamentos
+**Status:** Review
+**Version:** 0.2
 
-Entregables:
+## Phase 0 — Fundamentals
 
-- Visión, principios, glosario y alcance.
-- Preguntas abiertas y decision log.
-- Learning Framework, Learner Model y Evidence Model.
-- Activity Schema y seguridad.
+Deliverables:
 
-Salida: lenguaje común y reglas no negociables.
+- Vision, principles, glossary and scope.
+- Open questions and decision log.
+- Learning Framework, Learner Model and Evidence Model.
+- Activity Schema and safety.
 
-## Fase 1 — Validación editorial
+Output: common language and non-negotiable rules.
 
-- Completar Learning Graph inicial.
-- Crear 10–15 actividades piloto variadas.
-- Ejecutarlas y versionarlas.
-- Probar roles para uno, dos y tres niños.
-- Validar preguntas de objetivo principal.
-- Construir la primera versión del workspace editorial colaborativo, inicialmente con roles acumulados por la fundadora.
-- Generar imágenes con IA y someterlas a QA automático y revisión humana.
+## Phase 1 – Editorial validation
 
-Salida: biblioteca pequeña y reproducible.
+- Complete initial Learning Graph.
+- Create 10–15 varied pilot activities.
+- Execute and version them.
+- Try roles for one, two and three children.
+- Validate primary objective questions.
+- Build the first version of the collaborative editorial workspace, initially with roles accumulated by the founder.
+- Generate images with AI and subject them to automatic QA and human review.
 
-## Fase 2 — Prototipo de experiencia
+Output: small, reproducible library.
 
-- Wireframes de onboarding, plan, sesión y cierre.
-- Prototipar primero el recorrido móvil adulto y comparar después los recorridos web familiar y administrativo/editorial para decidir su secuencia de construcción.
-- Prueba de cierre en menos de 20 segundos.
-- Prueba de atención dividida.
-- Refinamiento de journeys y modelo conceptual.
+## Phase 2 — Experience prototype
 
-Salida: flujo validado antes del stack final.
+- Onboarding, plan, session and closing wireframes.
+- First prototype the adult mobile tour and then compare the family and administrative/editorial web tours to decide its construction sequence.
+- Closing test in less than 20 seconds.
+- Divided attention test.
+- Refinement of journeys and conceptual model.
 
-## Fase 3 — Piloto funcional
+Output: stream validated before the final stack.
 
-- Construir vertical slices VS-01 a VS-04.
-- Autenticación adulta y aislamiento familiar.
-- Catálogo publicado.
-- Sesiones, roles, objetivos, exposición y valoración.
-- Journey básico y correcciones.
-- Paquete semanal offline y sincronización de cierres.
-- Suscripción en modo sandbox o entitlement de piloto.
+## Phase 3 — Functional pilot
 
-Salida: producto utilizable por familias piloto.
+- Build vertical slices VS-01 to VS-04.
+- Adult authentication and family isolation.
+- Published catalog.
+- Sessions, roles, objectives, presentation and assessment.
+- Basic journey and fixes.
+- Offline weekly package and closing synchronization.
+- Subscription in sandbox mode or pilot entitlement.
 
-## Fase 4 — Personalización y compañía
+Output: product usable by pilot families.
 
-- Recomendación explicable.
-- Plan semanal.
-- AI Companion: Explain y Troubleshoot primero.
-- Adaptaciones aprobadas.
-- Voz opcional con revisión.
+## Phase 4 — Personalization and companionship
 
-Salida: personalización útil bajo límites.
+- Explainable recommendation.
+- Weekly plan.
+- AI Companion: Explain and Troubleshoot first.
+- Approved adaptations.
+- Optional voice with review.
 
-## Fase 5 — Preparación comercial
+Output: Useful customization under limits.
 
-- Revisión legal y de privacidad según mercado.
-- Operación editorial completa.
-- Observabilidad, soporte e incidentes.
-- Facturación si corresponde.
-- Escalamiento de contenido.
-- Equipo editorial multidisciplinario y gates por categoría.
+## Phase 5 — Commercial Preparation
 
-## Fase 6 — Portafolio y comunidad
+- Legal and privacy review according to market.
+- Complete editorial operation.
+- Observability, support and incidents.
+- Billing if applicable.
+- Content escalation.
+- Multidisciplinary editorial team and gates by category.
 
-- Portafolio privado opcional.
-- Pipeline de medios y eliminación de metadatos.
-- Normas, consentimiento y moderación.
-- Galería por actividad con publicación adulta.
-- Sin comentarios ni mensajes directos en la primera versión.
+## Phase 6 — Portfolio and community
 
-## Gates de decisión
+- Optional private portfolio.
+- Media pipeline and metadata removal.
+- Rules, consent and moderation.
+- Gallery by activity with adult publication.
+- No comments or direct messages in the first version.
 
-No elegir stack final hasta confirmar plataforma, mercado y necesidades offline.  
-No implementar inferencias complejas hasta validar la señal de evaluación.  
-No escalar biblioteca hasta probar el esquema con actividades reales.  
-No lanzar públicamente sin revisión experta de seguridad y privacidad.
-No lanzar comunidad hasta operar moderación, reporte y retirada.
+## Decision Gates
+
+Do not choose final stack until platform, market and offline needs are confirmed.
+Do not implement complex inferences until the evaluation signal is validated.
+Do not scale library until testing the scheme with real activities.
+Do not release publicly without expert safety, product-security, and privacy review.
+Do not launch a community until you operate moderation, reporting and withdrawal.

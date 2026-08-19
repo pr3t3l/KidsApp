@@ -1,57 +1,59 @@
-# Preguntas y decisiones de definición
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/00-foundation/open-questions.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Review  
-**Versión:** 0.4
+# Open Questions and Confirmed Decisions
 
-## Decisiones confirmadas por la fundadora
+**Status:** Review
+**Version:** 0.4
 
-| Tema | Decisión |
+## Decisions confirmed by the founder
+
+| Theme | Decision |
 |---|---|
-| Mercado | Estados Unidos. |
-| Idiomas | Inglés y español desde el lanzamiento. |
-| Plataforma | Aplicación móvil iOS/Android y dos experiencias web previstas: aplicación familiar y portal administrativo/editorial. El orden de construcción web se decide en el roadmap. |
-| Interfaz inicial | Dirigida al adulto. El niño participa fuera de pantalla; puede recibir preguntas e imágenes presentadas por el adulto. |
-| Cuenta | Un adulto paga; varios adultos autorizados pueden usar la familia. |
-| Perfiles | La familia puede crear los perfiles infantiles que necesite. |
-| Sesiones | Límite operativo inicial aprobado: 1–4 niños. |
-| Edad inicial | 5–10 años. |
-| Planificación | Basada en minutos disponibles por día; una o varias actividades pueden llenar el bloque. |
-| Semana | Hasta cinco días propuestos por defecto, configurable. |
-| Duración | Configurable, con opciones iniciales de 30 y 60 minutos. |
-| Contenido | Balanceado entre STEM, matemáticas, motricidad, creatividad, naturaleza y vida práctica, con énfasis transversal en invención. |
-| Materiales | Objetos cotidianos y reutilizables; evitar kits que conviertan la solución en ensamblaje predeterminado. |
-| Imágenes | Fotorealismo para materiales/resultados, diagramas para pasos/conceptos e ilustración infantil como recurso terciario. |
-| IA | Arquitectura agnóstica de proveedor mediante router y registro de capacidades. |
-| Explicaciones | Versión breve y versión detallada para el adulto. |
-| Inferencias | Pueden actualizarse sin confirmación individual; deben ser visibles y corregibles. Atribuciones ambiguas desde voz requieren confirmación. |
-| Voz | Audio temporal; transcripción editable; conservar el dato estructurado útil, no el audio indefinidamente. |
-| Negocio | Suscripción mensual o anual. Piloto actual sin costo. |
-| Compra móvil | App Store y Google Play. |
-| Compra web futura | Stripe Billing + Checkout y Customer Portal. |
-| Prueba comercial | Siete días gratuitos para una familia elegible, antes de conversión automática claramente informada. |
-| Cancelación | Autoservicio, desde la aplicación, mediante la tienda de origen o Stripe; detiene renovación y conserva acceso hasta terminar el período vigente. |
-| Comunidad | Visible únicamente para adultos autenticados dentro de la aplicación. |
-| Fotografías comunitarias | El adulto decide si publica solo el proyecto/manos o si incluye a un niño reconocible. La opción segura por defecto favorece proyecto/manos; una imagen reconocible requiere confirmación explícita, revisión de privacidad y moderación. La elección parental no elimina las responsabilidades de la plataforma. |
-| Marketing social | Un tag externo puede iniciar una solicitud de permiso; no autoriza reutilización automática. |
-| Edición | Comienza con la fundadora y evoluciona a equipo especializado colaborativo. |
-| Importación masiva | No se prioriza importación/exportación de actividades por spreadsheet. |
-| Piloto | Ocho semanas con la hija de la fundadora como caso de un solo niño y familias amigas con dos o tres niños cada una. |
-| Actividades de calibración | La fundadora acepta conceptualmente puente de papel, clasificación con semillas y probador de conductividad. Siguen siendo borradores sujetos a gates. |
-| Estrategia estatal | No crear variantes educativas por estado. Diseñar con un baseline nacional protector, registrar los estados donde ocurran pilotos y completar una matriz legal de aplicabilidad antes del lanzamiento. |
+| Market | USA. |
+| Languages | English and Spanish from launch. |
+| Platform | iOS/Android mobile application and two planned web experiences: family application and administrative/editorial portal. The order of web construction is decided in the roadmap. |
+| Initial interface | Aimed at adults. The child participates off-screen; can receive questions and images presented by the adult. |
+| Account | One adult pays; multiple authorized adults can use the family. |
+| Profiles | The family can create the child profiles they need. |
+| Sessions | Approved initial operating limit: 1–4 children. |
+| Initial age | 5–10 years. |
+| Planning | Based on available minutes per day; one or more activities can fill the block. |
+| Week | Up to five days proposed by default, configurable. |
+| Duration | Configurable, with initial options of 30 and 60 minutes. |
+| Content | Balanced between STEM, mathematics, motor skills, creativity, nature and practical life, with a transversal emphasis on invention. |
+| Materials | Everyday and reusable objects; avoid kits that make one prescribed assembly feel like the only solution. |
+| Images | Photorealism for materials/results, diagrams for steps/concepts and children's illustration as a tertiary resource. |
+| AI | Vendor agnostic architecture using router and capabilities registry. |
+| Explanations | Brief version and detailed version for adults. |
+| Inferences | They can be updated without individual confirmation; they must be visible and correctable. Ambiguous attributions from voice require confirmation. |
+| Voice | Temporary audio; editable transcript; retain useful structured data, not audio indefinitely. |
+| Business | Monthly or annual subscription. Current pilot at no cost. |
+| Mobile shopping | App Store and Google Play. |
+| Future web shopping | Stripe Billing + Checkout and Customer Portal. |
+| Commercial test | Seven days free for an eligible family, before clearly informed automatic conversion. |
+| Cancellation | Self-service, from the app, through the origin store or Stripe; stops renewal and retains access until the end of the current period. |
+| Community | Visible only to authenticated adults within the application. |
+| Community photographs | The adult decides whether to publish only the project/hands or whether to include a recognizable child. The default safe option favors draw/hands; a recognizable image requires explicit confirmation, privacy review and moderation. Parental choice does not eliminate platform responsibilities. |
+| Social Marketing | An external tag can initiate a permission request; does not authorize automatic reuse. |
+| Editorial operation | It starts with the founder and evolves into a specialized collaborative team. |
+| Bulk import | Import/export of activities per spreadsheet is not prioritized. |
+| Pilot | Eight weeks with the founder's daughter as the one-child case and friendly families with two or three children each. |
+| Calibration activities | The founder conceptually accepts paper bridge, seed classification and conductivity tester. They are still drafts subject to gates. |
+| State strategy | Do not create educational variants by state. Design with a protective national baseline, register the states where pilots occur and complete a legal applicability matrix before launch. |
 
-## Recomendaciones adoptadas provisionalmente
+## Recommendations provisionally adopted
 
-1. **Offline:** recomendación, IA, comunidad, sincronización y pagos requieren conexión; el paquete semanal descargado funciona offline.
-2. **Comunidad:** portafolio privado y comunidad son permisos separados; moderación previa y sin comentarios ni mensajes directos inicialmente.
-3. **Medios de voz:** borrar audio tras transcripción o máximo operativo; conservar transcripción editable hasta 30 días y luego solo observaciones estructuradas.
-4. **Llama, vidrio o presión:** categoría adulta especial posterior al piloto básico, con revisión experta y controles específicos.
-5. **Publicación A/B:** ejecución del autor y al menos tres ejecuciones adicionales en dos familias; C/D requiere gate reforzado.
-6. **Prueba gratuita:** una sola prueba de siete días por familia elegible, con recordatorio antes de finalizar y sin mecanismos de cancelación obstructivos.
+1. **Offline:** recommendation, AI, community, sync and payments require connection; the downloaded weekly package works offline.
+2. **Community:** private portfolio and community publishing require separate permission; community posts are pre-moderated, with no comments or direct messages initially.
+3. **Voice media:** delete audio after transcription or the minimum operational window; retain an editable transcript for up to 30 days, then retain only useful structured observations.
+4. **Flame, glass or pressure:** special adult category after the basic pilot, with expert review and specific controls.
+5. **Publication A/B:** author execution and at least three additional executions in two families; C/D requires reinforced gate.
+6. **Free trial:** A single seven-day trial per eligible family, with reminder before completion and no obstructive cancellation mechanisms.
 
-## Preguntas todavía abiertas
+## Questions still open
 
-1. ¿Cuál será el precio mensual y anual después de validar el piloto?
-2. ¿Qué experiencia web se construye primero: la familiar o el portal administrativo/editorial?
-3. ¿Se solicitará inclusión en Apple Kids Category o se distribuirá como aplicación para adultos que acompañan niños? Esta decisión sí cambia metadata, parental gates, SDKs, analítica y revisión de tienda; requiere revisión legal y de App Store.
-4. ¿Qué configuración eléctrica exacta permite que los niños participen materialmente en el montaje desenergizado sin acceder a pilas, uniones fijas peligrosas o componentes no aprobados?
-5. ¿Qué mecanismo de consentimiento, revisión de privacidad y retirada se usará cuando un adulto elija publicar una imagen con un niño reconocible?
+1. What will be the monthly and annual price after validating the pilot?
+2. Which web experience is built first: the family one or the administrative/editorial portal?
+3. Will it be requested for inclusion in the Apple Kids Category or will it be distributed as an app for adults accompanying children? This decision does change metadata, parental gates, SDKs, analytics and store review; requires legal and App Store review.
+4. What exact electrical configuration allows children to materially participate in de-energized assembly without accessing batteries, dangerous fixtures, or unapproved components?
+5. What consent, privacy review and takedown mechanism will be used when an adult chooses to post an image with a recognizable child?

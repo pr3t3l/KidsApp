@@ -1,39 +1,41 @@
-# Personas provisionales
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/03-product/personas.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft — deben validarse mediante investigación  
-**Versión:** 0.1
+# Provisional people
 
-Las personas son hipótesis de diseño, no segmentos definitivos.
+**Status:** Draft — must be validated through research
+**Version:** 0.1
 
-## Adulto inventor
+Personas are design hypotheses, not definitive segments.
 
-Tiene comodidad media o alta con herramientas y quiere profundizar STEM sin depender de kits. Valora explicaciones correctas, retos abiertos y reutilización. Riesgo: que el sistema recomiende actividades demasiado básicas.
+## Adult inventor
 
-## Adulto con atención dividida
+You have medium to high comfort with tools and want to delve deeper into STEM without relying on kits. Value correct explanations, open challenges and reuse. Risk: that the system recommends activities that are too basic.
 
-Acompaña dos o tres niños y después debe continuar con tareas domésticas. Necesita preparación anticipada, instrucciones breves, roles simultáneos y cierre en segundos. Riesgo: que la aplicación agregue trabajo administrativo.
+## Adult with divided attention
 
-## Adulto principiante
+They accompany two or three children and then continue with household tasks. They need advance preparation, concise instructions, coordinated participation, and close-out in seconds. Risk: the application creates administrative work.
 
-Quiere ofrecer aprendizaje práctico, pero no confía en su conocimiento científico o técnico. Necesita materiales claros, resultado esperado, troubleshooting y lenguaje para explicar. Riesgo: abandonar ante la primera falla.
+## Adult beginner
 
-## Niño Explorer
+You want to offer hands-on learning, but you don't trust your scientific or technical knowledge. It needs clear materials, expected results, troubleshooting and language to explain. Risk: abandoning at the first failure.
 
-Participa mediante manipulación, conteo, clasificación y observación. Necesita acciones cortas y una contribución visible.
+## Boy Explorer
 
-## Niño Builder/Inventor
+Participate through manipulation, counting, sorting and observation. You need short shares and a visible contribution.
 
-Puede usar herramientas simples, seguir secuencias, conectar componentes y proponer mejoras. Necesita agencia y dificultad más allá de la edad cronológica.
+## Child Builder/Inventor
 
-## Niño Engineer
+You can use simple tools, follow sequences, connect components and propose improvements. It needs agency and difficulty beyond chronological age.
 
-Puede medir, registrar, comparar variables y justificar un rediseño. No debe recibir siempre el rol de enseñar o cuidar a participantes menores.
+## Engineer Boy
 
-## Necesidades transversales
+You can measure, record, compare variables and justify a redesign. You should not always be given the role of teaching or caring for younger participants.
 
-- Seguridad y claridad.
-- Participación significativa.
-- Ritmo flexible.
-- Posibilidad de corregir al sistema.
-- Ausencia de comparación entre hermanos.
-- Menor dependencia posible de pantalla durante la actividad.
+## Transversal needs
+
+- Safety and clarity.
+- Significant participation.
+- Flexible rhythm.
+- Possibility of correcting the system.
+- Absence of comparison between siblings.
+- Less possible dependence on the screen during the activity.

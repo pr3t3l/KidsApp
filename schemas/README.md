@@ -1,64 +1,37 @@
 # Machine-readable domain schemas
 
-**Estado:** Draft<br>
-**Versión:** 0.1
+**Status:** Draft
+**Version:** 0.1
 
-Estos JSON Schemas convierten los specs conceptuales en contratos verificables. Los documentos Markdown siguen siendo la fuente de intención; los schemas son la fuente de forma para datos e integraciones.
+> **Canonical English documentation.** The Spanish record is preserved in [historical/es/schemas/README.es.md](../historical/es/schemas/README.es.md). New schema documentation and changes must be written in English.
+
+These JSON Schemas turn the conceptual specifications into verifiable contracts. Markdown specifications define intent; schemas define the required data shape for integrations.
 
 ## Schemas
 
-- `v0.1/activity-version.schema.json`: versión editorial inmutable de una actividad, incluido contrato narrativo, estados, función de materiales, ciclo esencial por participante y calibración inicial de objetivos.
-- `v0.1/session.schema.json`: planificación, ejecución y cierre de una sesión familiar.
-- `v0.1/learner-records.schema.json`: exposiciones, observaciones e inferencias explicables.
-- `v0.1/offline-pack-manifest.schema.json`: contenido, hashes, assets, asignaciones y vencimiento de un paquete descargado.
-- `v0.1/sync-event.schema.json`: envelope idempotente, revisión base, payload y resolución de conflictos para sincronización.
+- `v0.1/activity-version.schema.json`: immutable editorial activity version, including the narrative contract, states, material functions, each participant's essential cycle, and initial objective calibration.
+- `v0.1/session.schema.json`: planning, delivery, and close-out of a family session.
+- `v0.1/learner-records.schema.json`: exposures, observations, and explainable inferences.
+- `v0.1/offline-pack-manifest.schema.json`: content, hashes, assets, assignments, and expiry for a downloaded pack.
+- `v0.1/sync-event.schema.json`: idempotent envelope, base revision, payload, and conflict resolution for synchronization.
 
-## Ejemplos
+## Examples and validation
 
-Los seis ejemplos de `examples/` validan contra su schema y usan datos ficticios. La actividad de puente del ejemplo es un fixture de contrato; no es la serialización canónica de la ActivityVersion editorial del Pilot Pack y nunca debe tratarse como contenido publicado.
-
-## Validación
+The six files in `examples/` validate against their schemas and use fictional data. The Paper Bridge example is a contract fixture, not the canonical editorial ActivityVersion for the Pilot Pack; it must never be treated as published content.
 
 ```bash
 npm install
 npm run validate
 ```
 
-Capas:
+Validation compiles the five schemas with strict AJV settings, validates six positive examples, checks cross-contract domain rules, and verifies local Markdown links and minimum pilot-activity signals.
 
-1. `validate:schemas`: compila los cinco JSON Schemas con AJV en modo estricto.
-2. `validate:examples`: valida seis documentos positivos, incluidos evento aceptado y conflicto offline.
-3. `validate:domain`: comprueba referencias y reglas entre ActivityVersion, Session, LearnerRecords, manifest y eventos.
-4. `validate:docs`: comprueba enlaces Markdown locales y señales mínimas de las tres actividades piloto.
+## Rules beyond JSON Schema
 
-El validador de dominio genera recorridos positivos de uno, dos y tres participantes y ejecuta además mutaciones negativas. El comando falla si acepta rango de edad invertido, participantes contradictorios, referencia de skill inexistente, acción de paso dirigida a un rol inexistente, señal de observación ligada a una skill inexistente, transición narrativa rota, acción esencial ausente para un participante, ciclo declarado para todos pero escondido detrás de un solo rol, material usado antes de explicar su función, rango de calibración invertido, publicación sin gates/pilotos, sesión completada sin cierre, Learner duplicado, cierre duplicado, evidencia para no participante, inferencia fuerte sin evidencia, rating sin valor o EvidenceLink inexistente.
+The domain validator enforces invariants that JSON Schema alone cannot express: range and unique-ID constraints; narrative continuity; material and participant-cycle coverage; role, skill, step, and safety references; valid publication and pilot gates; completed-session close-out; evidence attribution; and inference traceability.
 
-## Reglas que JSON Schema no expresa completamente
+These rules live in `scripts/domain-rules.mjs` and are exercised by `scripts/validate-domain.mjs`. Schema validation alone never authorizes publication, recommendation, or synchronization.
 
-- Rangos mínimos/máximos, IDs únicos y cobertura de participantes.
-- Continuidad `exitStateId → entryStateId`, función de cada material antes de usarlo y cobertura del ciclo esencial según el modo de participación.
-- Cobertura de todos los objetivos elegibles mediante orientación inicial por edad, siempre corregible por evidencia del niño.
-- Referencias rol→skill/concept/step, step→visual/exposición, participantAction→role, observationCue→skill y safety→adult-only step.
-- `primaryObjectiveSkillId` elegible, exposiciones derivables de roles/pasos reales y un Learner por sesión.
-- `family_recommendation` solo con `published`; `pilot` solo con `ready_for_pilot` o `family_pilot`; `editorial_preview` para fixtures/dry runs.
-- Sesión `completed` con cierre, un resultado por participante y ninguna evidencia para quien no participó.
-- Publicación con gates aprobados para la misma versión/hash y records de piloto mínimos; C/D exige safety specialist.
-- Inferencias enlazadas a observaciones existentes, no rechazadas y de la misma skill.
-- Manifest, sesión y eventos con alcance, hash, revisión e idempotency key coherentes.
+## Versioning
 
-Estas invariantes están implementadas en `scripts/domain-rules.mjs` y probadas por `scripts/validate-domain.mjs`. El backend debe reutilizar o portar las mismas reglas; validar solo JSON Schema no autoriza publicación, recomendación ni sincronización.
-
-## Límites explícitos de v0.1
-
-- Los ejemplos no sustituyen fixtures de las tres actividades editoriales reales.
-- `LearnerRecords` cubre evidencia e inferencias; preferencias, intereses provisionales y el agregado completo del Learner Model permanecen en los specs conceptuales hasta tener un contrato propio.
-- La equivalencia semántica de traducciones y la seguridad física requieren revisión humana.
-- El mínimo de piloto reforzado para niveles C/D se define por ActivityVersion y especialista; el validador solo exige el gate especializado al publicar.
-- Cifrado local, autorización por familia y persistencia idempotente se prueban en implementación, no mediante JSON Schema.
-
-## Versionado
-
-- Mientras `v0.1` siga en Draft y no tenga consumidores de producción, puede incorporar campos obligatorios aprobados para cerrar ambigüedades del contrato. Esta excepción termina al congelar el primer vertical slice.
-- Después del freeze, cambios compatibles añaden campos opcionales dentro de `v0.1`.
-- Cambios incompatibles crean un nuevo directorio (`v0.2`, `v1.0`).
-- ActivityVersion y Session conservan la versión de schema utilizada.
+While `v0.1` remains Draft and has no production consumers, approved required fields may be added to close contract ambiguities. Once the first vertical slice freezes the contract, compatible changes add optional fields within `v0.1`; incompatible changes create a new directory such as `v0.2` or `v1.0`.

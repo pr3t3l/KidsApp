@@ -1,111 +1,113 @@
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/03-product/subscription-spec.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
+
 # SPEC-12 — Subscription, Trial and Cancellation
 
-**Estado:** Draft  
-**Versión:** 0.1
+**Status:** Draft
+**Version:** 0.1
 
-## 1. Producto comercial
+## 1. Commercial product
 
-- Plan mensual.
-- Plan anual.
-- Mismo acceso familiar salvo decisión futura de tiers.
-- Una suscripción cubre a los adultos autorizados y perfiles infantiles de la familia.
-- El entitlement pertenece a la familia, aunque la compra tenga un pagador y canal de origen.
+- Monthly plan.
+- Annual plan.
+- The same family access applies unless a future tiering decision changes it.
+- One subscription covers authorized adults and children's family profiles.
+- The entitlement belongs to the family, even if the purchase has a payer and channel of origin.
 
-## 2. Canales
+## 2. Channels
 
-| Canal | Compra y gestión |
+| Channel | Purchase and management |
 |---|---|
-| iOS/iPadOS | App Store In-App Purchase y administración de suscripciones de Apple. |
-| Android | Google Play Billing y Subscription Center. |
-| Web futuro | Stripe Billing + Checkout Sessions; Customer Portal para autoservicio. |
+| iOS/iPadOS | App Store In-App Purchase and Apple subscription management. |
+| Android | Google Play Billing and Subscription Center. |
+| Future Web | Stripe Billing + Checkout Sessions; Customer Portal for self-service. |
 
-El backend normaliza recibos y webhooks en un `SubscriptionEntitlement`. No intenta cobrar directamente una compra administrada por otra tienda.
+The backend normalizes receipts and webhooks into a `SubscriptionEntitlement`. It does not attempt to collect payment directly for a purchase managed by another store.
 
-## 3. Piloto
+## 3. Pilot
 
-Durante el piloto no existe cobro ni trial comercial. Las familias reciben un `pilot entitlement` con fecha, alcance y revocación administrativa. Esto evita mezclar evaluación del producto con conversión de pago.
+During the pilot there is no charge or commercial trial. Families receive a `pilot entitlement` with date, scope, and administrative revocation. This avoids mixing product evaluation with paid conversion.
 
-## 4. Prueba gratuita
+## 4. Free trial
 
-- Duración: 7 días.
-- Elegibilidad: una vez por familia/cuenta elegible, aplicando reglas de cada tienda.
-- Beneficios: acceso completo a funciones del plan que se está probando.
-- Conversión: automática al plan elegido si no se cancela, cuando el canal lo permita.
-- Antes de confirmar se muestran duración, precio posterior, fecha de primer cobro, frecuencia, renovación automática y método de cancelación en inglés y español.
-- Enviar recordatorio propio aproximadamente 3 días antes del final cuando el canal y consentimiento lo permitan; no depender únicamente de notificaciones de la tienda.
-- Cancelar durante la prueba evita el cobro siguiente y mantiene acceso hasta el final de la prueba, sujeto al comportamiento del canal.
+- Duration: 7 days.
+- Eligibility: once per eligible family/account, each store's rules applying.
+- Benefits: full access to features of the plan being tested.
+- Conversion: automatic to the chosen plan if it is not canceled, when the channel allows it.
+- Before confirming, duration, subsequent price, date of first payment, frequency, automatic renewal and cancellation method are shown in English and Spanish.
+- Send an in-product reminder approximately three days before the end when the channel and consent allow it; do not rely solely on store notifications.
+- Canceling during the trial prevents the next charge and maintains access until the end of the trial, subject to the behavior of the channel.
 
-## 5. Política de cancelación recomendada
+## 5. Recommended cancellation policy
 
-1. Acción visible `Administrar suscripción` en Cuenta.
-2. Enlace directo a Apple, Google Play o Stripe según `billing_source`.
-3. Sin llamada, correo o conversación obligatoria.
-4. Mostrar fecha exacta en que termina el acceso antes de confirmar.
-5. La cancelación desactiva la renovación automática.
-6. El acceso continúa hasta terminar el período pagado o trial vigente, salvo cancelación inmediata exigida por ley/canal.
-7. No hay reembolso prorrateado por defecto; Apple/Google administran sus reembolsos y la web sigue política publicada y ley aplicable.
-8. Pregunta de motivo opcional después de confirmar; nunca bloquea.
-9. El usuario puede reactivar antes de terminar el período cuando el canal lo soporte.
-10. Cancelar no elimina familia, Learner Models, portafolio ni historial. La eliminación es un flujo separado.
+1. Visible `Manage subscription` action on Account.
+2. Direct link to Apple, Google Play or Stripe according to `billing_source`.
+3. No mandatory call, email or conversation.
+4. Show exact date when access ends before confirming.
+5. Cancellation turns off automatic renewal.
+6. Access continues until the end of the current paid or trial period, unless immediate cancellation is required by law or the payment channel.
+7. No prorated refund by default; Apple/Google manage their refunds and the website follows published policy and applicable law.
+8. Optional reason question after confirming; never blocks.
+9. The user can reactivate before the end of the period when the channel supports it.
+10. Canceling does not delete family, Learner Models, portfolio or history. Removal is a separate flow.
 
-## 6. Transparencia
+## 6. Transparency
 
-El paywall muestra con igual claridad:
+The paywall shows with equal clarity:
 
-- “7 días gratis”.
-- Precio total real de mensual o anual.
-- Fecha de conversión.
-- Renovación automática.
-- Forma de cancelar.
-- Qué ocurre con acceso y datos.
-- Enlace a términos y privacidad.
+- “7 days free”.
+- Actual monthly or annual total price.
+- Conversion date.
+- Automatic renewal.
+- How to cancel.
+- What happens with access and data.
+- Link to terms and privacy.
 
-No usar temporizadores falsos, botones de cierre ocultos, precios anuales presentados solo como mensualidad ni varios pasos confusos hacia compra accidental.
+Don't use fake timers, hidden closing buttons, annual prices presented only as a monthly payment, or various confusing steps towards accidental purchase.
 
-## 7. Fallos de pago y gracia
+## 7. Payment failures and grace
 
-- Conservar acceso durante el grace period informado por la tienda/backend.
-- No detener una sesión en progreso.
-- Mostrar estado y acción para resolver pago únicamente al adulto pagador/Owner.
-- Revocar entitlement después de expiración confirmada, manteniendo datos según política.
+- Retain access during the grace period informed by the store/backend.
+- Do not stop a session in progress.
+- Show status and action to resolve payment only to the adult payer/Owner.
+- Revoke entitlement after confirmed expiration, maintaining data according to policy.
 
-## 8. Restauración y familia multicanal
+## 8. Multi-channel billing and family access
 
-- Permitir `Restaurar compras`.
-- Vincular la compra al Family correcto mediante cuenta adulta autenticada.
-- Evitar dos suscripciones activas involuntarias; advertir si la familia ya tiene entitlement por otro canal.
-- Los demás adultos autorizados consumen el mismo entitlement sin acceder a datos de pago del Owner.
-- Cambio de pagador o canal requiere flujo explícito para evitar doble cobro.
+- Provide a localized `Restore purchases` action.
+- Link the purchase to the correct Family through an authenticated adult account.
+- Avoid two accidental active subscriptions; warn if the family already has an entitlement through another channel.
+- The other authorized adults consume the same entitlement without accessing the Owner's payment data.
+- Change of payer or channel requires explicit flow to avoid double charging.
 
-## 9. Implementación web con Stripe
+## 9. Web implementation with Stripe
 
-Cuando exista compra web:
+When there is a web purchase:
 
-- Usar Stripe Billing con Checkout Sessions en modo suscripción.
-- Usar Customer Portal para cancelación, método de pago e invoices.
-- Procesar webhooks de forma idempotente.
-- Mantener claves restringidas y secretos fuera de clientes/repositorio.
-- Evaluar impuestos y registros antes de activar cálculo automático.
+- Use Stripe Billing with Checkout Sessions in subscription mode.
+- Use Customer Portal for cancellation, payment method and invoices.
+- Process webhooks idempotently.
+- Keep restricted keys and secrets out of clients/repository.
+- Evaluate taxes and registrations before activating automatic calculation.
 
-## 10. Requisitos
+## 10. Requirements
 
-- **SUB-001:** La familia tiene un entitlement normalizado independiente del canal de pago.
-- **SUB-002:** La prueba comercial dura siete días y se ofrece una vez según elegibilidad.
-- **SUB-003:** Términos, precio, conversión y cancelación se muestran antes de iniciar.
-- **SUB-004:** La aplicación ofrece acceso directo a cancelación del canal de origen.
-- **SUB-005:** Cancelar detiene renovación y conserva acceso hasta fin de período salvo excepción aplicable.
-- **SUB-006:** Cancelación y eliminación de datos son flujos separados.
-- **SUB-007:** La pregunta de motivo es posterior y opcional.
-- **SUB-008:** La familia no debe mantener dos suscripciones activas por accidente.
-- **SUB-009:** El piloto usa entitlement gratuito separado del trial comercial.
-- **SUB-010:** El paywall y gestión están localizados en inglés y español.
+- **SUB-001:** The family has a standardized entitlement independent of the payment channel.
+- **SUB-002:** The commercial trial lasts seven days and is offered once based on eligibility.
+- **SUB-003:** Terms, price, conversion and cancellation are shown before starting.
+- **SUB-004:** The application offers direct access to cancel the source channel.
+- **SUB-005:** Cancellation stops renewal and retains access until the end of the period unless an applicable exception requires otherwise.
+- **SUB-006:** Cancellation and deletion of data are separate flows.
+- **SUB-007:** The reason question is subsequent and optional.
+- **SUB-008:** The family should not maintain two active subscriptions by accident.
+- **SUB-009:** The pilot uses free entitlement separate from the commercial trial.
+- **SUB-010:** The paywall and management are localized in English and Spanish.
 
-## 11. Referencias operativas
+## 11. Operational references
 
 - [Apple — introductory offers for auto-renewable subscriptions](https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-introductory-offers-for-auto-renewable-subscriptions)
 - [Google Play — subscription transparency, trials and cancellation](https://support.google.com/googleplay/android-developer/answer/9900533)
-- [Stripe — Customer Portal](https://docs.stripe.com/customer-management)
-- [Stripe — subscription trials](https://docs.stripe.com/billing/subscriptions/trials)
-- [FTC — Negative Option Rule resources](https://www.ftc.gov/legal-library/browse/rules/negative-option-rule)
+- [Stripe—Customer Portal](https://docs.stripe.com/customer-management)
+- [Stripe—subscription trials](https://docs.stripe.com/billing/subscriptions/trials)
+- [FTC—Negative Option Rule resources](https://www.ftc.gov/legal-library/browse/rules/negative-option-rule)
 
-Estas fuentes son cambiantes; deben revisarse antes del lanzamiento. La especificación expresa una política de producto y no reemplaza revisión legal.
+These sources can change and must be reviewed before launch. This specification expresses product policy and is not a substitute for legal review.

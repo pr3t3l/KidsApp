@@ -1,104 +1,78 @@
 # Kids Learning System
 
-Repositorio de producto, pedagogía, contenido y arquitectura para un acompañante de aprendizaje familiar que convierte materiales cotidianos en actividades con propósito.
+Product, pedagogy, content, UX, data, AI, and engineering repository for a family learning companion that turns everyday materials into purposeful hands-on activities.
 
-> **Estado:** documentación v0.1 en construcción. “Kids Learning System” es un nombre interno; el nombre comercial está pendiente.
+> **Status:** v0.1 documentation in progress. “Kids Learning System” is an internal name; the commercial name is still pending.
 
-## Propósito del repositorio
+> **Language policy:** English is the normative source from 18 August 2026 under `DEC-052`. Start with the [canonical English documentation](docs/README.md). Spanish documents are preserved as historical records and must not receive new requirements, decisions, or changes.
 
-Este repositorio será la fuente de verdad para diseñar y, posteriormente, construir el producto. La documentación separa tres sistemas conectados:
+## Repository purpose
 
-1. **Sistema educativo:** habilidades, conceptos, progresión, observaciones y evidencia.
-2. **Sistema de contenido:** biblioteca validada de actividades, focos de aprendizaje, aportes sugeridos, materiales, imágenes y seguridad.
-3. **Producto de software:** familias, perfiles, planificación, ejecución, IA, datos e interfaz.
+This repository is the source of truth for designing and later building the product. The documentation separates three connected systems:
 
-La IA no improvisará el núcleo de una actividad para una familia. Seleccionará una actividad publicada, sugerirá un foco y un aporte apropiado para cada niño, y podrá proponer adaptaciones dentro de límites definidos.
+1. **Learning system:** skills, concepts, progression, observations, and evidence.
+2. **Content system:** a validated activity library, learning focuses, suggested contributions, materials, visuals, and safety.
+3. **Software product:** families, profiles, planning, delivery, AI, data, and interfaces.
 
-## Orden de lectura
+AI does not improvise the core of an activity for a family. It selects a published activity, suggests an appropriate focus and contribution for each child, and may propose adaptations only within defined limits.
 
-1. [Visión del producto](docs/00-foundation/product-vision.md)
-2. [Principios del producto](docs/00-foundation/product-principles.md)
-3. [Glosario](docs/00-foundation/glossary.md)
-4. [Alcance y versiones](docs/00-foundation/scope-and-releases.md)
-5. [Baseline de privacidad infantil](docs/00-foundation/compliance-baseline.md)
-6. [Marco de aprendizaje](docs/01-learning/learning-framework.md)
-7. [Learner Model](docs/01-learning/learner-model.md)
-8. [Modelo de actividades](docs/02-content/activity-schema.md)
-9. [Estrategia de biblioteca](docs/02-content/library-strategy.md)
-10. [Mapa de módulos](docs/03-product/module-map.md)
-11. [User stories](docs/03-product/user-stories.md)
-12. [Suscripción, trial y cancelación](docs/03-product/subscription-spec.md)
-13. [Arquitectura conceptual](docs/07-engineering/architecture.md)
-14. [Pilot Pack v0.1](docs/08-delivery/pilot-pack-v0.1.md)
-15. [Roadmap](docs/08-delivery/roadmap.md)
-16. [Prototipo móvil familiar v0.1](prototypes/family-mobile-v0.1/README.md)
+## Start here in English
 
-Los agentes de desarrollo deben leer también [AGENTS.md](AGENTS.md).
+1. [Canonical English documentation](docs/README.md)
+2. [Backend collaboration handoff](docs/BACKEND-HANDOFF.md)
+3. [Specification map](docs/SPECIFICATION-MAP.md)
+4. [English instructions for development agents](AGENTS.md)
+5. [Five-day founder dry run](docs/08-delivery/sofia-five-day-dry-run-v0.1.md)
+6. [Five-day shopping list](docs/08-delivery/sofia-shopping-list-v0.1.md)
+7. [Founder dry-run observation sheet](docs/08-delivery/founder-dry-run-observation-sheet-v0.1.md)
+8. [English prototype guide](prototypes/family-mobile-v0.1/README.md)
 
-## Arquitectura documental
+The canonical documentation contains the full English specifications. The earlier collaboration guide is retained only as a historical navigation aid.
+
+## Documentation architecture
 
 ```text
 docs/
-├── 00-foundation/   Visión, principios, alcance, vocabulario y preguntas
-├── 01-learning/     Marco pedagógico, Learner Model y evidencia
-├── 02-content/      Esquema, producción y seguridad de actividades
-├── 03-product/      Personas, journeys, módulos y requisitos
-├── 04-ux/           Arquitectura de información, interacción y flujos
-├── 05-ai/           Compañero de IA, recomendación y evaluaciones
-├── 06-data/         Modelo conceptual, diccionario y gobernanza
-├── 07-engineering/  Arquitectura, contratos, seguridad y pruebas
-└── 08-delivery/     Roadmap, vertical slices, decisiones y trazabilidad
-schemas/             Contratos JSON Schema y ejemplos ficticios
-scripts/             Validaciones ejecutables de contratos y documentación
-prototypes/          Artefactos interactivos para validar UX antes de implementar
+├── 00-foundation/   Vision, principles, scope, vocabulary, compliance, and open questions
+├── 01-learning/     Learning framework, Learner Model, Family Model, graph, and evidence
+├── 02-content/      Activity contracts, editorial workflow, visuals, and safety
+├── 03-product/      Personas, journeys, modules, requirements, and commercial/community specs
+├── 04-ux/           Information architecture, interaction rules, facilitation, and flows
+├── 05-ai/           AI companion, recommendations, adaptation, and evaluations
+├── 06-data/         Conceptual model, dictionary, permissions, and retention
+├── 07-engineering/  Architecture, API contracts, security, offline behavior, and testing
+└── 08-delivery/     Roadmap, vertical slices, decisions, pilot material, and traceability
+schemas/             JSON Schema contracts and fictional examples
+scripts/             Executable contract and documentation validation
+prototypes/          Interactive artifacts for validating UX before production implementation
 ```
 
-## Método de construcción
+## Non-negotiable product rules
 
-El trabajo se realizará en este orden:
+- Every family-delivered activity must come from a published library version.
+- AI may not change materials, steps, or constraints in a way that changes the safety profile.
+- Each child has at most one primary objective evaluated per session; other skills are exposures unless the adult chooses **Evaluate more**.
+- Conclusions about a child must be traceable to observations and must express uncertainty.
+- Educational observations must never become clinical, psychological, intelligence, or diagnostic labels.
+- Do not store unnecessary child images, audio, or personal data by default.
+- Use an age range instead of a full birth date whenever the range is sufficient.
+- The adult can skip, correct, retain, and delete.
+- The default assessment flow must be completable in under 20 seconds for three children; this is an internal usability metric, not an on-screen timer.
 
-1. Fundamentos y lenguaje común.
-2. Modelos educativos y editoriales.
-3. Journeys y reglas funcionales.
-4. Modelo conceptual de datos.
-5. UX y contratos técnicos.
-6. Implementación por recorridos verticales.
-7. Pilotos familiares y revisión.
-8. Escalamiento de la biblioteca y funciones comerciales.
+## Document status
 
-No se construirá toda la base de datos, todo el backend y toda la interfaz como fases aisladas. Cada vertical slice debe entregar un flujo pequeño de extremo a extremo.
+- `Draft`: incomplete or subject to central decisions.
+- `Review`: developed enough for discussion.
+- `Approved`: accepted as a source of truth.
+- `Superseded`: replaced by another document or decision.
+- `Active`: an operational register that must be kept current.
 
-## Estado de los documentos
+No translation changes a document's status. A file must not be marked `Approved` without human confirmation.
 
-Cada documento debe indicar uno de estos estados:
+## Current prototype
 
-- `Draft`: incompleto o sujeto a decisiones centrales.
-- `Review`: suficientemente desarrollado para discusión.
-- `Approved`: aceptado como fuente de verdad.
-- `Superseded`: reemplazado por otro documento o decisión.
+The [family mobile prototype v0.6](prototypes/family-mobile-v0.1/index.html) supports English and Spanish across the five-day founder pilot, including planning, activity detail, consolidated shopping, learning focuses, preparation, six-stage facilitation, contextual help, close-out, installation, and offline shell behavior. It uses synthetic data and `Draft` or candidate content; it is not a production family delivery.
 
-La versión v0.1 captura las decisiones de la conversación inicial. Las decisiones pendientes están consolidadas en [Preguntas abiertas](docs/00-foundation/open-questions.md).
+## Next milestone
 
-## Identificadores
-
-| Prefijo | Dominio |
-|---|---|
-| `PRD` | Producto general |
-| `LRN` | Aprendizaje |
-| `ACT` | Actividades y contenido |
-| `EVD` | Observación y evidencia |
-| `REC` | Recomendaciones |
-| `UX` | Experiencia de usuario |
-| `AI` | Inteligencia artificial |
-| `PRV` | Privacidad |
-| `SAFE` | Seguridad física |
-| `DATA` | Datos |
-| `ENG` | Ingeniería |
-
-## Prototipo de experiencia
-
-El [prototipo móvil familiar v0.6](prototypes/family-mobile-v0.1/index.html) permite recorrer planificación por tiempo, un plan de cinco actividades navegables, compras consolidadas, mapa educativo, focos sugeridos por niño, preparación, facilitación de seis etapas y cierre contextual. La compra agrupa por supermercado, papelería y casa, suma consumibles y reutiliza herramientas con procedencia visible por día. Puede servirse por HTTPS como PWA instalable y conserva localmente el avance operativo para el dry run. Incluye un [sistema visual](prototypes/family-mobile-v0.1/design-system.html), copias standalone y evidencia de QA a 360×800 y 430×932. Usa datos sintéticos y contenido `Draft`/candidato; no constituye entrega familiar ni implementación de producción.
-
-## Próximo hito
-
-Ejecutar el [dry run de cinco días con Sofía](docs/08-delivery/sofia-five-day-dry-run-v0.1.md) usando la [lista consolidada de compras](docs/08-delivery/sofia-shopping-list-v0.1.md) y la [hoja breve de observación](docs/08-delivery/founder-dry-run-observation-sheet-v0.1.md). Después se ajustan lenguaje, carga mental, materiales y secuencia, y se decide qué candidatos convertir primero en `ActivityVersion`. En paralelo deben completarse los gates humanos del [Pilot Pack v0.1](docs/08-delivery/pilot-pack-v0.1.md). `VS-01` todavía requiere una actividad publicada y backend real; el prototipo no satisface ese gate.
+Run the [five-day founder dry run](docs/08-delivery/sofia-five-day-dry-run-v0.1.md) with its [consolidated shopping list](docs/08-delivery/sofia-shopping-list-v0.1.md) and observation sheet. Then revise language, mental load, materials, and sequence, and decide which candidates should become full `ActivityVersion` records first. `VS-01` still requires a published activity and a real backend; the prototype does not satisfy that gate.

@@ -1,189 +1,187 @@
-# Pilot Pack v0.1 — guía de ejecución
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/08-delivery/pilot-pack-v0.1.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft — listo para revisión humana, no para publicación familiar<br>
-**Versión:** 0.1<br>
-**Fecha de corte:** 15 de agosto de 2026
+# Pilot Pack v0.1 — running guide
 
-## Propósito
+**Status:** Draft — ready for human review, not for family publishing<br>
+**Version:** 0.1<br>
+**Cut-off date:** August 15, 2026
 
-Este documento es el punto de entrada operativo para convertir los specs en el primer producto comprobable. Un agente de desarrollo debe poder usarlo para entender qué construir, en qué orden, qué contratos respetar y qué todavía requiere evidencia humana.
+## Purpose
 
-El paquete no declara seguras ni publicadas las actividades. Entrega tres `ActivityVersion` completas en estado `Draft`, contratos de datos ejecutables y gates explícitos para llegar a piloto.
+This document is the operational entry point to turn the specs into the first testable product. A development agent should be able to use it to understand what to build, in what order, what contracts to respect, and what still requires human evidence.
 
-## Lectura obligatoria antes de implementar
+The package does not declare the activities safe or published. Deliver three complete `ActivityVersion` in state `Draft`, executable data contracts and explicit gates to reach pilot.
 
-1. [Instrucciones para agentes](../../AGENTS.md).
-2. [Visión del producto](../00-foundation/product-vision.md), [principios](../00-foundation/product-principles.md) y [glosario](../00-foundation/glossary.md).
-3. [Baseline de privacidad infantil](../00-foundation/compliance-baseline.md).
-4. [Learning Framework](../01-learning/learning-framework.md), [Learner Model](../01-learning/learner-model.md) y [Evidence Model](../01-learning/evidence-model.md).
-5. [Activity Schema](../02-content/activity-schema.md), [seguridad](../02-content/safety-guidelines.md) y [ciclo editorial](../02-content/activity-lifecycle.md).
-6. [Arquitectura](../07-engineering/architecture.md), [contratos API](../07-engineering/api-contracts.md) y [modelo offline](../07-engineering/mobile-offline-strategy.md).
-7. [Vertical slices](vertical-slices.md), [trazabilidad](traceability.md) y este documento.
+## Required reading before implementing
 
-Ante una contradicción se aplica la precedencia de `AGENTS.md`; seguridad y privacidad dominan.
+1. [Instructions for agents](../../AGENTS.md).
+2. [product vision](../00-foundation/product-vision.md), [principles](../00-foundation/product-principles.md) and [glossary](../00-foundation/glossary.md).
+3. [Children's Privacy Baseline](../00-foundation/compliance-baseline.md).
+4. [Learning Framework](../01-learning/learning-framework.md), [Learner Model](../01-learning/learner-model.md) and [Evidence Model](../01-learning/evidence-model.md).
+5. [Activity Schema](../02-content/activity-schema.md), [safety](../02-content/safety-guidelines.md), and [editorial lifecycle](../02-content/activity-lifecycle.md).
+6. [Architecture](../07-engineering/architecture.md), [API contracts](../07-engineering/api-contracts.md) and [offline model](../07-engineering/mobile-offline-strategy.md).
+7. [Vertical slices](vertical-slices.md), [traceability](traceability.md) and this document.
 
-## Contenido del paquete
+When documents conflict, apply the precedence in `AGENTS.md`; physical safety and privacy take priority.
 
-| ID y versión | Actividad | Duración | Niños | Nivel preliminar | Estado y gate distintivo |
+## Package Contents
+
+| ID and version | Activity | Duration | Children | Preliminary level | Distinctive status and gate |
 |---|---|---:|---:|---|---|
-| `ACT-0001@0.3.0` | [Puente de papel](../02-content/sample-activities/ACT-0001-puente-de-papel.md) | 30–60 min | 1–3 | A | Validar físicamente vaso/carga, estabilidad de soportes, historia causal, una prueba propia por niño, guía adulta de estructuras y reproducibilidad. |
-| `ACT-0002@0.1.1` | [Clasificación con semillas](../02-content/sample-activities/ACT-0002-clasificacion-semillas.md) | 30–60 min | 1–3 | B | Revisar alergias, toxinas naturales, piezas pequeñas, ingestión, etiquetado y almacenamiento. |
-| `ACT-0003@0.1.2` | [Probador de conductividad](../02-content/sample-activities/ACT-0003-probador-conductividad.md) | 35–60 min | 1–3 | C | Revisión eléctrica/mecánica reforzada, selección de una configuración, componentes exactos y gate para co-montaje infantil desenergizado. |
+| `ACT-0001@0.3.0` | [Paper Bridges](../02-content/sample-activities/ACT-0001-puente-de-papel.md) | 30–60 min | 1–3 | A | Physically validate cup/load, support stability, causal narrative, one test per child, adult structural guidance, and reproducibility. |
+| `ACT-0002@0.1.1` | [Sort with seeds](../02-content/sample-activities/ACT-0002-clasificacion-semillas.md) | 30–60 min | 1–3 | B | Review allergies, natural toxins, small parts, ingestion, labeling and storage. |
+| `ACT-0003@0.1.2` | [Conductivity Tester](../02-content/sample-activities/ACT-0003-probador-conductividad.md) | 35–60 min | 1–3 | C | Reinforced electrical/mechanical review, selection of a configuration, exact components and gate for de-energized child co-assembly. |
 
-Las tres actividades incluyen bundles `es-US` y `en-US`, roles para uno, dos y tres niños, diferenciación funcional, un objetivo principal por niño, exposiciones secundarias, cierre 1–5, troubleshooting y briefs visuales. Ninguna puede aparecer en el catálogo familiar mientras su versión no tenga estado `published`.
+The three activities include `es-US` and `en-US` bundles, configurations for one, two, and three children, meaningful differentiation, one primary objective per child, secondary exposures, a 1–5 close-out, troubleshooting, and visual briefs. None may appear in the family catalog until its exact version is `published`.
 
-## Contratos ejecutables
+## Executable contracts
 
-La [guía de schemas](../../schemas/README.md) describe cinco JSON Schemas 2020-12:
+The [schemas guide](../../historical/es/schemas/README.es.md) describes five JSON Schemas 2020-12:
 
-- `ActivityVersion`: contenido bilingüe, materiales, roles, pasos, seguridad, adaptaciones, evaluación, visuales y gates.
-- `ActivitySession`: referencia exacta de versión, asignaciones, progreso, adaptaciones, cierre y sincronización offline.
-- `LearnerRecords`: exposiciones, observaciones e inferencias como registros separados y trazables.
-- `OfflinePackManifest`: versión/hash del paquete, contenido, assignments mínimos, assets y vencimiento.
-- `SyncEvent`: evento de cliente idempotente, revisión base, payload, estado de sync y conflicto.
+- `ActivityVersion`: bilingual content, materials, roles, steps, safety, adaptations, evaluation, visuals and gates.
+- `ActivitySession`: exact version reference, assignments, progress, adaptations, close-out, and offline synchronization.
+- `LearnerRecords`: exposures, observations and inferences as separate and traceable records.
+- `OfflinePackManifest`: package version/hash, content, minimum assignments, assets and expiration.
+- `SyncEvent`: idempotent client event, base revision, payload, sync status, and conflict handling.
 
-Los ejemplos son datos ficticios y no equivalen a aprobación editorial. Para verificar contratos y documentación:
+Examples contain fictitious data and do not constitute editorial approval. To verify contracts and documentation:
 
 ```bash
 npm install
 npm run validate
 ```
+Validation must be run in CI. Includes six positive examples, cross-references, and eleven negative mutations of core rules. A change that breaks schemas, invariants, examples, local links or mandatory signals of a pilot activity cannot be integrated.
 
-La validación debe ejecutarse en CI. Incluye seis ejemplos positivos, referencias cruzadas y once mutaciones negativas de reglas centrales. Un cambio que rompa schemas, invariantes, ejemplos, enlaces locales o señales obligatorias de una actividad piloto no puede integrarse.
+## Construction order
 
-## Orden de construcción
+### Immediate calibration package with Sofia
 
-### Paquete inmediato de calibración con Sofía
+For the first monitored week, use the [five-day dry run](sofia-five-day-dry-run-v0.1.md), your [consolidated shopping list](sofia-shopping-list-v0.1.md), and the [brief observation sheet](founder-dry-run-observation-sheet-v0.1.md). Days 3–5 are editorial candidates, not `ActivityVersion` published. `ACT-0003` remains outside the children's version until its electrical and mechanical gate is completed.
 
-Para la primera semana controlada, usar el [dry run de cinco días](sofia-five-day-dry-run-v0.1.md), su [lista consolidada de compras](sofia-shopping-list-v0.1.md) y la [hoja breve de observación](founder-dry-run-observation-sheet-v0.1.md). Los días 3–5 son candidatos editoriales, no `ActivityVersion` publicadas. `ACT-0003` permanece fuera de la ejecución infantil hasta completar su gate eléctrico y mecánico.
+### Stage 1 — calibrate content without family software
 
-### Etapa 1 — calibrar el contenido sin software de familia
+1. Do a dry run of each activity led by an adult and without child participation, starting with `ACT-0001` and `ACT-0002`.
+2. Record times, confusions, requested substitutions, incidents and near-incidents of the dry run.
+3. Correct the `ActivityVersion`; Any changes to steps, materials, roles, or goals create a new version based on the editorial cycle.
+4. Complete pedagogical review and safety review; `ACT-0003` also requires electrical and mechanical gates, exact components, adult physical testing, and an explicit decision on what connections a child can make with the de-energized circuit.
+5. Produce and review visuals after stabilizing steps and materials; each asset is linked to an exact version.
+6. Change to `ready_for_pilot` only when previous gates are registered.
+7. Only then run controlled trials with children and cover one-, two-, and three-participant configurations; Record each run as a pilot record.
+8. After starting those tests, use `family_pilot`; a subsequent patch may return the version to the appropriate state.
 
-1. Hacer un dry run de cada actividad dirigido por un adulto y sin participación infantil, comenzando por `ACT-0001` y `ACT-0002`.
-2. Registrar tiempos, confusiones, sustituciones solicitadas, incidentes y casi-incidentes del dry run.
-3. Corregir la `ActivityVersion`; cualquier cambio en pasos, materiales, roles u objetivos crea una nueva versión según el ciclo editorial.
-4. Completar revisión pedagógica y revisión de seguridad; `ACT-0003` requiere además gates eléctrico y mecánico, componentes exactos, prueba física adulta y decisión explícita sobre qué conexiones puede realizar un niño con el circuito desenergizado.
-5. Producir y revisar visuales después de estabilizar pasos y materiales; cada asset queda ligado a una versión exacta.
-6. Cambiar a `ready_for_pilot` únicamente cuando los gates previos estén registrados.
-7. Solo entonces ejecutar pruebas controladas con niños y cubrir configuraciones de uno, dos y tres participantes; registrar cada ejecución como pilot record.
-8. Tras comenzar esas pruebas, usar `family_pilot`; una revisión posterior puede devolver la versión al estado apropiado.
+Output: each activity reaches at most the state supported by its records; if it does not pass a gate, it remains in `draft` or the corresponding review state with documented cause. `retired` is reserved for a withdrawn version, not synonymous with a rejected revision.
 
-Salida: cada actividad alcanza como máximo el estado sustentado por sus records; si no supera un gate, permanece en `draft` o en el estado de revisión correspondiente con causa documentada. `retired` se reserva para una versión retirada, no como sinónimo de una revisión rechazada.
+### Stage 2 — low-fidelity UX prototype
 
-### Etapa 2 — prototipo UX de baja fidelidad
+Build and test, without depending on the final stack yet:
 
-Construir y probar, sin depender aún del stack final:
+1. selection of participants and available time;
+2. role assignment and primary objective per child;
+3. materials, adult preparation and warnings;
+4. step-by-step delivery, pause, resume, and recovery;
+5. close with a rating per child, optional `Evaluate more`, and an optional voice/text note;
+6. explanation of observations and inferences with correction and erasure.
 
-1. selección de participantes y tiempo disponible;
-2. asignación de rol y objetivo principal por niño;
-3. materiales, preparación adulta y advertencias;
-4. ejecución paso a paso y recuperación de fallas;
-5. cierre con una valoración por niño, `Evaluar más` opcional y una nota de voz/texto opcional;
-6. explicación de observaciones e inferencias con corrección y borrado.
+The central criterion is that an adult with three children can close in less than 20 seconds without losing context or answering nine questions by default.
 
-El criterio central es que un adulto con tres niños pueda cerrar en menos de 20 segundos sin perder contexto ni responder nueve preguntas por defecto.
+### Stage 3 — first functional vertical slice
 
-### Etapa 3 — primer vertical slice funcional
+The infrastructure and prototype can be started from `VS-01` to `VS-03` with fixtures identified as `editorial_preview` or `pilot`. Implement them in this order:
 
-Puede iniciarse la infraestructura y el prototipo de `VS-01` a `VS-03` con fixtures identificadas como `editorial_preview` o `pilot`. Implementarlos en este orden:
+1. Family, Adults and Learners minimum;
+2. catalog that only exposes published versions;
+3. session with immutable reference to `ActivityVersion`;
+4. compatible assignment of roles and exactly one primary objective per Learner;
+5. automatic exposure registration by actual participation;
+6. close-out and contextual observation;
+7. idempotent offline queue for session events.AI is not necessary to try this tour. Using deterministic rules and approved content first prevents a model from hiding domain defects. `VS-01` is not finished until an adult can actually open at least one ActivityVersion `published`; A fixture or activity `Draft` only allows the prototype to advance.
 
-1. familia, adultos y Learners mínimos;
-2. catálogo que solo expone versiones publicadas;
-3. sesión con referencia inmutable a `ActivityVersion`;
-4. asignación compatible de roles y exactamente un objetivo principal por Learner;
-5. registro automático de exposición por participación real;
-6. cierre y observación contextual;
-7. cola offline idempotente para eventos de sesión.
+### Stage 4 — Learner Model and recommendation
 
-La IA no es necesaria para probar este recorrido. Usar reglas deterministas y contenido aprobado primero evita que un modelo oculte defectos del dominio. `VS-01` no está terminado hasta que un adulto pueda abrir al menos una ActivityVersion realmente `published`; una fixture o actividad `Draft` solo permite avanzar el prototipo.
+After validating that the close signal is useful:
 
-### Etapa 4 — Learner Model y recomendación
+1. implement `VS-04` with conservative inferences and visible evidence;
+2. allow adult correction and elimination;
+3. implement planning by time and area balance;
+4. add vendor-agnostic model selection only behind contracts and evaluations;
+5. first enable `Explain` and `Troubleshoot` with recovery limited to the published version.
 
-Después de validar que la señal del cierre es útil:
+### Stage 5 – editorial operation
 
-1. implementar `VS-04` con inferencias conservadoras y evidencia visible;
-2. permitir corrección y eliminación adulta;
-3. implementar planificación por tiempo y balance de áreas;
-4. añadir selección de modelo agnóstica a proveedor solo detrás de contratos y evaluaciones;
-5. habilitar primero `Explain` y `Troubleshoot` con recuperación limitada a la versión publicada.
+Implement `VS-08` before scaling the library: authoring, independent reviews, category gates, pilot, publication, retirement and audit. The founder can accumulate roles at the beginning, but the system preserves separate roles for the future team.
 
-### Etapa 5 — operación editorial
+## Non-negotiable implementation rules
 
-Implementar `VS-08` antes de escalar la biblioteca: autoría, revisiones independientes, gates por categoría, piloto, publicación, retiro y auditoría. La fundadora puede acumular roles al inicio, pero el sistema conserva roles separados para el equipo futuro.
+- Each assignment has exactly one `primaryObjectiveSkillId`; other skills are exposures.
+- Participation does not prove performance and exposure does not automatically create an inference.
+- A rating of 1–5 measures contextual independence, not the child's intelligence or identity.
+- Inferences show confidence, evidence and explanation, and are correctable.
+- AI selects or adapts within approved options; it does not invent the core or substitute materials freely.
+- Adult steps, warnings and safety limits cannot be degraded by adaptation or translation.
+- The app is aimed at adults in v1; the child participates in the physical activity, does not manage account, consent or evaluation.
+- Media, audio and transcripts are optional and temporary unless the adult chooses to save a project in the portfolio.
+- The future community remains separate from the Learner Model and visible only to authenticated adults in its first version.
 
-## Reglas de implementación no negociables
+## Gates for these three activities
 
-- Cada asignación tiene exactamente un `primaryObjectiveSkillId`; otras habilidades son exposiciones.
-- Participación no prueba desempeño y exposición no crea automáticamente una inferencia.
-- Una valoración 1–5 mide independencia contextual, no inteligencia ni identidad del niño.
-- Las inferencias muestran confianza, evidencia y explicación, y son corregibles.
-- La IA selecciona o adapta dentro de opciones aprobadas; no inventa el núcleo ni sustituye materiales libremente.
-- Los pasos adultos, advertencias y límites de seguridad no pueden degradarse por adaptación o traducción.
-- La app está dirigida al adulto en v1; el niño participa en la actividad física, no administra cuenta, consentimiento ni evaluación.
-- Medios, audio y transcripciones son opcionales y temporales salvo que el adulto elija guardar un proyecto en el portafolio.
-- La comunidad futura permanece separada del Learner Model y visible solo a adultos autenticados en su primera versión.
+### Common Gate
 
-## Gates para estas tres actividades
+- complete scheme and two revised languages;
+- a run led by the author or publishing owner;
+- registered pedagogical and safety review;
+- steps, materials and troubleshooting reproducible by another adult;
+- explicit test with 1, 2 and 3 children;
+- coherent visuals with materials, quantities, actors and risks;
+- three additional successful runs on at least two families for level A/B;
+- later changes return to the affected gates.
 
-### Gate común
+### Reinforced gate of `ACT-0003`
 
-- esquema completo y dos idiomas revisados;
-- ejecución del autor o propietaria editorial;
-- revisión pedagógica y de seguridad registrada;
-- pasos, materiales y troubleshooting reproducibles por otro adulto;
-- prueba explícita con 1, 2 y 3 niños;
-- visuales coherentes con materiales, cantidades, actores y riesgos;
-- tres ejecuciones satisfactorias adicionales en al menos dos familias para nivel A/B;
-- cambios posteriores vuelven a los gates afectados.
+- appropriate specialist approves source, resistance, LED, connections, insulation and failure modes;
+- appropriate specialist defines and approves—or rejects with cause—a de-energized child co-assembly route, with actions permitted by age;
+- exact part numbers and technical data sheet on file;
+- open/close control test, polarity, false negative and short circuit avoided;
+- verification of absence of heat, odor, leak, spark or child access to batteries;
+- the adult inserts, removes, counts and stores the batteries;
+- verifiable exclusion of 9 V, USB, coin batteries, home network, liquids, people, animals and devices;
+- minimum of reinforced executions defined and approved before `family_pilot`.
 
-### Gate reforzado de `ACT-0003`
+## Minimum pilot evidence
 
-- especialista apropiado aprueba fuente, resistencia, LED, conexiones, aislamiento y modos de falla;
-- especialista apropiado define y aprueba —o rechaza con causa— una ruta de co-montaje infantil desenergizado, con acciones permitidas por edad;
-- números de parte exactos y ficha técnica archivada;
-- prueba de control abierto/cerrado, polaridad, falso negativo y cortocircuito evitado;
-- verificación de ausencia de calor, olor, fuga, chispa o acceso infantil a pilas;
-- el adulto inserta, retira, cuenta y guarda las pilas;
-- exclusión comprobable de 9 V, USB, pilas tipo moneda, red doméstica, líquidos, personas, animales y dispositivos;
-- mínimo de ejecuciones reforzadas definido y aprobado antes de `family_pilot`.
+Per session only:
 
-## Evidencia mínima del piloto
+- activity and exact version;
+- number of participants, role and primary objective;
+- approximate duration and completion status;- exposures actually occurred;
+- one optional main assessment per child;
+- optional correctable note;
+- applied adaptation;
+- failure, abandonment, incident or near-incident.
 
-Por sesión se conserva solo:
+No photo, video, persistent audio or long report required. The full eight-week plan is in [Family Pilot Plan](pilot-plan.md).
 
-- actividad y versión exacta;
-- número de participantes, rol y objetivo principal;
-- duración aproximada y estado de finalización;
-- exposiciones realmente ocurridas;
-- una valoración principal opcional por niño;
-- nota opcional corregible;
-- adaptación aplicada;
-- falla, abandono, incidente o casi-incidente.
+## Definition of ready to begin implementation
 
-No se requiere foto, video, audio persistente ni informe largo. El plan completo de ocho semanas está en [Plan de piloto familiar](pilot-plan.md).
+The repository is ready to start prototyping and `VS-01` when:
 
-## Definición de listo para comenzar implementación
+- `npm run validate` terminates without errors;
+- open decisions affecting the slice are resolved or explicitly excluded;
+- the team chooses only the minimum stack necessary for that slice;
+- there are acceptance criteria and tests for authorization, safety, product security, evidence, and offline behavior;
+- no content `Draft` is presented as a published recommendation.
 
-El repositorio está listo para iniciar prototipos y `VS-01` cuando:
+This is not the same as being ready for family delivery. An activity must complete its gates, and the product requires safety, privacy, product-security, accessibility, and US compliance review before distribution.
 
-- `npm run validate` termina sin errores;
-- las decisiones abiertas que afecten el slice están resueltas o explícitamente excluidas;
-- el equipo elige solo el mínimo stack necesario para ese slice;
-- existen criterios de aceptación y pruebas para autorización, seguridad, evidencia y offline;
-- ningún contenido `Draft` se presenta como recomendación publicada.
+## Expected delivery of each task to another Codex
 
-Esto no equivale a estar listo para una familia. Una actividad necesita completar sus gates, y el producto necesita revisión de privacidad, seguridad, accesibilidad y cumplimiento para Estados Unidos antes de distribución.
+Each task must declare before editing:
 
-## Entrega esperada de cada tarea a otro Codex
+1. vertical slice and adult course that completes;
+2. requirements and decisions respected;
+3. affected schemas, entities and endpoints;
+4. error states, permissions and offline behavior;
+5. acceptance and regression testing;
+6. safety, product-security, and privacy risks;
+7. what is out of reach.
 
-Cada tarea debe declarar antes de editar:
-
-1. vertical slice y recorrido adulto que completa;
-2. requisitos y decisiones respetados;
-3. schemas, entidades y endpoints afectados;
-4. estados de error, permisos y comportamiento offline;
-5. pruebas de aceptación y regresión;
-6. riesgos de seguridad y privacidad;
-7. qué queda fuera de alcance.
-
-Al terminar debe actualizar implementación, pruebas, documentación, trazabilidad y decision log si tomó una decisión nueva. No debe rellenar una ambigüedad de seguridad, privacidad o producto con una suposición silenciosa.
+When you finish, update the implementation, tests, documentation, traceability, and decision log if you made a new decision. Do not resolve a safety, security, privacy, or product ambiguity through a silent assumption.

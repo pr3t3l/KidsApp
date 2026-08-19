@@ -1,56 +1,57 @@
-# SPEC-04 — Learning Graph
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/01-learning/learning-graph.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# SPEC-04—Learning Graph
 
-## 1. Propósito
+**Status:** Draft
+**Version:** 0.1
 
-Representar conceptos, habilidades y relaciones para etiquetar actividades, explicar progresión y detectar oportunidades de aprendizaje.
+## 1. Purpose
 
-## 2. Tipos de nodo
+Represent concepts, skills and relationships to label activities, explain progression and detect learning opportunities.
 
-- Área.
-- Concepto.
-- Habilidad.
-- Nivel funcional de una habilidad.
+## 2. Node types
 
-## 3. Tipos de relación
+- Area.
+- Concept.
+- Skill.
+- Functional level of a skill.
 
-| Relación | Significado |
+## 3. Types of relationship
+
+| Relationship | Meaning |
 |---|---|
-| `PART_OF` | El nodo pertenece a una categoría mayor. |
-| `SUPPORTS` | Una habilidad facilita otra sin ser requisito. |
-| `PREREQUISITE_FOR` | Conocimiento previo recomendado; incluye fuerza. |
-| `OBSERVABLE_BY` | Una acción puede aportar evidencia. |
-| `RELATED_TO` | Relación explicativa sin secuencia. |
+| `PART_OF` | The node belongs to a higher category. |
+| `SUPPORTS` | One skill facilitates another without being a requirement. |
+| `PREREQUISITE_FOR` | Recommended prior knowledge; includes strength. |
+| `OBSERVABLE_BY` | An action can provide evidence. |
+| `RELATED_TO` | Explanatory relationship without sequence. |
 
-## 4. Ejemplo
+## 4. Example
 
 ```text
-Electricidad
-├── Circuito cerrado
-│   ├── identificar un camino continuo
-│   └── conectar fuente y carga
-├── Polaridad
-├── Conductores y aislantes
-├── Interruptores
-└── Motores
-    ├── energía eléctrica → movimiento
-    └── dirección de rotación
+Electricity
+├── Closed circuit
+│   ├── identify a continuous path
+│   └── connect source and load
+├── Polarity
+├── Conductors and insulators
+├── Switches
+└── Motors
+    ├── electrical energy → movement
+    └── direction of rotation
 ```
+## 5. Rules
 
-## 5. Reglas
+- Prerequisites do not automatically block an activity; they can turn it into exploration.
+- Each skill has observable actions and invalid examples.
+- Each node retains version, editorial status and justification.
+- The recommender must explain which path through the graph it is trying to reinforce.
+- The graph does not contain personal scores; those live in the Learner Model.
 
-- Los prerrequisitos no bloquean automáticamente una actividad; pueden convertirla en exploración.
-- Cada habilidad tiene acciones observables y ejemplos no válidos.
-- Cada nodo conserva versión, estado editorial y justificación.
-- El recomendador debe explicar qué camino del grafo intenta reforzar.
-- El grafo no contiene puntuaciones personales; esas viven en el Learner Model.
+## 6. Requirements
 
-## 6. Requisitos
-
-- **LRN-301:** Cada actividad publicada debe enlazar al menos un concepto o habilidad.
-- **LRN-302:** Cada habilidad evaluable debe tener una rúbrica observable.
-- **LRN-303:** Las relaciones deben ser versionadas y auditables.
-- **LRN-304:** El sistema debe admitir evidencia insuficiente en nodos no explorados.
-- **LRN-305:** Un cambio del grafo no puede reinterpretar silenciosamente observaciones históricas.
+- **LRN-301:** Each published activity must link at least one concept or skill.
+- **LRN-302:** Each assessable skill must have an observable rubric.
+- **LRN-303:** Relationships must be versioned and auditable.
+- **LRN-304:** The system must support insufficient evidence on unexplored nodes.
+- **LRN-305:** A graph change cannot silently reinterpret historical observations.

@@ -1,198 +1,200 @@
-# Catálogo inicial de user stories
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/03-product/user-stories.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.2
+# Initial User Story Catalog
 
-Las historias describen valor. Los requisitos normativos viven en los specs y los criterios detallados se enlazarán a tareas de cada vertical slice.
+**Status:** Draft
+**Version:** 0.2
 
-## Familia y onboarding
+Stories describe user value. Normative requirements live in the specifications, and detailed acceptance criteria link to tasks in each vertical slice.
 
-### US-FAM-001 — Empezar con poca configuración
+## Family and onboarding
 
-Como adulto, quiero crear perfiles mínimos para mis hijos para recibir una primera actividad sin completar un formulario largo.
+### US-FAM-001 — Getting started with little configuration
 
-**Aceptación:** alias y rango de edad son suficientes; datos opcionales explican su propósito; no se infiere habilidad.
+As an adult, I want to create minimal profiles for my children to receive a first activity without filling out a long form.
 
-### US-FAM-002 — Varios niños
+**Acceptance:** aliases and age range are sufficient; optional data explains its purpose; no ability is inferred.
 
-Como adulto con varios niños, quiero elegir quién participa hoy para que el proyecto se adapte al grupo real.
+### US-FAM-002 — Multiple children
 
-**Aceptación:** se puede cambiar participantes por sesión; cada participante recibe internamente una asignación compatible y ve un foco/aporte; un ausente no recibe exposición.
+As an adult with several children, I want to choose who participates today so that the project fits the actual group.
 
-### US-FAM-003 — Contexto de hoy
+**Acceptance:** participants can be changed per session; each participant internally receives a compatible assignment and sees a focus/contribution; an absentee does not receive exposure.
 
-Como adulto, quiero indicar que hoy tengo menos tiempo o no tolero desorden para recibir una opción viable sin alterar mis preferencias permanentes.
+### US-FAM-003 — Today's context
 
-## Planificación
+As an adult, I want to indicate that today I have less time or less tolerance for mess so I can receive a viable option without altering my permanent preferences.
 
-### US-PLN-001 — Plan balanceado
+## Planning
 
-Como adulto, quiero recibir un plan semanal variado para no repetir el mismo fenómeno o habilidad.
+### US-PLN-001 — Balanced plan
 
-**Aceptación:** razones visibles; materiales consolidados; variedad por área, habilidad y aporte; sustitución individual.
+As an adult, I want to receive a varied weekly plan so as not to repeat the same phenomenon or skill.
 
-### US-PLN-002 — Usar lo que tengo
+**Acceptance:** visible reasons; consolidated materials; variety by area, skill, and contribution; individual activity replacement.
 
-Como adulto, quiero priorizar materiales disponibles para reducir compras y preparación.
+### US-PLN-002 — Use what I have
 
-### US-PLN-003 — Sustituir sin empezar de nuevo
+As an adult, I want to prioritize available materials to reduce purchasing and preparation.
 
-Como adulto, quiero cambiar una actividad que no me conviene sin regenerar toda la semana.
+### US-PLN-003 — Replace without starting over
 
-### US-PLN-004 — Abrir cualquier día
+As an adult, I want to change an activity that doesn't suit me without regenerating the entire week.
 
-Como adulto, quiero abrir cada actividad del plan para entender qué haremos, qué aprenderá el niño y cómo prepararme antes de aceptarla.
+### US-PLN-004 — Open any day
 
-**Aceptación:** todas las tarjetas son táctiles y muestran un detalle con promesa, propósito, foco, materiales, recorrido, cierre, seguridad y estado editorial; volver conserva la semana.
+As an adult, I want to open each activity in the plan to understand what we will do, what the child will learn, and how to prepare before accepting it.
 
-### US-PLN-005 — Comprar una sola vez
+**Acceptance:** every card is tappable and opens a detail containing promise, purpose, focus, materials, route, close-out, safety, and editorial status; returning preserves the weekly plan.
 
-Como adulto, quiero una lista semanal organizada por lugar de compra para conseguir todo en una sola salida sin sumar cantidades manualmente.
+### US-PLN-005 — Buy once
 
-**Aceptación:** cada total muestra sus actividades de origen; consumibles repetidos se suman; herramientas reutilizables usan la cantidad máxima; los elementos que probablemente ya están en casa aparecen separados.
+As an adult, I want a weekly list organized by shopping location so I can get everything in one go without manually adding up quantities.
 
-## Actividad
+**Acceptance:** each total shows its source activities; repeated consumables add up; reusable tools use the maximum amount needed at once; items likely to be at home appear separately.
 
-### US-ACT-001 — Prepararme antes
+## Activity
 
-Como adulto, quiero ver materiales, tiempo, seguridad y pasos exclusivos del adulto antes de reunir a los niños.
+### US-ACT-001 — Prepare before
 
-### US-ACT-002 — Proyecto compartido
+As an adult, I want to see adult-only materials, timing, safety, and steps before gathering the kids.
 
-Como adulto con tres niños, quiero una actividad común con responsabilidades diferentes para acompañarlos simultáneamente.
+### US-ACT-002 — Shared project
 
-**Aceptación:** contribuciones significativas y acciones nominales en cada fase; objetivos compatibles; no se asigna tutoría automática al mayor; se muestran dependencias y turnos sin exigir que el adulto configure roles técnicos.
+As an adult with three children, I want a common activity with different responsibilities to accompany them simultaneously.
 
-### US-ACT-003 — Cambiar asignación
+**Acceptance:** meaningful, named contributions in each phase; compatible objectives; the oldest child is not automatically made a supervisor; dependencies and turns are shown without requiring the adult to configure technical roles.
 
-Como adulto, quiero recibir un foco y aporte sugeridos para cada niño y poder registrar una participación diferente solo si la dinámica real lo requiere, sin reorganizar la actividad antes de comenzar.
+### US-ACT-003 — Change an assignment
 
-### US-ACT-004 — Reanudar
+As an adult, I want to receive a suggested focus and input for each child and be able to record a different participation only if the actual dynamic requires it, without reorganizing the activity before starting.
 
-Como adulto, quiero pausar y continuar desde el último paso para atender una interrupción sin perder el contexto.
+### US-ACT-004 — Resume
 
-### US-ACT-005 — Resolver una falla
+As an adult, I want to pause and continue from the last step to address an interruption without losing context.
 
-Como adulto, quiero pedir ayuda desde el paso actual para no repetir qué actividad estoy haciendo.
+### US-ACT-005 — Troubleshoot a problem
 
-### US-ACT-006 — Ajustar la participación real
+As an adult, I want to ask for help from the current step so I don't repeat what activity I'm doing.
 
-Como adulto, quiero indicar que un niño está contribuyendo de otra forma, observando o deja de participar para continuar sin convertir la actividad en una lucha ni administrar roles técnicos.
+### US-ACT-006 — Adjust actual participation
 
-**Aceptación:** la excepción no domina la guía; el sistema puede recalcular acciones compatibles; los cambios se registran como contexto de sesión y nunca como evidencia negativa, desobediencia ni rasgo personal.
+As an adult, I want to indicate that a child is contributing in another way, observing, or no longer participating so the activity can continue without becoming a struggle or requiring me to manage technical roles.
 
-### US-ACT-007 — Saber cómo facilitar el aprendizaje
+**Acceptance:** the exception does not dominate the guide; the system can recalculate compatible actions; changes are recorded as session context and never as negative evidence, disobedience or personal trait.
 
-Como adulto no especialista, quiero ver qué hacer, qué decir, qué hará cada niño, qué pueden decidir y qué observar en cada fase para acompañar habilidades concretas sin leer el documento editorial completo.
+### US-ACT-007 — Know how to facilitate learning
 
-**Aceptación:** cada fase cumple `UX-FAC-005` a `UX-FAC-009`; la ayuda nombra el problema y el cambio real; el mismo patrón funciona para actividades de distintas áreas.
+As a non-specialist adult, I want to see what to do, what to say, what each child will do, what they can decide and what to observe in each phase to accompany specific skills without reading the entire editorial document.
 
-### US-ACT-008 — Vivir el ciclo completo
+**Acceptance:** each phase satisfies `UX-FAC-005` to `UX-FAC-009`; help names the problem and the real change; the same pattern works for activities in different areas.
 
-Como adulto con varios niños, quiero que cada uno proponga, construya o ejecute, pruebe y observe cuando la actividad lo permita para que un foco diferente no lo excluya de la experiencia esencial.
+### US-ACT-008 — Live the full cycle
 
-**Aceptación:** el modo narrativo y las acciones del ciclo están declarados; cada participante activo completa las acciones obligatorias o la actividad justifica por qué el artefacto debe ser compartido.
+As an adult with several children, I want each one to propose, build or execute, test and observe when the activity allows so that a different focus does not exclude them from the essential experience.
 
-## Evidencia
+**Acceptance:** the narrative mode and the actions of the cycle are declared; each active participant completes the required actions or the activity justifies why the artifact should be shared.
 
-### US-EVD-001 — Cierre rápido
+## Evidence
 
-Como adulto ocupado, quiero responder una sola valoración por niño para registrar lo importante en menos de veinte segundos.
+### US-EVD-001 — Quick close-out
 
-### US-EVD-002 — Registrar un matiz
+As a busy adult, I want to answer only one rating per child so I can capture what matters in under twenty seconds.
 
-Como adulto, quiero dictar una observación opcional para varios niños para capturar algo importante sin escribir.
+### US-EVD-002 — Register a nuance
 
-### US-EVD-003 — Evaluar más
+As an adult, I want to dictate an optional observation about one or more children so I can capture something important without typing.
 
-Como adulto que observó varias habilidades, quiero evaluar objetivos secundarios opcionalmente sin que el sistema me lo exija cada día.
+### US-EVD-003 — Evaluate more
 
-### US-EVD-004 — Corregir contexto
+As an adult who observed several skills, I want to evaluate secondary objectives optionally without the system requiring me to do so each day.
 
-Como adulto, quiero indicar que el problema fue la herramienta o el material para evitar una conclusión incorrecta sobre el niño.
+### US-EVD-004 — Correct context
+
+As an adult, I want to point out that the problem was the tool or material to avoid an incorrect conclusion about the child.
 
 ## Learning Journey
 
-### US-LRN-001 — Entender la conclusión
+### US-LRN-001 — Understand an inference
 
-Como adulto, quiero abrir “¿Por qué?” para ver qué observaciones respaldan una inferencia.
+As an adult, I want to open “Why?” to see which observations support an inference.
 
-### US-LRN-002 — Ver lo desconocido
+### US-LRN-002 — See the unknown
 
-Como adulto, quiero saber en qué áreas aún no hay evidencia para no confundir ausencia de datos con dificultad.
+As an adult, I want to know in which areas there is still no evidence so as not to confuse lack of data with difficulty.
 
-### US-LRN-003 — Corregir o eliminar
+### US-LRN-003 — Correct or delete
 
-Como adulto, quiero corregir o eliminar observaciones e inferencias para conservar control del perfil.
+As an adult, I want to correct or delete observations and inferences to maintain control of the profile.
 
-### US-LRN-004 — Evitar comparaciones
+### US-LRN-004 — Avoid comparisons
 
-Como adulto, quiero ver el recorrido de cada niño sin rankings entre hermanos.
+As an adult, I want to see each child's journey without sibling rankings.
 
-## Privacidad
+## Privacy
 
-### US-PRV-001 — Foto temporal
+### US-PRV-001 — Temporary photo
 
-Como adulto, quiero enviar una foto para troubleshooting y saber que no se conservará por defecto.
+As an adult, I want to submit a photo for troubleshooting and know that it will not be retained by default.
 
-### US-PRV-002 — Portafolio opcional
+### US-PRV-002 — Optional Portfolio
 
-Como adulto, quiero decidir explícitamente si una foto de proyecto se guarda en un portafolio privado.
+As an adult, I want to explicitly decide whether a project photo is saved in a private portfolio.
 
-### US-PRV-003 — Exportar y borrar
+### US-PRV-003 — Export and delete
 
-Como propietario de la familia, quiero revisar, exportar y eliminar datos con alcance claro.
+As the family owner, I want to review, export and delete data with clear scope.
 
-## Operación editorial
+## Editorial operation
 
-### US-OPS-001 — Publicar con gates
+### US-OPS-001 — Publish with gates
 
-Como editor, quiero impedir publicación hasta completar revisiones pedagógica y de seguridad.
+As an editor, I want to prevent publication until pedagogical and safety reviews are completed.
 
-### US-OPS-002 — Retirar inmediatamente
+### US-OPS-002 — Remove immediately
 
-Como responsable de seguridad, quiero retirar una versión para impedir nuevas recomendaciones sin borrar historia.
+As a safety manager, I want to withdraw a version to prevent new recommendations without deleting its history.
 
-### US-OPS-003 — Colaborar por especialidad
+### US-OPS-003 — Collaborate by specialty
 
-Como educador, científico o especialista, quiero comentar campos y proponer cambios dentro de una ActivityVersion sin sobrescribir el trabajo de otros.
+As an educator, scientist or specialist, I want to comment on fields and propose changes within an ActivityVersion without overwriting the work of others.
 
-### US-OPS-004 — Ver gates pendientes
+### US-OPS-004 — View pending gates
 
-Como publisher, quiero saber quién aprobó pedagogía, seguridad, traducción e imágenes antes de publicar.
+As a publisher, I want to know who approved pedagogy, safety, translation, and images before publishing.
 
-## Comunidad
+## Community
 
-### US-COM-001 — Portafolio privado
+### US-COM-001 — Private portfolio
 
-Como adulto, quiero guardar una foto o video del proyecto para mi familia sin publicarlo.
+As an adult, I want to save a photo or video of the project for my family without posting it.
 
-### US-COM-002 — Inspirar a otras familias
+### US-COM-002 — Inspire other families
 
-Como adulto, quiero publicar voluntariamente el resultado bajo la actividad correspondiente después de revisar privacidad y normas.
+As an adult, I want to voluntarily post the result under the corresponding activity after reviewing privacy and policies.
 
-### US-COM-003 — Reportar contenido
+### US-COM-003 — Report content
 
-Como adulto, quiero reportar una publicación inapropiada o que expone información infantil para que el equipo actúe rápidamente.
+As an adult, I want to report a post that is inappropriate or exposes children's information so that the team can act quickly.
 
-### US-COM-004 — Uso de marketing separado
+### US-COM-004 — Separate marketing use
 
-Como adulto, quiero que compartir en comunidad no autorice automáticamente el uso de mi medio en anuncios o redes de la empresa.
+As an adult, I want community sharing not to authorize the use of my media in ads or company social accounts automatically.
 
-## Suscripción
+## Subscription
 
-### US-SUB-001 — Entender la prueba
+### US-SUB-001 — Understand the trial
 
-Como adulto, quiero ver cuánto dura la prueba, cuándo se cobrará y cuánto costará antes de suscribirme.
+As an adult, I want to see how long the trial is, when it will be charged, and how much it will cost before I sign up.
 
-### US-SUB-002 — Cancelar fácilmente
+### US-SUB-002 — Cancel easily
 
-Como adulto, quiero cancelar desde Cuenta mediante el canal donde pagué, sin contactar soporte ni perder inmediatamente el período vigente.
+As an adult, I want to cancel from Account through the channel where I paid, without contacting support or immediately losing the current period.
 
-### US-SUB-003 — Compartir acceso familiar
+### US-SUB-003 — Share Family Access
 
-Como pagador, quiero que los adultos autorizados usen la misma suscripción sin ver mis datos de pago.
+As a payer, I want authorized adults to use the same subscription without seeing my payment details.
 
-### US-SUB-004 — Conservar mis datos
+### US-SUB-004 — Keep my data
 
-Como adulto, quiero que cancelar detenga pagos futuros sin eliminar automáticamente perfiles, progreso o portafolio.
+As an adult, I want cancellation to stop future payments without automatically deleting profiles, progress, or portfolio content.

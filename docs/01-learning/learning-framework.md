@@ -1,108 +1,110 @@
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/01-learning/learning-framework.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
+
 # SPEC-01 — Learning Framework
 
-**Estado:** Review  
-**Versión:** 0.1  
-**Propietario:** Producto/Pedagogía
+**Status:** Review
+**Version:** 0.1
+**Owner:** Product/Pedagogy
 
-## 1. Propósito
+## 1. Purpose
 
-Definir cómo representa el producto áreas, habilidades, conceptos, dificultad, progresión y oportunidades de aprendizaje sin reducir al niño a su edad o a una puntuación única.
+Define how the product represents areas, skills, concepts, difficulty, progression and learning opportunities without reducing the child to their age or a single score.
 
-## 2. Unidad de aprendizaje
+## 2. Learning unit
 
-Una actividad puede contener:
+An activity can contain:
 
-- Uno o varios **conceptos** que pueden comprenderse o explicarse.
-- Una o varias **habilidades** que pueden observarse en una acción.
-- Un **objetivo principal por niño**, elegido para práctica y observación.
-- Exposiciones secundarias registradas sin inferir desempeño.
+- One or several **concepts** that can be understood or explained.
+- One or several **skills** that can be observed in an action.
+- One **primary objective per child**, chosen for practice and observation.
+- Secondary exposures recorded without inferring performance.
 
-## 3. Áreas iniciales
+## 3. Starting areas
 
-| Código | Área | Ejemplos |
+| Code | Area | Examples |
 |---|---|---|
-| PHY | Física | fuerza, fricción, presión, gravedad, estática |
-| ENG | Ingeniería | estructuras, mecanismos, diseño, iteración |
-| ELE | Electricidad | circuitos, interruptores, motores, conductores |
-| MAT | Matemáticas | conteo, clasificación, patrones, medición |
-| CHE | Química segura | mezclas, cambios, densidad, reacciones de bajo riesgo |
-| BIO | Biología/naturaleza | plantas, semillas, ecosistemas, observación |
-| MOT | Motricidad | pinza, corte, transferencia, ensamblaje |
-| CRE | Creatividad | ideación, representación, uso alternativo de materiales |
-| LOG | Pensamiento lógico | secuencia, causa/efecto, depuración, predicción |
-| COM | Comunicación | describir, explicar, argumentar, escuchar |
-| SEL | Autorregulación | persistencia, planificación, tolerancia al error |
-| PRA | Vida práctica | medir, organizar, reparar, preparar y limpiar |
+| PHY | Physics | force, friction, pressure, gravity, static |
+| ENG | Engineering | structures, mechanisms, design, iteration |
+| ELE | Electricity | circuits, switches, motors, conductors |
+| MAT | Mathematics | counting, classification, patterns, measurement |
+| CHE | Safe chemistry | mixtures, changes, density, low-risk reactions |
+| BIO | Biology/nature | plants, seeds, ecosystems, observation |
+| MOT | Motor skills | grasping, cutting, transferring, assembly |
+| CRE | Creativity | ideation, representation, alternative use of materials |
+| LOG | Logical thinking | sequence, cause/effect, debugging, prediction |
+| COM | Communication | describe, explain, argue, listen |
+| SEL | Self-regulation | persistence, planning, error tolerance |
+| PRA | Practical life | measure, organize, repair, prepare and clean |
 
-La taxonomía debe evolucionar mediante revisión pedagógica y datos de uso; no se añaden áreas solo para describir una actividad aislada.
+The taxonomy must evolve through pedagogical review and usage data; areas are not added just to describe an isolated activity.
 
-## 4. Distinción entre habilidad y concepto
+## 4. Distinction between skill and concept
 
-- **Habilidad:** se expresa como verbo observable: clasificar por dos atributos, medir longitud, conectar dos componentes, explicar una predicción.
-- **Concepto:** se expresa como idea: fricción, circuito cerrado, equilibrio, densidad.
+- **Skill:** expressed as an observable action, such as classifying by two attributes, measuring length, connecting two components, or explaining a prediction.
+- **Concept:** expressed as an idea, such as friction, closed circuit, balance, or density.
 
-Una sesión puede exponer un concepto sin aportar evidencia de comprensión. La evidencia requiere una acción o explicación observable.
+A session can present a concept without providing evidence of understanding. Evidence requires an observable action or explanation.
 
-## 5. Progresión
+## 5. Progression
 
-Se usarán niveles funcionales, independientes de la edad:
+Functional levels will be used, independent of age:
 
-| Nivel | Nombre | Patrón de participación |
+| Level | Name | Participation pattern |
 |---|---|---|
-| L1 | Explorer | observar, manipular, separar, transferir, comparar |
-| L2 | Builder | seguir secuencias cortas, cortar, unir, construir mecanismos simples |
-| L3 | Inventor | conectar componentes, medir, diagnosticar, comparar variables |
-| L4 | Engineer | resolver problemas abiertos, justificar decisiones, iterar diseños |
+| L1 | Explorer | observe, manipulate, separate, transfer, compare |
+| L2 | Builder | follow short sequences, cut, join, build simple mechanisms |
+| L3 | Inventor | connect components, measure, diagnose, compare variables |
+| L4 | Engineer | solve open problems, justify decisions, iterate designs |
 
-Los niveles no son títulos permanentes del niño. Se asignan por habilidad y contexto. Un niño puede operar en L3 para ensamblaje y L1 para medición.
+Levels are not permanent titles of the child. They are assigned by skill and context. A child can operate at L3 for assembly and L1 for measurement.
 
-## 6. Zona de reto apropiado
+## 6. Appropriate challenge zone
 
-Una asignación debe buscar uno de estos estados:
+A mapping must look for one of these states:
 
-- **Consolidación:** el niño puede realizarla casi solo y necesita repetir en contexto nuevo.
-- **Crecimiento:** puede lograrla con alguna ayuda; estado preferido para objetivos principales.
-- **Exploración:** primera exposición con apoyo y sin expectativa de desempeño.
+- **Consolidation:** the child can do it almost alone and needs to repeat it in a new context.
+- **Growth:** can be achieved with some help; preferred state for primary objectives.
+- **Exploration:** first exposure with support and without performance expectation.
 
-El recomendador evitará usar como objetivo principal una tarea prevista como imposible o trivial, salvo que exista una razón explícita.
+The recommender will avoid using a task that is considered impossible or trivial as the primary objective, unless there is an explicit reason.
 
-## 7. Edad
+## 7. Age
 
-La edad se utiliza para:
+Age is used to:
 
-- Filtrar riesgos físicos y materiales.
-- Ajustar lenguaje, duración y carga de lectura.
-- Orientar coordinación esperada sin asumir capacidad.
-- Cumplir restricciones editoriales y regulatorias.
+- Filter physical and material risks.
+- Adjust language, duration and reading load.
+- Guide expected coordination without assuming capacity.
+- Comply with editorial and regulatory restrictions.
 
-La selección final usa rango de edad, experiencia observada, independencia, intereses, contexto y seguridad.
+The final selection uses age range, observed experience, independence, interests, context and safety.
 
-## 8. Ciclo pedagógico
+## 8. Learning cycle
 
-Toda actividad publicada debe soportar, cuando corresponda:
+Every published activity must support the following stages when applicable:
 
-1. **Discover:** presentar pregunta, fenómeno o necesidad.
-2. **Imagine:** predecir, dibujar o proponer.
-3. **Build/Do:** construir, manipular o ejecutar.
-4. **Experiment:** cambiar una variable o probar.
-5. **Improve:** rediseñar o resolver una limitación.
-6. **Explain:** expresar qué ocurrió y por qué.
+1. **Discover:** present a question, phenomenon or need.
+2. **Imagine:** predict, draw or propose.
+3. **Build/Do:** build, manipulate or execute.
+4. **Experiment:** change a variable or test.
+5. **Improve:** redesign or resolve a limitation.
+6. **Explain:** express what happened and why.
 
-No todos los pasos necesitan igual duración, pero una actividad no debe reducirse a seguir instrucciones sin observación ni reflexión.
+Not all steps require the same duration, but an activity should not be reduced to following instructions without observation or reflection.
 
-## 9. Requisitos
+## 9. Requirements
 
-- **LRN-001:** Toda habilidad debe tener una definición observable y ejemplos de evidencia.
-- **LRN-002:** Toda relación de prerrequisito debe expresar tipo y fuerza, no una barrera absoluta por defecto.
-- **LRN-003:** Un niño puede tener estados diferentes por habilidad; no existe un nivel global obligatorio.
-- **LRN-004:** La edad no puede ser la única entrada para dificultad.
-- **LRN-005:** Cada asignación de objetivo principal debe explicar por qué es apropiada.
-- **LRN-006:** El sistema debe distinguir práctica, exposición y evaluación.
-- **LRN-007:** Las inferencias deben evitar comparación normativa hasta que exista una política pedagógica y legal aprobada.
+- **LRN-001:** Every skill must have an observable definition and examples of evidence.
+- **LRN-002:** Every prerequisite relationship must express type and strength, not an absolute barrier by default.
+- **LRN-003:** A child can have different states by skill; there is no mandatory global level.
+- **LRN-004:** Age cannot be the only input for difficulty.
+- **LRN-005:** Each primary objective assignment must explain why it is appropriate.
+- **LRN-006:** The system must distinguish practice, exposure and evaluation.
+- **LRN-007:** Inferences must avoid normative comparison until there is an approved pedagogical and legal policy.
 
-## 10. Criterios de aceptación v0.1
+## 10. Acceptance criteria v0.1
 
-- Diez actividades piloto pueden etiquetarse sin crear categorías ad hoc.
-- Dos niños de la misma edad pueden recibir roles distintos de forma explicable.
-- Un niño puede aparecer con distinta independencia en dos habilidades sin conflicto.
-- El sistema puede recomendar una actividad aunque carezca de evidencia, marcándola como exploración.
+- Ten pilot activities can be tagged without creating ad hoc categories.
+- Two children of the same age can be given different roles in an explainable way.
+- A child can appear with different independence in two skills without conflict.
+- The system can recommend an activity even if it lacks evidence, marking it as an exploration.

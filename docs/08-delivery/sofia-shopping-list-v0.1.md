@@ -1,60 +1,60 @@
-# Lista de compras — cinco días con Sofía
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/08-delivery/sofia-shopping-list-v0.1.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-> **Versión inglesa revisada:** [Shopping List — Five Days with Sofia](sofia-shopping-list-v0.1.en.md). El español sigue siendo la fuente normativa durante v0.x.
+# Shopping List — Five Days with Sofia
 
-**Para:** dry run v0.1
-**Criterio:** comprar una vez y reutilizar durante la semana. Revisar primero lo que ya existe en casa.
+**For:** dry run v0.1<br>
+**Rule:** buy once and reuse during the week. Check what you already have at home first.
 
-## Supermercado
+## Grocery store
 
-- [ ] 1 bolsa pequeña de garbanzos secos, sellada.
-- [ ] 1 bolsa pequeña de frijoles negros secos, sellada.
-- [ ] 1 bolsa pequeña de frijoles pintos secos, sellada.
-- [ ] 1 bolsa pequeña de arvejas/guisantes verdes secos, sellada.
-- [ ] 1 rollo de papel aluminio resistente.
-- [ ] 1 paquete de vasos de papel iguales, de 8–12 oz; se necesitan al menos 13 intactos: 1 para el puente y 12 para la torre.
-- [ ] 1 esponja nueva, sin partes sueltas ni cara abrasiva desprendible.
+- [ ] 1 small sealed bag of dried chickpeas.
+- [ ] 1 small sealed bag of dried black beans.
+- [ ] 1 small sealed bag of dried pinto beans.
+- [ ] 1 small sealed bag of dried green peas.
+- [ ] 1 roll of heavy-duty aluminum foil.
+- [ ] 1 package of identical 8–12 oz paper cups; you need at least 13 intact cups: 1 for the bridge and 12 for the tower.
+- [ ] 1 new sponge with no loose parts or detachable abrasive surface.
 
-No comprar frijoles kidney rojos, kidney blancos/cannellini, habas/fava ni frijoles lima para la actividad. Las cuatro legumbres compradas se usarán solo como manipulativos y no volverán a la despensa.
+Do not buy red kidney beans, white kidney/cannellini beans, fava beans, or lima beans for the activity. The four purchased legumes are used only as manipulatives and do not return to the pantry.
 
-## Papelería o tienda de manualidades
+## Stationery or craft store
 
-- [ ] 1 resma o paquete de papel de copia carta o A4; todas las hojas del ejercicio deben venir del mismo paquete.
-- [ ] 1 caja de 24 crayones estándar intactos, no jumbo.
-- [ ] 1 paquete de al menos 25 palitos de madera para manualidades, grandes, lisos y sin astillas.
-- [ ] 1 paquete de tarjetas de cartulina o cartón fino; se necesitan seis rectángulos iguales.
-- [ ] 1 rollo de cinta de pintor removible.
-- [ ] 1 marcador lavable de punta gruesa.
+- [ ] 1 ream or package of letter or A4 copy paper; every activity sheet must come from the same package.
+- [ ] 1 box of 24 intact standard crayons, not jumbo.
+- [ ] 1 package of at least 25 large, smooth, splinter-free wood craft sticks.
+- [ ] 1 package of cardstock cards or thin cardboard; you need six identical rectangles.
+- [ ] 1 roll of removable painter's tape.
+- [ ] 1 broad-tip washable marker.
 
-## Hogar — comprar solo si falta
+## Home — buy only if missing
 
-- [ ] 2 libros de tapa dura, planos, estables y de altura semejante.
-- [ ] 1 regla de 30 cm / 12 in sin bordes rotos.
-- [ ] 1 bandeja con borde.
-- [ ] 5 recipientes pequeños plásticos o de papel, irrompibles.
-- [ ] 1 recipiente rígido con tapa para conservar la colección de legumbres solo como material de actividades o desecharla.
-- [ ] 2 recipientes plásticos medianos de 2–4 qt/litros para agua.
-- [ ] 1 recipiente plástico ancho para el barco, con espacio para 5–8 cm / 2–3 in de agua.
-- [ ] 1 cuchara grande.
-- [ ] 1 taza medidora plástica pequeña.
-- [ ] 2 toallas de mano y 1 toalla grande, secas y sin cordones o bucles sueltos.
-- [ ] Papel adicional para registrar y un lápiz.
+- [ ] 2 flat, stable hardcover books of similar height.
+- [ ] 1 12 in / 30 cm ruler with no broken edges.
+- [ ] 1 rimmed tray.
+- [ ] 5 small unbreakable plastic or paper containers.
+- [ ] 1 rigid lidded container to keep the legume collection only as activity material or discard it.
+- [ ] 2 medium 2–4 qt/liter plastic containers for water.
+- [ ] 1 wide plastic container for the boat, with room for 2–3 in / 5–8 cm of water.
+- [ ] 1 large spoon.
+- [ ] 1 small plastic measuring cup.
+- [ ] 2 hand towels and 1 large towel, dry and without loose cords or loops.
+- [ ] Extra recording paper and a pencil.
 
-## No comprar todavía para el probador eléctrico
+## Do not buy electrical-tester parts yet
 
-No comprar un LED, resistencia, módulo, portapilas o cables al azar. `ACT-0003@0.1.2` todavía compara dos configuraciones editoriales y no tiene números de parte aprobados. Comprar antes del gate puede producir un montaje incompatible o inseguro. Los objetos secos de prueba —cuchara metálica, regla plástica, cartón, tela y espátula de silicona— pueden reservarse cuando se apruebe la configuración.
+Do not buy a random LED, resistor, module, battery holder, or wires. `ACT-0003@0.1.2` still compares two editorial configurations and has no approved part numbers. Buying before the gate may produce an incompatible or unsafe setup. Dry test objects—a metal spoon, plastic ruler, cardboard, cloth, and silicone spatula—can be set aside after the configuration is approved.
 
-## Revisión rápida antes de pagar
+## Quick check before paying
 
-- Los vasos son de papel, iguales y no están deformados.
-- Los crayones son estándar, enteros y aproximadamente iguales.
-- Los palitos son grandes, lisos y sin astillas.
-- Los recipientes para agua son plásticos e irrompibles.
-- Las legumbres coinciden exactamente con la lista y están secas, selladas y sin tratamiento para siembra.
-- No se incluyeron canicas, monedas, imanes, pilas tipo botón, vidrio, herramientas calientes ni sustancias químicas.
+- The cups are identical paper cups and are not deformed.
+- The crayons are standard, intact, and approximately alike.
+- The craft sticks are large, smooth, and splinter-free.
+- Water containers are plastic and unbreakable.
+- Legumes match the list exactly and are dry, sealed, and not treated for planting.
+- The cart contains no marbles, coins, magnets, button batteries, glass, hot tools, or chemicals.
 
-## Regla de consolidación usada por la aplicación
+## Consolidation rule used by the app
 
-- Los consumibles o piezas reservadas por actividad se suman. Ejemplo de esta semana: `1 vaso (día 1) + 12 vasos (día 5) = 13 vasos`.
-- Las herramientas reutilizables usan la cantidad máxima necesaria, no la suma. Una regla usada los días 1 y 5 sigue siendo una sola regla.
-- Cada total conserva la procedencia por día para que el adulto pueda comprobar el cálculo.
+- Consumables or pieces reserved for activities are added. This week's example: `1 cup (Day 1) + 12 cups (Day 5) = 13 cups`.
+- Reusable tools use the largest quantity needed, not the sum. One ruler used on Days 1 and 5 remains one ruler.
+- Every total preserves its day-by-day source so the adult can verify the calculation.

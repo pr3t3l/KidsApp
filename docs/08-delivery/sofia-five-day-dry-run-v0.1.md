@@ -1,231 +1,231 @@
-# Dry run de cinco días con Sofía v0.1
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/08-delivery/sofia-five-day-dry-run-v0.1.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-> **Versión inglesa revisada:** [Five-Day Dry Run with Sofia](sofia-five-day-dry-run-v0.1.en.md). El español sigue siendo la fuente normativa durante v0.x.
+# Five-Day Dry Run with Sofia v0.1
 
-**Estado:** Controlled founder pilot — no publicable
-**Participante:** Sofía, 5 años
-**Duración objetivo:** 25–45 minutos por día, incluido el cierre
-**Propósito:** comprobar la experiencia educativa, la claridad de las instrucciones, los materiales y el cierre antes de convertir estas actividades en contenido familiar publicado.
+**Status:** Controlled founder pilot — not publishable<br>
+**Participant:** Sofia, age 5<br>
+**Target duration:** 25–45 minutes per day, including check-out<br>
+**Purpose:** Test the learning experience, clarity of instructions, materials, and check-out before turning these activities into published family content.
 
-## Qué significa este dry run
+## What this dry run means
 
-Este paquete no afirma que las actividades estén publicadas. `ACT-0001` y `ACT-0002` siguen en `Draft`; los días 3–5 son candidatos de calibración que todavía deben convertirse en `ActivityVersion` completas y superar revisión editorial. La fundadora actúa como facilitadora y observadora del piloto.
+This package does not claim that the activities are published. `ACT-0001` and `ACT-0002` remain `Draft`; Days 3–5 are calibration candidates that still need complete `ActivityVersion` records and editorial review. The founder is the pilot facilitator and observer.
 
-Antes de invitar a Sofía, el adulto hace un recorrido físico rápido del montaje. Si una instrucción no se puede ejecutar literalmente, un material se comporta de forma distinta a lo previsto o aparece un riesgo no documentado, se detiene y se registra el hallazgo. No se improvisa una sustitución que cambie el mecanismo o la seguridad.
+Before inviting Sofia, the adult performs a quick physical walkthrough of the setup. If an instruction cannot be followed literally, a material behaves differently than expected, or an undocumented risk appears, stop and record the finding. Do not improvise a substitution that changes the mechanism or safety profile.
 
-## Vista de la semana
+## Week at a glance
 
-| Día | Actividad | Promesa para el adulto | Foco principal sugerido para Sofía | Tiempo | Estado |
+| Day | Activity | Promise to the adult | Suggested primary focus for Sofia | Time | Status |
 |---|---|---|---|---:|---|
-| 1 | `ACT-0001@0.3.0` — Puente de papel | Construir y comparar puentes hechos con una sola hoja para descubrir cómo la forma puede ayudar al papel a resistir una carga. | Añadir y contar una carga a la vez. | 35–45 min | Draft; requiere preflight de vaso, carga y soportes. |
-| 2 | `ACT-0002@0.1.1` — Clasificación con semillas | Observar la misma colección y descubrir que puede organizarse con distintas reglas. | Clasificar aplicando una regla visible. | 25–35 min | Draft; piezas pequeñas y legumbres crudas, con controles reforzados. |
-| 3 | `CAND-0001@0.0.1` — Transportar agua | Probar varias herramientas para descubrir cuál mueve más agua con el mismo número de viajes. | Comparar resultados usando niveles visibles. | 25–35 min | Candidato de calibración; no está en catálogo. |
-| 4 | `CAND-0002@0.0.1` — Barco de papel aluminio | Diseñar una forma que flote y comprobar cómo distribuye una carga. | Predecir, contar y relacionar forma con resultado. | 30–40 min | Candidato de calibración; no está en catálogo. |
-| 5 | `CAND-0003@0.0.1` — Torre de vasos | Construir, probar y mejorar una torre usando siempre el mismo conjunto de piezas. | Planear y probar una mejora de estabilidad. | 25–35 min | Candidato de calibración; no está en catálogo. |
+| 1 | `ACT-0001@0.3.0` — Paper Bridges | Build and compare bridges made from one sheet to discover how shape can help paper support a load. | Add and count one unit of load at a time. | 35–45 min | Draft; requires a cup, load, and supports preflight. |
+| 2 | `ACT-0002@0.1.1` — Seed Sorting | Observe the same collection and discover that it can be organized using different rules. | Sort by applying a visible rule. | 25–35 min | Draft; small pieces and raw legumes require reinforced controls. |
+| 3 | `CAND-0001@0.0.1` — Moving Water | Test several tools to discover which moves more water in the same number of trips. | Compare results using visible levels. | 25–35 min | Calibration candidate; not in the catalog. |
+| 4 | `CAND-0002@0.0.1` — Foil Boat | Design a shape that floats and test how it distributes a load. | Predict, count, and connect shape to result. | 30–40 min | Calibration candidate; not in the catalog. |
+| 5 | `CAND-0003@0.0.1` — Cup Tower | Build, test, and improve a tower using the same set of pieces each time. | Plan and test a stability improvement. | 25–35 min | Calibration candidate; not in the catalog. |
 
-`ACT-0003`, el probador de conductividad, no forma parte de los cinco días infantiles. Su configuración eléctrica exacta, los números de parte, la retención mecánica y el co-montaje infantil siguen pendientes de revisión. No comprar componentes genéricos ni realizarlo con Sofía hasta superar ese gate.
+`ACT-0003`, the conductivity tester, is not part of these five child sessions. Its exact electrical configuration, part numbers, mechanical retention, and child co-assembly remain pending review. Do not buy generic components or run it with Sofia before that gate passes.
 
-## Rutina común de cada día
+## Shared daily routine
 
-### Antes — 5 a 10 minutos solo del adulto
+### Before — 5 to 10 adult-only minutes
 
-1. Lee el recorrido completo una vez.
-2. Reúne únicamente los materiales indicados y comprueba su estado.
-3. Arma el montaje y ejecuta la acción que podría fallar físicamente.
-4. Confirma que sabes qué significa un resultado válido, no comparable y una condición de parada.
-5. Deja preparado un papel para registrar un resultado, no un informe largo.
+1. Read the complete sequence once.
+2. Gather only the listed materials and inspect their condition.
+3. Build the setup and perform the action most likely to fail physically.
+4. Confirm what counts as a valid result, a noncomparable result, and a stop condition.
+5. Leave paper ready to record one result, not a long report.
 
-### Con Sofía
+### With Sofia
 
-1. **Descubrir:** hacer visible un problema o resultado inicial.
-2. **Imaginar:** escuchar ideas después de haber observado algo real.
-3. **Construir o hacer:** Sofía ejecuta el núcleo con el apoyo necesario.
-4. **Experimentar:** probar de forma consistente y registrar qué ocurrió.
-5. **Mejorar:** cambiar una sola cosa con base en la observación.
-6. **Explicar:** Sofía puede hablar, señalar, dibujar o comparar.
+1. **Discover:** make a real problem or initial result visible.
+2. **Imagine:** invite ideas after something real has been observed.
+3. **Build or do:** Sofia performs the core action with the support she needs.
+4. **Experiment:** test consistently and record what happened.
+5. **Improve:** change one thing based on an observation.
+6. **Explain:** Sofia may speak, point, draw, or compare.
 
-### Cierre — una sola pregunta
+### Check-out — one question
 
-Pregunta solamente por el foco principal del día. La escala describe cuánta ayuda necesitó Sofía **en esa acción y en esa ocasión**; no es una nota ni una medida de inteligencia.
+Ask only about the day's primary focus. The scale describes how much help Sofia needed **for that action on that occasion**. It is not a grade or a measure of intelligence.
 
-| Valor | Ancla breve | Significado contextual |
+| Value | Short anchor | Contextual meaning |
 |---:|---|---|
-| 1 | Todavía no | No pudo realizar la acción esta vez, incluso con ayuda. |
-| 2 | Mucha ayuda | Necesitó guía continua o que el adulto hiciera partes importantes. |
-| 3 | Alguna ayuda | La realizó con recordatorios o modelado parcial. |
-| 4 | Casi sola | Solo necesitó una pista breve. |
-| 5 | Sola y segura | La realizó con independencia y seguridad en este contexto. |
+| 1 | Not yet | Could not do the action this time, even with help. |
+| 2 | A lot of help | Needed continuous guidance or the adult to do important parts. |
+| 3 | Some help | Did it with reminders or partial modeling. |
+| 4 | Almost independently | Needed only one brief prompt. |
+| 5 | Independently and safely | Did it independently and safely in this context. |
 
-Después puede añadirse una sola observación opcional por voz o texto. Ejemplo: “Contó sola hasta nueve; al caerse el vaso quiso cambiar el ancho del acordeón”.
+One optional voice or text observation may follow. Example: “She counted independently to nine; when the cup fell, she wanted to change the width of the accordion.”
 
-## Día 1 — Puente de papel
+## Day 1 — Paper Bridges
 
-**Documento fuente:** [ACT-0001 — Puente de papel](../02-content/sample-activities/ACT-0001-puente-de-papel.md)
+**Source document:** [ACT-0001 — Paper Bridges](../02-content/sample-activities/ACT-0001-puente-de-papel.md)
 
-### Preparación mínima
+### Minimum preparation
 
-- Seis hojas iguales de papel carta o A4.
-- Dos libros de tapa dura, planos y de altura semejante.
-- Un vaso liviano de papel de 8–12 oz.
-- Veinte crayones estándar intactos y semejantes.
-- Regla de 30 cm, lápiz o marcador lavable y una toalla de mano seca.
+- Six identical sheets of letter or A4 copy paper.
+- Two flat hardcover books of similar height.
+- One lightweight 8–12 oz paper cup.
+- Twenty intact, similar standard crayons.
+- A 12 in / 30 cm ruler, pencil or washable marker, and dry hand towel.
 
-La toalla queda plana bajo el espacio para amortiguar el vaso y evitar que los crayones rueden; no puede tocar ni sostener el puente. El vaso mantiene la carga reunida y centrada.
+The towel lies flat under the work area to cushion the cup and keep crayons from rolling; it must not touch or support the bridge. The cup keeps the load together and centered.
 
-### Historia del evento
+### Event sequence
 
-1. El adulto deja 15 cm entre los libros y coloca una hoja plana.
-2. Dice: “El vaso mantendrá los crayones juntos en el centro. ¿Qué crees que hará esta hoja cuando añadamos carga?”.
-3. Centra el vaso vacío. Si la hoja falla inmediatamente con un montaje válido, el resultado de referencia es `0`; eso es información, no un error.
-4. Sofía añade un crayón, dice un número y espera tres segundos. Se registra la última cantidad estable.
-5. Después de observar la hoja plana, el adulto muestra canal, acordeón y pliegues anchos como posibilidades; Sofía elige o propone una forma.
-6. Sofía construye y prueba su propia forma con el mismo papel, distancia, vaso y conjunto de crayones.
-7. Elige un cambio y prueba una mejora con una nueva hoja.
-8. Señala qué forma usó, qué ocurrió y qué cambiaría después.
+1. The adult leaves 6 in / 15 cm between the books and lays down a flat sheet.
+2. Say: “The cup will keep the crayons together in the center. What do you think this sheet will do when we add a load?”
+3. Center the empty cup. If the sheet fails immediately with a valid setup, the baseline result is `0`; that is information, not an error.
+4. Sofia adds one crayon, says one number, and waits three seconds. Record the last stable amount.
+5. After observing the flat sheet, show a channel, accordion, and wide folds as possibilities; Sofia chooses or suggests a shape.
+6. Sofia builds and tests her own shape using the same paper, distance, cup, and crayon set.
+7. She chooses one change and tests an improvement using a new sheet.
+8. She points to the shape she used, what happened, and what she would change next.
 
-**Pregunta de cierre:** “¿Qué tan independientemente añadió y contó un crayón a la vez durante su prueba?”.
+**Check-out question:** “How independently did she add and count one crayon at a time during her test?”
 
-**Detener:** si un libro se mueve, algo se rompe, alguien pone manos o cara bajo el montaje, se lanza carga o un material llega a la boca.
+**Stop:** if a book moves, something breaks, someone places hands or a face under the setup, a load is thrown, or material goes near a mouth.
 
-## Día 2 — Clasificación con semillas
+## Day 2 — Seed Sorting
 
-**Documento fuente:** [ACT-0002 — Clasificación con semillas](../02-content/sample-activities/ACT-0002-clasificacion-semillas.md)
+**Source document:** [ACT-0002 — Seed Sorting](../02-content/sample-activities/ACT-0002-clasificacion-semillas.md)
 
-### Preparación mínima
+### Minimum preparation
 
-- Doce garbanzos secos, doce frijoles negros, doce frijoles pintos y doce arvejas/guisantes verdes secos, comprados sellados y de grado alimentario.
-- Una bandeja con borde.
-- Cinco recipientes irrompibles pequeños.
-- Papel grande, marcador lavable y recipiente rígido con tapa para guardar o desechar la colección después.
+- Twelve dried chickpeas, twelve dried black beans, twelve dried pinto beans, and twelve dried green peas, purchased sealed and food-grade.
+- One rimmed tray.
+- Five small unbreakable containers.
+- Large paper, washable marker, and a rigid lidded container for storing or discarding the collection afterward.
 
-No usar frijoles kidney rojos o blancos/cannellini, habas/fava, frijoles lima, semillas para siembra, semillas desconocidas ni sustituciones improvisadas. Las piezas se usan como manipulativos **no comestibles** y no vuelven a la despensa.
+Do not use red kidney beans, white kidney/cannellini beans, fava beans, lima beans, planting seed, unknown seeds, or improvised substitutions. The pieces are **non-edible manipulatives** and do not return to the pantry.
 
-### Historia del evento
+### Event sequence
 
-1. El adulto confirma que no hay alergia conocida o sospechada a legumbres/semillas y que Sofía no tiende a llevar piezas pequeñas a boca, nariz u oídos.
-2. Coloca cuatro piezas diferentes en la bandeja. Sofía observa color, forma, tamaño y textura sin probarlas.
-3. Pregunta: “¿Qué cosas se parecen? ¿Qué regla podríamos usar para formar grupos?”.
-4. Sofía elige una regla visible y coloca una pieza a la vez. Puede usar un recipiente de “todavía no sé”.
-5. Explica la regla con palabras, gesto o ejemplo. El adulto prueba una pieza dudosa y deja que Sofía decida si la regla necesita aclararse.
-6. Alinean y cuentan los grupos; comparan más, menos o igual.
-7. Vuelven a mezclar y Sofía crea una segunda clasificación usando otra regla.
+1. The adult confirms there is no known or suspected allergy to legumes or seeds and that Sofia does not tend to place small pieces in her mouth, nose, or ears.
+2. Place four different pieces on the tray. Sofia observes color, shape, size, and texture without tasting them.
+3. Ask: “Which things look alike? What rule could we use to make groups?”
+4. Sofia chooses a visible rule and places one piece at a time. She may use a “not sure yet” container.
+5. She explains the rule with words, a gesture, or an example. The adult presents one uncertain piece and lets Sofia decide whether the rule needs clarification.
+6. Line up and count the groups; compare more, less, or the same.
+7. Mix the collection again and let Sofia create a second sort using another rule.
 
-**Pregunta de cierre:** “¿Qué tan independientemente usó una regla para decidir dónde iba cada pieza?”.
+**Check-out question:** “How independently did she use a rule to decide where each piece belonged?”
 
-**Detener:** si una pieza se acerca o entra en boca, nariz u oído; se sospecha ingestión; aparece una reacción; o el adulto pierde control de un derrame. Ante sospecha de ingestión, retirar la colección y buscar orientación apropiada; la app no diagnostica.
+**Stop:** if a piece approaches or enters a mouth, nose, or ear; ingestion is suspected; a reaction appears; or the adult loses control of a spill. If ingestion is suspected, remove the collection and seek appropriate guidance; the app does not diagnose.
 
-## Día 3 — Transportar agua
+## Day 3 — Moving Water
 
-**Estado editorial:** candidato de calibración `CAND-0001@0.0.1`.
+**Editorial status:** calibration candidate `CAND-0001@0.0.1`.
 
-### Propósito y foco
+### Purpose and focus
 
-Sofía probará cómo una esponja, una cuchara y una taza pequeña transportan agua. El objetivo no es ir rápido, sino mantener el mismo número de viajes y comparar el nivel obtenido.
+Sofia tests how a sponge, spoon, and small cup move water. The goal is not speed; it is keeping the number of trips the same and comparing the resulting level.
 
-**Área principal:** lógica y matemáticas aplicadas.
-**Áreas secundarias:** motricidad, ingeniería, lenguaje y vida práctica.
-**Conceptos:** volumen, absorción, derrame, comparación justa.
-**Decisión infantil:** qué herramienta probar primero y qué mejora aplicar a su procedimiento.
+**Primary area:** applied logic and mathematics.<br>
+**Secondary areas:** fine-motor skills, engineering, language, and practical life.<br>
+**Concepts:** volume, absorption, spill, and fair comparison.<br>
+**Child decision:** which tool to test first and which improvement to make to her procedure.
 
-### Materiales
+### Materials
 
-- Dos recipientes plásticos irrompibles de 2–4 qt/litros.
-- Una esponja nueva o completamente limpia, sin cara abrasiva desprendible.
-- Una cuchara grande y una taza medidora plástica pequeña.
-- Agua, bandeja o toalla grande, marcador lavable y tres tarjetas con dibujos de las herramientas.
+- Two unbreakable 2–4 qt/liter plastic containers.
+- One new or completely clean sponge with no detachable abrasive surface.
+- One large spoon and one small plastic measuring cup.
+- Water, a tray or large towel, washable marker, and three picture cards showing the tools.
 
-### Historia del evento
+### Event sequence
 
-1. El adulto pone una cantidad baja de agua en el recipiente de origen y el recipiente vacío al lado, sobre la toalla.
-2. Dice: “Moveremos agua de aquí hasta aquí. Cada herramienta tendrá tres viajes. ¿Cuál crees que dejará el nivel más alto?”.
-3. Sofía elige la primera herramienta y hace exactamente tres viajes. El adulto marca el nivel alcanzado y devuelve el agua al origen.
-4. Repite con las otras herramientas, manteniendo recipientes, posición, agua inicial y número de viajes.
-5. Compara las tres marcas: más alto, más bajo o parecido. Los derrames se registran como parte del resultado.
-6. Sofía elige una herramienta y cambia una sola acción —por ejemplo apretar la esponja sobre el recipiente o mantener la cuchara nivelada— y hace tres viajes de mejora.
-7. Explica qué herramienta elegiría para mover agua y qué observó.
+1. The adult places a small amount of water in the source container and the empty container beside it on the towel.
+2. Say: “We will move water from here to here. Each tool gets three trips. Which one do you think will leave the highest level?”
+3. Sofia chooses the first tool and makes exactly three trips. The adult marks the level and returns the water to the source.
+4. Repeat with the other tools, keeping containers, position, starting water, and number of trips the same.
+5. Compare the three marks: higher, lower, or similar. Record spills as part of the result.
+6. Sofia selects one tool, changes one action—for example, squeezing the sponge over the container or keeping the spoon level—and makes three improvement trips.
+7. She explains which tool she would choose and what she observed.
 
-**Pregunta de cierre:** “¿Qué tan independientemente comparó los niveles y usó el resultado para elegir una herramienta?”.
+**Check-out question:** “How independently did she compare the levels and use the result to choose a tool?”
 
-**Detener:** si el piso se moja, Sofía corre con agua, intenta beberla, acerca la cara al recipiente o el adulto no puede supervisar. Secar derrames inmediatamente. No usar vidrio, agua caliente, jabón ni herramientas de succión oral.
+**Stop:** if the floor becomes wet, Sofia runs with water, tries to drink it, brings her face close to the container, or the adult cannot supervise. Dry spills immediately. Do not use glass, hot water, soap, or tools requiring mouth suction.
 
-## Día 4 — Barco de papel aluminio
+## Day 4 — Foil Boat
 
-**Estado editorial:** candidato de calibración `CAND-0002@0.0.1`.
+**Editorial status:** calibration candidate `CAND-0002@0.0.1`.
 
-### Propósito y foco
+### Purpose and focus
 
-Sofía dará forma a una hoja de aluminio para que flote y sostenga palitos de madera. Hará una primera versión y luego cambiará una sola característica.
+Sofia shapes foil so it floats and holds craft sticks. She makes a first version, then changes one feature.
 
-**Área principal:** ingeniería.
-**Áreas secundarias:** física, conteo, motricidad y comunicación.
-**Conceptos:** flotación, forma, volumen interior, distribución de carga.
-**Decisión infantil:** forma del barco y cambio de mejora.
+**Primary area:** engineering.<br>
+**Secondary areas:** physics, counting, fine-motor skills, and communication.<br>
+**Concepts:** floating, shape, interior volume, and load distribution.<br>
+**Child decision:** boat shape and improvement change.
 
-### Materiales
+### Materials
 
-- Dos cuadrados iguales de papel aluminio resistente, aproximadamente 30 × 30 cm / 12 × 12 in, más uno de reserva.
-- Recipiente plástico ancho con 5–8 cm / 2–3 in de agua.
-- Veinte palitos de madera para manualidades, secos, lisos y de tamaño semejante.
-- Toalla grande, papel y crayón.
+- Two identical heavy-duty foil squares, about 12 × 12 in / 30 × 30 cm, plus one spare.
+- A wide plastic container holding 2–3 in / 5–8 cm of water.
+- Twenty dry, smooth, similarly sized wood craft sticks.
+- A large towel, paper, and crayon.
 
-### Historia del evento
+### Event sequence
 
-1. El adulto muestra una hoja plana y pregunta: “¿Cómo podríamos darle forma para que tenga un espacio seco donde poner carga?”.
-2. Sofía dibuja o señala una idea. El adulto puede mostrar cómo levantar un borde, sin construirle el barco completo.
-3. Sofía forma su primer barco y el adulto comprueba que no haya bordes cortantes.
-4. Colocan el barco suavemente. Sofía añade un palito a la vez, dice el número y distribuye la carga sin empujar el fondo.
-5. Se detienen cuando entra agua, el barco se hunde o se inclina y pierde la carga. Registran la última cantidad estable.
-6. Sofía elige un solo cambio —base más ancha, lados más altos o carga mejor distribuida— y construye la segunda versión con una hoja igual.
-7. Repiten el procedimiento y comparan lo observado, incluso si la segunda versión sostiene menos.
+1. The adult shows a flat sheet and asks: “How could we shape this so it has a dry space for a load?”
+2. Sofia draws or points to an idea. The adult may show how to raise one edge without building the whole boat for her.
+3. Sofia forms her first boat; the adult checks for sharp edges.
+4. Place the boat gently. Sofia adds one stick at a time, says the number, and distributes the load without pushing the bottom.
+5. Stop when water enters, the boat sinks, or it tilts and loses its load. Record the last stable amount.
+6. Sofia chooses one change—a wider base, higher sides, or better load distribution—and builds a second version from an identical sheet.
+7. Repeat the procedure and compare what happened, even if the second version holds less.
 
-**Pregunta de cierre:** “¿Qué tan independientemente eligió una mejora y comprobó qué ocurrió?”.
+**Check-out question:** “How independently did she choose an improvement and check what happened?”
 
-**Detener:** si aparece un borde de aluminio que raspa o corta, el agua llega al piso, Sofía acerca la cara al recipiente o usa los palitos de forma insegura. El adulto llena, vacía y mueve el recipiente. No usar monedas, canicas, vidrio ni agua caliente.
+**Stop:** if a foil edge scratches or cuts, water reaches the floor, Sofia brings her face close to the container, or craft sticks are used unsafely. The adult fills, empties, and moves the container. Do not use coins, marbles, glass, or hot water.
 
-## Día 5 — Torre de vasos
+## Day 5 — Cup Tower
 
-**Estado editorial:** candidato de calibración `CAND-0003@0.0.1`.
+**Editorial status:** calibration candidate `CAND-0003@0.0.1`.
 
-### Propósito y foco
+### Purpose and focus
 
-Sofía construirá una torre con un conjunto limitado de vasos y tarjetas, observará dónde pierde estabilidad y probará una mejora.
+Sofia builds a tower from a limited set of cups and cards, observes where it loses stability, and tests one improvement.
 
-**Área principal:** ingeniería y pensamiento espacial.
-**Áreas secundarias:** medición, patrones, motricidad y explicación.
-**Conceptos:** base, altura, equilibrio, distribución y estabilidad.
-**Decisión infantil:** patrón de construcción y cambio de mejora.
+**Primary area:** engineering and spatial thinking.<br>
+**Secondary areas:** measurement, patterns, fine-motor skills, and explanation.<br>
+**Concepts:** base, height, balance, distribution, and stability.<br>
+**Child decision:** construction pattern and improvement change.
 
-### Materiales
+### Materials
 
-- Doce vasos de papel iguales, secos e intactos.
-- Seis tarjetas de cartulina o rectángulos de cartón iguales, sin grapas ni bordes cortantes.
-- Regla o cinta métrica flexible, papel, crayón y dos pequeños trozos de cinta de pintor para marcar el área de trabajo, no para fijar la torre.
+- Twelve identical, dry, intact paper cups.
+- Six identical cardstock cards or thin-cardboard rectangles, with no staples or sharp edges.
+- A ruler or flexible tape measure, paper, crayon, and two small pieces of painter's tape to mark the work area—not to fasten the tower.
 
-### Historia del evento
+### Event sequence
 
-1. El adulto marca un área de construcción sobre una mesa firme y pregunta: “¿Qué necesita una torre para crecer sin caerse?”.
-2. Sofía dibuja o señala una base y elige cómo alternar vasos y tarjetas.
-3. Construye con el conjunto disponible. El adulto no sostiene la torre ni corrige silenciosamente la forma.
-4. Cuando Sofía declare que está lista, todos retiran las manos y cuentan lentamente hasta diez. Si cae antes, se registra dónde comenzó a cambiar.
-5. El adulto mide la altura solo si puede hacerlo sin tocar la estructura. El éxito no depende de ser la más alta.
-6. Sofía cambia una sola característica —base más ancha, menos altura por nivel o tarjetas mejor centradas— y vuelve a probar durante diez segundos.
-7. Compara las dos versiones y explica qué recomienda.
+1. The adult marks a build area on a firm table and asks: “What does a tower need so it can grow without falling?”
+2. Sofia draws or points to a base and chooses how to alternate cups and cards.
+3. She builds with the available set. The adult does not hold the tower or silently correct the shape.
+4. When Sofia says it is ready, everyone removes their hands and slowly counts to ten. If it falls earlier, record where it began to change.
+5. The adult measures height only if it can be done without touching the structure. Success does not depend on being tallest.
+6. Sofia changes one feature—a wider base, less height per level, or better-centered cards—and tests again for ten seconds.
+7. Compare both versions and let Sofia explain her recommendation.
 
-**Pregunta de cierre:** “¿Qué tan independientemente identificó un cambio y probó si hacía la torre más estable?”.
+**Check-out question:** “How independently did she identify a change and test whether it made the tower more stable?”
 
-**Detener:** si Sofía se sube a un mueble, construye por encima de su alcance sentado/de pie seguro, lanza vasos o tarjetas, o coloca objetos pesados sobre la torre. No usar vidrio, latas, libros como carga, sillas ni cinta para ocultar problemas de estabilidad.
+**Stop:** if Sofia climbs on furniture, builds above her safe seated or standing reach, throws cups or cards, or places heavy objects on the tower. Do not use glass, cans, books as loads, chairs, or tape to hide stability problems.
 
-## Criterios para decidir qué sigue
+## Criteria for deciding what comes next
 
-Al terminar los cinco días, no se busca demostrar aprendizaje acumulado. Se revisa:
+After five days, the goal is not to prove accumulated learning. Review:
 
-- ¿El adulto pudo preparar cada actividad sin interpretar pasos críticos?
-- ¿La promesa inicial coincidió con lo que realmente ocurrió?
-- ¿Cada fase nació de la anterior y produjo algo necesario para la siguiente?
-- ¿Sofía tomó una decisión real y ejecutó el núcleo de la actividad?
-- ¿El foco principal fue observable sin interrumpir constantemente?
-- ¿El cierre tomó pocos toques y se sintió natural sin cronómetro visible?
-- ¿Qué material o paso produjo confusión, falla física o riesgo?
-- ¿Cuál actividad merece convertirse primero en una `ActivityVersion` publicable?
+- Could the adult prepare each activity without interpreting critical steps?
+- Did the opening promise match what actually happened?
+- Did each phase grow from the previous one and produce something needed next?
+- Did Sofia make a real decision and perform the activity's core action?
+- Was the primary focus observable without constant interruption?
+- Did check-out require only a few taps and feel natural without a visible timer?
+- Which material or step caused confusion, physical failure, or risk?
+- Which activity should become a publishable `ActivityVersion` first?
 
-Los resultados se registran con la [hoja de observación del dry run](founder-dry-run-observation-sheet-v0.1.md). La compra consolidada está en la [lista de compras de cinco días](sofia-shopping-list-v0.1.md).
+Record results with the [founder dry-run observation sheet](founder-dry-run-observation-sheet-v0.1.md). The consolidated purchase is in the [five-day shopping list](sofia-shopping-list-v0.1.md).

@@ -1,210 +1,212 @@
-# SPEC-05 — Activity Content Model
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/02-content/activity-schema.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Review  
-**Versión:** 0.1  
-**Propietario:** Contenido/Pedagogía/Seguridad
+# SPEC-05—Activity Content Model
 
-## 1. Propósito
+**Status:** Review
+**Version:** 0.1
+**Owner:** Content/Pedagogy/Security
 
-Definir la unidad versionada que alimenta la biblioteca, el recomendador, la interfaz, las imágenes y las evaluaciones.
+## 1. Purpose
 
-## 2. Identidad y ciclo editorial
+Define the versioned unit that powers the library, recommender, interface, images, and assessments.
 
-| Campo | Requerido | Descripción |
+## 2. Identity and editorial cycle
+
+| Field | Required | Description |
 |---|---:|---|
-| `activity_id` | Sí | Identificador estable, por ejemplo `ACT-0001`. |
-| `version` | Sí | Versión semántica del contenido. |
-| `status` | Sí | Draft, review, pilot, published, retired. |
-| `title` | Sí | Título breve para la familia. |
-| `slug` | Sí | Referencia técnica legible. |
-| `summary` | Sí | Promesa de una oración. |
-| `authors` | Sí | Responsables editoriales. |
-| `review_records` | Sí para publicar | Revisiones pedagógica y de seguridad. |
-| `change_log` | Sí | Cambios entre versiones. |
+| `activity_id` | Yes | Stable identifier, for example `ACT-0001`. |
+| `version` | Yes | Semantic version of the content. |
+| `status` | Yes | Draft, review, pilot, published, retired. |
+| `title` | Yes | Short title for the family. |
+| `slug` | Yes | Readable technical reference. |
+| `summary` | Yes | Promise of a prayer. |
+| `authors` | Yes | Editorial managers. |
+| `review_records` | Yes to publish | Pedagogical and safety reviews. |
+| `change_log` | Yes | Changes between versions. |
 
-## 2.1 Localización
+## 2.1 Location
 
-Los identificadores, relaciones y reglas son neutrales al idioma. Cada ActivityVersion publica bundles `en-US` y `es-US` con:
+Identifiers, relationships, and rules are language-neutral. Each ActivityVersion publishes bundles `en-US` and `es-US` with:
 
-- Título, resumen e instrucciones.
-- Explicación adulta breve y detallada.
-- Lenguaje sugerido para el niño.
-- Materiales y nombres regionales alternativos.
-- Advertencias y troubleshooting.
-- Preguntas de apertura/cierre.
-- Alt text y capas de texto visual.
+- Title, summary and instructions.
+- Brief and detailed adult explanation.
+- Suggested language for the child.
+- Alternative regional materials and names.
+- Warnings and troubleshooting.
+- Opening/closing questions.
+- Alt text and visual text layers.
 
-Cantidades y unidades se representan de forma estructurada para renderizar sistema métrico y estadounidense cuando corresponda. Una traducción no puede cambiar el significado científico ni de seguridad.
+Quantities and units are represented in a structured way to render metric and US system where applicable. A translation cannot change the scientific or safety meaning.
 
-## 3. Adecuación
+## 3. Suitability
 
-- Rango de edad orientativo.
-- Niveles funcionales soportados.
-- Número mínimo y máximo de niños.
-- Duración total y por etapa.
-- Preparación del adulto.
-- Nivel de desorden.
-- Espacio necesario.
-- Accesibilidad y adaptaciones conocidas.
-- Prerrequisitos recomendados, no asumidos.
+- Indicative age range.
+- Supported functional levels.
+- Minimum and maximum number of children.
+- Total duration and per stage.
+- Adult preparation.
+- Expected level of mess.
+- Necessary space.
+- Known accessibility and adaptations.
+- Prerequisites recommended, not assumed.
 
-## 4. Propósito educativo
+## 4. Educational purpose
 
-- Área principal y áreas secundarias.
-- Conceptos explicados.
-- Habilidades practicables.
-- Meta de la experiencia y mecanismo de aprendizaje: por qué las acciones permiten practicar esas habilidades.
-- Decisiones infantiles reales y condiciones que permanecen fijas.
-- Señales que el adulto puede observar sin evaluar durante la ejecución.
-- Ciclo Discover–Imagine–Build–Experiment–Improve–Explain.
-- Pregunta de apertura.
-- Predicción esperada, sin exigir respuesta correcta.
-- Señales observables por habilidad.
-- Explicación para el adulto.
-- Explicación con lenguaje infantil.
-- Preguntas de reflexión.
+- Primary area and secondary areas.
+- Concepts explained.
+- Practical skills.
+- Goal of the experience and learning mechanism: why actions allow you to practice those skills.
+- Real childhood decisions and conditions that remain fixed.
+- Cues the adult can notice during delivery without interrupting to assess.
+- Discover–Imagine–Build–Experiment–Improve–Explain cycle.
+- Opening question.
+- Expected prediction, without requiring a correct answer.
+- Observable signals by skill.
+- Explanation for the adult.
+- Explanation with children's language.
+- Reflection questions.
 
-Antes de redactar pasos o pantallas, la actividad completa el [Contrato narrativo de la experiencia](activity-narrative-contract.md). Este contrato define el modo de participación, estados físicos, función de materiales, ciclo esencial de cada niño y transiciones causales.
+Before writing steps or screens, the activity completes the [Experience Narrative Contract](activity-narrative-contract.md). This contract defines the mode of participation, physical states, function of materials, essential cycle of each child and causal transitions.
 
-## 5. Materiales
+## 5. Materials
 
-Cada material incluye:
+Each material includes:
 
-- Identidad normalizada.
-- Nombre visible y alternativas.
-- Cantidad/unidad.
-- Consumible o reutilizable.
-- Obligatorio u opcional.
-- Puede sustituirse y por qué.
-- Restricciones de seguridad.
-- Preparación del adulto.
+- Normalized identity.
+- Visible name and alternatives.
+- Quantity/unit.
+- Consumable or reusable.
+- Mandatory or optional.
+- Can it be replaced and why?
+- Safety restrictions.
+- Adult preparation.
 
-El recomendador no puede proponer una sustitución no aprobada que cambie el riesgo o el mecanismo esencial.
+The recommender cannot propose an unapproved substitution that changes the risk or essential mechanism.
 
-## 6. Pasos
+## 6. Steps
 
-Cada paso contiene:
+Each step contains:
 
-- Número y título.
-- Actor: adulto, niño, grupo o rol.
-- Instrucción breve.
-- Resultado visual esperado.
-- Tiempo aproximado.
-- Imagen o diagrama requerido.
-- Señal de éxito.
-- Problemas comunes y soluciones.
-- Advertencia localizada.
-- Posibilidad de reanudar.
-- Propósito pedagógico de la fase.
-- Acciones adultas numeradas y físicamente precisas.
-- Frases o preguntas literales sugeridas para el adulto.
-- Acciones por `roleTemplate` que la sesión resolverá con los nombres de participantes.
-- Decisión infantil del paso o `null` explícito cuando no existe.
-- Señales de observación vinculadas a habilidades, sin solicitar una valoración en vivo.
-- Estado de entrada y salida con identificadores estables.
-- Razón por la que la salida habilita el siguiente paso.
-- Materiales usados y función concreta en ese momento.
-- Acciones del ciclo esencial y audiencia que las completa.
+- Number and title.
+- Actor: adult, child, group or role.
+- Brief instruction.
+- Expected visual result.
+- Approximate time.
+- Image or diagram required.
+- Sign of success.
+- Common problems and solutions.
+- Localized warning.
+- Possibility to resume.
+- Pedagogical purpose of the phase.
+- Adult actions numbered and physically accurate.
+- Literal phrases or questions suggested for the adult.
+- Actions by `roleTemplate` that the session will resolve with the names of participants.
+- Child decision of the step or explicit `null` when it does not exist.
+- Observation signals linked to skills, without requesting a live assessment.
+- Entry and exit status with stable identifiers.
+- Reason why the output enables the next step.
+- Materials used and specific function at that time.
+- Actions of the essential cycle and audience that completes them.
 
-El contrato editorial conserva roles y mappings. La presentación familiar sigue [SPEC-UX-04](../04-ux/activity-facilitation-model.md) y los traduce a aportes sugeridos, focos por niño y acciones nominales.
+The editorial contract preserves roles and mappings. The family presentation follows [SPEC-UX-04](../04-ux/activity-facilitation-model.md) and translates them into suggested contributions, focuses per child, and nominal actions.
 
 ## 7. Roles
 
-La actividad define `role_templates`. Cada rol incluye:
+The activity defines `role_templates`. Each role includes:
 
-- Nombre y contribución real.
-- Responsabilidades.
-- Habilidades posibles como objetivo principal.
-- Niveles compatibles.
-- Pasos permitidos y restringidos.
-- Dependencias con otros roles.
-- Variantes para trabajo individual.
+- Name and meaningful contribution.
+- Responsibilities.
+- Possible skills as the primary objective.
+- Compatible levels.
+- Allowed and restricted steps.
+- Dependencies with other roles.
+- Variants for individual work.
 
-Ejemplo para un puente:
+Example for a bridge:
 
-| Rol | Responsabilidad | Objetivos posibles |
+| Role | Responsibility | Possible objectives |
 |---|---|---|
-| Materials Explorer | contar y clasificar piezas | conteo, clasificación, patrones |
-| Builder | unir y montar estructura | motricidad, secuenciación, ensamblaje |
-| Test Engineer | medir y probar carga | medición, comparación, registro |
-| Design Engineer | dibujar e iterar | planificación, estabilidad, explicación |
+| Materials Explorer | count and classify pieces | counting, sorting, patterns |
+| Builder | join and assemble structure | motor skills, sequencing, assembly |
+| Test Engineer | measure and test load | measurement, comparison, recording |
+| Design Engineer | draw and iterate | planning, stability, explanation |
 
-En la UI familiar, el nombre del rol no domina la experiencia ni exige configuración manual. La asignación se presenta como `aporte sugerido` + `foco de aprendizaje`, con una razón comprensible. Cambiar participación es un flujo de excepción; no un control permanente junto a cada paso.
+In the family UI, the role name does not dominate the experience or require manual configuration. The mapping is presented as **suggested contribution** plus **learning focus**, with an understandable reason. Changed participation is handled through an exception flow, not a permanent control beside every step.
 
-## 8. Variaciones y extensiones
+## 8. Variations and extensions
 
-Se distinguen:
+They are distinguished:
 
-- **Presentación:** historia, vocabulario, soporte visual.
-- **Dificultad:** número de pasos, precisión, independencia.
-- **Rol:** responsabilidad del participante.
-- **Material:** sustitución aprobada.
-- **Extensión:** reto adicional publicado.
+- **Presentation:** story, vocabulary, visual support.
+- **Difficulty:** number of steps, precision, independence.
+- **Role:** responsibility of the participant.
+- **Material:** approved replacement.
+- **Extension:** additional challenge published.
 
-Cada adaptación declara condiciones y límites. La IA selecciona entre opciones aprobadas; una propuesta nueva permanece como borrador editorial.
+Each adaptation declares conditions and limits. The AI ​​selects from approved options; a new proposal remains as an editorial draft.
 
-## 9. Seguridad
+## 9. Safety
 
-- Nivel de supervisión.
-- Riesgos por material, herramienta y paso.
-- Pasos solo para adultos.
-- Preparación y limpieza.
-- Señales para detenerse.
-- Restricciones por edad o capacidad.
-- Equipo de protección cuando aplique.
-- Prohibiciones de adaptación.
-- Instrucciones ante falla segura; no instrucciones médicas.
+- Supervision level.
+- Risks due to material, tool and step.
+- Steps for adults only.
+- Preparation and cleaning.
+- Signs to stop.
+- Restrictions due to age or ability.
+- Protective equipment when applicable.
+- Adaptation prohibitions.
+- Instructions for safe failure; not medical instructions.
 
-## 10. Recursos visuales
+## 10. Visual resources
 
-Paquete recomendado:
+Recommended package:
 
-1. Materiales identificados.
-2. Preparación del adulto.
-3. Secuencia visual de construcción.
-4. Resultado esperado.
-5. Explicación visual del concepto.
+1. Identified materials.
+2. Preparation of the adult.
+3. Visual construction sequence.
+4. Expected result.
+5. Visual explanation of the concept.
 
-Cada recurso incluye alt text, versión, fuente, derechos y nodos/pasos asociados.
+Each resource includes alt text, version, source, rights, and associated nodes/steps.
 
-## 11. Observación
+## 11. Observation
 
-Para cada objetivo elegible:
+For each eligible target:
 
-- Pregunta final específica.
-- Anclas de independencia aplicables.
-- Qué cuenta como evidencia.
-- Qué no cuenta como evidencia.
-- Factores externos frecuentes.
+- Specific final question.
+- Applicable independence anchors.
+- What counts as evidence.
+- What does not count as evidence.
+- Frequent external factors.
 
-## 12. Criterios de publicación
+## 12. Publication criteria
 
-- Todos los materiales y cantidades fueron verificados.
-- Un adulto distinto al autor ejecutó las instrucciones.
-- Se documentaron resultado esperado y fallas frecuentes.
-- Las reglas de seguridad están revisadas.
-- Los objetivos tienen señales observables.
-- Los roles producen un proyecto coherente.
-- Las imágenes coinciden con la versión.
-- Se registró tiempo real de al menos una prueba.
+- All materials and quantities were verified.
+- An adult other than the author carried out the instructions.
+- Expected results and frequent failures were documented.
+- Safety rules are reviewed.
+- Objectives have observable signals.
+- The roles produce a coherent project.
+- Images match the version.
+- Real time of at least one test was recorded.
 
-## 13. Requisitos
+## 13. Requirements
 
-- **ACT-001:** Cada actividad y versión tiene identidad inmutable.
-- **ACT-002:** Solo una versión publicada puede recomendarse a una familia.
-- **ACT-003:** Toda habilidad evaluable incluye rúbrica observable.
-- **ACT-004:** Cada rol declara pasos permitidos y objetivos posibles.
-- **ACT-005:** Las sustituciones y extensiones deben estar previamente aprobadas para entrega automática.
-- **ACT-006:** Cambios de seguridad requieren nueva versión y revisión.
-- **ACT-007:** Una sesión conserva referencia a la versión exacta utilizada.
-- **ACT-008:** Una actividad debe funcionar individualmente o declarar que requiere grupo.
-- **ACT-009:** Cada actividad publicada tiene instrucciones de solución de problemas.
-- **ACT-010:** Las imágenes deben estar versionadas con el contenido.
-- **ACT-011:** Una versión lanzada en Estados Unidos requiere bundles completos y revisados en inglés y español.
-- **ACT-012:** Advertencias y adult-only steps reciben revisión bilingüe específica.
-- **ACT-013:** Toda actividad declara meta de experiencia, mecanismo de aprendizaje, decisiones infantiles y señales adultas de observación.
-- **ACT-014:** Cada paso infantil declara propósito, acciones adultas, guion sugerido, acciones por participante y señales de observación.
-- **ACT-015:** Las acciones por participante se vinculan a `roleTemplateId`; la sesión resuelve nombres desde asignaciones reales.
-- **ACT-016:** Cada problema/adaptación entregable declara el cambio exacto, impacto educativo, reanudación y límite de seguridad.
-- **ACT-017:** Toda actividad cumple `ACT-NAR-001` a `ACT-NAR-012` antes de revisión visual.
-- **ACT-018:** Cada objetivo elegible declara orientación de reto específica para edad/evidencia, simplificación y extensión.
+- **ACT-001:** Each activity and version has an immutable identity.
+- **ACT-002:** Only one published version can be recommended to a family.
+- **ACT-003:** Every evaluable skill includes an observable rubric.
+- **ACT-004:** Each role declares allowed steps and possible objectives.
+- **ACT-005:** Substitutions and extensions must be previously approved for automatic delivery.
+- **ACT-006:** Safety changes require a new version and review.
+- **ACT-007:** A session retains reference to the exact version used.
+- **ACT-008:** An activity must work individually or declare that it requires a group.
+- **ACT-009:** Each published activity has troubleshooting instructions.
+- **ACT-010:** Images must be versioned with the content.
+- **ACT-011:** A version released in the United States requires complete and revised bundles in English and Spanish.
+- **ACT-012:** Warnings and adult-only steps receive specific bilingual review.
+- **ACT-013:** Every activity declares the goal of experience, learning mechanism, children's decisions and adult observation signals.
+- **ACT-014:** Each child step declares purpose, adult actions, suggested script, actions per participant and observation signals.
+- **ACT-015:** Shares per participant are linked to `roleTemplateId`; the session resolves names from real assignments.
+- **ACT-016:** Each issue/adaptation deliverable states the exact change, educational impact, resumption, and safety limit.
+- **ACT-017:** All activities comply with `ACT-NAR-001` to `ACT-NAR-012` before visual review.
+- **ACT-018:** Each eligible objective declares age/evidence-specific challenge guidance, simplification, and extension.

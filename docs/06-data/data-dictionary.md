@@ -1,46 +1,48 @@
-# Diccionario de datos conceptual
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/06-data/data-dictionary.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# Conceptual data dictionary
 
-| Entidad | Campos conceptuales clave | Datos sensibles |
+**Status:** Draft
+**Version:** 0.1
+
+| Entity | Key conceptual fields | Sensitive data |
 |---|---|---|
-| Family | id, locale, units, timezone, preferences | Configuración privada |
-| Adult | id, display_name, auth_subject | Identidad/cuenta |
-| Membership | family, adult, role, status | Autorización |
-| Learner | id, family, alias, age_band, language | Datos infantiles |
-| Skill | id, name, definition, graph_version | No personal |
-| Activity | id, canonical_title | No personal |
-| ActivityVersion | id, version, status, content_hash | No personal |
-| RoleTemplate | version, responsibilities, eligible_skills | No personal |
-| Session | family, activity_version, timestamps, status | Conducta familiar |
-| Assignment | session, learner, role, primary_objective | Datos infantiles |
-| Exposure | session, learner, skill/concept, source | Datos infantiles |
-| Observation | learner, session, source, structured_fact, status | Datos infantiles |
-| EvidenceLink | observation, skill, weight/context | Datos infantiles derivados |
-| Inference | learner, skill, state, confidence, explanation | Perfil derivado infantil |
-| InventoryItem | family, material, approximate_state | Contexto doméstico |
-| MediaAsset | family, purpose, retention, expiry, owner | Potencialmente muy sensible |
-| CompanionInteraction | mode, context_refs, action, safety_result | Puede contener contenido privado |
-| SubscriptionEntitlement | family, billing_source, payer adult, product, trial, status, expiry/grace | Datos comerciales |
-| OfflinePack | family, plan/version manifest, hashes, expiry | Datos privados locales |
-| PortfolioAsset | family, adult owner, activity/session, retention | Medio de alta sensibilidad |
-| CommunitySubmission | asset derivative, activity_version, adult uploader, moderation | UGC potencialmente sensible |
-| ModerationDecision | submission, reviewer, reason, action | Operación interna |
-| MarketingLicense | asset, adult grantor, scope, channels, expiry/revocation | Consentimiento contractual |
+| Family | id, locale, units, timezone, preferences | Private settings |
+| Adult | id, display_name, auth_subject | Identity/account |
+| Membership | family, adult, role, status | Authorization |
+| Learner | id, family, alias, age_band, language | Children's data |
+| Skill | id, name, definition, graph_version | Non-personal |
+| Activity | id, canonical_title | Non-personal |
+| ActivityVersion | id, version, status, content_hash | Non-personal |
+| RoleTemplate | version, responsibilities, eligible_skills | Non-personal |
+| Session | family, activity_version, timestamps, status | Family behavior |
+| Assignment | session, learner, role, primary_objective | Children's data |
+| Exposure | session, learner, skill/concept, source | Children's data |
+| Observation | learner, session, source, structured_fact, status | Children's data |
+| EvidenceLink | observation, skill, weight/context | Derived child data |
+| Inference | learner, skill, state, confidence, explanation | Child derivative profile |
+| InventoryItem | family, material, approximate_state | Domestic context |
+| MediaAsset | family, purpose, retention, expiration, owner | Potentially very sensitive |
+| CompanionInteraction | mode, context_refs, action, safety_result | May contain private content |
+| SubscriptionEntitlement | family, billing_source, payer adult, product, trial, status, expiration/grace | Business data |
+| OfflinePack | family, plan/version manifest, hashes, expiry | Local private data |
+| PortfolioAsset | family, adult owner, activity/session, retention | Highly sensitive media |
+| CommunitySubmission | asset derivative, activity_version, adult uploader, moderation | Potentially sensitive UGC |
+| ModerationDecision | submission, reviewer, reason, action | Internal operation |
+| MarketingLicense | asset, adult grantor, scope, channels, expiration/revocation | Contractual consent |
 
-## Clasificación provisional
+## Provisional classification
 
-- `PUBLIC_CONTENT`: actividades publicadas y taxonomía.
-- `INTERNAL_CONTENT`: borradores, revisiones y prompts.
-- `FAMILY_PRIVATE`: preferencias, planes e inventario.
-- `CHILD_PRIVATE`: exposiciones, observaciones e inferencias.
-- `HIGH_SENSITIVITY_MEDIA`: fotos, video, audio y transcripciones asociadas.
-- `COMMUNITY_UGC`: derivados destinados a visibilidad más amplia, todavía sujetos a controles.
+- `PUBLIC_CONTENT`: published activities and taxonomy.
+- `INTERNAL_CONTENT`: drafts, revisions and prompts.
+- `FAMILY_PRIVATE`: preferences, plans and inventory.
+- `CHILD_PRIVATE`: exposures, observations, and inferences.
+- `HIGH_SENSITIVITY_MEDIA`: photos, video, audio and associated transcripts.
+- `COMMUNITY_UGC`: derivatives intended for broader visibility, still subject to controls.
 
-## Reglas
+## Rules
 
-- Los identificadores internos no deben contener nombres.
-- Los campos libres se minimizan y se someten a controles de acceso/retención.
-- Los datos derivados conservan procedencia.
-- Las eliminaciones deben propagarse a índices, cachés y copias según política aprobada.
+- Internal identifiers must not contain names.
+- Free fields are minimized and subject to access/retention controls.
+- Derived data retains its provenance.
+- Deletions must be propagated to indexes, caches and copies according to approved policy.

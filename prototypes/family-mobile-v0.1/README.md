@@ -1,31 +1,67 @@
-# Prototipo móvil familiar v0.7
+# Family Mobile Founder-Pilot Prototype
 
-Este artefacto convierte las decisiones de producto, el contenido editorial de ACT-0001 y el estudio visual previo en un recorrido móvil interactivo dirigido al adulto. La revisión v0.7 conserva la PWA instalable de v0.6 y entrega toda la interfaz, los cinco ejercicios, las seis fases del puente, compras, ayudas, seguridad, cierre e instalación en español (`es-US`) e inglés (`en-US`).
+> **Normative documentation language:** English from 18 August 2026 under `DEC-052`. The [Spanish historical README](../../historical/es/prototypes/family-mobile-v0.1/README.es.md) is retained for traceability.
 
-- `index.html`: prototipo editable.
-- `i18n.js`: bundles de contenido y localización; español e inglés comparten IDs, estado y lógica.
-- `prototype-standalone.html`: copia interactiva en un solo archivo.
-- `manifest.es.webmanifest`, `manifest.en.webmanifest`, `icon.svg` y `sw.js`: instalación localizada, identidad y cache offline del prototipo servido por HTTPS.
-- `vercel.json`: headers mínimos de seguridad y entrega del service worker.
-- `.github/workflows/deploy-founder-pilot-pages.yml`: publica únicamente los archivos del shell estático en GitHub Pages; no expone los documentos editoriales ni las capturas de QA dentro del sitio.
-- `design-system.html`: espécimen editable de Pocket Workshop.
-- `standalone.html`: sistema visual en un solo archivo.
-- `research/`: contrato del artefacto y evidencia.
-- `design/`: decisiones del sistema visual.
-- `handoff/`: límites y guía de implementación.
+## Purpose
 
-El contenido familiar completo es sintético. `ACT-0001@0.3.0` es Draft y aparece solo como vista previa para validar la experiencia. La persistencia es local al navegador: no hay cuenta, backend, cifrado de aplicación ni sincronización entre dispositivos. El despliegue temporal no debe recibir fotografías, voz ni información infantil sensible.
+This static prototype validates the adult-facing family journey before production implementation. It covers a five-day founder dry run: planning by available time, opening every planned activity, consolidated shopping, preparation, learning focuses, staged activity facilitation, contextual help, close-out, installation, and offline shell behavior.
 
-## Idioma
+It is not the production app. It uses synthetic learner data, local browser persistence, and `Draft` or candidate activity content. It has no account, backend, cross-device synchronization, server-side encryption, payments, community, or real learner-record storage.
 
-La app elige `es-US` o `en-US` desde `?lang=`, la preferencia guardada o el idioma del navegador, en ese orden. El botón `EN`/`ES` guarda la elección en el dispositivo. Cada idioma usa su propio manifiesto instalable. La prueba `qa/i18n-smoke.mjs` recorre las cinco actividades, las seis fases y los overlays para impedir contenido mezclado.
+## Safety and privacy boundary
 
-- Español: [https://pr3t3l.github.io/KidsApp/?lang=es](https://pr3t3l.github.io/KidsApp/?lang=es)
+The public deployment is only for the founder's controlled test. Do not enter real child photos, voice, sensitive observations, payment information, or private family data. Before external pilot families are invited, the experience must move to authenticated hosting backed by the authorization, retention, and deletion controls defined in the canonical specifications.
+
+## Main files
+
+| File | Purpose |
+|---|---|
+| `index.html` | Editable application shell |
+| `app.js` | Prototype state, screens, interactions, and Spanish source copy |
+| `i18n.js` | Complete `en-US` runtime bundle and locale switching |
+| `styles.css` | Responsive visual system |
+| `prototype-standalone.html` | Generated single-file copy of the interactive prototype |
+| `manifest.en.webmanifest` | English install metadata |
+| `manifest.es.webmanifest` | Spanish install metadata |
+| `sw.js` | Bilingual application-shell cache |
+| `design-system.html` | Editable Pocket Workshop visual specimen |
+| `standalone.html` | Generated single-file visual-system specimen |
+| `qa/` | Smoke tests, PWA tests, capture scripts, and reviewed screenshots |
+| `research/evidence.json` | Structured prototype evidence and unresolved observations |
+| `vercel.json` | Static-hosting headers prepared for a possible Vercel deployment |
+
+## Run locally
+
+Serve the directory over HTTP rather than opening `file://` when testing installation or the service worker. For example:
+
+```powershell
+npx http-server "prototypes/family-mobile-v0.1" -p 4173 -c-1
+```
+
+Then open `http://localhost:4173/?lang=en` or `http://localhost:4173/?lang=es`.
+
+## Quality checks
+
+With the prototype served over HTTP(S) and a Chromium browser available for remote debugging:
+
+```powershell
+node prototypes/family-mobile-v0.1/qa/flow-smoke.mjs http://localhost:4173
+node prototypes/family-mobile-v0.1/qa/i18n-smoke.mjs http://localhost:4173
+node prototypes/family-mobile-v0.1/qa/pwa-smoke.mjs http://localhost:4173 en
+node prototypes/family-mobile-v0.1/qa/pwa-smoke.mjs http://localhost:4173 es
+```
+
+The i18n smoke test traverses all five activities, the complete Paper Bridges flow, help, close-out, Journey, and installation in both languages. English mode fails when known residual Spanish copy appears.
+
+## Deployment
+
+- Founder-pilot app: [https://pr3t3l.github.io/KidsApp/](https://pr3t3l.github.io/KidsApp/)
+- Spanish: [https://pr3t3l.github.io/KidsApp/?lang=es](https://pr3t3l.github.io/KidsApp/?lang=es)
 - English: [https://pr3t3l.github.io/KidsApp/?lang=en](https://pr3t3l.github.io/KidsApp/?lang=en)
+- Repository: [https://github.com/pr3t3l/KidsApp](https://github.com/pr3t3l/KidsApp)
 
-## Acceso web del founder pilot
+GitHub Pages deploys a closed list of static prototype assets from `main`. The public URL is unauthenticated and must remain fixture-only.
 
-- Aplicación: [https://pr3t3l.github.io/KidsApp/](https://pr3t3l.github.io/KidsApp/)
-- Código: [https://github.com/pr3t3l/KidsApp](https://github.com/pr3t3l/KidsApp)
+## Relationship to production
 
-GitHub Pages se actualiza automáticamente desde `main` con una lista cerrada de archivos estáticos. La URL es pública y no tiene autenticación; se usa únicamente para la prueba de la fundadora con el contenido y fixtures actuales. Antes de invitar familias externas debe migrarse a hosting privado/autenticado.
+The prototype validates interaction and content presentation. Production behavior must be implemented through the [backend handoff](../../docs/BACKEND-HANDOFF.md), [specification map](../../docs/SPECIFICATION-MAP.md), machine-readable schemas, authorization policies, and vertical slices. Prototype state and fixture data are not production persistence contracts.

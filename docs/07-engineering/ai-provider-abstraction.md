@@ -1,15 +1,17 @@
-# Abstracción y gobernanza de proveedores de IA
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/07-engineering/ai-provider-abstraction.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# AI Provider Abstraction and Governance
 
-## Objetivo
+**Status:** Draft
+**Version:** 0.1
 
-Permitir usar OpenAI, Anthropic, Google, modelos open source u otros proveedores sin acoplar producto, datos y evaluaciones a un modelo específico.
+## Objective
+
+Allow the use of OpenAI, Anthropic, Google, open source models or other providers without coupling product, data and evaluations to a specific model.
 
 ## Gateway
 
-La aplicación llama a capacidades internas, no a nombres de modelos:
+The application calls internal capabilities, not model names:
 
 - `generate_text`
 - `structured_reasoning`
@@ -19,55 +21,55 @@ La aplicación llama a capacidades internas, no a nombres de modelos:
 - `moderate_content`
 - `embed_content`
 
-El gateway resuelve proveedor/modelo según política, disponibilidad, costo, idioma, latencia y sensibilidad.
+The gateway resolves provider/model based on policy, availability, cost, language, latency and sensitivity.
 
-## Registry de proveedores
+## Provider registry
 
-Cada deployment registra:
+Each deployment records:
 
-- Proveedor, modelo y versión.
-- Capacidades y límites.
-- Regiones de procesamiento.
-- Política de retención y entrenamiento.
-- Elegibilidad para datos infantiles.
-- Tipos de medio permitidos.
-- Contrato/DPA y fecha de revisión.
-- Evaluaciones aprobadas.
-- Costo y latencia.
-- Estado: candidate, approved, restricted, disabled.
+- Provider, model, and version.
+- Capabilities and limits.
+- Processing regions.
+- Retention and training policy.
+- Eligibility for child data.
+- Allowed media types.
+- Contract/DPA and review date.
+- Approved evaluations.
+- Cost and latency.
+- Status: candidate, approved, restricted, disabled.
 
 ## Routing
 
-1. Clasificar caso de uso y datos.
-2. Aplicar filtros de privacidad/seguridad.
-3. Elegir entre deployments aprobados.
-4. Ejecutar con contrato estructurado.
-5. Validar salida.
-6. Registrar versión, latencia y resultado sin conservar contenido innecesario.
-7. Ejecutar fallback solo a otro deployment igualmente elegible.
+1. Classify use case and data.
+2. Apply privacy and product-security filters.
+3. Choose between approved deployments.
+4. Execute with a structured contract.
+5. Validate output.
+6. Record version, latency and result without retaining unnecessary content.
+7. Run fallback only to another equally eligible deployment.
 
-## Portabilidad
+## Portability
 
-- Prompts y schemas versionados en repositorio.
-- Adapters por proveedor.
-- Salidas normalizadas.
-- Golden evals comunes.
-- Features degradan de forma explícita si un proveedor no soporta capacidad.
-- No asumir que todos los proveedores admiten fotos, voz o datos infantiles bajo iguales términos.
+- Prompts and schemas versioned in repository.
+- Adapters by provider.
+- Normalized outputs.
+- Common Golden Evals.
+- Features are explicitly downgraded if a provider does not support capability.
+- Do not assume that all providers accept children's photos, voice or data under the same terms.
 
-## Datos
+## Data
 
-- Redactar contexto no necesario antes de enviar.
-- Preferir alias/IDs efímeros.
-- No enviar audio o fotos a un proveedor no aprobado para ese medio.
-- No usar datos de producción para entrenar modelos por defecto.
-- Documentar transferencias y subprocessors.
+- Remove unnecessary context before sending a request.
+- Prefer ephemeral aliases/IDs.
+- Do not send audio or photos to a provider not approved for that medium.
+- Do not use production data to train models by default.
+- Document transfers and subprocessors.
 
-## Requisitos
+## Requirements
 
-- **AI-GW-001:** Código de producto solicita capacidades, no modelos concretos.
-- **AI-GW-002:** Todo deployment tiene política de elegibilidad de datos.
-- **AI-GW-003:** Fallback respeta las mismas restricciones del request original.
-- **AI-GW-004:** Cada salida auditable registra deployment y versiones de prompt/schema.
-- **AI-GW-005:** Cambiar modelo requiere ejecutar evals aplicables.
-- **AI-GW-006:** Deshabilitar un proveedor no requiere cambios en flujos de producto.
+- **AI-GW-001:** Product code requests capabilities, not specific models.
+- **AI-GW-002:** Every deployment has a data eligibility policy.
+- **AI-GW-003:** Fallback respects the same restrictions of the original request.
+- **AI-GW-004:** Each auditable output records deployment and prompt/schema versions.
+- **AI-GW-005:** Changing model requires running applicable evals.
+- **AI-GW-006:** Disabling a provider does not require changes to product flows.

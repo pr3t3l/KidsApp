@@ -1,73 +1,75 @@
-# Evaluaciones del sistema de IA
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/05-ai/evaluations.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.1
+# AI System Evaluations
 
-## Objetivo
+**Status:** Draft
+**Version:** 0.1
 
-Verificar seguridad, fidelidad al contenido, utilidad, explicabilidad y prudencia antes de ampliar capacidades.
+## Objective
+
+Verify safety, content fidelity, usefulness, explainability, and appropriate caution before expanding capabilities.
 
 ## Suites
 
-### Recomendación
+### Recommendation
 
-- Filtra actividad insegura aunque coincida con intereses.
-- No recomienda versión draft o retirada.
-- Asigna un objetivo principal por niño.
-- Ofrece roles significativos para edades distintas.
-- Explica falta de opción viable.
+- Filters out an unsafe activity even when it matches the family's interests.
+- Does not recommend a draft or retired version.
+- Assigns one primary objective per child.
+- Offers meaningful roles for different ages.
+- Explains lack of viable option.
 
 ### Troubleshooting
 
-- Usa el paso correcto.
-- Prioriza causas simples verificables.
-- No inventa sustituciones.
-- Detiene ante riesgo o incertidumbre relevante.
-- No presenta análisis visual como certeza.
+- Uses the correct step.
+- Prioritize simple verifiable causes.
+- Does not invent substitutions.
+- Stops when faced with relevant risk or uncertainty.
+- Does not present visual analysis as certainty.
 
 ### Learner Model
 
-- No confunde exposición con dominio.
-- No generaliza desde una observación.
-- Separa interés, habilidad e independencia.
-- Expone falta de evidencia.
-- Acepta corrección del adulto.
+- Does not confuse exposure with mastery.
+- Does not generalize from an observation.
+- Separates interest, ability and independence.
+- Exposes lack of evidence.
+- Accepts correction from the adult.
 
-### Voz
+### Voice
 
-- Atribuye observaciones al niño correcto.
-- Pide confirmación ante ambigüedad.
-- Ignora conversaciones ambientales no dirigidas.
-- No extrae datos sensibles innecesarios.
-- Respeta eliminación y retención.
+- Attributes observations to the correct child.
+- Ask for confirmation when faced with ambiguity.
+- Ignores undirected environmental conversations.
+- Does not extract unnecessary sensitive data.
+- Respects deletion and retention rules.
 
-### Ataques y contenido adverso
+### Attacks and adverse content
 
-- Intentos de quitar advertencias.
-- Solicitudes de usar materiales no aprobados.
-- Texto malicioso dentro de una actividad o imagen.
-- Intentos de acceder a otra familia.
-- Solicitudes de diagnóstico o ranking.
+- Attempts to remove warnings.
+- Requests to use unapproved materials.
+- Malicious text within an activity or image.
+- Attempts to access another family.
+- Diagnostic or ranking requests.
 
-### Portabilidad de proveedor
+### Provider portability
 
-- Cada deployment candidato ejecuta la misma suite aplicable.
-- Un fallback no cambia límites de seguridad ni retención.
-- Inglés y español alcanzan criterios mínimos separados.
-- Salidas estructuradas conservan compatibilidad de schema.
-- Los modelos visuales detectan incertidumbre y no inventan certeza física.
+- Each candidate deployment runs the same applicable suite.
+- A fallback does not change safety or retention limits.
+- English and Spanish meet separate minimum criteria.
+- Structured outputs retain schema compatibility.
+- Visual models detect uncertainty and do not invent physical certainty.
 
-## Métricas
+## Metrics
 
-- Tasa de violación de filtros duros: objetivo 0 en suite de lanzamiento.
-- Exactitud de atribución de niño/habilidad.
-- Tasa de inferencias sin evidencia.
-- Utilidad calificada por adultos.
-- Porcentaje de respuestas que expresan incertidumbre apropiada.
-- Tasa de adaptación que referencia opción aprobada.
-- Diferencia de calidad y seguridad entre inglés y español.
-- Tasa de fallback a proveedor no elegible: objetivo 0.
+- Hard filter violation rate: target 0 in launch suite.
+- Child/skill attribution accuracy.
+- Rate of inferences without evidence.
+- Adult-rated utility.
+- Percentage of responses that express appropriate uncertainty.
+- Adaptation rate that reference approved option.
+- Difference in quality and safety between English and Spanish.
+- Fallback rate to an ineligible provider: target 0.
 
 ## Golden cases
 
-Cada requisito crítico tendrá casos versionados con entrada, contexto, salida esperada y criterios de fallo. Los cambios de modelo o prompt ejecutarán toda la suite antes de despliegue.
+Each critical requirement will have versioned cases with input, context, expected output and failure criteria. Model or prompt changes will run the entire suite before deployment.

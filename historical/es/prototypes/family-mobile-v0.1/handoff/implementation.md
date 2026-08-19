@@ -1,3 +1,5 @@
+> **Histórico — documentación en español.** Archivado el 18 de agosto de 2026. Se conserva para trazabilidad; toda documentación y cambios nuevos deben crearse en inglés.
+
 # Handoff de implementación móvil
 
 ## Qué valida este artefacto

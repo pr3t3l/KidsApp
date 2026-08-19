@@ -1,92 +1,94 @@
-# Alcance y estrategia de versiones
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/00-foundation/scope-and-releases.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
 
-**Estado:** Draft  
-**Versión:** 0.2
+# Scope and Release Strategy
 
-## Piloto interno
+**Status:** Draft
+**Version:** 0.2
 
-Objetivo: validar el modelo educativo y editorial con una familia conocida.
+## Internal pilot
 
-Incluye:
+Objective: validate the educational and editorial model with a known family.
 
-- Perfiles mínimos de adulto y niños.
-- Aplicación móvil bilingüe en inglés y español.
-- Biblioteca inicial de 10–15 actividades.
-- Selección manual asistida por reglas.
-- Roles y un objetivo principal por niño.
-- Guía paso a paso.
-- Evaluación rápida y nota de voz opcional.
-- Historial de sesiones y observaciones.
-- Prueba con sesiones de 1–4 niños.
+Includes:
 
-No incluye:
+- Minimum profiles for adults and children.
+- Bilingual mobile application in English and Spanish.
+- Initial library of 10–15 activities.
+- Manual selection assisted by rules.
+- A suggested contribution and one primary objective per child.
+- Step-by-step facilitation guide.
+- Quick assessment and optional voice note.
+- History of sessions and observations.
+- Pilot sessions with 1–4 children.
 
-- Cobros.
+Does not include:
+
+- Collections.
 - Marketplace.
-- Diagnósticos o comparaciones normativas.
-- Generación libre de actividades publicadas.
-- Comunidad social.
+- Diagnoses or normative comparisons.
+- Free generation of published activities.
+- Social community.
 
-## MVP familiar
+## Family MVP
 
-Objetivo: demostrar el recorrido repetible para varias familias.
+Objective: demonstrate the repeatable route for several families.
 
-Incluye además:
+Also includes:
 
-- Onboarding familiar.
-- Inventario básico.
-- Plan semanal.
-- Planificación por presupuesto de tiempo diario, no por cantidad fija de actividades.
-- Paquete semanal descargable para consultar materiales, roles, pasos e imágenes sin conexión.
-- Recomendación explicable.
-- AI Companion para explicar, adaptar dentro de límites y resolver problemas.
-- Learning Journey privado.
-- Controles de privacidad, exportación y eliminación.
-- Operación editorial para publicar y retirar actividades.
-- Suscripción mensual o anual administrada por un adulto.
-- Prueba gratuita comercial de siete días con cancelación autoservicio.
-- Acceso de varios adultos autorizados a la misma familia.
-- Compras móviles por App Store/Google Play; Stripe se usará para la aplicación web familiar cuando se construya.
-- Se planifican tanto una aplicación web familiar como un portal web administrativo/editorial; el roadmap decidirá cuál se implementa primero y ninguna debe retrasar el recorrido móvil del piloto.
+- Family onboarding.
+- Basic inventory.
+- Weekly plan.
+- Planning by daily time budget, not by fixed amount of activities.
+- Downloadable weekly package to consult materials, roles, steps and images offline.
+- Explainable recommendation.
+- AI Companion to explain, adapt within limits and solve problems.
+- Private Learning Journey.
+- Privacy, export and deletion controls.
+- Editorial operation to publish and withdraw activities.
+- Monthly or annual subscription managed by an adult.
+- Seven-day commercial free trial with self-service cancellation.
+- Access of several authorized adults to the same family.
+- Mobile purchases through the App Store and Google Play; Stripe will be used for the family web application when it is built.
+- Both a family web application and an administrative/editorial web portal are planned; the roadmap will decide which one is implemented first, and neither should delay the mobile pilot path.
 
-## Primera versión comercial
+## First commercial version
 
-Posibles capacidades, sujetas a validación:
+Possible capacities, subject to validation:
 
-- Suscripción.
-- Catálogo ampliado y paquetes temáticos.
-- Programas de varias semanas.
-- Portafolio opcional.
-- Soporte multilingüe.
-- Operaciones de revisión y analítica de calidad.
-- Colaboración entre adultos autorizados de una familia.
-- Plataforma editorial colaborativa para autores y revisores especializados.
-- Portafolio privado opcional de proyectos.
-- Aplicación web familiar, si las pruebas confirman que aporta valor junto a la aplicación móvil.
+- Subscription.
+- Expanded catalog and thematic packages.
+- Multi-week programs.
+- Optional portfolio.
+- Multilingual support.
+- Quality-review and analytics operations.
+- Collaboration between authorized adults of a family.
+- Collaborative editorial platform for authors and specialized reviewers.
+- Optional private portfolio of projects.
+- Family web application, if tests confirm that it provides value along with the mobile application.
 
-## Fuera de alcance previsible
+## Out of foreseeable range
 
-- Interacción autónoma dirigida al niño sin supervisión adulta.
-- Publicidad conductual infantil.
-- Rankings entre niños o familias.
-- Reconocimiento facial o biométrico.
-- Grabación ambiental continua.
-- Evaluación clínica, psicológica o académica certificada.
-- Venta de datos o entrenamiento con datos infantiles por defecto.
+- Autonomous interaction directed at the child without adult supervision.
+- Children's behavioral advertising.
+- Rankings among children or families.
+- Facial or biometric recognition.
+- Continuous environmental recording.
+- Certified clinical, psychological or academic evaluation.
+- Sale of data or training with child data by default.
 
-## Fuera del MVP, sujeto a diseño específico
+## Outside of MVP, subject to specific design
 
-- Comunidad pública de proyectos.
-- Comentarios, mensajería directa o perfiles sociales.
-- Demostraciones con llama, vidrio o presión.
-- Funcionamiento completamente offline para recomendación, IA, sincronización o publicación.
+- Public community of projects.
+- Comments, direct messaging or social profiles.
+- Demonstrations with flame, glass or pressure.
+- Completely offline operation for recommendation, AI, synchronization or publishing.
 
-## Criterios para pasar de piloto a MVP
+## Criteria to go from pilot to MVP
 
-- Al menos 10 actividades publicadas y probadas.
-- El flujo de cierre toma menos de 20 segundos para tres niños en pruebas observadas.
-- La mayoría de actividades se completa dentro de su rango de duración.
-- Cero hallazgos críticos abiertos de seguridad o autorización.
-- Los adultos pueden comprender y corregir inferencias.
-- El recomendador explica selección, rol y objetivo principal.
-- Las políticas de retención y eliminación están implementadas y verificadas.
+- At least 10 activities published and tested.
+- Closing flow takes less than 20 seconds for three children in observed tests.
+- Most activities are completed within their duration range.
+- Zero open critical product-security or authorization findings.
+- Adults can understand and correct inferences.
+- The recommender explains selection, role and primary objective.
+- Retention and deletion policies are implemented and verified.
