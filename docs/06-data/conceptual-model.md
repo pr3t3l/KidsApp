@@ -5,6 +5,8 @@
 **Status:** Draft
 **Version:** 0.1
 
+The complete table-level design is defined in the [Logical Database Schema](logical-database-schema.md). The [Activity Library Dataset Map](../02-content/activity-library-dataset-map.md) defines the content dataset compiled into each immutable activity version.
+
 ## Domains
 
 ```mermaid

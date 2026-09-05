@@ -3,7 +3,7 @@
 # Decision Log
 
 **Status:** Active
-**Version:** 0.4
+**Version:** 0.7
 
 | ID | Decision | Status | Rationale |
 |---|---|---|---|
@@ -59,6 +59,16 @@
 | DEC-050 | Publish the founder pilot prototype as an installable static PWA, with shell cache and exclusively local persistence; use public GitHub Pages only with fixtures for the founder test and move to private/authenticated hosting before inviting pilot families. | Approved | It allows you to run the dry run from your cell phone without confusing the prototype with the production application or uploading child data to an incomplete backend. |
 | DEC-051 | Deliver the founder pilot with complete `es-US` and `en-US` bundles on the same model and flow; persist language choice, use localized installable manifests, and block English screens containing residual Spanish copy. | Approved | Supports the bilingual market without duplicating logic and prevents mixed-language screens. |
 | DEC-052 | Use English as the normative source language for all new documentation and future changes; preserve Spanish specifications as historical records. | Approved | The founder confirmed that collaboration and future work will be in English, preserving Spanish content for traceability and history without creating two active sources. |
+| DEC-053 | Persist collaborative editorial content in a normalized relational model and compile each deliverable activity into an immutable, content-addressed `ActivityVersion` snapshot; derive mobile delivery and catalog indexes from that snapshot. | Proposed | Supports editorial queries and review while ensuring that later edits cannot change historical plans or sessions. The database engine and physical implementation remain undecided. |
+| DEC-054 | Implement the final-project pilot with React/TypeScript/Vite, FastAPI, Supabase PostgreSQL/Auth/pgvector/RLS, bounded LangGraph orchestration, OpenRouter and Logfire. | Approved | The founder approved the implementation plan; the stack preserves a modular monolith and external durable state for serverless deployment. |
+| DEC-055 | Expose one text companion button and classify requests internally as troubleshoot, adapt current activity, or replace planned activity. | Approved | A single entry point reduces adult cognitive load while preserving auditable, bounded behavior. |
+| DEC-056 | Use stable policy and exact activity state as CAG; use a curated, published-only bilingual corpus with hard filters before hybrid retrieval. | Approved | Keeps safety and authorization deterministic while grounding useful explanations in exact-version evidence. |
+| DEC-057 | Use OpenRouter through a replaceable gateway; start with approved OpenAI and Anthropic routes and evaluate Z.AI or other providers on synthetic data until privacy and quality gates pass. | Approved | Enables cost and provider flexibility without silently weakening data eligibility. |
+| DEC-058 | Treat the ten-item implementation catalog as synthetic demo data until each exact version has documented founder execution and its required editorial and safety gates. | Approved | Demonstrates the complete technical flow without falsely claiming physical publication approval. |
+| DEC-059 | Gate releases with 40 canonical cases run in English and Spanish, plus deterministic security, contract, build and container checks. | Approved | Model, prompt and retrieval changes require objective regression evidence. |
+| DEC-060 | Run the initial pilot as invite-only adult accounts with private family tenancy, minimal learner data, structured telemetry and no voice or photos. | Approved | Tests product value while minimizing child data and operational scope. |
+| DEC-061 | Prepare separate Vercel web/API deployments and Supabase persistence; use Docker Compose for a synthetic local demonstration. | Approved | Fits the existing account and serverless constraints while keeping state external and local reproduction simple. |
+| DEC-062 | Send no family or learner identifiers to the model, refuse sensitive/out-of-scope requests before retrieval, enforce an explicit model allowlist and stop generation at the recorded monthly budget. | Proposed | These controls minimize disclosure and cost while keeping the published guide available; Alfredo should confirm or revise this bundled operational decision. |
 
 ## Template
 

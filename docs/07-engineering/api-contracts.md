@@ -3,9 +3,17 @@
 # Conceptual API contracts
 
 **Status:** Draft
-**Version:** 0.1
+**Version:** 1.0
 
 This document defines domain capabilities, not final routes, protocol, or implementation technology. Every child-related operation requires resource-level authorization through the family relationship.
+
+## Final-project HTTP surface
+
+- `GET /v1/experiences/{contextId}` returns one authorized renderable experience, including the exact activity version and effective blocks.
+- `POST /v1/companion/interactions` accepts `{contextId, message, locale}` and returns a validated answer, clarification, proposal or safe stop.
+- `POST /v1/companion/proposals/{proposalId}/decision` accepts an idempotency key plus `{decision, optionId?}` and atomically applies or rejects one listed option.
+
+Supabase JWT authentication and family-level authorization are required outside explicitly labeled synthetic demo mode. JSON Schemas in `packages/contracts/` are the executable wire contracts.
 
 ## Families
 

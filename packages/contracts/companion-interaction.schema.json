@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-system.local/contracts/companion-interaction.schema.json",
+  "title": "CompanionInteractionResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["interactionId", "intent", "status", "answer", "safetyStatus", "uncertainty", "sources", "requiresAdultConfirmation"],
+  "properties": {
+    "interactionId": { "type": "string", "format": "uuid" },
+    "intent": { "enum": ["troubleshoot", "adapt_current_activity", "replace_planned_activity"] },
+    "status": { "enum": ["answer", "proposal", "clarification", "safe_stop"] },
+    "answer": { "type": "string", "minLength": 1, "maxLength": 1600 },
+    "safetyStatus": { "enum": ["safe", "needs_confirmation", "stop"] },
+    "uncertainty": { "enum": ["low", "medium", "high"] },
+    "sources": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["chunkId", "activityVersionId", "label"],
+        "properties": {
+          "chunkId": { "type": "string" },
+          "activityVersionId": { "type": "string" },
+          "label": { "type": "string" }
+        }
+      }
+    },
+    "proposal": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["proposalId", "kind", "options"],
+      "properties": {
+        "proposalId": { "type": "string", "format": "uuid" },
+        "kind": { "enum": ["adaptation", "replacement"] },
+        "options": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["optionId", "summary", "visibleChanges"],
+            "properties": {
+              "optionId": { "type": "string" },
+              "summary": { "type": "string" },
+              "visibleChanges": { "type": "array", "items": { "type": "string" }, "maxItems": 8 }
+            }
+          }
+        }
+      }
+    },
+    "requiresAdultConfirmation": { "type": "boolean" }
+  }
+}

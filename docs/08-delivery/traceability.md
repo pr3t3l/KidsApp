@@ -3,7 +3,7 @@
 # Traceability
 
 **Status:** Active
-**Version:** 0.3
+**Version:** 0.4
 
 ## Traceability chain
 
@@ -45,6 +45,12 @@ Principle
 | Navigable plan and consolidated purchase | REC-007/008/009, US-PLN-004/005, DEC-049 | Plan → Activity Detail / Shopping | PlannedActivity, MaterialRequirement, ShoppingAggregate | VS-05 | Open five days, add consumables, reuse tools, show origin and group by section |
 | Founder pilot installable on cell phone | PRD-PILOT-001/004, DEC-050, OFF-001 | Plan → Session → Close in static PWA | Local prototype status; no family backend | Evidence prior to VS-09 | Manifest, service worker, persistence after reload, offline testing and deployment headers |
 | Complete bilingual founder pilot | PRD-008, PRD-PILOT-005, ACT-011/012, DEC-014/051 | Today, Plan, shopping, five details, six phases, help, close-out, and installation | `es-US`/`en-US` bundles sharing IDs and logic | UX exploration before VS-01/03/05 | `qa/i18n-smoke.mjs`, localized manifests, and Spanish regression tour |
+| Complete activity-library dataset | P-03/10/14, ACT-001/018, ACT-NAR-001/012, DATA-LIB-001/017 | Editorial Workspace → Catalog → Plan → Session | Normalized editorial source → immutable `ActivityVersion` → delivery/index projections | Editorial foundation for VS-01/05/08/10 | Schema/domain validation, localization completeness, gate and retirement tests |
+| Vendor-neutral logical persistence model | P-07/09/10/14, DB-001/020, DEC-012/053 | All family and editorial flows | Relational bounded contexts + immutable content snapshots + object metadata + derived indexes | Backend foundation across VS-01–12 | Authorization, invariants, idempotency, migration, retention, and reconstruction tests |
+| Bounded companion runtime | AI-101/108, AI-RUN-001/007, DEC-054/057 | Single companion entry → answer/proposal → adult decision | ExperienceContext, CompanionProposal, ProposalDecision, ActivityChunk | VS-05/06 | API tests, exact-version sources, safe-stop and idempotent confirmation |
+| Production-shaped CAG/RAG | AI-RUN-003/006, AI-GW-001/006, DEC-056 | Session context → filtered hybrid retrieval → validated response | ActivityChunk with FTS/vector plus minimized interaction telemetry | VS-06 | 80-run bilingual golden suite and retrieval gates |
+| Flexible activity rendering | DATA-LIB-001/017, DEC-053/054 | ActivityVersion → effective snapshot → block registry | ActivityVersionCore, ContentBlock, immutable delivery snapshot | VS-01/03 | TypeScript build and fail-closed unknown-block tests |
+| Private pilot tenancy | P-09/11, AI-RUN-002/006, DEC-060 | Magic link → family context → companion mutation | FamilyMembership, RLS, AuditEvent, PreferenceSignal | VS-01/05/06 | cross-family, confirmation, retention and deletion tests |
 
 ## Rule for future tasks
 

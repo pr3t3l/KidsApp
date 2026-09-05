@@ -3,7 +3,7 @@
 # Conceptual architecture
 
 **Status:** Draft
-**Version:** 0.1
+**Version:** 1.0
 
 ## Objective
 
@@ -82,6 +82,8 @@ Critical decisions do not depend solely on generated text:
 
 For the pilot, a modular monolith with a transactional database and separate object storage is recommended. It reduces operational complexity while preserving domain boundaries. Microservices require demonstrated scale, security, or organizational need.
 
+The final-project implementation realizes this boundary with a React/TypeScript/Vite family PWA, a FastAPI domain/AI service, Supabase Auth/PostgreSQL/pgvector/RLS, OpenRouter, Logfire and separate Vercel deployments. See [Production runtime](production-runtime.md).
+
 The primary client will be an iOS/Android mobile application. The native or cross-platform framework remains undecided pending validation of background sync, camera, audio, shopping, and accessibility requirements. Family web and editorial web experiences are also planned.
 
 ## Resilience
@@ -100,12 +102,11 @@ The primary client will be an iOS/Android mobile application. The native or cros
 - Latency and error metrics by AI mode.
 - Traces with internal references, not complete prompts by default.
 
-## Pending decisions
+## Remaining production decisions
 
-- Mobile and backend languages/frameworks.
-- Database, migrations, and tenancy model.
-- Adult authentication and account recovery.
-- AI, voice, image, and storage providers.
-- Hosting region, deployment, and observability stack.
+- Final native mobile framework after the web pilot.
+- Approved Supabase/Vercel regions for represented pilot states.
+- Account-recovery support procedure beyond Supabase magic-link recovery.
+- Voice, image and object-storage providers for later releases.
 - Background sync and local-encryption implementation.
 - App Store/Google Play entitlement integration and future Stripe web purchase.

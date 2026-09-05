@@ -3,13 +3,15 @@
 # AI Provider Abstraction and Governance
 
 **Status:** Draft
-**Version:** 0.1
+**Version:** 1.0
 
 ## Objective
 
 Allow the use of OpenAI, Anthropic, Google, open source models or other providers without coupling product, data and evaluations to a specific model.
 
 ## Gateway
+
+The first implementation uses OpenRouter through an internal `ModelGateway` port. Product contracts do not expose OpenRouter or any model identifier.
 
 The application calls internal capabilities, not model names:
 
@@ -47,6 +49,8 @@ Each deployment records:
 5. Validate output.
 6. Record version, latency and result without retaining unnecessary content.
 7. Run fallback only to another equally eligible deployment.
+
+The pilot starts with one explicitly configured OpenAI route and one explicitly configured Anthropic fallback. OpenRouter routing disables unapproved provider fallbacks, requires requested structured-output parameters, denies data-collecting routes and requests zero-data-retention endpoints. Z.AI and other candidates run only synthetic golden cases until their registry record is approved for real family context.
 
 ## Portability
 

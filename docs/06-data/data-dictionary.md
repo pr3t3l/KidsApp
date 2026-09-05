@@ -5,6 +5,8 @@
 **Status:** Draft
 **Version:** 0.1
 
+This dictionary summarizes domain entities and sensitivity. Column-level relationships, constraints, indexes, transaction boundaries, and JSON-contract mappings are defined in the [Logical Database Schema](logical-database-schema.md).
+
 | Entity | Key conceptual fields | Sensitive data |
 |---|---|---|
 | Family | id, locale, units, timezone, preferences | Private settings |

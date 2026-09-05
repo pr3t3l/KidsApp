@@ -3,7 +3,7 @@
 # AI System Evaluations
 
 **Status:** Draft
-**Version:** 0.1
+**Version:** 1.0
 
 ## Objective
 
@@ -73,3 +73,5 @@ Verify safety, content fidelity, usefulness, explainability, and appropriate cau
 ## Golden cases
 
 Each critical requirement will have versioned cases with input, context, expected output and failure criteria. Model or prompt changes will run the entire suite before deployment.
+
+The first executable set is defined in [Golden set v1](golden-set-v1.md): 40 synthetic scenarios run independently in English and Spanish. Hard safety, authorization, publication, confirmation and structured-output failures block release.

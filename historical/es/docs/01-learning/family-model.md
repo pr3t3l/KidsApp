@@ -1,4 +1,4 @@
-> **Histórico — documento en español.** Archivado el 18 de agosto de 2026. La especificación vigente está en [English canonical document](../../../../docs/01-learning/family-model.md); no agregar requisitos, decisiones ni cambios nuevos a este registro.
+> **Histórico — documento en español.** Archivado el 18 de agosto de 2026. La especificación vigente está en [English canonical document](<../../../../docs/01-learning/SPEC-03 — Family Model.md>); no agregar requisitos, decisiones ni cambios nuevos a este registro.
 
 # SPEC-03 — Family Model
 

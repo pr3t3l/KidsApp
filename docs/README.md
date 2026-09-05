@@ -8,6 +8,8 @@ Use this directory to collaborate in English. The index below mirrors the Spanis
 
 - [Backend collaboration handoff](BACKEND-HANDOFF.md): current state, architecture, frontend/backend boundary, build order, and open decisions.
 - [Specification map](SPECIFICATION-MAP.md): what every specification controls and how the documents fit together.
+- [Activity-library dataset map](02-content/activity-library-dataset-map.md): complete source, version, localization, safety, editorial, and delivery dataset.
+- [Logical database schema](06-data/logical-database-schema.md): vendor-neutral relational model for the full product.
 - [Decision log](08-delivery/decision-log.md): approved and proposed choices that constrain implementation.
 - [Vertical slices](08-delivery/vertical-slices.md): required end-to-end construction order.
 
@@ -24,17 +26,18 @@ Use this directory to collaborate in English. The index below mirrors the Spanis
 
 ### 01-learning
 
-- [evidence model](01-learning/evidence-model.md)
-- [family model](01-learning/family-model.md)
-- [learner model](01-learning/learner-model.md)
-- [learning framework](01-learning/learning-framework.md)
-- [learning graph](01-learning/learning-graph.md)
+- [SPEC-01 — Learning Framework](<01-learning/SPEC-01 — Learning Framework.md>)
+- [SPEC-02 — Learner Model](<01-learning/SPEC-02 — Learner Model.md>)
+- [SPEC-03 — Family Model](<01-learning/SPEC-03 — Family Model.md>)
+- [SPEC-04 — Learning Graph](<01-learning/SPEC-04—Learning Graph.md>)
+- [SPEC-07 — Evidence Model](<01-learning/SPEC-07 — Evidence Model.md>)
 
 ### 02-content
 
 - [activity lifecycle](02-content/activity-lifecycle.md)
 - [activity narrative contract](02-content/activity-narrative-contract.md)
-- [activity schema](02-content/activity-schema.md)
+- [SPEC-05 — Activity Content Model](<02-content/SPEC-05 activity-schema.md>)
+- [activity-library dataset map](02-content/activity-library-dataset-map.md)
 - [editorial guidelines](02-content/editorial-guidelines.md)
 - [library strategy](02-content/library-strategy.md)
 - [safety guidelines](02-content/safety-guidelines.md)
@@ -69,13 +72,16 @@ Use this directory to collaborate in English. The index below mirrors the Spanis
 
 - [adaptation policy](05-ai/adaptation-policy.md)
 - [companion spec](05-ai/companion-spec.md)
+- [CAG, RAG and bounded agent runtime](05-ai/cag-rag-and-agent-runtime.md)
 - [evaluations](05-ai/evaluations.md)
+- [golden set v1](05-ai/golden-set-v1.md)
 - [recommendation engine](05-ai/recommendation-engine.md)
 
 ### 06-data
 
 - [conceptual model](06-data/conceptual-model.md)
 - [data dictionary](06-data/data-dictionary.md)
+- [logical database schema](06-data/logical-database-schema.md)
 - [permissions](06-data/permissions.md)
 - [retention policy](06-data/retention-policy.md)
 
@@ -85,6 +91,7 @@ Use this directory to collaborate in English. The index below mirrors the Spanis
 - [api contracts](07-engineering/api-contracts.md)
 - [architecture](07-engineering/architecture.md)
 - [mobile offline strategy](07-engineering/mobile-offline-strategy.md)
+- [production runtime](07-engineering/production-runtime.md)
 - [security](07-engineering/security.md)
 - [testing strategy](07-engineering/testing-strategy.md)
 
@@ -92,6 +99,8 @@ Use this directory to collaborate in English. The index below mirrors the Spanis
 
 - [decision log](08-delivery/decision-log.md)
 - [founder dry run observation sheet v0.1](08-delivery/founder-dry-run-observation-sheet-v0.1.md)
+- [final project delivery](08-delivery/final-project-delivery.md)
+- [final-project implementation evidence](08-delivery/implementation-evidence.md)
 - [pilot pack v0.1](08-delivery/pilot-pack-v0.1.md)
 - [pilot plan](08-delivery/pilot-plan.md)
 - [roadmap](08-delivery/roadmap.md)

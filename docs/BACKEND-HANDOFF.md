@@ -41,6 +41,8 @@ Read in this order before implementing a backend change:
 7. [Machine-readable contracts](../schemas/README.md)
 8. [Vertical slices](08-delivery/vertical-slices.md)
 
+For persistence and catalog implementation, also read the [Activity Library Dataset Map](02-content/activity-library-dataset-map.md) and [Logical Database Schema](06-data/logical-database-schema.md).
+
 When sources conflict, physical safety and privacy come first, followed by approved decisions, principles, domain specifications, flows, and user stories. Do not resolve a meaningful contradiction with an undocumented assumption.
 
 ## System context
@@ -205,6 +207,7 @@ Implementation should follow vertical slices rather than building isolated layer
 - Record approved choices in the decision log before introducing them as dependencies.
 - Freeze the first consumer-facing contract version and generate shared types where practical.
 - Keep fictional fixtures separate from seed data that could ever reach a family.
+- Review `DEC-053`: normalized editorial source plus immutable activity snapshots is proposed, while the physical database engine remains open.
 
 ### 1. VS-01 — Family identity and published catalog
 
@@ -275,6 +278,8 @@ The current [API contract](07-engineering/api-contracts.md) defines capabilities
 Every mutating operation should be designed for resource-level authorization, readable domain errors, auditability, and idempotency where retries are expected.
 
 ## Machine-readable contracts
+
+The [Activity Library Dataset Map](02-content/activity-library-dataset-map.md) defines the complete content surface. The [Logical Database Schema](06-data/logical-database-schema.md) maps the full product to vendor-neutral relational records and explains how those records compile into the contracts below.
 
 | Contract | Purpose | Current status |
 |---|---|---|

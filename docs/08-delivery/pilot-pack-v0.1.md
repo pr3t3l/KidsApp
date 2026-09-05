@@ -17,8 +17,8 @@ The package does not declare the activities safe or published. Deliver three com
 1. [Instructions for agents](../../AGENTS.md).
 2. [product vision](../00-foundation/product-vision.md), [principles](../00-foundation/product-principles.md) and [glossary](../00-foundation/glossary.md).
 3. [Children's Privacy Baseline](../00-foundation/compliance-baseline.md).
-4. [Learning Framework](../01-learning/learning-framework.md), [Learner Model](../01-learning/learner-model.md) and [Evidence Model](../01-learning/evidence-model.md).
-5. [Activity Schema](../02-content/activity-schema.md), [safety](../02-content/safety-guidelines.md), and [editorial lifecycle](../02-content/activity-lifecycle.md).
+4. [Learning Framework](<../01-learning/SPEC-01 — Learning Framework.md>), [Learner Model](<../01-learning/SPEC-02 — Learner Model.md>), and [Evidence Model](<../01-learning/SPEC-07 — Evidence Model.md>).
+5. [Activity Content Model](<../02-content/SPEC-05 activity-schema.md>), [safety](../02-content/safety-guidelines.md), and [editorial lifecycle](../02-content/activity-lifecycle.md).
 6. [Architecture](../07-engineering/architecture.md), [API contracts](../07-engineering/api-contracts.md) and [offline model](../07-engineering/mobile-offline-strategy.md).
 7. [Vertical slices](vertical-slices.md), [traceability](traceability.md) and this document.
 

@@ -1,4 +1,11 @@
 node_modules/
+dist/
+.vite/
+.venv/
+__pycache__/
+.pytest_cache/
+.coverage
+.artifacts/
 coverage/
 .DS_Store
 Thumbs.db
@@ -7,6 +14,7 @@ Thumbs.db
 .env.*
 !.env.example
 .vercel/
+supabase/.temp/
 .tmp-edge-icon-profile*/
 .tmp-chrome-qa*/
 prototypes/family-mobile-v0.1/icon-test.png

@@ -1,4 +1,4 @@
-> **Histórico — documento en español.** Archivado el 18 de agosto de 2026. La especificación vigente está en [English canonical document](../../../../docs/01-learning/learning-graph.md); no agregar requisitos, decisiones ni cambios nuevos a este registro.
+> **Histórico — documento en español.** Archivado el 18 de agosto de 2026. La especificación vigente está en [English canonical document](<../../../../docs/01-learning/SPEC-04—Learning Graph.md>); no agregar requisitos, decisiones ni cambios nuevos a este registro.
 
 # SPEC-04 — Learning Graph
 

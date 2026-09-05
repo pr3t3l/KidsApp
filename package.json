@@ -1,17 +1,32 @@
 {
   "name": "kids-learning-system-specs",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Product specifications, machine-readable schemas, and pilot content for Kids Learning System.",
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
     "validate:schemas": "node scripts/validate-schemas.mjs",
     "validate:examples": "node scripts/validate-schemas.mjs --examples",
     "validate:domain": "node scripts/validate-domain.mjs",
     "validate:docs": "node scripts/validate-docs.mjs",
-    "validate": "npm run validate:schemas && npm run validate:examples && npm run validate:domain && npm run validate:docs"
+    "validate:database": "node scripts/validate-supabase.mjs",
+    "validate:legacy": "npm run validate:schemas && npm run validate:examples && npm run validate:domain && npm run validate:docs",
+    "build:web": "npm run build --workspace @kids/web",
+    "test:web": "npm run test --workspace @kids/web",
+    "test:api": "node scripts/run-python.mjs -m unittest discover -s services/ai/tests -t . -v",
+    "test:golden": "node scripts/run-python.mjs -m evals.run_golden",
+    "audit:python": "node scripts/run-python.mjs -m pip_audit -r services/ai/requirements.lock.txt",
+    "audit:deps": "npm audit --audit-level=moderate && npm run audit:python",
+    "validate": "npm run validate:legacy && npm run validate:database && npm run test:web && npm run build:web && npm run test:api && npm run test:golden"
   },
   "devDependencies": {
     "ajv": "^8.17.1",
-    "ajv-formats": "^3.0.1"
+    "ajv-formats": "^3.0.1",
+    "supabase": "^2.116.0"
+  },
+  "overrides": {
+    "fast-uri": "3.1.6"
   }
 }

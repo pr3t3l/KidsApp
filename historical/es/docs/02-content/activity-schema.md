@@ -1,4 +1,4 @@
-> **Histórico — documento en español.** Archivado el 18 de agosto de 2026. La especificación vigente está en [English canonical document](../../../../docs/02-content/activity-schema.md); no agregar requisitos, decisiones ni cambios nuevos a este registro.
+> **Histórico — documento en español.** Archivado el 18 de agosto de 2026. La especificación vigente está en [English canonical document](<../../../../docs/02-content/SPEC-05 activity-schema.md>); no agregar requisitos, decisiones ni cambios nuevos a este registro.
 
 # SPEC-05 — Activity Content Model
 

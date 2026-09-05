@@ -7,6 +7,8 @@
 
 These JSON Schemas turn the conceptual specifications into verifiable contracts. Markdown specifications define intent; schemas define the required data shape for integrations.
 
+The [Activity Library Dataset Map](../docs/02-content/activity-library-dataset-map.md) defines the complete content dataset around `ActivityVersion`. The [Logical Database Schema](../docs/06-data/logical-database-schema.md) maps all five aggregate contracts to vendor-neutral persistence records.
+
 ## Schemas
 
 - `v0.1/activity-version.schema.json`: immutable editorial activity version, including the narrative contract, states, material functions, each participant's essential cycle, and initial objective calibration.

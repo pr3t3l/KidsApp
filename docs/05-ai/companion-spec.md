@@ -3,7 +3,7 @@
 # SPEC-08—AI Companion
 
 **Status:** Draft
-**Version:** 0.1
+**Version:** 1.0
 **Owner:** Product/AI/Security
 
 ## 1. Role
@@ -11,6 +11,8 @@
 The AI Companion primarily assists the adult. It knows only the authorized context for the family, participants, activity version, assignments, and current step. It does not act as a clinical evaluator or an autonomous caregiver.
 
 ## 2. Modes
+
+The family interface exposes a single text entry point. These modes remain internal routing labels; the adult does not choose between separate buttons. The final-project pilot enables `Troubleshoot`, `Adapt`, and pre-session activity replacement. Other modes remain documented for later releases.
 
 ### Troubleshoot
 
@@ -25,6 +27,10 @@ Explains the concept for adults or proposes age-appropriate language for childre
 ### Adapt
 
 Selects an approved adaptation for difficulty, duration, participants, or materials. It does not alter the safety core.
+
+### Replace planned activity
+
+Before a session, returns at most three alternatives that already pass deterministic eligibility and safety filters. During an active session, ending the current activity and replacing it is never silent and requires explicit adult confirmation.
 
 ### Simplify
 
@@ -111,3 +117,5 @@ requires_adult_confirmation
 - **AI-106:** The companion can say “I don't know” and offer a safe verification.
 - **AI-107:** The unavailability of the model does not block the published guide.
 - **AI-108:** Any provider used by a mode must be approved for the type of data and media sent.
+- **AI-109:** The pilot accepts text only and asks at most one clarification question before returning safe options or `safe_stop`.
+- **AI-110:** The model never applies a change; the adult confirms an exact server-validated option identifier.

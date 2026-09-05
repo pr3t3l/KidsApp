@@ -55,18 +55,19 @@ flowchart TD
 
 | Specification | Status | Controls | Backend relevance |
 |---|---|---|---|
-| [Learning framework](01-learning/learning-framework.md) | Review | Domains, observable skills, concepts, progression, and activity cycle | Defines IDs and semantics used by content and recommendation |
-| [Learner Model](01-learning/learner-model.md) | Review | Per-child educational memory and prohibited interpretations | Defines derived learner records and correction behavior |
-| [Family Model](01-learning/family-model.md) | Draft | Shared time, participants, inventory, preferences, and constraints | Defines planning and recommendation context |
-| [Learning Graph](01-learning/learning-graph.md) | Draft | Skills, concepts, prerequisites, and relationships | Future recommendation and explanation graph |
-| [Evidence Model](01-learning/evidence-model.md) | Review | Exposure, observation, evidence, inference, confidence, and attribution | Governs persistence and inference invariants |
+| [Learning framework](<01-learning/SPEC-01 — Learning Framework.md>) | Review | Domains, observable skills, concepts, progression, and activity cycle | Defines IDs and semantics used by content and recommendation |
+| [Learner Model](<01-learning/SPEC-02 — Learner Model.md>) | Review | Per-child educational memory and prohibited interpretations | Defines derived learner records and correction behavior |
+| [Family Model](<01-learning/SPEC-03 — Family Model.md>) | Draft | Shared time, participants, inventory, preferences, and constraints | Defines planning and recommendation context |
+| [Learning Graph](<01-learning/SPEC-04—Learning Graph.md>) | Draft | Skills, concepts, prerequisites, and relationships | Future recommendation and explanation graph |
+| [Evidence Model](<01-learning/SPEC-07 — Evidence Model.md>) | Review | Exposure, observation, evidence, inference, confidence, and attribution | Governs persistence and inference invariants |
 
 ## 02 — Content and activity library
 
 | Specification | Status | Controls | Backend relevance |
 |---|---|---|---|
-| [Activity Content Model](02-content/activity-schema.md) | Review | Required fields in an immutable `ActivityVersion` | Primary catalog and session input contract |
+| [Activity Content Model](<02-content/SPEC-05 activity-schema.md>) | Review | Required fields in an immutable `ActivityVersion` | Primary catalog and session input contract |
 | [Activity Narrative Contract](02-content/activity-narrative-contract.md) | Review | Causal states, transitions, material functions, and participant cycles | Validates continuity before content publication |
+| [Activity Library Dataset Map](02-content/activity-library-dataset-map.md) | Draft | Complete authoring, version, localization, safety, editorial, delivery, and index dataset | Defines the canonical content data surface and its representations |
 | [Activity lifecycle](02-content/activity-lifecycle.md) | Draft | Draft, review, pilot, publish, retire, and audit states | Defines editorial workflow and catalog eligibility |
 | [Editorial guidelines](02-content/editorial-guidelines.md) | Draft | Writing, localization, scientific clarity, and accessibility | Governs validation and editorial tooling |
 | [Library strategy](02-content/library-strategy.md) | Draft | Content balance, sourcing, calibration, and production cadence | Shapes catalog metadata and portfolio reporting |
@@ -117,6 +118,7 @@ flowchart TD
 |---|---|---|---|
 | [Conceptual model](06-data/conceptual-model.md) | Draft | Aggregates, relationships, invariants, and domain events | Starting point for persistence design |
 | [Data dictionary](06-data/data-dictionary.md) | Draft | Entities, representative fields, ownership, and sensitivity | Input to schema design and privacy classification |
+| [Logical database schema](06-data/logical-database-schema.md) | Draft | Vendor-neutral tables, relationships, constraints, indexes, transactions, and JSON mappings | Backend persistence blueprint pending physical stack decisions |
 | [Permissions](06-data/permissions.md) | Draft | Family and editorial roles, least privilege, and audit | Source for server authorization policies |
 | [Retention](06-data/retention-policy.md) | Draft | Temporary media, transcripts, observations, export, and deletion | Source for retention jobs and deletion workflows |
 

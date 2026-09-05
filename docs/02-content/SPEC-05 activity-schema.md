@@ -4,11 +4,13 @@
 
 **Status:** Review
 **Version:** 0.1
-**Owner:** Content/Pedagogy/Security
+**Owner:** Content/Pedagogy/Safety
 
 ## 1. Purpose
 
 Define the versioned unit that powers the library, recommender, interface, images, and assessments.
+
+The [Activity Library Dataset Map](activity-library-dataset-map.md) defines the complete authoring, provenance, indexing, and delivery dataset around this immutable unit. The executable shape is [`activity-version.schema.json`](../../schemas/v0.1/activity-version.schema.json).
 
 ## 2. Identity and editorial cycle
 
@@ -19,12 +21,12 @@ Define the versioned unit that powers the library, recommender, interface, image
 | `status` | Yes | Draft, review, pilot, published, retired. |
 | `title` | Yes | Short title for the family. |
 | `slug` | Yes | Readable technical reference. |
-| `summary` | Yes | Promise of a prayer. |
+| `summary` | Yes | One-sentence family-facing promise. |
 | `authors` | Yes | Editorial managers. |
 | `review_records` | Yes to publish | Pedagogical and safety reviews. |
 | `change_log` | Yes | Changes between versions. |
 
-## 2.1 Location
+## 2.1 Localization
 
 Identifiers, relationships, and rules are language-neutral. Each ActivityVersion publishes bundles `en-US` and `es-US` with:
 
@@ -143,7 +145,7 @@ They are distinguished:
 - **Material:** approved replacement.
 - **Extension:** additional challenge published.
 
-Each adaptation declares conditions and limits. The AI ​​selects from approved options; a new proposal remains as an editorial draft.
+Each adaptation declares conditions and limits. AI selects from approved options; a new proposal remains an editorial draft.
 
 ## 9. Safety
 

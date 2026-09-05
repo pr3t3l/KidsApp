@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-system.local/contracts/experience.schema.json",
+  "title": "ExperienceView",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contextId", "activityVersionId", "locale", "title", "summary", "status", "currentBlockId", "blocks"],
+  "properties": {
+    "contextId": { "type": "string", "format": "uuid" },
+    "activityVersionId": { "type": "string" },
+    "locale": { "enum": ["en-US", "es-US"] },
+    "title": { "type": "string" },
+    "summary": { "type": "string" },
+    "status": { "enum": ["planned", "active", "paused", "completed", "cancelled"] },
+    "currentBlockId": { "type": ["string", "null"] },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "required", "payload"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "enum": ["instruction", "safety_notice", "timer", "question", "choice", "evidence", "result"] },
+          "required": { "type": "boolean" },
+          "payload": { "type": "object" }
+        }
+      }
+    }
+  }
+}
