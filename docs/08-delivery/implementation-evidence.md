@@ -4,7 +4,7 @@
 
 **Status:** Review
 **Version:** 1.0
-**Evidence captured:** 5 September 2026, 15:26 EDT
+**Evidence captured:** 5 September 2026, 15:40 EDT
 
 ## Implemented release candidate
 
@@ -27,6 +27,7 @@ The evidence boundary is deliberately narrow: the catalog and demo family are sy
 | Golden set | 80/80 bilingual runs pass across 40 canonical cases |
 | Dependency audits | npm and Python (`pip-audit`) report no known vulnerabilities |
 | Catalog ingestion dry run | 10 activities, 3 adaptations and 22 chunks accepted as `synthetic-demo` |
+| GitHub Actions | [Run 33987646398](https://github.com/pr3t3l/KidsApp/actions/runs/33987646398) passed validation, dependency audits and both Docker image builds |
 
 The reproducible aggregate command is `npm run validate`. The migration also passed an independent PostgreSQL 17 grammar parse with `pglast` 7.7; that parser was used as a local verification aid and is not a runtime dependency.
 
@@ -63,7 +64,6 @@ The temporary public deployment was an anonymous synthetic-only proof and expire
 | Authenticated cross-family test against Supabase | Requires the dedicated migrated project and two invited synthetic adult accounts. |
 | Live-model quality run | Requires approved OpenRouter credentials and an eligible provider route. |
 | Logfire trace for this release | Requires the production token and a deployed live-model request. |
-| Container image build | Compose configuration is valid, but Windows was locked and Docker Desktop could not complete its startup UI; GitHub Actions performs the Linux build after push. |
 | Physical publication gate | Each exact activity version still requires founder execution and the required editorial/safety evidence. |
 | Submission timing | The stated 3 September deadline has passed; acceptance requires coordination with Lía/Antonio. |
 
