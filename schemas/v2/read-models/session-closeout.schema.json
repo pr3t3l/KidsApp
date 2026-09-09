@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-learning.example/schemas/v2/read-models/session-closeout.schema.json",
+  "title": "SessionCloseout",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sessionId", "participants"],
+  "properties": {
+    "sessionId": { "type": "string", "format": "uuid" },
+    "participants": {
+      "type": "array", "minItems": 1, "maxItems": 4,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["learnerId", "alias", "skillId", "question", "anchors", "canSkip"],
+        "properties": {
+          "learnerId": { "type": "string", "format": "uuid" }, "alias": { "type": "string", "maxLength": 40 }, "skillId": { "type": "string" },
+          "question": { "type": "string" }, "anchors": { "type": "array", "minItems": 5, "maxItems": 5, "items": { "type": "string" } }, "canSkip": { "const": true }
+        }
+      }
+    }
+  }
+}

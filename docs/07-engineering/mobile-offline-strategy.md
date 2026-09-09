@@ -1,66 +1,65 @@
-> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`. The Spanish [historical record](../../historical/es/docs/07-engineering/mobile-offline-strategy.md) is retained for traceability; all new requirements, decisions, and changes belong in English.
+> **Canonical English document.** This document is normative from 18 August 2026 under `DEC-052`.
 
 # Mobile and offline strategy
 
-**Status:** Draft
-**Version:** 0.1
+**Status:** Review
+**Version:** 1.0
 
-## Proposed direction
+## Implemented pilot boundary
 
-The application is online-first and offline-friendly. Recommendation and AI do not run fully offline in the MVP, but an already downloaded activity continues when connectivity is lost.
+The PWA is online-first and offline-resilient for a session already opened on the device. Recommendation, authentication, new content and AI do not run offline. The exact active activity, current step and local progress continue through connection loss and a full browser reload.
 
-## Requires connection
+## Requires a connection
 
-- Create/invite adults and check permissions.
-- Generate or recalculate plans.
-- AI Companion and voice/photo processing.
-- Publish or moderate community.
-- Synchronize Learner Models between devices.
-- Download new or retired content.
-- Verify entitlement when required by the platform.
+- Invite/authenticate adults and refresh permissions.
+- Create or recalculate plans.
+- Download new, changed or retired activity versions.
+- Start a session that has not already been prepared on the device.
+- Use the AI companion or create an adaptation/replacement proposal.
+- Synchronize journey, feedback or privacy requests.
+- Verify future entitlements.
 
-## Available offline after download
+## Available offline
 
-- Weekly plan.
-- Exact assigned ActivityVersion.
-- Materials, preparation, and safety controls.
-- Confirmed roles and objectives.
-- Steps and images.
-- Session progress.
-- Ratings and text notes pending synchronization.
+- Application shell previously controlled by the service worker.
+- Exact active session snapshot and locale.
+- Materials, preparation, safety, participant guidance and activity blocks already downloaded.
+- Current-step navigation and pause/progress events.
+- Close-out event for later synchronization.
+- Visible count of pending synchronization work.
 
-Offline voice recording requires explicit consent and a defined deletion policy. For the MVP, disable voice capture until connectivity returns so audio cannot remain locally without a bounded processing path.
+## Local protection
 
-## Offline pack
+The active-session envelope and pending event queue live in IndexedDB. Payloads are encrypted with AES-GCM using a non-extractable Web Crypto key stored separately in IndexedDB. Initialization vectors are unique per envelope. Session content is not copied into `localStorage`.
 
-Content:
+This protects against casual storage inspection and accidental plaintext persistence; it is not represented as hardware-backed protection on every browser. Native packaging must replace or strengthen this boundary with platform secure storage where available.
 
-- Manifest with version and hash.
-- Minimum data on participants/assignments.
-- Required localized bundles.
-- Optimized visual resources.
-- Previously chosen restrictions and adaptations.
-- Download/expiration date.
+The service worker caches versioned same-origin shell assets only. It explicitly excludes `/v1/`, authentication, Supabase and cross-origin requests so private/API responses cannot enter the general cache.
 
-It does not contain all Learner Model history or unnecessary private media.
+## Synchronization
 
-## Sync
+- Every queued event has a client-generated idempotency key.
+- Events are replayed in order after reconnection.
+- A network failure remains queued for retry.
+- A server rejection remains visible with its reason and is not silently discarded.
+- A successful event is removed only after server acknowledgement.
+- The server revalidates authorization, session state, exact version and domain invariants.
+- A retired or superseded version cannot be silently replaced inside an active snapshot.
 
-- Encrypted local queue.
-- Idempotent events with client identifiers.
-- Explicit resolution of assignment, close-out, and correction conflicts.
-- The server validates permissions and invariants upon receipt.
-- When a downloaded version has been retired, reconnection shows a clear warning and applies the documented retirement policy. The exact emergency behavior must be approved before production.
+## Verified browser behavior
 
-## Subscription
+The checked-in Edge/CDP production-build scenario verifies connection loss, encrypted IndexedDB state, absence from `localStorage`, offline shell reload, exact-step restoration and queue flush after reconnection. Unit tests also cover encryption, service-worker exclusions and retry/rejection behavior.
 
-An artificial “connect once a month” rule is not designed. Access uses store and backend receipts/entitlements with a configurable grace period. A downloaded activity should not stop in the middle of a session because of a temporary failed check.
+## Deliberate exclusions
+
+Voice, photos, community and offline AI are outside the pilot. They are not silently retained for later processing. Payments and native receipt grace periods are also deferred until after family-pilot correction and store packaging.
 
 ## Requirements
 
-- **OFF-001:** A downloaded session continues without a network.
-- **OFF-002:** Sensitive local data is encrypted using secure capabilities of the device.
-- **OFF-003:** Synchronization is idempotent and auditable.
-- **OFF-004:** The user sees what is available and what is pending.
-- **OFF-005:** The application does not promise AI or community features while offline.
-- **OFF-006:** An entitlement interrupt does not break a session in progress.
+- **OFF-001:** A downloaded active session continues through network loss and reload.
+- **OFF-002:** Sensitive local session/event payloads are encrypted at rest with a non-extractable browser key.
+- **OFF-003:** Synchronization is idempotent, ordered and auditable.
+- **OFF-004:** The adult sees offline and pending/rejected states.
+- **OFF-005:** The product does not promise AI or unavailable network features offline.
+- **OFF-006:** Authentication or future entitlement checks do not break a session already in progress.
+- **OFF-007:** The service worker never caches API/authentication responses.

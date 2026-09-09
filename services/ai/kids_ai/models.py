@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Any, Literal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
@@ -25,7 +26,16 @@ class ContentBlock(ApiModel):
     payload: dict[str, Any]
 
 
+class VersionedContentBlock(ApiModel):
+    id: str
+    kind: Literal["prep", "purpose", "safety", "safety_notice", "contribution", "instruction", "timer", "question", "choice", "evidence", "result", "closeout"]
+    version: int = Field(ge=1, le=20)
+    required: bool = True
+    data: dict[str, Any]
+
+
 class ExperienceView(ApiModel):
+    family_id: UUID | None = Field(default=None, exclude=True)
     context_id: UUID
     activity_version_id: str
     locale: Locale
@@ -33,7 +43,7 @@ class ExperienceView(ApiModel):
     summary: str
     status: Literal["planned", "active", "paused", "completed", "cancelled"]
     current_block_id: str | None
-    blocks: list[ContentBlock]
+    blocks: list[ContentBlock | VersionedContentBlock]
 
 
 class InteractionRequest(ApiModel):
@@ -99,3 +109,7 @@ class Principal(ApiModel):
     user_id: UUID
     access_token: str = ""
     is_demo: bool = False
+    platform_roles: tuple[Literal["platform_owner", "editorial_specialist", "support_operator"], ...] = ()
+    aal: Literal["aal1", "aal2"] = "aal1"
+    authenticated_at: datetime | None = None
+    mfa_verified_at: datetime | None = None

@@ -1,0 +1,98 @@
+{
+  "schema": "activity-editorial@2",
+  "activityId": "ACT-9001",
+  "version": "0.2.0",
+  "legacyHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "authors": [
+    "pilot-content-team"
+  ],
+  "requiredGates": [
+    "education",
+    "safety",
+    "language",
+    "visual",
+    "publisher"
+  ],
+  "reviews": [],
+  "pilots": [],
+  "changes": [
+    {
+      "entryId": "CHANGE-ACT9001-020",
+      "version": "0.2.0",
+      "occurredAt": "2026-08-17T12:00:00Z",
+      "summary": {
+        "en-US": "Created the executable contract example.",
+        "es-US": "Se creó el ejemplo de contrato ejecutable."
+      }
+    }
+  ],
+  "sources": [],
+  "visuals": [
+    {
+      "id": "VIS-01",
+      "assetVersion": "0.1.0",
+      "type": "materials",
+      "style": "photorealistic",
+      "mustShow": [
+        "six equal paper sheets",
+        "two supports",
+        "twenty large blocks"
+      ],
+      "mustNotShow": [
+        "coins",
+        "glass",
+        "faces"
+      ],
+      "source": "ai_generated",
+      "rightsClaim": "Internal pilot generation; human approval required.",
+      "linkedSteps": [
+        "STEP-01",
+        "STEP-07"
+      ],
+      "approvalState": "review_required"
+    },
+    {
+      "id": "VIS-02",
+      "assetVersion": "0.1.0",
+      "type": "step",
+      "style": "instructional_diagram",
+      "mustShow": [
+        "same paper size",
+        "same span"
+      ],
+      "mustNotShow": [
+        "tape",
+        "unsafe load"
+      ],
+      "source": "internal_diagram",
+      "rightsClaim": "Owned by the project.",
+      "linkedSteps": [
+        "STEP-02",
+        "STEP-03",
+        "STEP-05"
+      ],
+      "approvalState": "review_required"
+    },
+    {
+      "id": "VIS-03",
+      "assetVersion": "0.1.0",
+      "type": "expected_result",
+      "style": "instructional_diagram",
+      "mustShow": [
+        "one block at a time",
+        "load near center"
+      ],
+      "mustNotShow": [
+        "guaranteed count",
+        "heavy weights"
+      ],
+      "source": "internal_diagram",
+      "rightsClaim": "Owned by the project.",
+      "linkedSteps": [
+        "STEP-04",
+        "STEP-06"
+      ],
+      "approvalState": "review_required"
+    }
+  ]
+}

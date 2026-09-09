@@ -3,7 +3,7 @@
 # Traceability
 
 **Status:** Active
-**Version:** 0.4
+**Version:** 0.6
 
 ## Traceability chain
 
@@ -51,6 +51,19 @@ Principle
 | Production-shaped CAG/RAG | AI-RUN-003/006, AI-GW-001/006, DEC-056 | Session context → filtered hybrid retrieval → validated response | ActivityChunk with FTS/vector plus minimized interaction telemetry | VS-06 | 80-run bilingual golden suite and retrieval gates |
 | Flexible activity rendering | DATA-LIB-001/017, DEC-053/054 | ActivityVersion → effective snapshot → block registry | ActivityVersionCore, ContentBlock, immutable delivery snapshot | VS-01/03 | TypeScript build and fail-closed unknown-block tests |
 | Private pilot tenancy | P-09/11, AI-RUN-002/006, DEC-060 | Magic link → family context → companion mutation | FamilyMembership, RLS, AuditEvent, PreferenceSignal | VS-01/05/06 | cross-family, confirmation, retention and deletion tests |
+| Administrative role separation | ADM-001/005, OPS-001/009, DEC-063 | Admin sign-in → role workspace → exact privileged action | PlatformRole, RoleAssignment, SupportGrant, AuditEvent | VS-08 | MFA/reauth, server claims, permission-denial and audit tests |
+| Compact activity V2 | ACT2-001/004, DATA-LIB-001/017, DEC-064 | Editorial compile → immutable snapshot → minimal family projection | ActivityCoreV2, ActivityLocaleV2, ContentBlockV2, migration report | VS-01/03/08 | schema, conditional invariant, byte/token and semantic migration tests |
+| Operation-scoped AI routing | AI-OPS-001/006, AI-GW-001/006, DEC-065 | Candidate route → synthetic test → golden eval → atomic activate/rollback | AIOperation, ProviderConnection, ModelDeployment, RoutingPolicyVersion | VS-06/08 | provider fixtures, incompatibility, fallback, canary, activation and rollback tests |
+| AI usage and cost governance | AI-OPS-003/005, DEC-062/065 | Model call → normalized result → usage ledger → reconcile/budget action | AIUsageEvent, AIRateCard, AICostReconciliation, AIBudget | VS-06/08 | metadata, redaction, rate-version, no-double-count and threshold tests |
+| Explainable catalog gaps | CAT-201/204, DEC-066 | Coverage matrix → gap detail → editable authoring brief | CoverageTarget, CoverageSnapshot, CatalogGap, GapNearMiss | VS-05/08 | primary/secondary, state, diversity, demand, quality and reason fixtures |
+| AI-assisted activity factory | ACT2-001/004, OPS-001/009, DEC-068 | Verified source → staged draft → critics → human gates → release | EditorialJob, SourceEvidence, RightsRecord, ReviewRecord, Release | VS-08/10 | rights blocking, stage budgets, invalidated signatures and no-AI-approval tests |
+| Complete supervised family pilot | FAM-201/205, PRD-001/108, DEC-067/069 | Onboarding → plan → activity → companion → close → journey/feedback/privacy | Family, Learner, Plan, Session, AdultGate, Feedback, PrivacyRequest | VS-01–06/09 | mobile E2E, inactivity/reauth, offline, close-out timing, export/delete and tenancy tests |
+| Truthful evaluation accounting | AI-EVAL-001/006, DEC-059/070 | Evaluation request → executed cases/calls → separated report | GoldenCase, EvaluationRun, UsageEvent, evidence class | VS-06/08 | asserted executed count, bilingual coverage and no fabricated provider calls |
+| Recent privileged MFA | ADM-001/005, DEC-063/071 | Sign-in → TOTP assertion → time-bounded owner mutation | Principal.authenticatedAt, Principal.mfaVerifiedAt, AMR, AuditEvent | VS-08 | password-after-TOTP regression, stale/fresh TOTP and RLS helper tests |
+| Preview-safe companion mutation | AI-RUN-001/007, DEC-055/067/072 | Preparation preview → proposal → adult gate/session → approved change | ExperienceContext.mode, PendingProposal, immutable SessionSnapshot | VS-03/06 | pre-start mutation, visited-block preservation, interruption and idempotency tests |
+| Multi-scope AI budgets | AI-OPS-003/005, DEC-062/065/073 | Preflight → evaluate all scopes → primary/fallback/block | AIBudget, RoutingPolicyVersion, UsageEvent | VS-06/08 | global/environment/operation/provider/model/job limits and stopped-primary fallback tests |
+| Family risk fail-closed | P-10, SAFE-001/008, DEC-048/058/074 | Editorial catalog → gate eligibility → family card/recommendation | ActivityVersion.safetyLevel, ReviewGate, ReleaseChannel | VS-01/05/08 | 13 editorial fixtures, exactly 12 A/B family cards and ACT-0003 exclusion tests |
+| Encrypted offline continuity | OFF-001/007, DEC-019/075 | Active session → encrypted queue → offline reload → reconnect/replay | IndexedDB envelope/key/event, idempotency key, sync result | VS-09 | Web Crypto tests plus real-browser loss/reload/exact-step/re-sync scenario |
 
 ## Rule for future tasks
 

@@ -75,7 +75,7 @@ No translation changes a document's status. A file must not be marked `Approved`
 
 The [family mobile prototype v0.6](prototypes/family-mobile-v0.1/index.html) supports English and Spanish across the five-day founder pilot, including planning, activity detail, consolidated shopping, learning focuses, preparation, six-stage facilitation, contextual help, close-out, installation, and offline shell behavior. It uses synthetic data and `Draft` or candidate content; it is not a production family delivery.
 
-The final-project implementation lives in [`apps/web`](apps/web) and [`services/ai`](services/ai). It adds an authenticated, block-rendered React PWA and a bounded FastAPI companion with CAG, hybrid-RAG contracts, explicit adult confirmation and minimized telemetry.
+The final-project implementation lives in [`apps/web`](apps/web) and [`services/ai`](services/ai). It includes bilingual public, family and administrative React experiences; a bounded FastAPI companion; a staged editorial factory; operation-scoped AI routing; compact Activity V2 contracts; CAG/hybrid-RAG; explicit adult confirmation; encrypted offline continuity; and minimized telemetry.
 
 ## Problem and product outcome
 
@@ -87,14 +87,18 @@ The primary pilot outcome is the percentage of planned activities completed, wit
 
 ```mermaid
 flowchart LR
-  Adult[Adult PWA] -->|Supabase JWT| API[FastAPI]
-  API --> CAG[CAG context builder]
-  CAG --> Graph[Bounded LangGraph]
-  Graph --> RAG[FTS + pgvector RAG]
-  Graph --> Gateway[OpenRouter gateway]
-  API -->|same user identity| DB[(Supabase + RLS)]
+  Adult[Adult family PWA] -->|Supabase JWT| API[FastAPI]
+  Admin[Owner / specialist workspace] -->|MFA + role| API
+  API --> CAG[Exact-version CAG]
+  CAG --> Companion[Bounded companion graph]
+  Companion --> RAG[FTS + pgvector + RRF]
+  API --> Factory[Editorial multi-agent graph]
+  Companion --> Gateway[Operation-scoped ModelGateway]
+  Factory --> Gateway
+  Gateway --> Providers[OpenRouter / OpenAI / Anthropic]
+  API -->|same user identity| DB[(Supabase + RLS + Vault)]
   API -. minimized traces .-> Logfire[Logfire]
-  Graph -->|pending proposal| DB
+  Companion -->|pending proposal| DB
   Adult -->|confirm optionId| API
 ```
 
@@ -103,6 +107,8 @@ flowchart LR
 - RAG searches only published, locale-specific chunks for the exact activity. Replacement hard filters run before ranking.
 - A mutation is a server-side pending proposal followed by an idempotent adult decision.
 - `ContentBlock[]` and the frontend renderer registry allow activity structures to evolve without rebuilding the whole screen or database.
+- Provider/model selection is versioned per `operation_key`; the family UI cannot select or override it.
+- Editorial agents may author and critique, but deterministic controls and humans own rights, safety and publication.
 
 Detailed decisions are in [CAG, RAG and bounded agent runtime](docs/05-ai/cag-rag-and-agent-runtime.md), [Production runtime](docs/07-engineering/production-runtime.md), and the [Decision log](docs/08-delivery/decision-log.md).
 
@@ -114,7 +120,7 @@ Detailed decisions are in [CAG, RAG and bounded agent runtime](docs/05-ai/cag-ra
 docker compose up --build
 ```
 
-Open `http://localhost:8080`. Demo mode is synthetic, requires no child or family data, and continues with deterministic guidance when no OpenRouter key is present.
+Open `http://localhost:8080`. Demo mode is synthetic, requires no child or family data, and continues with deterministic guidance when no provider key is present.
 
 ### Development
 
@@ -128,23 +134,26 @@ uvicorn services.ai.app:app --reload
 npm run dev --workspace @kids/web
 ```
 
-Copy `.env.example` to an ignored environment file. Never expose `SUPABASE_SECRET_KEY` or `OPENROUTER_API_KEY` as `VITE_` variables.
+Copy `.env.example` to an ignored environment file. Never expose `SUPABASE_SECRET_KEY`, OpenRouter, OpenAI or Anthropic credentials as `VITE_` variables.
 
 ## API
 
-FastAPI exposes interactive OpenAPI documentation at `/docs` and three product endpoints:
+FastAPI exposes interactive OpenAPI documentation at `/docs`. Its route families include:
 
 - `GET /v1/experiences/{contextId}`
 - `POST /v1/companion/interactions`
 - `POST /v1/companion/proposals/{proposalId}/decision`
+- `/v1/families/*`, `/v1/catalog`, `/v1/sessions/*` and `/v1/adult-gate/*`
+- `/v1/admin/*` for people, settings, incidents, audit, coverage, providers, routing, usage, costs and budgets
+- `/v1/editorial/*` for source research, staged jobs, reviews, pilots, release and reindexing
 
 The JSON wire contracts are versioned under [`packages/contracts`](packages/contracts). Production calls require an adult Supabase bearer token and family-scoped RLS access.
 
 ## Data model and security
 
-The [Supabase migration](supabase/migrations/202609050001_final_project_core.sql) defines family membership, minimal Learners, immutable activity versions, RAG chunks, experience snapshots, pending proposals, idempotent decisions, preference signals, minimized interactions, provider eligibility and audit events. The packaged synthetic catalog lives at [`services/ai/data/activities/catalog.json`](services/ai/data/activities/catalog.json) so the API, ingestion command and deployment share one source.
+The 11 forward-only [Supabase migrations](supabase/migrations) define private family tenancy, minimal Learners, immutable activity versions, RAG chunks, experience snapshots, pending proposals, editorial workflow, pilot cohorts, explainable coverage, provider deployments, route versions, usage/cost/budget ledgers, privacy requests and audit events. The packaged synthetic catalog lives at [`services/ai/data/activities/catalog.json`](services/ai/data/activities/catalog.json) so the API, ingestion command and deployment share one source.
 
-Every public table has RLS. The browser receives only a publishable Supabase key. Raw companion messages are not persisted by default; audit stores intent, outcome, source IDs, route and latency. Production catalog ingestion requires founder execution evidence for each `pilot` or `production` version.
+Every public table has RLS, an explicit policy and explicit grants. The browser receives only a publishable Supabase key; provider secrets are backend-only and write-only from the administrative UI. Raw companion messages are not persisted by default; audit stores structured intent, outcome, source IDs, route and latency. Production catalog ingestion requires founder execution evidence for each `pilot` or `production` version.
 
 ## Evaluation and tests
 
@@ -155,7 +164,7 @@ python -m scripts.ingest_catalog --release-channel synthetic-demo --dry-run
 
 Validation includes legacy schema/domain/document checks, React tests/build, FastAPI tests and [40 golden scenarios](evals/golden-set.json) in both languages (80 runs). The release gates and failure taxonomy are documented in [Golden set v1](docs/05-ai/golden-set-v1.md).
 
-The recorded test results and the boundary between completed implementation and external/human gates are in [Final-project implementation evidence](docs/08-delivery/implementation-evidence.md).
+The recorded test results, real-browser offline proof and the boundary between completed implementation and external/human gates are in [Final-project implementation evidence](docs/08-delivery/implementation-evidence.md). The [LIDR course concept evidence](docs/08-delivery/lidr-course-concept-evidence.md) maps the implementation to every course session.
 
 ## Deployment
 
@@ -168,13 +177,14 @@ No deployment credential is committed. The current historical static prototype r
 
 ## Known limitations and next steps
 
-- The ten executable activity records are synthetic evaluation fixtures, not physical-publication evidence.
+- The repository contains 13 bilingual synthetic editorial fixtures. Twelve risk-A/B records are exposed to the family demo; risk-C `ACT-0003` remains editorial-only until its independent gate.
 - Real-family activation requires founder execution, exact content hashes, safety/editorial gates and a state applicability review.
 - The deterministic golden suite does not replace human usefulness grading or live-model groundedness evaluation.
 - Confirmed preference signals are recorded but do not personalize replacement ranking until that feedback loop is evaluated.
-- Voice, photos, community, payments, native mobile packaging, multi-agent orchestration and autonomous content generation are intentionally outside this release.
+- RAGAS itself, user-facing token streaming, general LLM response caching, voice, photos, community, payments and native mobile packaging are intentionally outside this release or require evidence before adoption.
+- Editorial multi-agent orchestration is implemented; autonomous approval and publication are intentionally forbidden.
 - Vercel Hobby is suitable only for personal academic validation; commercial operation requires a suitable plan and legal/privacy review.
 
 ## Next milestone
 
-Run the exact-version founder activity checks, connect a Supabase project and both Vercel projects, execute live-model evaluation through approved OpenRouter routes, and record the resulting deployment/video evidence in [Final project delivery](docs/08-delivery/final-project-delivery.md).
+Publish the validated branch, connect a dedicated Supabase project and both Vercel projects, enroll owner MFA, evaluate approved live OpenRouter/OpenAI/Anthropic routes, run the exact-version human/content gates and record the deployment, video and release-trace evidence in [Final project delivery](docs/08-delivery/final-project-delivery.md).

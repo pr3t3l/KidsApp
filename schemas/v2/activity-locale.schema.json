@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-learning.example/schemas/v2/activity-locale.schema.json",
+  "title": "ActivityLocaleV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "activityId", "version", "locale", "content", "learn", "materials", "flow", "safety", "adaptations", "closeout", "visuals"],
+  "properties": {
+    "schema": { "const": "activity-locale@2" },
+    "activityId": { "$ref": "#/$defs/id" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "locale": { "enum": ["en-US", "es-US"] },
+    "content": { "$ref": "#/$defs/content" },
+    "learn": { "$ref": "#/$defs/learn" },
+    "materials": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/material" } },
+    "flow": { "$ref": "#/$defs/flow" },
+    "safety": { "$ref": "#/$defs/safety" },
+    "adaptations": { "type": "array", "items": { "$ref": "#/$defs/adaptation" } },
+    "closeout": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/closeout" } },
+    "visuals": { "type": "array", "items": { "$ref": "#/$defs/visual" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1, "maxLength": 100, "pattern": "^[A-Za-z0-9][A-Za-z0-9@._:-]*$" },
+    "text": { "type": "string", "minLength": 1, "maxLength": 4000 },
+    "textList": { "type": "array", "items": { "$ref": "#/$defs/text" } },
+    "nonEmptyTextList": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/text" } },
+    "content": {
+      "type": "object", "additionalProperties": false,
+      "required": ["title", "summary", "openingQuestion", "adultBrief", "adultDetail", "childExplanation", "reflections"],
+      "properties": {
+        "title": { "$ref": "#/$defs/text" },
+        "summary": { "$ref": "#/$defs/text" },
+        "openingQuestion": { "$ref": "#/$defs/text" },
+        "adultBrief": { "$ref": "#/$defs/text" },
+        "adultDetail": { "$ref": "#/$defs/text" },
+        "childExplanation": { "$ref": "#/$defs/text" },
+        "reflections": { "$ref": "#/$defs/nonEmptyTextList" }
+      }
+    },
+    "named": {
+      "type": "object", "additionalProperties": false, "required": ["id", "name"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "name": { "$ref": "#/$defs/text" } }
+    },
+    "skill": {
+      "type": "object", "additionalProperties": false, "required": ["id", "name", "evidence", "nonEvidence"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "name": { "$ref": "#/$defs/text" },
+        "evidence": { "$ref": "#/$defs/nonEmptyTextList" },
+        "nonEvidence": { "$ref": "#/$defs/nonEmptyTextList" }
+      }
+    },
+    "guidance": {
+      "type": "object", "additionalProperties": false, "required": ["skill", "rationale", "simplify", "extend"],
+      "properties": {
+        "skill": { "$ref": "#/$defs/id" }, "rationale": { "$ref": "#/$defs/text" },
+        "simplify": { "$ref": "#/$defs/text" }, "extend": { "$ref": "#/$defs/text" }
+      }
+    },
+    "learn": {
+      "type": "object", "additionalProperties": false,
+      "required": ["goal", "method", "concepts", "skills", "decisions", "lookFors", "guidance"],
+      "properties": {
+        "goal": { "$ref": "#/$defs/text" }, "method": { "$ref": "#/$defs/text" },
+        "concepts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/named" } },
+        "skills": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/skill" } },
+        "decisions": { "$ref": "#/$defs/textList" }, "lookFors": { "$ref": "#/$defs/textList" },
+        "guidance": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/guidance" } }
+      }
+    },
+    "substitute": {
+      "type": "object", "additionalProperties": false, "required": ["id", "name", "conditions", "rationale"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "name": { "$ref": "#/$defs/text" },
+        "conditions": { "$ref": "#/$defs/text" }, "rationale": { "$ref": "#/$defs/text" }
+      }
+    },
+    "material": {
+      "type": "object", "additionalProperties": false, "required": ["id", "name", "prep", "safety", "substitutes"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "name": { "$ref": "#/$defs/text" },
+        "prep": { "$ref": "#/$defs/text" }, "safety": { "$ref": "#/$defs/text" },
+        "substitutes": { "type": "array", "items": { "$ref": "#/$defs/substitute" } }
+      }
+    },
+    "localizedId": {
+      "type": "object", "additionalProperties": false, "required": ["id", "text"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "text": { "$ref": "#/$defs/text" } }
+    },
+    "materialUse": {
+      "type": "object", "additionalProperties": false, "required": ["material", "purpose"],
+      "properties": { "material": { "$ref": "#/$defs/id" }, "purpose": { "$ref": "#/$defs/text" } }
+    },
+    "cue": {
+      "type": "object", "additionalProperties": false, "required": ["id", "behavior", "doNotInfer"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "behavior": { "$ref": "#/$defs/text" }, "doNotInfer": { "$ref": "#/$defs/text" }
+      }
+    },
+    "problem": {
+      "type": "object", "additionalProperties": false, "required": ["problem", "safeResponse"],
+      "properties": { "problem": { "$ref": "#/$defs/text" }, "safeResponse": { "$ref": "#/$defs/text" } }
+    },
+    "step": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "title", "purpose", "transition", "instruction", "adultActions", "prompts", "participantActions", "materialUses", "cues", "result", "success", "problems", "resume"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "title": { "$ref": "#/$defs/text" },
+        "purpose": { "$ref": "#/$defs/text" }, "transition": { "$ref": "#/$defs/text" },
+        "instruction": { "$ref": "#/$defs/text" },
+        "adultActions": { "type": "array", "items": { "$ref": "#/$defs/localizedId" } },
+        "prompts": { "type": "array", "items": { "$ref": "#/$defs/localizedId" } },
+        "participantActions": { "type": "array", "items": { "$ref": "#/$defs/localizedId" } },
+        "materialUses": { "type": "array", "items": { "$ref": "#/$defs/materialUse" } },
+        "decision": { "$ref": "#/$defs/text" },
+        "cues": { "type": "array", "items": { "$ref": "#/$defs/cue" } },
+        "result": { "$ref": "#/$defs/text" }, "success": { "$ref": "#/$defs/text" },
+        "problems": { "type": "array", "items": { "$ref": "#/$defs/problem" } },
+        "warning": { "$ref": "#/$defs/text" }, "resume": { "$ref": "#/$defs/text" }
+      }
+    },
+    "role": {
+      "type": "object", "additionalProperties": false, "required": ["id", "name", "contribution", "responsibilities"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "name": { "$ref": "#/$defs/text" },
+        "contribution": { "$ref": "#/$defs/text" }, "responsibilities": { "$ref": "#/$defs/textList" }
+      }
+    },
+    "group": {
+      "type": "object", "additionalProperties": false, "required": ["size", "notes"],
+      "properties": { "size": { "type": "integer", "minimum": 1, "maximum": 4 }, "notes": { "$ref": "#/$defs/text" } }
+    },
+    "flow": {
+      "type": "object", "additionalProperties": false, "required": ["states", "materialFunctions", "roles", "groups", "steps"],
+      "properties": {
+        "states": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/localizedId" } },
+        "materialFunctions": { "type": "array", "items": { "$ref": "#/$defs/materialUse" } },
+        "roles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/role" } },
+        "groups": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/group" } },
+        "steps": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/step" } }
+      }
+    },
+    "hazard": {
+      "type": "object", "additionalProperties": false, "required": ["id", "description", "controls"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "description": { "$ref": "#/$defs/text" },
+        "controls": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedId" } }
+      }
+    },
+    "safety": {
+      "type": "object", "additionalProperties": false, "required": ["supervision", "hazards", "stops", "prohibited", "cleanup"],
+      "properties": {
+        "supervision": { "$ref": "#/$defs/text" },
+        "hazards": { "type": "array", "items": { "$ref": "#/$defs/hazard" } },
+        "stops": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/localizedId" } },
+        "prohibited": { "type": "array", "items": { "$ref": "#/$defs/localizedId" } },
+        "cleanup": { "$ref": "#/$defs/text" }
+      }
+    },
+    "adaptation": {
+      "type": "object", "additionalProperties": false, "required": ["id", "name", "conditions", "changes"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "name": { "$ref": "#/$defs/text" },
+        "conditions": { "$ref": "#/$defs/text" }, "changes": { "$ref": "#/$defs/text" }
+      }
+    },
+    "closeout": {
+      "type": "object", "additionalProperties": false, "required": ["skill", "question", "evidence", "nonEvidence", "external"],
+      "properties": {
+        "skill": { "$ref": "#/$defs/id" }, "question": { "$ref": "#/$defs/text" },
+        "evidence": { "$ref": "#/$defs/textList" }, "nonEvidence": { "$ref": "#/$defs/textList" },
+        "external": { "$ref": "#/$defs/textList" }
+      }
+    },
+    "visual": {
+      "type": "object", "additionalProperties": false, "required": ["id", "purpose", "altText"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "purpose": { "$ref": "#/$defs/text" }, "altText": { "$ref": "#/$defs/text" } }
+    }
+  }
+}

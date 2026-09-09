@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-learning.example/schemas/v2/content-block.schema.json",
+  "title": "ContentBlockV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "version", "required", "data"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "kind": { "enum": ["prep", "purpose", "safety", "safety_notice", "contribution", "instruction", "timer", "question", "choice", "evidence", "result", "closeout"] },
+    "version": { "type": "integer", "minimum": 1, "maximum": 20 },
+    "required": { "type": "boolean" },
+    "data": { "type": "object" }
+  }
+}

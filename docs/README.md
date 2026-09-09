@@ -6,6 +6,10 @@ Use this directory to collaborate in English. The index below mirrors the Spanis
 
 ## Start here
 
+- [Approved product build plan](08-delivery/product-build-plan.md): canonical implementation scope, requirements, sequence and release gates.
+- [Product build status](08-delivery/build-status.md): durable restart point with evidence and external blockers.
+- [Evidence-backed product assessment](08-delivery/pre-build-assessment.md): capability-by-module evaluation and conditional-go rationale.
+- [LIDR course concept evidence](08-delivery/lidr-course-concept-evidence.md): session-by-session implementation, evidence and gap crosswalk for the final project.
 - [Backend collaboration handoff](BACKEND-HANDOFF.md): current state, architecture, frontend/backend boundary, build order, and open decisions.
 - [Specification map](SPECIFICATION-MAP.md): what every specification controls and how the documents fit together.
 - [Activity-library dataset map](02-content/activity-library-dataset-map.md): complete source, version, localization, safety, editorial, and delivery dataset.
@@ -97,10 +101,16 @@ Use this directory to collaborate in English. The index below mirrors the Spanis
 
 ### 08-delivery
 
+- [product build plan](08-delivery/product-build-plan.md)
+- [Spanish reading copy of the product build plan](08-delivery/product-build-plan.es.md)
+- [product build status](08-delivery/build-status.md)
+- [evidence-backed product assessment](08-delivery/pre-build-assessment.md)
 - [decision log](08-delivery/decision-log.md)
 - [founder dry run observation sheet v0.1](08-delivery/founder-dry-run-observation-sheet-v0.1.md)
 - [final project delivery](08-delivery/final-project-delivery.md)
 - [final-project implementation evidence](08-delivery/implementation-evidence.md)
+- [LIDR course concept evidence](08-delivery/lidr-course-concept-evidence.md)
+- [Spanish reading/submission copy of LIDR evidence](../historical/es/docs/08-delivery/lidr-course-concept-evidence.md)
 - [pilot pack v0.1](08-delivery/pilot-pack-v0.1.md)
 - [pilot plan](08-delivery/pilot-plan.md)
 - [roadmap](08-delivery/roadmap.md)

@@ -3,7 +3,7 @@
 # Scope and Release Strategy
 
 **Status:** Draft
-**Version:** 0.2
+**Version:** 0.3
 
 ## Internal pilot
 
@@ -48,8 +48,8 @@ Also includes:
 - Monthly or annual subscription managed by an adult.
 - Seven-day commercial free trial with self-service cancellation.
 - Access of several authorized adults to the same family.
-- Mobile purchases through the App Store and Google Play; Stripe will be used for the family web application when it is built.
-- Both a family web application and an administrative/editorial web portal are planned; the roadmap will decide which one is implemented first, and neither should delay the mobile pilot path.
+- Future mobile purchases through the App Store and Google Play; Stripe remains a post-pilot option for later web subscriptions.
+- The family PWA and administrative/editorial portal are implemented for the private pilot. Native packaging follows only after the 14-day pilot and its corrections.
 
 ## First commercial version
 
@@ -64,7 +64,7 @@ Possible capacities, subject to validation:
 - Collaboration between authorized adults of a family.
 - Collaborative editorial platform for authors and specialized reviewers.
 - Optional private portfolio of projects.
-- Family web application, if tests confirm that it provides value along with the mobile application.
+- Native packaging and commercial family distribution, if the PWA pilot confirms value and operating safety.
 
 ## Out of foreseeable range
 

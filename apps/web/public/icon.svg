@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Kids Learning System">
+  <rect width="512" height="512" rx="112" fill="#101820"/>
+  <path d="M92 122h92v268H92z" fill="#ffc928" transform="skewX(-6)"/>
+  <path d="M226 166h92v224h-92z" fill="#52d5e6" transform="skewX(-6)"/>
+  <path d="M360 96h92v294h-92z" fill="#ff6b56" transform="skewX(-6)"/>
+</svg>

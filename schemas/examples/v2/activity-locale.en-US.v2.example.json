@@ -1,0 +1,656 @@
+{
+  "schema": "activity-locale@2",
+  "activityId": "ACT-9001",
+  "version": "0.2.0",
+  "locale": "en-US",
+  "content": {
+    "title": "Synthetic Paper Bridge Contract",
+    "summary": "Compare paper shapes and improve a bridge so it supports more equal test pieces.",
+    "openingQuestion": "Can one sheet of paper bridge a gap and hold a load?",
+    "adultBrief": "Folds can make paper more resistant to bending.",
+    "adultDetail": "Changing the cross-sectional shape changes how paper resists bending and distributes a load. Results depend on paper, span, folds, and load placement.",
+    "childExplanation": "A flat sheet bends easily. Folds make little walls that help it keep its shape.",
+    "reflections": [
+      "Which shape held more pieces?",
+      "What stayed the same for a fair test?"
+    ]
+  },
+  "learn": {
+    "goal": "Run two comparable tests and use the result to improve one paper shape.",
+    "method": "Changing only the paper shape makes bending resistance visible while equal loads provide evidence for comparison.",
+    "concepts": [
+      {
+        "id": "ENG-CON-STRUCTURAL-RIGIDITY",
+        "name": "Structural rigidity"
+      }
+    ],
+    "skills": [
+      {
+        "id": "MOT-SKL-PRECISE-FOLDING",
+        "name": "Fold paper with control",
+        "evidence": [
+          "Makes repeated folds with decreasing help."
+        ],
+        "nonEvidence": [
+          "Watching an adult fold."
+        ]
+      },
+      {
+        "id": "MAT-SKL-ONE-TO-ONE-COUNTING",
+        "name": "Count one test piece at a time",
+        "evidence": [
+          "Adds one piece and updates the count once."
+        ],
+        "nonEvidence": [
+          "Repeating another person's total."
+        ]
+      },
+      {
+        "id": "ENG-SKL-COMPARE-REDESIGN",
+        "name": "Use test results to redesign",
+        "evidence": [
+          "Names one change and retests it under equal conditions."
+        ],
+        "nonEvidence": [
+          "Changing several conditions without comparison."
+        ]
+      }
+    ],
+    "decisions": [
+      "Choose one paper-shape change for the improvement test."
+    ],
+    "lookFors": [
+      "Notice the amount of help used for each assigned action without grading predictions or physical results."
+    ],
+    "guidance": [
+      {
+        "skill": "MAT-SKL-ONE-TO-ONE-COUNTING",
+        "rationale": "With no prior evidence, one-to-one counting during a real test is a useful starting opportunity for ages five to six.",
+        "simplify": "Use fewer blocks and let the child touch each block while saying the number.",
+        "extend": "Ask the child to recover the total after each waiting interval."
+      },
+      {
+        "skill": "ENG-SKL-COMPARE-REDESIGN",
+        "rationale": "With no prior evidence, proposing, testing, and revising a personal design provides an open challenge for ages seven to eight.",
+        "simplify": "Offer two approved shapes and ask the child to choose one and predict its behavior.",
+        "extend": "Ask the child to justify the redesign with two observations."
+      },
+      {
+        "skill": "MOT-SKL-PRECISE-FOLDING",
+        "rationale": "Folding is available to every participant but is selected as a primary objective only when evidence makes it useful.",
+        "simplify": "Mark guides or stabilize the sheet while the child completes the fold.",
+        "extend": "Ask the child to plan and repeat a chosen fold interval."
+      }
+    ]
+  },
+  "materials": [
+    {
+      "id": "MAT-COPY-PAPER",
+      "name": "Equal copy-paper sheets",
+      "prep": "Use equal undamaged sheets.",
+      "safety": "Stop if a paper cut occurs.",
+      "substitutes": [
+        {
+          "id": "SUB-EQUAL-CONSTRUCTION-PAPER",
+          "name": "Equal construction-paper sheets",
+          "conditions": "Run a new baseline with every bridge shape.",
+          "rationale": "The mechanism remains paper-shape rigidity."
+        }
+      ]
+    },
+    {
+      "id": "MAT-TEST-BLOCKS",
+      "name": "Equal large test blocks",
+      "prep": "Choose pieces too large to swallow.",
+      "safety": "Never use coins, glass, or heavy weights.",
+      "substitutes": []
+    }
+  ],
+  "flow": {
+    "states": [
+      {
+        "id": "STATE-READY",
+        "text": "Materials are prepared and no result is known."
+      },
+      {
+        "id": "STATE-PROBLEM-SEEN",
+        "text": "Every child has observed the flat-sheet baseline."
+      },
+      {
+        "id": "STATE-DESIGNS-CHOSEN",
+        "text": "Every child has selected a paper shape."
+      },
+      {
+        "id": "STATE-CHILD-DESIGNS-READY",
+        "text": "Every child has a labeled bridge ready to test."
+      },
+      {
+        "id": "STATE-CHILD-RESULTS-RECORDED",
+        "text": "Every child completed a test and has a result."
+      },
+      {
+        "id": "STATE-IMPROVEMENT-TESTED",
+        "text": "The group selected and tested one improvement."
+      },
+      {
+        "id": "STATE-EXPLANATION-SHARED",
+        "text": "Every child connected a design to an observation."
+      },
+      {
+        "id": "STATE-CLEARED",
+        "text": "Materials are counted and safely stored."
+      }
+    ],
+    "materialFunctions": [
+      {
+        "material": "MAT-COPY-PAPER",
+        "purpose": "The paper is the bridge; its shape is the changed variable."
+      },
+      {
+        "material": "MAT-TEST-BLOCKS",
+        "purpose": "Each equal block is one load unit added during a test."
+      }
+    ],
+    "roles": [
+      {
+        "id": "ROLE-BUILDER",
+        "name": "Child investigator — folding focus",
+        "contribution": "Completes the full cycle while the adult observes folding support.",
+        "responsibilities": [
+          "Propose, build, test, observe, recommend, and explain a personal bridge."
+        ]
+      },
+      {
+        "id": "ROLE-TESTER",
+        "name": "Child investigator — counting focus",
+        "contribution": "Completes the full cycle while the adult observes one-to-one counting.",
+        "responsibilities": [
+          "Propose, build, test, observe, recommend, and explain a personal bridge."
+        ]
+      },
+      {
+        "id": "ROLE-DESIGNER",
+        "name": "Child investigator — redesign focus",
+        "contribution": "Completes the full cycle while the adult observes evidence-based redesign.",
+        "responsibilities": [
+          "Propose, build, test, observe, recommend, and explain a personal bridge."
+        ]
+      }
+    ],
+    "groups": [
+      {
+        "size": 1,
+        "notes": "The child completes one full personal cycle."
+      },
+      {
+        "size": 2,
+        "notes": "Both children complete a personal cycle; focus changes only the observation cue."
+      },
+      {
+        "size": 3,
+        "notes": "Every child completes a personal cycle; the group shares one improvement."
+      }
+    ],
+    "steps": [
+      {
+        "id": "STEP-01",
+        "title": "Ask",
+        "purpose": "Elicit a prediction before anyone knows the outcome.",
+        "transition": "The observed flat-sheet result creates a concrete problem to solve.",
+        "instruction": "Show the gap and ask what a paper bridge needs to do.",
+        "adultActions": [
+          {
+            "id": "STEP-01-ADULT-1",
+            "text": "Position the supports and show one unloaded flat sheet."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-01-PROMPT-1",
+            "text": "What do you think the paper will do when we add the test pieces?"
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-01-ALL",
+            "text": "Point, say, or draw a prediction without needing to be correct."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Provide the flat baseline bridge."
+          },
+          {
+            "material": "MAT-TEST-BLOCKS",
+            "purpose": "Create equal load units in the baseline test."
+          }
+        ],
+        "decision": "Choose whether to answer by pointing, speaking, or drawing.",
+        "cues": [
+          {
+            "id": "CUE-01-PREDICT",
+            "behavior": "Offers a testable prediction or question.",
+            "doNotInfer": "Prediction accuracy is not evidence of understanding."
+          }
+        ],
+        "result": "Children identify the span and load.",
+        "success": "A testable need is named.",
+        "problems": [
+          {
+            "problem": "A child seeks the correct prediction.",
+            "safeResponse": "Record every prediction without grading it."
+          }
+        ],
+        "warning": "Only the adult positions the supports.",
+        "resume": "Return to the same support spacing."
+      },
+      {
+        "id": "STEP-02",
+        "title": "Predict",
+        "purpose": "Turn several ideas into one testable shape and one fair condition.",
+        "transition": "The baseline observation gives every child evidence for choosing a shape.",
+        "instruction": "Draw or describe a paper shape that may resist bending.",
+        "adultActions": [
+          {
+            "id": "STEP-02-ADULT-1",
+            "text": "Show the flat sheet and the approved folded-shape diagram without naming a winner."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-02-PROMPT-1",
+            "text": "Without adding paper, what shape could we give this sheet? What must stay the same?"
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-02-ALL",
+            "text": "Choose or draw a personal paper shape, predict its behavior, and name one condition that remains equal."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Represent or demonstrate approved shape choices."
+          }
+        ],
+        "decision": "Every child chooses one approved shape for a personal test.",
+        "cues": [
+          {
+            "id": "CUE-02-CHOOSE",
+            "behavior": "Names one change and one condition to keep equal.",
+            "doNotInfer": "Choosing a suggested option alone is not independent redesign evidence."
+          }
+        ],
+        "result": "Each child can offer an idea.",
+        "success": "At least one shape is selected.",
+        "problems": [
+          {
+            "problem": "The group combines several ideas.",
+            "safeResponse": "Choose one change for each test."
+          }
+        ],
+        "warning": "Do not add a load during prediction.",
+        "resume": "Keep the selected drawing with the materials."
+      },
+      {
+        "id": "STEP-03",
+        "title": "Build one personal bridge per child",
+        "purpose": "Turn every selected idea into a testable one-sheet structure while preserving the flat reference.",
+        "transition": "Every selected idea becomes a labeled structure that can be tested.",
+        "instruction": "Give every child one equal sheet to build and label a personal bridge shape.",
+        "adultActions": [
+          {
+            "id": "STEP-03-ADULT-1",
+            "text": "Offer guides or stabilize the sheet without replacing the child's design decisions."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-03-PROMPT-1",
+            "text": "Show me the shape you chose and tell me when your bridge is ready to test."
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-03-ALL",
+            "text": "Build and label a personal bridge shape with available support."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Give every child an equal sheet for a personal design."
+          }
+        ],
+        "cues": [
+          {
+            "id": "CUE-03-FOLD",
+            "behavior": "Continues the fold-turn sequence with the recorded amount of help.",
+            "doNotInfer": "Do not rate folding if the adult created the folds."
+          }
+        ],
+        "result": "Every child has a labeled bridge that can span the same gap one at a time.",
+        "success": "Every participant can identify a personal structure and its test orientation.",
+        "problems": [
+          {
+            "problem": "Supports move.",
+            "safeResponse": "Use stable supports or reduce the span."
+          }
+        ],
+        "warning": "Use intact paper and no sharp fasteners.",
+        "resume": "Keep every bridge beside its name or symbol and planned orientation."
+      },
+      {
+        "id": "STEP-04",
+        "title": "Give every child a personal test",
+        "purpose": "Produce one comparable result per child by adding and counting one equal load at a time.",
+        "transition": "Each personal structure is tested under the same conditions to produce a result.",
+        "instruction": "Reset the setup, then let each child test a personal bridge with one equal block at a time.",
+        "adultActions": [
+          {
+            "id": "STEP-04-ADULT-1",
+            "text": "Before each design, reset the supports, center the bridge, and give the ready signal."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-04-PROMPT-1",
+            "text": "One piece, one number, then wait. Tell me if anything besides the paper changes."
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-04-ALL",
+            "text": "In a personal turn, check the setup, add and count one equal piece at a time, observe the bridge, and keep the result."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Serve as each child's bridge during a personal test."
+          },
+          {
+            "material": "MAT-TEST-BLOCKS",
+            "purpose": "Provide identical load units for every test."
+          }
+        ],
+        "cues": [
+          {
+            "id": "CUE-04-COUNT",
+            "behavior": "Uses one number for each piece and recovers the count after waiting.",
+            "doNotInfer": "A setup failure is not evidence about counting ability."
+          }
+        ],
+        "result": "Every child has a valid result or a documented non-comparable test.",
+        "success": "Every child tested a bridge using the same span, container, and load units.",
+        "problems": [
+          {
+            "problem": "The count is lost.",
+            "safeResponse": "Stop, clear the load, and restart the test."
+          }
+        ],
+        "warning": "Keep faces away and stop if a support moves.",
+        "resume": "Record the last complete test before pausing."
+      },
+      {
+        "id": "STEP-05",
+        "title": "Choose one change",
+        "purpose": "Use the first comparison to choose and test one deliberate change.",
+        "transition": "Personal results support recommendations for one shared improvement.",
+        "instruction": "Change one feature and predict the effect.",
+        "adultActions": [
+          {
+            "id": "STEP-05-ADULT-1",
+            "text": "Show only approved shape options and keep paper, span, and load unchanged."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-05-PROMPT-1",
+            "text": "What did the first tests show? Which one change should we try next?"
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-05-RECOMMEND",
+            "text": "Recommend one change using a personal result and help the group choose one."
+          },
+          {
+            "id": "ACTN-05-SHARED",
+            "text": "Contribute to building and testing the selected group improvement."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Build the shared improvement from the selected recommendation."
+          },
+          {
+            "material": "MAT-TEST-BLOCKS",
+            "purpose": "Retest the group design with the same load units."
+          }
+        ],
+        "decision": "Choose the single shape feature to change.",
+        "cues": [
+          {
+            "id": "CUE-05-REDESIGN",
+            "behavior": "Uses a prior result to select one new feature.",
+            "doNotInfer": "The redesigned bridge does not need to hold more for the decision to count."
+          }
+        ],
+        "result": "The group names one deliberate change.",
+        "success": "Other conditions remain equal.",
+        "problems": [
+          {
+            "problem": "Several variables are changed.",
+            "safeResponse": "Keep one change and save the rest for another test."
+          }
+        ],
+        "warning": "Do not increase load weight or support height.",
+        "resume": "Mark the one feature selected for change."
+      },
+      {
+        "id": "STEP-06",
+        "title": "Explain with evidence",
+        "purpose": "Connect a claim about shape to something seen or counted.",
+        "transition": "Visible designs and results let every child explain a connection from their own experience.",
+        "instruction": "Compare counts and describe where each bridge bent.",
+        "adultActions": [
+          {
+            "id": "STEP-06-ADULT-1",
+            "text": "Place unloaded designs side by side and point to the recorded results."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-06-PROMPT-1",
+            "text": "What did you see or count that supports your idea?"
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-06-ALL",
+            "text": "Share one observation by speaking, pointing, drawing, or choosing."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Keep each personal and group design visible for explanation."
+          },
+          {
+            "material": "MAT-TEST-BLOCKS",
+            "purpose": "Refer to the recorded load counts without reloading the bridges."
+          }
+        ],
+        "decision": "Choose which observation or result to use in the explanation.",
+        "cues": [
+          {
+            "id": "CUE-06-EVIDENCE",
+            "behavior": "Links one shape or change to a visible or counted result.",
+            "doNotInfer": "Repeating the adult explanation is not independent evidence."
+          }
+        ],
+        "result": "An explanation cites an observation.",
+        "success": "A shape is linked to a result.",
+        "problems": [
+          {
+            "problem": "The explanation does not cite a result.",
+            "safeResponse": "Point to the recorded counts or visible bending."
+          }
+        ],
+        "warning": "Explain with the bridge unloaded.",
+        "resume": "Keep the recorded counts with the bridges."
+      },
+      {
+        "id": "STEP-07",
+        "title": "Clean",
+        "purpose": "Close the practical cycle by accounting for materials and leaving a safe space.",
+        "transition": "The investigation is complete, so materials can be counted and safely stored.",
+        "instruction": "Count all blocks and store or recycle paper.",
+        "adultActions": [
+          {
+            "id": "STEP-07-ADULT-1",
+            "text": "Remove supports first and verify the floor and table before leaving."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-07-PROMPT-1",
+            "text": "Let us account for every piece and choose which paper to keep or recycle."
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-07-ALL",
+            "text": "Count, sort, and store materials after the adult removes supports."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Choose which designs to keep or recycle."
+          },
+          {
+            "material": "MAT-TEST-BLOCKS",
+            "purpose": "Account for and store every test unit."
+          }
+        ],
+        "decision": "Choose which intact paper designs to keep or recycle.",
+        "cues": [
+          {
+            "id": "CUE-07-COUNT",
+            "behavior": "Accounts for one stored piece at a time with available support.",
+            "doNotInfer": "Cleanup participation is an exposure unless the adult chooses Evaluate more."
+          }
+        ],
+        "result": "The table and floor are clear.",
+        "success": "All pieces are accounted for.",
+        "problems": [
+          {
+            "problem": "A block is missing.",
+            "safeResponse": "Keep the area closed until the adult finds it."
+          }
+        ],
+        "warning": "Account for every test piece before leaving.",
+        "resume": "Cleanup must finish before another activity."
+      }
+    ]
+  },
+  "safety": {
+    "supervision": "An adult remains present and controls material selection.",
+    "hazards": [
+      {
+        "id": "HAZ-SMALL-PARTS",
+        "description": "Test pieces may be swallowed.",
+        "controls": [
+          {
+            "id": "HAZ-SMALL-PARTS-CONTROL-1",
+            "text": "Use only large blocks and account for each one."
+          }
+        ]
+      }
+    ],
+    "stops": [
+      {
+        "id": "STOP-1",
+        "text": "Stop if a child mouths a piece or a support becomes unstable."
+      }
+    ],
+    "prohibited": [
+      {
+        "id": "PROHIBITED-1",
+        "text": "Do not use sharp, breakable, hot, or heavy loads."
+      }
+    ],
+    "cleanup": "Count and store every block."
+  },
+  "adaptations": [
+    {
+      "id": "ADAPT-SHORT-SESSION",
+      "name": "Short comparison",
+      "conditions": "Use when only 35 minutes are available.",
+      "changes": "Test flat and accordion shapes once."
+    }
+  ],
+  "closeout": [
+    {
+      "skill": "MOT-SKL-PRECISE-FOLDING",
+      "question": "How independently did the child make controlled folds?",
+      "evidence": [
+        "Aligned folds with decreasing help."
+      ],
+      "nonEvidence": [
+        "Only watched another person fold."
+      ],
+      "external": [
+        "Paper was damaged."
+      ]
+    },
+    {
+      "skill": "MAT-SKL-ONE-TO-ONE-COUNTING",
+      "question": "How independently did the child add and count one block at a time?",
+      "evidence": [
+        "Kept one number per block."
+      ],
+      "nonEvidence": [
+        "Repeated another person's total."
+      ],
+      "external": [
+        "Another child moved the blocks."
+      ]
+    },
+    {
+      "skill": "ENG-SKL-COMPARE-REDESIGN",
+      "question": "How independently did the child use a test result to choose one redesign?",
+      "evidence": [
+        "Named a result and changed one feature."
+      ],
+      "nonEvidence": [
+        "Changed several features without comparison."
+      ],
+      "external": [
+        "Support spacing changed."
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "id": "VIS-01",
+      "purpose": "Identify the full material set.",
+      "altText": "Paper bridge materials on a clear table."
+    },
+    {
+      "id": "VIS-02",
+      "purpose": "Show flat and accordion shapes.",
+      "altText": "A flat sheet and accordion-fold sheet span the same gap."
+    },
+    {
+      "id": "VIS-03",
+      "purpose": "Show an equal load test.",
+      "altText": "Equal blocks are placed one at a time at the center of a paper bridge."
+    }
+  ]
+}

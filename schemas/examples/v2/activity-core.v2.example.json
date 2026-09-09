@@ -1,0 +1,643 @@
+{
+  "schema": "activity@2",
+  "id": "ACT-9001",
+  "version": "0.2.0",
+  "sourceLocale": "en-US",
+  "state": "draft",
+  "fit": {
+    "age": [
+      5,
+      10
+    ],
+    "levels": [
+      "L1",
+      "L2",
+      "L3",
+      "L4"
+    ],
+    "group": {
+      "min": 1,
+      "max": 3,
+      "sizes": [
+        1,
+        2,
+        3
+      ]
+    },
+    "time": {
+      "min": 35,
+      "max": 60,
+      "prep": 5,
+      "clean": 5
+    },
+    "mess": "low",
+    "spaces": [
+      "stable_table"
+    ],
+    "offline": true
+  },
+  "learn": {
+    "primary": "ENG",
+    "secondary": [
+      "MAT",
+      "MOT",
+      "LOG"
+    ],
+    "concepts": [
+      "ENG-CON-STRUCTURAL-RIGIDITY"
+    ],
+    "skills": [
+      "MOT-SKL-PRECISE-FOLDING",
+      "MAT-SKL-ONE-TO-ONE-COUNTING",
+      "ENG-SKL-COMPARE-REDESIGN"
+    ],
+    "cycle": [
+      "discover",
+      "imagine",
+      "build_or_do",
+      "experiment",
+      "improve",
+      "explain"
+    ],
+    "guidance": [
+      {
+        "skill": "MAT-SKL-ONE-TO-ONE-COUNTING",
+        "age": [
+          5,
+          6
+        ],
+        "intent": "consolidation"
+      },
+      {
+        "skill": "ENG-SKL-COMPARE-REDESIGN",
+        "age": [
+          7,
+          8
+        ],
+        "intent": "growth"
+      },
+      {
+        "skill": "MOT-SKL-PRECISE-FOLDING",
+        "age": [
+          5,
+          10
+        ],
+        "intent": "exploration"
+      }
+    ]
+  },
+  "materials": [
+    {
+      "id": "MAT-COPY-PAPER",
+      "quantity": 6,
+      "unit": "sheet",
+      "required": true,
+      "reusable": false,
+      "substitutes": [
+        {
+          "id": "SUB-EQUAL-CONSTRUCTION-PAPER",
+          "quantity": 6,
+          "unit": "sheet",
+          "safety": "reviewed_equivalent"
+        }
+      ]
+    },
+    {
+      "id": "MAT-TEST-BLOCKS",
+      "quantity": 20,
+      "unit": "piece",
+      "required": true,
+      "reusable": true,
+      "substitutes": []
+    }
+  ],
+  "flow": {
+    "mode": "hybrid",
+    "start": "STATE-READY",
+    "end": "STATE-CLEARED",
+    "states": [
+      "STATE-READY",
+      "STATE-PROBLEM-SEEN",
+      "STATE-DESIGNS-CHOSEN",
+      "STATE-CHILD-DESIGNS-READY",
+      "STATE-CHILD-RESULTS-RECORDED",
+      "STATE-IMPROVEMENT-TESTED",
+      "STATE-EXPLANATION-SHARED",
+      "STATE-CLEARED"
+    ],
+    "materialFunctions": [
+      {
+        "material": "MAT-COPY-PAPER",
+        "firstStep": "STEP-01"
+      },
+      {
+        "material": "MAT-TEST-BLOCKS",
+        "firstStep": "STEP-01"
+      }
+    ],
+    "participantCycle": {
+      "policy": "every_active_participant",
+      "actions": [
+        "encounter_problem",
+        "propose",
+        "build_or_do",
+        "test_or_check",
+        "observe_result",
+        "improve_or_recommend",
+        "explain"
+      ]
+    },
+    "roles": [
+      {
+        "id": "ROLE-BUILDER",
+        "levels": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "primarySkills": [
+          "MOT-SKL-PRECISE-FOLDING"
+        ],
+        "skills": [
+          "MOT-SKL-PRECISE-FOLDING"
+        ],
+        "concepts": [
+          "ENG-CON-STRUCTURAL-RIGIDITY"
+        ],
+        "allowedSteps": [
+          "STEP-01",
+          "STEP-02",
+          "STEP-03",
+          "STEP-04",
+          "STEP-05",
+          "STEP-06",
+          "STEP-07"
+        ],
+        "restrictedSteps": []
+      },
+      {
+        "id": "ROLE-TESTER",
+        "levels": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "primarySkills": [
+          "MAT-SKL-ONE-TO-ONE-COUNTING"
+        ],
+        "skills": [
+          "MAT-SKL-ONE-TO-ONE-COUNTING"
+        ],
+        "concepts": [
+          "ENG-CON-STRUCTURAL-RIGIDITY"
+        ],
+        "allowedSteps": [
+          "STEP-01",
+          "STEP-02",
+          "STEP-03",
+          "STEP-04",
+          "STEP-05",
+          "STEP-06",
+          "STEP-07"
+        ],
+        "restrictedSteps": []
+      },
+      {
+        "id": "ROLE-DESIGNER",
+        "levels": [
+          "L2",
+          "L3",
+          "L4"
+        ],
+        "primarySkills": [
+          "ENG-SKL-COMPARE-REDESIGN"
+        ],
+        "skills": [
+          "ENG-SKL-COMPARE-REDESIGN"
+        ],
+        "concepts": [
+          "ENG-CON-STRUCTURAL-RIGIDITY"
+        ],
+        "allowedSteps": [
+          "STEP-01",
+          "STEP-02",
+          "STEP-03",
+          "STEP-04",
+          "STEP-05",
+          "STEP-06",
+          "STEP-07"
+        ],
+        "restrictedSteps": []
+      }
+    ],
+    "groups": [
+      {
+        "size": 1,
+        "roles": [
+          "ROLE-BUILDER"
+        ]
+      },
+      {
+        "size": 2,
+        "roles": [
+          "ROLE-BUILDER",
+          "ROLE-TESTER"
+        ]
+      },
+      {
+        "size": 3,
+        "roles": [
+          "ROLE-BUILDER",
+          "ROLE-TESTER",
+          "ROLE-DESIGNER"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "id": "STEP-01",
+        "stage": "discover",
+        "actor": "group",
+        "entry": "STATE-READY",
+        "exit": "STATE-PROBLEM-SEEN",
+        "minutes": 4,
+        "adultActionIds": [
+          "STEP-01-ADULT-1"
+        ],
+        "promptIds": [
+          "STEP-01-PROMPT-1"
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-01-ALL",
+            "audience": "all_participants",
+            "roles": [],
+            "turn": "sequential"
+          }
+        ],
+        "cycle": [
+          {
+            "action": "encounter_problem",
+            "audience": "every_active_participant"
+          },
+          {
+            "action": "observe_result",
+            "audience": "every_active_participant"
+          }
+        ],
+        "materialIds": [
+          "MAT-COPY-PAPER",
+          "MAT-TEST-BLOCKS"
+        ],
+        "hasDecision": true,
+        "cues": [
+          {
+            "id": "CUE-01-PREDICT",
+            "skill": "ENG-SKL-COMPARE-REDESIGN"
+          }
+        ],
+        "visualIds": [
+          "VIS-01"
+        ],
+        "skills": [],
+        "concepts": [
+          "ENG-CON-STRUCTURAL-RIGIDITY"
+        ]
+      },
+      {
+        "id": "STEP-02",
+        "stage": "imagine",
+        "actor": "group",
+        "entry": "STATE-PROBLEM-SEEN",
+        "exit": "STATE-DESIGNS-CHOSEN",
+        "minutes": 4,
+        "adultActionIds": [
+          "STEP-02-ADULT-1"
+        ],
+        "promptIds": [
+          "STEP-02-PROMPT-1"
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-02-ALL",
+            "audience": "all_participants",
+            "roles": [],
+            "turn": "sequential"
+          }
+        ],
+        "cycle": [
+          {
+            "action": "propose",
+            "audience": "every_active_participant"
+          }
+        ],
+        "materialIds": [
+          "MAT-COPY-PAPER"
+        ],
+        "hasDecision": true,
+        "cues": [
+          {
+            "id": "CUE-02-CHOOSE",
+            "skill": "ENG-SKL-COMPARE-REDESIGN"
+          }
+        ],
+        "visualIds": [
+          "VIS-02"
+        ],
+        "skills": [
+          "ENG-SKL-COMPARE-REDESIGN"
+        ],
+        "concepts": [
+          "ENG-CON-STRUCTURAL-RIGIDITY"
+        ]
+      },
+      {
+        "id": "STEP-03",
+        "stage": "build_or_do",
+        "actor": "group",
+        "entry": "STATE-DESIGNS-CHOSEN",
+        "exit": "STATE-CHILD-DESIGNS-READY",
+        "minutes": 10,
+        "adultActionIds": [
+          "STEP-03-ADULT-1"
+        ],
+        "promptIds": [
+          "STEP-03-PROMPT-1"
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-03-ALL",
+            "audience": "all_participants",
+            "roles": [],
+            "turn": "simultaneous"
+          }
+        ],
+        "cycle": [
+          {
+            "action": "build_or_do",
+            "audience": "every_active_participant"
+          }
+        ],
+        "materialIds": [
+          "MAT-COPY-PAPER"
+        ],
+        "hasDecision": false,
+        "cues": [
+          {
+            "id": "CUE-03-FOLD",
+            "skill": "MOT-SKL-PRECISE-FOLDING"
+          }
+        ],
+        "visualIds": [
+          "VIS-02"
+        ],
+        "skills": [
+          "MOT-SKL-PRECISE-FOLDING"
+        ],
+        "concepts": [
+          "ENG-CON-STRUCTURAL-RIGIDITY"
+        ]
+      },
+      {
+        "id": "STEP-04",
+        "stage": "experiment",
+        "actor": "group",
+        "entry": "STATE-CHILD-DESIGNS-READY",
+        "exit": "STATE-CHILD-RESULTS-RECORDED",
+        "minutes": 10,
+        "adultActionIds": [
+          "STEP-04-ADULT-1"
+        ],
+        "promptIds": [
+          "STEP-04-PROMPT-1"
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-04-ALL",
+            "audience": "all_participants",
+            "roles": [],
+            "turn": "sequential"
+          }
+        ],
+        "cycle": [
+          {
+            "action": "test_or_check",
+            "audience": "every_active_participant"
+          },
+          {
+            "action": "observe_result",
+            "audience": "every_active_participant"
+          }
+        ],
+        "materialIds": [
+          "MAT-COPY-PAPER",
+          "MAT-TEST-BLOCKS"
+        ],
+        "hasDecision": false,
+        "cues": [
+          {
+            "id": "CUE-04-COUNT",
+            "skill": "MAT-SKL-ONE-TO-ONE-COUNTING"
+          }
+        ],
+        "visualIds": [
+          "VIS-03"
+        ],
+        "skills": [
+          "MAT-SKL-ONE-TO-ONE-COUNTING"
+        ],
+        "concepts": [
+          "ENG-CON-STRUCTURAL-RIGIDITY"
+        ]
+      },
+      {
+        "id": "STEP-05",
+        "stage": "improve",
+        "actor": "group",
+        "entry": "STATE-CHILD-RESULTS-RECORDED",
+        "exit": "STATE-IMPROVEMENT-TESTED",
+        "minutes": 10,
+        "adultActionIds": [
+          "STEP-05-ADULT-1"
+        ],
+        "promptIds": [
+          "STEP-05-PROMPT-1"
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-05-RECOMMEND",
+            "audience": "all_participants",
+            "roles": [],
+            "turn": "sequential"
+          },
+          {
+            "id": "ACTN-05-SHARED",
+            "audience": "all_participants",
+            "roles": [],
+            "turn": "facilitator_cued"
+          }
+        ],
+        "cycle": [
+          {
+            "action": "improve_or_recommend",
+            "audience": "every_active_participant"
+          }
+        ],
+        "materialIds": [
+          "MAT-COPY-PAPER",
+          "MAT-TEST-BLOCKS"
+        ],
+        "hasDecision": true,
+        "cues": [
+          {
+            "id": "CUE-05-REDESIGN",
+            "skill": "ENG-SKL-COMPARE-REDESIGN"
+          }
+        ],
+        "visualIds": [
+          "VIS-02"
+        ],
+        "skills": [
+          "ENG-SKL-COMPARE-REDESIGN"
+        ],
+        "concepts": [
+          "ENG-CON-STRUCTURAL-RIGIDITY"
+        ]
+      },
+      {
+        "id": "STEP-06",
+        "stage": "explain",
+        "actor": "group",
+        "entry": "STATE-IMPROVEMENT-TESTED",
+        "exit": "STATE-EXPLANATION-SHARED",
+        "minutes": 5,
+        "adultActionIds": [
+          "STEP-06-ADULT-1"
+        ],
+        "promptIds": [
+          "STEP-06-PROMPT-1"
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-06-ALL",
+            "audience": "all_participants",
+            "roles": [],
+            "turn": "sequential"
+          }
+        ],
+        "cycle": [
+          {
+            "action": "explain",
+            "audience": "every_active_participant"
+          }
+        ],
+        "materialIds": [
+          "MAT-COPY-PAPER",
+          "MAT-TEST-BLOCKS"
+        ],
+        "hasDecision": true,
+        "cues": [
+          {
+            "id": "CUE-06-EVIDENCE",
+            "skill": "ENG-SKL-COMPARE-REDESIGN"
+          }
+        ],
+        "visualIds": [
+          "VIS-03"
+        ],
+        "skills": [
+          "ENG-SKL-COMPARE-REDESIGN"
+        ],
+        "concepts": [
+          "ENG-CON-STRUCTURAL-RIGIDITY"
+        ]
+      },
+      {
+        "id": "STEP-07",
+        "stage": "cleanup",
+        "actor": "group",
+        "entry": "STATE-EXPLANATION-SHARED",
+        "exit": "STATE-CLEARED",
+        "minutes": 5,
+        "adultActionIds": [
+          "STEP-07-ADULT-1"
+        ],
+        "promptIds": [
+          "STEP-07-PROMPT-1"
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-07-ALL",
+            "audience": "all_participants",
+            "roles": [],
+            "turn": "simultaneous"
+          }
+        ],
+        "cycle": [],
+        "materialIds": [
+          "MAT-COPY-PAPER",
+          "MAT-TEST-BLOCKS"
+        ],
+        "hasDecision": true,
+        "cues": [
+          {
+            "id": "CUE-07-COUNT",
+            "skill": "MAT-SKL-ONE-TO-ONE-COUNTING"
+          }
+        ],
+        "visualIds": [
+          "VIS-01"
+        ],
+        "skills": [],
+        "concepts": []
+      }
+    ]
+  },
+  "safety": {
+    "level": "A",
+    "hazards": [
+      {
+        "id": "HAZ-SMALL-PARTS",
+        "category": "small_parts",
+        "controlIds": [
+          "HAZ-SMALL-PARTS-CONTROL-1"
+        ],
+        "steps": [
+          "STEP-01",
+          "STEP-02",
+          "STEP-03",
+          "STEP-04",
+          "STEP-05",
+          "STEP-06",
+          "STEP-07"
+        ]
+      }
+    ],
+    "adultOnlySteps": [],
+    "stopIds": [
+      "STOP-1"
+    ],
+    "prohibitedIds": [
+      "PROHIBITED-1"
+    ]
+  },
+  "adaptations": [
+    {
+      "id": "ADAPT-SHORT-SESSION",
+      "type": "duration",
+      "safety": "none",
+      "adultConfirm": false
+    }
+  ],
+  "closeout": [
+    {
+      "skill": "MOT-SKL-PRECISE-FOLDING"
+    },
+    {
+      "skill": "MAT-SKL-ONE-TO-ONE-COUNTING"
+    },
+    {
+      "skill": "ENG-SKL-COMPARE-REDESIGN"
+    }
+  ]
+}

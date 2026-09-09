@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-learning.example/schemas/v2/read-models/activity-card.schema.json",
+  "title": "ActivityCard",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "locale", "title", "summary", "age", "group", "minutes", "area", "risk"],
+  "properties": {
+    "id": { "type": "string" }, "version": { "type": "string" }, "locale": { "enum": ["en-US", "es-US"] },
+    "title": { "type": "string" }, "summary": { "type": "string" },
+    "age": { "type": "array", "items": { "type": "integer" }, "minItems": 2, "maxItems": 2 },
+    "group": { "type": "array", "items": { "type": "integer" }, "minItems": 1 },
+    "minutes": { "type": "array", "items": { "type": "integer" }, "minItems": 2, "maxItems": 2 },
+    "area": { "type": "string" }, "risk": { "enum": ["A", "B", "C"] }, "thumbUrl": { "type": "string", "format": "uri-reference" }
+  }
+}

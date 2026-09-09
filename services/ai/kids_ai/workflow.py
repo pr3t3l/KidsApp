@@ -31,8 +31,21 @@ class CompanionState(TypedDict, total=False):
 
 
 class CompanionWorkflow:
-    def __init__(self, repository: Repository, retriever: Any, gateway: Any, monthly_budget_usd: float = 15.0):
-        self.repository = repository; self.retriever = retriever; self.gateway = gateway; self.monthly_budget_usd = monthly_budget_usd
+    def __init__(
+        self,
+        repository: Repository,
+        retriever: Any,
+        gateway: Any,
+        monthly_budget_usd: float = 15.0,
+        evaluation_policy_id: UUID | None = None,
+    ):
+        self.repository = repository
+        self.retriever = retriever
+        self.gateway = gateway
+        self.monthly_budget_usd = monthly_budget_usd
+        # Only the internal evaluation harness sets this value. Family-facing
+        # calls always resolve the currently active policy on the server.
+        self.evaluation_policy_id = evaluation_policy_id
         graph = StateGraph(CompanionState)
         graph.add_node("authorize", self._authorize)
         graph.add_node("classify", self._classify)
@@ -81,17 +94,24 @@ class CompanionWorkflow:
                 return {"response": CompanionResponse(interaction_id=interaction_id, intent=intent, status="safe_stop", answer=answer, safety_status="stop", uncertainty="high", sources=sources)}
             context = build_generation_context(state["experience"], state["chunks"])
             try:
-                generated = await self.gateway.answer(state["message"], state["locale"], context)
+                generated = await self.gateway.answer(
+                    state["message"],
+                    state["locale"],
+                    context,
+                    adult_id=state["principal"].user_id,
+                    family_id=state["experience"].family_id,
+                    activity_id=state["experience"].activity_version_id,
+                    policy_id=self.evaluation_policy_id,
+                )
                 return {"response": CompanionResponse(interaction_id=interaction_id, intent=intent, status="safe_stop" if generated.safety_status == "stop" else "answer", answer=generated.answer, safety_status=generated.safety_status, uncertainty=generated.uncertainty, sources=sources), "model_route": generated.model_route, "prompt_tokens": generated.prompt_tokens, "completion_tokens": generated.completion_tokens, "cost_usd": generated.cost_usd}
             except RuntimeError:
                 answer = "El asistente no está disponible. Usa la guía publicada y detén la actividad si hay dudas de seguridad." if state["locale"] == "es-US" else "The companion is unavailable. Use the published guide and stop if safety is uncertain."
                 return {"response": CompanionResponse(interaction_id=interaction_id, intent=intent, status="safe_stop", answer=answer, safety_status="stop", uncertainty="high", sources=sources)}
         if intent == "adapt_current_activity":
-            from .catalog import activity_by_version
-            activity = activity_by_version(state["experience"].activity_version_id)
+            stored_options = await self.repository.get_approved_adaptations(state["principal"], state["context_id"], state["locale"])
             options = [
-                {"option_id": item["id"], "summary": item["summary"][state["locale"]], "visible_changes": item["visibleChanges"][state["locale"]]}
-                for item in activity["adaptations"][:3]
+                {"option_id": item["optionId"], "summary": item["summary"], "visible_changes": item["visibleChanges"]}
+                for item in stored_options
             ]
             if not options:
                 answer = "No hay una adaptación publicada para esta situación." if state["locale"] == "es-US" else "There is no published adaptation for this situation."

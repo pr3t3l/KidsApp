@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-learning.example/schemas/v2/model/review-findings.schema.json",
+  "title": "MachineReviewFindings",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["findings", "canApprove"],
+  "properties": {
+    "findings": {
+      "type": "array", "maxItems": 12,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["severity", "code", "message", "fieldRef"],
+        "properties": {
+          "severity": {"enum": ["blocker", "warning", "info"]},
+          "code": {"type": "string", "minLength": 2, "maxLength": 60},
+          "message": {"type": "string", "minLength": 3, "maxLength": 360},
+          "fieldRef": {"type": "string", "minLength": 1, "maxLength": 160}
+        }
+      }
+    },
+    "canApprove": {"const": false}
+  }
+}

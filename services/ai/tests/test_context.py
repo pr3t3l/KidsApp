@@ -71,6 +71,7 @@ class ContextBoundaryTests(unittest.TestCase):
             demo_mode=False,
             supabase_url="https://example.supabase.co",
             supabase_publishable_key="publishable",
+            supabase_secret_key="secret",
             openrouter_api_key="secret",
             primary_model="approved/model-a",
             fallback_model="approved/model-b",

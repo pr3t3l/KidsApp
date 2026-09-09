@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-learning.example/schemas/v2/model/locale-batch.schema.json",
+  "title": "LocaleBatch",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["locale", "items"],
+  "properties": {
+    "locale": {"enum": ["en-US", "es-US"]},
+    "items": {
+      "type": "array", "minItems": 1, "maxItems": 16,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["key", "text"],
+        "properties": {
+          "key": {"type": "string", "minLength": 1, "maxLength": 160},
+          "text": {"type": "string", "minLength": 1, "maxLength": 1000}
+        }
+      }
+    }
+  }
+}

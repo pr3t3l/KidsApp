@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-learning.example/schemas/v2/model/review-synthesis.schema.json",
+  "title": "MachineReviewSynthesis",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["summary", "priorities", "conflicts", "canApprove"],
+  "properties": {
+    "summary": {"type": "string", "minLength": 3, "maxLength": 500},
+    "priorities": {"type": "array", "maxItems": 10, "items": {"type": "string", "maxLength": 240}},
+    "conflicts": {"type": "array", "maxItems": 10, "items": {"type": "string", "maxLength": 240}},
+    "canApprove": {"const": false}
+  }
+}

@@ -1,18 +1,62 @@
 from __future__ import annotations
 
+import base64
+import json
+from datetime import datetime, timedelta, timezone
 from uuid import UUID
 import httpx
-from fastapi import Header, HTTPException, Request, status
+from fastapi import Depends, Header, HTTPException, Request, status
 
 from .models import Principal
 
 DEMO_USER_ID = UUID("00000000-0000-0000-0000-000000000001")
 
 
+def _validated_token_claims(token: str) -> tuple[str, datetime | None, datetime | None]:
+    """Read AAL only after Supabase has accepted the same access token.
+
+    The `/auth/v1/user` response does not place the authentication assurance
+    level in editable user metadata. Supabase encodes it as the signed `aal`
+    claim in the JWT. Signature validation is delegated to the immediately
+    preceding Auth request; this helper only decodes that already validated
+    token so MFA gates cannot accidentally rely on user-controlled metadata.
+    """
+
+    try:
+        encoded = token.split(".")[1]
+        encoded += "=" * (-len(encoded) % 4)
+        payload = json.loads(base64.urlsafe_b64decode(encoded).decode("utf-8"))
+        amr = payload.get("amr") if isinstance(payload.get("amr"), list) else []
+        method_times = [
+            item.get("timestamp")
+            for item in amr
+            if isinstance(item, dict) and item.get("timestamp")
+        ]
+        authenticated_at = datetime.fromtimestamp(int(max(method_times)), timezone.utc) if method_times else None
+        # Product policy currently permits TOTP as the administrative second
+        # factor. A newer password or magic-link AMR entry must never refresh
+        # the 15-minute sensitive-action window.
+        totp_times = [
+            item.get("timestamp")
+            for item in amr
+            if isinstance(item, dict) and str(item.get("method", "")).lower() == "totp" and item.get("timestamp")
+        ]
+        mfa_verified_at = datetime.fromtimestamp(int(max(totp_times)), timezone.utc) if totp_times else None
+        return ("aal2" if payload.get("aal") == "aal2" else "aal1", authenticated_at, mfa_verified_at)
+    except (IndexError, UnicodeDecodeError, ValueError, json.JSONDecodeError):
+        return "aal1", None, None
+
+
+def _validated_token_aal(token: str) -> str:
+    """Backward-compatible helper used by the focused security contract test."""
+    return _validated_token_claims(token)[0]
+
+
 async def authenticated_principal(request: Request, authorization: str | None = Header(default=None)) -> Principal:
     settings = request.app.state.settings
     if settings.demo_mode and not authorization:
-        return Principal(user_id=DEMO_USER_ID, is_demo=True)
+        current = datetime.now(timezone.utc)
+        return Principal(user_id=DEMO_USER_ID, is_demo=True, platform_roles=("platform_owner",), aal="aal2", authenticated_at=current, mfa_verified_at=current)
     if not authorization or not authorization.lower().startswith("bearer "):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Bearer token required")
     token = authorization.split(" ", 1)[1]
@@ -24,7 +68,26 @@ async def authenticated_principal(request: Request, authorization: str | None = 
     if response.status_code != 200:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid or expired session")
     try:
-        user_id = UUID(response.json()["id"])
+        body = response.json()
+        user_id = UUID(body["id"])
+        app_metadata = body.get("app_metadata") or {}
+        roles = tuple(role for role in app_metadata.get("platform_roles", []) if role in {"platform_owner", "editorial_specialist", "support_operator"})
+        aal, authenticated_at, mfa_verified_at = _validated_token_claims(token)
     except (KeyError, TypeError, ValueError) as error:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid identity response") from error
-    return Principal(user_id=user_id, access_token=token)
+    return Principal(user_id=user_id, access_token=token, platform_roles=roles, aal=aal, authenticated_at=authenticated_at, mfa_verified_at=mfa_verified_at)
+
+
+def require_platform_role(*allowed_roles: str, require_mfa: bool = False, max_mfa_age_minutes: int | None = None):
+    async def dependency(principal: Principal = Depends(authenticated_principal)) -> Principal:
+        if not set(principal.platform_roles).intersection(allowed_roles):
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Administrative role required")
+        if require_mfa and principal.aal != "aal2":
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Recent MFA verification required")
+        if max_mfa_age_minutes is not None:
+            oldest_allowed = datetime.now(timezone.utc) - timedelta(minutes=max_mfa_age_minutes)
+            if principal.aal != "aal2" or principal.mfa_verified_at is None or principal.mfa_verified_at < oldest_allowed:
+                raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Recent MFA verification required")
+        return principal
+
+    return dependency

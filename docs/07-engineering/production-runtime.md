@@ -3,22 +3,22 @@
 # Production runtime
 
 **Status:** Review
-**Version:** 1.0
+**Version:** 1.1
 
 ## Stack
 
-- Family web: React 19, TypeScript and Vite PWA.
+- Web: bilingual public, family and administrative React 19/TypeScript/Vite PWA experiences.
 - AI/domain service: Python 3.12 and FastAPI.
 - Orchestration: bounded LangGraph `StateGraph`.
 - Data: Supabase Auth, PostgreSQL 17, pgvector and Row Level Security.
-- Model gateway: OpenRouter-compatible adapter for structured chat and embeddings.
+- Model gateway: operation-scoped OpenRouter, direct OpenAI and direct Anthropic adapters for structured generation and embeddings.
 - Observability: Logfire with content capture disabled by default.
 - Hosting: separate Vercel projects for `apps/web` and `services/ai`.
 - Reproducibility: Docker Compose demo at `http://localhost:8080`.
 
 ## Security boundaries
 
-The browser contains only the Supabase publishable key. FastAPI validates the bearer token with Supabase Auth, then forwards that same identity to PostgREST/RPC so RLS remains authoritative. Editorial ingestion uses a server-only secret and is not part of the family runtime.
+The browser contains only the Supabase publishable key. FastAPI validates the bearer token with Supabase Auth, then forwards that same identity to PostgREST/RPC so RLS remains authoritative. Provider and editorial secrets use server-only private/Vault access and are never returned in full. Administrative mutations require an authorized role and MFA; high-impact owner actions require a recent TOTP assertion.
 
 All exposed tables enable RLS. Membership predicates include both authentication and family ownership. Mutations use `USING` and `WITH CHECK`; functions run as invoker unless an isolated helper is necessary to avoid policy recursion. No authorization decision uses user-editable metadata.
 
@@ -28,9 +28,9 @@ All exposed tables enable RLS. Membership predicates include both authentication
 
 ## Environment and operations
 
-Production startup fails if Supabase or OpenRouter credentials are absent. Demo mode uses only synthetic local fixtures and is visibly labeled. OpenRouter requests require structured-output support, deny data-collecting routes and request zero-data-retention endpoints. Candidate Chinese or other providers receive synthetic cases until the provider registry marks them eligible for real family context.
+Production startup fails if Supabase credentials or the active operation deployments are unavailable. Demo mode uses only synthetic local fixtures and is visibly labeled. OpenRouter routes enforce allowed upstream/data policies; direct OpenAI and Anthropic deployments use the same capability, privacy, evaluation and budget gates. Any candidate provider receives synthetic cases until its deployment record is eligible for real family context.
 
-Logfire instruments API performance and errors with header capture disabled. The application database records route, intent, status, source IDs, latency and token/cost metadata without storing the raw companion message. A deterministic monthly USD 15 budget gate blocks further generation when recorded spend reaches the limit; external 50% and 80% notifications remain an operator configuration task. Database backups, restore verification and key rotation belong to the production runbook.
+Logfire instruments API performance and errors with header capture disabled. The application database records route, intent, status, source IDs, latency, provider metadata, usage and explicit reported/estimated/reconciled cost without storing the raw companion message. Effective-dated budgets can apply globally or by environment, operation, provider, model and editorial job. Thresholds warn at 80%, pause non-essential editorial generation at 95% and block non-essential AI at 100%; the published family guide remains available. Database backups, restore verification, hosted Vault configuration and key rotation belong to the production runbook.
 
 ## Deployment gates
 

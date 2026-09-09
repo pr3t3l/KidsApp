@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-learning.example/schemas/v2/read-models/activity-prep.schema.json",
+  "title": "ActivityPrep",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "locale", "purpose", "materials", "safety", "group"],
+  "properties": {
+    "id": { "type": "string" }, "version": { "type": "string" }, "locale": { "enum": ["en-US", "es-US"] },
+    "purpose": { "type": "string" },
+    "materials": { "type": "array", "items": { "type": "object", "required": ["id", "name", "quantity", "unit"], "properties": { "id": { "type": "string" }, "name": { "type": "string" }, "quantity": { "type": "number" }, "unit": { "type": "string" } }, "additionalProperties": false } },
+    "safety": { "type": "object", "required": ["level", "supervision", "stops"], "properties": { "level": { "enum": ["A", "B", "C"] }, "supervision": { "type": "string" }, "stops": { "type": "array", "items": { "type": "string" } } }, "additionalProperties": false },
+    "group": { "type": "object", "required": ["min", "max"], "properties": { "min": { "type": "integer" }, "max": { "type": "integer" } }, "additionalProperties": false }
+  }
+}

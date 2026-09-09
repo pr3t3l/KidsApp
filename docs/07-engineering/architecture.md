@@ -82,9 +82,9 @@ Critical decisions do not depend solely on generated text:
 
 For the pilot, a modular monolith with a transactional database and separate object storage is recommended. It reduces operational complexity while preserving domain boundaries. Microservices require demonstrated scale, security, or organizational need.
 
-The final-project implementation realizes this boundary with a React/TypeScript/Vite family PWA, a FastAPI domain/AI service, Supabase Auth/PostgreSQL/pgvector/RLS, OpenRouter, Logfire and separate Vercel deployments. See [Production runtime](production-runtime.md).
+The final-project implementation realizes this boundary with bilingual React/TypeScript/Vite family and administrative PWAs, a FastAPI domain/AI service, Supabase Auth/PostgreSQL/pgvector/RLS/Vault, an operation-scoped OpenRouter/OpenAI/Anthropic gateway, Logfire and separate Vercel deployments. See [Production runtime](production-runtime.md).
 
-The primary client will be an iOS/Android mobile application. The native or cross-platform framework remains undecided pending validation of background sync, camera, audio, shopping, and accessibility requirements. Family web and editorial web experiences are also planned.
+The pilot client is the implemented responsive family PWA, accompanied by the implemented administrative/editorial web experience. Native Android/iOS packaging remains deferred until the 14-day family pilot validates offline sync, accessibility and core product behavior; camera, audio and shopping are outside the pilot.
 
 ## Resilience
 

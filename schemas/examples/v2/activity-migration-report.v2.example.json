@@ -1,0 +1,21 @@
+{
+  "sourceSchema": "0.1",
+  "targetSchema": "2.0",
+  "sourceHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "contentHash": "sha256:75c55d767e5fd9fed63656dde187a7833c385a4ba738331c66ee60ba2e83f07f",
+  "semanticChecks": {
+    "identity": true,
+    "ageRange": true,
+    "participantRange": true,
+    "stepOrder": true,
+    "materialCount": true,
+    "roleCount": true,
+    "safetyLevel": true,
+    "requiredLocales": true
+  },
+  "reviewRequired": [
+    "V1 hazards do not identify affected steps; migration conservatively binds each hazard to every step until human review.",
+    "Legacy visual rights claims require conversion to structured evidence before publication.",
+    "The target content hash must be stored by the compiler, outside the authored core document."
+  ]
+}

@@ -1,70 +1,83 @@
-> **Canonical English document.** This document is normative from 5 September 2026 under `DEC-052`.
+> **Canonical English document.** This document is normative under `DEC-052`.
 
 # Final-project implementation evidence
 
 **Status:** Review
-**Version:** 1.0
-**Evidence captured:** 5 September 2026, 15:40 EDT
+**Version:** 1.1
+**Evidence captured:** 9 September 2026
 
-## Implemented release candidate
+## What this candidate proves
 
-The `finalproject-AP` candidate includes the block-rendered React PWA, FastAPI service, bounded LangGraph workflow, deterministic safety and authorization controls, OpenRouter adapter, CAG boundary, exact-version hybrid-RAG migration, Supabase RLS policies, synthetic catalog ingestion, Docker definitions and CI.
+The `finalproject-AP` candidate implements the product-shaped family PWA, bilingual administrative workspace, FastAPI service, compact Activity V2 contracts, private family tenancy, operation-scoped provider routing, AI usage/cost governance, explainable catalog coverage, staged editorial factory, CAG/RAG companion, editorial multi-agent review, offline continuity, Docker definitions and CI.
 
-The evidence boundary is deliberately narrow: the catalog and demo family are synthetic. This document proves implementation behavior; it does not claim physical activity approval, legal approval, production hosting or learning impact.
+The evidence boundary is strict. Catalog records and families used by automated tests are synthetic. This document proves implementation behavior; it does not claim production hosting, physical activity approval, legal approval, independent professional sign-off or learning impact.
 
 ## Automated evidence
 
-| Check | Result |
+| Check | Latest local result |
 |---|---|
-| JSON Schema examples | 5 schemas and 6 examples pass |
+| Legacy JSON Schema examples | 5 schemas and 6 examples pass |
+| Activity V2 | Core `7,618` bytes; `en-US` locale `17,218`; `es-US` locale `18,351`; card `258`; prep `519`; step `461`; all schema/token/byte and semantic migration gates pass |
 | Domain validators | Baseline, participant fixtures and 18 negative/invariant cases pass |
-| Documentation validator | 145 repository Markdown files and 3 pilot activity documents pass |
-| Database contract | 13 public tables have RLS and explicit policies |
-| PostgreSQL parser | Migration parses as 68 PostgreSQL statements |
-| Frontend component tests | 5/5 pass |
-| Frontend production build | TypeScript and Vite build pass |
-| API/policy tests | 15/15 pass |
-| Golden set | 80/80 bilingual runs pass across 40 canonical cases |
-| Dependency audits | npm and Python (`pip-audit`) report no known vulnerabilities |
-| Catalog ingestion dry run | 10 activities, 3 adaptations and 22 chunks accepted as `synthetic-demo` |
-| GitHub Actions | [Run 33987646398](https://github.com/pr3t3l/KidsApp/actions/runs/33987646398) passed validation, dependency audits and both Docker image builds |
+| Documentation validator | 150 repository Markdown files and all 3 pilot activity documents pass |
+| Database contract | 63 public tables across 11 migrations have RLS, policies and explicit grants |
+| PostgreSQL parser | All 11 migrations and 535 statements parse with PostgreSQL grammar |
+| Frontend component tests | 15/15 pass across 6 files |
+| Frontend production build | TypeScript and Vite production build pass; 116 modules transformed |
+| API/policy tests | 55/55 pass |
+| Golden set | 80/80 bilingual executions pass across 40 canonical cases |
+| Golden quality gates | Recall@5 `1.0`, source correctness `1.0`, safe abstention `1.0` |
+| Dependency security | `npm audit` reports zero vulnerabilities; `pip-audit` reports no known vulnerabilities in the locked Python requirements |
+| Catalog ingestion dry run | 13 activities, 4 approved-option fixtures and 28 localized chunks accepted as `synthetic-demo` |
+| Historical CI baseline | [GitHub Actions run 33987646398](https://github.com/pr3t3l/KidsApp/actions/runs/33987646398) passed validation, dependency audits and both Docker builds before this consolidation |
 
-The reproducible aggregate command is `npm run validate`. The migration also passed an independent PostgreSQL 17 grammar parse with `pglast` 7.7; that parser was used as a local verification aid and is not a runtime dependency.
+The aggregate command is `npm run validate`. The independent `pglast` parse is a verification aid, not a runtime dependency. A fresh CI result for the published consolidation is required before the container row becomes current release evidence.
 
-## Browser evidence
+## Real-browser evidence
 
-The mobile-width smoke flow passed twice locally and twice against temporary Vercel deployments, including the dependency-hardened artifact:
+The production Vite build was served locally and exercised through Edge DevTools Protocol at mobile width. The checked-in runner at `apps/web/e2e/cdp-smoke.mjs` passed the complete path:
 
-1. meaningful activity content renders;
-2. exactly one companion entry button exists;
-3. no horizontal overflow or runtime exception occurs;
-4. one-to-three approved options render;
-5. no mutation occurs before adult confirmation;
-6. confirmation updates and re-renders the visible guide.
+1. meaningful family content renders with no error overlay or horizontal overflow;
+2. the family catalog exposes exactly 12 risk-A/B activities and excludes risk-C `ACT-0003`;
+3. preparation is visible before the adult-friction gate and displays the exact activity version;
+4. there is one companion entry point and one current activity block;
+5. an adaptation remains a pending proposal until explicit adult confirmation, then re-renders the guide;
+6. network loss displays offline state and queues progress;
+7. IndexedDB contains an encrypted active-session envelope and encrypted idempotent event, while the key is non-extractable and session content is absent from `localStorage`;
+8. a full offline reload is served by the service worker and restores the exact current step;
+9. reconnection flushes the pending event without losing the session;
+10. `/admin?lang=en-US` renders the English administrative workspace, routing matrix and deterministic-operation markers without runtime exceptions.
 
-The temporary public deployment was an anonymous synthetic-only proof and expires automatically. It is not the submission environment. A durable evaluator URL requires the owner to authenticate and claim or create the Vercel projects.
+The browser runner is reproducible after starting the production preview. It does not replace testing on actual iOS/Android devices or with real pilot families.
 
 ## Controls evidenced in code
 
-- Model context contains policy, exact version/current block and same-version/same-locale evidence only.
-- Raw companion messages are not written to the durable interaction table.
-- Dangerous, diagnostic, cross-family, unnecessary-PII and unauthorized-publication requests fail closed before embedding or generation.
-- Model routes must belong to an explicit production allowlist and request no provider data collection plus zero-data-retention routing.
-- Known monthly model cost is enforced before generation; tokens, cost and latency are retained as structured telemetry.
-- Adaptation/replacement is a pending proposal and an idempotent, atomic adult decision.
-- Direct proposal-decision access is both actor- and family-scoped under RLS.
+- Family surfaces fail closed to risk-C/D activity versions unless the applicable independent gates exist.
+- Model context contains stable policy, exact version/current block and same-version/same-locale evidence only.
+- Raw companion messages and model free-form responses are not written to the usage ledger by default.
+- Dangerous, diagnostic, cross-family, unnecessary-PII and unauthorized-publication requests stop before generation or mutation.
+- Every AI call resolves a versioned operation route. Fallbacks must be capability-, data- and budget-eligible.
+- OpenRouter, OpenAI and Anthropic results normalize requested/actual model, provider/request IDs, stop state, timestamps, latency, cache/reasoning/tool usage and bounded provider metadata.
+- Monetary truth keeps `reported`, `estimated` and `reconciled` values separate and records the rate used.
+- Budgets can apply globally or by environment, operation, provider, model or editorial job.
+- Secret values are write-only at the browser boundary and accessed through a replaceable backend `SecretStore`.
+- A privileged action requires owner authorization and a recent TOTP assertion; a newer password assertion cannot refresh the MFA window.
+- Adaptation or replacement is a server-side proposal followed by an idempotent adult decision. An active-session replacement interrupts the old session and returns the family to preparation.
+- Editorial AI can draft, critique and synthesize findings, but `canApprove` is always false and deterministic human gates own release.
 - Unknown required UI blocks fail closed; unknown optional blocks can be skipped for forward compatibility.
+- Rejected offline sync events stay visible instead of being silently discarded.
 
-## External gates still requiring owner or human action
+## Evidence that remains external
 
-| Gate | Why it cannot be represented as complete |
+| Gate | Required evidence |
 |---|---|
-| Durable Vercel deployment | No Vercel session is authenticated on this host. |
-| Supabase project, migration execution and advisors | No dedicated Kids System project exists; creating one can incur external cost and requires explicit organization/cost confirmation. |
-| Authenticated cross-family test against Supabase | Requires the dedicated migrated project and two invited synthetic adult accounts. |
-| Live-model quality run | Requires approved OpenRouter credentials and an eligible provider route. |
-| Logfire trace for this release | Requires the production token and a deployed live-model request. |
-| Physical publication gate | Each exact activity version still requires founder execution and the required editorial/safety evidence. |
-| Submission timing | The stated 3 September deadline has passed; acceptance requires coordination with Lía/Antonio. |
+| Hosted release | Dedicated Vercel web/API URLs and a migrated Supabase project. |
+| Database runtime | Supabase advisors, hosted RLS tests with two synthetic families and backup/restore verification. |
+| Live provider routes | Approved keys, connection tests, model evaluations, privacy/retention review and billing reconciliation. |
+| Release observability | A release-specific redacted Logfire trace. The existing public trace is historical course evidence only. |
+| Content publication | Founder execution, exact hash, source-rights evidence and required professional/safety signatures per version. |
+| Pilot | Fourteen days with 12 invited adults and measured completion, usefulness, duration, incidents, latency and cost. |
+| Legal and distribution | Qualified privacy/terms review, store metadata, organization accounts and store review. |
+| Course timing | Acceptance coordination with Lía/Antonio after the stated deadline. |
 
-These are not hidden implementation TODOs. They are explicit environment, credential, spend, human-review or program-coordination gates.
+These are environment, credential, spend, human-review, legal or program-coordination gates. They must not be converted into green checkmarks by demo data.

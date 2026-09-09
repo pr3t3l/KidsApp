@@ -1,0 +1,656 @@
+{
+  "schema": "activity-locale@2",
+  "activityId": "ACT-9001",
+  "version": "0.2.0",
+  "locale": "es-US",
+  "content": {
+    "title": "Contrato sintético de puente de papel",
+    "summary": "Compara formas de papel y mejora un puente para que sostenga más piezas de prueba iguales.",
+    "openingQuestion": "¿Puede una hoja cruzar un espacio y sostener peso?",
+    "adultBrief": "Los pliegues pueden hacer que el papel resista mejor la flexión.",
+    "adultDetail": "Cambiar la forma transversal modifica cómo el papel resiste la flexión y distribuye la carga. El resultado depende del papel, la distancia, los pliegues y la posición de la carga.",
+    "childExplanation": "Una hoja plana se dobla fácilmente. Los pliegues forman paredes pequeñas que ayudan a conservar la forma.",
+    "reflections": [
+      "¿Qué forma sostuvo más piezas?",
+      "¿Qué mantuvimos igual para comparar justamente?"
+    ]
+  },
+  "learn": {
+    "goal": "Realizar dos pruebas comparables y usar el resultado para mejorar una forma de papel.",
+    "method": "Cambiar únicamente la forma del papel hace visible la resistencia a la flexión mientras cargas iguales aportan evidencia para comparar.",
+    "concepts": [
+      {
+        "id": "ENG-CON-STRUCTURAL-RIGIDITY",
+        "name": "Rigidez estructural"
+      }
+    ],
+    "skills": [
+      {
+        "id": "MOT-SKL-PRECISE-FOLDING",
+        "name": "Doblar papel con control",
+        "evidence": [
+          "Realiza pliegues repetidos con ayuda decreciente."
+        ],
+        "nonEvidence": [
+          "Observar al adulto doblar."
+        ]
+      },
+      {
+        "id": "MAT-SKL-ONE-TO-ONE-COUNTING",
+        "name": "Contar una pieza de prueba a la vez",
+        "evidence": [
+          "Agrega una pieza y actualiza el conteo una vez."
+        ],
+        "nonEvidence": [
+          "Repetir el total de otra persona."
+        ]
+      },
+      {
+        "id": "ENG-SKL-COMPARE-REDESIGN",
+        "name": "Usar resultados para rediseñar",
+        "evidence": [
+          "Nombra un cambio y vuelve a probarlo en condiciones iguales."
+        ],
+        "nonEvidence": [
+          "Cambiar varias condiciones sin comparar."
+        ]
+      }
+    ],
+    "decisions": [
+      "Elegir un cambio de forma del papel para la prueba de mejora."
+    ],
+    "lookFors": [
+      "Observar cuánta ayuda requiere cada acción asignada sin calificar predicciones ni resultados físicos."
+    ],
+    "guidance": [
+      {
+        "skill": "MAT-SKL-ONE-TO-ONE-COUNTING",
+        "rationale": "Sin evidencia previa, el conteo uno a uno durante una prueba real es una oportunidad inicial útil para cinco a seis años.",
+        "simplify": "Usa menos bloques y permite que el niño toque cada bloque al decir el número.",
+        "extend": "Pide al niño recuperar el total después de cada intervalo de espera."
+      },
+      {
+        "skill": "ENG-SKL-COMPARE-REDESIGN",
+        "rationale": "Sin evidencia previa, proponer, probar y revisar un diseño propio ofrece un reto abierto para siete a ocho años.",
+        "simplify": "Ofrece dos formas aprobadas y pide al niño elegir una y predecir su comportamiento.",
+        "extend": "Pide al niño justificar el rediseño con dos observaciones."
+      },
+      {
+        "skill": "MOT-SKL-PRECISE-FOLDING",
+        "rationale": "El plegado está disponible para cada participante, pero solo se elige como objetivo principal cuando la evidencia lo vuelve útil.",
+        "simplify": "Marca guías o estabiliza la hoja mientras el niño completa el pliegue.",
+        "extend": "Pide al niño planear y repetir un intervalo de plegado elegido."
+      }
+    ]
+  },
+  "materials": [
+    {
+      "id": "MAT-COPY-PAPER",
+      "name": "Hojas iguales de papel de copia",
+      "prep": "Usa hojas iguales y sin daños.",
+      "safety": "Detente si ocurre un corte con papel.",
+      "substitutes": [
+        {
+          "id": "SUB-EQUAL-CONSTRUCTION-PAPER",
+          "name": "Hojas iguales de cartulina",
+          "conditions": "Realiza una nueva referencia con cada forma de puente.",
+          "rationale": "El mecanismo sigue siendo rigidez por la forma del papel."
+        }
+      ]
+    },
+    {
+      "id": "MAT-TEST-BLOCKS",
+      "name": "Bloques grandes iguales",
+      "prep": "Elige piezas demasiado grandes para tragarse.",
+      "safety": "Nunca uses monedas, vidrio ni pesos grandes.",
+      "substitutes": []
+    }
+  ],
+  "flow": {
+    "states": [
+      {
+        "id": "STATE-READY",
+        "text": "Los materiales están preparados y no se conoce ningún resultado."
+      },
+      {
+        "id": "STATE-PROBLEM-SEEN",
+        "text": "Cada niño observó la referencia con hoja plana."
+      },
+      {
+        "id": "STATE-DESIGNS-CHOSEN",
+        "text": "Cada niño eligió una forma de papel."
+      },
+      {
+        "id": "STATE-CHILD-DESIGNS-READY",
+        "text": "Cada niño tiene un puente identificado listo para probar."
+      },
+      {
+        "id": "STATE-CHILD-RESULTS-RECORDED",
+        "text": "Cada niño completó una prueba y tiene un resultado."
+      },
+      {
+        "id": "STATE-IMPROVEMENT-TESTED",
+        "text": "El grupo eligió y probó una mejora."
+      },
+      {
+        "id": "STATE-EXPLANATION-SHARED",
+        "text": "Cada niño conectó un diseño con una observación."
+      },
+      {
+        "id": "STATE-CLEARED",
+        "text": "Los materiales están contados y guardados con seguridad."
+      }
+    ],
+    "materialFunctions": [
+      {
+        "material": "MAT-COPY-PAPER",
+        "purpose": "El papel es el puente; su forma es la variable que cambia."
+      },
+      {
+        "material": "MAT-TEST-BLOCKS",
+        "purpose": "Cada bloque igual es una unidad de carga añadida durante la prueba."
+      }
+    ],
+    "roles": [
+      {
+        "id": "ROLE-BUILDER",
+        "name": "Investigador infantil — foco en plegado",
+        "contribution": "Completa el ciclo entero mientras el adulto observa el apoyo durante el plegado.",
+        "responsibilities": [
+          "Proponer, construir, probar, observar, recomendar y explicar un puente propio."
+        ]
+      },
+      {
+        "id": "ROLE-TESTER",
+        "name": "Investigador infantil — foco en conteo",
+        "contribution": "Completa el ciclo entero mientras el adulto observa el conteo uno a uno.",
+        "responsibilities": [
+          "Proponer, construir, probar, observar, recomendar y explicar un puente propio."
+        ]
+      },
+      {
+        "id": "ROLE-DESIGNER",
+        "name": "Investigador infantil — foco en rediseño",
+        "contribution": "Completa el ciclo entero mientras el adulto observa el rediseño basado en evidencia.",
+        "responsibilities": [
+          "Proponer, construir, probar, observar, recomendar y explicar un puente propio."
+        ]
+      }
+    ],
+    "groups": [
+      {
+        "size": 1,
+        "notes": "El niño completa un ciclo personal entero."
+      },
+      {
+        "size": 2,
+        "notes": "Ambos niños completan un ciclo propio; el foco solo cambia la señal observada."
+      },
+      {
+        "size": 3,
+        "notes": "Cada niño completa un ciclo propio; el grupo comparte una mejora."
+      }
+    ],
+    "steps": [
+      {
+        "id": "STEP-01",
+        "title": "Preguntar",
+        "purpose": "Provocar una predicción antes de que alguien conozca el resultado.",
+        "transition": "El resultado observado de la hoja plana crea un problema concreto que resolver.",
+        "instruction": "Muestra el espacio y pregunta qué necesita hacer un puente de papel.",
+        "adultActions": [
+          {
+            "id": "STEP-01-ADULT-1",
+            "text": "Coloca los soportes y muestra una hoja plana sin carga."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-01-PROMPT-1",
+            "text": "¿Qué creen que hará el papel cuando agreguemos las piezas de prueba?"
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-01-ALL",
+            "text": "Señalar, decir o dibujar una predicción sin necesidad de acertar."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Proporcionar el puente plano de referencia."
+          },
+          {
+            "material": "MAT-TEST-BLOCKS",
+            "purpose": "Crear unidades iguales de carga en la prueba de referencia."
+          }
+        ],
+        "decision": "Elegir si responder señalando, hablando o dibujando.",
+        "cues": [
+          {
+            "id": "CUE-01-PREDICT",
+            "behavior": "Propone una predicción o pregunta comprobable.",
+            "doNotInfer": "Acertar la predicción no demuestra comprensión."
+          }
+        ],
+        "result": "Los niños identifican el espacio y la carga.",
+        "success": "Se nombra una necesidad comprobable.",
+        "problems": [
+          {
+            "problem": "Un niño busca la predicción correcta.",
+            "safeResponse": "Registra cada predicción sin calificarla."
+          }
+        ],
+        "warning": "Solo el adulto coloca los soportes.",
+        "resume": "Regresa a la misma distancia entre soportes."
+      },
+      {
+        "id": "STEP-02",
+        "title": "Predecir",
+        "purpose": "Convertir varias ideas en una forma comprobable y una condición justa.",
+        "transition": "La observación de referencia da a cada niño evidencia para elegir una forma.",
+        "instruction": "Dibuja o describe una forma de papel que podría resistir la flexión.",
+        "adultActions": [
+          {
+            "id": "STEP-02-ADULT-1",
+            "text": "Muestra la hoja plana y el diagrama de formas plegadas aprobadas sin decir cuál ganará."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-02-PROMPT-1",
+            "text": "Sin agregar papel, ¿qué forma podríamos darle a esta hoja? ¿Qué debe permanecer igual?"
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-02-ALL",
+            "text": "Elegir o dibujar una forma propia de papel, predecir su comportamiento y nombrar una condición que permanece igual."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Representar o demostrar opciones de forma aprobadas."
+          }
+        ],
+        "decision": "Cada niño elige una forma aprobada para una prueba propia.",
+        "cues": [
+          {
+            "id": "CUE-02-CHOOSE",
+            "behavior": "Nombra un cambio y una condición que debe mantenerse igual.",
+            "doNotInfer": "Elegir una opción sugerida no demuestra por sí solo rediseño independiente."
+          }
+        ],
+        "result": "Cada niño puede proponer una idea.",
+        "success": "Se elige al menos una forma.",
+        "problems": [
+          {
+            "problem": "El grupo combina varias ideas.",
+            "safeResponse": "Elige un cambio para cada prueba."
+          }
+        ],
+        "warning": "No agregues carga durante la predicción.",
+        "resume": "Conserva el dibujo elegido con los materiales."
+      },
+      {
+        "id": "STEP-03",
+        "title": "Construir un puente propio por niño",
+        "purpose": "Convertir cada idea elegida en una estructura comprobable de una hoja conservando la referencia plana.",
+        "transition": "Cada idea elegida se convierte en una estructura identificada que puede probarse.",
+        "instruction": "Da a cada niño una hoja igual para construir e identificar una forma propia de puente.",
+        "adultActions": [
+          {
+            "id": "STEP-03-ADULT-1",
+            "text": "Ofrece guías o estabiliza la hoja sin reemplazar las decisiones de diseño del niño."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-03-PROMPT-1",
+            "text": "Muéstrame la forma que elegiste y dime cuándo tu puente está listo para probar."
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-03-ALL",
+            "text": "Construir e identificar una forma propia de puente con el apoyo disponible."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Dar a cada niño una hoja igual para un diseño propio."
+          }
+        ],
+        "cues": [
+          {
+            "id": "CUE-03-FOLD",
+            "behavior": "Continúa la secuencia doblar-voltear con la cantidad de ayuda registrada.",
+            "doNotInfer": "No valorar plegado si el adulto creó los pliegues."
+          }
+        ],
+        "result": "Cada niño tiene un puente identificado que puede cruzar el mismo espacio uno por vez.",
+        "success": "Cada participante puede identificar su estructura y la orientación de prueba.",
+        "problems": [
+          {
+            "problem": "Los soportes se mueven.",
+            "safeResponse": "Usa soportes estables o reduce la distancia."
+          }
+        ],
+        "warning": "Usa papel intacto y ningún sujetador afilado.",
+        "resume": "Conserva cada puente junto a su nombre o símbolo y orientación planeada."
+      },
+      {
+        "id": "STEP-04",
+        "title": "Dar a cada niño una prueba propia",
+        "purpose": "Producir un resultado comparable por niño agregando y contando una carga igual a la vez.",
+        "transition": "Cada estructura propia se prueba en las mismas condiciones para producir un resultado.",
+        "instruction": "Restablece el montaje y permite que cada niño pruebe su puente con un bloque igual a la vez.",
+        "adultActions": [
+          {
+            "id": "STEP-04-ADULT-1",
+            "text": "Antes de cada diseño, restablece los soportes, centra el puente y da la señal de listo."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-04-PROMPT-1",
+            "text": "Una pieza, un número y después espera. Avísenme si cambia algo además del papel."
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-04-ALL",
+            "text": "En un turno propio, comprobar el montaje, agregar y contar una pieza igual a la vez, observar el puente y conservar el resultado."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Servir como puente de cada niño durante una prueba propia."
+          },
+          {
+            "material": "MAT-TEST-BLOCKS",
+            "purpose": "Proporcionar unidades de carga idénticas en cada prueba."
+          }
+        ],
+        "cues": [
+          {
+            "id": "CUE-04-COUNT",
+            "behavior": "Usa un número por pieza y recupera el conteo después de esperar.",
+            "doNotInfer": "Una falla del montaje no aporta evidencia sobre conteo."
+          }
+        ],
+        "result": "Cada niño tiene un resultado válido o una prueba no comparable documentada.",
+        "success": "Cada niño probó un puente usando la misma distancia, recipiente y unidades de carga.",
+        "problems": [
+          {
+            "problem": "Se pierde el conteo.",
+            "safeResponse": "Detén, retira la carga y reinicia la prueba."
+          }
+        ],
+        "warning": "Mantén las caras alejadas y detente si se mueve un soporte.",
+        "resume": "Registra la última prueba completa antes de pausar."
+      },
+      {
+        "id": "STEP-05",
+        "title": "Elegir un cambio",
+        "purpose": "Usar la primera comparación para elegir y probar un cambio deliberado.",
+        "transition": "Los resultados propios sustentan recomendaciones para una mejora compartida.",
+        "instruction": "Cambia una característica y predice el efecto.",
+        "adultActions": [
+          {
+            "id": "STEP-05-ADULT-1",
+            "text": "Muestra solo opciones de forma aprobadas y conserva iguales el papel, la distancia y la carga."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-05-PROMPT-1",
+            "text": "¿Qué mostraron las primeras pruebas? ¿Qué único cambio deberíamos probar ahora?"
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-05-RECOMMEND",
+            "text": "Recomendar un cambio usando un resultado propio y ayudar al grupo a elegir uno."
+          },
+          {
+            "id": "ACTN-05-SHARED",
+            "text": "Contribuir a construir y probar la mejora grupal elegida."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Construir la mejora compartida desde la recomendación elegida."
+          },
+          {
+            "material": "MAT-TEST-BLOCKS",
+            "purpose": "Volver a probar el diseño grupal con las mismas unidades de carga."
+          }
+        ],
+        "decision": "Elegir la única característica de forma que cambiarán.",
+        "cues": [
+          {
+            "id": "CUE-05-REDESIGN",
+            "behavior": "Usa un resultado anterior para elegir una característica nueva.",
+            "doNotInfer": "El puente rediseñado no necesita sostener más para que la decisión cuente."
+          }
+        ],
+        "result": "El grupo nombra un cambio deliberado.",
+        "success": "Las demás condiciones siguen iguales.",
+        "problems": [
+          {
+            "problem": "Se cambian varias variables.",
+            "safeResponse": "Conserva un cambio y guarda los demás para otra prueba."
+          }
+        ],
+        "warning": "No aumentes el peso de la carga ni la altura de los soportes.",
+        "resume": "Marca la característica elegida para cambiar."
+      },
+      {
+        "id": "STEP-06",
+        "title": "Explicar con evidencia",
+        "purpose": "Conectar una idea sobre la forma con algo visto o contado.",
+        "transition": "Los diseños y resultados visibles permiten que cada niño explique una conexión desde su propia experiencia.",
+        "instruction": "Compara conteos y describe dónde se dobló cada puente.",
+        "adultActions": [
+          {
+            "id": "STEP-06-ADULT-1",
+            "text": "Coloca los diseños sin carga uno junto al otro y señala los resultados registrados."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-06-PROMPT-1",
+            "text": "¿Qué vieron o contaron que apoya su idea?"
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-06-ALL",
+            "text": "Compartir una observación hablando, señalando, dibujando o eligiendo."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Mantener visible cada diseño propio y grupal durante la explicación."
+          },
+          {
+            "material": "MAT-TEST-BLOCKS",
+            "purpose": "Referirse a los conteos registrados sin volver a cargar los puentes."
+          }
+        ],
+        "decision": "Elegir qué observación o resultado usar en la explicación.",
+        "cues": [
+          {
+            "id": "CUE-06-EVIDENCE",
+            "behavior": "Relaciona una forma o cambio con un resultado visible o contado.",
+            "doNotInfer": "Repetir la explicación adulta no es evidencia independiente."
+          }
+        ],
+        "result": "Una explicación cita una observación.",
+        "success": "Se relaciona una forma con un resultado.",
+        "problems": [
+          {
+            "problem": "La explicación no cita un resultado.",
+            "safeResponse": "Señala los conteos registrados o la flexión visible."
+          }
+        ],
+        "warning": "Explica con el puente sin carga.",
+        "resume": "Conserva los conteos con los puentes."
+      },
+      {
+        "id": "STEP-07",
+        "title": "Limpiar",
+        "purpose": "Cerrar el ciclo práctico contando materiales y dejando un espacio seguro.",
+        "transition": "La investigación terminó, por lo que los materiales pueden contarse y guardarse con seguridad.",
+        "instruction": "Cuenta los bloques y guarda o recicla el papel.",
+        "adultActions": [
+          {
+            "id": "STEP-07-ADULT-1",
+            "text": "Retira primero los soportes y revisa el piso y la mesa antes de salir."
+          }
+        ],
+        "prompts": [
+          {
+            "id": "STEP-07-PROMPT-1",
+            "text": "Contemos cada pieza y elijamos qué papel guardar o reciclar."
+          }
+        ],
+        "participantActions": [
+          {
+            "id": "ACTN-07-ALL",
+            "text": "Contar, clasificar y guardar materiales después de que el adulto retire los soportes."
+          }
+        ],
+        "materialUses": [
+          {
+            "material": "MAT-COPY-PAPER",
+            "purpose": "Elegir qué diseños guardar o reciclar."
+          },
+          {
+            "material": "MAT-TEST-BLOCKS",
+            "purpose": "Contar y guardar cada unidad de prueba."
+          }
+        ],
+        "decision": "Elegir qué diseños de papel intactos guardar o reciclar.",
+        "cues": [
+          {
+            "id": "CUE-07-COUNT",
+            "behavior": "Cuenta una pieza guardada a la vez con el apoyo disponible.",
+            "doNotInfer": "Participar en la limpieza es exposición salvo que el adulto elija Evaluar más."
+          }
+        ],
+        "result": "La mesa y el piso quedan despejados.",
+        "success": "Todas las piezas están contadas.",
+        "problems": [
+          {
+            "problem": "Falta un bloque.",
+            "safeResponse": "Mantén el área cerrada hasta que el adulto lo encuentre."
+          }
+        ],
+        "warning": "Cuenta cada pieza de prueba antes de salir.",
+        "resume": "La limpieza debe terminar antes de otra actividad."
+      }
+    ]
+  },
+  "safety": {
+    "supervision": "Un adulto permanece presente y controla los materiales.",
+    "hazards": [
+      {
+        "id": "HAZ-SMALL-PARTS",
+        "description": "Las piezas de prueba pueden tragarse.",
+        "controls": [
+          {
+            "id": "HAZ-SMALL-PARTS-CONTROL-1",
+            "text": "Usa solo bloques grandes y cuenta cada uno."
+          }
+        ]
+      }
+    ],
+    "stops": [
+      {
+        "id": "STOP-1",
+        "text": "Detente si un niño lleva una pieza a la boca o un soporte se vuelve inestable."
+      }
+    ],
+    "prohibited": [
+      {
+        "id": "PROHIBITED-1",
+        "text": "No uses cargas afiladas, rompibles, calientes o pesadas."
+      }
+    ],
+    "cleanup": "Cuenta y guarda cada bloque."
+  },
+  "adaptations": [
+    {
+      "id": "ADAPT-SHORT-SESSION",
+      "name": "Comparación corta",
+      "conditions": "Usar cuando solo hay 35 minutos.",
+      "changes": "Prueba una vez las formas plana y acordeón."
+    }
+  ],
+  "closeout": [
+    {
+      "skill": "MOT-SKL-PRECISE-FOLDING",
+      "question": "¿Qué tan independientemente hizo pliegues controlados?",
+      "evidence": [
+        "Alineó pliegues con ayuda decreciente."
+      ],
+      "nonEvidence": [
+        "Solo observó a otra persona doblar."
+      ],
+      "external": [
+        "El papel estaba dañado."
+      ]
+    },
+    {
+      "skill": "MAT-SKL-ONE-TO-ONE-COUNTING",
+      "question": "¿Qué tan independientemente agregó y contó un bloque a la vez?",
+      "evidence": [
+        "Mantuvo un número por bloque."
+      ],
+      "nonEvidence": [
+        "Repitió el total de otra persona."
+      ],
+      "external": [
+        "Otro niño movió los bloques."
+      ]
+    },
+    {
+      "skill": "ENG-SKL-COMPARE-REDESIGN",
+      "question": "¿Qué tan independientemente usó un resultado para elegir un rediseño?",
+      "evidence": [
+        "Nombró un resultado y cambió una característica."
+      ],
+      "nonEvidence": [
+        "Cambió varias características sin comparar."
+      ],
+      "external": [
+        "Cambió la distancia entre soportes."
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "id": "VIS-01",
+      "purpose": "Identificar todos los materiales.",
+      "altText": "Materiales del puente de papel sobre una mesa despejada."
+    },
+    {
+      "id": "VIS-02",
+      "purpose": "Mostrar las formas plana y acordeón.",
+      "altText": "Una hoja plana y otra en acordeón cruzan el mismo espacio."
+    },
+    {
+      "id": "VIS-03",
+      "purpose": "Mostrar una prueba de carga igual.",
+      "altText": "Bloques iguales se colocan uno a la vez en el centro del puente."
+    }
+  ]
+}

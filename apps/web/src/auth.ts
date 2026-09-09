@@ -5,13 +5,53 @@ const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 export const supabase = url && publishableKey ? createClient(url, publishableKey) : null;
 
-export async function sendMagicLink(email: string): Promise<void> {
+export async function sendMagicLink(email: string, redirectTo = `${window.location.origin}${window.location.pathname}`): Promise<void> {
   if (!supabase) throw new Error("Supabase authentication is not configured.");
   const { error } = await supabase.auth.signInWithOtp({
     email,
-    options: { emailRedirectTo: window.location.origin }
+    options: { emailRedirectTo: redirectTo }
   });
   if (error) throw error;
+}
+
+export type AdminMfaSetup = { factorId: string; existing: boolean; qrCode?: string; secret?: string };
+
+export async function prepareAdminMfa(forceChallenge = false): Promise<AdminMfaSetup | null> {
+  if (!supabase) throw new Error("Supabase authentication is not configured.");
+  const assurance = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+  if (assurance.error) throw assurance.error;
+  if (assurance.data.currentLevel === "aal2" && !forceChallenge) return null;
+  const listed = await supabase.auth.mfa.listFactors();
+  if (listed.error) throw listed.error;
+  const verified = listed.data.totp.find((factor) => factor.status === "verified");
+  if (verified) return { factorId: verified.id, existing: true };
+  const enrolled = await supabase.auth.mfa.enroll({ factorType: "totp", friendlyName: "Kids Learning admin" });
+  if (enrolled.error) throw enrolled.error;
+  return { factorId: enrolled.data.id, existing: false, qrCode: enrolled.data.totp.qr_code, secret: enrolled.data.totp.secret };
+}
+
+export async function verifyAdminMfa(factorId: string, code: string): Promise<void> {
+  if (!supabase) throw new Error("Supabase authentication is not configured.");
+  const result = await supabase.auth.mfa.challengeAndVerify({ factorId, code });
+  if (result.error) throw result.error;
+  await persistCurrentAccessToken();
+}
+
+export async function signOut(): Promise<void> {
+  if (supabase) await supabase.auth.signOut();
+  window.localStorage.removeItem("kids.access_token");
+  window.localStorage.removeItem("kids.family_id");
+}
+
+export async function requestReauthentication(): Promise<void> {
+  if (!supabase) throw new Error("Supabase authentication is not configured.");
+  const current = await supabase.auth.getUser();
+  if (current.error || !current.data.user.email) throw current.error ?? new Error("No adult email is available for reauthentication.");
+  const result = await supabase.auth.signInWithOtp({
+    email: current.data.user.email,
+    options: { emailRedirectTo: `${window.location.origin}/?reauth=privacy`, shouldCreateUser: false }
+  });
+  if (result.error) throw result.error;
 }
 
 export async function persistCurrentAccessToken(): Promise<void> {

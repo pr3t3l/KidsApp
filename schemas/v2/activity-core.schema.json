@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kids-learning.example/schemas/v2/activity-core.schema.json",
+  "title": "ActivityCoreV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "version", "sourceLocale", "state", "fit", "learn", "materials", "flow", "safety", "adaptations", "closeout"],
+  "properties": {
+    "schema": { "const": "activity@2" },
+    "id": { "$ref": "#/$defs/id" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "sourceLocale": { "$ref": "#/$defs/locale" },
+    "state": { "enum": ["idea", "draft", "review", "ready_for_pilot", "family_pilot", "revision", "published", "retired"] },
+    "fit": { "$ref": "#/$defs/fit" },
+    "learn": { "$ref": "#/$defs/learn" },
+    "materials": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/material" } },
+    "flow": { "$ref": "#/$defs/flow" },
+    "safety": { "$ref": "#/$defs/safety" },
+    "adaptations": { "type": "array", "items": { "$ref": "#/$defs/adaptation" } },
+    "closeout": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/closeout" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1, "maxLength": 100, "pattern": "^[A-Za-z0-9][A-Za-z0-9@._:-]*$" },
+    "locale": { "enum": ["en-US", "es-US"] },
+    "idList": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+    "nonEmptyIdList": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+    "age": {
+      "type": "array",
+      "prefixItems": [{ "type": "integer", "minimum": 5, "maximum": 10 }, { "type": "integer", "minimum": 5, "maximum": 10 }],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "fit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["age", "levels", "group", "time", "mess", "spaces", "offline"],
+      "properties": {
+        "age": { "$ref": "#/$defs/age" },
+        "levels": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["L1", "L2", "L3", "L4"] } },
+        "group": {
+          "type": "object", "additionalProperties": false, "required": ["min", "max", "sizes"],
+          "properties": {
+            "min": { "type": "integer", "minimum": 1, "maximum": 4 },
+            "max": { "type": "integer", "minimum": 1, "maximum": 4 },
+            "sizes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "integer", "minimum": 1, "maximum": 4 } }
+          }
+        },
+        "time": {
+          "type": "object", "additionalProperties": false, "required": ["min", "max", "prep", "clean"],
+          "properties": {
+            "min": { "type": "integer", "minimum": 1, "maximum": 180 },
+            "max": { "type": "integer", "minimum": 1, "maximum": 180 },
+            "prep": { "type": "integer", "minimum": 0, "maximum": 120 },
+            "clean": { "type": "integer", "minimum": 0, "maximum": 120 }
+          }
+        },
+        "mess": { "enum": ["low", "medium", "high"] },
+        "spaces": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 40 } },
+        "offline": { "type": "boolean" }
+      }
+    },
+    "guidance": {
+      "type": "object", "additionalProperties": false, "required": ["skill", "age", "intent"],
+      "properties": {
+        "skill": { "$ref": "#/$defs/id" },
+        "age": { "$ref": "#/$defs/age" },
+        "intent": { "enum": ["exploration", "growth", "consolidation"] }
+      }
+    },
+    "learn": {
+      "type": "object", "additionalProperties": false, "required": ["primary", "secondary", "concepts", "skills", "cycle", "guidance"],
+      "properties": {
+        "primary": { "$ref": "#/$defs/id" },
+        "secondary": { "$ref": "#/$defs/idList" },
+        "concepts": { "$ref": "#/$defs/nonEmptyIdList" },
+        "skills": { "$ref": "#/$defs/nonEmptyIdList" },
+        "cycle": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["discover", "imagine", "build_or_do", "experiment", "improve", "explain"] } },
+        "guidance": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/guidance" } }
+      }
+    },
+    "substitute": {
+      "type": "object", "additionalProperties": false, "required": ["id", "quantity", "unit", "safety"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "quantity": { "type": "number", "exclusiveMinimum": 0 },
+        "unit": { "type": "string", "minLength": 1, "maxLength": 30 },
+        "safety": { "enum": ["none", "reviewed", "reviewed_equivalent"] }
+      }
+    },
+    "material": {
+      "type": "object", "additionalProperties": false, "required": ["id", "quantity", "unit", "required", "reusable", "substitutes"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "quantity": { "type": "number", "exclusiveMinimum": 0 },
+        "unit": { "type": "string", "minLength": 1, "maxLength": 30 },
+        "required": { "type": "boolean" },
+        "reusable": { "type": "boolean" },
+        "substitutes": { "type": "array", "items": { "$ref": "#/$defs/substitute" } }
+      }
+    },
+    "role": {
+      "type": "object", "additionalProperties": false, "required": ["id", "levels", "primarySkills", "skills", "concepts", "allowedSteps", "restrictedSteps"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "levels": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["L1", "L2", "L3", "L4"] } },
+        "primarySkills": { "$ref": "#/$defs/idList" },
+        "skills": { "$ref": "#/$defs/idList" },
+        "concepts": { "$ref": "#/$defs/idList" },
+        "allowedSteps": { "$ref": "#/$defs/idList" },
+        "restrictedSteps": { "$ref": "#/$defs/idList" }
+      }
+    },
+    "group": {
+      "type": "object", "additionalProperties": false, "required": ["size", "roles"],
+      "properties": { "size": { "type": "integer", "minimum": 1, "maximum": 4 }, "roles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/id" } } }
+    },
+    "participantAction": {
+      "type": "object", "additionalProperties": false, "required": ["id", "audience", "roles", "turn"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "audience": { "enum": ["all_participants", "role_templates"] },
+        "roles": { "$ref": "#/$defs/idList" },
+        "turn": { "enum": ["simultaneous", "sequential", "facilitator_cued"] }
+      }
+    },
+    "cycleAction": {
+      "type": "object", "additionalProperties": false, "required": ["action", "audience"],
+      "properties": {
+        "action": { "enum": ["encounter_problem", "propose", "build_or_do", "test_or_check", "observe_result", "improve_or_recommend", "explain"] },
+        "audience": { "enum": ["every_active_participant", "assigned_participant", "group"] }
+      }
+    },
+    "cue": {
+      "type": "object", "additionalProperties": false, "required": ["id", "skill"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "skill": { "$ref": "#/$defs/id" } }
+    },
+    "step": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "stage", "actor", "entry", "exit", "minutes", "adultActionIds", "promptIds", "participantActions", "cycle", "materialIds", "hasDecision", "cues", "visualIds", "skills", "concepts"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "stage": { "enum": ["discover", "imagine", "build_or_do", "experiment", "improve", "explain", "close", "cleanup"] },
+        "actor": { "enum": ["adult", "child", "group", "role"] },
+        "entry": { "$ref": "#/$defs/id" },
+        "exit": { "$ref": "#/$defs/id" },
+        "minutes": { "type": "integer", "minimum": 0, "maximum": 120 },
+        "adultActionIds": { "$ref": "#/$defs/idList" },
+        "promptIds": { "$ref": "#/$defs/idList" },
+        "participantActions": { "type": "array", "items": { "$ref": "#/$defs/participantAction" } },
+        "cycle": { "type": "array", "items": { "$ref": "#/$defs/cycleAction" } },
+        "materialIds": { "$ref": "#/$defs/idList" },
+        "hasDecision": { "type": "boolean" },
+        "cues": { "type": "array", "items": { "$ref": "#/$defs/cue" } },
+        "visualIds": { "$ref": "#/$defs/idList" },
+        "skills": { "$ref": "#/$defs/idList" },
+        "concepts": { "$ref": "#/$defs/idList" }
+      }
+    },
+    "materialFunction": {
+      "type": "object", "additionalProperties": false, "required": ["material", "firstStep"],
+      "properties": { "material": { "$ref": "#/$defs/id" }, "firstStep": { "$ref": "#/$defs/id" } }
+    },
+    "flow": {
+      "type": "object", "additionalProperties": false, "required": ["mode", "start", "end", "states", "materialFunctions", "participantCycle", "roles", "groups", "steps"],
+      "properties": {
+        "mode": { "enum": ["individual_cycles", "shared_artifact", "hybrid"] },
+        "start": { "$ref": "#/$defs/id" },
+        "end": { "$ref": "#/$defs/id" },
+        "states": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+        "materialFunctions": { "type": "array", "items": { "$ref": "#/$defs/materialFunction" } },
+        "participantCycle": {
+          "type": "object", "additionalProperties": false, "required": ["policy", "actions"],
+          "properties": {
+            "policy": { "enum": ["every_active_participant", "shared_with_documented_equivalence"] },
+            "actions": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/cycleAction/properties/action" } }
+          }
+        },
+        "roles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/role" } },
+        "groups": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/group" } },
+        "steps": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/step" } }
+      }
+    },
+    "hazard": {
+      "type": "object", "additionalProperties": false, "required": ["id", "category", "controlIds", "steps"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "category": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "controlIds": { "$ref": "#/$defs/nonEmptyIdList" },
+        "steps": { "$ref": "#/$defs/nonEmptyIdList" }
+      }
+    },
+    "safety": {
+      "type": "object", "additionalProperties": false, "required": ["level", "hazards", "adultOnlySteps", "stopIds", "prohibitedIds"],
+      "properties": {
+        "level": { "enum": ["A", "B", "C", "D"] },
+        "hazards": { "type": "array", "items": { "$ref": "#/$defs/hazard" } },
+        "adultOnlySteps": { "$ref": "#/$defs/idList" },
+        "stopIds": { "$ref": "#/$defs/nonEmptyIdList" },
+        "prohibitedIds": { "$ref": "#/$defs/idList" }
+      }
+    },
+    "adaptation": {
+      "type": "object", "additionalProperties": false, "required": ["id", "type", "safety", "adultConfirm"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "type": { "enum": ["presentation", "difficulty", "role", "material", "duration", "simplification", "extension"] },
+        "safety": { "enum": ["none", "reviewed"] },
+        "adultConfirm": { "type": "boolean" }
+      }
+    },
+    "closeout": {
+      "type": "object", "additionalProperties": false, "required": ["skill"],
+      "properties": { "skill": { "$ref": "#/$defs/id" } }
+    }
+  }
+}

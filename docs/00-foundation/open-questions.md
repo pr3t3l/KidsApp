@@ -3,7 +3,7 @@
 # Open Questions and Confirmed Decisions
 
 **Status:** Review
-**Version:** 0.6
+**Version:** 0.7
 
 ## Decisions confirmed by the founder
 
@@ -12,6 +12,7 @@
 | Market | USA. |
 | Languages | English and Spanish from launch. |
 | Platform | iOS/Android mobile application and two planned web experiences: family application and administrative/editorial portal. The order of web construction is decided in the roadmap. |
+| Implemented web pilot | Build the complete family PWA and bilingual administrative/editorial workspace before native packaging. |
 | Initial interface | Aimed at adults. The child participates off-screen; can receive questions and images presented by the adult. |
 | Account | One adult pays; multiple authorized adults can use the family. |
 | Profiles | The family can create the child profiles they need. |
@@ -53,11 +54,10 @@
 ## Questions still open
 
 1. What will be the monthly and annual price after validating the pilot?
-2. Which web experience is built first: the family one or the administrative/editorial portal?
-3. Will it be requested for inclusion in the Apple Kids Category or will it be distributed as an app for adults accompanying children? This decision does change metadata, parental gates, SDKs, analytics and store review; requires legal and App Store review.
-4. What exact electrical configuration allows children to materially participate in de-energized assembly without accessing batteries, dangerous fixtures, or unapproved components?
-5. What consent, privacy review and takedown mechanism will be used when an adult chooses to post an image with a recognizable child?
-6. Which exact Supabase and Vercel regions will be approved after reviewing the states represented in the real-family pilot?
-7. Which OpenRouter model/provider routes meet the documented privacy, retention, quality, latency and cost gates for real family context?
-8. When will each of the ten synthetic catalog versions complete founder execution and the editorial/safety evidence required for pilot publication?
-9. Which owner-authenticated Vercel account and dedicated Supabase project will hold the durable evaluator environment?
+2. Will it be requested for inclusion in the Apple Kids Category or will it be distributed as an app for adults accompanying children? This decision does change metadata, parental gates, SDKs, analytics and store review; requires legal and App Store review.
+3. What exact electrical configuration allows children to materially participate in de-energized assembly without accessing batteries, dangerous fixtures, or unapproved components?
+4. What consent, privacy review and takedown mechanism will be used when an adult chooses to post an image with a recognizable child?
+5. Which exact Supabase and Vercel regions will be approved after reviewing the states represented in the real-family pilot?
+6. Which OpenRouter, OpenAI and Anthropic model/deployment routes meet the documented privacy, retention, quality, latency and cost gates for real family context?
+7. When will each of the 13 synthetic catalog versions complete founder execution and the editorial/safety evidence required for pilot publication? Family surfaces expose only the 12 risk-A/B records; risk-C `ACT-0003` remains blocked.
+8. Which owner-authenticated Vercel account and dedicated Supabase project will hold the durable evaluator environment?

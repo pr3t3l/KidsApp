@@ -3,7 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 const root = process.cwd();
-const ignoredDirectories = new Set([".git", ".venv", ".vercel", "dist", "node_modules"]);
+const ignoredDirectories = new Set([".git", ".venv", ".vercel", ".pytest_cache", "__pycache__", "dist", "node_modules"]);
 
 function walk(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
