@@ -180,9 +180,9 @@ The family companion is intentionally **not** a society of autonomous agents. It
 
 **Application:** The repository documents architecture, contracts, security, runbooks, limits and evidence. It separates web and API deployables while preserving a modular monolith and external PostgreSQL state. [Docker Compose](../../docker-compose.yml), [web Dockerfile](../../apps/web/Dockerfile) and [API Dockerfile](../../services/ai/Dockerfile) support local/container builds. [GitHub Actions](../../.github/workflows/ci.yml) runs validation, dependency audits and container builds without committing credentials. Vercel configurations exist for web/API, and health/observability endpoints are implemented.
 
-The Docker daemon is stopped on the current host after reboot, so this consolidation does not claim a new local container run. An earlier GitHub Actions run built both images; a fresh run after publication is required for current-release evidence. The durable Vercel/Supabase environment is still external.
+The Docker daemon is stopped on the current host after reboot, so this consolidation does not claim a new local container run. [GitHub Actions run 34418301854](https://github.com/pr3t3l/KidsApp/actions/runs/34418301854) passed validation, dependency audits and `docker compose build` for implementation commit `c63db4b`. The durable Vercel/Supabase environment is still external.
 
-**Status:** Production artifacts implemented and previously CI-verified; current CI and hosted release pending.
+**Status:** Production artifacts and current implementation commit CI-verified; hosted release pending.
 
 ### Session 16 — LLMOps, abstention, regression, observability and experimentation
 
@@ -217,7 +217,7 @@ This sidecar solves the original oversized-contract problem: provider operations
 | Agents | Bounded family graph and separate supervised editorial multi-agent graph | AI cannot approve or publish |
 | Objective evaluation | 80 bilingual golden executions plus policy/API/UI/browser gates | Human usefulness and real-pilot measures pending |
 | Real architecture/data | React, FastAPI, 11 Supabase migrations, RLS, Vault boundary, provider/cost governance | Dedicated production environment pending |
-| Production/reproducibility | Docker, CI, Vercel configs, health, Logfire instrumentation, README/runbooks | Durable URL, current CI and release trace pending |
+| Production/reproducibility | Docker, current green CI, Vercel configs, health, Logfire instrumentation, README/runbooks | Durable URL and release trace pending |
 | Versioning and limitations | Content/schema/route/rate/embedding versions, hashes, rollback and explicit external-gate register | Human/legal/store gates remain open |
 
 ## Reproduce the technical evidence

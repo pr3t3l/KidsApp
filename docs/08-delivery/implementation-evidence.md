@@ -29,9 +29,9 @@ The evidence boundary is strict. Catalog records and families used by automated 
 | Golden quality gates | Recall@5 `1.0`, source correctness `1.0`, safe abstention `1.0` |
 | Dependency security | `npm audit` reports zero vulnerabilities; `pip-audit` reports no known vulnerabilities in the locked Python requirements |
 | Catalog ingestion dry run | 13 activities, 4 approved-option fixtures and 28 localized chunks accepted as `synthetic-demo` |
-| Historical CI baseline | [GitHub Actions run 33987646398](https://github.com/pr3t3l/KidsApp/actions/runs/33987646398) passed validation, dependency audits and both Docker builds before this consolidation |
+| Current CI and containers | [GitHub Actions run 34418301854](https://github.com/pr3t3l/KidsApp/actions/runs/34418301854) passed aggregate validation, dependency audits and `docker compose build` for implementation commit `c63db4b` |
 
-The aggregate command is `npm run validate`. The independent `pglast` parse is a verification aid, not a runtime dependency. A fresh CI result for the published consolidation is required before the container row becomes current release evidence.
+The aggregate command is `npm run validate`. The independent `pglast` parse is a verification aid, not a runtime dependency. The current remote CI result verifies the exact implementation commit; Docker was not separately rerun on the local Windows host because its daemon remains stopped after reboot.
 
 ## Real-browser evidence
 

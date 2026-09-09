@@ -180,9 +180,9 @@ El companion familiar no se convirtió innecesariamente en múltiples agentes: u
 
 **Aplicación:** el repo documenta arquitectura, contratos, seguridad, límites y evidencia. Web/API son deployables separados con PostgreSQL externo. Hay `docker-compose.yml`, Dockerfiles para web/API, workflow `.github/workflows/ci.yml`, auditorías de dependencias, health y configuraciones Vercel sin credenciales comprometidas.
 
-Docker Desktop está detenido tras el reinicio del PC, así que no se afirma un nuevo build local. Un run anterior de GitHub Actions construyó ambas imágenes; hace falta un run nuevo después de publicar. Vercel/Supabase durables siguen pendientes.
+Docker Desktop está detenido tras el reinicio del PC, así que no se afirma un nuevo build local. El [run 34418301854 de GitHub Actions](https://github.com/pr3t3l/KidsApp/actions/runs/34418301854) aprobó validación, auditorías y `docker compose build` para el commit de implementación `c63db4b`. Vercel/Supabase durables siguen pendientes.
 
-**Estado:** artefactos implementados y CI anterior verde; CI actual y despliegue pendientes.
+**Estado:** artefactos y commit de implementación verificados por el CI actual; despliegue alojado pendiente.
 
 ### Sesión 16 — LLMOps, abstención, regresiones y experimentación
 
@@ -217,7 +217,7 @@ Este sidecar conserva metadata rica sin volver a inflar el contrato funcional: `
 | Agentes | Grafo familiar acotado y grafo editorial multiagente | IA sin permiso de aprobar/publicar |
 | Evaluación objetiva | 80 golden bilingües + política/API/UI/navegador | Utilidad humana y piloto pendientes |
 | Arquitectura/datos | React, FastAPI, 11 migraciones, RLS, Vault, routing/costos | Entorno dedicado pendiente |
-| Producción/reproducción | Docker, CI, Vercel configs, health, Logfire y runbooks | URL, CI actual y traza de release pendientes |
+| Producción/reproducción | Docker, CI actual verde, Vercel configs, health, Logfire y runbooks | URL durable y traza de release pendientes |
 | Versiones/limitaciones | Versiones y hashes de contenido/schema/ruta/tarifa/embedding, rollback | Gates humanos, legales y stores abiertos |
 
 ## Cómo reproducir

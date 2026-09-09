@@ -50,7 +50,7 @@ npm run preview --workspace @kids/web -- --host 127.0.0.1 --port 4173
 npm run test:e2e --workspace @kids/web
 ```
 
-Detailed counts and the browser assertions are recorded in [Final-project implementation evidence](implementation-evidence.md). Docker was not re-run locally after the host reboot because the Docker daemon was stopped; the Compose definitions remain in source and the current branch must obtain a fresh CI container result after publication.
+Detailed counts and the browser assertions are recorded in [Final-project implementation evidence](implementation-evidence.md). Docker was not re-run locally after the host reboot because the Docker daemon was stopped. [GitHub Actions run 34418301854](https://github.com/pr3t3l/KidsApp/actions/runs/34418301854) passed `docker compose build` for both deployables on implementation commit `c63db4b`.
 
 The current dependency audit reports zero npm vulnerabilities and no known vulnerabilities in the locked Python requirements. Vitest was upgraded to `5.0.0` to remove the affected development-only dependency before publication.
 

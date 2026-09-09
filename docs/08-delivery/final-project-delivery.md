@@ -41,7 +41,7 @@ The evaluator receives a dedicated invited adult account attached only to a synt
 - [x] The README links architecture, data model, OpenAPI setup, limitations and evidence.
 - [ ] A durable public/evaluator URL is active; the verified anonymous deployment is temporary.
 - [ ] The migration and database advisors pass in a dedicated Supabase project.
-- [ ] The published consolidation obtains a fresh Linux CI/container result; an earlier branch state passed both Docker builds, while the local Docker engine is currently stopped.
+- [x] [GitHub Actions run 34418301854](https://github.com/pr3t3l/KidsApp/actions/runs/34418301854) passed Linux validation, dependency audits and both Docker builds for implementation commit `c63db4b`; the local Docker engine remains stopped after reboot.
 - [ ] A release-specific live-provider evaluation and redacted Logfire trace are linked.
 - [ ] Exact activity versions have founder execution, rights and required specialist evidence.
 - [ ] The 14-day, 12-adult pilot results are recorded.
