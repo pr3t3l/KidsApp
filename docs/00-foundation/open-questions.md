@@ -60,4 +60,4 @@
 5. Which exact Supabase and Vercel regions will be approved after reviewing the states represented in the real-family pilot?
 6. Which OpenRouter, OpenAI and Anthropic model/deployment routes meet the documented privacy, retention, quality, latency and cost gates for real family context?
 7. When will each of the 13 synthetic catalog versions complete founder execution and the editorial/safety evidence required for pilot publication? Family surfaces expose only the 12 risk-A/B records; risk-C `ACT-0003` remains blocked.
-8. Which owner-authenticated Vercel account and dedicated Supabase project will hold the durable evaluator environment?
+8. **Resolved for the academic evaluator by DEC-077:** the existing owner Vercel team and namespaced `declassified-shop` Supabase project hold the temporary environment. A dedicated Supabase project remains required before commercial launch.

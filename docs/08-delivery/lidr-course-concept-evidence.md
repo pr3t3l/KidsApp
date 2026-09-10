@@ -110,7 +110,7 @@ The current domain uses reviewed URLs and structured JSON, so a general PDF/audi
 
 **Course concepts:** when vector databases add value, pgvector, HNSW/IVFFlat/DiskANN trade-offs, schema/search and production tuning.
 
-**Application:** The [core migration](../../supabase/migrations/202609050001_final_project_core.sql) defines vector/FTS columns, an HNSW cosine index and a hybrid search function. Retrieval filters published exact activity version and locale, applies a `0.55` semantic threshold, takes full-text/vector ranks and combines them with reciprocal-rank fusion. The modular-monolith choice keeps relational authorization/content and vector search in one PostgreSQL boundary.
+**Application:** The [core migration](../../supabase/migrations/20260910233507_kids_final_project_core.sql) defines vector/FTS columns, an HNSW cosine index and a hybrid search function. Retrieval filters published exact activity version and locale, applies a `0.55` semantic threshold, takes full-text/vector ranks and combines them with reciprocal-rank fusion. The modular-monolith choice keeps relational authorization/content and vector search in one PostgreSQL boundary.
 
 HNSW is selected for the small read-heavy catalog; IVFFlat/DiskANN are documented trade-offs, not prematurely configured. Hosted query plans, index recall/latency tuning and Supabase advisors cannot be evidenced without the production dataset/project.
 
@@ -216,7 +216,7 @@ This sidecar solves the original oversized-contract problem: provider operations
 | CAG and RAG | Exact policy/version/block CAG; published-only hybrid pgvector/FTS/RRF RAG | Hosted database performance pending |
 | Agents | Bounded family graph and separate supervised editorial multi-agent graph | AI cannot approve or publish |
 | Objective evaluation | 80 bilingual golden executions plus policy/API/UI/browser gates | Human usefulness and real-pilot measures pending |
-| Real architecture/data | React, FastAPI, 12 Supabase migrations, RLS, Vault boundary, provider/cost governance | Dedicated production environment pending |
+| Real architecture/data | React, FastAPI, 13 Kids Supabase migrations, RLS, Vault boundary, provider/cost governance | Namespaced academic-pilot database deployed; dedicated commercial project pending |
 | Production/reproducibility | Docker, current green CI, Vercel configs, health, Logfire instrumentation, README/runbooks | Durable URL and release trace pending |
 | Versioning and limitations | Content/schema/route/rate/embedding versions, hashes, rollback and explicit external-gate register | Human/legal/store gates remain open |
 

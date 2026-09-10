@@ -33,7 +33,7 @@ from .admin_models import (
 )
 from .ai_ops import AIOperationsService, ConnectionRecord, now_utc
 from .provider_models import BillingMetadata, GenerationResult, RouteMetadata, RunMetadata, UsageMetadata
-from .supabase_http import supabase_headers
+from .supabase_http import supabase_headers, supabase_rest_path
 
 
 class SupabaseAIOperationsService(AIOperationsService):
@@ -70,7 +70,7 @@ class SupabaseAIOperationsService(AIOperationsService):
         async with httpx.AsyncClient(timeout=12) as client:
             response = await client.request(
                 method,
-                f"{self.url}/rest/v1/{path}",
+                f"{self.url}/rest/v1/{supabase_rest_path(path)}",
                 headers=self._headers(token, service=service, prefer=prefer),
                 **kwargs,
             )
@@ -90,7 +90,7 @@ class SupabaseAIOperationsService(AIOperationsService):
         with httpx.Client(timeout=12) as client:
             response = client.request(
                 method,
-                f"{self.url}/rest/v1/{path}",
+                f"{self.url}/rest/v1/{supabase_rest_path(path)}",
                 headers=self._headers(token, service=service, prefer=prefer),
                 **kwargs,
             )

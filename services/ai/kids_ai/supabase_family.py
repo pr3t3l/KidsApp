@@ -31,7 +31,7 @@ from .family import (
     SessionStart,
 )
 from .models import Locale, Principal
-from .supabase_http import supabase_headers
+from .supabase_http import supabase_headers, supabase_rest_path
 
 
 def now_utc() -> datetime:
@@ -127,7 +127,7 @@ class SupabaseFamilyService:
         async with httpx.AsyncClient(timeout=12) as client:
             response = await client.request(
                 method,
-                f"{self.url}/rest/v1/{path}",
+                f"{self.url}/rest/v1/{supabase_rest_path(path)}",
                 headers=self._headers(key, token, prefer),
                 **kwargs,
             )

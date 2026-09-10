@@ -10,7 +10,7 @@ import httpx
 from pydantic import Field
 
 from .models import ApiModel, Principal
-from .supabase_http import supabase_headers
+from .supabase_http import supabase_headers, supabase_rest_path
 
 
 AdminRole = Literal["platform_owner", "editorial_specialist", "support_operator"]
@@ -207,8 +207,9 @@ class SupabaseAdminWorkspaceService(AdminWorkspaceService):
 
     async def _request(self, method: str, path: str, *, prefer: str | None = None, auth: bool = False, **kwargs: Any) -> httpx.Response:
         base = f"{self.url}/auth/v1/" if auth else f"{self.url}/rest/v1/"
+        physical_path = path if auth else supabase_rest_path(path)
         async with httpx.AsyncClient(timeout=15) as client:
-            response = await client.request(method, f"{base}{path}", headers=self._headers(prefer=prefer), **kwargs)
+            response = await client.request(method, f"{base}{physical_path}", headers=self._headers(prefer=prefer), **kwargs)
         if response.status_code >= 400:
             raise PermissionError("Administrative operation failed")
         return response

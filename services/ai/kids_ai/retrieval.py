@@ -7,6 +7,7 @@ from typing import Any
 import httpx
 from .catalog import load_catalog
 from .models import RetrievedChunk
+from .supabase_http import supabase_rest_path
 
 
 def _tokens(text: str) -> Counter[str]:
@@ -54,7 +55,7 @@ class SupabaseHybridRetriever:
             embedding = None
         async with httpx.AsyncClient(timeout=12) as client:
             response = await client.post(
-                f"{self.url}/rest/v1/rpc/hybrid_search_activity_chunks",
+                f"{self.url}/rest/v1/{supabase_rest_path('rpc/hybrid_search_activity_chunks')}",
                 headers={"apikey": self.key, "Authorization": f"Bearer {principal.access_token}", "Content-Type": "application/json"},
                 json={"query_text": query, "query_embedding": embedding, "match_activity_version_id": activity_version_id, "match_locale": locale, "match_count": min(limit, 5)},
             )

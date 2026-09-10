@@ -6,7 +6,7 @@ from uuid import UUID, uuid4
 
 import httpx
 
-from .supabase_http import supabase_headers
+from .supabase_http import supabase_headers, supabase_rest_path
 
 
 class SecretStore(Protocol):
@@ -46,21 +46,23 @@ class InMemorySecretStore:
 class SupabaseVaultSecretStore:
     """Backend-only Vault bridge. RPCs are granted exclusively to `service_role`."""
 
-    def __init__(self, url: str, secret_key: str):
+    def __init__(self, url: str, secret_key: str, name_prefix: str = "kids/"):
         self.url = url.rstrip("/")
         self.secret_key = secret_key
+        self.name_prefix = name_prefix
 
     def _headers(self) -> dict[str, str]:
         return supabase_headers(self.secret_key)
 
     async def _rpc(self, name: str, payload: dict[str, str]) -> object:
         async with httpx.AsyncClient(timeout=10) as client:
-            response = await client.post(f"{self.url}/rest/v1/rpc/{name}", headers=self._headers(), json=payload)
+            response = await client.post(f"{self.url}/rest/v1/{supabase_rest_path(f'rpc/{name}')}", headers=self._headers(), json=payload)
         response.raise_for_status()
         return response.json()
 
     async def put(self, name: str, value: str) -> UUID:
-        result = await self._rpc("server_store_provider_secret", {"p_name": name, "p_secret": value})
+        physical_name = name if name.startswith(self.name_prefix) else f"{self.name_prefix}{name}"
+        result = await self._rpc("server_store_provider_secret", {"p_name": physical_name, "p_secret": value})
         return UUID(str(result))
 
     async def get_for_runtime(self, secret_id: UUID) -> str:

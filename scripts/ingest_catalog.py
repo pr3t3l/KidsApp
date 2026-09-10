@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from services.ai.kids_ai.supabase_http import supabase_headers
+from services.ai.kids_ai.supabase_http import supabase_headers, supabase_object_name
 
 CATALOG_PATH = ROOT / "services" / "ai" / "data" / "activities" / "catalog.json"
 COVERAGE_PATH = ROOT / "services" / "ai" / "data" / "activities" / "coverage.json"
@@ -104,7 +104,7 @@ async def upsert(client: httpx.AsyncClient, base_url: str, headers: dict[str, st
     if not rows:
         return
     response = await client.post(
-        f"{base_url}/rest/v1/{table}?on_conflict={conflict}",
+        f"{base_url}/rest/v1/{supabase_object_name(table)}?on_conflict={conflict}",
         headers={**headers, "Prefer": "resolution=merge-duplicates,return=minimal"},
         json=rows,
     )

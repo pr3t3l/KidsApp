@@ -9,6 +9,7 @@ from datetime import datetime, timedelta, timezone
 
 from .catalog import activity_by_version, load_catalog
 from .models import CompanionProposal, ExperienceView, Principal
+from .supabase_http import supabase_rest_path
 
 DEMO_CONTEXT_ID = UUID("00000000-0000-0000-0000-000000000101")
 
@@ -177,7 +178,7 @@ class SupabaseRepository:
     async def _request(self, principal: Principal, method: str, path: str, **kwargs: Any) -> httpx.Response:
         headers = self._headers(principal, kwargs.pop("prefer", None))
         async with httpx.AsyncClient(timeout=10) as client:
-            response = await client.request(method, f"{self.url}/rest/v1/{path}", headers=headers, **kwargs)
+            response = await client.request(method, f"{self.url}/rest/v1/{supabase_rest_path(path)}", headers=headers, **kwargs)
         if response.status_code >= 400:
             raise PermissionError("Authorized data operation failed")
         return response

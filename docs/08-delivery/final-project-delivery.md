@@ -26,7 +26,7 @@ The evaluator receives a dedicated invited adult account attached only to a synt
 
 - **Backend:** authorized FastAPI companion and editorial graphs, OpenRouter/OpenAI/Anthropic gateway, metadata/cost ledger, catalog coverage, validation and idempotent proposal decisions.
 - **Frontend:** bilingual public/family/admin experiences, extensible block registry, single companion panel, explicit option confirmation and encrypted offline recovery.
-- **Database:** 12 Supabase migrations with pgvector hybrid retrieval, family/editorial/AI-operation models, connected synthetic-evaluator access, RLS, MFA gates, audit and atomic proposal application.
+- **Database:** 13 namespaced Kids migrations with pgvector hybrid retrieval, family/editorial/AI-operation models, connected synthetic-evaluator access, RLS, MFA gates, audit and atomic proposal application. Eleven no-op files align the shared Declassified migration ledger without copying or changing its schema.
 
 ## Evidence checklist
 
@@ -40,7 +40,8 @@ The evaluator receives a dedicated invited adult account attached only to a synt
 - [x] A production-build browser flow passes risk-C exclusion, adult gate, confirmed adaptation, encrypted offline reload/resume/re-sync and English admin checks.
 - [x] The README links architecture, data model, OpenAPI setup, limitations and evidence.
 - [ ] A durable public/evaluator URL is active; the verified anonymous deployment is temporary.
-- [ ] The migration and database advisors pass in a dedicated Supabase project.
+- [x] All 65 `kids_*` tables are applied with RLS; anonymous execution of every Kids `SECURITY DEFINER` function is revoked. Four deliberately authenticated, internally authorizing onboarding/proposal RPCs remain visible to the advisor.
+- [ ] Move from the shared academic-pilot project to a dedicated Supabase project before commercial operation.
 - [x] [GitHub Actions run 34428264635](https://github.com/pr3t3l/KidsApp/actions/runs/34428264635) passed Linux validation, dependency audits and both Docker builds for connected-evaluator implementation commit `2b5cdb9`; the local Docker engine remains unavailable after reboot.
 - [ ] A release-specific live-provider evaluation and redacted Logfire trace are linked.
 - [ ] Exact activity versions have founder execution, rights and required specialist evidence.
@@ -48,6 +49,7 @@ The evaluator receives a dedicated invited adult account attached only to a synt
 - [ ] Three actual pull requests are linked after they exist; placeholder PR numbers are forbidden.
 
 See [Final-project implementation evidence](implementation-evidence.md) for the exact automated and browser results and the external gates.
+The [shared Supabase pilot evidence](shared-supabase-pilot-evidence.md) records the hosted migration, RLS/privilege checks and the explicit boundary between Kids and Declassified.
 
 ## Honest limitations
 

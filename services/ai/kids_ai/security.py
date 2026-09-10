@@ -8,6 +8,7 @@ import httpx
 from fastapi import Depends, Header, HTTPException, Request, status
 
 from .models import Principal
+from .supabase_http import supabase_rest_path
 
 DEMO_USER_ID = UUID("00000000-0000-0000-0000-000000000001")
 PLATFORM_ROLES = {"platform_owner", "editorial_specialist", "support_operator"}
@@ -85,7 +86,7 @@ async def authenticated_principal(request: Request, authorization: str | None = 
         except (KeyError, TypeError, ValueError) as error:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid identity response") from error
         role_response = await client.get(
-            f"{settings.supabase_url}/rest/v1/platform_role_assignment?user_id=eq.{user_id}&active=is.true&select=role,active",
+            f"{settings.supabase_url}/rest/v1/{supabase_rest_path(f'platform_role_assignment?user_id=eq.{user_id}&active=is.true&select=role,active')}",
             headers={"Authorization": f"Bearer {token}", "apikey": settings.supabase_publishable_key},
         )
     roles = _validated_platform_roles(role_response.json()) if role_response.status_code == 200 else ()

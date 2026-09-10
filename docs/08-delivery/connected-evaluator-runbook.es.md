@@ -13,23 +13,25 @@ Los secretos se escriben únicamente en GitHub, Supabase, Vercel o en el panel o
 ## Arquitectura del despliegue
 
 - Vercel web: proyecto `kids-learning-system`, raíz `apps/web`, rama de producción `finalproject-AP`.
-- Vercel API: proyecto `kids-learning-system-api`, raíz `services/ai`, rama de producción `finalproject-AP`.
-- Supabase: proyecto dedicado con PostgreSQL, Auth, pgvector, RLS y Vault.
+- Vercel API: proyecto `kids-learning-api`, raíz `services/ai`, rama de producción `finalproject-AP`.
+- Supabase: proyecto existente `declassified-shop` (`dlonzlnigwyzzetssdbx`) con PostgreSQL 17, Auth, pgvector, RLS y Vault compartidos. Todo objeto de Kids usa `kids_`; los secretos usan `kids/`.
 - Cloudflare: solo el DNS de `kids.alfredopretelvargas.com`; se copia exactamente el destino que entregue Vercel.
 - GitHub Environment `connected-evaluator`: aplica las migraciones, crea/invita al owner y compila el catálogo sintético.
 
-## 1. Crear el proyecto Supabase
+## 1. Proyecto Supabase compartido para el piloto
 
 Desde `supabase.com/dashboard`:
 
-1. Crea un proyecto dedicado. Elige una región cercana a la mayoría de familias del piloto; si están en Estados Unidos, usa una región de Estados Unidos.
-2. Conserva la contraseña de base de datos en el gestor de contraseñas.
+1. No crees otro proyecto para esta evaluación. Usa `declassified-shop`, ya migrado y disponible en `https://dlonzlnigwyzzetssdbx.supabase.co`.
+2. No renombres ni modifiques tablas sin prefijo: pertenecen a Declassified. Las 65 tablas de este producto empiezan por `kids_`; también lo hacen tipos, funciones, índices, políticas y triggers.
 3. En **Project Settings → API Keys / Connect**, copia de forma privada:
    - Project URL.
    - Publishable key.
    - Secret key; si el proyecto aún usa claves legacy, usa `service_role` solamente en backend.
    - Project reference ID.
-4. En tu perfil de Supabase crea un Personal Access Token para el CLI.
+4. Conserva la contraseña de base de datos y el Personal Access Token solo si ejecutarás futuras migraciones desde GitHub Actions.
+
+Esta reutilización evita otro costo durante el piloto, pero no equivale a aislamiento de producción: Auth, cuotas, configuración, fallos y la autoridad de `service_role` son compartidos. El prefijo evita colisiones accidentales, no limita una clave backend comprometida. Antes del lanzamiento comercial se migrará Kids a un proyecto dedicado.
 
 El publishable key puede ir en la web; la secret/service-role key, el access token y la contraseña de base de datos nunca pueden ir en variables `VITE_*`.
 
@@ -37,16 +39,16 @@ El backend acepta tanto las claves opacas nuevas `sb_publishable_*`/`sb_secret_*
 
 ## 2. Configurar Auth antes de enviar invitaciones
 
-En **Authentication → URL Configuration**:
+En **Authentication → URL Configuration**, sin reemplazar el Site URL que usa Declassified:
 
-- Site URL: `https://kids.alfredopretelvargas.com`
-- Redirect URLs:
+- Conserva el Site URL actual del proyecto compartido.
+- Añade a Redirect URLs:
   - `https://kids.alfredopretelvargas.com/**`
   - la URL preview exacta de Vercel mientras se valida el dominio
 
 Mantén desactivado el registro público. El sistema usa invitaciones y el login posterior tiene `shouldCreateUser: false`.
 
-Para invitar amigos configura SMTP propio en **Authentication → Email / SMTP**. El envío incorporado de Supabase es limitado y no es apropiado para un piloto externo. Configura SPF, DKIM y DMARC en el proveedor de correo; no publiques una invitación familiar hasta probar recepción y expiración del enlace.
+SMTP y las plantillas de Auth también son globales para el proyecto. Si se configuran en **Authentication → Email / SMTP**, prueba tanto Kids como Declassified antes de guardar el cambio. El envío incorporado de Supabase es limitado y no es apropiado para un piloto externo. Configura SPF, DKIM y DMARC; no publiques una invitación familiar hasta probar recepción y expiración del enlace.
 
 Referencias: [usuarios e invitaciones](https://supabase.com/docs/guides/auth/users), [redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls) y [SMTP](https://supabase.com/docs/guides/auth/auth-smtp).
 
@@ -64,7 +66,7 @@ Abre `github.com/pr3t3l/KidsApp/settings/environments`, crea el environment `con
 | `OWNER_EMAIL` | Correo adulto de Alfredo |
 | `OPENROUTER_API_KEY` | Opcional; si falta, el catálogo usa full-text y el acompañante falla de forma segura |
 
-Después abre **Actions → Provision connected evaluator → Run workflow**, selecciona `finalproject-AP` y ejecútalo. El job:
+Las migraciones iniciales ya fueron aplicadas de forma transaccional el 10 de septiembre de 2026. Los once archivos `shop_*` del repositorio son marcadores vacíos que alinean el ledger remoto compartido; nunca recrean ni alteran Declassified. Para una migración futura, abre **Actions → Provision connected evaluator → Run workflow**, selecciona `finalproject-AP` y ejecútalo. El job:
 
 1. valida que estén los valores obligatorios;
 2. enlaza el proyecto;
@@ -91,6 +93,7 @@ OPENROUTER_APP_NAME=Kids Learning System
 SUPABASE_URL=<Project URL>
 SUPABASE_PUBLISHABLE_KEY=<Publishable key>
 SUPABASE_SECRET_KEY=<Secret key; backend only>
+SUPABASE_OBJECT_PREFIX=kids_
 TELEMETRY_HASH_SALT=<valor aleatorio independiente de 48+ caracteres>
 ADULT_GATE_SIGNING_SECRET=<otro valor aleatorio independiente de 48+ caracteres>
 MONTHLY_INFERENCE_BUDGET_USD=15
@@ -147,6 +150,7 @@ La franja visible “Evaluación técnica · contenido sintético” debe perman
 ## 9. Gate antes de compartir con Lía
 
 - Workflow de aprovisionamiento verde.
+- Las 65 tablas `kids_*` siguen con RLS y el smoke test de Declassified conserva catálogo, compras y descargas.
 - API `/health` responde y web carga desde el dominio final.
 - Owner y familia real pueden autenticarse; MFA owner activo.
 - RLS comprobado con dos familias.

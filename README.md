@@ -151,7 +151,7 @@ The JSON wire contracts are versioned under [`packages/contracts`](packages/cont
 
 ## Data model and security
 
-The 12 forward-only [Supabase migrations](supabase/migrations) define private family tenancy, minimal Learners, immutable activity versions, RAG chunks, experience snapshots, pending proposals, editorial workflow, pilot cohorts, connected-evaluator access, explainable coverage, provider deployments, route versions, usage/cost/budget ledgers, privacy requests and audit events. The packaged synthetic catalog lives at [`services/ai/data/activities/catalog.json`](services/ai/data/activities/catalog.json) so the API, ingestion command and deployment share one source.
+The 13 forward-only Kids [Supabase migrations](supabase/migrations) define private family tenancy, minimal Learners, immutable activity versions, RAG chunks, experience snapshots, pending proposals, editorial workflow, pilot cohorts, connected-evaluator access, explainable coverage, provider deployments, route versions, usage/cost/budget ledgers, privacy requests and audit events. Eleven additional no-op files mirror the older Declassified migration timestamps so the temporary shared ledger remains synchronized without copying its schema. The packaged synthetic catalog lives at [`services/ai/data/activities/catalog.json`](services/ai/data/activities/catalog.json) so the API, ingestion command and deployment share one source.
 
 Every public table has RLS, an explicit policy and explicit grants. The browser receives only a publishable Supabase key; provider secrets are backend-only and write-only from the administrative UI. Raw companion messages are not persisted by default; audit stores structured intent, outcome, source IDs, route and latency. Production catalog ingestion requires founder execution evidence for each `pilot` or `production` version.
 
@@ -189,4 +189,4 @@ No deployment credential is committed. The current historical static prototype r
 
 ## Next milestone
 
-Publish the validated branch, connect a dedicated Supabase project and both Vercel projects, enroll owner MFA, evaluate approved live OpenRouter/OpenAI/Anthropic routes, run the exact-version human/content gates and record the deployment, video and release-trace evidence in [Final project delivery](docs/08-delivery/final-project-delivery.md).
+Publish the validated branch, connect both Vercel projects to the temporary namespaced Supabase pilot described by `DEC-077`, enroll owner MFA, evaluate approved live OpenRouter/OpenAI/Anthropic routes, run the exact-version human/content gates and record the deployment, screenshot deck and release-trace evidence in [Final project delivery](docs/08-delivery/final-project-delivery.md). Move to a dedicated Supabase project before commercial use.

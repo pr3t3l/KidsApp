@@ -10,6 +10,7 @@ import httpx
 
 from .coverage import CoverageService
 from .models import Principal
+from .supabase_http import supabase_rest_path
 
 
 class SupabaseCoverageService(CoverageService):
@@ -26,7 +27,7 @@ class SupabaseCoverageService(CoverageService):
     async def _get(self, principal: Principal, path: str, *, optional: bool = False) -> list[dict[str, Any]]:
         async with httpx.AsyncClient(timeout=12) as client:
             response = await client.get(
-                f"{self.url}/rest/v1/{path}",
+                f"{self.url}/rest/v1/{supabase_rest_path(path)}",
                 headers={"apikey": self.key, "Authorization": f"Bearer {principal.access_token}"},
             )
         if response.status_code >= 400:
@@ -39,7 +40,7 @@ class SupabaseCoverageService(CoverageService):
     async def _post(self, principal: Principal, path: str, payload: dict[str, Any]) -> dict[str, Any]:
         async with httpx.AsyncClient(timeout=12) as client:
             response = await client.post(
-                f"{self.url}/rest/v1/{path}",
+                f"{self.url}/rest/v1/{supabase_rest_path(path)}",
                 headers={"apikey": self.key, "Authorization": f"Bearer {principal.access_token}", "Prefer": "return=representation"},
                 json=payload,
             )

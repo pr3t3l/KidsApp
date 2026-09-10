@@ -14,7 +14,7 @@ import httpx
 from .editorial import EditorialJobCreate, EditorialService, PilotCohortCreate, PilotResultCreate, ReviewCreate, SourceCreate
 from .editorial_compile import compile_bundle
 from .models import Principal
-from .supabase_http import supabase_headers
+from .supabase_http import supabase_headers, supabase_rest_path
 
 
 class SupabaseEditorialService(EditorialService):
@@ -43,7 +43,7 @@ class SupabaseEditorialService(EditorialService):
             key, token = self.publishable_key, principal.access_token
         headers = supabase_headers(key, token, prefer=prefer)
         async with httpx.AsyncClient(timeout=15) as client:
-            response = await client.request(method, f"{self.url}/rest/v1/{path}", headers=headers, **kwargs)
+            response = await client.request(method, f"{self.url}/rest/v1/{supabase_rest_path(path)}", headers=headers, **kwargs)
         if response.status_code >= 400:
             raise PermissionError("Authorized editorial operation failed")
         return response

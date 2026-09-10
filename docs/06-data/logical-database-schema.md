@@ -538,22 +538,22 @@ Use a logical `domain_event_outbox` record containing event ID, aggregate type/I
 
 Event payloads use references and minimum necessary fields; consumers fetch authorized detail when needed.
 
-## 24. Physical decisions still open
+## 24. Physical deployment decisions
 
-The following require explicit approval before migrations are written:
+The connected academic evaluator uses Supabase PostgreSQL 17, UUID identifiers,
+JSONB immutable snapshots, Auth, RLS, Vault, full-text search and pgvector. The
+logical names in this document remain unprefixed; every physical Kids object in
+the temporarily shared `declassified-shop` project uses `kids_`, while Vault
+secret names use `kids/`. Application adapters perform the logical-to-physical
+mapping in one place through `SUPABASE_OBJECT_PREFIX`, so a later project move
+does not change domain contracts or UI code.
 
-1. Database engine and version.
-2. Tenant isolation strategy and whether row-level security is used.
-3. ID type and generation strategy.
-4. Schema/namespace layout for bounded contexts.
-5. ORM/query layer and migration tool.
-6. JSON snapshot storage type and canonical serialization implementation.
-7. Search provider or database-native search.
-8. Object storage, malware scanning, encryption, and region.
-9. Authentication provider and mapping to `adult_account.auth_subject`.
-10. Backup, point-in-time recovery, deletion propagation, and audit retention.
-11. Analytics store and privacy thresholds.
-12. High-availability, connection-pooling, and job/outbox implementation.
+The prefix prevents naming collisions but does not isolate project-wide Auth,
+quotas, configuration, failure or `service_role` authority. The shared project
+is therefore approved only for the invite-only academic pilot. A dedicated
+Supabase project, backup/PITR policy, connection strategy, object-storage design,
+deletion propagation and analytics privacy thresholds remain commercial-launch
+gates.
 
 ## 25. Recommended implementation order
 

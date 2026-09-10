@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from services.ai.kids_ai.supabase_http import supabase_headers
+from services.ai.kids_ai.supabase_http import supabase_headers, supabase_rest_path
 
 
 def _required(name: str) -> str:
@@ -67,7 +67,7 @@ async def run() -> None:
         if not user_id:
             raise RuntimeError("Supabase did not return the owner identity")
         role_response = await client.post(
-            f"{url}/rest/v1/platform_role_assignment?on_conflict=user_id,role",
+            f"{url}/rest/v1/{supabase_rest_path('platform_role_assignment?on_conflict=user_id,role')}",
             headers={**headers, "Prefer": "resolution=merge-duplicates,return=minimal"},
             json={
                 "user_id": user_id,

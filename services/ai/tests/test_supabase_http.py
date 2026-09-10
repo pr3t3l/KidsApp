@@ -1,6 +1,6 @@
 import unittest
 
-from services.ai.kids_ai.supabase_http import supabase_headers
+from services.ai.kids_ai.supabase_http import supabase_headers, supabase_object_name, supabase_rest_path
 
 
 class SupabaseHeaderTests(unittest.TestCase):
@@ -17,6 +17,18 @@ class SupabaseHeaderTests(unittest.TestCase):
         headers = supabase_headers("sb_publishable_example", "eyJadult-session")
         self.assertEqual(headers["apikey"], "sb_publishable_example")
         self.assertEqual(headers["Authorization"], "Bearer eyJadult-session")
+
+    def test_shared_project_objects_are_namespaced_without_changing_queries(self):
+        self.assertEqual(supabase_object_name("family"), "kids_family")
+        self.assertEqual(supabase_object_name("kids_family"), "kids_family")
+        self.assertEqual(
+            supabase_rest_path("activity_version?status=eq.published"),
+            "kids_activity_version?status=eq.published",
+        )
+        self.assertEqual(
+            supabase_rest_path("rpc/server_start_activity_session"),
+            "rpc/kids_server_start_activity_session",
+        )
 
 
 if __name__ == "__main__":
