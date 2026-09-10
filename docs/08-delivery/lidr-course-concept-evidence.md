@@ -180,7 +180,7 @@ The family companion is intentionally **not** a society of autonomous agents. It
 
 **Application:** The repository documents architecture, contracts, security, runbooks, limits and evidence. It separates web and API deployables while preserving a modular monolith and external PostgreSQL state. [Docker Compose](../../docker-compose.yml), [web Dockerfile](../../apps/web/Dockerfile) and [API Dockerfile](../../services/ai/Dockerfile) support local/container builds. [GitHub Actions](../../.github/workflows/ci.yml) runs validation, dependency audits and container builds without committing credentials. Vercel configurations exist for web/API, and health/observability endpoints are implemented.
 
-The Docker daemon is stopped on the current host after reboot, so this consolidation does not claim a new local container run. [GitHub Actions run 34418301854](https://github.com/pr3t3l/KidsApp/actions/runs/34418301854) passed validation, dependency audits and `docker compose build` for implementation commit `c63db4b`. The durable Vercel/Supabase environment is still external.
+The Docker engine remains unavailable on the current host after reboot, so this consolidation does not claim a new local container run. [GitHub Actions run 34428264635](https://github.com/pr3t3l/KidsApp/actions/runs/34428264635) passed validation, dependency audits and `docker compose build` for connected-evaluator implementation commit `2b5cdb9`. The durable Vercel/Supabase environment is still external.
 
 **Status:** Production artifacts and current implementation commit CI-verified; hosted release pending.
 
