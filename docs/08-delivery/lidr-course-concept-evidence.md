@@ -216,7 +216,7 @@ This sidecar solves the original oversized-contract problem: provider operations
 | CAG and RAG | Exact policy/version/block CAG; published-only hybrid pgvector/FTS/RRF RAG | Hosted database performance pending |
 | Agents | Bounded family graph and separate supervised editorial multi-agent graph | AI cannot approve or publish |
 | Objective evaluation | 80 bilingual golden executions plus policy/API/UI/browser gates | Human usefulness and real-pilot measures pending |
-| Real architecture/data | React, FastAPI, 11 Supabase migrations, RLS, Vault boundary, provider/cost governance | Dedicated production environment pending |
+| Real architecture/data | React, FastAPI, 12 Supabase migrations, RLS, Vault boundary, provider/cost governance | Dedicated production environment pending |
 | Production/reproducibility | Docker, current green CI, Vercel configs, health, Logfire instrumentation, README/runbooks | Durable URL and release trace pending |
 | Versioning and limitations | Content/schema/route/rate/embedding versions, hashes, rollback and explicit external-gate register | Human/legal/store gates remain open |
 

@@ -14,7 +14,7 @@
 
 ## Product demonstration
 
-The evaluator receives a dedicated invited adult account attached only to a synthetic demo family and, when relevant, a least-privilege administrative account. The two-to-three-minute video must show login, family onboarding/plan, an exact-version activity guide, troubleshooting, a proposed adaptation or replacement, explicit confirmation, the updated UI, a source reference, the administrative routing/cost view and one release-specific Logfire trace with redacted content.
+The evaluator receives a dedicated invited adult account attached only to a synthetic evaluation family and, when relevant, a least-privilege administrative account. The primary evidence path is the durable public evaluator URL plus a screenshot presentation. If a two-to-three-minute video is added, it should show login, family onboarding/plan, an exact-version activity guide, troubleshooting, a proposed adaptation or replacement, explicit confirmation, the updated UI, a source reference, the administrative routing/cost view and one release-specific Logfire trace with redacted content.
 
 ## Three user stories
 
@@ -26,7 +26,7 @@ The evaluator receives a dedicated invited adult account attached only to a synt
 
 - **Backend:** authorized FastAPI companion and editorial graphs, OpenRouter/OpenAI/Anthropic gateway, metadata/cost ledger, catalog coverage, validation and idempotent proposal decisions.
 - **Frontend:** bilingual public/family/admin experiences, extensible block registry, single companion panel, explicit option confirmation and encrypted offline recovery.
-- **Database:** 11 Supabase migrations with pgvector hybrid retrieval, family/editorial/AI-operation models, RLS, MFA gates, audit and atomic proposal application.
+- **Database:** 12 Supabase migrations with pgvector hybrid retrieval, family/editorial/AI-operation models, connected synthetic-evaluator access, RLS, MFA gates, audit and atomic proposal application.
 
 ## Evidence checklist
 

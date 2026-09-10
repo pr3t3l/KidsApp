@@ -82,6 +82,7 @@
 | DEC-073 | Enforce AI budgets at every applicable scope: global, environment, operation, provider, model and editorial job; preflight may skip a stopped primary only for a fully eligible configured fallback. | Approved | Owner cost control must match the operational dashboard and must never be bypassed by fallback. |
 | DEC-074 | Family catalog and recommendation surfaces fail closed to risk-C/D records without their independent gate; keep all 13 synthetic records in editorial visibility but expose only the 12 risk-A/B records in the family demo. | Approved | Preserves catalog analysis and specialist work while preventing an editorial fixture from becoming child-facing content. |
 | DEC-075 | Store active-session snapshots and pending idempotent events as encrypted IndexedDB envelopes, exclude API/auth traffic from the service-worker cache, and retain rejected sync events visibly. | Approved | Supports honest offline continuity without plaintext session persistence, private response caching or silent event loss. |
+| DEC-076 | Publish the first connected environment at `kids.alfredopretelvargas.com` as invite-only technical evaluation: real Auth/RLS/session/feedback infrastructure, visibly labeled synthetic A/B content, expiring family evaluation access and no claim of professional/commercial approval. | Approved | Alfredo selected a complete connected system and mobile secret entry; this preserves an end-to-end evaluator path without bypassing the human content gates. |
 
 ## Template
 

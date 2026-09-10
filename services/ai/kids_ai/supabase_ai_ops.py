@@ -33,6 +33,7 @@ from .admin_models import (
 )
 from .ai_ops import AIOperationsService, ConnectionRecord, now_utc
 from .provider_models import BillingMetadata, GenerationResult, RouteMetadata, RunMetadata, UsageMetadata
+from .supabase_http import supabase_headers
 
 
 class SupabaseAIOperationsService(AIOperationsService):
@@ -47,16 +48,14 @@ class SupabaseAIOperationsService(AIOperationsService):
 
     def _headers(self, token: str, *, service: bool = False, prefer: str | None = None) -> dict[str, str]:
         if service:
-            token = self.service_key
             api_key = self.service_key
+            bearer_token = None
         else:
             if not token:
                 raise PermissionError("An authenticated owner token is required")
             api_key = self.publishable_key
-        headers = {"apikey": api_key, "Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        if prefer:
-            headers["Prefer"] = prefer
-        return headers
+            bearer_token = token
+        return supabase_headers(api_key, bearer_token, prefer=prefer)
 
     async def _async_request(
         self,

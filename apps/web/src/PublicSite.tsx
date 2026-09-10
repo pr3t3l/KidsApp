@@ -105,5 +105,6 @@ export default function PublicSite({ page }: { page: PublicPage }) {
   useEffect(() => { document.documentElement.lang = locale; document.title = `${pageTitles[page][locale]} · Kids Learning System`; }, [locale, page]);
   function setLocale(value: Locale) { window.localStorage.setItem("kids.public_locale", value); setLocaleState(value); }
   const content: Record<PublicPage, ReactNode> = { welcome: <Welcome locale={locale}/>, privacy: <Privacy locale={locale}/>, terms: <Terms locale={locale}/>, safety: <Safety locale={locale}/> };
-  return <div className="public-shell"><a className="skip-link" href="#main">{locale === "es-US" ? "Saltar al contenido" : "Skip to content"}</a><PublicHeader locale={locale} setLocale={setLocale}/><main id="main">{content[page]}</main><PublicFooter locale={locale}/></div>;
+  const evaluation = import.meta.env.VITE_EVALUATION_MODE === "true";
+  return <div className="public-shell"><a className="skip-link" href="#main">{locale === "es-US" ? "Saltar al contenido" : "Skip to content"}</a>{evaluation&&<aside className="legal-draft" role="note"><strong>{locale === "es-US" ? "Entorno de evaluación" : "Evaluation environment"}</strong><span>{locale === "es-US" ? "El catálogo visible es sintético y no representa una aprobación comercial o profesional." : "Visible catalog content is synthetic and does not represent commercial or professional approval."}</span></aside>}<PublicHeader locale={locale} setLocale={setLocale}/><main id="main">{content[page]}</main><PublicFooter locale={locale}/></div>;
 }

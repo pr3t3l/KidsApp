@@ -164,9 +164,10 @@ class InMemoryRepository:
 
 
 class SupabaseRepository:
-    def __init__(self, url: str, publishable_key: str):
+    def __init__(self, url: str, publishable_key: str, evaluation_catalog: bool = False):
         self.url = url.rstrip("/")
         self.key = publishable_key
+        self.evaluation_catalog = evaluation_catalog
 
     def _headers(self, principal: Principal, prefer: str | None = None) -> dict[str, str]:
         headers = {"apikey": self.key, "Authorization": f"Bearer {principal.access_token}", "Content-Type": "application/json"}
@@ -192,7 +193,8 @@ class SupabaseRepository:
         await self._request(principal, "POST", "companion_proposal", json={"proposal_id": str(proposal.proposal_id), "context_id": str(context_id), "kind": proposal.kind, "options": [item.model_dump(by_alias=True, mode="json") for item in proposal.options], "preference_reason": reason, "preference_explicit": explicit_constraint}, prefer="return=minimal")
 
     async def decide_proposal(self, principal: Principal, proposal_id: UUID, decision: str, option_id: str | None, idempotency_key: str) -> ExperienceView:
-        response = await self._request(principal, "POST", "rpc/decide_companion_proposal", json={"p_proposal_id": str(proposal_id), "p_decision": decision, "p_option_id": option_id, "p_idempotency_key": idempotency_key})
+        rpc = "decide_evaluation_companion_proposal" if self.evaluation_catalog else "decide_companion_proposal"
+        response = await self._request(principal, "POST", f"rpc/{rpc}", json={"p_proposal_id": str(proposal_id), "p_decision": decision, "p_option_id": option_id, "p_idempotency_key": idempotency_key})
         rows = response.json()
         if not rows: raise PermissionError("Proposal decision failed")
         context_id = UUID(rows[0]["context_id"] if isinstance(rows, list) else rows["context_id"])

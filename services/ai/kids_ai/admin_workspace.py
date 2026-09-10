@@ -3,12 +3,14 @@ from __future__ import annotations
 import hashlib
 from datetime import datetime, timezone
 from typing import Any, Literal
+from urllib.parse import quote
 from uuid import UUID, uuid4
 
 import httpx
 from pydantic import Field
 
 from .models import ApiModel, Principal
+from .supabase_http import supabase_headers
 
 
 AdminRole = Literal["platform_owner", "editorial_specialist", "support_operator"]
@@ -20,6 +22,10 @@ class AdminInviteCreate(ApiModel):
     email: str = Field(min_length=5, max_length=254, pattern=r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
     role: AssignableRole
     assigned_domains: list[str] = Field(default_factory=list, max_length=20)
+
+
+class FamilyInviteCreate(ApiModel):
+    email: str = Field(min_length=5, max_length=254, pattern=r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
 
 
 class RoleAssignmentUpdate(ApiModel):
@@ -100,6 +106,17 @@ class AdminWorkspaceService:
         }
         self.people.append(row)
         self._audit(actor, "admin_invited", "platform_role_assignment", row["assignmentId"], {"role": request.role})
+        return row
+
+    async def invite_family(self, request: FamilyInviteCreate, actor: Principal) -> dict[str, Any]:
+        row = {
+            "invitationId": str(uuid4()),
+            "userId": str(uuid4()),
+            "delivery": "simulated",
+            "maskedEmail": self._mask_email(request.email),
+            "createdAt": _now().isoformat(),
+        }
+        self._audit(actor, "family_invited", "family_invitation", row["invitationId"], {})
         return row
 
     async def update_person(self, assignment_id: UUID, request: RoleAssignmentUpdate, actor: Principal) -> dict[str, Any]:
@@ -183,12 +200,10 @@ class SupabaseAdminWorkspaceService(AdminWorkspaceService):
         super().__init__()
         self.url = settings.supabase_url.rstrip("/")
         self.service_key = settings.supabase_secret_key
+        self.site_url = getattr(settings, "public_site_url", settings.site_url).rstrip("/")
 
     def _headers(self, *, prefer: str | None = None) -> dict[str, str]:
-        headers = {"apikey": self.service_key, "Authorization": f"Bearer {self.service_key}", "Content-Type": "application/json"}
-        if prefer:
-            headers["Prefer"] = prefer
-        return headers
+        return supabase_headers(self.service_key, prefer=prefer)
 
     async def _request(self, method: str, path: str, *, prefer: str | None = None, auth: bool = False, **kwargs: Any) -> httpx.Response:
         base = f"{self.url}/auth/v1/" if auth else f"{self.url}/rest/v1/"
@@ -243,7 +258,8 @@ class SupabaseAdminWorkspaceService(AdminWorkspaceService):
     async def invite(self, request: AdminInviteCreate, actor: Principal) -> dict[str, Any]:
         if request.role == "editorial_specialist" and not request.assigned_domains:
             raise ValueError("A specialist requires at least one assigned domain")
-        invited = self._one(await self._request("POST", "invite", auth=True, json={"email": request.email, "data": {"intended_role": request.role}}))
+        redirect = quote(f"{self.site_url}/admin", safe="")
+        invited = self._one(await self._request("POST", f"invite?redirect_to={redirect}", auth=True, json={"email": request.email, "data": {"intended_role": request.role}}))
         user = invited.get("user") if isinstance(invited.get("user"), dict) else invited
         user_id = user.get("id")
         if not user_id:
@@ -256,6 +272,39 @@ class SupabaseAdminWorkspaceService(AdminWorkspaceService):
         row.update({"delivery": "email", "maskedEmail": self._mask_email(request.email)})
         await self._write_audit(actor, "admin_invited", "platform_role_assignment", row["assignmentId"], {"role": request.role})
         return row
+
+    async def invite_family(self, request: FamilyInviteCreate, actor: Principal) -> dict[str, Any]:
+        redirect = quote(f"{self.site_url}/?onboarding=1", safe="")
+        invited = self._one(await self._request(
+            "POST",
+            f"invite?redirect_to={redirect}",
+            auth=True,
+            json={"email": request.email, "data": {"intended_role": "family_adult"}},
+        ))
+        user = invited.get("user") if isinstance(invited.get("user"), dict) else invited
+        user_id = user.get("id")
+        if not user_id:
+            raise ValueError("Supabase did not return the invited family identity")
+        response = await self._request(
+            "POST",
+            "family_invitation?on_conflict=auth_user_id",
+            prefer="resolution=merge-duplicates,return=representation",
+            json={
+                "auth_user_id": user_id,
+                "masked_email": self._mask_email(request.email),
+                "invited_by": str(actor.user_id),
+                "state": "pending",
+            },
+        )
+        invitation = self._one(response)
+        await self._write_audit(actor, "family_invited", "family_invitation", invitation["invitation_id"], {})
+        return {
+            "invitationId": invitation["invitation_id"],
+            "userId": user_id,
+            "delivery": "email",
+            "maskedEmail": invitation["masked_email"],
+            "createdAt": invitation["created_at"],
+        }
 
     async def update_person(self, assignment_id: UUID, request: RoleAssignmentUpdate, actor: Principal) -> dict[str, Any]:
         current = self._one(await self._request("GET", f"platform_role_assignment?assignment_id=eq.{assignment_id}&select=*"))

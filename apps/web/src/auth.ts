@@ -9,7 +9,7 @@ export async function sendMagicLink(email: string, redirectTo = `${window.locati
   if (!supabase) throw new Error("Supabase authentication is not configured.");
   const { error } = await supabase.auth.signInWithOtp({
     email,
-    options: { emailRedirectTo: redirectTo }
+    options: { emailRedirectTo: redirectTo, shouldCreateUser: false }
   });
   if (error) throw error;
 }

@@ -8,7 +8,7 @@ from uuid import UUID
 from fastapi import HTTPException
 from services.ai.kids_ai.models import Principal
 
-from services.ai.kids_ai.security import _validated_token_aal, _validated_token_claims, require_platform_role
+from services.ai.kids_ai.security import _validated_platform_roles, _validated_token_aal, _validated_token_claims, require_platform_role
 
 
 def token(payload: dict) -> str:
@@ -49,6 +49,16 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(denied.exception.status_code, 403)
         fresh = Principal(user_id=user_id, platform_roles=("platform_owner",), aal="aal2", authenticated_at=datetime.now(timezone.utc), mfa_verified_at=datetime.now(timezone.utc))
         self.assertEqual(asyncio.run(dependency(fresh)).user_id, user_id)
+
+    def test_platform_roles_come_from_active_database_assignments(self):
+        rows = [
+            {"role": "platform_owner", "active": True},
+            {"role": "support_operator", "active": False},
+            {"role": "invented_role", "active": True},
+            "not-a-row",
+        ]
+        self.assertEqual(_validated_platform_roles(rows), ("platform_owner",))
+        self.assertEqual(_validated_platform_roles({"role": "platform_owner"}), ())
 
 
 if __name__ == "__main__":

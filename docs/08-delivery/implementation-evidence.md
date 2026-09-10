@@ -19,16 +19,16 @@ The evidence boundary is strict. Catalog records and families used by automated 
 | Legacy JSON Schema examples | 5 schemas and 6 examples pass |
 | Activity V2 | Core `7,618` bytes; `en-US` locale `17,218`; `es-US` locale `18,351`; card `258`; prep `519`; step `461`; all schema/token/byte and semantic migration gates pass |
 | Domain validators | Baseline, participant fixtures and 18 negative/invariant cases pass |
-| Documentation validator | 150 repository Markdown files and all 3 pilot activity documents pass |
-| Database contract | 63 public tables across 11 migrations have RLS, policies and explicit grants |
-| PostgreSQL parser | All 11 migrations and 535 statements parse with PostgreSQL grammar |
+| Documentation validator | 151 repository Markdown files and all 3 pilot activity documents pass |
+| Database contract | 65 public tables across 12 migrations have RLS, policies and explicit grants |
+| PostgreSQL parser | All 12 migrations and 584 statements parse with PostgreSQL grammar |
 | Frontend component tests | 15/15 pass across 6 files |
 | Frontend production build | TypeScript and Vite production build pass; 116 modules transformed |
-| API/policy tests | 55/55 pass |
+| API/policy tests | 66/66 pass |
 | Golden set | 80/80 bilingual executions pass across 40 canonical cases |
 | Golden quality gates | Recall@5 `1.0`, source correctness `1.0`, safe abstention `1.0` |
 | Dependency security | `npm audit` reports zero vulnerabilities; `pip-audit` reports no known vulnerabilities in the locked Python requirements |
-| Catalog ingestion dry run | 13 activities, 4 approved-option fixtures and 28 localized chunks accepted as `synthetic-demo` |
+| Catalog ingestion dry run | 13 activities, 26 locales, 60 blocks, 4 synthetic adaptation options and 28 localized chunks accepted as `synthetic-demo`; embeddings may remain pending while exact-version full-text retrieval works |
 | Current CI and containers | [GitHub Actions run 34418301854](https://github.com/pr3t3l/KidsApp/actions/runs/34418301854) passed aggregate validation, dependency audits and `docker compose build` for implementation commit `c63db4b` |
 
 The aggregate command is `npm run validate`. The independent `pglast` parse is a verification aid, not a runtime dependency. The current remote CI result verifies the exact implementation commit; Docker was not separately rerun on the local Windows host because its daemon remains stopped after reboot.

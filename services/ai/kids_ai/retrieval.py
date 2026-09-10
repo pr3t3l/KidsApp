@@ -44,7 +44,14 @@ class SupabaseHybridRetriever:
     async def retrieve(self, query: str, activity_version_id: str, locale: str, limit: int = 5, principal: Any = None) -> list[RetrievedChunk]:
         if principal is None or not principal.access_token:
             raise PermissionError("Authenticated retrieval requires a user token")
-        embedding = await self.gateway.embed(query)
+        # Retrieval remains useful before an owner activates a paid embedding
+        # route.  Passing null disables only the semantic branch of the RRF
+        # query; exact-version full-text retrieval and all deterministic safety
+        # controls continue to work.
+        try:
+            embedding = await self.gateway.embed(query)
+        except (KeyError, RuntimeError, ValueError):
+            embedding = None
         async with httpx.AsyncClient(timeout=12) as client:
             response = await client.post(
                 f"{self.url}/rest/v1/rpc/hybrid_search_activity_chunks",

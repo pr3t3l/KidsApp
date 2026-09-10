@@ -31,6 +31,7 @@ from .family import (
     SessionStart,
 )
 from .models import Locale, Principal
+from .supabase_http import supabase_headers
 
 
 def now_utc() -> datetime:
@@ -51,13 +52,61 @@ class SupabaseFamilyService:
         self.service_key = settings.supabase_secret_key
         self.signing_secret = settings.adult_gate_signing_secret.encode("utf-8")
         self.legal_matrix_version = settings.legal_matrix_version
+        self.evaluation_catalog = bool(getattr(settings, "evaluation_catalog", False))
+
+    async def _ensure_evaluation_access(self, family_id: UUID, user_id: UUID) -> None:
+        if not self.evaluation_catalog:
+            return
+        invitation_response = await self._request(
+            "GET",
+            f"family_invitation?auth_user_id=eq.{user_id}&state=in.(pending,accepted)&select=invitation_id,state",
+            service=True,
+        )
+        owner_response = await self._request(
+            "GET",
+            f"platform_role_assignment?user_id=eq.{user_id}&role=eq.platform_owner&active=is.true&select=assignment_id",
+            service=True,
+        )
+        invitations = invitation_response.json()
+        access_response = await self._request(
+            "GET",
+            f"family_evaluation_access?family_id=eq.{family_id}&select=family_id,expires_at",
+            service=True,
+        )
+        existing_access = access_response.json()
+        active_access = bool(
+            existing_access
+            and datetime.fromisoformat(existing_access[0]["expires_at"].replace("Z", "+00:00")) > now_utc()
+        )
+        pending_invitation = bool(invitations and invitations[0]["state"] == "pending")
+        if not active_access and not pending_invitation and not owner_response.json():
+            raise PermissionError("An active evaluation invitation is required")
+        if not active_access:
+            expires_at = now_utc() + timedelta(days=45)
+            await self._request(
+                "POST",
+                "family_evaluation_access?on_conflict=family_id",
+                service=True,
+                prefer="resolution=merge-duplicates,return=minimal",
+                json={
+                    "family_id": str(family_id),
+                    "purpose": "connected-technical-evaluation",
+                    "expires_at": expires_at.isoformat(),
+                },
+            )
+        if pending_invitation:
+            await self._request(
+                "PATCH",
+                f"family_invitation?invitation_id=eq.{invitations[0]['invitation_id']}",
+                service=True,
+                prefer="return=minimal",
+                json={"state": "accepted", "accepted_at": now_utc().isoformat()},
+            )
 
     @staticmethod
     def _headers(key: str, token: str, prefer: str | None = None) -> dict[str, str]:
-        headers = {"apikey": key, "Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        if prefer:
-            headers["Prefer"] = prefer
-        return headers
+        bearer_token = None if token == key and key.startswith("sb_secret_") else token
+        return supabase_headers(key, bearer_token, prefer=prefer)
 
     async def _request(
         self,
@@ -159,6 +208,7 @@ class SupabaseFamilyService:
                     "p_remove_learner_ids": [str(value) for value in request.removed_learner_ids],
                 },
             )
+            await self._ensure_evaluation_access(family_id, principal.user_id)
             return await self._family_view(principal, family_id)
         response = await self._request(
             "POST",
@@ -179,6 +229,7 @@ class SupabaseFamilyService:
         )
         body = response.json()
         family_id = UUID(body if isinstance(body, str) else body[0] if isinstance(body, list) else body["family_id"])
+        await self._ensure_evaluation_access(family_id, principal.user_id)
         return await self._family_view(principal, family_id)
 
     async def _family_view(self, principal: Principal, family_id: UUID) -> dict[str, Any]:
@@ -215,9 +266,11 @@ class SupabaseFamilyService:
         }
 
     async def _published_rows(self, principal: Principal) -> list[dict[str, Any]]:
+        channels = "production,family_pilot,synthetic-demo" if self.evaluation_catalog else "production,family_pilot"
+        risk_filter = "risk_level=in.(A,B)" if self.evaluation_catalog else "risk_level=neq.D"
         response = await self._request(
             "GET",
-            "activity_version?status=in.(published,family_pilot)&release_channel=in.(production,family_pilot)&risk_level=neq.D&select=activity_version_id,content_hash,risk_level,core_v2,snapshot&order=activity_version_id.asc",
+            f"activity_version?status=in.(published,family_pilot)&release_channel=in.({channels})&{risk_filter}&select=activity_version_id,content_hash,risk_level,release_channel,core_v2,snapshot&order=activity_version_id.asc",
             principal=principal,
         )
         return response.json()
@@ -274,7 +327,8 @@ class SupabaseFamilyService:
             spanish = locales.get((version_id, "es-US"))
             if not requested or not english or not spanish:
                 continue
-            if english["completeness"] != "reviewed" or spanish["completeness"] != "reviewed" or not blocks.get((version_id, locale)):
+            allowed_completeness = {"reviewed", "synthetic"} if self.evaluation_catalog and row.get("release_channel") == "synthetic-demo" else {"reviewed"}
+            if english["completeness"] not in allowed_completeness or spanish["completeness"] not in allowed_completeness or not blocks.get((version_id, locale)):
                 continue
             fit = self._fit(row)
             content = requested["locale_payload"].get("content") or requested["locale_payload"]
@@ -416,7 +470,8 @@ class SupabaseFamilyService:
             raise KeyError("Published activity version not found")
         locales, block_rows = await self._localized_records(principal, [activity_version_id])
         localized = locales.get((activity_version_id, locale))
-        if not localized or localized["completeness"] != "reviewed":
+        allowed_completeness = {"reviewed", "synthetic"} if self.evaluation_catalog and row.get("release_channel") == "synthetic-demo" else {"reviewed"}
+        if not localized or localized["completeness"] not in allowed_completeness:
             raise KeyError("Reviewed activity locale not found")
         raw_blocks = block_rows.get((activity_version_id, locale), [])
         if not raw_blocks:
@@ -432,6 +487,7 @@ class SupabaseFamilyService:
             "blocks": blocks,
             "fit": self._fit(row),
             "risk": row["risk_level"],
+            "releaseChannel": row.get("release_channel"),
             "core": row.get("core_v2") or {},
         }
 
@@ -446,9 +502,10 @@ class SupabaseFamilyService:
         valid_ids = {row["learner_id"] for row in learner_response.json()}
         if not requested_ids or len(requested_ids) > 4 or not requested_ids.issubset(valid_ids):
             raise ValueError("Choose one to four learners from this family")
+        preview_rpc = "server_create_evaluation_preview" if delivery.get("releaseChannel") == "synthetic-demo" and self.evaluation_catalog else "server_create_activity_preview"
         response = await self._request(
             "POST",
-            "rpc/server_create_activity_preview",
+            f"rpc/{preview_rpc}",
             service=True,
             json={
                 "p_user_id": str(principal.user_id),

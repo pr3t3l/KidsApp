@@ -3,6 +3,7 @@ import type { AdultGateChallenge, CatalogCard, CompanionResponse, ExperienceView
 
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 export const DEMO_MODE = import.meta.env.VITE_DEMO_MODE !== "false";
+export const EVALUATION_MODE = import.meta.env.VITE_EVALUATION_MODE === "true";
 export const DEMO_FAMILY_ID = "00000000-0000-0000-0000-000000000201";
 let pendingDemoProposal: { optionId: string; kind: "adaptation" | "replacement" } | null = null;
 let pendingDemoContextId: string | null = null;

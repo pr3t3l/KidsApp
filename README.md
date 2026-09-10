@@ -151,7 +151,7 @@ The JSON wire contracts are versioned under [`packages/contracts`](packages/cont
 
 ## Data model and security
 
-The 11 forward-only [Supabase migrations](supabase/migrations) define private family tenancy, minimal Learners, immutable activity versions, RAG chunks, experience snapshots, pending proposals, editorial workflow, pilot cohorts, explainable coverage, provider deployments, route versions, usage/cost/budget ledgers, privacy requests and audit events. The packaged synthetic catalog lives at [`services/ai/data/activities/catalog.json`](services/ai/data/activities/catalog.json) so the API, ingestion command and deployment share one source.
+The 12 forward-only [Supabase migrations](supabase/migrations) define private family tenancy, minimal Learners, immutable activity versions, RAG chunks, experience snapshots, pending proposals, editorial workflow, pilot cohorts, connected-evaluator access, explainable coverage, provider deployments, route versions, usage/cost/budget ledgers, privacy requests and audit events. The packaged synthetic catalog lives at [`services/ai/data/activities/catalog.json`](services/ai/data/activities/catalog.json) so the API, ingestion command and deployment share one source.
 
 Every public table has RLS, an explicit policy and explicit grants. The browser receives only a publishable Supabase key; provider secrets are backend-only and write-only from the administrative UI. Raw companion messages are not persisted by default; audit stores structured intent, outcome, source IDs, route and latency. Production catalog ingestion requires founder execution evidence for each `pilot` or `production` version.
 
@@ -170,8 +170,10 @@ The recorded test results, real-browser offline proof and the boundary between c
 
 - Create one Vercel project rooted at `apps/web` and one rooted at `services/ai`.
 - Apply the reviewed Supabase migration, run database advisors, configure Auth invitations and ingest the catalog.
-- Set production environment variables from `.env.example`; set `DEMO_MODE=false` and `VITE_DEMO_MODE=false`.
+- Set production environment variables from `.env.example`; set `DEMO_MODE=false`, `VITE_DEMO_MODE=false`, `EVALUATION_CATALOG=true` and `VITE_EVALUATION_MODE=true` only for the connected technical evaluator.
 - Validate preview deployments with the evaluator's synthetic family before promotion.
+
+The Spanish [connected evaluator mobile runbook](docs/08-delivery/connected-evaluator-runbook.es.md) lists the exact Supabase, GitHub, Vercel and DNS handoff. Secrets can be entered from a phone and are never sent through chat.
 
 No deployment credential is committed. The current historical static prototype remains available at `https://pr3t3l.github.io/KidsApp/`; it is not the authenticated final-project environment.
 

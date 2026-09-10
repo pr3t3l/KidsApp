@@ -6,6 +6,8 @@ from uuid import UUID, uuid4
 
 import httpx
 
+from .supabase_http import supabase_headers
+
 
 class SecretStore(Protocol):
     async def put(self, name: str, value: str) -> UUID: ...
@@ -49,11 +51,7 @@ class SupabaseVaultSecretStore:
         self.secret_key = secret_key
 
     def _headers(self) -> dict[str, str]:
-        return {
-            "apikey": self.secret_key,
-            "Authorization": f"Bearer {self.secret_key}",
-            "Content-Type": "application/json",
-        }
+        return supabase_headers(self.secret_key)
 
     async def _rpc(self, name: str, payload: dict[str, str]) -> object:
         async with httpx.AsyncClient(timeout=10) as client:

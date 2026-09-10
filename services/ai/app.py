@@ -12,7 +12,7 @@ from fastapi.responses import JSONResponse
 
 try:
     from .kids_ai.admin_models import BudgetRequest, ModelDeploymentCreate, ProviderConnectionCreate, ProviderConnectionRotate, RateCardRequest, RouteConfigRequest
-    from .kids_ai.admin_workspace import AdminInviteCreate, AdminWorkspaceService, IncidentUpdate, ProductSettingsUpdate, ReviewAssignmentCreate, RoleAssignmentUpdate, SupabaseAdminWorkspaceService, SupportGrantCreate
+    from .kids_ai.admin_workspace import AdminInviteCreate, AdminWorkspaceService, FamilyInviteCreate, IncidentUpdate, ProductSettingsUpdate, ReviewAssignmentCreate, RoleAssignmentUpdate, SupabaseAdminWorkspaceService, SupportGrantCreate
     from .kids_ai.ai_ops import AIOperationsService
     from .kids_ai.coverage import CoverageService, CoverageTargetCreate
     from .kids_ai.editorial import EditorialJobCreate, EditorialService, PilotActivityAdd, PilotCohortCreate, PilotFamilyAdd, PilotResultCreate, ReviewCreate, SourceCreate
@@ -32,7 +32,7 @@ try:
     from .kids_ai.workflow import CompanionWorkflow
 except ImportError:  # Vercel project rooted at services/ai
     from kids_ai.admin_models import BudgetRequest, ModelDeploymentCreate, ProviderConnectionCreate, ProviderConnectionRotate, RateCardRequest, RouteConfigRequest
-    from kids_ai.admin_workspace import AdminInviteCreate, AdminWorkspaceService, IncidentUpdate, ProductSettingsUpdate, ReviewAssignmentCreate, RoleAssignmentUpdate, SupabaseAdminWorkspaceService, SupportGrantCreate
+    from kids_ai.admin_workspace import AdminInviteCreate, AdminWorkspaceService, FamilyInviteCreate, IncidentUpdate, ProductSettingsUpdate, ReviewAssignmentCreate, RoleAssignmentUpdate, SupabaseAdminWorkspaceService, SupportGrantCreate
     from kids_ai.ai_ops import AIOperationsService
     from kids_ai.coverage import CoverageService, CoverageTargetCreate
     from kids_ai.editorial import EditorialJobCreate, EditorialService, PilotActivityAdd, PilotCohortCreate, PilotFamilyAdd, PilotResultCreate, ReviewCreate, SourceCreate
@@ -63,7 +63,7 @@ async def lifespan(app: FastAPI):
     ai_ops = AIOperationsService(settings, secret_store) if settings.demo_mode else SupabaseAIOperationsService(settings, secret_store)
     await ai_ops.initialize()
     coverage = CoverageService() if settings.demo_mode else SupabaseCoverageService(settings.supabase_url, settings.supabase_publishable_key)
-    repository = InMemoryRepository() if settings.demo_mode else SupabaseRepository(settings.supabase_url, settings.supabase_publishable_key)
+    repository = InMemoryRepository() if settings.demo_mode else SupabaseRepository(settings.supabase_url, settings.supabase_publishable_key, settings.evaluation_catalog)
     family = FamilyService(repository) if settings.demo_mode else SupabaseFamilyService(settings)
     gateway = ModelGateway(settings, ai_ops)
     editorial = EditorialService(coverage, gateway, True) if settings.demo_mode else SupabaseEditorialService(coverage, gateway, settings)
@@ -129,6 +129,7 @@ owner_mfa = require_platform_role("platform_owner", require_mfa=True)
 owner_recent_mfa = require_platform_role("platform_owner", require_mfa=True, max_mfa_age_minutes=15)
 editorial_reviewer_mfa = require_platform_role("platform_owner", "editorial_specialist", require_mfa=True)
 pilot_operator_mfa = require_platform_role("platform_owner", "support_operator", require_mfa=True)
+pilot_inviter_recent_mfa = require_platform_role("platform_owner", "support_operator", require_mfa=True, max_mfa_age_minutes=15)
 admin_mfa = require_platform_role("platform_owner", "editorial_specialist", "support_operator", require_mfa=True)
 
 
@@ -151,6 +152,14 @@ async def list_admin_activities(request: Request, _principal: Principal = Depend
 async def invite_admin_person(body: AdminInviteCreate, request: Request, principal: Principal = Depends(owner_recent_mfa)):
     try:
         return await request.app.state.admin_workspace.invite(body, principal)
+    except ValueError as error:
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(error)) from error
+
+
+@app.post("/v1/admin/family-invitations", status_code=status.HTTP_201_CREATED)
+async def invite_family_tester(body: FamilyInviteCreate, request: Request, principal: Principal = Depends(pilot_inviter_recent_mfa)):
+    try:
+        return await request.app.state.admin_workspace.invite_family(body, principal)
     except ValueError as error:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(error)) from error
 

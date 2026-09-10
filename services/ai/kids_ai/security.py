@@ -10,6 +10,18 @@ from fastapi import Depends, Header, HTTPException, Request, status
 from .models import Principal
 
 DEMO_USER_ID = UUID("00000000-0000-0000-0000-000000000001")
+PLATFORM_ROLES = {"platform_owner", "editorial_specialist", "support_operator"}
+
+
+def _validated_platform_roles(rows: object) -> tuple[str, ...]:
+    if not isinstance(rows, list):
+        return ()
+    values = {
+        row.get("role")
+        for row in rows
+        if isinstance(row, dict) and row.get("active", True) is True and row.get("role") in PLATFORM_ROLES
+    }
+    return tuple(sorted(values))
 
 
 def _validated_token_claims(token: str) -> tuple[str, datetime | None, datetime | None]:
@@ -65,16 +77,19 @@ async def authenticated_principal(request: Request, authorization: str | None = 
             f"{settings.supabase_url}/auth/v1/user",
             headers={"Authorization": f"Bearer {token}", "apikey": settings.supabase_publishable_key},
         )
-    if response.status_code != 200:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid or expired session")
-    try:
-        body = response.json()
-        user_id = UUID(body["id"])
-        app_metadata = body.get("app_metadata") or {}
-        roles = tuple(role for role in app_metadata.get("platform_roles", []) if role in {"platform_owner", "editorial_specialist", "support_operator"})
-        aal, authenticated_at, mfa_verified_at = _validated_token_claims(token)
-    except (KeyError, TypeError, ValueError) as error:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid identity response") from error
+        if response.status_code != 200:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid or expired session")
+        try:
+            body = response.json()
+            user_id = UUID(body["id"])
+        except (KeyError, TypeError, ValueError) as error:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid identity response") from error
+        role_response = await client.get(
+            f"{settings.supabase_url}/rest/v1/platform_role_assignment?user_id=eq.{user_id}&active=is.true&select=role,active",
+            headers={"Authorization": f"Bearer {token}", "apikey": settings.supabase_publishable_key},
+        )
+    roles = _validated_platform_roles(role_response.json()) if role_response.status_code == 200 else ()
+    aal, authenticated_at, mfa_verified_at = _validated_token_claims(token)
     return Principal(user_id=user_id, access_token=token, platform_roles=roles, aal=aal, authenticated_at=authenticated_at, mfa_verified_at=mfa_verified_at)
 
 

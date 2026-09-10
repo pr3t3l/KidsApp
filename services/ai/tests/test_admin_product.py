@@ -67,6 +67,17 @@ class AdminProductTests(unittest.TestCase):
         self.assertEqual(granted.status_code, 201)
         self.assertTrue(granted.json()["familyRef"].startswith("fam-"))
 
+    def test_owner_and_support_can_invite_family_testers_without_exposing_email(self):
+        invited = self.client.post(
+            "/v1/admin/family-invitations",
+            json={"email": "family.tester@example.com"},
+        )
+        self.assertEqual(invited.status_code, 201)
+        body = invited.json()
+        self.assertEqual(body["delivery"], "simulated")
+        self.assertNotIn("family.tester@example.com", str(body))
+        self.assertEqual(body["maskedEmail"], "f***@example.com")
+
     def test_coverage_excludes_unreviewed_risk_c_and_explains_gaps(self):
         response = self.client.get("/v1/admin/catalog/coverage")
         self.assertEqual(response.status_code, 200)

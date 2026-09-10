@@ -20,7 +20,7 @@ This is the durable restart point for implementation. A completed phase below me
 | 5. Catalog coverage and editorial factory | Implemented and locally verified | Explainable coverage/gaps, allowlisted source research, staged authoring, parallel critics, synthesis, human review, pilot and release gates are implemented. Human rights, physical and specialist evidence are not fabricated. |
 | 6. Family product | Implemented and locally verified | Bilingual onboarding, plan, 12-item family catalog, preview, adult-friction gate, session, one companion, confirmed adaptations, close-out, journey, feedback, privacy and encrypted offline continuity pass tests. |
 | 7. CAG, RAG, agents and evaluation | Implemented and locally verified | Exact-version CAG, published-only hybrid retrieval, bounded companion graph, editorial multi-agent graph and the 80-run bilingual golden gate pass locally. Live-model usefulness evidence remains external. |
-| 8. Release and pilot | Blocked by external gates | A dedicated Supabase/Vercel environment, release credentials and trace, independent reviews, verified rights, physical executions, privacy/legal review and a real 14-day pilot are required. |
+| 8. Release and pilot | Connected-evaluator implementation ready; external setup pending | A guarded synthetic evaluation channel, family invitations, mobile secret handoff and remote migration/catalog workflow are implemented. The Supabase/Vercel projects, credentials, owner MFA, SMTP, trace, independent reviews, verified rights, physical executions, privacy/legal review and real 14-day pilot remain external gates. |
 
 ## Evidence-backed implementation baseline
 
@@ -28,7 +28,7 @@ This is the durable restart point for implementation. A completed phase below me
 - Web: React/TypeScript/Vite PWA with separate public, family and administrative experiences. The administrative workspace can switch between `es-US` and `en-US`.
 - API: FastAPI modular monolith with deterministic authorization/safety boundaries and bounded LangGraph workflows.
 - AI: `ModelGateway` resolves a versioned `operation_key` to OpenRouter, OpenAI or Anthropic deployments, normalizes metadata and records cost provenance without storing prompts or free-form responses by default.
-- Data: 63 public RLS tables across 11 forward-only Supabase migrations, plus private helper functions and server-only secret access.
+- Data: 65 public RLS tables across 12 forward-only Supabase migrations, plus private helper functions and server-only secret access.
 - Activity contracts: compact `activity@2` core, locale, editorial and read-model contracts with a non-destructive V1 migration.
 - Catalog: 13 bilingual synthetic editorial fixtures. Twelve risk-A/B activities are eligible for the family demo; risk-C `ACT-0003` remains visible only to editorial workflows and fails closed on family surfaces.
 - Retrieval: 28 bilingual synthetic RAG chunks, exact activity-version and locale filters, full-text plus pgvector/RRF production contract, with deterministic local retrieval for the credential-free demo.
@@ -67,3 +67,13 @@ The following are intentionally not marked complete because source code cannot s
 - the invite-only 14-day pilot with 12 adults and its measured results;
 - store organization accounts, packaging, review and commercial launch approval;
 - coordination with Lía/Antonio because the stated 3 September 2026 course deadline has passed.
+
+## Connected evaluator restart point
+
+- Target: `https://kids.alfredopretelvargas.com`.
+- The family UI and public site visibly label connected synthetic evaluation mode.
+- Invited adults only: public account creation is disabled client-side and remains disabled in Supabase Auth.
+- `family_evaluation_access` grants expiring access only to synthetic A/B content; the normal production/family-pilot release gates remain unchanged.
+- Retrieval degrades to exact-version full-text if no embedding deployment is active.
+- [Provision connected evaluator](../../.github/workflows/provision-connected-evaluator.yml) performs a remote migration dry-run before applying it, bootstraps the owner and ingests the catalog.
+- [Mobile secret and deployment runbook](connected-evaluator-runbook.es.md) is the authoritative handoff for Alfredo.

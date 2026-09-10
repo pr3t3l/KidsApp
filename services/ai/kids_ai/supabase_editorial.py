@@ -14,6 +14,7 @@ import httpx
 from .editorial import EditorialJobCreate, EditorialService, PilotCohortCreate, PilotResultCreate, ReviewCreate, SourceCreate
 from .editorial_compile import compile_bundle
 from .models import Principal
+from .supabase_http import supabase_headers
 
 
 class SupabaseEditorialService(EditorialService):
@@ -34,14 +35,13 @@ class SupabaseEditorialService(EditorialService):
         **kwargs: Any,
     ) -> httpx.Response:
         if service:
-            key = token = self.service_key
+            key = self.service_key
+            token = None
         else:
             if principal is None or not principal.access_token:
                 raise PermissionError("Editorial identity is required")
             key, token = self.publishable_key, principal.access_token
-        headers = {"apikey": key, "Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        if prefer:
-            headers["Prefer"] = prefer
+        headers = supabase_headers(key, token, prefer=prefer)
         async with httpx.AsyncClient(timeout=15) as client:
             response = await client.request(method, f"{self.url}/rest/v1/{path}", headers=headers, **kwargs)
         if response.status_code >= 400:
@@ -182,13 +182,13 @@ class SupabaseEditorialService(EditorialService):
             jobs = [job for job in jobs if job.get("activityVersionId") in allowed]
         return jobs
 
-    async def list_cohorts(self, principal: Principal | None = None) -> list[dict[str, Any]]:
-        if principal is None:
+    async def list_cohorts(self, principal: Principal | None = None, *, service: bool = False) -> list[dict[str, Any]]:
+        if principal is None and not service:
             raise PermissionError("Owner identity is required")
         cohorts, families, activities = await asyncio.gather(
-            self._request("GET", "pilot_cohort?select=*&order=created_at.desc", principal=principal),
-            self._request("GET", "pilot_cohort_family?select=cohort_id,family_id", principal=principal),
-            self._request("GET", "pilot_cohort_activity?select=cohort_id,activity_version_id,content_hash", principal=principal),
+            self._request("GET", "pilot_cohort?select=*&order=created_at.desc", principal=principal, service=service),
+            self._request("GET", "pilot_cohort_family?select=cohort_id,family_id", principal=principal, service=service),
+            self._request("GET", "pilot_cohort_activity?select=cohort_id,activity_version_id,content_hash", principal=principal, service=service),
         )
         family_map: dict[str, list[str]] = {}
         activity_map: dict[str, list[str]] = {}
@@ -211,8 +211,7 @@ class SupabaseEditorialService(EditorialService):
         if len(exists.json()) != 1:
             raise KeyError("Family not found")
         await self._request("POST", "pilot_cohort_family?on_conflict=cohort_id,family_id", service=True, prefer="resolution=merge-duplicates,return=minimal", json={"cohort_id": str(cohort_id), "family_id": str(family_id), "invited_by": str(owner_id)})
-        principal = Principal(user_id=owner_id, access_token=self.service_key, platform_roles=("platform_owner",))
-        rows = await self.list_cohorts(principal)
+        rows = await self.list_cohorts(service=True)
         return next(row for row in rows if row["cohortId"] == str(cohort_id))
 
     async def add_cohort_activity(self, cohort_id: UUID, activity_version_id: str, owner_id: UUID) -> dict[str, Any]:
@@ -221,13 +220,11 @@ class SupabaseEditorialService(EditorialService):
         if len(rows) != 1:
             raise ValueError("Activity must pass human gates and be released to family_pilot first")
         await self._request("POST", "pilot_cohort_activity?on_conflict=cohort_id,activity_version_id", service=True, prefer="resolution=merge-duplicates,return=minimal", json={"cohort_id": str(cohort_id), "activity_version_id": activity_version_id, "content_hash": rows[0]["content_hash"], "added_by": str(owner_id)})
-        principal = Principal(user_id=owner_id, access_token=self.service_key, platform_roles=("platform_owner",))
-        cohorts = await self.list_cohorts(principal)
+        cohorts = await self.list_cohorts(service=True)
         return next(row for row in cohorts if row["cohortId"] == str(cohort_id))
 
     async def activate_cohort(self, cohort_id: UUID, owner_id: UUID) -> dict[str, Any]:
-        principal = Principal(user_id=owner_id, access_token=self.service_key, platform_roles=("platform_owner",))
-        cohorts = await self.list_cohorts(principal)
+        cohorts = await self.list_cohorts(service=True)
         cohort = next((row for row in cohorts if row["cohortId"] == str(cohort_id)), None)
         if not cohort:
             raise KeyError("Pilot cohort not found")

@@ -1,7 +1,10 @@
 from datetime import timedelta
 from types import SimpleNamespace
 import unittest
+from unittest.mock import AsyncMock
 from uuid import uuid4
+
+import httpx
 
 from services.ai.kids_ai.family import FamilySetup
 from services.ai.kids_ai.models import Principal
@@ -55,6 +58,62 @@ class SupabaseFamilyTests(unittest.TestCase):
         value = SupabaseFamilyService._redact("Write parent@example.com or +1 555 555 1212")
         self.assertNotIn("parent@example.com", value)
         self.assertNotIn("555 555 1212", value)
+
+
+class ConnectedEvaluationAccessTests(unittest.IsolatedAsyncioTestCase):
+    @staticmethod
+    def _adapter() -> SupabaseFamilyService:
+        return SupabaseFamilyService(SimpleNamespace(
+            supabase_url="https://example.supabase.co",
+            supabase_publishable_key="publishable",
+            supabase_secret_key="service-secret",
+            adult_gate_signing_secret="a-long-independent-signing-secret",
+            legal_matrix_version="pilot-us-v1",
+            evaluation_catalog=True,
+        ))
+
+    async def test_invitation_is_required_and_marked_accepted(self):
+        adapter = self._adapter()
+        invitation_id = uuid4()
+        adapter._request = AsyncMock(side_effect=[
+            httpx.Response(200, json=[{"invitation_id": str(invitation_id), "state": "pending"}]),
+            httpx.Response(200, json=[]),
+            httpx.Response(200, json=[]),
+            httpx.Response(201, json={}),
+            httpx.Response(204),
+        ])
+
+        await adapter._ensure_evaluation_access(uuid4(), uuid4())
+
+        calls = adapter._request.await_args_list
+        self.assertIn("family_evaluation_access", calls[3].args[1])
+        self.assertIn(str(invitation_id), calls[4].args[1])
+        self.assertEqual(calls[4].kwargs["json"]["state"], "accepted")
+
+    async def test_profile_updates_do_not_extend_active_evaluation_access(self):
+        adapter = self._adapter()
+        invitation_id = uuid4()
+        existing_expiry = (now_utc() + timedelta(days=10)).isoformat()
+        adapter._request = AsyncMock(side_effect=[
+            httpx.Response(200, json=[{"invitation_id": str(invitation_id), "state": "accepted"}]),
+            httpx.Response(200, json=[]),
+            httpx.Response(200, json=[{"family_id": str(uuid4()), "expires_at": existing_expiry}]),
+        ])
+
+        await adapter._ensure_evaluation_access(uuid4(), uuid4())
+
+        self.assertEqual(adapter._request.await_count, 3)
+
+    async def test_uninvited_non_owner_is_rejected(self):
+        adapter = self._adapter()
+        adapter._request = AsyncMock(side_effect=[
+            httpx.Response(200, json=[]),
+            httpx.Response(200, json=[]),
+            httpx.Response(200, json=[]),
+        ])
+
+        with self.assertRaisesRegex(PermissionError, "invitation"):
+            await adapter._ensure_evaluation_access(uuid4(), uuid4())
 
 
 if __name__ == "__main__":

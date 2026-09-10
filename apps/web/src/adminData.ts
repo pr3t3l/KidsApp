@@ -147,6 +147,11 @@ export async function inviteAdmin(input:{email:string;role:"editorial_specialist
   return apiRequest<AdminPerson>("/v1/admin/people/invitations",{method:"POST",body:JSON.stringify(input)});
 }
 
+export async function inviteFamilyTester(email:string):Promise<{invitationId:string;userId:string;delivery:string;maskedEmail:string;createdAt:string}>{
+  if(DEMO_MODE)return {invitationId:crypto.randomUUID(),userId:crypto.randomUUID(),delivery:"simulated",maskedEmail:`${email[0]}***@${email.split("@")[1]}`,createdAt:new Date().toISOString()};
+  return apiRequest("/v1/admin/family-invitations",{method:"POST",body:JSON.stringify({email})});
+}
+
 export async function updateAdminPerson(person:AdminPerson,input:{assignedDomains:string[];active:boolean}):Promise<AdminPerson>{
   if(DEMO_MODE)return {...person,...input};
   return apiRequest<AdminPerson>(`/v1/admin/people/${person.assignmentId}`,{method:"PUT",body:JSON.stringify(input)});
