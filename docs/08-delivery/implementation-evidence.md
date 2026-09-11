@@ -22,8 +22,8 @@ The evidence boundary is strict. Catalog records and families used by automated 
 | Documentation validator | 152 repository Markdown files and all 3 pilot activity documents pass |
 | Database contract | 65 public tables across 27 migration files (16 substantive Kids migrations plus 11 shared-ledger markers) have RLS, policies and explicit grants |
 | PostgreSQL parser | All substantive migrations parse with PostgreSQL grammar; the shared-ledger markers are deliberate no-ops |
-| Frontend component tests | 17/17 pass across 7 files |
-| Frontend production build | TypeScript and Vite production build pass; 116 modules transformed |
+| Frontend component tests | 21/21 pass across 9 files, including the sensitive-action MFA/session-refresh regression |
+| Frontend production build | TypeScript and Vite production build pass; 117 modules transformed |
 | API/policy tests | 77/77 pass |
 | Golden set | 80/80 bilingual executions pass across 40 canonical cases |
 | Golden quality gates | Recall@5 `1.0`, source correctness `1.0`, safe abstention `1.0` |
@@ -65,6 +65,7 @@ Alfredo then completed the real Kids-origin magic-link callback and TOTP MFA. Th
 
 - Family surfaces fail closed to risk-C/D activity versions unless the applicable independent gates exist.
 - Sensitive administrative writes retain a 15-minute TOTP step-up gate even when GoTrue preserves the session's original AMR timestamp: the API witnesses the fresh challenge, rotates the browser session and stores only a backend-only assertion bound to user, session and factor. The pending write is retried without persisting its one-time secret in browser storage.
+- The administrative MFA overlay is governed by an explicit state reducer: Supabase `SIGNED_IN` or `TOKEN_REFRESHED` identity reloads cannot dismiss a forced challenge, so the original write cannot remain indefinitely pending behind a vanished overlay.
 - Model context contains stable policy, exact version/current block and same-version/same-locale evidence only.
 - Raw companion messages and model free-form responses are not written to the usage ledger by default.
 - Dangerous, diagnostic, cross-family, unnecessary-PII and unauthorized-publication requests stop before generation or mutation.
