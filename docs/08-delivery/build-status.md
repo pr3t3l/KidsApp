@@ -3,7 +3,7 @@
 # Product build status
 
 **Status:** Active
-**Updated:** 10 September 2026
+**Updated:** 11 September 2026
 **Owner:** Alfredo Pretel
 
 This is the durable restart point for implementation. A completed phase below means that its source-code and local automated gates exist; it does not mean that an external, professional, legal, physical, or production gate has been completed.
@@ -20,7 +20,7 @@ This is the durable restart point for implementation. A completed phase below me
 | 5. Catalog coverage and editorial factory | Implemented and locally verified | Explainable coverage/gaps, allowlisted source research, staged authoring, parallel critics, synthesis, human review, pilot and release gates are implemented. Human rights, physical and specialist evidence are not fabricated. |
 | 6. Family product | Implemented and locally verified | Bilingual onboarding, plan, 12-item family catalog, preview, adult-friction gate, session, one companion, confirmed adaptations, close-out, journey, feedback, privacy and encrypted offline continuity pass tests. |
 | 7. CAG, RAG, agents and evaluation | Implemented and locally verified | Exact-version CAG, published-only hybrid retrieval, bounded companion graph, editorial multi-agent graph and the 80-run bilingual golden gate pass locally. Live-model usefulness evidence remains external. |
-| 8. Release and pilot | Database and catalog deployed; application connection pending | A guarded synthetic evaluation channel, the namespaced Supabase database and its 13-item bilingual catalog are deployed. Vercel connected-mode variables, Auth redirect configuration, owner bootstrap, owner MFA, SMTP, live trace and human pilot evidence remain pending. |
+| 8. Release and pilot | Connected evaluator deployed; account acceptance pending | The guarded synthetic evaluation channel, namespaced Supabase database, 13-item bilingual catalog, connected web and production-mode API are deployed. Auth redirect acceptance, owner bootstrap/MFA, SMTP, live trace and human pilot evidence remain pending. |
 
 ## Evidence-backed implementation baseline
 
@@ -58,7 +58,7 @@ The current dependency audit reports zero npm vulnerabilities and no known vulne
 
 The following are intentionally not marked complete because source code cannot supply their evidence:
 
-- connected Vercel environment variables and an eventual dedicated Supabase project before commercial launch;
+- an eventual dedicated Supabase project before commercial launch;
 - owner MFA enrollment in the hosted environment;
 - live OpenRouter/OpenAI/Anthropic credentials, approved data-processing routes and spend authorization;
 - a release-specific Logfire trace and live-provider cost reconciliation;
@@ -71,6 +71,8 @@ The following are intentionally not marked complete because source code cannot s
 ## Connected evaluator restart point
 
 - Target: `https://kids.alfredopretelvargas.com`.
+- API: `https://kids-learning-api-eta.vercel.app`; `/health` returned HTTP 200 with `mode=production` on 11 September 2026.
+- Hosted boundary check: unauthenticated `/v1/catalog` returned HTTP 401 with `Bearer token required`, while the public domain rendered the adult-only private-pilot sign-in surface.
 - Pilot database: existing Supabase project `declassified-shop`, physically isolated by the `kids_` object prefix under `DEC-077`; Auth, quotas and service-role authority remain shared.
 - The family UI and public site visibly label connected synthetic evaluation mode.
 - Invited adults only: public account creation is disabled client-side and remains disabled in Supabase Auth.
@@ -79,3 +81,4 @@ The following are intentionally not marked complete because source code cannot s
 - [Provision connected evaluator](../../.github/workflows/provision-connected-evaluator.yml) performs a remote migration dry-run before applying it, bootstraps the owner and verifies the deterministic catalog source. The catalog itself is versioned as a data migration so published rows are never overwritten in place.
 - [Mobile secret and deployment runbook](connected-evaluator-runbook.es.md) is the authoritative handoff for Alfredo.
 - [Shared Supabase pilot evidence](shared-supabase-pilot-evidence.md) records the deployed namespace, non-interference smoke test, advisor boundary and remaining shared-project risks.
+- Vercel deployment evidence: web `dpl_ChphHa3ZQrzVGcHnAiokKx7jftWG` and API `dpl_QsUSqWr7TsDUwk3mKpLswPvXuS5Z` reached `READY` from commit `6ebce2868d9731786f235139d4e2058ec435f361`. Secret values are intentionally absent from repository evidence.

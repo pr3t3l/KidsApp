@@ -168,6 +168,8 @@ The recorded test results, real-browser offline proof and the boundary between c
 
 ## Deployment
 
+- Connected evaluator: `https://kids.alfredopretelvargas.com`.
+- Production API health: `https://kids-learning-api-eta.vercel.app/health`.
 - Create one Vercel project rooted at `apps/web` and one rooted at `services/ai`.
 - Apply the reviewed Supabase migrations, run database advisors and configure Auth invitations. Published catalog changes are introduced as new immutable version/data migrations, never by overwriting hosted rows.
 - Set production environment variables from `.env.example`; set `DEMO_MODE=false`, `VITE_DEMO_MODE=false`, `EVALUATION_CATALOG=true` and `VITE_EVALUATION_MODE=true` only for the connected technical evaluator.
@@ -189,4 +191,4 @@ No deployment credential is committed. The current historical static prototype r
 
 ## Next milestone
 
-Publish the validated branch, connect both Vercel projects to the temporary namespaced Supabase pilot described by `DEC-077`, enroll owner MFA, evaluate approved live OpenRouter/OpenAI/Anthropic routes, run the exact-version human/content gates and record the deployment, screenshot deck and release-trace evidence in [Final project delivery](docs/08-delivery/final-project-delivery.md). Move to a dedicated Supabase project before commercial use.
+Complete the first owner magic-link round trip and MFA enrollment, verify two-family hosted RLS isolation, evaluate an approved live OpenRouter/OpenAI/Anthropic route, run the exact-version human/content gates and record the screenshot deck plus release-trace evidence in [Final project delivery](docs/08-delivery/final-project-delivery.md). Move to a dedicated Supabase project before commercial use.

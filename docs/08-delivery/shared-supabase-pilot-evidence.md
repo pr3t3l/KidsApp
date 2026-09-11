@@ -79,11 +79,21 @@ backend secret with `service_role`. The shared project is acceptable only for
 the academic evaluator. A dedicated project and separate backend secret are
 required before commercial family data is accepted.
 
+## Connected runtime state — 11 September 2026
+
+- The web and API connected-mode variables are present in their Production
+  environments. The Supabase backend key, telemetry salt and adult-gate signing
+  value are stored as Vercel secrets and never exposed as `VITE_*`.
+- `https://kids.alfredopretelvargas.com` returns HTTP 200 and renders the
+  adult-only private-pilot sign-in surface.
+- `https://kids-learning-api-eta.vercel.app/health` returns HTTP 200 with
+  `mode=production`; anonymous catalog access fails closed with HTTP 401.
+
 ## Remaining connection work
 
-- Add the Kids callback URLs to shared Supabase Auth without replacing the
-  Declassified Site URL.
-- Put the existing Supabase secret key into the API project's protected Vercel
-  environment; never expose it as `VITE_*`.
-- Set Vercel connected-mode variables and bootstrap Alfredo's owner identity.
-- Enroll owner MFA, test two-family isolation and capture the hosted evidence.
+- Verify the Kids callback URL through a real magic-link round trip without
+  replacing the Declassified Site URL.
+- Bootstrap Alfredo's owner identity and enroll owner MFA.
+- Test two-family isolation with real Supabase JWTs and capture the hosted
+  family/admin evidence.
+- Configure and verify SMTP before inviting external pilot families.

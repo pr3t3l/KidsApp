@@ -3,14 +3,14 @@
 # Final-project implementation evidence
 
 **Status:** Review
-**Version:** 1.1
-**Evidence captured:** 9 September 2026
+**Version:** 1.2
+**Evidence captured:** 11 September 2026
 
 ## What this candidate proves
 
 The `finalproject-AP` candidate implements the product-shaped family PWA, bilingual administrative workspace, FastAPI service, compact Activity V2 contracts, private family tenancy, operation-scoped provider routing, AI usage/cost governance, explainable catalog coverage, staged editorial factory, CAG/RAG companion, editorial multi-agent review, offline continuity, Docker definitions and CI.
 
-The evidence boundary is strict. Catalog records and families used by automated tests are synthetic. This document proves implementation behavior; it does not claim production hosting, physical activity approval, legal approval, independent professional sign-off or learning impact.
+The evidence boundary is strict. Catalog records and families used by automated tests are synthetic. This document proves implementation behavior and a hosted connected-evaluator runtime; it does not claim completed identity acceptance, physical activity approval, legal approval, independent professional sign-off or learning impact.
 
 ## Automated evidence
 
@@ -19,12 +19,12 @@ The evidence boundary is strict. Catalog records and families used by automated 
 | Legacy JSON Schema examples | 5 schemas and 6 examples pass |
 | Activity V2 | Core `7,618` bytes; `en-US` locale `17,218`; `es-US` locale `18,351`; card `258`; prep `519`; step `461`; all schema/token/byte and semantic migration gates pass |
 | Domain validators | Baseline, participant fixtures and 18 negative/invariant cases pass |
-| Documentation validator | 151 repository Markdown files and all 3 pilot activity documents pass |
-| Database contract | 65 public tables across 12 migrations have RLS, policies and explicit grants |
-| PostgreSQL parser | All 12 migrations and 584 statements parse with PostgreSQL grammar |
+| Documentation validator | 152 repository Markdown files and all 3 pilot activity documents pass |
+| Database contract | 65 public tables across 26 migration files (15 substantive Kids migrations plus 11 shared-ledger markers) have RLS, policies and explicit grants |
+| PostgreSQL parser | All substantive migrations parse with PostgreSQL grammar; the shared-ledger markers are deliberate no-ops |
 | Frontend component tests | 15/15 pass across 6 files |
 | Frontend production build | TypeScript and Vite production build pass; 116 modules transformed |
-| API/policy tests | 66/66 pass |
+| API/policy tests | 69/69 pass |
 | Golden set | 80/80 bilingual executions pass across 40 canonical cases |
 | Golden quality gates | Recall@5 `1.0`, source correctness `1.0`, safe abstention `1.0` |
 | Dependency security | `npm audit` reports zero vulnerabilities; `pip-audit` reports no known vulnerabilities in the locked Python requirements |
@@ -50,6 +50,17 @@ The production Vite build was served locally and exercised through Edge DevTools
 
 The browser runner is reproducible after starting the production preview. It does not replace testing on actual iOS/Android devices or with real pilot families.
 
+## Hosted connected-evaluator evidence
+
+On 11 September 2026, commit `6ebce2868d9731786f235139d4e2058ec435f361` was verified through the final aliases:
+
+- `https://kids.alfredopretelvargas.com` returned HTTP 200 and rendered the Spanish adult-only private-pilot sign-in surface. Vercel web deployment `dpl_ChphHa3ZQrzVGcHnAiokKx7jftWG` is `READY`.
+- `https://kids-learning-api-eta.vercel.app/health` returned HTTP 200 and `{"status":"ok","mode":"production"}`. Vercel API deployment `dpl_QsUSqWr7TsDUwk3mKpLswPvXuS5Z` is `READY`.
+- An anonymous request to `/v1/catalog` returned HTTP 401 and `Bearer token required`, proving that the deployed content route did not fall open when connected mode was enabled.
+- The API deployment contains the Supabase URL, public browser key, protected backend key, independent telemetry salt and independent adult-gate signing secret. Only variable names and deployment status were inspected; secret values are neither recorded here nor committed.
+
+This hosted check proves reachability, production configuration validation and the anonymous authorization boundary. It does not yet prove magic-link delivery, owner MFA, two-family RLS isolation through real JWTs, a live provider route or a complete invited-family journey.
+
 ## Controls evidenced in code
 
 - Family surfaces fail closed to risk-C/D activity versions unless the applicable independent gates exist.
@@ -71,8 +82,8 @@ The browser runner is reproducible after starting the production preview. It doe
 
 | Gate | Required evidence |
 |---|---|
-| Hosted release | Dedicated Vercel web/API URLs and a migrated Supabase project. |
-| Database runtime | Supabase advisors, hosted RLS tests with two synthetic families and backup/restore verification. |
+| Hosted identity acceptance | Magic-link delivery, owner bootstrap/MFA and one complete invited-family sign-in. |
+| Database runtime | Hosted RLS tests with two authenticated synthetic families and backup/restore verification. |
 | Live provider routes | Approved keys, connection tests, model evaluations, privacy/retention review and billing reconciliation. |
 | Release observability | A release-specific redacted Logfire trace. The existing public trace is historical course evidence only. |
 | Content publication | Founder execution, exact hash, source-rights evidence and required professional/safety signatures per version. |
