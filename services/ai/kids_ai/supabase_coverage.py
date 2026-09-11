@@ -51,6 +51,30 @@ class SupabaseCoverageService(CoverageService):
             raise RuntimeError("Coverage target persistence returned an invalid record")
         return body[0]
 
+    @staticmethod
+    def _mechanism_key(core: dict[str, Any], learn: dict[str, Any]) -> str:
+        """Normalize both full Activity V2 and compact evaluator seed shapes."""
+        raw_flow = core.get("flow")
+        if isinstance(raw_flow, dict):
+            mode = raw_flow.get("mode") or "unknown"
+        elif isinstance(raw_flow, str):
+            mode = raw_flow or "unknown"
+        else:
+            mode = "unknown"
+
+        parts = [str(mode)]
+        cycle = learn.get("cycle")
+        if isinstance(cycle, list) and cycle:
+            parts.append(str(cycle[0]))
+
+        materials = core.get("materials")
+        if isinstance(materials, list):
+            for item in materials:
+                material_id = item.get("id") if isinstance(item, dict) else item if isinstance(item, str) else None
+                if material_id:
+                    parts.append(str(material_id))
+        return "|".join(parts)
+
     async def snapshot(self, principal: Principal | None = None) -> dict[str, Any]:
         if principal is None or not principal.access_token:
             raise PermissionError("Editorial identity is required")
@@ -60,7 +84,7 @@ class SupabaseCoverageService(CoverageService):
         reviews = await self._get(principal, "review_record?decision=eq.approved&select=review_assignment_id,activity_version_id,content_hash", optional=True)
         pilots = await self._get(principal, "pilot_run?select=activity_version_id,outcome,useful,duration_fit", optional=True)
         target_rows = await self._get(principal, "coverage_target?retired_at=is.null&select=*&order=version.desc", optional=True)
-        since = (datetime.now(timezone.utc) - timedelta(days=28)).isoformat()
+        since = (datetime.now(timezone.utc) - timedelta(days=28)).isoformat().replace("+00:00", "Z")
         demand_rows = await self._get(principal, f"catalog_demand_event?created_at=gte.{since}&select=requested_dimensions,result_count", optional=True)
 
         locale_map: dict[str, set[str]] = defaultdict(set)
@@ -79,11 +103,15 @@ class SupabaseCoverageService(CoverageService):
         activities: list[dict[str, Any]] = []
         profiles: dict[str, dict[str, Any]] = {}
         for row in versions:
-            core = row.get("core_v2") or {}
-            fit = core.get("fit") or {}
-            learn = core.get("learn") or {}
-            flow = core.get("flow") or {}
-            legacy = (row.get("snapshot") or {}).get("eligibility") or {}
+            raw_core = row.get("core_v2")
+            core = raw_core if isinstance(raw_core, dict) else {}
+            raw_fit = core.get("fit")
+            fit = raw_fit if isinstance(raw_fit, dict) else {}
+            raw_learn = core.get("learn")
+            learn = raw_learn if isinstance(raw_learn, dict) else {}
+            raw_snapshot = row.get("snapshot")
+            snapshot = raw_snapshot if isinstance(raw_snapshot, dict) else {}
+            legacy = snapshot.get("eligibility") or {}
             if fit:
                 eligibility = {
                     "ageMin": fit["age"][0], "ageMax": fit["age"][1],
@@ -100,8 +128,7 @@ class SupabaseCoverageService(CoverageService):
             primary_value = learn.get("primary") or "unclassified"
             primary = self.AREA_CODES.get(primary_value, primary_value)
             secondary = [self.AREA_CODES.get(value, value) for value in (learn.get("secondary") or [])]
-            mechanism_parts = [flow.get("mode", "unknown"), *((learn.get("cycle") or [])[:1]), *((item.get("id") for item in (core.get("materials") or [])))]
-            profiles[version_id] = {"primary": primary, "secondary": secondary, "mechanism": "|".join(mechanism_parts), "independentReview": version_id in independent}
+            profiles[version_id] = {"primary": primary, "secondary": secondary, "mechanism": self._mechanism_key(core, learn), "independentReview": version_id in independent}
 
         now = datetime.now(timezone.utc)
         target_map: dict[str, float] = {}
