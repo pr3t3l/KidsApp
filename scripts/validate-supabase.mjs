@@ -34,7 +34,12 @@ if (/grant[^;]*(?:vault\.decrypted_secrets|server_read_provider_secret)[^;]*to\s
 const usageTable = migration.match(/create table public\.kids_ai_usage_event\s*\(([\s\S]*?)\n\);/i)?.[1] ?? "";
 if (/\b(prompt|response|messages)\b\s+(?:text|jsonb)/i.test(usageTable)) failures.push("AI usage ledger stores raw prompt or response content");
 if (!/delete_after timestamptz not null default \(now\(\) \+ interval '90 days'\)/i.test(migration)) failures.push("family feedback lacks the 90-day text-retention marker");
-if (!/create or replace function private\.kids_has_recent_mfa\(\)[\s\S]*jsonb_array_elements[\s\S]*item->>'method'\s*=\s*'totp'[\s\S]*interval '15 minutes'/i.test(migration)) failures.push("recent administrative MFA does not verify a fresh TOTP assertion");
+const recentMfaDefinitions = [...migration.matchAll(/create or replace function private\.kids_has_recent_mfa\(\)[\s\S]*?\$\$;/gi)];
+const currentRecentMfa = recentMfaDefinitions.at(-1)?.[0] ?? "";
+if (!/jsonb_array_elements[\s\S]*item->>'method'\s*=\s*'totp'[\s\S]*interval '15 minutes'/i.test(currentRecentMfa)) failures.push("recent administrative MFA does not verify a fresh TOTP assertion");
+if (!/security definer[\s\S]*private\.kids_admin_mfa_assertion[\s\S]*auth\.uid\(\)[\s\S]*session_id[\s\S]*expires_at\s*>\s*now\(\)/i.test(currentRecentMfa)) failures.push("recent administrative MFA is not bound to a live user/session assertion");
+if (!/create table private\.kids_admin_mfa_assertion[\s\S]*revoke all on private\.kids_admin_mfa_assertion from public, anon, authenticated/i.test(migration)) failures.push("server-witnessed MFA assertions are exposed to browser roles");
+if (!/kids_server_record_admin_mfa_assertion[\s\S]*grant execute[\s\S]*to service_role/i.test(migration) || /grant[^;]*kids_server_record_admin_mfa_assertion[^;]*to\s+(?:anon|authenticated)/i.test(migration)) failures.push("MFA assertion recording is not backend-only");
 if (!/create policy kids_product_setting_owner_all[\s\S]*with check \(private\.kids_has_platform_role\(array\['platform_owner'\]\) and private\.kids_has_recent_mfa\(\)\)/i.test(migration)) failures.push("product settings do not require recent MFA for writes");
 const releaseDefinitions = [...migration.matchAll(/create or replace function public\.kids_release_activity_version[\s\S]*?\$\$;/gi)];
 if (!releaseDefinitions.length || !/private\.kids_has_mfa\(\)/i.test(releaseDefinitions.at(-1)[0])) failures.push("direct activity release does not require MFA");

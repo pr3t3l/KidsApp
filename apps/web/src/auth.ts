@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 
 const url = import.meta.env.VITE_SUPABASE_URL;
 const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+const apiUrl = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
 export const supabase = url && publishableKey ? createClient(url, publishableKey) : null;
 
@@ -39,10 +40,30 @@ export async function prepareAdminMfa(forceChallenge = false): Promise<AdminMfaS
   return { factorId: enrolled.data.id, existing: false, qrCode: enrolled.data.totp.qr_code, secret: enrolled.data.totp.secret };
 }
 
-export async function verifyAdminMfa(factorId: string, code: string): Promise<void> {
+export async function verifyAdminMfa(factorId: string, code: string, forceChallenge = false): Promise<void> {
   if (!supabase) throw new Error("Supabase authentication is not configured.");
-  const result = await supabase.auth.mfa.challengeAndVerify({ factorId, code });
-  if (result.error) throw result.error;
+  if (!forceChallenge) {
+    const result = await supabase.auth.mfa.challengeAndVerify({ factorId, code });
+    if (result.error) throw result.error;
+    await persistCurrentAccessToken();
+    return;
+  }
+
+  const current = await supabase.auth.getSession();
+  if (current.error || !current.data.session) throw current.error ?? new Error("Administrative session is unavailable.");
+  const response = await fetch(`${apiUrl}/v1/admin/mfa/reauthenticate`, {
+    method: "POST",
+    cache: "no-store",
+    headers: { "Authorization": `Bearer ${current.data.session.access_token}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ factorId, code })
+  });
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(response.status === 422 ? "El código expiró o no es válido." : body || "No pudimos verificar MFA.");
+  }
+  const session = await response.json() as { accessToken: string; refreshToken: string };
+  const updated = await supabase.auth.setSession({ access_token: session.accessToken, refresh_token: session.refreshToken });
+  if (updated.error) throw updated.error;
   await persistCurrentAccessToken();
 }
 

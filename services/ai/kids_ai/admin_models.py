@@ -179,3 +179,16 @@ class ConnectionTestResult(ApiModel):
     provider: ProviderSlug
     checked_at: datetime
     detail: str
+
+
+class AdminMfaReauthenticateRequest(ApiModel):
+    factor_id: UUID
+    code: SecretStr = Field(min_length=6, max_length=6)
+
+
+class AdminMfaSession(ApiModel):
+    access_token: str = Field(min_length=20)
+    refresh_token: str = Field(min_length=20)
+    expires_in: int = Field(gt=0)
+    expires_at: datetime
+    mfa_expires_at: datetime

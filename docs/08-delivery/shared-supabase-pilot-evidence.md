@@ -8,7 +8,7 @@
 
 ## Deployment result
 
-The 15 Kids migrations were applied transactionally through the authenticated
+The 16 Kids migrations were applied transactionally through the authenticated
 Supabase management connection. Their remote timestamps are the filenames in
 `supabase/migrations`. Eleven earlier `shop_*` files are no-op history markers:
 they align the shared migration ledger but never recreate, mutate or depend on
@@ -19,7 +19,7 @@ Declassified objects.
 | Physical Kids tables | 65, all named `kids_*` |
 | Kids tables with RLS | 65/65 |
 | Kids tables without a policy | 0 |
-| Public Kids functions | 28 |
+| Public Kids functions | 30 |
 | Kids functions executable by `anon` | 0 |
 | `kids_server_*` functions executable by `authenticated` | 0 |
 | Declassified public tables retained | 16 |
@@ -51,6 +51,11 @@ matching the pre-migration inventory.
   and requests explicit replacement instead of silently cancelling it.
 - Supabase's inherited/default function grants are explicitly removed for every
   Kids RPC. Backend-only RPCs remain executable only through `service_role`.
+- A repeat TOTP challenge on an existing AAL2 session did not refresh the JWT's
+  original AMR timestamp. The replacement keeps the 15-minute sensitive-action
+  policy through a backend-witnessed assertion bound to the exact user, session
+  and factor. Its private table and two server RPCs are unavailable to `anon`
+  and `authenticated`; AAL2 remains mandatory in RLS.
 
 ## Advisor interpretation
 
@@ -63,7 +68,7 @@ pre-existing Declassified functions (`cleanup_old_rate_limits` and `is_admin`)
 and were not changed by this deployment. See Supabase's
 [SECURITY DEFINER advisor guidance](https://supabase.com/docs/guides/database/database-linter?lint=0028_anon_security_definer_function_executable).
 
-The performance advisor currently reports 99 unindexed Kids foreign keys and
+The performance advisor currently reports 100 unindexed Kids foreign keys and
 eight tables with multiple permissive policies. The seeded pilot remains small,
 so adding every possible index before query evidence would add write/storage
 cost without demonstrated value. Query plans and latency during

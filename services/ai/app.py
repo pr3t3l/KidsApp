@@ -6,12 +6,13 @@ from uuid import UUID
 
 import logfire
 import httpx
-from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request, status
+from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 try:
-    from .kids_ai.admin_models import BudgetRequest, ModelDeploymentCreate, ProviderConnectionCreate, ProviderConnectionRotate, RateCardRequest, RouteConfigRequest
+    from .kids_ai.admin_mfa import AdminMfaService, AdminMfaUnavailableError, AdminMfaVerificationError
+    from .kids_ai.admin_models import AdminMfaReauthenticateRequest, AdminMfaSession, BudgetRequest, ModelDeploymentCreate, ProviderConnectionCreate, ProviderConnectionRotate, RateCardRequest, RouteConfigRequest
     from .kids_ai.admin_workspace import AdminInviteCreate, AdminWorkspaceService, FamilyInviteCreate, IncidentUpdate, ProductSettingsUpdate, ReviewAssignmentCreate, RoleAssignmentUpdate, SupabaseAdminWorkspaceService, SupportGrantCreate
     from .kids_ai.ai_ops import AIOperationsService
     from .kids_ai.coverage import CoverageService, CoverageTargetCreate
@@ -31,7 +32,8 @@ try:
     from .kids_ai.supabase_editorial import SupabaseEditorialService
     from .kids_ai.workflow import CompanionWorkflow
 except ImportError:  # Vercel project rooted at services/ai
-    from kids_ai.admin_models import BudgetRequest, ModelDeploymentCreate, ProviderConnectionCreate, ProviderConnectionRotate, RateCardRequest, RouteConfigRequest
+    from kids_ai.admin_mfa import AdminMfaService, AdminMfaUnavailableError, AdminMfaVerificationError
+    from kids_ai.admin_models import AdminMfaReauthenticateRequest, AdminMfaSession, BudgetRequest, ModelDeploymentCreate, ProviderConnectionCreate, ProviderConnectionRotate, RateCardRequest, RouteConfigRequest
     from kids_ai.admin_workspace import AdminInviteCreate, AdminWorkspaceService, FamilyInviteCreate, IncidentUpdate, ProductSettingsUpdate, ReviewAssignmentCreate, RoleAssignmentUpdate, SupabaseAdminWorkspaceService, SupportGrantCreate
     from kids_ai.ai_ops import AIOperationsService
     from kids_ai.coverage import CoverageService, CoverageTargetCreate
@@ -59,6 +61,7 @@ logfire.configure(token=settings.logfire_token or None, send_to_logfire=bool(set
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    admin_mfa_service = AdminMfaService(settings)
     secret_store = InMemorySecretStore() if settings.demo_mode else SupabaseVaultSecretStore(settings.supabase_url, settings.supabase_secret_key)
     ai_ops = AIOperationsService(settings, secret_store) if settings.demo_mode else SupabaseAIOperationsService(settings, secret_store)
     await ai_ops.initialize()
@@ -71,6 +74,7 @@ async def lifespan(app: FastAPI):
     source_research = SourceResearchService(settings.brave_search_api_key, settings.editorial_source_allowlist)
     retriever = CatalogRetriever() if settings.demo_mode else SupabaseHybridRetriever(settings.supabase_url, settings.supabase_publishable_key, gateway)
     app.state.settings = settings
+    app.state.admin_mfa_service = admin_mfa_service
     app.state.ai_ops = ai_ops
     app.state.coverage = coverage
     app.state.editorial = editorial
@@ -85,7 +89,22 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Kids Learning System AI API", version="1.0.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=list(settings.allowed_origins), allow_credentials=True, allow_methods=["GET", "POST", "PUT", "DELETE"], allow_headers=["Authorization", "Content-Type", "Idempotency-Key"])
-logfire.instrument_fastapi(app, capture_headers=False)
+
+
+def safe_logfire_request_attributes(request: Request, attributes: dict[str, object]) -> dict[str, object]:
+    """Keep useful route diagnostics without exporting credentials or TOTP."""
+    safe = dict(attributes)
+    values = safe.get("values")
+    if isinstance(values, dict):
+        values = dict(values)
+        values.pop("principal", None)
+        if request.url.path == "/v1/admin/mfa/reauthenticate":
+            values.pop("body", None)
+        safe["values"] = values
+    return safe
+
+
+logfire.instrument_fastapi(app, capture_headers=False, request_attributes_mapper=safe_logfire_request_attributes)
 
 
 @app.exception_handler(PermissionError)
@@ -131,6 +150,23 @@ editorial_reviewer_mfa = require_platform_role("platform_owner", "editorial_spec
 pilot_operator_mfa = require_platform_role("platform_owner", "support_operator", require_mfa=True)
 pilot_inviter_recent_mfa = require_platform_role("platform_owner", "support_operator", require_mfa=True, max_mfa_age_minutes=15)
 admin_mfa = require_platform_role("platform_owner", "editorial_specialist", "support_operator", require_mfa=True)
+
+
+@app.post("/v1/admin/mfa/reauthenticate", response_model=AdminMfaSession, response_model_by_alias=True)
+async def reauthenticate_admin_mfa(
+    body: AdminMfaReauthenticateRequest,
+    request: Request,
+    response: Response,
+    principal: Principal = Depends(admin_mfa),
+) -> AdminMfaSession:
+    response.headers["Cache-Control"] = "no-store"
+    response.headers["Pragma"] = "no-cache"
+    try:
+        return await request.app.state.admin_mfa_service.reauthenticate(principal, body)
+    except AdminMfaVerificationError as error:
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Invalid or expired MFA code") from error
+    except AdminMfaUnavailableError as error:
+        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="MFA verification is temporarily unavailable") from error
 
 
 @app.get("/v1/admin/me")

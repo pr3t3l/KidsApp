@@ -28,7 +28,7 @@ This is the durable restart point for implementation. A completed phase below me
 - Web: React/TypeScript/Vite PWA with separate public, family and administrative experiences. The administrative workspace can switch between `es-US` and `en-US`.
 - API: FastAPI modular monolith with deterministic authorization/safety boundaries and bounded LangGraph workflows.
 - AI: `ModelGateway` resolves a versioned `operation_key` to OpenRouter, OpenAI or Anthropic deployments, normalizes metadata and records cost provenance without storing prompts or free-form responses by default.
-- Data: 65 public `kids_*` RLS tables across 15 forward-only Kids migrations, plus 11 no-op history markers for the shared Declassified migration ledger, private `kids_*` helpers and server-only secret access.
+- Data: 65 public `kids_*` RLS tables across 16 forward-only Kids migrations, plus 11 no-op history markers for the shared Declassified migration ledger, private `kids_*` helpers and server-only secret access.
 - Activity contracts: compact `activity@2` core, locale, editorial and read-model contracts with a non-destructive V1 migration.
 - Catalog: 13 bilingual synthetic editorial fixtures. Twelve risk-A/B activities are eligible for the family demo; risk-C `ACT-0003` remains visible only to editorial workflows and fails closed on family surfaces.
 - Retrieval: 28 bilingual synthetic RAG chunks, exact activity-version and locale filters, full-text plus pgvector/RRF production contract, with deterministic local retrieval for the credential-free demo.
@@ -77,6 +77,7 @@ The following are intentionally not marked complete because source code cannot s
 - The family UI and public site visibly label connected synthetic evaluation mode.
 - Invited adults only: public account creation is disabled client-side and remains disabled in Supabase Auth.
 - Alfredo completed the Kids-origin magic-link callback and TOTP MFA on 11 September 2026. The sole active `platform_owner` then loaded the hosted workspace; `/v1/admin/me`, catalog coverage, activities, AI costs, people, reviews, pilots, incidents and audit all returned HTTP 200.
+- Repeated TOTP authorization for sensitive owner mutations is backend-witnessed for 15 minutes and bound to the exact AAL2 user/session. The administrative overlay preserves a pending write-only form and automatically retries it after verification; browser roles cannot create or inspect these assertions.
 - `family_evaluation_access` grants expiring access only to synthetic A/B content; the normal production/family-pilot release gates remain unchanged.
 - Retrieval degrades to exact-version full-text if no embedding deployment is active.
 - [Provision connected evaluator](../../.github/workflows/provision-connected-evaluator.yml) performs a remote migration dry-run before applying it, bootstraps the owner and verifies the deterministic catalog source. The catalog itself is versioned as a data migration so published rows are never overwritten in place.

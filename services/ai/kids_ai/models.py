@@ -107,7 +107,8 @@ class RetrievedChunk(ApiModel):
 
 class Principal(ApiModel):
     user_id: UUID
-    access_token: str = ""
+    session_id: UUID | None = None
+    access_token: str = Field(default="", exclude=True, repr=False)
     is_demo: bool = False
     platform_roles: tuple[Literal["platform_owner", "editorial_specialist", "support_operator"], ...] = ()
     aal: Literal["aal1", "aal2"] = "aal1"
