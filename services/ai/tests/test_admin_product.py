@@ -1,7 +1,9 @@
 import os
 import unittest
 from datetime import datetime, timedelta, timezone
+from unittest.mock import AsyncMock, patch
 
+import httpx
 from fastapi.testclient import TestClient
 
 os.environ["DEMO_MODE"] = "true"
@@ -44,6 +46,19 @@ class AdminProductTests(unittest.TestCase):
         self.assertNotIn("apiKey", body)
         listed = self.client.get("/v1/admin/ai/connections").json()
         self.assertFalse(any("apiKey" in row or "secret-example-value" in str(row) for row in listed))
+
+    def test_upstream_connection_failure_is_safe_and_actionable(self):
+        request = httpx.Request("POST", "https://example.supabase.co/rest/v1/kids_provider_connection")
+        response = httpx.Response(403, request=request)
+        upstream_error = httpx.HTTPStatusError("forbidden", request=request, response=response)
+        with patch.object(app.state.ai_ops, "create_connection", AsyncMock(side_effect=upstream_error)):
+            failed = self.client.post(
+                "/v1/admin/ai/connections",
+                json={"name": "OpenRouter", "provider": "openrouter", "apiKey": "write-only-secret", "baseUrl": "https://openrouter.ai/api/v1"},
+            )
+        self.assertEqual(failed.status_code, 503)
+        self.assertEqual(failed.json(), {"detail": "No fue posible completar la operación. Inténtalo de nuevo."})
+        self.assertNotIn("write-only-secret", failed.text)
 
     def test_owner_can_invite_scoped_roles_and_support_access_expires(self):
         invalid = self.client.post("/v1/admin/people/invitations", json={"email": "science@example.com", "role": "editorial_specialist", "assignedDomains": []})

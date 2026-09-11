@@ -8,7 +8,7 @@
 
 ## Deployment result
 
-The 16 Kids migrations were applied transactionally through the authenticated
+The 18 Kids migrations were applied transactionally through the authenticated
 Supabase management connection. Their remote timestamps are the filenames in
 `supabase/migrations`. Eleven earlier `shop_*` files are no-op history markers:
 they align the shared migration ledger but never recreate, mutate or depend on
@@ -58,6 +58,12 @@ matching the pre-migration inventory.
   session is not challenged again. The earlier assertion table and server RPCs
   remain inaccessible to `anon` and `authenticated` but are no longer on the
   application path.
+- Connected provider creation then exposed a distinct PostgreSQL authorization
+  defect: RLS helper functions had explicit `EXECUTE` grants, but
+  `authenticated` lacked `USAGE` on their non-exposed `private` schema. The
+  schema now grants name resolution only to authenticated users; private tables,
+  sequences and Vault remain ungranted. A transaction with owner/AAL2 claims
+  proved the private MFA/role gates and provider insert, then rolled back.
 
 ## Advisor interpretation
 

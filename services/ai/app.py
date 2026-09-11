@@ -107,6 +107,22 @@ async def permission_error_handler(_request: Request, _error: PermissionError) -
     return JSONResponse(status_code=status.HTTP_403_FORBIDDEN, content={"detail": "Operation is not permitted"})
 
 
+@app.exception_handler(httpx.HTTPError)
+async def upstream_http_error_handler(request: Request, error: httpx.HTTPError) -> JSONResponse:
+    """Return a CORS-safe failure without exposing Supabase or provider details."""
+    upstream_status = error.response.status_code if isinstance(error, httpx.HTTPStatusError) else None
+    logfire.error(
+        "Upstream service request failed",
+        route=request.url.path,
+        error_type=type(error).__name__,
+        upstream_status=upstream_status,
+    )
+    return JSONResponse(
+        status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+        content={"detail": "No fue posible completar la operación. Inténtalo de nuevo."},
+    )
+
+
 @app.get("/health")
 async def health() -> dict[str, str]:
     return {"status": "ok", "mode": "demo" if settings.demo_mode else "production"}

@@ -23,7 +23,14 @@ export async function apiRequest<T>(path: string, init?: RequestInit): Promise<T
   if (response.status === 403 && /MFA verification required/i.test(body)) {
     throw new Error("La sesión administrativa ya no tiene MFA válido. Cierra sesión y vuelve a ingresar.");
   }
-  throw new Error(body || `Request failed (${response.status})`);
+  let detail = body;
+  try {
+    const parsed = JSON.parse(body) as { detail?: unknown };
+    if (typeof parsed.detail === "string") detail = parsed.detail;
+  } catch {
+    // Preserve non-JSON upstream responses without hiding their status.
+  }
+  throw new Error(detail || `Request failed (${response.status})`);
 }
 
 export async function getExperience(contextId: string): Promise<ExperienceView> {

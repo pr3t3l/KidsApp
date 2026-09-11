@@ -3,7 +3,7 @@
 # Decision Log
 
 **Status:** Active
-**Version:** 0.9
+**Version:** 0.10
 
 | ID | Decision | Status | Rationale |
 |---|---|---|---|
@@ -88,6 +88,7 @@
 | DEC-079 | When GoTrue preserves the original TOTP AMR timestamp during a repeated challenge on an existing AAL2 session, retain the 15-minute step-up rule with a backend-witnessed assertion bound to the exact user, session and factor; rotate the returned session, keep assertion RPCs service-only, exclude credentials/TOTP from telemetry, preserve the pending write-only form and retry it automatically after verification. | Superseded by DEC-081 | Connected testing showed that an already-AAL2 verification can omit a usable refresh token, producing a failed write after the user supplied a redundant second factor. |
 | DEC-080 | Model administrative MFA as an explicit UI state machine: once a sensitive mutation opens a forced challenge, identity reloads and automatic Supabase session events may update credentials but cannot dismiss it; only successful verification or sign-out clears the challenge. | Superseded by DEC-081 | The forced challenge and request queue were removed; token events now update credentials without reopening or reloading the workspace. |
 | DEC-081 | One TOTP challenge during administrative sign-in establishes the active Supabase `aal2` session. Every privileged operation still requires its exact role plus `aal2`, but no action asks for a second code while that session remains valid. Auth refresh events update the stored bearer token and only a genuine unloaded `SIGNED_IN` state may initialize the workspace. | Approved | Matches the owner-approved UX, follows Supabase's documented AAL authorization boundary, prevents duplicate write-only submissions and removes the refresh-token/initialization failures observed in connected mobile testing on 11 September 2026. |
+| DEC-082 | Grant `USAGE` on the non-exposed `private` schema only to `authenticated`, while retaining zero direct grants on its tables/sequences and explicit per-function `EXECUTE` grants. Convert upstream HTTP failures into a sanitized, CORS-safe API response. | Approved | Connected owner testing proved that Vault storage succeeded but the provider metadata insert failed with PostgreSQL `42501`: RLS could not resolve its explicitly granted private helper functions because schema `USAGE` was absent. `USAGE` permits name resolution only; RLS, table grants and the Vault boundary remain unchanged. |
 
 ## Template
 

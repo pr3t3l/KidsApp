@@ -29,4 +29,14 @@ describe("administrative authorization failures", () => {
     })).rejects.toThrow("La sesión administrativa ya no tiene MFA válido");
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
+
+  it("shows a safe API detail instead of the raw JSON envelope", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(new Response(
+      '{"detail":"No fue posible completar la operación. Inténtalo de nuevo."}',
+      { status: 503 }
+    ));
+
+    await expect(apiRequest("/v1/admin/ai/connections", { method: "POST" }))
+      .rejects.toThrow("No fue posible completar la operación. Inténtalo de nuevo.");
+  });
 });

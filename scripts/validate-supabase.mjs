@@ -25,6 +25,8 @@ for (const table of tables) {
 }
 
 if (/\bto\s+anon\b/i.test(migration)) failures.push("anonymous database grants or policies are forbidden");
+if (!/grant usage on schema private to authenticated/i.test(migration)) failures.push("authenticated RLS policies cannot resolve private helper functions");
+if (/grant[^;]+on (?:all )?(?:tables|sequences) in schema private[^;]+to authenticated/i.test(migration)) failures.push("authenticated role has direct access to private data objects");
 if (/service_role|SUPABASE_SECRET_KEY/i.test(webSource)) failures.push("browser source references a server-only Supabase credential");
 if (!/create policy kids_decision_family_all[\s\S]*private\.kids_is_family_member/i.test(migration)) failures.push("proposal decisions are not family-scoped");
 if (!/create policy kids_provider_connection_owner_all[\s\S]*private\.kids_has_recent_mfa/i.test(migration)) failures.push("provider connections do not require owner session MFA");
