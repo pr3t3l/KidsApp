@@ -151,7 +151,7 @@ The JSON wire contracts are versioned under [`packages/contracts`](packages/cont
 
 ## Data model and security
 
-The 13 forward-only Kids [Supabase migrations](supabase/migrations) define private family tenancy, minimal Learners, immutable activity versions, RAG chunks, experience snapshots, pending proposals, editorial workflow, pilot cohorts, connected-evaluator access, explainable coverage, provider deployments, route versions, usage/cost/budget ledgers, privacy requests and audit events. Eleven additional no-op files mirror the older Declassified migration timestamps so the temporary shared ledger remains synchronized without copying its schema. The packaged synthetic catalog lives at [`services/ai/data/activities/catalog.json`](services/ai/data/activities/catalog.json) so the API, ingestion command and deployment share one source.
+The 15 forward-only Kids [Supabase migrations](supabase/migrations) define private family tenancy, minimal Learners, immutable activity versions, RAG chunks, experience snapshots, pending proposals, editorial workflow, pilot cohorts, connected-evaluator access, explainable coverage, provider deployments, route versions, usage/cost/budget ledgers, privacy requests, audit events and the deterministic synthetic evaluator seed. Eleven additional no-op files mirror the older Declassified migration timestamps so the temporary shared ledger remains synchronized without copying its schema. The packaged synthetic catalog lives at [`services/ai/data/activities/catalog.json`](services/ai/data/activities/catalog.json) so the API, seed compiler and deployment share one source.
 
 Every public table has RLS, an explicit policy and explicit grants. The browser receives only a publishable Supabase key; provider secrets are backend-only and write-only from the administrative UI. Raw companion messages are not persisted by default; audit stores structured intent, outcome, source IDs, route and latency. Production catalog ingestion requires founder execution evidence for each `pilot` or `production` version.
 
@@ -169,7 +169,7 @@ The recorded test results, real-browser offline proof and the boundary between c
 ## Deployment
 
 - Create one Vercel project rooted at `apps/web` and one rooted at `services/ai`.
-- Apply the reviewed Supabase migration, run database advisors, configure Auth invitations and ingest the catalog.
+- Apply the reviewed Supabase migrations, run database advisors and configure Auth invitations. Published catalog changes are introduced as new immutable version/data migrations, never by overwriting hosted rows.
 - Set production environment variables from `.env.example`; set `DEMO_MODE=false`, `VITE_DEMO_MODE=false`, `EVALUATION_CATALOG=true` and `VITE_EVALUATION_MODE=true` only for the connected technical evaluator.
 - Validate preview deployments with the evaluator's synthetic family before promotion.
 

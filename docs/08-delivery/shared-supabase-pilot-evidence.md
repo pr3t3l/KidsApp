@@ -8,7 +8,7 @@
 
 ## Deployment result
 
-The 13 Kids migrations were applied transactionally through the authenticated
+The 15 Kids migrations were applied transactionally through the authenticated
 Supabase management connection. Their remote timestamps are the filenames in
 `supabase/migrations`. Eleven earlier `shop_*` files are no-op history markers:
 they align the shared migration ledger but never recreate, mutate or depend on
@@ -23,6 +23,15 @@ Declassified objects.
 | Kids functions executable by `anon` | 0 |
 | `kids_server_*` functions executable by `authenticated` | 0 |
 | Declassified public tables retained | 16 |
+
+The connected synthetic catalog was then compiled from the repository's
+canonical source and committed as a deterministic data migration. The hosted
+result is 13 published `synthetic-demo` versions, 26 locale records (13 per
+language), 60 presentation blocks, 4 approved synthetic adaptations and 28 RAG
+chunks. Twelve risk-A/B versions are family-evaluator eligible. The single
+risk-C version remains editorial-only. Vectors are deliberately NULL: no live
+embedding call or evidence is claimed, and retrieval uses the documented
+exact-version full-text fallback.
 
 The post-migration Declassified smoke count remained 14 purchases, 3 cases,
 10 clues, 4 products, 3 evidence records, 6 product files and 5 factory ideas,
@@ -55,9 +64,9 @@ and were not changed by this deployment. See Supabase's
 [SECURITY DEFINER advisor guidance](https://supabase.com/docs/guides/database/database-linter?lint=0028_anon_security_definer_function_executable).
 
 The performance advisor currently reports 99 unindexed Kids foreign keys and
-eight tables with multiple permissive policies. The catalog is empty and the
-pilot is small, so adding every possible index before query evidence would add
-write/storage cost without demonstrated value. Query plans and latency during
+eight tables with multiple permissive policies. The seeded pilot remains small,
+so adding every possible index before query evidence would add write/storage
+cost without demonstrated value. Query plans and latency during
 the pilot are the gate for a targeted index migration; the policy overlap will
 be consolidated before scale. These are disclosed performance gates, not
 security bypasses.
@@ -76,7 +85,5 @@ required before commercial family data is accepted.
   Declassified Site URL.
 - Put the existing Supabase secret key into the API project's protected Vercel
   environment; never expose it as `VITE_*`.
-- Set Vercel connected-mode variables, bootstrap Alfredo's owner identity and
-  ingest the 13 synthetic activities.
+- Set Vercel connected-mode variables and bootstrap Alfredo's owner identity.
 - Enroll owner MFA, test two-family isolation and capture the hosted evidence.
-

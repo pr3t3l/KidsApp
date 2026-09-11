@@ -64,5 +64,5 @@ jobs:
         run: npx supabase db push
       - name: Bootstrap the owner identity
         run: python scripts/bootstrap_remote.py
-      - name: Compile the connected synthetic evaluation catalog
-        run: python scripts/ingest_catalog.py --release-channel synthetic-demo
+      - name: Verify the connected synthetic evaluation catalog source
+        run: python scripts/ingest_catalog.py --release-channel synthetic-demo --dry-run

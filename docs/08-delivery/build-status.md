@@ -20,7 +20,7 @@ This is the durable restart point for implementation. A completed phase below me
 | 5. Catalog coverage and editorial factory | Implemented and locally verified | Explainable coverage/gaps, allowlisted source research, staged authoring, parallel critics, synthesis, human review, pilot and release gates are implemented. Human rights, physical and specialist evidence are not fabricated. |
 | 6. Family product | Implemented and locally verified | Bilingual onboarding, plan, 12-item family catalog, preview, adult-friction gate, session, one companion, confirmed adaptations, close-out, journey, feedback, privacy and encrypted offline continuity pass tests. |
 | 7. CAG, RAG, agents and evaluation | Implemented and locally verified | Exact-version CAG, published-only hybrid retrieval, bounded companion graph, editorial multi-agent graph and the 80-run bilingual golden gate pass locally. Live-model usefulness evidence remains external. |
-| 8. Release and pilot | Database deployed; application connection pending | A guarded synthetic evaluation channel and the namespaced Supabase database are deployed. Vercel connected-mode variables, Auth redirect configuration, owner bootstrap, catalog ingest, owner MFA, SMTP, live trace and human pilot evidence remain pending. |
+| 8. Release and pilot | Database and catalog deployed; application connection pending | A guarded synthetic evaluation channel, the namespaced Supabase database and its 13-item bilingual catalog are deployed. Vercel connected-mode variables, Auth redirect configuration, owner bootstrap, owner MFA, SMTP, live trace and human pilot evidence remain pending. |
 
 ## Evidence-backed implementation baseline
 
@@ -28,7 +28,7 @@ This is the durable restart point for implementation. A completed phase below me
 - Web: React/TypeScript/Vite PWA with separate public, family and administrative experiences. The administrative workspace can switch between `es-US` and `en-US`.
 - API: FastAPI modular monolith with deterministic authorization/safety boundaries and bounded LangGraph workflows.
 - AI: `ModelGateway` resolves a versioned `operation_key` to OpenRouter, OpenAI or Anthropic deployments, normalizes metadata and records cost provenance without storing prompts or free-form responses by default.
-- Data: 65 public `kids_*` RLS tables across 13 forward-only Kids migrations, plus 11 no-op history markers for the shared Declassified migration ledger, private `kids_*` helpers and server-only secret access.
+- Data: 65 public `kids_*` RLS tables across 15 forward-only Kids migrations, plus 11 no-op history markers for the shared Declassified migration ledger, private `kids_*` helpers and server-only secret access.
 - Activity contracts: compact `activity@2` core, locale, editorial and read-model contracts with a non-destructive V1 migration.
 - Catalog: 13 bilingual synthetic editorial fixtures. Twelve risk-A/B activities are eligible for the family demo; risk-C `ACT-0003` remains visible only to editorial workflows and fails closed on family surfaces.
 - Retrieval: 28 bilingual synthetic RAG chunks, exact activity-version and locale filters, full-text plus pgvector/RRF production contract, with deterministic local retrieval for the credential-free demo.
@@ -76,6 +76,6 @@ The following are intentionally not marked complete because source code cannot s
 - Invited adults only: public account creation is disabled client-side and remains disabled in Supabase Auth.
 - `family_evaluation_access` grants expiring access only to synthetic A/B content; the normal production/family-pilot release gates remain unchanged.
 - Retrieval degrades to exact-version full-text if no embedding deployment is active.
-- [Provision connected evaluator](../../.github/workflows/provision-connected-evaluator.yml) performs a remote migration dry-run before applying it, bootstraps the owner and ingests the catalog.
+- [Provision connected evaluator](../../.github/workflows/provision-connected-evaluator.yml) performs a remote migration dry-run before applying it, bootstraps the owner and verifies the deterministic catalog source. The catalog itself is versioned as a data migration so published rows are never overwritten in place.
 - [Mobile secret and deployment runbook](connected-evaluator-runbook.es.md) is the authoritative handoff for Alfredo.
 - [Shared Supabase pilot evidence](shared-supabase-pilot-evidence.md) records the deployed namespace, non-interference smoke test, advisor boundary and remaining shared-project risks.

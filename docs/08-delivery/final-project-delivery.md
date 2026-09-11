@@ -26,7 +26,7 @@ The evaluator receives a dedicated invited adult account attached only to a synt
 
 - **Backend:** authorized FastAPI companion and editorial graphs, OpenRouter/OpenAI/Anthropic gateway, metadata/cost ledger, catalog coverage, validation and idempotent proposal decisions.
 - **Frontend:** bilingual public/family/admin experiences, extensible block registry, single companion panel, explicit option confirmation and encrypted offline recovery.
-- **Database:** 13 namespaced Kids migrations with pgvector hybrid retrieval, family/editorial/AI-operation models, connected synthetic-evaluator access, RLS, MFA gates, audit and atomic proposal application. Eleven no-op files align the shared Declassified migration ledger without copying or changing its schema.
+- **Database:** 15 namespaced Kids migrations with pgvector hybrid retrieval, family/editorial/AI-operation models, connected synthetic-evaluator access, RLS, MFA gates, audit, atomic proposal application and a deterministic bilingual catalog seed. Eleven no-op files align the shared Declassified migration ledger without copying or changing its schema.
 
 ## Evidence checklist
 
