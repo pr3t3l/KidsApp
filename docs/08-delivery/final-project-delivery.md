@@ -41,6 +41,7 @@ The evaluator receives a dedicated invited adult account attached only to a synt
 - [x] The README links architecture, data model, OpenAPI setup, limitations and evidence.
 - [x] The durable evaluator URL `https://kids.alfredopretelvargas.com` is active; its API reports production mode and protected catalog routes fail closed without a bearer token.
 - [x] All 65 `kids_*` tables are applied with RLS; anonymous execution of every Kids `SECURITY DEFINER` function is revoked. Four deliberately authenticated, internally authorizing onboarding/proposal RPCs remain visible to the advisor.
+- [x] Alfredo completed the real Kids-origin magic-link callback and TOTP MFA; the authenticated owner workspace loaded its hosted coverage, catalog, AI-governance, people, review, pilot, incident and audit endpoints successfully.
 - [ ] Move from the shared academic-pilot project to a dedicated Supabase project before commercial operation.
 - [x] [GitHub Actions run 34428264635](https://github.com/pr3t3l/KidsApp/actions/runs/34428264635) passed Linux validation, dependency audits and both Docker builds for connected-evaluator implementation commit `2b5cdb9`; the local Docker engine remains unavailable after reboot.
 - [ ] A release-specific live-provider evaluation and redacted Logfire trace are linked.

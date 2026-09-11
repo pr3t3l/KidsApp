@@ -20,7 +20,7 @@ This is the durable restart point for implementation. A completed phase below me
 | 5. Catalog coverage and editorial factory | Implemented and locally verified | Explainable coverage/gaps, allowlisted source research, staged authoring, parallel critics, synthesis, human review, pilot and release gates are implemented. Human rights, physical and specialist evidence are not fabricated. |
 | 6. Family product | Implemented and locally verified | Bilingual onboarding, plan, 12-item family catalog, preview, adult-friction gate, session, one companion, confirmed adaptations, close-out, journey, feedback, privacy and encrypted offline continuity pass tests. |
 | 7. CAG, RAG, agents and evaluation | Implemented and locally verified | Exact-version CAG, published-only hybrid retrieval, bounded companion graph, editorial multi-agent graph and the 80-run bilingual golden gate pass locally. Live-model usefulness evidence remains external. |
-| 8. Release and pilot | Connected evaluator deployed; owner acceptance pending | The guarded synthetic evaluation channel, namespaced Supabase database, 13-item bilingual catalog, connected web and production-mode API are deployed. Alfredo's Auth identity and active `platform_owner` assignment are provisioned. The real magic-link round trip, owner MFA, SMTP, live trace and human pilot evidence remain pending. |
+| 8. Release and pilot | Connected evaluator deployed; owner acceptance verified | The guarded synthetic evaluation channel, namespaced Supabase database, 13-item bilingual catalog, connected web and production-mode API are deployed. Alfredo completed the real magic-link round trip and TOTP MFA, and the authenticated owner workspace loaded against hosted data. Invited-family acceptance, SMTP, live trace and human pilot evidence remain pending. |
 
 ## Evidence-backed implementation baseline
 
@@ -59,7 +59,7 @@ The current dependency audit reports zero npm vulnerabilities and no known vulne
 The following are intentionally not marked complete because source code cannot supply their evidence:
 
 - an eventual dedicated Supabase project before commercial launch;
-- owner magic-link acceptance and MFA enrollment in the hosted environment;
+- invited-family authentication and two-family hosted isolation evidence;
 - live OpenRouter/OpenAI/Anthropic credentials, approved data-processing routes and spend authorization;
 - a release-specific Logfire trace and live-provider cost reconciliation;
 - exact-version founder physical executions, rights evidence and independent specialist signatures;
@@ -76,10 +76,10 @@ The following are intentionally not marked complete because source code cannot s
 - Pilot database: existing Supabase project `declassified-shop`, physically isolated by the `kids_` object prefix under `DEC-077`; Auth, quotas and service-role authority remain shared.
 - The family UI and public site visibly label connected synthetic evaluation mode.
 - Invited adults only: public account creation is disabled client-side and remains disabled in Supabase Auth.
-- `Prettelv1@gmail.com` has an invited Supabase Auth identity and the sole active `platform_owner` assignment. The invitation was issued on 11 September 2026; inbox delivery, callback completion and TOTP enrollment are not claimed until Alfredo completes them.
+- Alfredo completed the Kids-origin magic-link callback and TOTP MFA on 11 September 2026. The sole active `platform_owner` then loaded the hosted workspace; `/v1/admin/me`, catalog coverage, activities, AI costs, people, reviews, pilots, incidents and audit all returned HTTP 200.
 - `family_evaluation_access` grants expiring access only to synthetic A/B content; the normal production/family-pilot release gates remain unchanged.
 - Retrieval degrades to exact-version full-text if no embedding deployment is active.
 - [Provision connected evaluator](../../.github/workflows/provision-connected-evaluator.yml) performs a remote migration dry-run before applying it, bootstraps the owner and verifies the deterministic catalog source. The catalog itself is versioned as a data migration so published rows are never overwritten in place.
 - [Mobile secret and deployment runbook](connected-evaluator-runbook.es.md) is the authoritative handoff for Alfredo.
 - [Shared Supabase pilot evidence](shared-supabase-pilot-evidence.md) records the deployed namespace, non-interference smoke test, advisor boundary and remaining shared-project risks.
-- Vercel deployment evidence: web `dpl_ChphHa3ZQrzVGcHnAiokKx7jftWG` and API `dpl_QsUSqWr7TsDUwk3mKpLswPvXuS5Z` reached `READY` from commit `6ebce2868d9731786f235139d4e2058ec435f361`. Secret values are intentionally absent from repository evidence.
+- Current Vercel deployment evidence: web `dpl_63PxWr4vaXgNNSAJUTEHN2JSLuCn` and API `dpl_8Awhit15iPL7M9Vk9WcnEymGeYvd` reached `READY` from commit `c856060942428dcd029b4ed9c1247dcc59095672`. Secret values are intentionally absent from repository evidence.

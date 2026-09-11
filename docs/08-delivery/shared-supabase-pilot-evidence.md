@@ -88,19 +88,18 @@ required before commercial family data is accepted.
   adult-only private-pilot sign-in surface.
 - `https://kids-learning-api-eta.vercel.app/health` returns HTTP 200 with
   `mode=production`; anonymous catalog access fails closed with HTTP 401.
-- `Prettelv1@gmail.com` was invited through Supabase Auth and idempotently
-  assigned `platform_owner`. A verification query found exactly one active
-  owner and exactly one match for the requested address. Secret values and
-  invitation tokens are intentionally absent from this evidence.
+- Alfredo completed the Kids-origin magic-link callback and TOTP MFA. The
+  identity has the sole active `platform_owner` assignment. The authenticated
+  workspace then loaded catalog coverage, activities, AI costs, people,
+  reviews, pilots, incidents and audit from the hosted API with HTTP 200.
+  Secret values, tokens and identity identifiers are intentionally absent from
+  this evidence.
 - The Kids wildcard redirect `https://kids.alfredopretelvargas.com/**` is
   allowlisted. The shared project's default Site URL was not replaced, so the
   acceptance round trip must be initiated from the Kids application itself.
 
 ## Remaining connection work
 
-- Verify the Kids callback URL through a real magic-link round trip without
-  replacing the Declassified Site URL.
-- Complete Alfredo's Kids-origin magic-link round trip and enroll owner MFA.
 - Test two-family isolation with real Supabase JWTs and capture the hosted
   family/admin evidence.
 - Configure and verify SMTP before inviting external pilot families.

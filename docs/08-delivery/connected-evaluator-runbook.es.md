@@ -127,6 +127,13 @@ Referencias: [dominio personalizado de Vercel](https://vercel.com/docs/domains/w
 
 ## 7. Primer acceso owner y proveedor IA
 
+**Estado verificado el 11 de septiembre de 2026:** Alfredo completó el enlace
+mágico originado desde Kids, registró y confirmó TOTP MFA, y accedió al
+workspace owner alojado. Las consultas administrativas de identidad, cobertura,
+catálogo, costes, personas, revisiones, pilotos, incidencias y auditoría
+respondieron correctamente. Lo siguiente en esta sección es configurar y probar
+la primera ruta de proveedor IA real.
+
 1. Abre la invitación owner en el móvil.
 2. En `/admin`, registra TOTP y vuelve a autenticarte; las acciones sensibles exigen MFA reciente.
 3. En **IA → Proveedores**, crea la conexión OpenRouter, OpenAI o Anthropic. La clave se muestra solo al escribirla y nunca vuelve al navegador.

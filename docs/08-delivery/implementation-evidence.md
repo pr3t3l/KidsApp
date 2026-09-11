@@ -10,7 +10,7 @@
 
 The `finalproject-AP` candidate implements the product-shaped family PWA, bilingual administrative workspace, FastAPI service, compact Activity V2 contracts, private family tenancy, operation-scoped provider routing, AI usage/cost governance, explainable catalog coverage, staged editorial factory, CAG/RAG companion, editorial multi-agent review, offline continuity, Docker definitions and CI.
 
-The evidence boundary is strict. Catalog records and families used by automated tests are synthetic. This document proves implementation behavior and a hosted connected-evaluator runtime; it does not claim completed identity acceptance, physical activity approval, legal approval, independent professional sign-off or learning impact.
+The evidence boundary is strict. Catalog records and families used by automated tests are synthetic. This document proves implementation behavior, a hosted connected-evaluator runtime and owner identity acceptance; it does not claim invited-family acceptance, physical activity approval, legal approval, independent professional sign-off or learning impact.
 
 ## Automated evidence
 
@@ -22,9 +22,9 @@ The evidence boundary is strict. Catalog records and families used by automated 
 | Documentation validator | 152 repository Markdown files and all 3 pilot activity documents pass |
 | Database contract | 65 public tables across 26 migration files (15 substantive Kids migrations plus 11 shared-ledger markers) have RLS, policies and explicit grants |
 | PostgreSQL parser | All substantive migrations parse with PostgreSQL grammar; the shared-ledger markers are deliberate no-ops |
-| Frontend component tests | 15/15 pass across 6 files |
+| Frontend component tests | 16/16 pass across 7 files |
 | Frontend production build | TypeScript and Vite production build pass; 116 modules transformed |
-| API/policy tests | 69/69 pass |
+| API/policy tests | 72/72 pass |
 | Golden set | 80/80 bilingual executions pass across 40 canonical cases |
 | Golden quality gates | Recall@5 `1.0`, source correctness `1.0`, safe abstention `1.0` |
 | Dependency security | `npm audit` reports zero vulnerabilities; `pip-audit` reports no known vulnerabilities in the locked Python requirements |
@@ -52,14 +52,14 @@ The browser runner is reproducible after starting the production preview. It doe
 
 ## Hosted connected-evaluator evidence
 
-On 11 September 2026, commit `6ebce2868d9731786f235139d4e2058ec435f361` was verified through the final aliases:
+On 11 September 2026, current commit `c856060942428dcd029b4ed9c1247dcc59095672` was verified through the final aliases:
 
-- `https://kids.alfredopretelvargas.com` returned HTTP 200 and rendered the Spanish adult-only private-pilot sign-in surface. Vercel web deployment `dpl_ChphHa3ZQrzVGcHnAiokKx7jftWG` is `READY`.
-- `https://kids-learning-api-eta.vercel.app/health` returned HTTP 200 and `{"status":"ok","mode":"production"}`. Vercel API deployment `dpl_QsUSqWr7TsDUwk3mKpLswPvXuS5Z` is `READY`.
+- `https://kids.alfredopretelvargas.com` returned HTTP 200 and rendered the Spanish adult-only private-pilot application. Vercel web deployment `dpl_63PxWr4vaXgNNSAJUTEHN2JSLuCn` is `READY`.
+- `https://kids-learning-api-eta.vercel.app/health` returned HTTP 200 and `{"status":"ok","mode":"production"}`. Vercel API deployment `dpl_8Awhit15iPL7M9Vk9WcnEymGeYvd` is `READY`.
 - An anonymous request to `/v1/catalog` returned HTTP 401 and `Bearer token required`, proving that the deployed content route did not fall open when connected mode was enabled.
 - The API deployment contains the Supabase URL, public browser key, protected backend key, independent telemetry salt and independent adult-gate signing secret. Only variable names and deployment status were inspected; secret values are neither recorded here nor committed.
 
-This hosted check proves reachability, production configuration validation and the anonymous authorization boundary. Alfredo's Auth identity was invited and assigned the sole active `platform_owner` role on 11 September 2026. It does not yet prove inbox delivery and the magic-link callback, owner MFA, two-family RLS isolation through real JWTs, a live provider route or a complete invited-family journey.
+Alfredo then completed the real Kids-origin magic-link callback and TOTP MFA. The sole active `platform_owner` loaded the hosted administrative workspace successfully. Runtime evidence from the current deployment records HTTP 200 for `/v1/admin/me`, catalog coverage and activities, AI costs and operations, people, reviews, pilots, feedback, settings, incidents and audit. This does not yet prove two-family RLS isolation through real JWTs, a live provider route or a complete invited-family journey.
 
 ## Controls evidenced in code
 
@@ -82,7 +82,7 @@ This hosted check proves reachability, production configuration validation and t
 
 | Gate | Required evidence |
 |---|---|
-| Hosted identity acceptance | Owner identity and role are provisioned; complete the real magic-link callback, owner MFA and one invited-family sign-in. |
+| Invited-family identity acceptance | Owner magic-link and MFA are verified; complete one invited-family sign-in and the two-family isolation run. |
 | Database runtime | Hosted RLS tests with two authenticated synthetic families and backup/restore verification. |
 | Live provider routes | Approved keys, connection tests, model evaluations, privacy/retention review and billing reconciliation. |
 | Release observability | A release-specific redacted Logfire trace. The existing public trace is historical course evidence only. |
