@@ -59,7 +59,7 @@ On 11 September 2026, commit `6ebce2868d9731786f235139d4e2058ec435f361` was veri
 - An anonymous request to `/v1/catalog` returned HTTP 401 and `Bearer token required`, proving that the deployed content route did not fall open when connected mode was enabled.
 - The API deployment contains the Supabase URL, public browser key, protected backend key, independent telemetry salt and independent adult-gate signing secret. Only variable names and deployment status were inspected; secret values are neither recorded here nor committed.
 
-This hosted check proves reachability, production configuration validation and the anonymous authorization boundary. It does not yet prove magic-link delivery, owner MFA, two-family RLS isolation through real JWTs, a live provider route or a complete invited-family journey.
+This hosted check proves reachability, production configuration validation and the anonymous authorization boundary. Alfredo's Auth identity was invited and assigned the sole active `platform_owner` role on 11 September 2026. It does not yet prove inbox delivery and the magic-link callback, owner MFA, two-family RLS isolation through real JWTs, a live provider route or a complete invited-family journey.
 
 ## Controls evidenced in code
 
@@ -82,7 +82,7 @@ This hosted check proves reachability, production configuration validation and t
 
 | Gate | Required evidence |
 |---|---|
-| Hosted identity acceptance | Magic-link delivery, owner bootstrap/MFA and one complete invited-family sign-in. |
+| Hosted identity acceptance | Owner identity and role are provisioned; complete the real magic-link callback, owner MFA and one invited-family sign-in. |
 | Database runtime | Hosted RLS tests with two authenticated synthetic families and backup/restore verification. |
 | Live provider routes | Approved keys, connection tests, model evaluations, privacy/retention review and billing reconciliation. |
 | Release observability | A release-specific redacted Logfire trace. The existing public trace is historical course evidence only. |

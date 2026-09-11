@@ -191,4 +191,4 @@ No deployment credential is committed. The current historical static prototype r
 
 ## Next milestone
 
-Complete the first owner magic-link round trip and MFA enrollment, verify two-family hosted RLS isolation, evaluate an approved live OpenRouter/OpenAI/Anthropic route, run the exact-version human/content gates and record the screenshot deck plus release-trace evidence in [Final project delivery](docs/08-delivery/final-project-delivery.md). Move to a dedicated Supabase project before commercial use.
+Complete the provisioned owner's Kids-origin magic-link round trip and MFA enrollment, verify two-family hosted RLS isolation, evaluate an approved live OpenRouter/OpenAI/Anthropic route, run the exact-version human/content gates and record the screenshot deck plus release-trace evidence in [Final project delivery](docs/08-delivery/final-project-delivery.md). Move to a dedicated Supabase project before commercial use.
