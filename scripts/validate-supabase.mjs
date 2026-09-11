@@ -30,6 +30,7 @@ if (/grant[^;]+on (?:all )?(?:tables|sequences) in schema private[^;]+to authent
 if (/service_role|SUPABASE_SECRET_KEY/i.test(webSource)) failures.push("browser source references a server-only Supabase credential");
 if (!/create policy kids_decision_family_all[\s\S]*private\.kids_is_family_member/i.test(migration)) failures.push("proposal decisions are not family-scoped");
 if (!/create policy kids_provider_connection_owner_all[\s\S]*private\.kids_has_recent_mfa/i.test(migration)) failures.push("provider connections do not require owner session MFA");
+if (!/kids_provider_connection_provider_base_url_check/i.test(migration)) failures.push("provider credentials are not bound to approved API origins");
 if (!/revoke all on schema vault from anon, authenticated/i.test(migration)) failures.push("Vault schema is not explicitly denied to browser roles");
 if (!/server_read_provider_secret[\s\S]*grant execute[\s\S]*to service_role/i.test(migration)) failures.push("Vault runtime access is not restricted to the backend role");
 if (/grant[^;]*(?:vault\.decrypted_secrets|server_read_provider_secret)[^;]*to\s+(?:anon|authenticated)/i.test(migration)) failures.push("a browser role can retrieve decrypted provider secrets");

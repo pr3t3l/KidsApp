@@ -20,11 +20,11 @@ The evidence boundary is strict. Catalog records and families used by automated 
 | Activity V2 | Core `7,618` bytes; `en-US` locale `17,218`; `es-US` locale `18,351`; card `258`; prep `519`; step `461`; all schema/token/byte and semantic migration gates pass |
 | Domain validators | Baseline, participant fixtures and 18 negative/invariant cases pass |
 | Documentation validator | 152 repository Markdown files and all 3 pilot activity documents pass |
-| Database contract | 65 public tables across 29 migration files (18 substantive Kids migrations plus 11 shared-ledger markers) have RLS, policies and explicit grants |
+| Database contract | 65 public tables across 30 migration files (19 substantive Kids migrations plus 11 shared-ledger markers) have RLS, policies and explicit grants |
 | PostgreSQL parser | All substantive migrations parse with PostgreSQL grammar; the shared-ledger markers are deliberate no-ops |
-| Frontend component tests | 21/21 pass across 8 files, including the one-code session, single-write and safe-error regressions |
-| Frontend production build | TypeScript and Vite production build pass; 116 modules transformed |
-| API/policy tests | 74/74 pass |
+| Frontend component tests | 23/23 pass across 9 files, including one-code session, single-write, safe-error and provider-origin regressions |
+| Frontend production build | TypeScript and Vite production build pass; 117 modules transformed |
+| API/policy tests | 75/75 pass |
 | Golden set | 80/80 bilingual executions pass across 40 canonical cases |
 | Golden quality gates | Recall@5 `1.0`, source correctness `1.0`, safe abstention `1.0` |
 | Dependency security | `npm audit` reports zero vulnerabilities; `pip-audit` reports no known vulnerabilities in the locked Python requirements |
@@ -67,7 +67,9 @@ A second mobile run at 13:17 UTC supplied decisive evidence. Supabase returned H
 
 The `DEC-081` implementation is commit `7a96e617b78e09fcdc9873965c64a6c0c5299f4b`. Supabase migration `20260911133821_kids_admin_mfa_session_policy` is applied and its live function is `SECURITY INVOKER`, delegating only to `private.kids_has_mfa()`. Vercel web deployment `dpl_4EwD5EFKHTAnA36SyRpafzhKFfQN` and API deployment `dpl_H6raSFRPtdchkGMVLhxibk1ieToj` reached `READY`. The public admin shell and API health endpoint returned HTTP 200, the deleted step-up endpoint returned HTTP 404, an unauthenticated connections read remained HTTP 401 and no new API runtime error cluster appeared. Creating a real provider connection from Alfredo's authenticated mobile session remains the final user acceptance check.
 
-The next owner attempt at 13:59 UTC no longer requested another code. Its production trace showed successful identity/role checks and successful Vault storage, followed by `403` on the `kids_provider_connection` insert; the compensating cleanup RPC then deleted the just-created secret. A direct role-capability check proved `authenticated` had the required function `EXECUTE` grants but lacked `USAGE` on schema `private`, so PostgreSQL could not resolve the RLS helpers. Migration `20260911140514_kids_private_rls_helper_usage` grants only schema name resolution, leaves private tables and Vault ungranted, and is applied. An authenticated owner/AAL2 transaction then returned true for MFA, session MFA and owner role, authorized the exact provider insert, and rolled back. The API now sanitizes future upstream failures into a CORS-safe `503`, and the UI extracts its safe detail instead of displaying a JSON envelope. A real mobile save remains the final acceptance check.
+The next owner attempt at 13:59 UTC no longer requested another code. Its production trace showed successful identity/role checks and successful Vault storage, followed by `403` on the `kids_provider_connection` insert; the compensating cleanup RPC then deleted the just-created secret. A direct role-capability check proved `authenticated` had the required function `EXECUTE` grants but lacked `USAGE` on schema `private`, so PostgreSQL could not resolve the RLS helpers. Migration `20260911140514_kids_private_rls_helper_usage` grants only schema name resolution, leaves private tables and Vault ungranted, and is applied. An authenticated owner/AAL2 transaction then returned true for MFA, session MFA and owner role, authorized the exact provider insert, and rolled back. The API now sanitizes future upstream failures into a CORS-safe `503`, and the UI extracts its safe detail instead of displaying a JSON envelope.
+
+Alfredo subsequently confirmed from the production mobile UI that direct OpenAI and OpenRouter connections were both saved without another MFA challenge. A read of non-secret connection metadata found one additional defect: selecting OpenAI had not replaced the form's OpenRouter default URL. Migration `20260911142038_kids_provider_base_url_guard` corrected the OpenAI URL without reading or rotating its Vault secret and added a validated database constraint. The web form now makes the provider-derived origin read-only, while the API independently rejects mismatches. A regression test also proved that an invalid 422 response does not echo the write-only key. Connection health tests, deployments, rate cards, budgets and active routes remain pending and are not inferred from successful secret storage.
 
 ## Controls evidenced in code
 

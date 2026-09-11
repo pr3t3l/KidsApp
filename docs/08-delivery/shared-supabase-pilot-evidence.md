@@ -8,7 +8,7 @@
 
 ## Deployment result
 
-The 18 Kids migrations were applied transactionally through the authenticated
+The 19 Kids migrations were applied transactionally through the authenticated
 Supabase management connection. Their remote timestamps are the filenames in
 `supabase/migrations`. Eleven earlier `shop_*` files are no-op history markers:
 they align the shared migration ledger but never recreate, mutate or depend on
@@ -64,6 +64,13 @@ matching the pre-migration inventory.
   schema now grants name resolution only to authenticated users; private tables,
   sequences and Vault remain ungranted. A transaction with owner/AAL2 claims
   proved the private MFA/role gates and provider insert, then rolled back.
+- Alfredo's next mobile attempt created both the OpenRouter and direct OpenAI
+  connections successfully. Inspection of non-secret metadata then found that
+  the former form had retained OpenRouter's URL after the provider changed to
+  OpenAI. Migration `20260911142038_kids_provider_base_url_guard` corrected only
+  that URL, left the encrypted key untouched and added a validated provider/URL
+  constraint. The browser now derives a read-only origin from the provider and
+  the API rejects mismatches without returning the submitted secret.
 
 ## Advisor interpretation
 
@@ -113,6 +120,10 @@ required before commercial family data is accepted.
 
 ## Remaining connection work
 
+- Run the authenticated provider health checks and record their timestamps;
+  saved credentials alone do not prove provider acceptance.
+- Create evaluated model deployments, effective-dated rates, the USD 15 global
+  budget and operation routes before making a product inference.
 - Test two-family isolation with real Supabase JWTs and capture the hosted
   family/admin evidence.
 - Configure and verify SMTP before inviting external pilot families.

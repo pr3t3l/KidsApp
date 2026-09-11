@@ -4,13 +4,22 @@ from datetime import datetime
 from typing import Any, Literal
 from uuid import UUID
 
-from pydantic import Field, SecretStr
+from pydantic import Field, SecretStr, ValidationInfo, field_validator
 
 from .models import ApiModel, Locale
 
 
 PlatformRole = Literal["platform_owner", "editorial_specialist", "support_operator"]
 ProviderSlug = Literal["openrouter", "openai", "anthropic"]
+PROVIDER_BASE_URLS: dict[str, frozenset[str]] = {
+    "openrouter": frozenset({
+        "https://openrouter.ai/api/v1",
+        "https://us.openrouter.ai/api/v1",
+        "https://eu.openrouter.ai/api/v1",
+    }),
+    "openai": frozenset({"https://api.openai.com/v1"}),
+    "anthropic": frozenset({"https://api.anthropic.com/v1"}),
+}
 Environment = Literal["development", "staging", "production"]
 DeploymentState = Literal["candidate", "evaluated", "approved", "active", "restricted", "disabled"]
 RouteState = Literal["draft", "active", "retired"]
@@ -32,6 +41,15 @@ class ProviderConnectionCreate(ApiModel):
     provider: ProviderSlug
     api_key: SecretStr = Field(min_length=8, max_length=500)
     base_url: str = Field(min_length=8, max_length=300)
+
+    @field_validator("base_url")
+    @classmethod
+    def validate_provider_origin(cls, value: str, info: ValidationInfo) -> str:
+        base_url = value.rstrip("/")
+        provider = info.data.get("provider")
+        if provider not in PROVIDER_BASE_URLS or base_url not in PROVIDER_BASE_URLS[provider]:
+            raise ValueError("The provider and API base URL do not match an approved credential origin")
+        return base_url
 
 
 class ProviderConnectionRotate(ApiModel):

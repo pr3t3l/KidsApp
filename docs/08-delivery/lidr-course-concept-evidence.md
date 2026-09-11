@@ -212,11 +212,11 @@ This sidecar solves the original oversized-contract problem: provider operations
 | Final-project expectation | Evidence in this repository | Honest boundary |
 |---|---|---|
 | Real domain/problem | Adult-led, bilingual hands-on learning for ages 5–10 with 13 synthetic editorial fixtures and 12 family-eligible A/B activities | Fixtures are not commercial content approval |
-| Product with LLM integration | Family companion plus owner-triggered editorial factory behind deterministic controls | Live provider credentials/evaluation pending |
+| Product with LLM integration | Family companion plus owner-triggered editorial factory behind deterministic controls; OpenRouter and OpenAI credentials stored through the hosted write-only flow | Provider health checks, deployments and live evaluation pending |
 | CAG and RAG | Exact policy/version/block CAG; published-only hybrid pgvector/FTS/RRF RAG | Hosted database performance pending |
 | Agents | Bounded family graph and separate supervised editorial multi-agent graph | AI cannot approve or publish |
 | Objective evaluation | 80 bilingual golden executions plus policy/API/UI/browser gates | Human usefulness and real-pilot measures pending |
-| Real architecture/data | React, FastAPI, 15 Kids Supabase migrations, RLS, Vault boundary, provider/cost governance | Namespaced academic-pilot database and deterministic bilingual seed deployed; dedicated commercial project pending |
+| Real architecture/data | React, FastAPI, 19 Kids Supabase migrations, RLS, Vault boundary, provider/cost governance | Namespaced academic-pilot database and deterministic bilingual seed deployed; dedicated commercial project pending |
 | Production/reproducibility | Docker, current green CI, Vercel configs, health, Logfire instrumentation, README/runbooks | Durable URL and release trace pending |
 | Versioning and limitations | Content/schema/route/rate/embedding versions, hashes, rollback and explicit external-gate register | Human/legal/store gates remain open |
 

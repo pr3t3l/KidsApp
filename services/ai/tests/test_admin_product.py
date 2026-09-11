@@ -47,6 +47,15 @@ class AdminProductTests(unittest.TestCase):
         listed = self.client.get("/v1/admin/ai/connections").json()
         self.assertFalse(any("apiKey" in row or "secret-example-value" in str(row) for row in listed))
 
+    def test_provider_key_cannot_be_sent_to_another_provider_origin(self):
+        rejected = self.client.post(
+            "/v1/admin/ai/connections",
+            json={"name": "OpenAI wrong origin", "provider": "openai", "apiKey": "write-only-secret", "baseUrl": "https://openrouter.ai/api/v1"},
+        )
+        self.assertEqual(rejected.status_code, 422)
+        self.assertIn("approved credential origin", rejected.text)
+        self.assertNotIn("write-only-secret", rejected.text)
+
     def test_upstream_connection_failure_is_safe_and_actionable(self):
         request = httpx.Request("POST", "https://example.supabase.co/rest/v1/kids_provider_connection")
         response = httpx.Response(403, request=request)
