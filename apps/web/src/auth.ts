@@ -5,6 +5,15 @@ const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 export const supabase = url && publishableKey ? createClient(url, publishableKey) : null;
 
+/**
+ * Supabase currently warns that starting another async client call directly
+ * inside `onAuthStateChange` can deadlock the auth client's internal lock.
+ * Move follow-up work onto the next task so the auth callback can finish first.
+ */
+export function deferAuthStateWork(work: () => void | Promise<void>): number {
+  return window.setTimeout(() => { void work(); }, 0);
+}
+
 export async function sendMagicLink(email: string, redirectTo = `${window.location.origin}${window.location.pathname}`): Promise<void> {
   if (!supabase) throw new Error("Supabase authentication is not configured.");
   const { error } = await supabase.auth.signInWithOtp({

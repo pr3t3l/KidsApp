@@ -17,7 +17,7 @@ import {
   updateSessionProgress,
   verifyAdultGate,
 } from "./api";
-import { requestReauthentication, signOut, supabase } from "./auth";
+import { deferAuthStateWork, requestReauthentication, signOut, supabase } from "./auth";
 import { renderBlock } from "./blocks";
 import { Companion } from "./Companion";
 import { familyProductCopy } from "./familyProductCopy";
@@ -289,9 +289,9 @@ export default function FamilyExperienceApp() {
         }
       } finally { if (active) setLoading(false); }
     }
-    initialize();
+    void initialize();
     const listener = supabase?.auth.onAuthStateChange((_event, value) => {
-      if (value) { localStorage.setItem("kids.access_token", value.access_token); setAuthenticated(true); initialize(); }
+      if (value) { localStorage.setItem("kids.access_token", value.access_token); setAuthenticated(true); deferAuthStateWork(initialize); }
       else { localStorage.removeItem("kids.access_token"); localStorage.removeItem("kids.family_id"); setAuthenticated(false); setOverview(null); }
     });
     return () => { active = false; listener?.data.subscription.unsubscribe(); };
