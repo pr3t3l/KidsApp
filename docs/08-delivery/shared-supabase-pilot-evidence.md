@@ -46,16 +46,18 @@ matching the pre-migration inventory.
   plan review is recommended.
 - An unverified safety report no longer automatically retires an activity. The
   report remains evidence and explicit retirement requires an authorized owner
-  with recent MFA.
+  with the active administrative AAL2 session established by the sign-in TOTP challenge.
 - If an active plan contains unavailable content, the plan service fails closed
   and requests explicit replacement instead of silently cancelling it.
 - Supabase's inherited/default function grants are explicitly removed for every
   Kids RPC. Backend-only RPCs remain executable only through `service_role`.
-- A repeat TOTP challenge on an existing AAL2 session did not refresh the JWT's
-  original AMR timestamp. The replacement keeps the 15-minute sensitive-action
-  policy through a backend-witnessed assertion bound to the exact user, session
-  and factor. Its private table and two server RPCs are unavailable to `anon`
-  and `authenticated`; AAL2 remains mandatory in RLS.
+- Connected mobile testing showed that repeating TOTP inside an existing AAL2
+  session could omit a usable refresh token and break the pending write. Under
+  `DEC-081`, the compatibility RLS helper now delegates to the signed JWT's
+  `aal2` claim: TOTP remains mandatory at administrative sign-in, while a valid
+  session is not challenged again. The earlier assertion table and server RPCs
+  remain inaccessible to `anon` and `authenticated` but are no longer on the
+  application path.
 
 ## Advisor interpretation
 

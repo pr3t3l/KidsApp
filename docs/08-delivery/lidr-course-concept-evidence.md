@@ -168,7 +168,7 @@ A LangGraph checkpointer is not used as the authoritative human-in-the-loop stor
 
 **Course concepts:** supervisor, agent communication, handoff, human-in-the-loop pause/resume, competition/synthesis, least privilege, validation and audit.
 
-**Application:** The editorial graph has a supervisor, education/subject/safety/consistency/duplication critics and a synthesis node. Agents exchange typed findings through graph state. Independent critics run concurrently; synthesis reconciles findings but always returns `canApprove: false`. Human review, pilot evidence and owner release APIs are separate deterministic gates. Role checks, recent MFA, source rights, budget and audit constrain every privileged action.
+**Application:** The editorial graph has a supervisor, education/subject/safety/consistency/duplication critics and a synthesis node. Agents exchange typed findings through graph state. Independent critics run concurrently; synthesis reconciles findings but always returns `canApprove: false`. Human review, pilot evidence and owner release APIs are separate deterministic gates. Role checks, the active Supabase AAL2 administrative session, source rights, budget and audit constrain every privileged action.
 
 The family companion is intentionally **not** a society of autonomous agents. It has one bounded graph because more agents would add cost and failure modes without user value. Human pause/resume is stored as editorial job state and proposals, not an in-memory handoff.
 

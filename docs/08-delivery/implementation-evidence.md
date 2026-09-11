@@ -61,13 +61,15 @@ On 11 September 2026, MFA session-refresh repair commit `58bfb430ed1ea3f64a2d8b5
 
 Alfredo then completed the real Kids-origin magic-link callback and TOTP MFA. The sole active `platform_owner` loaded the hosted administrative workspace successfully. Runtime evidence from the current deployment records HTTP 200 for `/v1/admin/me`, catalog coverage and activities, AI costs and operations, people, reviews, pilots, feedback, settings, incidents and audit. This does not yet prove two-family RLS isolation through real JWTs, a live provider route or a complete invited-family journey.
 
-A mobile production attempt at 12:53:57 UTC exposed a client race after the expected provider-connection `403`: the forced MFA overlay opened, an automatic Supabase session event reloaded an already-AAL2 identity, the overlay disappeared without any request to `/v1/admin/mfa/reauthenticate`, and the original write remained pending. `DEC-080` replaces the two independent booleans with an explicit reducer. The rendered-workspace regression reproduces `TOKEN_REFRESHED` while the overlay is visible and proves that it remains open; live completion of the provider write remains a user acceptance step.
+A mobile production attempt at 12:53:57 UTC exposed a client race after the former provider-connection recent-MFA `403`: the forced overlay opened, an automatic Supabase session event reloaded an already-AAL2 identity, the overlay disappeared and the original write remained pending. The first mitigation kept that overlay visible, but did not address the owner's approved one-code session policy.
+
+A second mobile run at 13:17 UTC supplied decisive evidence. Supabase returned HTTP 200 for the new TOTP challenge, verification, identity check and backend assertion write, after which `/v1/admin/mfa/reauthenticate` failed with one Pydantic validation error because the already-AAL2 verification response did not include a usable refresh token. The browser then made repeated successful administrative reads while remaining on “Comprobando identidad administrativa…”, confirming a separate workspace reinitialization race. `DEC-081` removes the redundant in-session challenge and automatic secret-write retry, makes role + current `aal2` the uniform API/RLS boundary and permits only an unloaded `SIGNED_IN` event to initialize the workspace. `TOKEN_REFRESHED` and repeat `SIGNED_IN` events update credentials without reloading it.
 
 ## Controls evidenced in code
 
 - Family surfaces fail closed to risk-C/D activity versions unless the applicable independent gates exist.
-- Sensitive administrative writes retain a 15-minute TOTP step-up gate even when GoTrue preserves the session's original AMR timestamp: the API witnesses the fresh challenge, rotates the browser session and stores only a backend-only assertion bound to user, session and factor. The pending write is retried without persisting its one-time secret in browser storage.
-- The administrative MFA overlay is governed by an explicit state reducer: Supabase `SIGNED_IN` or `TOKEN_REFRESHED` identity reloads cannot dismiss a forced challenge, so the original write cannot remain indefinitely pending behind a vanished overlay.
+- Sensitive administrative writes require their exact database-backed role and the current Supabase `aal2` session. The single TOTP challenge happens at sign-in; there is no second-factor overlay or automatic replay of a write-only secret.
+- Administrative initialization is single-flight. `TOKEN_REFRESHED` only replaces the stored bearer token, repeat `SIGNED_IN` events are ignored once the workspace is loaded, and a genuine magic-link `SIGNED_IN` after an empty initial session initializes exactly once.
 - Model context contains stable policy, exact version/current block and same-version/same-locale evidence only.
 - Raw companion messages and model free-form responses are not written to the usage ledger by default.
 - Dangerous, diagnostic, cross-family, unnecessary-PII and unauthorized-publication requests stop before generation or mutation.
@@ -76,7 +78,7 @@ A mobile production attempt at 12:53:57 UTC exposed a client race after the expe
 - Monetary truth keeps `reported`, `estimated` and `reconciled` values separate and records the rate used.
 - Budgets can apply globally or by environment, operation, provider, model or editorial job.
 - Secret values are write-only at the browser boundary and accessed through a replaceable backend `SecretStore`.
-- A privileged action requires owner authorization and a recent TOTP assertion; a newer password assertion cannot refresh the MFA window.
+- A privileged action requires owner authorization plus the active Supabase `aal2` session established by the sign-in TOTP challenge; the UI never asks for a second code inside that session.
 - Adaptation or replacement is a server-side proposal followed by an idempotent adult decision. An active-session replacement interrupts the old session and returns the family to preparation.
 - Editorial AI can draft, critique and synthesize findings, but `canApprove` is always false and deterministic human gates own release.
 - Unknown required UI blocks fail closed; unknown optional blocks can be skipped for forward compatibility.

@@ -7,30 +7,6 @@ export const EVALUATION_MODE = import.meta.env.VITE_EVALUATION_MODE === "true";
 export const DEMO_FAMILY_ID = "00000000-0000-0000-0000-000000000201";
 let pendingDemoProposal: { optionId: string; kind: "adaptation" | "replacement" } | null = null;
 let pendingDemoContextId: string | null = null;
-let pendingAdminMfa: { promise: Promise<void>; resolve: () => void; reject: (reason: Error) => void } | null = null;
-
-function waitForAdminMfa(): Promise<void> {
-  if (!pendingAdminMfa) {
-    let resolve!: () => void;
-    let reject!: (reason: Error) => void;
-    const promise = new Promise<void>((accept, decline) => { resolve = accept; reject = decline; });
-    pendingAdminMfa = { promise, resolve, reject };
-    window.dispatchEvent(new Event("kids:mfa-required"));
-  }
-  return pendingAdminMfa.promise;
-}
-
-export function resumeAdminMfaRequests(): void {
-  const pending = pendingAdminMfa;
-  pendingAdminMfa = null;
-  pending?.resolve();
-}
-
-export function cancelAdminMfaRequests(): void {
-  const pending = pendingAdminMfa;
-  pendingAdminMfa = null;
-  pending?.reject(new Error("MFA reauthentication was cancelled"));
-}
 
 function headers(): HeadersInit {
   const token = window.localStorage.getItem("kids.access_token");
@@ -41,17 +17,13 @@ function headers(): HeadersInit {
 }
 
 export async function apiRequest<T>(path: string, init?: RequestInit): Promise<T> {
-  for (let attempt = 0; attempt < 2; attempt += 1) {
-    const response = await fetch(`${API_URL}${path}`, { ...init, headers: { ...headers(), ...init?.headers } });
-    if (response.ok) return response.json() as Promise<T>;
-    const body = await response.text();
-    if (attempt === 0 && response.status === 403 && /Recent MFA verification required/i.test(body)) {
-      await waitForAdminMfa();
-      continue;
-    }
-    throw new Error(body || `Request failed (${response.status})`);
+  const response = await fetch(`${API_URL}${path}`, { ...init, headers: { ...headers(), ...init?.headers } });
+  if (response.ok) return response.json() as Promise<T>;
+  const body = await response.text();
+  if (response.status === 403 && /MFA verification required/i.test(body)) {
+    throw new Error("La sesión administrativa ya no tiene MFA válido. Cierra sesión y vuelve a ingresar.");
   }
-  throw new Error("MFA reauthentication did not authorize the request");
+  throw new Error(body || `Request failed (${response.status})`);
 }
 
 export async function getExperience(contextId: string): Promise<ExperienceView> {

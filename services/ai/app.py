@@ -6,13 +6,12 @@ from uuid import UUID
 
 import logfire
 import httpx
-from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request, Response, status
+from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 try:
-    from .kids_ai.admin_mfa import AdminMfaService, AdminMfaUnavailableError, AdminMfaVerificationError
-    from .kids_ai.admin_models import AdminMfaReauthenticateRequest, AdminMfaSession, BudgetRequest, ModelDeploymentCreate, ProviderConnectionCreate, ProviderConnectionRotate, RateCardRequest, RouteConfigRequest
+    from .kids_ai.admin_models import BudgetRequest, ModelDeploymentCreate, ProviderConnectionCreate, ProviderConnectionRotate, RateCardRequest, RouteConfigRequest
     from .kids_ai.admin_workspace import AdminInviteCreate, AdminWorkspaceService, FamilyInviteCreate, IncidentUpdate, ProductSettingsUpdate, ReviewAssignmentCreate, RoleAssignmentUpdate, SupabaseAdminWorkspaceService, SupportGrantCreate
     from .kids_ai.ai_ops import AIOperationsService
     from .kids_ai.coverage import CoverageService, CoverageTargetCreate
@@ -32,8 +31,7 @@ try:
     from .kids_ai.supabase_editorial import SupabaseEditorialService
     from .kids_ai.workflow import CompanionWorkflow
 except ImportError:  # Vercel project rooted at services/ai
-    from kids_ai.admin_mfa import AdminMfaService, AdminMfaUnavailableError, AdminMfaVerificationError
-    from kids_ai.admin_models import AdminMfaReauthenticateRequest, AdminMfaSession, BudgetRequest, ModelDeploymentCreate, ProviderConnectionCreate, ProviderConnectionRotate, RateCardRequest, RouteConfigRequest
+    from kids_ai.admin_models import BudgetRequest, ModelDeploymentCreate, ProviderConnectionCreate, ProviderConnectionRotate, RateCardRequest, RouteConfigRequest
     from kids_ai.admin_workspace import AdminInviteCreate, AdminWorkspaceService, FamilyInviteCreate, IncidentUpdate, ProductSettingsUpdate, ReviewAssignmentCreate, RoleAssignmentUpdate, SupabaseAdminWorkspaceService, SupportGrantCreate
     from kids_ai.ai_ops import AIOperationsService
     from kids_ai.coverage import CoverageService, CoverageTargetCreate
@@ -61,7 +59,6 @@ logfire.configure(token=settings.logfire_token or None, send_to_logfire=bool(set
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    admin_mfa_service = AdminMfaService(settings)
     secret_store = InMemorySecretStore() if settings.demo_mode else SupabaseVaultSecretStore(settings.supabase_url, settings.supabase_secret_key)
     ai_ops = AIOperationsService(settings, secret_store) if settings.demo_mode else SupabaseAIOperationsService(settings, secret_store)
     await ai_ops.initialize()
@@ -74,7 +71,6 @@ async def lifespan(app: FastAPI):
     source_research = SourceResearchService(settings.brave_search_api_key, settings.editorial_source_allowlist)
     retriever = CatalogRetriever() if settings.demo_mode else SupabaseHybridRetriever(settings.supabase_url, settings.supabase_publishable_key, gateway)
     app.state.settings = settings
-    app.state.admin_mfa_service = admin_mfa_service
     app.state.ai_ops = ai_ops
     app.state.coverage = coverage
     app.state.editorial = editorial
@@ -98,8 +94,6 @@ def safe_logfire_request_attributes(request: Request, attributes: dict[str, obje
     if isinstance(values, dict):
         values = dict(values)
         values.pop("principal", None)
-        if request.url.path == "/v1/admin/mfa/reauthenticate":
-            values.pop("body", None)
         safe["values"] = values
     return safe
 
@@ -145,28 +139,9 @@ async def decide_proposal(proposal_id: UUID, body: ProposalDecisionRequest, requ
 
 
 owner_mfa = require_platform_role("platform_owner", require_mfa=True)
-owner_recent_mfa = require_platform_role("platform_owner", require_mfa=True, max_mfa_age_minutes=15)
 editorial_reviewer_mfa = require_platform_role("platform_owner", "editorial_specialist", require_mfa=True)
 pilot_operator_mfa = require_platform_role("platform_owner", "support_operator", require_mfa=True)
-pilot_inviter_recent_mfa = require_platform_role("platform_owner", "support_operator", require_mfa=True, max_mfa_age_minutes=15)
 admin_mfa = require_platform_role("platform_owner", "editorial_specialist", "support_operator", require_mfa=True)
-
-
-@app.post("/v1/admin/mfa/reauthenticate", response_model=AdminMfaSession, response_model_by_alias=True)
-async def reauthenticate_admin_mfa(
-    body: AdminMfaReauthenticateRequest,
-    request: Request,
-    response: Response,
-    principal: Principal = Depends(admin_mfa),
-) -> AdminMfaSession:
-    response.headers["Cache-Control"] = "no-store"
-    response.headers["Pragma"] = "no-cache"
-    try:
-        return await request.app.state.admin_mfa_service.reauthenticate(principal, body)
-    except AdminMfaVerificationError as error:
-        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Invalid or expired MFA code") from error
-    except AdminMfaUnavailableError as error:
-        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="MFA verification is temporarily unavailable") from error
 
 
 @app.get("/v1/admin/me")
@@ -185,7 +160,7 @@ async def list_admin_activities(request: Request, _principal: Principal = Depend
 
 
 @app.post("/v1/admin/people/invitations", status_code=status.HTTP_201_CREATED)
-async def invite_admin_person(body: AdminInviteCreate, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def invite_admin_person(body: AdminInviteCreate, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return await request.app.state.admin_workspace.invite(body, principal)
     except ValueError as error:
@@ -193,7 +168,7 @@ async def invite_admin_person(body: AdminInviteCreate, request: Request, princip
 
 
 @app.post("/v1/admin/family-invitations", status_code=status.HTTP_201_CREATED)
-async def invite_family_tester(body: FamilyInviteCreate, request: Request, principal: Principal = Depends(pilot_inviter_recent_mfa)):
+async def invite_family_tester(body: FamilyInviteCreate, request: Request, principal: Principal = Depends(pilot_operator_mfa)):
     try:
         return await request.app.state.admin_workspace.invite_family(body, principal)
     except ValueError as error:
@@ -201,7 +176,7 @@ async def invite_family_tester(body: FamilyInviteCreate, request: Request, princ
 
 
 @app.put("/v1/admin/people/{assignment_id}")
-async def update_admin_person(assignment_id: UUID, body: RoleAssignmentUpdate, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def update_admin_person(assignment_id: UUID, body: RoleAssignmentUpdate, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return await request.app.state.admin_workspace.update_person(assignment_id, body, principal)
     except KeyError as error:
@@ -211,7 +186,7 @@ async def update_admin_person(assignment_id: UUID, body: RoleAssignmentUpdate, r
 
 
 @app.post("/v1/admin/support-grants", status_code=status.HTTP_201_CREATED)
-async def create_support_access(body: SupportGrantCreate, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def create_support_access(body: SupportGrantCreate, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return await request.app.state.admin_workspace.create_support_grant(body, principal)
     except ValueError as error:
@@ -224,7 +199,7 @@ async def list_review_assignments(request: Request, principal: Principal = Depen
 
 
 @app.post("/v1/admin/review-assignments", status_code=status.HTTP_201_CREATED)
-async def create_review_assignment(body: ReviewAssignmentCreate, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def create_review_assignment(body: ReviewAssignmentCreate, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         job = await request.app.state.editorial.get_job(body.job_id, principal)
         if not job.get("activityVersionId"):
@@ -267,7 +242,7 @@ async def get_admin_settings(request: Request, _principal: Principal = Depends(o
 
 
 @app.put("/v1/admin/settings")
-async def put_admin_settings(body: ProductSettingsUpdate, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def put_admin_settings(body: ProductSettingsUpdate, request: Request, principal: Principal = Depends(owner_mfa)):
     return await request.app.state.admin_workspace.update_product_settings(body, principal)
 
 
@@ -282,12 +257,12 @@ async def list_provider_connections(request: Request, _principal: Principal = De
 
 
 @app.post("/v1/admin/ai/connections", status_code=status.HTTP_201_CREATED)
-async def create_provider_connection(body: ProviderConnectionCreate, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def create_provider_connection(body: ProviderConnectionCreate, request: Request, principal: Principal = Depends(owner_mfa)):
     return await request.app.state.ai_ops.create_connection(body, principal.user_id, principal.access_token)
 
 
 @app.post("/v1/admin/ai/connections/{connection_id}/test")
-async def test_provider_connection(connection_id: UUID, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def test_provider_connection(connection_id: UUID, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         passed, detail = await request.app.state.gateway.test_connection(connection_id)
         return request.app.state.ai_ops.mark_connection_test(connection_id, passed, detail, principal.user_id, principal.access_token)
@@ -299,7 +274,7 @@ async def test_provider_connection(connection_id: UUID, request: Request, princi
 
 
 @app.post("/v1/admin/ai/connections/{connection_id}/rotate")
-async def rotate_provider_connection(connection_id: UUID, body: ProviderConnectionRotate, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def rotate_provider_connection(connection_id: UUID, body: ProviderConnectionRotate, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return await request.app.state.ai_ops.rotate_connection(connection_id, body.api_key.get_secret_value(), principal.user_id, principal.access_token)
     except KeyError as error:
@@ -307,7 +282,7 @@ async def rotate_provider_connection(connection_id: UUID, body: ProviderConnecti
 
 
 @app.post("/v1/admin/ai/connections/{connection_id}/revoke")
-async def revoke_provider_connection(connection_id: UUID, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def revoke_provider_connection(connection_id: UUID, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return await request.app.state.ai_ops.revoke_connection(connection_id, principal.user_id, principal.access_token)
     except KeyError as error:
@@ -320,7 +295,7 @@ async def list_model_deployments(request: Request, _principal: Principal = Depen
 
 
 @app.post("/v1/admin/ai/deployments", status_code=status.HTTP_201_CREATED)
-async def create_model_deployment(body: ModelDeploymentCreate, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def create_model_deployment(body: ModelDeploymentCreate, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return request.app.state.ai_ops.create_deployment(body, actor_id=principal.user_id, actor_token=principal.access_token)
     except ValueError as error:
@@ -328,7 +303,7 @@ async def create_model_deployment(body: ModelDeploymentCreate, request: Request,
 
 
 @app.put("/v1/admin/ai/operations/{operation_key}/routing", status_code=status.HTTP_201_CREATED)
-async def configure_ai_route(operation_key: str, body: RouteConfigRequest, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def configure_ai_route(operation_key: str, body: RouteConfigRequest, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return request.app.state.ai_ops.put_route(operation_key, body, principal.user_id, principal.access_token)
     except ValueError as error:
@@ -336,7 +311,7 @@ async def configure_ai_route(operation_key: str, body: RouteConfigRequest, reque
 
 
 @app.post("/v1/admin/ai/operations/{operation_key}/test")
-async def test_ai_route(operation_key: str, policy_id: UUID, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def test_ai_route(operation_key: str, policy_id: UUID, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         policy = request.app.state.ai_ops.get_policy(policy_id)
         if policy.operation_key != operation_key:
@@ -349,7 +324,7 @@ async def test_ai_route(operation_key: str, policy_id: UUID, request: Request, p
 
 
 @app.post("/v1/admin/ai/operations/{operation_key}/evaluate")
-async def evaluate_ai_route(operation_key: str, policy_id: UUID, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def evaluate_ai_route(operation_key: str, policy_id: UUID, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         policy = request.app.state.ai_ops.get_policy(policy_id)
         if policy.operation_key != operation_key:
@@ -361,7 +336,7 @@ async def evaluate_ai_route(operation_key: str, policy_id: UUID, request: Reques
 
 
 @app.post("/v1/admin/ai/operations/{operation_key}/activate")
-async def activate_ai_route(operation_key: str, policy_id: UUID, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def activate_ai_route(operation_key: str, policy_id: UUID, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         policy = request.app.state.ai_ops.get_policy(policy_id)
         if policy.operation_key != operation_key:
@@ -372,7 +347,7 @@ async def activate_ai_route(operation_key: str, policy_id: UUID, request: Reques
 
 
 @app.post("/v1/admin/ai/operations/{operation_key}/rollback")
-async def rollback_ai_route(operation_key: str, environment: str, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def rollback_ai_route(operation_key: str, environment: str, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return request.app.state.ai_ops.rollback_route(operation_key, environment, principal.user_id, principal.access_token)
     except ValueError as error:
@@ -401,7 +376,7 @@ async def ai_costs(request: Request, _principal: Principal = Depends(owner_mfa))
 
 
 @app.post("/v1/admin/ai/openrouter/reconcile/{generation_id}")
-async def reconcile_openrouter_generation(generation_id: str, request: Request, _principal: Principal = Depends(owner_recent_mfa)):
+async def reconcile_openrouter_generation(generation_id: str, request: Request, _principal: Principal = Depends(owner_mfa)):
     try:
         return await request.app.state.gateway.reconcile_openrouter(generation_id)
     except KeyError as error:
@@ -416,7 +391,7 @@ async def list_ai_prices(request: Request, _principal: Principal = Depends(owner
 
 
 @app.post("/v1/admin/ai/prices", status_code=status.HTTP_201_CREATED)
-async def create_ai_price(body: RateCardRequest, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def create_ai_price(body: RateCardRequest, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return request.app.state.ai_ops.put_rate(body, principal.user_id, principal.access_token)
     except ValueError as error:
@@ -429,7 +404,7 @@ async def list_ai_budgets(request: Request, _principal: Principal = Depends(owne
 
 
 @app.post("/v1/admin/ai/budgets", status_code=status.HTTP_201_CREATED)
-async def create_ai_budget(body: BudgetRequest, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def create_ai_budget(body: BudgetRequest, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return request.app.state.ai_ops.put_budget(body, principal.user_id, principal.access_token)
     except ValueError as error:
@@ -442,7 +417,7 @@ async def catalog_coverage(request: Request, _principal: Principal = Depends(edi
 
 
 @app.post("/v1/admin/catalog/coverage-targets", status_code=status.HTTP_201_CREATED)
-async def create_catalog_coverage_target(body: CoverageTargetCreate, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def create_catalog_coverage_target(body: CoverageTargetCreate, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return await request.app.state.coverage.put_target(body, principal)
     except ValueError as error:
@@ -561,7 +536,7 @@ async def record_editorial_pilot(job_id: UUID, body: PilotResultCreate, request:
 
 
 @app.post("/v1/editorial/jobs/{job_id}/release")
-async def release_editorial_job(job_id: UUID, channel: str, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def release_editorial_job(job_id: UUID, channel: str, request: Request, principal: Principal = Depends(owner_mfa)):
     if channel not in {"founder_internal", "family_pilot", "production"}:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Unknown release channel")
     try:
@@ -578,12 +553,12 @@ async def list_pilot_cohorts(request: Request, principal: Principal = Depends(pi
 
 
 @app.post("/v1/editorial/pilot-cohorts", status_code=status.HTTP_201_CREATED)
-async def create_pilot_cohort(body: PilotCohortCreate, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def create_pilot_cohort(body: PilotCohortCreate, request: Request, principal: Principal = Depends(owner_mfa)):
     return await request.app.state.editorial.create_cohort(body, principal.user_id)
 
 
 @app.post("/v1/editorial/pilot-cohorts/{cohort_id}/families")
-async def add_pilot_family(cohort_id: UUID, body: PilotFamilyAdd, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def add_pilot_family(cohort_id: UUID, body: PilotFamilyAdd, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return await request.app.state.editorial.add_cohort_family(cohort_id, body.family_id, principal.user_id)
     except KeyError as error:
@@ -591,7 +566,7 @@ async def add_pilot_family(cohort_id: UUID, body: PilotFamilyAdd, request: Reque
 
 
 @app.post("/v1/editorial/pilot-cohorts/{cohort_id}/activities")
-async def add_pilot_activity(cohort_id: UUID, body: PilotActivityAdd, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def add_pilot_activity(cohort_id: UUID, body: PilotActivityAdd, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return await request.app.state.editorial.add_cohort_activity(cohort_id, body.activity_version_id, principal.user_id)
     except KeyError as error:
@@ -601,7 +576,7 @@ async def add_pilot_activity(cohort_id: UUID, body: PilotActivityAdd, request: R
 
 
 @app.post("/v1/editorial/pilot-cohorts/{cohort_id}/activate")
-async def activate_pilot_cohort(cohort_id: UUID, request: Request, principal: Principal = Depends(owner_recent_mfa)):
+async def activate_pilot_cohort(cohort_id: UUID, request: Request, principal: Principal = Depends(owner_mfa)):
     try:
         return await request.app.state.editorial.activate_cohort(cohort_id, principal.user_id)
     except KeyError as error:

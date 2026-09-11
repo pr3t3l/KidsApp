@@ -68,7 +68,7 @@ Budgets may be global or scoped by environment, operation, provider, model or ed
 
 ## Secret boundary
 
-Provider credentials are write-only in the administrative browser and referenced through a backend `SecretStore`. The Supabase implementation uses Vault/private database access: the full key is never returned, logged or placed in audit metadata. Creation, rotation and revocation require owner authorization and recent TOTP MFA.
+Provider credentials are write-only in the administrative browser and referenced through a backend `SecretStore`. The Supabase implementation uses Vault/private database access: the full key is never returned, logged or placed in audit metadata. Creation, rotation and revocation require owner authorization plus the active Supabase `aal2` administrative session; the TOTP challenge occurs once during sign-in.
 
 ## Requirements
 

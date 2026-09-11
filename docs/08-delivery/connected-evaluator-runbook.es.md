@@ -135,7 +135,7 @@ respondieron correctamente. Lo siguiente en esta sección es configurar y probar
 la primera ruta de proveedor IA real.
 
 1. Abre la invitación owner en el móvil.
-2. En `/admin`, registra TOTP y vuelve a autenticarte; las acciones sensibles exigen MFA reciente.
+2. En `/admin`, registra TOTP si es la primera vez e introduce un código para abrir la sesión administrativa `aal2`; mientras esa sesión siga válida, las acciones no vuelven a pedir el código.
 3. En **IA → Proveedores**, crea la conexión OpenRouter, OpenAI o Anthropic. La clave se muestra solo al escribirla y nunca vuelve al navegador.
 4. Prueba la conexión, crea el deployment, registra la tarifa, configura la ruta por `operation_key`, ejecuta su golden eval y solo entonces actívala.
 5. Confirma que uso, tokens, metadatos, costo y fallback aparecen sin prompts ni datos infantiles.

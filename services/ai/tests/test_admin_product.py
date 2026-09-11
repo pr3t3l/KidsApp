@@ -33,16 +33,6 @@ class AdminProductTests(unittest.TestCase):
         self.assertFalse(deterministic["operation"]["usesAi"])
         self.assertIsNone(deterministic["activeRoute"])
 
-    def test_demo_mfa_reauthentication_route_is_no_store(self):
-        response = self.client.post(
-            "/v1/admin/mfa/reauthenticate",
-            json={"factorId": "00000000-0000-0000-0000-000000000103", "code": "123456"},
-        )
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.headers["cache-control"], "no-store")
-        self.assertNotIn("123456", response.text)
-        self.assertIn("mfaExpiresAt", response.json())
-
     def test_provider_secrets_are_write_only(self):
         created = self.client.post(
             "/v1/admin/ai/connections",

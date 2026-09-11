@@ -2,7 +2,6 @@ import base64
 import asyncio
 import json
 import unittest
-from types import SimpleNamespace
 from datetime import datetime, timedelta, timezone
 from uuid import UUID
 
@@ -23,7 +22,7 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(_validated_token_aal(token({"aal": "aal1"})), "aal1")
         self.assertEqual(_validated_token_aal("malformed"), "aal1")
 
-    def test_recent_admin_window_uses_totp_amr_not_newer_password_amr(self):
+    def test_totp_audit_timestamp_is_not_replaced_by_a_newer_password_amr(self):
         now = int(datetime.now(timezone.utc).timestamp())
         aal, authenticated_at, verified_at = _validated_token_claims(
             token({
@@ -41,29 +40,18 @@ class SecurityTests(unittest.TestCase):
         _, _, missing = _validated_token_claims(token({"aal": "aal2", "amr": [{"method": "password", "timestamp": now}]}))
         self.assertIsNone(missing)
 
-    def test_sensitive_admin_action_requires_recent_mfa(self):
-        dependency = require_platform_role("platform_owner", require_mfa=True, max_mfa_age_minutes=15)
+    def test_sensitive_admin_action_uses_the_existing_aal2_session(self):
+        dependency = require_platform_role("platform_owner", require_mfa=True)
         user_id = UUID("00000000-0000-0000-0000-000000000001")
         session_id = UUID("00000000-0000-0000-0000-000000000002")
-
-        class AssertionService:
-            def __init__(self, allowed: bool):
-                self.allowed = allowed
-
-            async def has_recent_assertion(self, _principal: Principal) -> bool:
-                return self.allowed
-
-        def api_request(allowed: bool):
-            state = SimpleNamespace(admin_mfa_service=AssertionService(allowed))
-            return SimpleNamespace(app=SimpleNamespace(state=state))
-
         stale = Principal(user_id=user_id, session_id=session_id, platform_roles=("platform_owner",), aal="aal2", authenticated_at=datetime.now(timezone.utc), mfa_verified_at=datetime.now(timezone.utc) - timedelta(minutes=16))
+        self.assertEqual(asyncio.run(dependency(stale)).user_id, user_id)
+
+        aal1 = Principal(user_id=user_id, session_id=session_id, platform_roles=("platform_owner",), aal="aal1")
         with self.assertRaises(HTTPException) as denied:
-            asyncio.run(dependency(api_request(False), stale))
+            asyncio.run(dependency(aal1))
         self.assertEqual(denied.exception.status_code, 403)
-        self.assertEqual(asyncio.run(dependency(api_request(True), stale)).user_id, user_id)
-        fresh = Principal(user_id=user_id, session_id=session_id, platform_roles=("platform_owner",), aal="aal2", authenticated_at=datetime.now(timezone.utc), mfa_verified_at=datetime.now(timezone.utc))
-        self.assertEqual(asyncio.run(dependency(api_request(False), fresh)).user_id, user_id)
+        self.assertEqual(denied.exception.detail, "MFA verification required")
 
     def test_signed_session_id_is_extracted_for_step_up_binding(self):
         session_id = UUID("00000000-0000-0000-0000-000000000002")

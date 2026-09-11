@@ -2,7 +2,6 @@ import { createClient } from "@supabase/supabase-js";
 
 const url = import.meta.env.VITE_SUPABASE_URL;
 const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-const apiUrl = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
 export const supabase = url && publishableKey ? createClient(url, publishableKey) : null;
 
@@ -26,11 +25,11 @@ export async function sendMagicLink(email: string, redirectTo = `${window.locati
 
 export type AdminMfaSetup = { factorId: string; existing: boolean; qrCode?: string; secret?: string };
 
-export async function prepareAdminMfa(forceChallenge = false): Promise<AdminMfaSetup | null> {
+export async function prepareAdminMfa(): Promise<AdminMfaSetup | null> {
   if (!supabase) throw new Error("Supabase authentication is not configured.");
   const assurance = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
   if (assurance.error) throw assurance.error;
-  if (assurance.data.currentLevel === "aal2" && !forceChallenge) return null;
+  if (assurance.data.currentLevel === "aal2") return null;
   const listed = await supabase.auth.mfa.listFactors();
   if (listed.error) throw listed.error;
   const verified = listed.data.totp.find((factor) => factor.status === "verified");
@@ -40,30 +39,10 @@ export async function prepareAdminMfa(forceChallenge = false): Promise<AdminMfaS
   return { factorId: enrolled.data.id, existing: false, qrCode: enrolled.data.totp.qr_code, secret: enrolled.data.totp.secret };
 }
 
-export async function verifyAdminMfa(factorId: string, code: string, forceChallenge = false): Promise<void> {
+export async function verifyAdminMfa(factorId: string, code: string): Promise<void> {
   if (!supabase) throw new Error("Supabase authentication is not configured.");
-  if (!forceChallenge) {
-    const result = await supabase.auth.mfa.challengeAndVerify({ factorId, code });
-    if (result.error) throw result.error;
-    await persistCurrentAccessToken();
-    return;
-  }
-
-  const current = await supabase.auth.getSession();
-  if (current.error || !current.data.session) throw current.error ?? new Error("Administrative session is unavailable.");
-  const response = await fetch(`${apiUrl}/v1/admin/mfa/reauthenticate`, {
-    method: "POST",
-    cache: "no-store",
-    headers: { "Authorization": `Bearer ${current.data.session.access_token}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ factorId, code })
-  });
-  if (!response.ok) {
-    const body = await response.text();
-    throw new Error(response.status === 422 ? "El código expiró o no es válido." : body || "No pudimos verificar MFA.");
-  }
-  const session = await response.json() as { accessToken: string; refreshToken: string };
-  const updated = await supabase.auth.setSession({ access_token: session.accessToken, refresh_token: session.refreshToken });
-  if (updated.error) throw updated.error;
+  const result = await supabase.auth.mfa.challengeAndVerify({ factorId, code });
+  if (result.error) throw result.error;
   await persistCurrentAccessToken();
 }
 

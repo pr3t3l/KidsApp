@@ -1,8 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { apiRequest, cancelAdminMfaRequests, getCatalog, resumeAdminMfaRequests } from "./api";
+import { apiRequest, getCatalog } from "./api";
 
 afterEach(() => {
-  cancelAdminMfaRequests();
   vi.restoreAllMocks();
 });
 
@@ -19,21 +18,15 @@ describe("family catalog eligibility", () => {
   });
 });
 
-describe("administrative MFA retry", () => {
-  it("keeps a sensitive request pending and retries it after reauthentication", async () => {
-    const mfaRequired = vi.fn();
-    window.addEventListener("kids:mfa-required", mfaRequired);
+describe("administrative authorization failures", () => {
+  it("never resubmits a write-only secret automatically after an MFA failure", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch")
-      .mockResolvedValueOnce(new Response('{"detail":"Recent MFA verification required"}', { status: 403 }))
-      .mockResolvedValueOnce(new Response('{"saved":true}', { status: 200, headers: { "Content-Type": "application/json" } }));
+      .mockResolvedValueOnce(new Response('{"detail":"MFA verification required"}', { status: 403 }));
 
-    const pending = apiRequest<{ saved: boolean }>("/v1/admin/ai/connections", { method: "POST", body: '{"apiKey":"write-only"}' });
-    await vi.waitFor(() => expect(mfaRequired).toHaveBeenCalledOnce());
+    await expect(apiRequest<{ saved: boolean }>("/v1/admin/ai/connections", {
+      method: "POST",
+      body: '{"apiKey":"write-only"}'
+    })).rejects.toThrow("La sesión administrativa ya no tiene MFA válido");
     expect(fetchMock).toHaveBeenCalledTimes(1);
-
-    resumeAdminMfaRequests();
-    await expect(pending).resolves.toEqual({ saved: true });
-    expect(fetchMock).toHaveBeenCalledTimes(2);
-    window.removeEventListener("kids:mfa-required", mfaRequired);
   });
 });

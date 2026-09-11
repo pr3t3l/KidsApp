@@ -77,7 +77,7 @@ The following are intentionally not marked complete because source code cannot s
 - The family UI and public site visibly label connected synthetic evaluation mode.
 - Invited adults only: public account creation is disabled client-side and remains disabled in Supabase Auth.
 - Alfredo completed the Kids-origin magic-link callback and TOTP MFA on 11 September 2026. The sole active `platform_owner` then loaded the hosted workspace; `/v1/admin/me`, catalog coverage, activities, AI costs, people, reviews, pilots, incidents and audit all returned HTTP 200.
-- Repeated TOTP authorization for sensitive owner mutations is backend-witnessed for 15 minutes and bound to the exact AAL2 user/session. The administrative overlay preserves a pending write-only form and automatically retries it after verification; browser roles cannot create or inspect these assertions.
+- Administrative sign-in requires one TOTP challenge and every privileged API/RLS operation requires the exact role plus the current AAL2 session. No second code or automatic write-only secret replay occurs inside that session. Authentication initialization is single-flight across magic-link, `SIGNED_IN` and `TOKEN_REFRESHED` events.
 - A forced sensitive-action overlay now survives `SIGNED_IN`, `TOKEN_REFRESHED` and identity reload events until verification or sign-out; the regression is covered by both reducer and rendered-workspace tests.
 - `family_evaluation_access` grants expiring access only to synthetic A/B content; the normal production/family-pilot release gates remain unchanged.
 - Retrieval degrades to exact-version full-text if no embedding deployment is active.

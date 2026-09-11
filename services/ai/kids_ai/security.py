@@ -3,7 +3,7 @@ from __future__ import annotations
 import base64
 import binascii
 import json
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from uuid import UUID
 import httpx
 from fastapi import Depends, Header, HTTPException, Request, status
@@ -65,9 +65,8 @@ def _validated_token_claims(token: str) -> tuple[str, datetime | None, datetime 
             if isinstance(item, dict) and item.get("timestamp")
         ]
         authenticated_at = datetime.fromtimestamp(int(max(method_times)), timezone.utc) if method_times else None
-        # Product policy currently permits TOTP as the administrative second
-        # factor. A newer password or magic-link AMR entry must never refresh
-        # the 15-minute sensitive-action window.
+        # Keep TOTP timing available for audit/telemetry, even though DEC-081
+        # authorizes privileged work through the current signed AAL2 session.
         totp_times = [
             item.get("timestamp")
             for item in amr
@@ -113,21 +112,12 @@ async def authenticated_principal(request: Request, authorization: str | None = 
     return Principal(user_id=user_id, session_id=_validated_token_session_id(token), access_token=token, platform_roles=roles, aal=aal, authenticated_at=authenticated_at, mfa_verified_at=mfa_verified_at)
 
 
-def require_platform_role(*allowed_roles: str, require_mfa: bool = False, max_mfa_age_minutes: int | None = None):
-    async def dependency(request: Request, principal: Principal = Depends(authenticated_principal)) -> Principal:
+def require_platform_role(*allowed_roles: str, require_mfa: bool = False):
+    async def dependency(principal: Principal = Depends(authenticated_principal)) -> Principal:
         if not set(principal.platform_roles).intersection(allowed_roles):
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Administrative role required")
         if require_mfa and principal.aal != "aal2":
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Recent MFA verification required")
-        if max_mfa_age_minutes is not None:
-            oldest_allowed = datetime.now(timezone.utc) - timedelta(minutes=max_mfa_age_minutes)
-            jwt_is_recent = principal.aal == "aal2" and principal.mfa_verified_at is not None and principal.mfa_verified_at >= oldest_allowed
-            assertion_is_recent = False
-            assertion_service = getattr(request.app.state, "admin_mfa_service", None)
-            if principal.aal == "aal2" and not jwt_is_recent and assertion_service is not None:
-                assertion_is_recent = await assertion_service.has_recent_assertion(principal)
-            if not jwt_is_recent and not assertion_is_recent:
-                raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Recent MFA verification required")
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="MFA verification required")
         return principal
 
     return dependency

@@ -25,7 +25,7 @@ El código no equivale a autorización comercial. Revisiones profesionales, prue
 | `support_operator` | Atiende invitaciones y pilotos con datos mínimos, seudónimos, propósito y duración auditables. |
 | `family_adult` | Administra familia, perfiles, plan, sesiones, feedback, exportación y borrado. |
 
-MFA será obligatorio para administración; acciones sensibles requieren reautenticación reciente. La autorización usa membresías gestionadas por servidor/BD, nunca metadata editable del usuario. Toda mutación privilegiada y toda firma conserva actor, rol, motivo, recurso, hash y fecha. Un cambio material invalida las revisiones dependientes.
+MFA será obligatorio para administración: correo/magic link y un código TOTP establecen la sesión Supabase `aal2`. Mientras esa sesión siga válida, ninguna acción pedirá un segundo código; cada operación seguirá exigiendo su rol exacto en API y RLS. La autorización usa membresías gestionadas por servidor/BD, nunca metadata editable del usuario. Toda mutación privilegiada y toda firma conserva actor, rol, motivo, recurso, hash y fecha. Un cambio material invalida las revisiones dependientes.
 
 ## UX administrativa
 

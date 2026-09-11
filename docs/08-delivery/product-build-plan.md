@@ -25,7 +25,7 @@ No source-code completion may be described as a commercial launch. Professional 
 | `support_operator` | Invite and pilot support with minimal pseudonymous family data and time-bound, justified access; no child learning detail by default. |
 | `family_adult` | Own family configuration, learners, plans, sessions, feedback, exports and deletion requests. |
 
-- **ADM-001:** Administrative access requires MFA; sensitive owner actions require recent reauthentication.
+- **ADM-001:** Administrative access requires one TOTP challenge at sign-in; privileged actions require the exact role and the active Supabase `aal2` session without a second in-session code.
 - **ADM-002:** Authorization uses server-managed membership/claims and database relationships, never user-editable profile metadata.
 - **ADM-003:** Every privileged mutation records actor, role, reason, resource, before/after references and time.
 - **ADM-004:** Review signatures bind to an exact version and content hash; a material change invalidates dependent reviews.

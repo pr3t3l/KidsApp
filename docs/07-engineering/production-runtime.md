@@ -18,7 +18,7 @@
 
 ## Security boundaries
 
-The browser contains only the Supabase publishable key. FastAPI validates the bearer token with Supabase Auth, then forwards that same identity to PostgREST/RPC so RLS remains authoritative. Provider and editorial secrets use server-only private/Vault access and are never returned in full. Administrative mutations require an authorized role and MFA; high-impact owner actions require a recent TOTP assertion.
+The browser contains only the Supabase publishable key. FastAPI validates the bearer token with Supabase Auth, then forwards that same identity to PostgREST/RPC so RLS remains authoritative. Provider and editorial secrets use server-only private/Vault access and are never returned in full. Administrative access requires one TOTP challenge at sign-in; every administrative read or mutation then requires the exact authorized role and the active Supabase `aal2` session. No privileged action requests a redundant second code inside that session.
 
 All exposed tables enable RLS. Membership predicates include both authentication and family ownership. Mutations use `USING` and `WITH CHECK`; functions run as invoker unless an isolated helper is necessary to avoid policy recursion. No authorization decision uses user-editable metadata.
 
