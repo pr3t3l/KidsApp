@@ -52,14 +52,16 @@ The browser runner is reproducible after starting the production preview. It doe
 
 ## Hosted connected-evaluator evidence
 
-On 11 September 2026, current commit `c856060942428dcd029b4ed9c1247dcc59095672` was verified through the final aliases:
+On 11 September 2026, MFA session-refresh repair commit `58bfb430ed1ea3f64a2d8b5971be2935601d8f29` was verified through the final aliases:
 
-- `https://kids.alfredopretelvargas.com` returned HTTP 200 and rendered the Spanish adult-only private-pilot application. Vercel web deployment `dpl_63PxWr4vaXgNNSAJUTEHN2JSLuCn` is `READY`.
-- `https://kids-learning-api-eta.vercel.app/health` returned HTTP 200 and `{"status":"ok","mode":"production"}`. Vercel API deployment `dpl_8Awhit15iPL7M9Vk9WcnEymGeYvd` is `READY`.
+- `https://kids.alfredopretelvargas.com` returned HTTP 200 and resolved to Vercel web deployment `dpl_CbuSobi3xRJqLGfu9Le2ykVrDX2v`, which is `READY` on the repair commit.
+- `https://kids-learning-api-eta.vercel.app/health` returned HTTP 200 and `{"status":"ok","mode":"production"}`. Vercel API deployment `dpl_1EzvHufMW1cs7wv3Q4aSbatYSVCA` is `READY` on the same commit.
 - An anonymous request to `/v1/catalog` returned HTTP 401 and `Bearer token required`, proving that the deployed content route did not fall open when connected mode was enabled.
 - The API deployment contains the Supabase URL, public browser key, protected backend key, independent telemetry salt and independent adult-gate signing secret. Only variable names and deployment status were inspected; secret values are neither recorded here nor committed.
 
 Alfredo then completed the real Kids-origin magic-link callback and TOTP MFA. The sole active `platform_owner` loaded the hosted administrative workspace successfully. Runtime evidence from the current deployment records HTTP 200 for `/v1/admin/me`, catalog coverage and activities, AI costs and operations, people, reviews, pilots, feedback, settings, incidents and audit. This does not yet prove two-family RLS isolation through real JWTs, a live provider route or a complete invited-family journey.
+
+A mobile production attempt at 12:53:57 UTC exposed a client race after the expected provider-connection `403`: the forced MFA overlay opened, an automatic Supabase session event reloaded an already-AAL2 identity, the overlay disappeared without any request to `/v1/admin/mfa/reauthenticate`, and the original write remained pending. `DEC-080` replaces the two independent booleans with an explicit reducer. The rendered-workspace regression reproduces `TOKEN_REFRESHED` while the overlay is visible and proves that it remains open; live completion of the provider write remains a user acceptance step.
 
 ## Controls evidenced in code
 
