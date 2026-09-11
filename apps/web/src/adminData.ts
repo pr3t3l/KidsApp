@@ -1,6 +1,13 @@
 import { apiRequest, DEMO_MODE } from "./api";
 import { requirePassedProviderHealth, type ProviderHealthResult } from "./providerConfig";
 
+export const ADMIN_NOTICE_EVENT = "kids:admin-notice";
+export type AdminNotice = { messageKey:string; subject:string; at?:string };
+
+function announceAdminNotice(notice:AdminNotice):void {
+  if(typeof window!=="undefined")window.dispatchEvent(new CustomEvent<AdminNotice>(ADMIN_NOTICE_EVENT,{detail:notice}));
+}
+
 export type AdminRole = "platform_owner" | "editorial_specialist" | "support_operator";
 export type AdminSection = "overview" | "coverage" | "activities" | "create" | "reviews" | "pilots" | "feedback" | "ai" | "providers" | "people" | "incidents" | "audit" | "settings";
 
@@ -184,9 +191,11 @@ export async function createProvider(input:{name:string;provider:string;apiKey:s
 }
 
 export async function testProvider(connection:ProviderConnection):Promise<ProviderConnection>{
-  if(DEMO_MODE)return {...connection,state:"active",lastCheckedAt:new Date().toISOString()};
+  if(DEMO_MODE){const checkedAt=new Date().toISOString();announceAdminNotice({messageKey:"Conexión verificada",subject:connection.name,at:checkedAt});return {...connection,state:"active",lastCheckedAt:checkedAt};}
   const result=await apiRequest<ProviderHealthResult>(`/v1/admin/ai/connections/${connection.connectionId}/test`,{method:"POST"});
-  return {...connection,lastCheckedAt:requirePassedProviderHealth(result)};
+  const checkedAt=requirePassedProviderHealth(result);
+  announceAdminNotice({messageKey:"Conexión verificada",subject:connection.name,at:checkedAt});
+  return {...connection,lastCheckedAt:checkedAt};
 }
 
 export async function rotateProvider(connection:ProviderConnection,apiKey:string):Promise<ProviderConnection>{

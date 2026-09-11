@@ -1,5 +1,6 @@
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { activatePilotCohort, activateRoute, addJobSource, addPilotActivity, addPilotFamily, AdminData, AdminPerson, AdminRole, AdminSection, advanceJob, areaLabel, assignReview, CatalogGap, ContentIncident, createBudget, createDeployment, createJob, createPilotCohort, createProvider, createRate, createSupportGrant, EditorialJob, inviteAdmin, inviteFamilyTester, loadAdminData, loadAdminIdentity, loadUsage, PilotCohort, ProductSettings, ProviderConnection, reindexJob, releaseJob, researchSources, ResearchResult, revokeProvider, reviewJob, rotateProvider, RouteDraft, RouteRow, testProvider, updateAdminPerson, updateCoverageTarget, updateIncident, updateProductSettings } from "./adminData";
+import { ADMIN_NOTICE_EVENT, type AdminNotice } from "./adminData";
 import { DEMO_MODE } from "./api";
 import { deferAuthStateWork, prepareAdminMfa, signOut, supabase, verifyAdminMfa, type AdminMfaSetup } from "./auth";
 import { Login } from "./Login";
@@ -166,6 +167,7 @@ export default function AdminApp(){
   useEffect(()=>{void initialize();const listener=supabase?.auth.onAuthStateChange((event,session)=>{if(session){localStorage.setItem("kids.access_token",session.access_token);setAuthenticated(true);if(event==="SIGNED_IN"&&!identityReadyRef.current){setAuthReady(false);deferAuthStateWork(async()=>{await initialize();if(!identityReadyRef.current)await initialize()})}}else{localStorage.removeItem("kids.access_token");identityReadyRef.current=false;setAuthenticated(false);setData(null);setMfaRequired(false)}});return()=>{listener?.data.subscription.unsubscribe()}},[initialize]);
   useEffect(()=>{const allowed=role==="platform_owner"?null:role==="editorial_specialist"?specialistSections:supportSections;if(allowed&&!allowed.has(section))setSection("overview")},[role,section]);
   useEffect(()=>{document.documentElement.lang=adminLocale},[adminLocale]);
+  useEffect(()=>{let timer:number|undefined;const listener=(event:Event)=>{const notice=(event as CustomEvent<AdminNotice>).detail;if(!notice)return;const when=notice.at?` · ${new Date(notice.at).toLocaleString()}`:"";setToast(`${tr(notice.messageKey)} · ${notice.subject}${when}`);if(timer)window.clearTimeout(timer);timer=window.setTimeout(()=>setToast(""),5000)};window.addEventListener(ADMIN_NOTICE_EVENT,listener);return()=>{window.removeEventListener(ADMIN_NOTICE_EVENT,listener);if(timer)window.clearTimeout(timer)}},[]);
   function changeAdminLocale(locale:AdminLocale){persistAdminLocale(locale);setAdminLocale(locale)}
   async function logout(){await signOut();identityReadyRef.current=false;setAuthenticated(false);setData(null);setMfaRequired(false)}
   async function afterMfa(){identityReadyRef.current=false;setMfaRequired(false);setAuthReady(false);await initialize()}

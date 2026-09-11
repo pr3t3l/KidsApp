@@ -52,6 +52,7 @@ vi.mock("./adminData", async () => {
 });
 
 import AdminApp from "./AdminApp";
+import { ADMIN_NOTICE_EVENT } from "./adminData";
 
 beforeEach(() => {
   authMocks.getSession.mockImplementation(async () => ({ data: { session: authMocks.session }, error: null }));
@@ -68,6 +69,19 @@ afterEach(() => {
 });
 
 describe("administrative session initialization", () => {
+  it("shows an explicit provider-health success notice", async () => {
+    render(<AdminApp />);
+    expect(await screen.findByRole("heading", { name: "Resumen" })).toBeTruthy();
+
+    act(() => window.dispatchEvent(new CustomEvent(ADMIN_NOTICE_EVENT, { detail: {
+      messageKey: "Conexión verificada",
+      subject: "OpenRouter-GYM",
+      at: "2026-09-11T15:08:45Z",
+    } })));
+
+    expect(screen.getByRole("status").textContent).toContain("Conexión verificada · OpenRouter-GYM");
+  });
+
   it("updates refreshed credentials without reloading an already-open workspace", async () => {
     render(<AdminApp />);
     expect(await screen.findByRole("heading", { name: "Resumen" })).toBeTruthy();

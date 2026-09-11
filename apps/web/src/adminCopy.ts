@@ -295,6 +295,7 @@ const english: Record<string, string> = {
   "Registrar tarifa": "Register rate",
   "Conexión protegida": "Protected connection",
   "Probar conexión": "Test connection",
+  "Conexión verificada": "Connection verified",
   "Nueva API key": "New API key",
   "Rotar clave": "Rotate key",
   "¿Revocar esta conexión y desactivar sus deployments?": "Revoke this connection and disable its deployments?",
