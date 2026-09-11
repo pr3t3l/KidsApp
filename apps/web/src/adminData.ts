@@ -1,4 +1,5 @@
 import { apiRequest, DEMO_MODE } from "./api";
+import { requirePassedProviderHealth, type ProviderHealthResult } from "./providerConfig";
 
 export type AdminRole = "platform_owner" | "editorial_specialist" | "support_operator";
 export type AdminSection = "overview" | "coverage" | "activities" | "create" | "reviews" | "pilots" | "feedback" | "ai" | "providers" | "people" | "incidents" | "audit" | "settings";
@@ -184,8 +185,8 @@ export async function createProvider(input:{name:string;provider:string;apiKey:s
 
 export async function testProvider(connection:ProviderConnection):Promise<ProviderConnection>{
   if(DEMO_MODE)return {...connection,state:"active",lastCheckedAt:new Date().toISOString()};
-  await apiRequest(`/v1/admin/ai/connections/${connection.connectionId}/test`,{method:"POST"});
-  return {...connection,lastCheckedAt:new Date().toISOString()};
+  const result=await apiRequest<ProviderHealthResult>(`/v1/admin/ai/connections/${connection.connectionId}/test`,{method:"POST"});
+  return {...connection,lastCheckedAt:requirePassedProviderHealth(result)};
 }
 
 export async function rotateProvider(connection:ProviderConnection,apiKey:string):Promise<ProviderConnection>{

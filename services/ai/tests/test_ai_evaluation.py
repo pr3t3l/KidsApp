@@ -1,7 +1,8 @@
 import unittest
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from types import SimpleNamespace
 
+from services.ai.kids_ai.admin_models import RateCardRequest
 from services.ai.kids_ai.ai_ops import AIOperationsService
 from services.ai.kids_ai.model_gateway import ModelGateway
 from services.ai.kids_ai.provider_models import BillingMetadata, GenerationResult, RouteMetadata, RunMetadata, UsageMetadata
@@ -29,6 +30,18 @@ class AIEvaluationEvidenceTests(unittest.IsolatedAsyncioTestCase):
         operations = AIOperationsService(settings(demo_mode=demo_mode), InMemorySecretStore())
         await operations.initialize()
         return operations
+
+    @staticmethod
+    def _add_effective_rates(operations: AIOperationsService) -> None:
+        for deployment in operations.deployments.values():
+            operations.put_rate(RateCardRequest(
+                deployment_id=deployment.deployment_id,
+                input_per_million=0.25,
+                cached_input_per_million=0.025,
+                output_per_million=2.0,
+                source_url="https://example.test/official-rate",
+                effective_from=datetime.now(timezone.utc) - timedelta(minutes=1),
+            ))
 
     @staticmethod
     def _active_policy(operations: AIOperationsService, operation_key: str):
@@ -110,6 +123,7 @@ class AIEvaluationEvidenceTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_companion_harness_actually_runs_80_scenarios_and_24_model_calls(self):
         operations = await self._operations(False)
+        self._add_effective_rates(operations)
         policy = self._active_policy(operations, "companion.answer")
         policy.test_status = "passed"
         gateway = ModelGateway(settings(demo_mode=False), operations)
@@ -137,6 +151,30 @@ class AIEvaluationEvidenceTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(report["liveModelRuns"], 24)
         self.assertEqual(report["hardFailures"], 0)
         self.assertEqual(report["metrics"]["recallAt5"], 1)
+
+    async def test_live_calls_fail_closed_without_rate_or_global_budget(self):
+        operations = await self._operations(False)
+        deployment = next(iter(operations.deployments.values()))
+        with self.assertRaisesRegex(RuntimeError, "rate card"):
+            operations.estimate_request_cost(deployment.deployment_id, 100, 50)
+
+        operations.budgets.clear()
+        with self.assertRaisesRegex(RuntimeError, "global monthly"):
+            operations.ensure_budget("companion.answer", "production", deployment.deployment_id, estimated_usd=0.01)
+
+    async def test_production_route_test_requires_health_rates_and_budget(self):
+        operations = await self._operations(False)
+        policy = self._active_policy(operations, "companion.answer")
+        failed = operations.test_route(policy.policy_id)
+        self.assertEqual(failed.status, "failed")
+        self.assertTrue(any(row["check"] == "recent_provider_health" and not row["passed"] for row in failed.checks))
+        self.assertTrue(any(row["check"] == "effective_rate_card" and not row["passed"] for row in failed.checks))
+
+        self._add_effective_rates(operations)
+        for connection_id in operations.connections:
+            operations.mark_connection_test(connection_id, True, "Provider returned HTTP 200")
+        passed = operations.test_route(policy.policy_id)
+        self.assertEqual(passed.status, "passed")
 
 
 if __name__ == "__main__":

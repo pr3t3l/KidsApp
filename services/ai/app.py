@@ -87,6 +87,14 @@ app = FastAPI(title="Kids Learning System AI API", version="1.0.0", lifespan=lif
 app.add_middleware(CORSMiddleware, allow_origins=list(settings.allowed_origins), allow_credentials=True, allow_methods=["GET", "POST", "PUT", "DELETE"], allow_headers=["Authorization", "Content-Type", "Idempotency-Key"])
 
 
+@app.middleware("http")
+async def refresh_ai_control_plane(request: Request, call_next):
+    """Keep serverless instances aligned with the authoritative AI policy."""
+    if not settings.demo_mode and request.url.path.startswith(("/v1/admin/ai/", "/v1/companion/", "/v1/editorial/")):
+        await request.app.state.ai_ops.refresh_if_stale()
+    return await call_next(request)
+
+
 def safe_logfire_request_attributes(request: Request, attributes: dict[str, object]) -> dict[str, object]:
     """Keep useful route diagnostics without exporting credentials or TOTP."""
     safe = dict(attributes)
@@ -347,7 +355,7 @@ async def evaluate_ai_route(operation_key: str, policy_id: UUID, request: Reques
             raise ValueError("Policy does not belong to this operation")
         live_report = None if request.app.state.settings.demo_mode else await request.app.state.gateway.evaluate_policy(policy_id)
         return request.app.state.ai_ops.run_evaluation(policy_id, principal.user_id, principal.access_token, live_report)
-    except (KeyError, ValueError) as error:
+    except (KeyError, ValueError, RuntimeError) as error:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(error)) from error
 
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from statistics import median
 from threading import RLock
@@ -120,6 +120,7 @@ class AIOperationsService:
             for key, endpoint, stage, capability, description in DEFAULT_OPERATIONS
         }
         self.connections: dict[UUID, ConnectionRecord] = {}
+        self.connection_tests: dict[UUID, ConnectionTestResult] = {}
         self.deployments: dict[UUID, ModelDeploymentView] = {}
         self.policies: dict[tuple[str, str], list[RoutePolicyView]] = {}
         self.rate_cards: list[RateCardView] = []
@@ -221,7 +222,9 @@ class AIOperationsService:
             raise KeyError("Provider connection not found")
         await self.secret_store.rotate(record.secret_id, value)
         record.view.secret_last_four = value[-4:]
+        record.view.last_checked_at = None
         record.view.updated_at = now_utc()
+        self.connection_tests.pop(connection_id, None)
         return record.view
 
     async def revoke_connection(self, connection_id: UUID, actor_id: UUID = DEMO_OWNER_ID, actor_token: str = "") -> ProviderConnectionView:
@@ -232,6 +235,7 @@ class AIOperationsService:
         await self.secret_store.delete(record.secret_id)
         record.view.state = "revoked"
         record.view.updated_at = now_utc()
+        self.connection_tests.pop(connection_id, None)
         for deployment in self.deployments.values():
             if deployment.connection_id == connection_id:
                 deployment.state = "disabled"
@@ -251,7 +255,17 @@ class AIOperationsService:
         checked = now_utc()
         record.view.last_checked_at = checked
         record.view.updated_at = checked
-        return ConnectionTestResult(connection_id=connection_id, status="passed" if passed else "failed", provider=record.view.provider, checked_at=checked, detail=detail)
+        result = ConnectionTestResult(connection_id=connection_id, status="passed" if passed else "failed", provider=record.view.provider, checked_at=checked, detail=detail)
+        self.connection_tests[connection_id] = result
+        return result
+
+    def connection_is_ready(self, connection_id: UUID, *, max_age_hours: int = 24) -> bool:
+        result = self.connection_tests.get(connection_id)
+        return bool(
+            result
+            and result.status == "passed"
+            and result.checked_at >= now_utc() - timedelta(hours=max_age_hours)
+        )
 
     def create_deployment(self, request: ModelDeploymentCreate, state: str = "candidate", actor_id: UUID = DEMO_OWNER_ID, actor_token: str = "") -> ModelDeploymentView:
         del actor_id, actor_token
@@ -348,6 +362,14 @@ class AIOperationsService:
             connection = self.connections[deployment.connection_id].view
             valid = connection.state == "active" and operation.capability in deployment.capabilities and deployment.state not in {"restricted", "disabled"}
             checks.append({"deploymentId": str(deployment_id), "check": "capability_and_connection", "passed": valid})
+            if not getattr(self.settings, "demo_mode", True):
+                checks.append({"deploymentId": str(deployment_id), "check": "recent_provider_health", "passed": self.connection_is_ready(connection.connection_id)})
+                checks.append({"deploymentId": str(deployment_id), "check": "effective_rate_card", "passed": self.current_rate(deployment_id) is not None})
+        if not getattr(self.settings, "demo_mode", True):
+            checks.append({
+                "check": "global_monthly_budget",
+                "passed": any(item.scope_type == "global" and item.scope_key == "all" and item.period == "month" for item in self.budgets.values()),
+            })
         passed = all(item["passed"] for item in checks)
         policy.test_status = "passed" if passed else "failed"
         return RouteTestResult(policy_id=policy_id, operation_key=policy.operation_key, status=policy.test_status, checks=checks, latency_ms=max(0, int((now_utc() - started).total_seconds() * 1000)))
@@ -491,6 +513,8 @@ class AIOperationsService:
 
     def estimate_request_cost(self, deployment_id: UUID, input_characters: int, max_output_tokens: int) -> float | None:
         """Conservative preflight estimate used before a provider can spend money."""
+        if not getattr(self.settings, "demo_mode", True) and self.current_rate(deployment_id) is None:
+            raise RuntimeError("An effective rate card is required before a live provider call")
         approximate_input_tokens = max(1, (input_characters + 3) // 4)
         estimated, _ = self.estimate_cost(
             deployment_id,
@@ -577,6 +601,11 @@ class AIOperationsService:
         estimated_usd: float | None = None,
     ) -> None:
         self._refresh_budgets()
+        if not getattr(self.settings, "demo_mode", True) and not any(
+            item.scope_type == "global" and item.scope_key == "all" and item.period == "month"
+            for item in self.budgets.values()
+        ):
+            raise RuntimeError("A global monthly AI budget is required before a live provider call")
         deployment = self.deployments.get(deployment_id) if deployment_id else None
         connection = self.connections.get(deployment.connection_id) if deployment else None
         job_key = str(editorial_job_id) if editorial_job_id else None

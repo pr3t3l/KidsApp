@@ -6,6 +6,19 @@ export const PROVIDER_BASE_URLS = {
 
 export type ProviderSlug = keyof typeof PROVIDER_BASE_URLS;
 
+export type ProviderHealthResult = {
+  status: "passed" | "failed";
+  checkedAt: string;
+  detail: string;
+};
+
 export function isProviderSlug(value: string): value is ProviderSlug {
   return value in PROVIDER_BASE_URLS;
+}
+
+export function requirePassedProviderHealth(result: ProviderHealthResult): string {
+  if (result.status !== "passed") {
+    throw new Error(result.detail || "La conexión no fue aceptada por el proveedor.");
+  }
+  return result.checkedAt;
 }

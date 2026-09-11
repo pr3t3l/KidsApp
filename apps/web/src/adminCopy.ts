@@ -393,7 +393,8 @@ const english: Record<string, string> = {
   "Vida práctica": "Practical life",
   "Añade al menos una fuente exacta con derechos elegibles.": "Add at least one exact source with eligible rights.",
   "Falta una revisión profesional independiente.": "An independent professional review is missing.",
-  "Añade una familia y una versión exacta.": "Add a family and an exact version."
+  "Añade una familia y una versión exacta.": "Add a family and an exact version.",
+  "Sin presupuesto configurado": "No budget configured"
 };
 
 let renderLocale: AdminLocale = "es-US";

@@ -9,7 +9,8 @@ every administrative mutation through the caller's Supabase JWT so RLS and MFA
 policies remain authoritative.
 """
 
-from datetime import datetime, timezone
+from asyncio import Lock, gather
+from datetime import datetime, timedelta, timezone
 from typing import Any
 from uuid import UUID
 
@@ -45,6 +46,8 @@ class SupabaseAIOperationsService(AIOperationsService):
         self.publishable_key = settings.supabase_publishable_key
         self.service_key = settings.supabase_secret_key
         self.policy_parents: dict[UUID, UUID] = {}
+        self._refresh_lock = Lock()
+        self._loaded_at: datetime | None = None
 
     def _headers(self, token: str, *, service: bool = False, prefer: str | None = None) -> dict[str, str]:
         if service:
@@ -139,7 +142,7 @@ class SupabaseAIOperationsService(AIOperationsService):
         """Load production state; never create placeholder keys or routes."""
         if self.initialized:
             return
-        operations, connections, deployments, policies, versions, rates, budgets = await self._load_tables()
+        operations, connections, deployments, policies, versions, rates, budgets, health_checks = await self._load_tables()
         if operations:
             self.operations = {
                 row["operation_key"]: AIOperationView(
@@ -157,6 +160,17 @@ class SupabaseAIOperationsService(AIOperationsService):
         for row in connections:
             view = self._connection_view(row)
             self.connections[view.connection_id] = ConnectionRecord(view=view, secret_id=UUID(str(row["secret_id"])))
+        for row in health_checks:
+            connection_id = UUID(str(row["connection_id"]))
+            connection = self.connections.get(connection_id)
+            if connection:
+                self.connection_tests[connection_id] = ConnectionTestResult(
+                    connection_id=connection_id,
+                    status=row["status"],
+                    provider=connection.view.provider,
+                    checked_at=row["checked_at"],
+                    detail="Persisted provider health check",
+                )
         for row in deployments:
             view = self._deployment_view(row)
             self.deployments[view.deployment_id] = view
@@ -231,6 +245,33 @@ class SupabaseAIOperationsService(AIOperationsService):
             if row.get("active", True)
         }
         self.initialized = True
+        self._loaded_at = now_utc()
+
+    async def refresh_if_stale(self, max_age_seconds: float = 1.0) -> None:
+        """Replace the warm-instance cache from the authoritative database.
+
+        Vercel may keep several function instances alive. Administrative writes
+        update only the instance that handled them, so another warm instance
+        must not keep routing against an older connection, health result, rate
+        or budget. Build a fresh snapshot and swap it atomically.
+        """
+        if self._loaded_at and self._loaded_at >= now_utc() - timedelta(seconds=max_age_seconds):
+            return
+        async with self._refresh_lock:
+            if self._loaded_at and self._loaded_at >= now_utc() - timedelta(seconds=max_age_seconds):
+                return
+            fresh = type(self)(self.settings, self.secret_store)
+            await fresh.initialize()
+            self.operations = fresh.operations
+            self.connections = fresh.connections
+            self.connection_tests = fresh.connection_tests
+            self.deployments = fresh.deployments
+            self.policies = fresh.policies
+            self.policy_parents = fresh.policy_parents
+            self.rate_cards = fresh.rate_cards
+            self.budgets = fresh.budgets
+            self.initialized = True
+            self._loaded_at = fresh._loaded_at
 
     async def _load_tables(self) -> tuple[list[dict[str, Any]], ...]:
         paths = (
@@ -241,10 +282,11 @@ class SupabaseAIOperationsService(AIOperationsService):
             "routing_policy_version?select=*",
             "ai_rate_card?select=*",
             "ai_budget?active=eq.true&select=*",
+            "provider_health_check?select=*&order=checked_at.asc",
         )
+        responses = await gather(*(self._async_request("GET", path, service=True) for path in paths))
         rows: list[list[dict[str, Any]]] = []
-        for path in paths:
-            response = await self._async_request("GET", path, service=True)
+        for response in responses:
             body = response.json()
             rows.append(body if isinstance(body, list) else [])
         return tuple(rows)  # type: ignore[return-value]
@@ -306,8 +348,9 @@ class SupabaseAIOperationsService(AIOperationsService):
             f"provider_connection?connection_id=eq.{connection_id}",
             token=actor_token,
             prefer="return=representation",
-            json={"secret_last_four": value[-4:], "updated_at": timestamp.isoformat()},
+            json={"secret_last_four": value[-4:], "last_checked_at": None, "updated_at": timestamp.isoformat()},
         )
+        self.connection_tests.pop(connection_id, None)
         record.view = self._connection_view(self._one(response))
         self._audit(actor_id, actor_token, "provider_secret_rotated", "provider_connection", str(connection_id))
         return record.view
@@ -359,6 +402,8 @@ class SupabaseAIOperationsService(AIOperationsService):
         return result
 
     def create_deployment(self, request: ModelDeploymentCreate, state: str = "candidate", actor_id: UUID | None = None, actor_token: str = "") -> ModelDeploymentView:
+        if not self.connection_is_ready(request.connection_id):
+            raise ValueError("A passing provider health check from the last 24 hours is required")
         actor_id = actor_id or UUID("00000000-0000-0000-0000-000000000001")
         candidate = super().create_deployment(request, state, actor_id, actor_token)
         try:

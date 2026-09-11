@@ -8,7 +8,7 @@
 
 ## Deployment result
 
-The 19 Kids migrations were applied transactionally through the authenticated
+The 20 Kids migrations were applied transactionally through the authenticated
 Supabase management connection. Their remote timestamps are the filenames in
 `supabase/migrations`. Eleven earlier `shop_*` files are no-op history markers:
 they align the shared migration ledger but never recreate, mutate or depend on
@@ -71,6 +71,11 @@ matching the pre-migration inventory.
   that URL, left the encrypted key untouched and added a validated provider/URL
   constraint. The browser now derives a read-only origin from the provider and
   the API rejects mismatches without returning the submitted secret.
+- Migration `20260911143651_kids_default_ai_spend_guard` persisted the
+  owner-approved global monthly pilot budget of USD 15. Production now refuses
+  live calls without that budget or an effective rate card, and deployment or
+  route testing requires a passing provider health check from the last 24
+  hours. Rotating a key invalidates the earlier health result.
 
 ## Advisor interpretation
 
@@ -122,8 +127,9 @@ required before commercial family data is accepted.
 
 - Run the authenticated provider health checks and record their timestamps;
   saved credentials alone do not prove provider acceptance.
-- Create evaluated model deployments, effective-dated rates, the USD 15 global
-  budget and operation routes before making a product inference.
+- Create evaluated model deployments, effective-dated rates and operation
+  routes before making a product inference. The durable USD 15 global budget is
+  present, but it does not authorize spending until those other gates pass.
 - Test two-family isolation with real Supabase JWTs and capture the hosted
   family/admin evidence.
 - Configure and verify SMTP before inviting external pilot families.
