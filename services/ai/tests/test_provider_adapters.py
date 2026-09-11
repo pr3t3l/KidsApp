@@ -5,7 +5,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 from uuid import uuid4
 
-from services.ai.kids_ai.admin_models import BudgetRequest
+from services.ai.kids_ai.admin_models import BudgetRequest, ProviderConnectionCreate
 from services.ai.kids_ai.ai_ops import AIOperationsService
 from services.ai.kids_ai.model_gateway import AnthropicAdapter, GenerationRequest, ModelGateway, OpenAIAdapter, OpenRouterAdapter, ProviderCallError
 from services.ai.kids_ai.provider_models import BillingMetadata, GenerationResult, RouteMetadata, RunMetadata, UsageMetadata
@@ -60,6 +60,42 @@ def request():
 
 
 class ProviderAdapterTests(unittest.IsolatedAsyncioTestCase):
+    async def test_connection_checks_use_authenticated_provider_endpoints(self):
+        settings = SimpleNamespace(
+            openrouter_api_key="test-provider-key",
+            openrouter_base_url="https://openrouter.ai/api/v1",
+            primary_model="provider/primary",
+            fallback_model="provider/fallback",
+            embedding_model="provider/embed",
+            app_env="development",
+            monthly_budget_usd=15,
+            site_url="https://kids.example",
+            app_name="Kids Learning System",
+            telemetry_hash_salt="test-hmac-salt",
+        )
+        operations = AIOperationsService(settings, InMemorySecretStore())
+        await operations.initialize()
+        gateway = ModelGateway(settings, operations)
+        openrouter = next(item for item in operations.list_connections() if item.provider == "openrouter")
+        openai = await operations.create_connection(ProviderConnectionCreate(
+            name="OpenAI direct",
+            provider="openai",
+            api_key="test-openai-key",
+            base_url="https://api.openai.com/v1",
+        ))
+
+        FakeClient.response = FakeResponse({"data": {"label": "valid"}})
+        with patch("services.ai.kids_ai.model_gateway.httpx.AsyncClient", FakeClient):
+            passed, _ = await gateway.test_connection(openrouter.connection_id)
+            self.assertTrue(passed)
+            self.assertEqual(FakeClient.last_url, "https://openrouter.ai/api/v1/key")
+            self.assertEqual(FakeClient.last_headers["Authorization"], "Bearer test-provider-key")
+
+            passed, _ = await gateway.test_connection(openai.connection_id)
+            self.assertTrue(passed)
+            self.assertEqual(FakeClient.last_url, "https://api.openai.com/v1/models")
+            self.assertEqual(FakeClient.last_headers["Authorization"], "Bearer test-openai-key")
+
     async def test_openrouter_requests_and_keeps_extended_metadata(self):
         FakeClient.response = FakeResponse(
             {

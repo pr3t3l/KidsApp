@@ -933,8 +933,9 @@ class ModelGateway:
         headers = {"Authorization": f"Bearer {secret}"}
         if connection.provider == "anthropic":
             headers = {"x-api-key": secret, "anthropic-version": "2023-06-01"}
+        health_path = "key" if connection.provider == "openrouter" else "models"
         async with httpx.AsyncClient(timeout=8) as client:
-            response = await client.get(f"{connection.base_url.rstrip('/')}/models", headers=headers)
+            response = await client.get(f"{connection.base_url.rstrip('/')}/{health_path}", headers=headers)
         return response.status_code < 400, f"Provider returned HTTP {response.status_code}"
 
     @staticmethod
