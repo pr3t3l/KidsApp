@@ -4,6 +4,8 @@ from types import SimpleNamespace
 from unittest.mock import AsyncMock, patch
 from uuid import uuid4
 
+import httpx
+
 from services.ai.kids_ai.admin_models import ConnectionTestResult, ProviderConnectionCreate
 from services.ai.kids_ai.supabase_ai_ops import SupabaseAIOperationsService
 
@@ -37,6 +39,35 @@ def settings():
 
 
 class SupabaseAIOperationsTests(unittest.IsolatedAsyncioTestCase):
+    async def test_read_retries_a_transient_supabase_conflict(self):
+        service = SupabaseAIOperationsService(settings(), FakeSecretStore())
+        calls = []
+
+        class FakeClient:
+            def __init__(self, *args, **kwargs):
+                del args, kwargs
+
+            async def __aenter__(self):
+                return self
+
+            async def __aexit__(self, *args):
+                del args
+
+            async def request(self, method, url, **kwargs):
+                del kwargs
+                calls.append((method, url))
+                status = 409 if len(calls) == 1 else 200
+                return httpx.Response(status, json=[], request=httpx.Request(method, url))
+
+        with patch("services.ai.kids_ai.supabase_ai_ops.httpx.AsyncClient", FakeClient), patch(
+            "services.ai.kids_ai.supabase_ai_ops.sleep", new_callable=AsyncMock
+        ) as retry_sleep:
+            response = await service._async_request("GET", "model_deployment?select=*", service=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(calls), 2)
+        retry_sleep.assert_awaited_once()
+
     async def test_production_startup_never_bootstraps_placeholder_credentials(self):
         store = FakeSecretStore()
         service = SupabaseAIOperationsService(settings(), store)

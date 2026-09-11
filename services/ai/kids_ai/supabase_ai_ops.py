@@ -9,7 +9,7 @@ every administrative mutation through the caller's Supabase JWT so RLS and MFA
 policies remain authoritative.
 """
 
-from asyncio import Lock, gather
+from asyncio import Lock, gather, sleep
 from datetime import datetime, timedelta, timezone
 from typing import Any
 from uuid import UUID
@@ -70,15 +70,28 @@ class SupabaseAIOperationsService(AIOperationsService):
         prefer: str | None = None,
         **kwargs: Any,
     ) -> httpx.Response:
-        async with httpx.AsyncClient(timeout=12) as client:
-            response = await client.request(
-                method,
-                f"{self.url}/rest/v1/{supabase_rest_path(path)}",
-                headers=self._headers(token, service=service, prefer=prefer),
-                **kwargs,
-            )
-        response.raise_for_status()
-        return response
+        url = f"{self.url}/rest/v1/{supabase_rest_path(path)}"
+        attempts = 3 if method.upper() == "GET" else 1
+        for attempt in range(attempts):
+            try:
+                async with httpx.AsyncClient(timeout=12) as client:
+                    response = await client.request(
+                        method,
+                        url,
+                        headers=self._headers(token, service=service, prefer=prefer),
+                        **kwargs,
+                    )
+            except httpx.TransportError:
+                if attempt + 1 >= attempts:
+                    raise
+                await sleep(0.15 * (2**attempt))
+                continue
+            if response.status_code in {409, 429, 500, 502, 503, 504} and attempt + 1 < attempts:
+                await sleep(0.15 * (2**attempt))
+                continue
+            response.raise_for_status()
+            return response
+        raise RuntimeError("Supabase read retry loop ended unexpectedly")
 
     def _sync_request(
         self,

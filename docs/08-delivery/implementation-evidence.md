@@ -24,7 +24,7 @@ The evidence boundary is strict. Catalog records and families used by automated 
 | PostgreSQL parser | All substantive migrations parse with PostgreSQL grammar; the shared-ledger markers are deliberate no-ops |
 | Frontend component tests | 25/25 pass across 9 files, including one-code session, single-write, safe-error, provider-origin, failed-health and visible-success regressions |
 | Frontend production build | TypeScript and Vite production build pass; 117 modules transformed |
-| API/policy tests | 81/81 pass, including authenticated provider-health paths, recent-health, effective-rate, durable-budget and warm-instance refresh gates |
+| API/policy tests | 82/82 pass, including authenticated provider-health paths, transient-read retry, recent-health, effective-rate, durable-budget and warm-instance refresh gates |
 | Golden set | 80/80 bilingual executions pass across 40 canonical cases |
 | Golden quality gates | Recall@5 `1.0`, source correctness `1.0`, safe abstention `1.0` |
 | Dependency security | `npm audit` reports zero vulnerabilities; `pip-audit` reports no known vulnerabilities in the locked Python requirements |
